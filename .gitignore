@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.venv/
+quiz_reports/
+Output/
+question_history.csv
