@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NETC-121 Practice Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Keep core visibility behavior even if external CSS fails to load. */
+    .hidden { display: none !important; }
+  </style>
+  <script>
+    (function loadStylesWithFallback() {
+      const candidates = [
+        "./styles.css",
+        "styles.css",
+        "./rocket-questions-html/styles.css",
+        "/rocket-questions-html/styles.css",
+      ];
+      const head = document.head || document.getElementsByTagName("head")[0];
+      const tryNext = (idx) => {
+        if (idx >= candidates.length) return;
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = candidates[idx];
+        link.onload = () => {};
+        link.onerror = () => {
+          link.remove();
+          tryNext(idx + 1);
+        };
+        head.appendChild(link);
+      };
+      tryNext(0);
+    })();
+  </script>
+</head>
+<body>
+  <div class="bg-shape bg-shape-a" aria-hidden="true"></div>
+  <div class="bg-shape bg-shape-b" aria-hidden="true"></div>
+
+  <main class="app-shell">
+    <header class="app-header">
+      <h1>NETC-121 Practice Quiz</h1>
+      <p>Website edition with week filtering, live grading, history-aware skips, and review reports.</p>
+      <p id="load-status" class="load-status">Loading question banks...</p>
+    </header>
+
+    <section id="week-screen" class="screen card">
+      <h2>Week Selection</h2>
+      <p>Select one or more weeks (1-6) before setup.</p>
+      <div class="week-grid" id="week-grid"></div>
+      <div class="row actions">
+        <button id="select-all-weeks" type="button" class="btn ghost">Select All</button>
+        <button id="clear-all-weeks" type="button" class="btn ghost">Clear All</button>
+        <button id="continue-setup" type="button" class="btn accent push-right">Continue to Setup</button>
+      </div>
+    </section>
+
+    <section id="config-screen" class="screen card hidden">
+      <h2>Quiz Configuration</h2>
+      <p id="week-summary"></p>
+      <p id="difficulty-totals"></p>
+      <div class="config-grid">
+        <label>
+          Mode
+          <select id="mode-select">
+            <option value="easy">easy</option>
+            <option value="medium">medium</option>
+            <option value="hard">hard</option>
+          </select>
+        </label>
+        <label>
+          Questions
+          <input id="question-count" type="number" min="1" max="100" value="10">
+        </label>
+        <div class="available-wrap">
+          <p id="available-count"></p>
+        </div>
+      </div>
+      <label class="checkline">
+        <input id="skip-correct" type="checkbox">
+        Skip Previously Correct Questions
+      </label>
+      <p id="mode-desc" class="mode-desc"></p>
+      <div class="row actions">
+        <button id="start-quiz" type="button" class="btn accent">Start Quiz</button>
+        <button id="change-weeks" type="button" class="btn ghost">Change Weeks</button>
+      </div>
+    </section>
+
+    <section id="quiz-screen" class="screen card hidden">
+      <h2>Practice Quiz</h2>
+      <p id="quiz-meta"></p>
+      <p id="live-score"></p>
+      <p id="question-text" class="question-text">Click Start Quiz to begin.</p>
+
+      <fieldset id="answers-wrap" class="answers-wrap">
+        <legend class="sr-only">Answer choices</legend>
+        <label><input type="radio" name="answer" value="A"><span id="choice-a">A.</span></label>
+        <label><input type="radio" name="answer" value="B"><span id="choice-b">B.</span></label>
+        <label><input type="radio" name="answer" value="C"><span id="choice-c">C.</span></label>
+        <label><input type="radio" name="answer" value="D"><span id="choice-d">D.</span></label>
+      </fieldset>
+
+      <p id="feedback" class="feedback"></p>
+
+      <div class="row actions">
+        <button id="submit-answer" type="button" class="btn accent">Submit Answer</button>
+        <button id="next-question" type="button" class="btn ghost" disabled>Next Question</button>
+        <button id="flag-question" type="button" class="btn warn">Not in Current Course Scope</button>
+        <button id="ineffective-question" type="button" class="btn warn">Ineffective Question</button>
+        <button id="finish-quiz" type="button" class="btn ghost push-right">Finish Quiz</button>
+        <button id="back-setup-from-quiz" type="button" class="btn ghost">Back to Setup</button>
+      </div>
+    </section>
+
+    <section id="review-screen" class="screen card hidden">
+      <h2>Quiz Review Report</h2>
+      <p id="review-summary"></p>
+      <p>Print tip: use Copy Report or Download Report for clean formatting.</p>
+      <textarea id="review-text" readonly></textarea>
+      <div class="row actions">
+        <button id="copy-report" type="button" class="btn ghost">Copy Report</button>
+        <button id="download-report" type="button" class="btn ghost">Download Report</button>
+        <button id="print-report" type="button" class="btn accent">Print Report</button>
+        <button id="retake-incorrect" type="button" class="btn accent">Retake Incorrect Only</button>
+        <button id="back-setup-from-review" type="button" class="btn ghost push-right">Back to Setup</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="ineffective-dialog">
+    <div class="dialog-form">
+      <h3>Mark Ineffective Question</h3>
+      <label for="ineffective-feedback">Why is this question ineffective? (required)</label>
+      <textarea id="ineffective-feedback" rows="10"></textarea>
+      <div class="row actions">
+        <button id="submit-ineffective" type="button" value="submit" class="btn accent">Submit Feedback</button>
+        <button id="cancel-ineffective" type="button" value="cancel" class="btn ghost">Cancel</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    (function loadAppWithFallback() {
+      const REQUIRED_APP_VERSION = "2026-02-27-01";
+      const candidates = [
+        "./app.js",
+        "app.js",
+        "./rocket-questions-html/app.js",
+        "/rocket-questions-html/app.js",
+      ];
+      const setStatus = (msg) => {
+        const el = document.getElementById("load-status");
+        if (el) el.textContent = msg;
+      };
+      const tried = [];
+      const tryNext = (idx) => {
+        if (idx >= candidates.length) {
+          setStatus(`Load failed. Could not load app.js. Tried: ${tried.join(", ")}`);
+          return;
+        }
+        const src = candidates[idx];
+        window.__NETC_QUIZ_APP_SCRIPT__ = false;
+        window.__NETC_QUIZ_APP_VERSION__ = "";
+        window.__NETC_QUIZ_APP_READY__ = false;
+        const script = document.createElement("script");
+        script.src = src;
+        script.defer = true;
+        script.onerror = () => {
+          tried.push(src);
+          script.remove();
+          tryNext(idx + 1);
+        };
+        script.onload = () => {
+          if (window.__NETC_QUIZ_APP_SCRIPT__ && window.__NETC_QUIZ_APP_VERSION__ === REQUIRED_APP_VERSION) return;
+          tried.push(`${src} (unexpected app script/version)`);
+          script.remove();
+          tryNext(idx + 1);
+        };
+        document.body.appendChild(script);
+      };
+      tryNext(0);
+    })();
+  </script>
+</body>
+</html>

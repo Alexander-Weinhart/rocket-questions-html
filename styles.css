@@ -1,0 +1,320 @@
+:root {
+  --bg: #07131f;
+  --card: rgba(11, 26, 42, 0.9);
+  --ink: #ebf4ff;
+  --muted: #9fb4cc;
+  --accent: #00a8a8;
+  --accent-2: #ff735c;
+  --warn: #c6405f;
+  --line: rgba(152, 191, 224, 0.22);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(1800px 700px at 10% -20%, rgba(0, 168, 168, 0.15), transparent),
+    radial-gradient(1400px 550px at 100% 0%, rgba(255, 115, 92, 0.12), transparent),
+    var(--bg);
+  color: var(--ink);
+  font-family: "Space Grotesk", "Trebuchet MS", "Segoe UI", sans-serif;
+  line-height: 1.4;
+}
+
+.bg-shape {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(48px);
+  z-index: -1;
+  opacity: 0.6;
+}
+
+.bg-shape-a {
+  width: 340px;
+  height: 340px;
+  background: rgba(0, 168, 168, 0.18);
+  top: -120px;
+  left: -120px;
+}
+
+.bg-shape-b {
+  width: 280px;
+  height: 280px;
+  background: rgba(255, 115, 92, 0.2);
+  bottom: -80px;
+  right: -80px;
+}
+
+.app-shell {
+  width: min(1200px, 96vw);
+  margin: 2rem auto;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 2.7vw, 2.8rem);
+  letter-spacing: 0.01em;
+}
+
+.app-header p {
+  margin: 0.45rem 0;
+  color: var(--muted);
+}
+
+.load-status {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.9rem;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: 0 22px 40px rgba(1, 10, 16, 0.35);
+  padding: 1.2rem 1.2rem 1.4rem;
+  margin-top: 1rem;
+  animation: rise-in 220ms ease;
+}
+
+.screen.hidden {
+  display: none;
+}
+
+h2 {
+  margin: 0;
+}
+
+p {
+  color: var(--muted);
+}
+
+.week-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 1rem 0 0.5rem;
+}
+
+.week-grid label {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  border: 1px solid var(--line);
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  background: rgba(13, 33, 53, 0.75);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  align-items: center;
+}
+
+.actions {
+  margin-top: 1rem;
+}
+
+.push-right {
+  margin-left: auto;
+}
+
+.btn {
+  border: 0;
+  border-radius: 11px;
+  padding: 0.68rem 0.95rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 90ms ease, opacity 90ms ease, background-color 120ms ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn.accent {
+  background: linear-gradient(110deg, var(--accent), #0080a8);
+  color: #f4ffff;
+}
+
+.btn.ghost {
+  background: #1b3146;
+  color: #deecff;
+}
+
+.btn.warn {
+  background: linear-gradient(110deg, var(--warn), #a5324f);
+  color: #fff3f6;
+}
+
+.config-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin-top: 0.8rem;
+}
+
+label {
+  display: block;
+  color: #d4e6fb;
+}
+
+select,
+input[type="number"],
+textarea {
+  width: 100%;
+  margin-top: 0.35rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.62rem 0.65rem;
+  background: #0d2236;
+  color: #ebf4ff;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.available-wrap p {
+  margin-top: 1.75rem;
+}
+
+.checkline {
+  display: inline-flex;
+  gap: 0.55rem;
+  align-items: center;
+  margin-top: 0.8rem;
+}
+
+.mode-desc {
+  margin-top: 0.8rem;
+}
+
+.question-text {
+  color: #f5faff;
+  font-size: clamp(1.02rem, 1.5vw, 1.22rem);
+  font-weight: 700;
+}
+
+.answers-wrap {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin: 0.8rem 0 0;
+  padding: 0.7rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.answers-wrap label {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  padding: 0.5rem;
+  border-radius: 9px;
+}
+
+.answers-wrap label:hover {
+  background: rgba(47, 99, 137, 0.25);
+}
+
+.feedback {
+  min-height: 2.5em;
+  white-space: pre-wrap;
+}
+
+#review-text {
+  margin-top: 0.65rem;
+  min-height: 390px;
+  white-space: pre;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+dialog {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #0b1d31;
+  color: var(--ink);
+  width: min(700px, 92vw);
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.dialog-form h3 {
+  margin-top: 0;
+}
+
+.sr-only {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+@keyframes rise-in {
+  from {
+    transform: translateY(6px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 900px) {
+  .config-grid,
+  .week-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .push-right {
+    margin-left: 0;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #review-screen,
+  #review-screen * {
+    visibility: visible;
+  }
+  #review-screen {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: #fff;
+    color: #000;
+  }
+  #review-text {
+    border: 0;
+    min-height: auto;
+    color: #000;
+    background: #fff;
+  }
+}

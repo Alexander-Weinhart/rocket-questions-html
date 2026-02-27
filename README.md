@@ -1,51 +1,50 @@
-# rocket-questions
+# rocket-questions-html
 
-Practice quiz app for NETC-121 with week-by-week question banks, history tracking, and dynamic filtering.
+NETC-121 practice quiz rebuilt as a browser app using only:
+- HTML
+- CSS
+- JavaScript
 
-## Runtime Dependencies
-- OS:
-  - Windows 10 or Windows 11 (for setup `.exe` flow)
-  - Linux/macOS supported for source run
-- Python:
-  - Python 3.11+ (Tkinter included)
-- Python packages:
-  - No third-party runtime dependencies required (standard library only)
+Question data stays CSV-backed (`week1...week6_question_bank.csv`, fallback `question_bank.csv`).
 
-## Project Files
-- `netc_pop_quiz.py`: main app
-- `week1_question_bank.csv` ... `week6_question_bank.csv`: week-specific banks
-- `question_bank.csv`: fallback combined bank
-- `changes.csv`: ineffective question change requests
-- `question_history.csv`: correct/incorrect history log
-- `rocket_icon.png`: app icon
+## Run
+Use the bundled server so change actions are saved server-side to `changes.csv`.
 
-## Run From Source
+Example:
 ```bash
-python3 netc_pop_quiz.py
+cd rocket-questions-html
+python3 server.py 8000
 ```
 
-## Windows Setup EXE (Build + Install)
-This repo includes an Inno Setup installer definition that builds `RocketQuestionsSetup.exe`.
+Open:
+`http://localhost:8000`
 
-### What the setup EXE does
-- Installs app files into `%LOCALAPPDATA%\\RocketQuestions`.
-- Runs `windows/install_dependencies.ps1` after install.
-- Bootstraps Python 3.12 via `winget` if Python is missing.
-- Creates/updates local venv and installs `requirements.txt`.
-- Optionally launches the app.
+API endpoint used by the web app:
+- `POST /api/changes` -> appends a row to `changes.csv`
 
-## Build Setup EXE Locally on Windows
-1. Install Inno Setup 6.
-2. Open `windows/RocketQuestionsSetup.iss` in Inno Setup Compiler.
-3. Build to produce `RocketQuestionsSetup.exe`.
+## Features Ported From Python App
+- Week selection (1-6) before setup
+- Mode selection: easy / medium / hard
+- Medium mode includes easy + medium pools
+- Configurable question count with automatic clamp to availability
+- Live score + letter grade updates
+- Skip previously correct questions
+- Not in Current Course Scope -> reassign to Hard + skip (no score impact)
+- Ineffective Question flow with required feedback
+- Remove ineffective question from active bank (browser-local override)
+- Finish flow with generated review report
+- Topics-to-review section inferred from incorrect questions
+- Copy / Download / Print report
+- Retake Incorrect Only
 
-## GitHub Actions Build (Automatic)
-On push to `main`, workflow `.github/workflows/build-windows-setup.yml` builds and uploads:
-- `RocketQuestionsSetup.exe`
+## Persistence Model
+- Base history loads from `question_history.csv`
+- Base changes load from `changes.csv`
+- Change actions from:
+  - `Not in Current Course Scope`
+  - `Ineffective Question`
+  are written server-side to `changes.csv` via `POST /api/changes`
+- Local browser cache is still used for history, overrides, and reports
+- Difficulty overrides, removed questions, and auto-saved reports save to `localStorage`
 
-Download from:
-- GitHub Actions run artifacts.
-
-## Notes
-- `requirements.txt` is intentionally minimal because the app uses Python standard library modules.
-- The installer targets Windows 10/11 and uses `winget` for dependency bootstrap when needed.
+This keeps the app fully static while preserving behavior from the desktop workflow.
