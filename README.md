@@ -8,16 +8,14 @@ NETC-121 practice quiz rebuilt as a browser app using only:
 Question data stays CSV-backed (`week1...week6_question_bank.csv`, fallback `question_bank.csv`).
 
 ## Run
-Use the bundled server so change actions are saved server-side to `changes.csv`.
+Use the bundled api server so change actions are saved server-side to `changes.csv`.
 
 Example:
 ```bash
 cd rocket-questions-html
-python3 server.py 8000
+python3 server.py 3003
 ```
-
-Open:
-`http://localhost:8000`
+This all goes on a web server.
 
 API endpoint used by the web app:
 - `POST /api/changes` -> appends a row to `changes.csv`
