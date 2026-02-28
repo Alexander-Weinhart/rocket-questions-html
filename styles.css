@@ -25,6 +25,70 @@ body {
   line-height: 1.4;
 }
 
+body.app-loading {
+  overflow: hidden;
+}
+
+body.app-loading .app-shell {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.startup-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+  background:
+    radial-gradient(1600px 600px at 10% 0%, rgba(0, 168, 168, 0.2), transparent),
+    radial-gradient(1400px 600px at 100% 0%, rgba(255, 115, 92, 0.18), transparent),
+    rgba(5, 14, 24, 0.92);
+}
+
+.startup-card {
+  width: min(560px, 96vw);
+  background: rgba(11, 26, 42, 0.95);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 1.15rem 1.2rem;
+  box-shadow: 0 24px 44px rgba(0, 0, 0, 0.35);
+}
+
+.startup-photo {
+  width: min(386px, 90vw);
+  height: min(386px, 90vw);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  border: 2px solid rgba(160, 206, 233, 0.5);
+  display: block;
+  margin: 0 auto 0.7rem;
+}
+
+.startup-kicker {
+  margin: 0 0 0.4rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: #a8c4df;
+}
+
+.startup-thanks {
+  margin: 0 0 0.55rem;
+  color: #f5fbff;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+}
+
+.startup-card h2 {
+  margin: 0 0 0.55rem;
+}
+
+.startup-card p {
+  margin: 0;
+}
+
 .bg-shape {
   position: fixed;
   border-radius: 50%;
@@ -240,6 +304,10 @@ textarea {
   line-height: 1.45;
 }
 
+.print-only-report {
+  display: none;
+}
+
 dialog {
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -294,27 +362,76 @@ dialog::backdrop {
 }
 
 @media print {
-  body * {
-    visibility: hidden;
+  @page {
+    margin: 12mm;
   }
-  #review-screen,
-  #review-screen * {
-    visibility: visible;
+
+  body {
+    margin: 0 !important;
+    min-height: auto !important;
+    background: #fff !important;
+    color: #000 !important;
   }
+
+  .bg-shape,
+  .startup-splash,
+  .app-header,
+  #course-screen,
+  #week-screen,
+  #config-screen,
+  #quiz-screen,
+  dialog {
+    display: none !important;
+  }
+
+  .app-shell {
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
   #review-screen {
-    position: absolute;
-    inset: 0;
-    margin: 0;
-    border: 0;
-    border-radius: 0;
-    box-shadow: none;
-    background: #fff;
-    color: #000;
+    display: block !important;
+    position: static !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    color: #000 !important;
+    animation: none !important;
   }
+
+  #review-screen .actions {
+    display: none !important;
+  }
+
+  #review-screen p {
+    color: #000 !important;
+  }
+
   #review-text {
+    display: none !important;
+  }
+
+  #review-text-print {
+    display: block !important;
+    margin: 0.45rem 0 0 0;
     border: 0;
-    min-height: auto;
     color: #000;
     background: #fff;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow: visible;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.88rem;
+    line-height: 1.4;
+  }
+
+  #review-screen,
+  #review-text-print {
+    page-break-inside: auto;
+    break-inside: auto;
   }
 }

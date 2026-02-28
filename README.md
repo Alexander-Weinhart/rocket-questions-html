@@ -22,7 +22,7 @@ Open:
 API endpoint used by the web app:
 - `POST /api/changes` -> appends a row to `changes.csv`
 
-## Features Ported From Python App
+## Website Features
 - Week selection (1-6) before setup
 - Mode selection: easy / medium / hard
 - Medium mode includes easy + medium pools
@@ -47,4 +47,4 @@ API endpoint used by the web app:
 - Local browser cache is still used for history, overrides, and reports
 - Difficulty overrides, removed questions, and auto-saved reports save to `localStorage`
 
-This keeps the app fully static while preserving behavior from the desktop workflow.
+This keeps the app website-first with CSV-backed content and browser persistence.

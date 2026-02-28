@@ -3,55 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NETC-121 Practice Quiz</title>
+  <title>Rocket Questions - Cincinnati State NETC-CS Program</title>
+  <link rel="icon" type="image/png" href="./rocket_icon.png?v=2026-02-28-10">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css?v=2026-02-28-11">
   <style>
     /* Keep core visibility behavior even if external CSS fails to load. */
     .hidden { display: none !important; }
   </style>
-  <script>
-    (function loadStylesWithFallback() {
-      const candidates = [
-        "./styles.css",
-        "styles.css",
-        "./rocket-questions-html/styles.css",
-        "/rocket-questions-html/styles.css",
-      ];
-      const head = document.head || document.getElementsByTagName("head")[0];
-      const tryNext = (idx) => {
-        if (idx >= candidates.length) return;
-        const link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = candidates[idx];
-        link.onload = () => {};
-        link.onerror = () => {
-          link.remove();
-          tryNext(idx + 1);
-        };
-        head.appendChild(link);
-      };
-      tryNext(0);
-    })();
-  </script>
 </head>
-<body>
+<body class="app-loading">
   <div class="bg-shape bg-shape-a" aria-hidden="true"></div>
   <div class="bg-shape bg-shape-b" aria-hidden="true"></div>
+  <div id="startup-splash" class="startup-splash" role="status" aria-live="polite">
+    <div class="startup-card">
+      <img class="startup-photo" src="./alex.jpg" alt="Alex portrait">
+      <p class="startup-kicker">Rocket Questions</p>
+      <h1 class="startup-thanks">Tell Alex thank you!</h1>
+      <h2>Loading your course workspace...</h2>
+      <p id="startup-status">Preparing question banks and progress data.</p>
+    </div>
+  </div>
 
   <main class="app-shell">
     <header class="app-header">
-      <h1>NETC-121 Practice Quiz</h1>
-      <p>Website edition with week filtering, live grading, history-aware skips, and review reports.</p>
+      <h1 id="app-title">Rocket Questions - Cincinnati State NETC-CS Program</h1>
+      <p id="app-subtitle">May we all succeed or fail as a team. | Copyright © 2026, Alexander Weinhart.</p>
       <p id="load-status" class="load-status">Loading question banks...</p>
     </header>
 
-    <section id="week-screen" class="screen card">
+    <section id="course-screen" class="screen card">
+      <h2>Course Selection</h2>
+      <p>Select a course before continuing to week selection.</p>
+      <label>
+        Course
+        <select id="course-select"></select>
+      </label>
+      <div class="row actions">
+        <button id="continue-course" type="button" class="btn accent push-right">Continue to Week Selection</button>
+      </div>
+    </section>
+
+    <section id="week-screen" class="screen card hidden">
       <h2>Week Selection</h2>
       <p>Select one or more weeks (1-6) before setup.</p>
       <div class="week-grid" id="week-grid"></div>
       <div class="row actions">
+        <button id="back-course-from-week" type="button" class="btn ghost">Back to Course Selection</button>
         <button id="select-all-weeks" type="button" class="btn ghost">Select All</button>
         <button id="clear-all-weeks" type="button" class="btn ghost">Clear All</button>
         <button id="continue-setup" type="button" class="btn accent push-right">Continue to Setup</button>
@@ -87,6 +87,7 @@
       <div class="row actions">
         <button id="start-quiz" type="button" class="btn accent">Start Quiz</button>
         <button id="change-weeks" type="button" class="btn ghost">Change Weeks</button>
+        <button id="reset-wrong-count-config" type="button" class="btn warn">Reset Correct Count</button>
       </div>
     </section>
 
@@ -121,14 +122,27 @@
       <p id="review-summary"></p>
       <p>Print tip: use Copy Report or Download Report for clean formatting.</p>
       <textarea id="review-text" readonly></textarea>
+      <pre id="review-text-print" class="print-only-report" aria-hidden="true"></pre>
       <div class="row actions">
         <button id="copy-report" type="button" class="btn ghost">Copy Report</button>
         <button id="download-report" type="button" class="btn ghost">Download Report</button>
         <button id="print-report" type="button" class="btn accent">Print Report</button>
         <button id="retake-incorrect" type="button" class="btn accent">Retake Incorrect Only</button>
+        <button id="reset-wrong-count" type="button" class="btn warn">Reset Correct Count</button>
         <button id="back-setup-from-review" type="button" class="btn ghost push-right">Back to Setup</button>
       </div>
     </section>
+
+    <dialog id="reset-wrong-count-dialog">
+      <div class="dialog-form">
+        <h3>Reset Correct Questions Count</h3>
+        <p>Are you sure?</p>
+        <div class="row actions">
+          <button id="confirm-reset-wrong-count" type="button" class="btn warn">Yes</button>
+          <button id="cancel-reset-wrong-count" type="button" class="btn ghost">No</button>
+        </div>
+      </div>
+    </dialog>
   </main>
 
   <dialog id="ineffective-dialog">
@@ -145,12 +159,12 @@
 
   <script>
     (function loadAppWithFallback() {
-      const REQUIRED_APP_VERSION = "2026-02-27-01";
+      const REQUIRED_APP_VERSION = "2026-02-28-11";
       const candidates = [
-        "./app.js",
-        "app.js",
-        "./rocket-questions-html/app.js",
-        "/rocket-questions-html/app.js",
+        `./app.js?v=${REQUIRED_APP_VERSION}`,
+        `app.js?v=${REQUIRED_APP_VERSION}`,
+        `./rocket-questions-html/app.js?v=${REQUIRED_APP_VERSION}`,
+        `/rocket-questions-html/app.js?v=${REQUIRED_APP_VERSION}`,
       ];
       const setStatus = (msg) => {
         const el = document.getElementById("load-status");

@@ -105,7 +105,6 @@ class RequestHandler(SimpleHTTPRequestHandler):
     def _send_json(self, code: int, body: dict[str, object]) -> None:
         data = json.dumps(body).encode("utf-8")
         self.send_response(code)
-        self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "POST, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
         self.send_header("Content-Type", "application/json; charset=utf-8")
@@ -115,7 +114,6 @@ class RequestHandler(SimpleHTTPRequestHandler):
 
     def do_OPTIONS(self) -> None:  # noqa: N802
         self.send_response(204)
-        self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "POST, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
         self.send_header("Content-Length", "0")
