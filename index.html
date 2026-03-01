@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rocket Questions - Cincinnati State NETC-CS Program</title>
+  <title>🚀 Rocket Questions - Cincinnati State NETC-CS Program</title>
   <link rel="icon" type="image/png" href="./rocket_icon.png?v=2026-02-28-10">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=2026-02-28-11">
+  <link rel="stylesheet" href="./styles.css?v=2026-02-28-13">
   <style>
     /* Keep core visibility behavior even if external CSS fails to load. */
     .hidden { display: none !important; }
@@ -20,7 +20,7 @@
   <div id="startup-splash" class="startup-splash" role="status" aria-live="polite">
     <div class="startup-card">
       <img class="startup-photo" src="./alex.jpg" alt="Alex portrait">
-      <p class="startup-kicker">Rocket Questions</p>
+      <p class="startup-kicker">🚀 Rocket Questions</p>
       <h1 class="startup-thanks">Tell Alex thank you!</h1>
       <h2>Loading your course workspace...</h2>
       <p id="startup-status">Preparing question banks and progress data.</p>
@@ -29,8 +29,9 @@
 
   <main class="app-shell">
     <header class="app-header">
-      <h1 id="app-title">Rocket Questions - Cincinnati State NETC-CS Program</h1>
-      <p id="app-subtitle">May we all succeed or fail as a team. | Copyright © 2026, Alexander Weinhart.</p>
+      <h1 id="app-title">🚀 Rocket Questions - Cincinnati State NETC-CS Program</h1>
+      <p id="app-subtitle">May we all succeed or fail as a team.</p>
+      <div id="copy"></div>
       <p id="load-status" class="load-status">Loading question banks...</p>
     </header>
 
@@ -128,7 +129,6 @@
         <button id="download-report" type="button" class="btn ghost">Download Report</button>
         <button id="print-report" type="button" class="btn accent">Print Report</button>
         <button id="retake-incorrect" type="button" class="btn accent">Retake Incorrect Only</button>
-        <button id="reset-wrong-count" type="button" class="btn warn">Reset Correct Count</button>
         <button id="back-setup-from-review" type="button" class="btn ghost push-right">Back to Setup</button>
       </div>
     </section>
@@ -159,7 +159,7 @@
 
   <script>
     (function loadAppWithFallback() {
-      const REQUIRED_APP_VERSION = "2026-02-28-11";
+      const REQUIRED_APP_VERSION = "2026-03-01-02";
       const candidates = [
         `./app.js?v=${REQUIRED_APP_VERSION}`,
         `app.js?v=${REQUIRED_APP_VERSION}`,

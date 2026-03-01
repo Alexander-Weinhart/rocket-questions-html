@@ -19,6 +19,13 @@ This all goes on a web server.
 
 API endpoint used by the web app:
 - `POST /api/changes` -> appends a row to `changes.csv`
+- `POST /api/history` -> appends a row to `question_history.csv`
+- `GET /api/changes` -> returns current `changes.csv`
+- `GET /api/history` -> returns current `question_history.csv`
+
+Server-side record storage directory:
+- default: `/home/citadel/practice-quiz-records/`
+- override with env var: `PRACTICE_QUIZ_RECORDS_DIR`
 
 ## Website Features
 - Week selection (1-6) before setup
@@ -42,6 +49,7 @@ API endpoint used by the web app:
   - `Not in Current Course Scope`
   - `Ineffective Question`
   are written server-side to `changes.csv` via `POST /api/changes`
+- Answer history is written server-side to `question_history.csv` via `POST /api/history`
 - Local browser cache is still used for history, overrides, and reports
 - Difficulty overrides, removed questions, and auto-saved reports save to `localStorage`
 

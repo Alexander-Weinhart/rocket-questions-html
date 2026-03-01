@@ -1,6 +1,6 @@
 const WEEK_CHOICES = Array.from({ length: 15 }, (_, i) => i + 1);
 window.__NETC_QUIZ_APP_SCRIPT__ = true;
-window.__NETC_QUIZ_APP_VERSION__ = "2026-02-28-11";
+window.__NETC_QUIZ_APP_VERSION__ = "2026-03-01-02";
 window.__NETC_QUIZ_APP_READY__ = false;
 const COURSE_STORAGE_KEY = "rocket_questions_selected_course";
 const HISTORY_STORAGE_KEY = "rocket_questions_history_local";
@@ -8,13 +8,16 @@ const IGNORE_BASE_HISTORY_KEY = "rocket_questions_ignore_base_history";
 const CHANGES_STORAGE_KEY = "rocket_questions_changes_local";
 const OVERRIDES_STORAGE_KEY = "rocket_questions_overrides";
 const REPORTS_STORAGE_KEY = "rocket_questions_reports";
+const LIVE_HISTORY_POLL_MS = 15000;
 const COURSE_CATALOG = [
   {
     id: "netc121",
-    title: "Rocket Questions - Cincinnati State NETC-CS Program",
+    title: "🚀 Rocket Questions - Cincinnati State NETC-CS Program",
     insignia: "NETC-121",
     name: "Network Communications 1",
-    subtitle: "May we all succeed or fail as a team. | Copyright © 2026 by Alexander Weinhart.",
+    subtitle: "May we all succeed or fail as a team.",
+    yearCreated: 2026,
+    copyrightOwners: ["Alexander Weinhart"],
   },
 ];
 
@@ -71,6 +74,7 @@ const state = {
   lastModeFinished: "easy",
   currentLocked: false,
   currentSelectedAnswer: "",
+  currentOptionMap: {},
   ignoreBaseHistory: false,
   baseHistoryRows: [],
   localHistoryRows: [],
@@ -78,6 +82,7 @@ const state = {
   localChangeRows: [],
   reports: [],
   overrides: { removedKeys: {}, difficultyOverrides: {} },
+  historyPollTimer: null,
 };
 
 const el = {};
@@ -92,6 +97,27 @@ function applyCourseBranding() {
   document.title = title;
   if (el.appTitle) el.appTitle.textContent = title;
   if (el.appSubtitle) el.appSubtitle.textContent = course.subtitle;
+  renderAutoCopyright(course);
+}
+
+function renderAutoCopyright(course) {
+  if (!el.copy) return;
+  const yearCreated = Number(course?.yearCreated || new Date().getFullYear());
+  const owners = Array.isArray(course?.copyrightOwners) ? course.copyrightOwners : [];
+  const currentYear = new Date().getFullYear();
+  const lines = owners.map((owner) => {
+    const ownerText = String(owner || "").trim();
+    if (!ownerText) return "";
+    if (currentYear > yearCreated) return `© ${yearCreated}-${currentYear} ${ownerText}`;
+    return `© ${currentYear} ${ownerText}`;
+  }).filter(Boolean);
+
+  el.copy.innerHTML = "";
+  lines.forEach((line) => {
+    const p = document.createElement("p");
+    p.textContent = line;
+    el.copy.appendChild(p);
+  });
 }
 
 function buildCourseOptions() {
@@ -179,6 +205,36 @@ async function postChangeToServer(changeRow) {
     ? ""
     : " Set window.NETC_CHANGES_API_URL to your deployed endpoint if this app is behind a reverse proxy.";
   throw new Error(`Server save failed. Tried: ${errors.join(" | ")}.${hint}`);
+}
+
+async function postHistoryToServer(historyRow) {
+  const overrideURL = String(window.NETC_HISTORY_API_URL || "").trim();
+  const protocol = window.location.protocol === "https:" ? "https:" : "http:";
+  const host = window.location.hostname;
+  const baseApi = new URL("./api/history", APP_BASE_URL).toString();
+  const rootApi = new URL("/api/history", window.location.origin).toString();
+  const appPath = APP_BASE_URL.pathname.endsWith("/") ? APP_BASE_URL.pathname : `${APP_BASE_URL.pathname}/`;
+  const appRootApi = new URL(`${appPath.replace(/^\/+/, "/")}api/history`, window.location.origin).toString();
+  const api3003 = `${protocol}//${host}:3003/api/history`;
+  const candidates = [
+    ...(overrideURL ? [overrideURL] : []),
+    ...(!overrideURL ? [baseApi, rootApi, appRootApi, api3003] : []),
+  ].filter((value, idx, list) => value && list.indexOf(value) === idx);
+  const errors = [];
+  for (const url of candidates) {
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(historyRow),
+      });
+      if (res.ok) return;
+      errors.push(`${url} (${res.status})`);
+    } catch (err) {
+      errors.push(`${url} (${err?.message || "network error"})`);
+    }
+  }
+  throw new Error(`History save failed. Tried: ${errors.join(" | ")}`);
 }
 
 function parseCSV(text) {
@@ -427,6 +483,16 @@ function sample(items, count) {
   return out;
 }
 
+function shuffledAnswerOptions(row) {
+  const options = [
+    { original: "A", text: row.choice_a || "" },
+    { original: "B", text: row.choice_b || "" },
+    { original: "C", text: row.choice_c || "" },
+    { original: "D", text: row.choice_d || "" },
+  ];
+  return shuffled(options);
+}
+
 function fetchRandomQuestions(mode, count) {
   let pool = filteredPoolByDifficulty(mode);
   if (state.skipPreviouslyCorrect) {
@@ -522,6 +588,9 @@ function appendQuestionHistory(questionRow, selectedChoice, wasCorrect) {
   };
   state.localHistoryRows.push(row);
   saveLocalHistory();
+  postHistoryToServer(row).catch((err) => {
+    console.warn("Question history server save failed:", err?.message || err);
+  });
 }
 
 async function appendChangeRequest(questionRow, userFeedback, opts = {}) {
@@ -563,8 +632,8 @@ function removeQuestionFromBank(questionKey) {
   saveOverrides();
 }
 
-function flagNotCovered(questionKey) {
-  state.overrides.difficultyOverrides[questionKey] = "hard";
+function setQuestionDifficultyOverride(questionKey, difficulty) {
+  state.overrides.difficultyOverrides[questionKey] = difficulty;
   saveOverrides();
 }
 
@@ -598,7 +667,10 @@ function updateFlagButtonState() {
     el.ineffectiveQuestion.disabled = true;
     return;
   }
-  el.flagQuestion.disabled = state.mode === "hard";
+  el.flagQuestion.textContent = state.mode === "hard"
+    ? "Move to Medium"
+    : "Not in Current Course Scope";
+  el.flagQuestion.disabled = false;
   el.ineffectiveQuestion.disabled = false;
 }
 
@@ -642,10 +714,17 @@ function renderCurrentQuestion() {
   const qnum = state.currentIndex + 1;
   el.quizMeta.textContent = `Mode: ${state.mode[0].toUpperCase()}${state.mode.slice(1)} | Question ${qnum} of ${state.questions.length}`;
   el.questionText.textContent = `Q: ${row.question}`;
-  el.choiceA.textContent = `A. ${row.choice_a}`;
-  el.choiceB.textContent = `B. ${row.choice_b}`;
-  el.choiceC.textContent = `C. ${row.choice_c}`;
-  el.choiceD.textContent = `D. ${row.choice_d}`;
+  const shuffledOptions = shuffledAnswerOptions(row);
+  state.currentOptionMap = {
+    A: shuffledOptions[0],
+    B: shuffledOptions[1],
+    C: shuffledOptions[2],
+    D: shuffledOptions[3],
+  };
+  el.choiceA.textContent = `A. ${state.currentOptionMap.A.text}`;
+  el.choiceB.textContent = `B. ${state.currentOptionMap.B.text}`;
+  el.choiceC.textContent = `C. ${state.currentOptionMap.C.text}`;
+  el.choiceD.textContent = `D. ${state.currentOptionMap.D.text}`;
   state.currentSelectedAnswer = "";
   state.currentLocked = false;
   el.feedback.textContent = "";
@@ -712,28 +791,33 @@ function submitAnswer() {
     return;
   }
   const row = state.questions[state.currentIndex];
+  const selectedOption = state.currentOptionMap[selected] || { original: selected, text: "" };
+  const selectedOriginal = selectedOption.original;
+  const selectedText = selectedOption.text || row[`choice_${selectedOriginal.toLowerCase()}`];
   const correct = row.correct_choice.toUpperCase();
+  const correctSlot = ["A", "B", "C", "D"].find(
+    (slot) => state.currentOptionMap[slot]?.original === correct
+  ) || correct;
+  const rightText = row[`choice_${correct.toLowerCase()}`];
   const explanation = row.explanation || "";
   state.currentSelectedAnswer = selected;
   state.answeredCount += 1;
-  if (selected === correct) {
+  if (selectedOriginal === correct) {
     state.correctCount += 1;
-    appendQuestionHistory(row, selected, true);
+    appendQuestionHistory(row, selectedOriginal, true);
     el.feedback.textContent = `Correct. ${explanation}`;
   } else {
-    appendQuestionHistory(row, selected, false);
-    const rightText = row[`choice_${correct.toLowerCase()}`];
-    const selectedText = row[`choice_${selected.toLowerCase()}`];
+    appendQuestionHistory(row, selectedOriginal, false);
     state.incorrectRecords.push({
       question: row.question,
       selected_letter: selected,
       selected_text: selectedText,
-      correct_letter: correct,
+      correct_letter: correctSlot,
       correct_text: rightText,
       explanation,
       source_path: row.source_path || row.source || "",
     });
-    el.feedback.textContent = `Incorrect. Correct answer: ${correct}. ${rightText}\n${explanation}`;
+    el.feedback.textContent = `Incorrect. Correct answer: ${correctSlot}. ${rightText}\n${explanation}`;
   }
   updateLiveScore();
   state.currentLocked = true;
@@ -752,23 +836,28 @@ function nextQuestion() {
 
 async function flagCurrentQuestion() {
   if (!state.questions.length) return;
-  if (state.mode === "hard") return;
   if (state.currentLocked) {
     alert("This question was already answered. Use this action before submitting to skip without grade impact.");
     return;
   }
   const row = state.questions[state.currentIndex];
+  const movingFromHard = state.mode === "hard";
+  const requestedLevel = movingFromHard ? "medium" : "hard";
+  const changeAction = movingFromHard ? "move_to_medium" : "not_in_current_scope";
+  const feedbackRequest = movingFromHard ? "please change this to medium" : "please change this to hard";
   try {
-    await appendChangeRequest(row, "please change this to hard", {
-      action: "not_in_current_scope",
-      requestedLevel: "hard",
+    await appendChangeRequest(row, feedbackRequest, {
+      action: changeAction,
+      requestedLevel,
     });
   } catch (err) {
     alert(`Could not save this change to server.\n${err?.message || err}`);
     return;
   }
-  flagNotCovered(row.question_key);
-  el.feedback.textContent = "Reassigned to Hard mode and skipped (no impact on grade).";
+  setQuestionDifficultyOverride(row.question_key, requestedLevel);
+  el.feedback.textContent = movingFromHard
+    ? "Moved to Medium mode and skipped (no impact on grade)."
+    : "Reassigned to Hard mode and skipped (no impact on grade).";
   refreshAvailableCount();
   state.questions.splice(state.currentIndex, 1);
   if (state.currentIndex >= state.questions.length && state.currentIndex > 0) {
@@ -777,7 +866,8 @@ async function flagCurrentQuestion() {
   if (!state.questions.length) {
     if (state.answeredCount > 0) finishQuiz();
     else {
-      alert("Question moved to Hard mode and skipped. No questions remain in this session.");
+      const levelLabel = movingFromHard ? "Medium" : "Hard";
+      alert(`Question moved to ${levelLabel} mode and skipped. No questions remain in this session.`);
       showSetup();
     }
     return;
@@ -857,7 +947,7 @@ function buildReviewReport(pct, grade) {
   const sourcesToReview = [...new Set(state.incorrectRecords.map((rec) => inferStudyReference(rec.source_path)).filter(Boolean))].sort();
   const course = activeCourse();
   const lines = [
-    `${course.insignia} QUIZ REVIEW REPORT`,
+    `🚀 ${course.insignia} QUIZ REVIEW REPORT`,
     "=".repeat(72),
     `Generated: ${generated}`,
     `Mode: ${mode}`,
@@ -929,7 +1019,7 @@ function finishQuiz() {
   state.lastAutoReportName = autoSaveReviewReport(report);
   el.retakeIncorrect.disabled = !state.incorrectRecords.length;
   syncResetCorrectButtons();
-  el.reviewSummary.textContent = `Answered: ${state.answeredCount} | Correct: ${state.correctCount} | Score: ${pct.toFixed(2)}% | Letter: ${grade} | Auto-saved: ${state.lastAutoReportName}`;
+  el.reviewSummary.textContent = `Answered: ${state.answeredCount} | Correct: ${state.correctCount} | Score: ${pct.toFixed(2)}% | Letter: ${grade}`;
   el.reviewText.value = report;
   el.reviewTextPrint.textContent = report;
   screen("review-screen");
@@ -1023,6 +1113,7 @@ function printReviewText() {
 function bindElements() {
   el.appTitle = document.getElementById("app-title");
   el.appSubtitle = document.getElementById("app-subtitle");
+  el.copy = document.getElementById("copy");
   el.loadStatus = document.getElementById("load-status");
   el.startupSplash = document.getElementById("startup-splash");
   el.startupStatus = document.getElementById("startup-status");
@@ -1089,6 +1180,7 @@ function buildWeekControls() {
       state.selectedWeeks.delete(week);
     }
     const lbl = document.createElement("label");
+    lbl.classList.toggle("is-disabled", !isAvailable);
     const cb = document.createElement("input");
     cb.type = "checkbox";
     cb.disabled = !isAvailable;
@@ -1103,6 +1195,12 @@ function buildWeekControls() {
     txt.textContent = state.weekAvailabilityReady
       ? (isAvailable ? `Week ${week}` : `Week ${week} (coming soon)`)
       : `Week ${week} (loading...)`;
+    lbl.addEventListener("click", (event) => {
+      if (!isAvailable) return;
+      if (event.target === cb) return;
+      cb.checked = !cb.checked;
+      cb.dispatchEvent(new Event("change"));
+    });
     lbl.appendChild(cb);
     lbl.appendChild(txt);
     el.weekGrid.appendChild(lbl);
@@ -1221,10 +1319,12 @@ function wireEvents() {
     event.preventDefault();
     retakeIncorrectOnly();
   });
-  el.resetWrongCount.addEventListener("click", (event) => {
-    event.preventDefault();
-    openResetWrongCountDialog();
-  });
+  if (el.resetWrongCount) {
+    el.resetWrongCount.addEventListener("click", (event) => {
+      event.preventDefault();
+      openResetWrongCountDialog();
+    });
+  }
   el.resetWrongCountConfig.addEventListener("click", (event) => {
     event.preventDefault();
     openResetWrongCountDialog();
@@ -1276,9 +1376,9 @@ async function loadQuestionBanks() {
       // Keep going; fallback below can handle missing weekly files.
     }
   }
-  let sourceRows = weekRows;
+  const sourceRows = weekRows;
   if (!sourceRows.length) {
-    sourceRows = await loadCSV("./question_bank.csv", questionHeaders);
+    throw new Error("No weekly question banks were found. Add weekN_question_bank.csv files.");
   }
   const runtime = [];
   for (let i = 0; i < sourceRows.length; i += 1) {
@@ -1295,15 +1395,53 @@ async function loadQuestionBanks() {
 
 async function loadBaseHistoryAndChanges() {
   try {
-    state.baseHistoryRows = await loadCSV("./question_history.csv");
+    state.baseHistoryRows = await loadCSV("/api/history");
   } catch {
-    state.baseHistoryRows = [];
+    try {
+      state.baseHistoryRows = await loadCSV("./question_history.csv");
+    } catch {
+      state.baseHistoryRows = [];
+    }
   }
   try {
-    state.baseChangeRows = await loadCSV("./changes.csv");
+    state.baseChangeRows = await loadCSV("/api/changes");
   } catch {
-    state.baseChangeRows = [];
+    try {
+      state.baseChangeRows = await loadCSV("./changes.csv");
+    } catch {
+      state.baseChangeRows = [];
+    }
   }
+}
+
+async function refreshBaseHistoryLive() {
+  try {
+    const rows = await loadCSV("/api/history");
+    if (rows.length !== state.baseHistoryRows.length) {
+      state.baseHistoryRows = rows;
+      refreshAvailableCount();
+    }
+  } catch {
+    try {
+      const rows = await loadCSV("./question_history.csv");
+      if (rows.length !== state.baseHistoryRows.length) {
+        state.baseHistoryRows = rows;
+        refreshAvailableCount();
+      }
+    } catch {
+      // Keep existing in-memory history if live refresh fails.
+    }
+  }
+}
+
+function startLiveHistorySync() {
+  if (state.historyPollTimer) return;
+  state.historyPollTimer = window.setInterval(() => {
+    refreshBaseHistoryLive();
+  }, LIVE_HISTORY_POLL_MS);
+  window.addEventListener("focus", () => {
+    refreshBaseHistoryLive();
+  });
 }
 
 function loadLocalState() {
@@ -1340,6 +1478,7 @@ async function boot() {
     }
     setStartupStatus(`Loaded ${state.questionBank.length} questions.`);
     refreshAvailableCount();
+    startLiveHistorySync();
     screen("course-screen");
     window.__NETC_QUIZ_APP_READY__ = true;
     hideStartupSplash();
