@@ -14,9 +14,25 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-RECORDS_ROOT = Path(
-    os.environ.get("PRACTICE_QUIZ_RECORDS_DIR", "/home/citadel/practice-quiz-records")
-).expanduser()
+
+
+def _resolve_records_root() -> Path:
+    """Choose where changes/history CSV files are stored."""
+    env_root = os.environ.get("PRACTICE_QUIZ_RECORDS_DIR", "").strip()
+    if not env_root:
+        return Path("/home/citadel/practice-quiz-records").expanduser()
+
+    configured = Path(env_root).expanduser()
+    # Guard against web-root writes; keep records in this project directory instead.
+    try:
+        if configured.resolve().as_posix().startswith("/var/www/html"):
+            return ROOT
+    except OSError:
+        pass
+    return configured
+
+
+RECORDS_ROOT = _resolve_records_root()
 CHANGES_PATH = RECORDS_ROOT / "changes.csv"
 HISTORY_PATH = RECORDS_ROOT / "question_history.csv"
 LOCK = threading.Lock()

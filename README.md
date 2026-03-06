@@ -26,6 +26,7 @@ API endpoint used by the web app:
 Server-side record storage directory:
 - default: `/home/citadel/practice-quiz-records/`
 - override with env var: `PRACTICE_QUIZ_RECORDS_DIR`
+- safety guard: if env var points under `/var/www/html`, records write to the project folder
 
 ## Website Features
 - Week selection (1-6) before setup
