@@ -3,16 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🚀 Rocket Questions - Cincinnati State NETC-CS Program</title>
+  <title>Rocket Questions - Cincinnati State NETC-CS Program</title>
   <link rel="icon" type="image/png" href="./rocket_icon.png?v=2026-02-28-10">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=2026-02-28-13">
+  <link rel="stylesheet" href="./styles.css?v=2026-03-08-01">
   <style>
     /* Keep core visibility behavior even if external CSS fails to load. */
     .hidden { display: none !important; }
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YHL23VLRTD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-YHL23VLRTD');
+  </script>
 </head>
 <body class="app-loading">
   <div class="bg-shape bg-shape-a" aria-hidden="true"></div>
@@ -49,7 +58,7 @@
 
     <section id="week-screen" class="screen card hidden">
       <h2>Week Selection</h2>
-      <p>Select one or more weeks (1-6) before setup.</p>
+      <p>Select one or more available weeks before setup.</p>
       <div class="week-grid" id="week-grid"></div>
       <div class="row actions">
         <button id="back-course-from-week" type="button" class="btn ghost">Back to Course Selection</button>
@@ -84,11 +93,15 @@
         <input id="skip-correct" type="checkbox">
         Skip Previously Correct Questions
       </label>
+      <label class="checkline">
+        <input id="include-missed-once" type="checkbox">
+        Include Questions Missed Once
+      </label>
       <p id="mode-desc" class="mode-desc"></p>
       <div class="row actions">
         <button id="start-quiz" type="button" class="btn accent">Start Quiz</button>
         <button id="change-weeks" type="button" class="btn ghost">Change Weeks</button>
-        <button id="reset-wrong-count-config" type="button" class="btn warn">Reset Correct Count</button>
+        <button id="reset-wrong-count-config" type="button" class="btn warn">Reset All Answered Questions</button>
       </div>
     </section>
 
@@ -110,6 +123,7 @@
 
       <div class="row actions">
         <button id="submit-answer" type="button" class="btn accent">Submit Answer</button>
+        <button id="dont-know-answer" type="button" class="btn info">I Don't know</button>
         <button id="next-question" type="button" class="btn ghost" disabled>Next Question</button>
         <button id="flag-question" type="button" class="btn warn">Not in Current Course Scope</button>
         <button id="ineffective-question" type="button" class="btn warn">Ineffective Question</button>
@@ -135,8 +149,8 @@
 
     <dialog id="reset-wrong-count-dialog">
       <div class="dialog-form">
-        <h3>Reset Correct Questions Count</h3>
-        <p>Are you sure?</p>
+        <h3>Reset All Answered Questions</h3>
+        <p>This clears local answered-question history. Continue?</p>
         <div class="row actions">
           <button id="confirm-reset-wrong-count" type="button" class="btn warn">Yes</button>
           <button id="cancel-reset-wrong-count" type="button" class="btn ghost">No</button>
@@ -159,7 +173,7 @@
 
   <script>
     (function loadAppWithFallback() {
-      const REQUIRED_APP_VERSION = "2026-03-01-02";
+      const REQUIRED_APP_VERSION = "2026-03-13-01";
       const candidates = [
         `./app.js?v=${REQUIRED_APP_VERSION}`,
         `app.js?v=${REQUIRED_APP_VERSION}`,

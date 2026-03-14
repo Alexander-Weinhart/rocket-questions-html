@@ -1,6 +1,6 @@
 const WEEK_CHOICES = Array.from({ length: 15 }, (_, i) => i + 1);
 window.__NETC_QUIZ_APP_SCRIPT__ = true;
-window.__NETC_QUIZ_APP_VERSION__ = "2026-03-01-02";
+window.__NETC_QUIZ_APP_VERSION__ = "2026-03-13-01";
 window.__NETC_QUIZ_APP_READY__ = false;
 const COURSE_STORAGE_KEY = "rocket_questions_selected_course";
 const HISTORY_STORAGE_KEY = "rocket_questions_history_local";
@@ -12,7 +12,8 @@ const LIVE_HISTORY_POLL_MS = 15000;
 const COURSE_CATALOG = [
   {
     id: "netc121",
-    title: "🚀 Rocket Questions - Cincinnati State NETC-CS Program",
+    browserTitle: "Rocket Questions - Cincinnati State NETC-CS Program",
+    pageTitle: "🚀 Rocket Questions - Cincinnati State NETC-CS Program",
     insignia: "NETC-121",
     name: "Network Communications 1",
     subtitle: "May we all succeed or fail as a team.",
@@ -21,7 +22,14 @@ const COURSE_CATALOG = [
   },
 ];
 
-const VIDEO_WEEK_MAP = { 1: 3, 2: 3, 3: 3, 4: 4, 5: 4, 6: 4, 7: 5, 8: 5, 9: 5, 10: 6, 11: 6 };
+const VIDEO_WEEK_MAP = {
+  1: 3, 2: 3, 3: 3,
+  4: 4, 5: 4, 6: 4,
+  7: 5, 8: 5, 9: 5,
+  10: 6, 11: 6,
+  12: 7, 13: 7, 14: 7, 15: 7,
+  16: 8, 17: 8,
+};
 const VIDEO_TITLE_MAP = {
   1: "Unicast, Broadcast, Multicast",
   2: "Ethernet Frame Structure",
@@ -34,24 +42,42 @@ const VIDEO_TITLE_MAP = {
   9: "CIDR and IP Addressing",
   10: "Telnet and SSH",
   11: "Factory Reset Cisco Switch",
+  12: "What Is Binary",
+  13: "Representing Numbers and Letters with Binary",
+  14: "How to Convert Binary to Decimal",
+  15: "SolarWinds TFTP Server",
+  16: "VLANs Made Easy",
+  17: "Trunking and 802.1Q",
 };
 const SYLLABUS_TEXTBOOK_BY_WEEK = {
   1: "Textbook 1 - Chapter 1 Network Basics",
   2: "Textbook 1 - Chapter 2 Network Fundamentals",
   3: "Textbook 2 - Chapter 1 Protocols and Standards",
-  4: "Textbook 2 - Chapter 2 Internet Foundations",
-  5: "Textbook 2 - Chapter 5 DHCP and Address Management",
-  6: "Textbook 2 - Chapter 6 DNS and Name Resolution",
+  4: "Textbook 2 - Chapters 2-3 Internet Foundations",
+  5: "Textbook 2 - Chapters 5-6 DHCP and DNS",
+  6: "Textbook 2 - Chapters 6-7 DNS and Name Resolution",
+  7: "Essentials - Chapter 8",
+  8: "Textbook 1 - Chapter 3",
+  9: "Textbook 1 - Chapter 4",
+  10: "Essentials - Chapter 9",
+  11: "Essentials - Chapter 9",
 };
+const NO_TEXTBOOK_PLACEHOLDER = "No textbook assignment";
 const TEXTBOOK_WEEK_MARKERS = [
   ["textbook 1 - chapter 1", 1],
   ["textbook 1 - chapter 2", 2],
+  ["textbook 1 - chapter 3", 8],
+  ["textbook 1 - chapter 4", 9],
   ["textbook 2 - chapter 1", 3],
   ["textbook 2 - chapter 2", 4],
   ["textbook 2 - chapter 3", 4],
   ["textbook 2 - chapter 5", 5],
-  ["textbook 2 - chapter 6", 5],
+  ["textbook 2 - chapter 6", 6],
   ["textbook 2 - chapter 7", 6],
+  ["essential, chap 8", 7],
+  ["essential, chap 9", 10],
+  ["essentials, chap 8", 7],
+  ["essentials, chap 9", 10],
 ];
 const APP_BASE_URL = new URL(".", document.currentScript?.src || window.location.href);
 
@@ -64,6 +90,7 @@ const state = {
   mode: "easy",
   amount: 10,
   skipPreviouslyCorrect: false,
+  includeMissedOnce: false,
   questions: [],
   currentIndex: 0,
   correctCount: 0,
@@ -86,6 +113,7 @@ const state = {
 };
 
 const el = {};
+let questionBankReloadPromise = null;
 
 function activeCourse() {
   return COURSE_CATALOG.find((c) => c.id === state.courseId) || COURSE_CATALOG[0];
@@ -93,9 +121,10 @@ function activeCourse() {
 
 function applyCourseBranding() {
   const course = activeCourse();
-  const title = course.title || `${course.insignia} ${course.name}`;
-  document.title = title;
-  if (el.appTitle) el.appTitle.textContent = title;
+  const browserTitle = course.browserTitle || course.title || `${course.insignia} ${course.name}`;
+  const pageTitle = course.pageTitle || course.title || browserTitle;
+  document.title = browserTitle;
+  if (el.appTitle) el.appTitle.textContent = pageTitle;
   if (el.appSubtitle) el.appSubtitle.textContent = course.subtitle;
   renderAutoCopyright(course);
 }
@@ -355,16 +384,41 @@ function inferTopic(questionText) {
   return "General Networking Fundamentals";
 }
 
-function inferStudyReference(sourcePath) {
+function sourceFileTitle(sourcePath) {
+  const normalized = String(sourcePath || "").replace(/\\/g, "/");
+  const fileName = normalized.split("/").pop() || "";
+  const clean = String(fileName)
+    .replace(/\.(md|txt|pdf|docx?|csv)$/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!clean) return "";
+  if (/^week\s*\d+(\s*notes?)?$/i.test(clean)) return "";
+  if (/^week\s*\d+\s*_?question[_\s-]*bank$/i.test(clean)) return "";
+  return clean;
+}
+
+function textbookMarkerForWeek(week) {
+  const weekNum = Number(week);
+  if (!Number.isFinite(weekNum)) return "";
+  return SYLLABUS_TEXTBOOK_BY_WEEK[weekNum] || NO_TEXTBOOK_PLACEHOLDER;
+}
+
+function inferStudyReference(sourcePath, fallbackWeek = null) {
   const src = String(sourcePath || "").trim();
-  if (!src) return "";
+  if (!src) {
+    if (fallbackWeek !== null && fallbackWeek !== undefined) {
+      const weekNum = Number(fallbackWeek);
+      if (Number.isFinite(weekNum)) return `Week ${weekNum}`;
+    }
+    return "";
+  }
   const normalized = src.replace(/\\/g, "/");
   const clean = (text) => String(text || "").replace(/\.(md|txt|pdf|docx?)$/i, "").trim();
 
   const videoMatch = normalized.match(/video\s*(\d+)\s*-\s*([^/]+)/i);
   if (videoMatch) {
     const videoNum = Number(videoMatch[1]);
-    const week = VIDEO_WEEK_MAP[videoNum] ?? null;
+    const week = VIDEO_WEEK_MAP[videoNum] ?? inferWeekFromSource(normalized, fallbackWeek);
     const title = VIDEO_TITLE_MAP[videoNum] || clean(videoMatch[2]);
     if (week) return `Week ${week} - Video: ${title}`;
     return `Video: ${title}`;
@@ -373,7 +427,15 @@ function inferStudyReference(sourcePath) {
   const textbookMatch = normalized.match(/textbook\s*(\d+)\s*-\s*chapter\s*(\d+)\s*([^/\\\\]*)/i);
   if (textbookMatch) {
     const base = clean(`Textbook ${textbookMatch[1]} - Chapter ${textbookMatch[2]} ${textbookMatch[3] || ""}`);
-    const week = inferWeekFromSource(normalized);
+    const week = inferWeekFromSource(normalized, fallbackWeek);
+    if (week) return `Week ${week} - ${base}`;
+    return base;
+  }
+
+  const essentialMatch = normalized.match(/essential\s*-\s*chapter\s*(\d+)\s*([^/\\\\]*)/i);
+  if (essentialMatch) {
+    const base = clean(`Essential - Chapter ${essentialMatch[1]} ${essentialMatch[2] || ""}`);
+    const week = inferWeekFromSource(normalized, fallbackWeek);
     if (week) return `Week ${week} - ${base}`;
     return base;
   }
@@ -381,15 +443,15 @@ function inferStudyReference(sourcePath) {
   const lectureMatch = normalized.match(/lecture\s*week\s*(\d+)/i);
   if (lectureMatch) {
     const week = Number(lectureMatch[1]);
-    const textbook = SYLLABUS_TEXTBOOK_BY_WEEK[week];
-    if (textbook) return `Week ${week} - ${textbook}`;
-    return `Week ${week}`;
+    return `Week ${week} - ${textbookMarkerForWeek(week)}`;
   }
 
-  const inferredWeek = inferWeekFromSource(normalized);
-  if (inferredWeek && SYLLABUS_TEXTBOOK_BY_WEEK[inferredWeek]) {
-    return `Week ${inferredWeek} - ${SYLLABUS_TEXTBOOK_BY_WEEK[inferredWeek]}`;
+  const inferredWeek = inferWeekFromSource(normalized, fallbackWeek);
+  if (inferredWeek) {
+    return `Week ${inferredWeek} - ${textbookMarkerForWeek(inferredWeek)}`;
   }
+  const title = sourceFileTitle(normalized);
+  if (title) return title;
   return "";
 }
 
@@ -401,7 +463,7 @@ function letterGrade(percent) {
   return "F";
 }
 
-function inferWeekFromSource(sourcePath) {
+function inferWeekFromSource(sourcePath, fallbackWeek = null) {
   const src = String(sourcePath || "").toLowerCase();
   const lectureMatch = src.match(/lecture week\s*(\d+)/);
   if (lectureMatch) return Number(lectureMatch[1]);
@@ -409,6 +471,14 @@ function inferWeekFromSource(sourcePath) {
   if (videoMatch) return VIDEO_WEEK_MAP[Number(videoMatch[1])] ?? null;
   for (const [marker, week] of TEXTBOOK_WEEK_MARKERS) {
     if (src.includes(marker)) return week;
+  }
+  const weekCsvMatch = src.match(/week\s*(\d+)\s*_?question[_\s-]*bank/);
+  if (weekCsvMatch) return Number(weekCsvMatch[1]);
+  const looseWeekMatch = src.match(/\bweek\s*(\d+)\b/);
+  if (looseWeekMatch) return Number(looseWeekMatch[1]);
+  if (fallbackWeek !== null && fallbackWeek !== undefined) {
+    const weekNum = Number(fallbackWeek);
+    if (Number.isFinite(weekNum)) return weekNum;
   }
   return null;
 }
@@ -437,6 +507,26 @@ function correctHistoryKeys() {
   return keys;
 }
 
+function missedHistoryKeys() {
+  const keys = new Set();
+  for (const row of allHistoryRows()) {
+    if (String(row.result || "").toLowerCase() === "incorrect" && row.question_key) {
+      keys.add(row.question_key);
+    }
+  }
+  return keys;
+}
+
+function filterPoolByHistoryRules(pool) {
+  if (!state.skipPreviouslyCorrect) return pool;
+  const correctKeys = correctHistoryKeys();
+  if (!state.includeMissedOnce) {
+    return pool.filter((q) => !correctKeys.has(q.question_key));
+  }
+  const missedKeys = missedHistoryKeys();
+  return pool.filter((q) => !correctKeys.has(q.question_key) || missedKeys.has(q.question_key));
+}
+
 function getDifficulty(q) {
   return state.overrides.difficultyOverrides[q.question_key] || q.difficulty;
 }
@@ -457,9 +547,7 @@ function filteredPoolByDifficulty(mode) {
 
 function countAvailable(mode) {
   const pool = filteredPoolByDifficulty(mode);
-  if (!state.skipPreviouslyCorrect) return pool.length;
-  const correctKeys = correctHistoryKeys();
-  return pool.filter((q) => !correctKeys.has(q.question_key)).length;
+  return filterPoolByHistoryRules(pool).length;
 }
 
 function shuffled(items) {
@@ -494,11 +582,8 @@ function shuffledAnswerOptions(row) {
 }
 
 function fetchRandomQuestions(mode, count) {
-  let pool = filteredPoolByDifficulty(mode);
-  if (state.skipPreviouslyCorrect) {
-    const correctKeys = correctHistoryKeys();
-    pool = pool.filter((q) => !correctKeys.has(q.question_key));
-  }
+  const basePool = filteredPoolByDifficulty(mode);
+  const pool = filterPoolByHistoryRules(basePool);
   return sample(pool, count);
 }
 
@@ -690,6 +775,7 @@ function setAnswerControlsEnabled(enabled) {
     if (!enabled) rb.checked = false;
   });
   el.submitAnswer.disabled = !enabled;
+  el.dontKnowAnswer.disabled = !enabled;
   el.nextQuestion.disabled = true;
   el.finishQuiz.disabled = !enabled;
   el.ineffectiveQuestion.disabled = !enabled;
@@ -733,6 +819,7 @@ function renderCurrentQuestion() {
     rb.disabled = false;
   });
   el.submitAnswer.disabled = false;
+  el.dontKnowAnswer.disabled = false;
   el.nextQuestion.disabled = true;
   updateFlagButtonState();
 }
@@ -743,12 +830,39 @@ function showSetup() {
   state.currentIndex = 0;
   state.currentLocked = false;
   state.lastAutoReportName = "";
+  el.skipCorrect.checked = state.skipPreviouslyCorrect;
+  if (el.includeMissedOnce) el.includeMissedOnce.checked = state.includeMissedOnce;
   el.questionText.textContent = "Click Start Quiz to begin.";
   el.quizMeta.textContent = "";
   el.feedback.textContent = "";
   setAnswerControlsEnabled(false);
   updateLiveScore();
   refreshAvailableCount();
+  reloadQuestionBanksForSetup();
+}
+
+async function reloadQuestionBanksForSetup() {
+  if (questionBankReloadPromise) return questionBankReloadPromise;
+  questionBankReloadPromise = (async () => {
+    try {
+      await loadQuestionBanks();
+      if (state.weekAvailabilityReady) {
+        state.selectedWeeks = new Set(
+          [...state.selectedWeeks].filter((week) => state.availableWeeks.has(Number(week)))
+        );
+        if (!state.selectedWeeks.size && state.availableWeeks.size) {
+          state.selectedWeeks = new Set([...state.availableWeeks].sort((a, b) => a - b));
+        }
+        buildWeekControls();
+      }
+    } catch (err) {
+      console.warn("Question bank reload failed:", err?.message || err);
+    } finally {
+      questionBankReloadPromise = null;
+      refreshAvailableCount();
+    }
+  })();
+  return questionBankReloadPromise;
 }
 
 function startQuiz() {
@@ -783,17 +897,15 @@ function startQuiz() {
   renderCurrentQuestion();
 }
 
-function submitAnswer() {
+function submitSelectedAnswer(selected) {
   if (state.currentLocked || !state.questions.length) return;
-  const selected = selectedAnswer();
-  if (!["A", "B", "C", "D"].includes(selected)) {
-    alert("Select A, B, C, or D before submitting.");
-    return;
-  }
+  const isDontKnow = selected === "E";
   const row = state.questions[state.currentIndex];
   const selectedOption = state.currentOptionMap[selected] || { original: selected, text: "" };
-  const selectedOriginal = selectedOption.original;
-  const selectedText = selectedOption.text || row[`choice_${selectedOriginal.toLowerCase()}`];
+  const selectedOriginal = isDontKnow ? "E" : selectedOption.original;
+  const selectedText = isDontKnow
+    ? "User selected that they don't know the answer."
+    : (selectedOption.text || row[`choice_${selectedOriginal.toLowerCase()}`]);
   const correct = row.correct_choice.toUpperCase();
   const correctSlot = ["A", "B", "C", "D"].find(
     (slot) => state.currentOptionMap[slot]?.original === correct
@@ -802,7 +914,7 @@ function submitAnswer() {
   const explanation = row.explanation || "";
   state.currentSelectedAnswer = selected;
   state.answeredCount += 1;
-  if (selectedOriginal === correct) {
+  if (!isDontKnow && selectedOriginal === correct) {
     state.correctCount += 1;
     appendQuestionHistory(row, selectedOriginal, true);
     el.feedback.textContent = `Correct. ${explanation}`;
@@ -816,8 +928,13 @@ function submitAnswer() {
       correct_text: rightText,
       explanation,
       source_path: row.source_path || row.source || "",
+      week: row.week ?? null,
     });
-    el.feedback.textContent = `Incorrect. Correct answer: ${correctSlot}. ${rightText}\n${explanation}`;
+    if (isDontKnow) {
+      el.feedback.textContent = `Marked incorrect: I don't know. Correct answer: ${correctSlot}. ${rightText}\n${explanation}`;
+    } else {
+      el.feedback.textContent = `Incorrect. Correct answer: ${correctSlot}. ${rightText}\n${explanation}`;
+    }
   }
   updateLiveScore();
   state.currentLocked = true;
@@ -825,7 +942,22 @@ function submitAnswer() {
     rb.disabled = true;
   });
   el.submitAnswer.disabled = true;
+  el.dontKnowAnswer.disabled = true;
   el.nextQuestion.disabled = false;
+}
+
+function submitAnswer() {
+  if (state.currentLocked || !state.questions.length) return;
+  const selected = selectedAnswer();
+  if (!["A", "B", "C", "D"].includes(selected)) {
+    alert("Select A, B, C, or D before submitting.");
+    return;
+  }
+  submitSelectedAnswer(selected);
+}
+
+function submitDontKnowAnswer() {
+  submitSelectedAnswer("E");
 }
 
 function nextQuestion() {
@@ -836,10 +968,6 @@ function nextQuestion() {
 
 async function flagCurrentQuestion() {
   if (!state.questions.length) return;
-  if (state.currentLocked) {
-    alert("This question was already answered. Use this action before submitting to skip without grade impact.");
-    return;
-  }
   const row = state.questions[state.currentIndex];
   const movingFromHard = state.mode === "hard";
   const requestedLevel = movingFromHard ? "medium" : "hard";
@@ -855,15 +983,19 @@ async function flagCurrentQuestion() {
     return;
   }
   setQuestionDifficultyOverride(row.question_key, requestedLevel);
+  if (state.currentLocked) {
+    el.feedback.textContent = movingFromHard
+      ? "Saved: this question will be moved to Medium mode for future sessions."
+      : "Saved: this question will be moved to Hard mode for future sessions.";
+    refreshAvailableCount();
+    return;
+  }
   el.feedback.textContent = movingFromHard
     ? "Moved to Medium mode and skipped (no impact on grade)."
     : "Reassigned to Hard mode and skipped (no impact on grade).";
   refreshAvailableCount();
   state.questions.splice(state.currentIndex, 1);
-  if (state.currentIndex >= state.questions.length && state.currentIndex > 0) {
-    state.currentIndex -= 1;
-  }
-  if (!state.questions.length) {
+  if (state.currentIndex >= state.questions.length) {
     if (state.answeredCount > 0) finishQuiz();
     else {
       const levelLabel = movingFromHard ? "Medium" : "Hard";
@@ -907,7 +1039,7 @@ async function applyIneffectiveFeedback(feedback) {
     return;
   }
   removeQuestionFromBank(row.question_key);
-  if (state.currentLocked && ["A", "B", "C", "D"].includes(selected) && state.answeredCount > 0) {
+  if (state.currentLocked && ["A", "B", "C", "D", "E"].includes(selected) && state.answeredCount > 0) {
     state.answeredCount -= 1;
     if (selected === row.correct_choice.toUpperCase() && state.correctCount > 0) {
       state.correctCount -= 1;
@@ -924,12 +1056,9 @@ async function applyIneffectiveFeedback(feedback) {
     updateLiveScore();
   }
   state.questions.splice(state.currentIndex, 1);
-  if (state.currentIndex >= state.questions.length && state.currentIndex > 0) {
-    state.currentIndex -= 1;
-  }
   el.feedback.textContent = "Question marked ineffective, saved to changes log, and removed from the main question bank.";
   refreshAvailableCount();
-  if (!state.questions.length) {
+  if (state.currentIndex >= state.questions.length) {
     if (state.answeredCount > 0) finishQuiz();
     else {
       alert("Question removed. No more questions remain in this session.");
@@ -944,7 +1073,7 @@ function buildReviewReport(pct, grade) {
   const now = new Date();
   const generated = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")} ${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}:${String(now.getSeconds()).padStart(2, "0")}`;
   const mode = `${state.mode[0].toUpperCase()}${state.mode.slice(1)}`;
-  const sourcesToReview = [...new Set(state.incorrectRecords.map((rec) => inferStudyReference(rec.source_path)).filter(Boolean))].sort();
+  const sourcesToReview = [...new Set(state.incorrectRecords.map((rec) => inferStudyReference(rec.source_path, rec.week)).filter(Boolean))].sort();
   const course = activeCourse();
   const lines = [
     `🚀 ${course.insignia} QUIZ REVIEW REPORT`,
@@ -967,7 +1096,7 @@ function buildReviewReport(pct, grade) {
       lines.push(`   Selected answer: ${rec.selected_letter}. ${rec.selected_text}`);
       lines.push(`   Correct answer: ${rec.correct_letter}. ${rec.correct_text}`);
       lines.push(`   Explanation: ${(rec.explanation || "").trim()}`);
-      const sourceLabel = inferStudyReference(rec.source_path);
+      const sourceLabel = inferStudyReference(rec.source_path, rec.week);
       lines.push(`   Source: ${sourceLabel || "Not mapped"}`);
       lines.push("");
     });
@@ -1064,22 +1193,22 @@ function openResetWrongCountDialog() {
     el.resetWrongCountDialog.showModal();
     return;
   }
-  const ok = window.confirm("Are you sure you want to reset the correct questions count?");
+  const ok = window.confirm("Are you sure you want to reset all answered questions?");
   if (ok) {
     resetWrongQuestionCount();
   }
 }
 
 function resetWrongQuestionCount() {
-  const before = correctHistoryKeys().size;
-  state.localHistoryRows = state.localHistoryRows.filter((row) => String(row.result || "").toLowerCase() !== "correct");
+  const before = allHistoryRows().length;
+  state.localHistoryRows = [];
   saveLocalHistory();
   state.ignoreBaseHistory = true;
   setJSONStorage(IGNORE_BASE_HISTORY_KEY, true);
   refreshAvailableCount();
   syncResetCorrectButtons();
-  const after = correctHistoryKeys().size;
-  alert(`Correct-question history reset. Previously-correct keys: ${before} -> ${after}.`);
+  const after = allHistoryRows().length;
+  alert(`Answered-question history reset. Total answered rows: ${before} -> ${after}.`);
 }
 
 function copyReviewText() {
@@ -1131,6 +1260,7 @@ function bindElements() {
   el.weekSummary = document.getElementById("week-summary");
   el.difficultyTotals = document.getElementById("difficulty-totals");
   el.skipCorrect = document.getElementById("skip-correct");
+  el.includeMissedOnce = document.getElementById("include-missed-once");
   el.startQuiz = document.getElementById("start-quiz");
   el.changeWeeks = document.getElementById("change-weeks");
   el.resetWrongCountConfig = document.getElementById("reset-wrong-count-config");
@@ -1143,6 +1273,7 @@ function bindElements() {
   el.choiceD = document.getElementById("choice-d");
   el.feedback = document.getElementById("feedback");
   el.submitAnswer = document.getElementById("submit-answer");
+  el.dontKnowAnswer = document.getElementById("dont-know-answer");
   el.nextQuestion = document.getElementById("next-question");
   el.flagQuestion = document.getElementById("flag-question");
   el.ineffectiveQuestion = document.getElementById("ineffective-question");
@@ -1198,6 +1329,7 @@ function buildWeekControls() {
     lbl.addEventListener("click", (event) => {
       if (!isAvailable) return;
       if (event.target === cb) return;
+      event.preventDefault();
       cb.checked = !cb.checked;
       cb.dispatchEvent(new Event("change"));
     });
@@ -1255,8 +1387,7 @@ function wireEvents() {
       alert("Choose at least one week to continue.");
       return;
     }
-    screen("config-screen");
-    refreshAvailableCount();
+    showSetup();
   });
   el.modeSelect.addEventListener("change", () => {
     state.mode = el.modeSelect.value;
@@ -1271,6 +1402,12 @@ function wireEvents() {
     state.skipPreviouslyCorrect = el.skipCorrect.checked;
     refreshAvailableCount();
   });
+  if (el.includeMissedOnce) {
+    el.includeMissedOnce.addEventListener("change", () => {
+      state.includeMissedOnce = el.includeMissedOnce.checked;
+      refreshAvailableCount();
+    });
+  }
   el.startQuiz.addEventListener("click", (event) => {
     event.preventDefault();
     startQuiz();
@@ -1282,6 +1419,10 @@ function wireEvents() {
   el.submitAnswer.addEventListener("click", (event) => {
     event.preventDefault();
     submitAnswer();
+  });
+  el.dontKnowAnswer.addEventListener("click", (event) => {
+    event.preventDefault();
+    submitDontKnowAnswer();
   });
   el.nextQuestion.addEventListener("click", (event) => {
     event.preventDefault();
@@ -1444,6 +1585,21 @@ function startLiveHistorySync() {
   });
 }
 
+function reconcileOverridesWithBaseChanges() {
+  const changedKeys = new Set(
+    (state.baseChangeRows || [])
+      .map((row) => String(row?.question_key || "").trim())
+      .filter(Boolean)
+  );
+  state.overrides.removedKeys = Object.fromEntries(
+    Object.entries(state.overrides.removedKeys || {}).filter(([questionKey]) => changedKeys.has(questionKey))
+  );
+  state.overrides.difficultyOverrides = Object.fromEntries(
+    Object.entries(state.overrides.difficultyOverrides || {}).filter(([questionKey]) => changedKeys.has(questionKey))
+  );
+  saveOverrides();
+}
+
 function loadLocalState() {
   const storedCourse = String(getJSONStorage(COURSE_STORAGE_KEY, COURSE_CATALOG[0].id) || COURSE_CATALOG[0].id);
   state.courseId = COURSE_CATALOG.some((c) => c.id === storedCourse) ? storedCourse : COURSE_CATALOG[0].id;
@@ -1467,6 +1623,7 @@ async function boot() {
   try {
     setStartupStatus("Loading question banks and change history...");
     await Promise.all([loadQuestionBanks(), loadBaseHistoryAndChanges()]);
+    reconcileOverridesWithBaseChanges();
     if (state.weekAvailabilityReady) {
       state.selectedWeeks = new Set(
         [...state.selectedWeeks].filter((week) => state.availableWeeks.has(Number(week)))

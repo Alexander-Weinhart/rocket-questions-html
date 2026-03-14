@@ -120,6 +120,7 @@ body.app-loading .app-shell {
 
 .app-header h1 {
   margin: 0;
+  font-family: "Space Grotesk", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", sans-serif;
   font-size: clamp(1.45rem, 2.2vw, 2.45rem);
   letter-spacing: 0.01em;
   line-height: 1.12;
@@ -167,6 +168,7 @@ p {
 
 .week-grid label {
   display: flex;
+  width: 100%;
   gap: 0.5rem;
   align-items: center;
   border: 1px solid var(--line);
@@ -230,6 +232,11 @@ p {
 .btn.warn {
   background: linear-gradient(110deg, var(--warn), #a5324f);
   color: #fff3f6;
+}
+
+.btn.info {
+  background: linear-gradient(110deg, #2e7dff, #1f5fd5);
+  color: #eff5ff;
 }
 
 .config-grid {

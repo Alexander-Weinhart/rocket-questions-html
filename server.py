@@ -146,8 +146,8 @@ def append_history_row(payload: dict[str, object]) -> None:
         raise ValueError("question is required")
     selected = row.get("selected_choice", "").strip().upper()
     correct = row.get("correct_choice", "").strip().upper()
-    if selected not in {"A", "B", "C", "D"}:
-        raise ValueError("selected_choice must be A/B/C/D")
+    if selected not in {"A", "B", "C", "D", "E"}:
+        raise ValueError("selected_choice must be A/B/C/D/E")
     if correct not in {"A", "B", "C", "D"}:
         raise ValueError("correct_choice must be A/B/C/D")
     result = row.get("result", "").strip().lower()

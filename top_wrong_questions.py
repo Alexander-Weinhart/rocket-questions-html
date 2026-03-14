@@ -9,6 +9,15 @@ from dataclasses import dataclass
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
+SCRIPT_DIR = Path(__file__).resolve().parent
+PRACTICE_RECORDS_HISTORY_PATH = Path.home() / "practice-quiz-records" / "question_history.csv"
+DEFAULT_HISTORY_PATH = (
+    PRACTICE_RECORDS_HISTORY_PATH
+    if PRACTICE_RECORDS_HISTORY_PATH.exists()
+    else SCRIPT_DIR / "question_history.csv"
+)
+DEFAULT_BANK_GLOB = "week*_question_bank.csv"
+
 
 @dataclass
 class QuestionStats:
@@ -27,17 +36,26 @@ class QuestionStats:
 
     def __post_init__(self) -> None:
         if self.answer_counts is None:
-            self.answer_counts = {"A": 0, "B": 0, "C": 0, "D": 0}
+            self.answer_counts = {"A": 0, "B": 0, "C": 0, "D": 0, "E": 0}
 
 
 def parse_args() -> argparse.Namespace:
+    examples = """Examples:
+  python3 top_wrong_questions.py
+  python3 top_wrong_questions.py --limit 10
+  python3 top_wrong_questions.py --week 3/1/2026
+  python3 top_wrong_questions.py --bank /var/www/html/rocket-questions-html
+  python3 top_wrong_questions.py --bank week2_question_bank.csv
+"""
     parser = argparse.ArgumentParser(
-        description="Print the top N questions students get wrong."
+        description="Print the top N questions students get wrong.",
+        epilog=examples,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument(
         "--history",
-        default="question_history.csv",
-        help="Path to question history CSV (default: question_history.csv).",
+        default=str(DEFAULT_HISTORY_PATH),
+        help="Path to question history CSV.",
     )
     parser.add_argument(
         "--limit",
@@ -55,8 +73,11 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--bank",
-        default="question_bank.csv",
-        help="Path to question bank CSV for answer text lookup (default: question_bank.csv).",
+        default="",
+        help=(
+            "Optional path to a question bank CSV or directory. "
+            "If omitted, loads week*_question_bank.csv from the script directory."
+        ),
     )
     return parser.parse_args()
 
@@ -120,7 +141,7 @@ def load_stats(
                 stats[question_key] = entry
 
             entry.total += 1
-            if selected in {"A", "B", "C", "D"}:
+            if selected in {"A", "B", "C", "D", "E"}:
                 entry.answer_counts[selected] += 1
             if correct in {"A", "B", "C", "D"} and not entry.correct_choice:
                 entry.correct_choice = correct
@@ -130,22 +151,43 @@ def load_stats(
     return stats
 
 
-def load_answer_text_map(bank_path: Path) -> dict[str, dict[str, str]]:
-    if not bank_path.exists():
-        return {}
+def candidate_bank_paths(bank_arg: str) -> list[Path]:
+    value = str(bank_arg or "").strip()
+    if value:
+        resolved = Path(value).expanduser().resolve()
+        if resolved.is_dir():
+            weekly = sorted(resolved.glob(DEFAULT_BANK_GLOB))
+            if weekly:
+                return weekly
+            fallback = resolved / "question_bank.csv"
+            return [fallback] if fallback.exists() else []
+        return [resolved]
+
+    weekly = sorted(SCRIPT_DIR.glob(DEFAULT_BANK_GLOB))
+    if weekly:
+        return weekly
+    fallback = SCRIPT_DIR / "question_bank.csv"
+    return [fallback] if fallback.exists() else []
+
+
+def load_answer_text_map(bank_paths: list[Path]) -> dict[str, dict[str, str]]:
     out: dict[str, dict[str, str]] = {}
-    with bank_path.open("r", encoding="utf-8", newline="") as fh:
-        reader = csv.DictReader(fh)
-        for row in reader:
-            question = str(row.get("question", "")).strip()
-            if not question:
-                continue
-            out[question] = {
-                "A": str(row.get("choice_a", "")).strip(),
-                "B": str(row.get("choice_b", "")).strip(),
-                "C": str(row.get("choice_c", "")).strip(),
-                "D": str(row.get("choice_d", "")).strip(),
-            }
+    for bank_path in bank_paths:
+        if not bank_path.exists():
+            continue
+        with bank_path.open("r", encoding="utf-8", newline="") as fh:
+            reader = csv.DictReader(fh)
+            for row in reader:
+                question = str(row.get("question", "")).strip()
+                if not question:
+                    continue
+                out[question] = {
+                    "A": str(row.get("choice_a", "")).strip(),
+                    "B": str(row.get("choice_b", "")).strip(),
+                    "C": str(row.get("choice_c", "")).strip(),
+                    "D": str(row.get("choice_d", "")).strip(),
+                    "E": "User selected that they don't know the answer.",
+                }
     return out
 
 
@@ -177,7 +219,7 @@ def print_report(
         )
         print(f"    {row.question}")
         choice_texts = answer_text_map.get(row.question, {})
-        for letter in ("A", "B", "C", "D"):
+        for letter in ("A", "B", "C", "D", "E"):
             marker = " (correct)" if row.correct_choice == letter else ""
             choice_text = choice_texts.get(letter, "")
             if choice_text:
@@ -189,14 +231,14 @@ def print_report(
 def main() -> None:
     args = parse_args()
     history_path = Path(args.history).expanduser().resolve()
-    bank_path = Path(args.bank).expanduser().resolve()
+    bank_paths = candidate_bank_paths(args.bank)
     week_start: date | None = None
     week_end: date | None = None
     if args.week:
         anchor_day = parse_user_date(args.week)
         week_start, week_end = sunday_to_saturday_window(anchor_day)
     stats = load_stats(history_path, week_start=week_start, week_end=week_end)
-    answer_text_map = load_answer_text_map(bank_path)
+    answer_text_map = load_answer_text_map(bank_paths)
     print_report(
         stats,
         args.limit,
