@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=2026-03-08-01">
+  <link rel="stylesheet" href="./styles.css?v=2026-04-03-01">
   <style>
     /* Keep core visibility behavior even if external CSS fails to load. */
     .hidden { display: none !important; }
@@ -46,13 +46,48 @@
 
     <section id="course-screen" class="screen card">
       <h2>Course Selection</h2>
-      <p>Select a course before continuing to week selection.</p>
+      <p>Select a course before continuing.</p>
       <label>
         Course
         <select id="course-select"></select>
       </label>
       <div class="row actions">
-        <button id="continue-course" type="button" class="btn accent push-right">Continue to Week Selection</button>
+        <button id="continue-course" type="button" class="btn accent push-right">Continue</button>
+      </div>
+      <section class="course-changelog">
+        <div class="course-changelog-header">
+          <div>
+            <p class="course-changelog-kicker">Project Updates</p>
+            <h3>What’s New in Rocket Questions</h3>
+          </div>
+          <p id="course-changelog-status" class="course-changelog-status">Loading changelog...</p>
+        </div>
+        <article id="course-changelog-viewer" class="course-changelog-viewer">
+          <div class="notes-empty-state">
+            <h3>Changelog loading</h3>
+            <p>The latest project history will appear here.</p>
+          </div>
+        </article>
+      </section>
+    </section>
+
+    <section id="menu-screen" class="screen card hidden">
+      <h2>Choose a Workspace</h2>
+      <p>Select whether you want to practice questions or study notes for this course.</p>
+      <div class="mode-card-grid">
+        <button id="go-practice-quiz" type="button" class="mode-card">
+          <span class="mode-card-kicker">Quiz Mode</span>
+          <strong>Practice Quiz</strong>
+          <span>Open week selection and start a custom practice run.</span>
+        </button>
+        <button id="go-notes" type="button" class="mode-card">
+          <span class="mode-card-kicker">Study Mode</span>
+          <strong>Notes Lists</strong>
+          <span>Browse the copied markdown notes in a split viewer.</span>
+        </button>
+      </div>
+      <div class="row actions">
+        <button id="back-course-from-menu" type="button" class="btn ghost">Back to Course Selection</button>
       </div>
     </section>
 
@@ -61,10 +96,38 @@
       <p>Select one or more available weeks before setup.</p>
       <div class="week-grid" id="week-grid"></div>
       <div class="row actions">
-        <button id="back-course-from-week" type="button" class="btn ghost">Back to Course Selection</button>
+        <button id="back-course-from-week" type="button" class="btn ghost">Back to Previous Menu</button>
         <button id="select-all-weeks" type="button" class="btn ghost">Select All</button>
         <button id="clear-all-weeks" type="button" class="btn ghost">Clear All</button>
         <button id="continue-setup" type="button" class="btn accent push-right">Continue to Setup</button>
+      </div>
+    </section>
+
+    <section id="notes-screen" class="screen card hidden notes-screen">
+      <div class="notes-header">
+        <button id="back-notes-to-menu" type="button" class="btn ghost">Back to Previous Menu</button>
+        <h2 id="notes-screen-title" class="notes-screen-title">🚀 Rocket Questions Notes Lists</h2>
+        <div class="notes-header-spacer" aria-hidden="true"></div>
+      </div>
+      <div class="notes-layout">
+        <aside class="notes-sidebar" aria-label="Notes files">
+          <div class="notes-sidebar-header">
+            <p class="notes-sidebar-title">Notes Explorer</p>
+            <p id="notes-sidebar-status" class="notes-sidebar-status">Loading notes content...</p>
+          </div>
+          <div id="notes-tree" class="notes-tree" role="tree"></div>
+        </aside>
+        <section class="notes-viewer-panel">
+          <div class="notes-viewer-header">
+            <p id="notes-current-path" class="notes-current-path">No note selected.</p>
+          </div>
+          <article id="notes-viewer" class="notes-viewer">
+            <div class="notes-empty-state">
+              <h3>Notes viewer ready</h3>
+              <p>Select a markdown file from the left to open it here.</p>
+            </div>
+          </article>
+        </section>
       </div>
     </section>
 
@@ -75,8 +138,8 @@
       <div class="config-grid">
         <label>
           Mode
-          <select id="mode-select">
-            <option value="easy">easy</option>
+          <select id="mode-select" autocomplete="off">
+            <option value="easy" selected>easy</option>
             <option value="medium">medium</option>
             <option value="hard">hard</option>
           </select>
@@ -173,12 +236,9 @@
 
   <script>
     (function loadAppWithFallback() {
-      const REQUIRED_APP_VERSION = "2026-03-13-01";
+      const REQUIRED_APP_VERSION = "2026-04-03-01";
       const candidates = [
         `./app.js?v=${REQUIRED_APP_VERSION}`,
-        `app.js?v=${REQUIRED_APP_VERSION}`,
-        `./rocket-questions-html/app.js?v=${REQUIRED_APP_VERSION}`,
-        `/rocket-questions-html/app.js?v=${REQUIRED_APP_VERSION}`,
       ];
       const setStatus = (msg) => {
         const el = document.getElementById("load-status");

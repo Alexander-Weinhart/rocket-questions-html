@@ -1,14 +1,23 @@
+(() => {
+if (window.__NETC_QUIZ_APP_BOOTED__) {
+  window.__NETC_QUIZ_APP_SCRIPT__ = true;
+  window.__NETC_QUIZ_APP_VERSION__ = "2026-04-02-07";
+  return;
+}
+window.__NETC_QUIZ_APP_BOOTED__ = true;
+
 const WEEK_CHOICES = Array.from({ length: 15 }, (_, i) => i + 1);
 window.__NETC_QUIZ_APP_SCRIPT__ = true;
-window.__NETC_QUIZ_APP_VERSION__ = "2026-03-13-01";
+window.__NETC_QUIZ_APP_VERSION__ = "2026-04-02-07";
 window.__NETC_QUIZ_APP_READY__ = false;
 const COURSE_STORAGE_KEY = "rocket_questions_selected_course";
 const HISTORY_STORAGE_KEY = "rocket_questions_history_local";
-const IGNORE_BASE_HISTORY_KEY = "rocket_questions_ignore_base_history";
 const CHANGES_STORAGE_KEY = "rocket_questions_changes_local";
 const OVERRIDES_STORAGE_KEY = "rocket_questions_overrides";
 const REPORTS_STORAGE_KEY = "rocket_questions_reports";
-const LIVE_HISTORY_POLL_MS = 15000;
+const CONFIG_STORAGE_KEY = "rocket_questions_quiz_config";
+const NOTES_MANIFEST_PATH = `./notes-manifest.json?v=${window.__NETC_QUIZ_APP_VERSION__}`;
+const CHANGELOG_PATH = `./changelog.md?v=${window.__NETC_QUIZ_APP_VERSION__}`;
 const COURSE_CATALOG = [
   {
     id: "netc121",
@@ -29,6 +38,7 @@ const VIDEO_WEEK_MAP = {
   10: 6, 11: 6,
   12: 7, 13: 7, 14: 7, 15: 7,
   16: 8, 17: 8,
+  18: 9, 19: 9,
 };
 const VIDEO_TITLE_MAP = {
   1: "Unicast, Broadcast, Multicast",
@@ -48,6 +58,8 @@ const VIDEO_TITLE_MAP = {
   15: "SolarWinds TFTP Server",
   16: "VLANs Made Easy",
   17: "Trunking and 802.1Q",
+  18: "Spanning Tree Protocol Explained Step by Step",
+  19: "Micronugget: Spanning Tree Protocol Explained CBT Nuggets",
 };
 const SYLLABUS_TEXTBOOK_BY_WEEK = {
   1: "Textbook 1 - Chapter 1 Network Basics",
@@ -79,6 +91,32 @@ const TEXTBOOK_WEEK_MARKERS = [
   ["essentials, chap 8", 7],
   ["essentials, chap 9", 10],
 ];
+const HARD_CODED_SOURCE_REFERENCES = [
+  {
+    marker: "week 10 - ai master list",
+    label: "Week 10 - AI Master List",
+  },
+  {
+    marker: "b_consolidated_config_guide_3850_chapter_01011100.html",
+    label: "Week 10 - Cisco: Static Routing and IPv6 Routing",
+  },
+  {
+    marker: "implementing_cisco_express_forwarding.html",
+    label: "Week 10 - Cisco: Cisco Express Forwarding",
+  },
+  {
+    marker: "218429-configure-inter-vlan-routing-with-cataly.html",
+    label: "Week 10 - Cisco: Inter-VLAN Routing",
+  },
+  {
+    marker: "hot-standby-router-protocol-hsrp",
+    label: "Week 10 - Cisco: HSRP",
+  },
+  {
+    marker: "new-comptia-network-plus-certification-strengthens-foundational-skills-expands-security-scope-of-training-for-tech-professionals",
+    label: "Week 10 - CompTIA: Current Network+ Topics",
+  },
+];
 const APP_BASE_URL = new URL(".", document.currentScript?.src || window.location.href);
 
 const state = {
@@ -96,20 +134,24 @@ const state = {
   correctCount: 0,
   answeredCount: 0,
   incorrectRecords: [],
+  setupVisited: false,
   lastReportText: "",
   lastAutoReportName: "",
   lastModeFinished: "easy",
   currentLocked: false,
   currentSelectedAnswer: "",
   currentOptionMap: {},
-  ignoreBaseHistory: false,
-  baseHistoryRows: [],
   localHistoryRows: [],
   baseChangeRows: [],
   localChangeRows: [],
   reports: [],
   overrides: { removedKeys: {}, difficultyOverrides: {} },
-  historyPollTimer: null,
+  notesManifest: null,
+  notesFileMap: new Map(),
+  currentNotePath: "",
+  notesLoadError: "",
+  changelogText: "",
+  changelogLoadError: "",
 };
 
 const el = {};
@@ -126,6 +168,9 @@ function applyCourseBranding() {
   document.title = browserTitle;
   if (el.appTitle) el.appTitle.textContent = pageTitle;
   if (el.appSubtitle) el.appSubtitle.textContent = course.subtitle;
+  if (el.notesScreenTitle) {
+    el.notesScreenTitle.textContent = `🚀 Rocket Questions Notes Lists for ${course.name}`;
+  }
   renderAutoCopyright(course);
 }
 
@@ -147,6 +192,14 @@ function renderAutoCopyright(course) {
     p.textContent = line;
     el.copy.appendChild(p);
   });
+}
+
+function setNotesStatus(text) {
+  if (el.notesSidebarStatus) el.notesSidebarStatus.textContent = text;
+}
+
+function setChangelogStatus(text) {
+  if (el.courseChangelogStatus) el.courseChangelogStatus.textContent = text;
 }
 
 function buildCourseOptions() {
@@ -414,6 +467,10 @@ function inferStudyReference(sourcePath, fallbackWeek = null) {
   }
   const normalized = src.replace(/\\/g, "/");
   const clean = (text) => String(text || "").replace(/\.(md|txt|pdf|docx?)$/i, "").trim();
+  const lower = normalized.toLowerCase();
+
+  const hardCoded = HARD_CODED_SOURCE_REFERENCES.find(({ marker }) => lower.includes(marker));
+  if (hardCoded) return hardCoded.label;
 
   const videoMatch = normalized.match(/video\s*(\d+)\s*-\s*([^/]+)/i);
   if (videoMatch) {
@@ -493,28 +550,66 @@ function questionInSelectedWeeks(question) {
 }
 
 function allHistoryRows() {
-  if (state.ignoreBaseHistory) return [...state.localHistoryRows];
-  return [...state.baseHistoryRows, ...state.localHistoryRows];
+  // Per-user progress should come from the current browser only.
+  const rows = [...state.localHistoryRows];
+  const seen = new Set();
+  return rows.filter((row) => {
+    const signature = [
+      row.timestamp || "",
+      row.question_key || "",
+      row.selected_choice || "",
+      row.correct_choice || "",
+      row.result || "",
+    ].join("||");
+    if (seen.has(signature)) return false;
+    seen.add(signature);
+    return true;
+  });
+}
+
+function historyKeySets(poolKeys = null) {
+  const correct = new Set();
+  const missed = new Set();
+  for (const row of allHistoryRows()) {
+    const key = String(row.question_key || "").trim();
+    if (!key) continue;
+    if (poolKeys && !poolKeys.has(key)) continue;
+    const result = String(row.result || "").toLowerCase();
+    if (result === "correct") correct.add(key);
+    if (result === "incorrect") missed.add(key);
+  }
+  return { correct, missed };
 }
 
 function correctHistoryKeys() {
-  const keys = new Set();
-  for (const row of allHistoryRows()) {
-    if (String(row.result || "").toLowerCase() === "correct" && row.question_key) {
-      keys.add(row.question_key);
-    }
-  }
-  return keys;
+  return historyKeySets().correct;
 }
 
 function missedHistoryKeys() {
-  const keys = new Set();
-  for (const row of allHistoryRows()) {
-    if (String(row.result || "").toLowerCase() === "incorrect" && row.question_key) {
-      keys.add(row.question_key);
-    }
+  return historyKeySets().missed;
+}
+
+function historyStatsForPool(pool) {
+  const poolKeys = new Set(
+    pool.map((q) => String(q.question_key || "").trim()).filter(Boolean)
+  );
+  const { correct, missed } = historyKeySets(poolKeys);
+  let unanswered = 0;
+  let missedOnly = 0;
+  let missedThenCorrect = 0;
+  for (const key of poolKeys) {
+    const wasCorrect = correct.has(key);
+    const wasMissed = missed.has(key);
+    if (!wasCorrect && !wasMissed) unanswered += 1;
+    else if (!wasCorrect && wasMissed) missedOnly += 1;
+    else if (wasCorrect && wasMissed) missedThenCorrect += 1;
   }
-  return keys;
+  return {
+    unanswered,
+    missedOnly,
+    missedThenCorrect,
+    missedEver: missedOnly + missedThenCorrect,
+  };
 }
 
 function filterPoolByHistoryRules(pool) {
@@ -658,6 +753,14 @@ function saveReports() {
   setJSONStorage(REPORTS_STORAGE_KEY, state.reports);
 }
 
+function saveQuizConfig() {
+  setJSONStorage(CONFIG_STORAGE_KEY, {
+    amount: state.amount,
+    skipPreviouslyCorrect: state.skipPreviouslyCorrect,
+    includeMissedOnce: state.includeMissedOnce,
+  });
+}
+
 function appendQuestionHistory(questionRow, selectedChoice, wasCorrect) {
   const row = {
     timestamp: formatTimestamp(),
@@ -723,18 +826,375 @@ function setQuestionDifficultyOverride(questionKey, difficulty) {
 }
 
 function screen(id) {
-  ["course-screen", "week-screen", "config-screen", "quiz-screen", "review-screen"].forEach((sid) => {
+  ["course-screen", "menu-screen", "week-screen", "notes-screen", "config-screen", "quiz-screen", "review-screen"].forEach((sid) => {
     document.getElementById(sid).classList.toggle("hidden", sid !== id);
+  });
+}
+
+function normalizeNotePath(path) {
+  return String(path || "").replace(/\\/g, "/").replace(/^\/+/, "");
+}
+
+function noteFetchURL(relativePath) {
+  const normalized = normalizeNotePath(relativePath);
+  return `./notes-content/${normalized.split("/").map(encodeURIComponent).join("/")}`;
+}
+
+function noteLabelFromPath(path) {
+  const normalized = normalizeNotePath(path);
+  const parts = normalized.split("/");
+  return parts[parts.length - 1] || normalized;
+}
+
+function registerNoteFile(node) {
+  const normalized = normalizeNotePath(node?.path);
+  if (!normalized) return;
+  state.notesFileMap.set(normalized, {
+    ...node,
+    path: normalized,
+  });
+}
+
+function indexNoteNodes(nodes) {
+  (nodes || []).forEach((node) => {
+    if (!node) return;
+    if (node.type === "file") {
+      registerNoteFile(node);
+      return;
+    }
+    indexNoteNodes(node.children || []);
+  });
+}
+
+async function loadNotesManifest() {
+  const res = await fetch(NOTES_MANIFEST_PATH, { cache: "no-cache" });
+  if (!res.ok) {
+    throw new Error(`Notes manifest could not be loaded (${res.status}). Run the sync script.`);
+  }
+  const manifest = await res.json();
+  state.notesManifest = manifest;
+  state.notesFileMap = new Map();
+  indexNoteNodes(manifest.roots || []);
+  const defaultPath = normalizeNotePath(manifest.defaultNote || "");
+  state.currentNotePath = state.notesFileMap.has(defaultPath)
+    ? defaultPath
+    : (state.notesFileMap.keys().next().value || "");
+}
+
+async function loadChangelog() {
+  const res = await fetch(CHANGELOG_PATH, { cache: "no-cache" });
+  if (!res.ok) {
+    throw new Error(`Changelog could not be loaded (${res.status}).`);
+  }
+  state.changelogText = await res.text();
+}
+
+function escapeHTML(text) {
+  return String(text || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function parseInlineMarkdown(text) {
+  const raw = escapeHTML(text);
+  const codeTokens = [];
+  const withCodes = raw.replace(/`([^`]+)`/g, (_, code) => {
+    const token = `CODETOKEN${codeTokens.length}PLACEHOLDER`;
+    codeTokens.push(`<code>${code}</code>`);
+    return token;
+  });
+  let html = withCodes
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, href) => {
+      const safeLabel = label;
+      const safeHref = escapeHTML(href).replace(/"/g, "&quot;");
+      return `<a href="${safeHref}">${safeLabel}</a>`;
+    })
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/__([^_]+)__/g, "<strong>$1</strong>")
+    .replace(/(^|[^\*])\*([^*\n]+)\*(?!\*)/g, "$1<em>$2</em>")
+    .replace(/(^|[^_])_([^_\n]+)_(?!_)/g, "$1<em>$2</em>");
+  codeTokens.forEach((tokenHTML, idx) => {
+    html = html.replace(`CODETOKEN${idx}PLACEHOLDER`, tokenHTML);
+  });
+  return html;
+}
+
+function isTableSeparator(line) {
+  const trimmed = String(line || "").trim();
+  return /^\|?(?:\s*:?-+:?\s*\|)+\s*:?-+:?\s*\|?$/.test(trimmed);
+}
+
+function parseTableRow(line) {
+  const trimmed = String(line || "").trim().replace(/^\|/, "").replace(/\|$/, "");
+  return trimmed.split("|").map((cell) => cell.trim());
+}
+
+function consumeList(lines, startIndex, ordered) {
+  const items = [];
+  let index = startIndex;
+  const pattern = ordered ? /^\s*\d+\.\s+(.*)$/ : /^\s*[-*+]\s+(.*)$/;
+  while (index < lines.length && pattern.test(lines[index])) {
+    items.push(lines[index].match(pattern)[1]);
+    index += 1;
+  }
+  const tag = ordered ? "ol" : "ul";
+  const html = `<${tag}>${items.map((item) => `<li>${parseInlineMarkdown(item)}</li>`).join("")}</${tag}>`;
+  return { html, nextIndex: index };
+}
+
+function renderMarkdown(text) {
+  const src = String(text || "").replace(/\r\n?/g, "\n");
+  const lines = src.split("\n");
+  const parts = [];
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i];
+    const trimmed = line.trim();
+    if (!trimmed) {
+      i += 1;
+      continue;
+    }
+    if (/^```/.test(trimmed)) {
+      const language = trimmed.slice(3).trim();
+      const codeLines = [];
+      i += 1;
+      while (i < lines.length && !/^```/.test(lines[i].trim())) {
+        codeLines.push(lines[i]);
+        i += 1;
+      }
+      if (i < lines.length) i += 1;
+      const languageAttr = language ? ` data-language="${escapeHTML(language)}"` : "";
+      parts.push(`<pre><code${languageAttr}>${escapeHTML(codeLines.join("\n"))}</code></pre>`);
+      continue;
+    }
+    if (/^(---|\*\*\*|___)\s*$/.test(trimmed)) {
+      parts.push("<hr>");
+      i += 1;
+      continue;
+    }
+    const heading = trimmed.match(/^(#{1,6})\s+(.*)$/);
+    if (heading) {
+      const level = heading[1].length;
+      parts.push(`<h${level}>${parseInlineMarkdown(heading[2])}</h${level}>`);
+      i += 1;
+      continue;
+    }
+    if (trimmed.startsWith(">")) {
+      const quoteLines = [];
+      while (i < lines.length && lines[i].trim().startsWith(">")) {
+        quoteLines.push(lines[i].replace(/^\s*>\s?/, ""));
+        i += 1;
+      }
+      parts.push(`<blockquote>${renderMarkdown(quoteLines.join("\n"))}</blockquote>`);
+      continue;
+    }
+    if ((trimmed.startsWith("|") || (i + 1 < lines.length && isTableSeparator(lines[i + 1])))) {
+      const headerLine = lines[i];
+      const separatorLine = lines[i + 1];
+      if (isTableSeparator(separatorLine)) {
+        const headers = parseTableRow(headerLine);
+        const rows = [];
+        i += 2;
+        while (i < lines.length && lines[i].trim().includes("|")) {
+          rows.push(parseTableRow(lines[i]));
+          i += 1;
+        }
+        parts.push(
+          `<table><thead><tr>${headers.map((cell) => `<th>${parseInlineMarkdown(cell)}</th>`).join("")}</tr></thead><tbody>${rows.map((row) => `<tr>${row.map((cell) => `<td>${parseInlineMarkdown(cell)}</td>`).join("")}</tr>`).join("")}</tbody></table>`
+        );
+        continue;
+      }
+    }
+    if (/^\s*[-*+]\s+/.test(line)) {
+      const list = consumeList(lines, i, false);
+      parts.push(list.html);
+      i = list.nextIndex;
+      continue;
+    }
+    if (/^\s*\d+\.\s+/.test(line)) {
+      const list = consumeList(lines, i, true);
+      parts.push(list.html);
+      i = list.nextIndex;
+      continue;
+    }
+    const paragraphLines = [trimmed];
+    i += 1;
+    while (i < lines.length) {
+      const nextTrimmed = lines[i].trim();
+      if (!nextTrimmed) break;
+      if (/^(#{1,6})\s+/.test(nextTrimmed)) break;
+      if (/^```/.test(nextTrimmed)) break;
+      if (/^(---|\*\*\*|___)\s*$/.test(nextTrimmed)) break;
+      if (nextTrimmed.startsWith(">")) break;
+      if (/^\s*[-*+]\s+/.test(lines[i])) break;
+      if (/^\s*\d+\.\s+/.test(lines[i])) break;
+      if (i + 1 < lines.length && isTableSeparator(lines[i + 1])) break;
+      paragraphLines.push(nextTrimmed);
+      i += 1;
+    }
+    parts.push(`<p>${parseInlineMarkdown(paragraphLines.join(" "))}</p>`);
+  }
+  return parts.join("");
+}
+
+function updateNotesActiveFile() {
+  document.querySelectorAll(".notes-tree-file").forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.path === state.currentNotePath);
+  });
+}
+
+function resolveNoteLink(targetHref) {
+  if (!targetHref) return "";
+  if (/^(https?:|mailto:|#)/i.test(targetHref)) return targetHref;
+  const base = state.currentNotePath || "";
+  const baseDir = base.includes("/") ? base.slice(0, base.lastIndexOf("/") + 1) : "";
+  const resolved = new URL(targetHref, `https://notes.local/${baseDir}`);
+  return normalizeNotePath(resolved.pathname.replace(/^\//, ""));
+}
+
+async function openNote(relativePath) {
+  const normalized = normalizeNotePath(relativePath);
+  const node = state.notesFileMap.get(normalized);
+  if (!node) return;
+  state.currentNotePath = normalized;
+  updateNotesActiveFile();
+  if (el.notesCurrentPath) el.notesCurrentPath.textContent = normalized;
+  setNotesStatus(`Opening ${noteLabelFromPath(normalized)}...`);
+  try {
+    const res = await fetch(noteFetchURL(normalized), { cache: "no-cache" });
+    if (!res.ok) {
+      throw new Error(`Could not load note (${res.status}).`);
+    }
+    const markdown = await res.text();
+    el.notesViewer.innerHTML = renderMarkdown(markdown);
+    setNotesStatus(`${state.notesFileMap.size} markdown files ready.`);
+  } catch (err) {
+    el.notesViewer.innerHTML = `<div class="notes-empty-state"><h3>Unable to load note</h3><p>${escapeHTML(err?.message || "Unknown error")}</p></div>`;
+    setNotesStatus("A notes file failed to load.");
+  }
+}
+
+function buildNotesTreeNodes(nodes, container) {
+  (nodes || []).forEach((node) => {
+    if (node.type === "directory") {
+      const folder = document.createElement("div");
+      folder.className = "notes-tree-folder";
+      const toggle = document.createElement("button");
+      toggle.type = "button";
+      toggle.className = "notes-tree-toggle";
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.textContent = node.name;
+      const children = document.createElement("div");
+      children.className = "notes-tree-children";
+      buildNotesTreeNodes(node.children || [], children);
+      toggle.addEventListener("click", () => {
+        const expanded = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", expanded ? "false" : "true");
+        children.hidden = expanded;
+      });
+      children.hidden = true;
+      folder.appendChild(toggle);
+      folder.appendChild(children);
+      container.appendChild(folder);
+      return;
+    }
+    const fileButton = document.createElement("button");
+    fileButton.type = "button";
+    fileButton.className = "notes-tree-file";
+    fileButton.dataset.path = normalizeNotePath(node.path);
+    fileButton.textContent = node.name;
+    fileButton.addEventListener("click", () => {
+      openNote(node.path);
+    });
+    container.appendChild(fileButton);
+  });
+}
+
+function renderNotesTree() {
+  el.notesTree.innerHTML = "";
+  if (state.notesLoadError) {
+    el.notesTree.innerHTML = `<div class="notes-empty-state"><h3>Notes unavailable</h3><p>${escapeHTML(state.notesLoadError)}</p></div>`;
+    return;
+  }
+  buildNotesTreeNodes(state.notesManifest?.roots || [], el.notesTree);
+  updateNotesActiveFile();
+}
+
+function renderCourseChangelog() {
+  if (!el.courseChangelogViewer) return;
+  if (state.changelogLoadError) {
+    el.courseChangelogViewer.innerHTML = `<div class="notes-empty-state"><h3>Changelog unavailable</h3><p>${escapeHTML(state.changelogLoadError)}</p></div>`;
+    setChangelogStatus("Could not load changelog.");
+    return;
+  }
+  if (!state.changelogText.trim()) {
+    el.courseChangelogViewer.innerHTML = `<div class="notes-empty-state"><h3>No changelog yet</h3><p>Project updates will appear here.</p></div>`;
+    setChangelogStatus("No changelog content found.");
+    return;
+  }
+  el.courseChangelogViewer.innerHTML = renderMarkdown(state.changelogText);
+  setChangelogStatus("Latest changelog loaded.");
+}
+
+async function showNotesScreen() {
+  screen("notes-screen");
+  renderNotesTree();
+  if (state.notesLoadError) {
+    setNotesStatus("Run the notes sync script to populate the viewer.");
+    return;
+  }
+  if (!state.currentNotePath && state.notesFileMap.size) {
+    state.currentNotePath = state.notesFileMap.keys().next().value || "";
+  }
+  if (state.currentNotePath) {
+    await openNote(state.currentNotePath);
+  } else {
+    setNotesStatus("No markdown notes were found.");
+  }
+}
+
+function syncConfigStateFromControls() {
+  if (el.modeSelect) state.mode = el.modeSelect.value || state.mode;
+  if (el.questionCount) {
+    const n = Math.max(1, Number(el.questionCount.value || state.amount || 1));
+    state.amount = n;
+    el.questionCount.value = String(n);
+  }
+  if (el.skipCorrect) state.skipPreviouslyCorrect = el.skipCorrect.checked;
+  if (el.includeMissedOnce) state.includeMissedOnce = el.includeMissedOnce.checked;
+  saveQuizConfig();
+}
+
+function applyConfigStateToControls() {
+  if (el.modeSelect) {
+    el.modeSelect.value = state.mode;
+    if (state.mode === "easy") el.modeSelect.selectedIndex = 0;
+  }
+  if (el.questionCount) el.questionCount.value = String(state.amount);
+  if (el.skipCorrect) el.skipCorrect.checked = state.skipPreviouslyCorrect;
+  if (el.includeMissedOnce) el.includeMissedOnce.checked = state.includeMissedOnce;
+}
+
+function syncConfigScreenAfterPaint() {
+  window.requestAnimationFrame(() => {
+    applyConfigStateToControls();
+    refreshAvailableCount();
   });
 }
 
 function refreshAvailableCount() {
   const mode = state.mode;
+  const modePool = filteredPoolByDifficulty(mode);
   const available = countAvailable(mode);
   const easyTotal = countAvailable("easy");
   const mediumTotal = countAvailable("medium");
   const hardTotal = countAvailable("hard");
-  el.availableCount.textContent = `Available in ${mode[0].toUpperCase()}${mode.slice(1)}: ${available}`;
+  const stats = historyStatsForPool(modePool);
+  const historyLine = state.skipPreviouslyCorrect
+    ? ` | Missed ever in current pool: ${stats.missedEver} (${stats.missedOnly} still missed + ${stats.missedThenCorrect} corrected later)`
+    : "";
+  el.availableCount.textContent = `Available in ${mode[0].toUpperCase()}${mode.slice(1)}: ${available}${historyLine}`;
   el.difficultyTotals.textContent = `Possible Questions by Difficulty -> Easy: ${easyTotal} | Medium (incl. Easy): ${mediumTotal} | Hard: ${hardTotal}`;
   const weeks = [...state.selectedWeeks].sort((a, b) => a - b);
   el.weekSummary.textContent = weeks.length ? `Selected Weeks: ${weeks.join(", ")}` : "Selected Weeks: none";
@@ -743,7 +1203,15 @@ function refreshAvailableCount() {
     medium: "Medium: All questions that have to do with the scope of the class.",
     hard: "Hard: Advanced expansion topics that expand on topics taught in class.",
   };
-  el.modeDesc.textContent = descriptions[mode];
+  let detail = descriptions[mode];
+  if (state.skipPreviouslyCorrect) {
+    detail += ` Currently available = ${stats.unanswered} unanswered + ${stats.missedOnly} still-missed`;
+    if (state.includeMissedOnce) {
+      detail += ` + ${stats.missedThenCorrect} previously-corrected questions that were missed at least once`;
+    }
+    detail += ".";
+  }
+  el.modeDesc.textContent = detail;
 }
 
 function updateFlagButtonState() {
@@ -830,14 +1298,18 @@ function showSetup() {
   state.currentIndex = 0;
   state.currentLocked = false;
   state.lastAutoReportName = "";
-  el.skipCorrect.checked = state.skipPreviouslyCorrect;
-  if (el.includeMissedOnce) el.includeMissedOnce.checked = state.includeMissedOnce;
+  if (!state.setupVisited) {
+    state.mode = "easy";
+    state.setupVisited = true;
+  }
+  applyConfigStateToControls();
   el.questionText.textContent = "Click Start Quiz to begin.";
   el.quizMeta.textContent = "";
   el.feedback.textContent = "";
   setAnswerControlsEnabled(false);
   updateLiveScore();
   refreshAvailableCount();
+  syncConfigScreenAfterPaint();
   reloadQuestionBanksForSetup();
 }
 
@@ -866,6 +1338,7 @@ async function reloadQuestionBanksForSetup() {
 }
 
 function startQuiz() {
+  syncConfigStateFromControls();
   if (!state.selectedWeeks.size) {
     alert("Select at least one week before starting a quiz.");
     return;
@@ -1203,8 +1676,6 @@ function resetWrongQuestionCount() {
   const before = allHistoryRows().length;
   state.localHistoryRows = [];
   saveLocalHistory();
-  state.ignoreBaseHistory = true;
-  setJSONStorage(IGNORE_BASE_HISTORY_KEY, true);
   refreshAvailableCount();
   syncResetCorrectButtons();
   const after = allHistoryRows().length;
@@ -1248,11 +1719,22 @@ function bindElements() {
   el.startupStatus = document.getElementById("startup-status");
   el.courseSelect = document.getElementById("course-select");
   el.continueCourse = document.getElementById("continue-course");
+  el.goPracticeQuiz = document.getElementById("go-practice-quiz");
+  el.goNotes = document.getElementById("go-notes");
+  el.backCourseFromMenu = document.getElementById("back-course-from-menu");
   el.weekGrid = document.getElementById("week-grid");
   el.backCourseFromWeek = document.getElementById("back-course-from-week");
   el.selectAllWeeks = document.getElementById("select-all-weeks");
   el.clearAllWeeks = document.getElementById("clear-all-weeks");
   el.continueSetup = document.getElementById("continue-setup");
+  el.courseChangelogStatus = document.getElementById("course-changelog-status");
+  el.courseChangelogViewer = document.getElementById("course-changelog-viewer");
+  el.notesScreenTitle = document.getElementById("notes-screen-title");
+  el.backNotesToMenu = document.getElementById("back-notes-to-menu");
+  el.notesSidebarStatus = document.getElementById("notes-sidebar-status");
+  el.notesTree = document.getElementById("notes-tree");
+  el.notesCurrentPath = document.getElementById("notes-current-path");
+  el.notesViewer = document.getElementById("notes-viewer");
   el.modeSelect = document.getElementById("mode-select");
   el.questionCount = document.getElementById("question-count");
   el.availableCount = document.getElementById("available-count");
@@ -1301,6 +1783,20 @@ function bindElements() {
   document.querySelectorAll("button").forEach((btn) => {
     btn.type = "button";
   });
+
+  if (el.notesViewer) {
+    el.notesViewer.addEventListener("click", (event) => {
+      const link = event.target.closest("a");
+      if (!link) return;
+      const href = link.getAttribute("href") || "";
+      if (!href) return;
+      const resolved = resolveNoteLink(href);
+      if (state.notesFileMap.has(resolved)) {
+        event.preventDefault();
+        openNote(resolved);
+      }
+    });
+  }
 }
 
 function buildWeekControls() {
@@ -1310,6 +1806,13 @@ function buildWeekControls() {
     if (!isAvailable && state.selectedWeeks.has(week)) {
       state.selectedWeeks.delete(week);
     }
+    const syncWeekSelection = (checked) => {
+      if (!isAvailable) return;
+      cb.checked = Boolean(checked);
+      if (cb.checked) state.selectedWeeks.add(week);
+      else state.selectedWeeks.delete(week);
+      refreshAvailableCount();
+    };
     const lbl = document.createElement("label");
     lbl.classList.toggle("is-disabled", !isAvailable);
     const cb = document.createElement("input");
@@ -1317,10 +1820,10 @@ function buildWeekControls() {
     cb.disabled = !isAvailable;
     cb.checked = state.selectedWeeks.has(week);
     cb.addEventListener("change", () => {
-      if (!isAvailable) return;
-      if (cb.checked) state.selectedWeeks.add(week);
-      else state.selectedWeeks.delete(week);
-      refreshAvailableCount();
+      syncWeekSelection(cb.checked);
+    });
+    cb.addEventListener("click", (event) => {
+      event.stopPropagation();
     });
     const txt = document.createElement("span");
     txt.textContent = state.weekAvailabilityReady
@@ -1330,8 +1833,7 @@ function buildWeekControls() {
       if (!isAvailable) return;
       if (event.target === cb) return;
       event.preventDefault();
-      cb.checked = !cb.checked;
-      cb.dispatchEvent(new Event("change"));
+      syncWeekSelection(!cb.checked);
     });
     lbl.appendChild(cb);
     lbl.appendChild(txt);
@@ -1360,11 +1862,27 @@ function wireEvents() {
     state.courseId = el.courseSelect.value;
     setJSONStorage(COURSE_STORAGE_KEY, state.courseId);
     applyCourseBranding();
+    screen("menu-screen");
+  });
+  el.goPracticeQuiz.addEventListener("click", (event) => {
+    event.preventDefault();
     screen("week-screen");
+  });
+  el.goNotes.addEventListener("click", async (event) => {
+    event.preventDefault();
+    await showNotesScreen();
+  });
+  el.backCourseFromMenu.addEventListener("click", (event) => {
+    event.preventDefault();
+    screen("course-screen");
   });
   el.backCourseFromWeek.addEventListener("click", (event) => {
     event.preventDefault();
-    screen("course-screen");
+    screen("menu-screen");
+  });
+  el.backNotesToMenu.addEventListener("click", (event) => {
+    event.preventDefault();
+    screen("menu-screen");
   });
   el.selectAllWeeks.addEventListener("click", (event) => {
     event.preventDefault();
@@ -1534,16 +2052,7 @@ async function loadQuestionBanks() {
   state.weekAvailabilityReady = true;
 }
 
-async function loadBaseHistoryAndChanges() {
-  try {
-    state.baseHistoryRows = await loadCSV("/api/history");
-  } catch {
-    try {
-      state.baseHistoryRows = await loadCSV("./question_history.csv");
-    } catch {
-      state.baseHistoryRows = [];
-    }
-  }
+async function loadBaseChanges() {
   try {
     state.baseChangeRows = await loadCSV("/api/changes");
   } catch {
@@ -1553,36 +2062,6 @@ async function loadBaseHistoryAndChanges() {
       state.baseChangeRows = [];
     }
   }
-}
-
-async function refreshBaseHistoryLive() {
-  try {
-    const rows = await loadCSV("/api/history");
-    if (rows.length !== state.baseHistoryRows.length) {
-      state.baseHistoryRows = rows;
-      refreshAvailableCount();
-    }
-  } catch {
-    try {
-      const rows = await loadCSV("./question_history.csv");
-      if (rows.length !== state.baseHistoryRows.length) {
-        state.baseHistoryRows = rows;
-        refreshAvailableCount();
-      }
-    } catch {
-      // Keep existing in-memory history if live refresh fails.
-    }
-  }
-}
-
-function startLiveHistorySync() {
-  if (state.historyPollTimer) return;
-  state.historyPollTimer = window.setInterval(() => {
-    refreshBaseHistoryLive();
-  }, LIVE_HISTORY_POLL_MS);
-  window.addEventListener("focus", () => {
-    refreshBaseHistoryLive();
-  });
 }
 
 function reconcileOverridesWithBaseChanges() {
@@ -1603,8 +2082,12 @@ function reconcileOverridesWithBaseChanges() {
 function loadLocalState() {
   const storedCourse = String(getJSONStorage(COURSE_STORAGE_KEY, COURSE_CATALOG[0].id) || COURSE_CATALOG[0].id);
   state.courseId = COURSE_CATALOG.some((c) => c.id === storedCourse) ? storedCourse : COURSE_CATALOG[0].id;
+  const storedConfig = getJSONStorage(CONFIG_STORAGE_KEY, {});
+  const storedAmount = Number(storedConfig.amount);
+  if (Number.isFinite(storedAmount) && storedAmount >= 1) state.amount = Math.max(1, Math.floor(storedAmount));
+  state.skipPreviouslyCorrect = Boolean(storedConfig.skipPreviouslyCorrect);
+  state.includeMissedOnce = Boolean(storedConfig.includeMissedOnce);
   state.localHistoryRows = getJSONStorage(HISTORY_STORAGE_KEY, []);
-  state.ignoreBaseHistory = Boolean(getJSONStorage(IGNORE_BASE_HISTORY_KEY, false));
   state.localChangeRows = getJSONStorage(CHANGES_STORAGE_KEY, []);
   state.reports = getJSONStorage(REPORTS_STORAGE_KEY, []);
   state.overrides = getJSONStorage(OVERRIDES_STORAGE_KEY, { removedKeys: {}, difficultyOverrides: {} });
@@ -1618,11 +2101,24 @@ async function boot() {
   applyCourseBranding();
   buildWeekControls();
   wireEvents();
+  window.addEventListener("pageshow", () => {
+    applyConfigStateToControls();
+    refreshAvailableCount();
+  });
   setAnswerControlsEnabled(false);
   updateLiveScore();
   try {
-    setStartupStatus("Loading question banks and change history...");
-    await Promise.all([loadQuestionBanks(), loadBaseHistoryAndChanges()]);
+    setStartupStatus("Loading question banks, notes, changelog, and change history...");
+    await Promise.all([
+      loadQuestionBanks(),
+      loadBaseChanges(),
+      loadNotesManifest().catch((err) => {
+        state.notesLoadError = err?.message || "Unable to load notes manifest.";
+      }),
+      loadChangelog().catch((err) => {
+        state.changelogLoadError = err?.message || "Unable to load changelog.";
+      }),
+    ]);
     reconcileOverridesWithBaseChanges();
     if (state.weekAvailabilityReady) {
       state.selectedWeeks = new Set(
@@ -1633,9 +2129,14 @@ async function boot() {
       }
       buildWeekControls();
     }
+    setNotesStatus(
+      state.notesLoadError
+        ? "Notes manifest missing. Run the sync script."
+        : `${state.notesFileMap.size} markdown files ready.`
+    );
+    renderCourseChangelog();
     setStartupStatus(`Loaded ${state.questionBank.length} questions.`);
     refreshAvailableCount();
-    startLiveHistorySync();
     screen("course-screen");
     window.__NETC_QUIZ_APP_READY__ = true;
     hideStartupSplash();
@@ -1650,3 +2151,4 @@ async function boot() {
 }
 
 boot();
+})();

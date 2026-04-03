@@ -1,12 +1,14 @@
 :root {
   --bg: #07131f;
   --card: rgba(11, 26, 42, 0.9);
+  --card-strong: rgba(8, 21, 34, 0.96);
   --ink: #ebf4ff;
   --muted: #9fb4cc;
   --accent: #00a8a8;
   --accent-2: #ff735c;
   --warn: #c6405f;
   --line: rgba(152, 191, 224, 0.22);
+  --sidebar-width: 320px;
 }
 
 * {
@@ -114,7 +116,7 @@ body.app-loading .app-shell {
 }
 
 .app-shell {
-  width: min(1200px, 96vw);
+  width: min(1480px, 97vw);
   margin: 2rem auto;
 }
 
@@ -164,6 +166,384 @@ p {
   gap: 0.75rem;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 1rem 0 0.5rem;
+}
+
+.mode-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.mode-card {
+  text-align: left;
+  padding: 1.1rem;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(160deg, rgba(15, 40, 63, 0.94), rgba(8, 25, 40, 0.98)),
+    var(--card);
+  color: var(--ink);
+}
+
+.mode-card strong,
+.mode-card span {
+  display: block;
+}
+
+.mode-card strong {
+  margin: 0.25rem 0 0.45rem;
+  font-size: 1.2rem;
+}
+
+.mode-card-kicker {
+  color: #8ad6d6;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.course-changelog {
+  margin-top: 1.3rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--card-strong);
+  overflow: hidden;
+}
+
+.course-changelog-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.05rem 0.9rem;
+  border-bottom: 1px solid var(--line);
+  background: rgba(16, 36, 55, 0.92);
+}
+
+.course-changelog-kicker {
+  margin: 0 0 0.25rem;
+  color: #8ad6d6;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.course-changelog-header h3 {
+  margin: 0;
+  color: #f5fbff;
+}
+
+.course-changelog-status {
+  margin: 0;
+  color: #a9c0d8;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.84rem;
+  text-align: right;
+}
+
+.course-changelog-viewer {
+  max-height: 50vh;
+  overflow: auto;
+  padding: 1.1rem 1.2rem 1.4rem;
+  color: #eef6ff;
+}
+
+.course-changelog-viewer h1,
+.course-changelog-viewer h2,
+.course-changelog-viewer h3,
+.course-changelog-viewer h4,
+.course-changelog-viewer h5,
+.course-changelog-viewer h6 {
+  color: #f8fcff;
+  line-height: 1.18;
+}
+
+.course-changelog-viewer h1 {
+  margin-top: 0;
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+}
+
+.course-changelog-viewer h2 {
+  margin-top: 1.4rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid rgba(152, 191, 224, 0.15);
+}
+
+.course-changelog-viewer p,
+.course-changelog-viewer li,
+.course-changelog-viewer blockquote {
+  color: #dcebf9;
+}
+
+.course-changelog-viewer a {
+  color: #82ddff;
+}
+
+.course-changelog-viewer code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.95em;
+  background: rgba(19, 43, 66, 0.95);
+  padding: 0.08rem 0.3rem;
+  border-radius: 6px;
+}
+
+.course-changelog-viewer pre {
+  overflow: auto;
+  background: rgba(6, 16, 26, 0.96);
+  border: 1px solid rgba(152, 191, 224, 0.16);
+  border-radius: 14px;
+  padding: 0.95rem 1rem;
+}
+
+.course-changelog-viewer pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.course-changelog-viewer hr {
+  border: 0;
+  border-top: 1px solid rgba(152, 191, 224, 0.18);
+  margin: 1.5rem 0;
+}
+
+.course-changelog-viewer blockquote {
+  margin: 1rem 0;
+  padding: 0.2rem 0 0.2rem 1rem;
+  border-left: 3px solid rgba(0, 168, 168, 0.65);
+}
+
+.notes-screen {
+  padding: 1rem;
+}
+
+.notes-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.notes-screen-title {
+  text-align: center;
+  font-size: clamp(1.1rem, 2vw, 1.8rem);
+}
+
+.notes-header-spacer {
+  width: 1px;
+}
+
+.notes-layout {
+  display: grid;
+  grid-template-columns: minmax(250px, var(--sidebar-width)) minmax(0, 1fr);
+  gap: 1rem;
+  min-height: 72vh;
+}
+
+.notes-sidebar,
+.notes-viewer-panel {
+  min-height: 0;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--card-strong);
+}
+
+.notes-sidebar {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.notes-sidebar-header,
+.notes-viewer-header {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--line);
+  background: rgba(16, 36, 55, 0.92);
+}
+
+.notes-sidebar-title,
+.notes-sidebar-status,
+.notes-current-path {
+  margin: 0;
+}
+
+.notes-sidebar-title {
+  color: #f5fbff;
+  font-weight: 700;
+}
+
+.notes-sidebar-status,
+.notes-current-path {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.84rem;
+}
+
+.notes-tree {
+  overflow: auto;
+  padding: 0.7rem 0.55rem 0.85rem;
+}
+
+.notes-tree-folder {
+  margin: 0.08rem 0;
+}
+
+.notes-tree-toggle {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+  color: #d7e8fb;
+  border-radius: 9px;
+  padding: 0.38rem 0.45rem;
+  user-select: none;
+}
+
+.notes-tree-toggle::before {
+  content: "▸";
+  display: inline-block;
+  width: 1rem;
+  color: #8ab6dd;
+}
+
+.notes-tree-toggle[aria-expanded="true"]::before {
+  content: "▾";
+}
+
+.notes-tree-toggle:hover,
+.notes-tree-file:hover {
+  background: rgba(48, 93, 127, 0.24);
+}
+
+.notes-tree-children {
+  margin-left: 0.85rem;
+  border-left: 1px solid rgba(152, 191, 224, 0.12);
+  padding-left: 0.45rem;
+}
+
+.notes-tree-file {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  color: #d7e8fb;
+  border-radius: 9px;
+  padding: 0.4rem 0.5rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.notes-tree-file.is-active {
+  background: linear-gradient(110deg, rgba(0, 168, 168, 0.26), rgba(34, 104, 160, 0.3));
+  color: #f5fcff;
+}
+
+.notes-viewer-panel {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.notes-viewer {
+  flex: 1;
+  overflow: auto;
+  padding: 1.3rem 1.5rem 2rem;
+  color: #eef6ff;
+}
+
+.notes-empty-state {
+  max-width: 42rem;
+  margin: 4rem auto;
+  text-align: center;
+}
+
+.notes-viewer h1,
+.notes-viewer h2,
+.notes-viewer h3,
+.notes-viewer h4,
+.notes-viewer h5,
+.notes-viewer h6 {
+  color: #f8fcff;
+  line-height: 1.18;
+}
+
+.notes-viewer h1 {
+  margin-top: 0;
+  font-size: clamp(1.8rem, 2.7vw, 2.7rem);
+}
+
+.notes-viewer h2 {
+  margin-top: 1.6rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid rgba(152, 191, 224, 0.15);
+}
+
+.notes-viewer p,
+.notes-viewer li,
+.notes-viewer blockquote {
+  color: #dcebf9;
+}
+
+.notes-viewer a {
+  color: #82ddff;
+}
+
+.notes-viewer code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.95em;
+  background: rgba(19, 43, 66, 0.95);
+  padding: 0.08rem 0.3rem;
+  border-radius: 6px;
+}
+
+.notes-viewer pre {
+  overflow: auto;
+  background: rgba(6, 16, 26, 0.96);
+  border: 1px solid rgba(152, 191, 224, 0.16);
+  border-radius: 14px;
+  padding: 0.95rem 1rem;
+}
+
+.notes-viewer pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.notes-viewer hr {
+  border: 0;
+  border-top: 1px solid rgba(152, 191, 224, 0.18);
+  margin: 1.5rem 0;
+}
+
+.notes-viewer blockquote {
+  margin: 1rem 0;
+  padding: 0.2rem 0 0.2rem 1rem;
+  border-left: 3px solid rgba(0, 168, 168, 0.65);
+}
+
+.notes-viewer table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.96rem;
+}
+
+.notes-viewer th,
+.notes-viewer td {
+  border: 1px solid rgba(152, 191, 224, 0.2);
+  padding: 0.6rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.notes-viewer th {
+  background: rgba(18, 42, 64, 0.96);
 }
 
 .week-grid label {
@@ -362,6 +742,40 @@ dialog::backdrop {
   }
 }
 
+@media (max-width: 980px) {
+  .mode-card-grid,
+  .config-grid,
+  .week-grid,
+  .notes-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .notes-layout {
+    min-height: auto;
+  }
+
+  .course-changelog-header {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .course-changelog-status {
+    text-align: left;
+  }
+
+  .notes-sidebar {
+    max-height: 42vh;
+  }
+
+  .notes-header {
+    grid-template-columns: 1fr;
+  }
+
+  .notes-screen-title {
+    text-align: left;
+  }
+}
+
 @media (max-width: 900px) {
   .config-grid,
   .week-grid {
@@ -374,6 +788,16 @@ dialog::backdrop {
 
   .btn {
     width: 100%;
+  }
+
+  #quiz-screen .actions {
+    align-items: stretch;
+  }
+
+  #quiz-screen .actions .btn {
+    width: auto;
+    flex: 1 1 calc(50% - 0.35rem);
+    min-width: 9rem;
   }
 }
 
