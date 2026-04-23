@@ -14,6 +14,8 @@ sites-enabled/
 
 .codex
 question_history.csv
+FEEDBACK/changes.csv
+FEEDBACK/question_history.csv
 test1/
 
 .vscode/sftp.json
