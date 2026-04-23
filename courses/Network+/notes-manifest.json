@@ -1,0 +1,220 @@
+{
+  "roots": [
+    {
+      "type": "directory",
+      "name": "MASTER LIST",
+      "path": "MASTER LIST",
+      "children": [
+        {
+          "type": "directory",
+          "name": "1.0 Networking Concepts",
+          "path": "MASTER LIST/1.0 Networking Concepts",
+          "children": [
+            {
+              "type": "file",
+              "name": "1.1 - Explain concepts related to the Open Systems Interconnection (OSI) reference model.md",
+              "path": "MASTER LIST/1.0 Networking Concepts/1.1 - Explain concepts related to the Open Systems Interconnection (OSI) reference model.md"
+            },
+            {
+              "type": "file",
+              "name": "1.2 - Compare and contrast networking appliances, applications, and functions.md",
+              "path": "MASTER LIST/1.0 Networking Concepts/1.2 - Compare and contrast networking appliances, applications, and functions.md"
+            },
+            {
+              "type": "file",
+              "name": "1.3 - Summarize cloud concepts and connectivity options.md",
+              "path": "MASTER LIST/1.0 Networking Concepts/1.3 - Summarize cloud concepts and connectivity options.md"
+            },
+            {
+              "type": "file",
+              "name": "1.4 - Explain common networking ports, protocols, services, and traffic types.md",
+              "path": "MASTER LIST/1.0 Networking Concepts/1.4 - Explain common networking ports, protocols, services, and traffic types.md"
+            },
+            {
+              "type": "file",
+              "name": "1.5 - Compare and contrast transmission media and transceivers.md",
+              "path": "MASTER LIST/1.0 Networking Concepts/1.5 - Compare and contrast transmission media and transceivers.md"
+            },
+            {
+              "type": "file",
+              "name": "1.6 - Compare and contrast network topologies, architectures, and types.md",
+              "path": "MASTER LIST/1.0 Networking Concepts/1.6 - Compare and contrast network topologies, architectures, and types.md"
+            },
+            {
+              "type": "file",
+              "name": "1.7 - Given a scenario, use appropriate IPv4 network addressing.md",
+              "path": "MASTER LIST/1.0 Networking Concepts/1.7 - Given a scenario, use appropriate IPv4 network addressing.md"
+            },
+            {
+              "type": "file",
+              "name": "1.8 - Summarize evolving use cases for modern network environments.md",
+              "path": "MASTER LIST/1.0 Networking Concepts/1.8 - Summarize evolving use cases for modern network environments.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "2.0 Network Implementation",
+          "path": "MASTER LIST/2.0 Network Implementation",
+          "children": [
+            {
+              "type": "file",
+              "name": "2.1 - Explain characteristics of routing technologies.md",
+              "path": "MASTER LIST/2.0 Network Implementation/2.1 - Explain characteristics of routing technologies.md"
+            },
+            {
+              "type": "file",
+              "name": "2.2 - Given a scenario, configure switching technologies and features.md",
+              "path": "MASTER LIST/2.0 Network Implementation/2.2 - Given a scenario, configure switching technologies and features.md"
+            },
+            {
+              "type": "file",
+              "name": "2.3 - Given a scenario, select and configure wireless devices and technologies.md",
+              "path": "MASTER LIST/2.0 Network Implementation/2.3 - Given a scenario, select and configure wireless devices and technologies.md"
+            },
+            {
+              "type": "file",
+              "name": "2.4 - Explain important factors of physical installations.md",
+              "path": "MASTER LIST/2.0 Network Implementation/2.4 - Explain important factors of physical installations.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "3.0 Network Operations",
+          "path": "MASTER LIST/3.0 Network Operations",
+          "children": [
+            {
+              "type": "file",
+              "name": "3.1 - Explain the purpose of organizational processes and procedures.md",
+              "path": "MASTER LIST/3.0 Network Operations/3.1 - Explain the purpose of organizational processes and procedures.md"
+            },
+            {
+              "type": "file",
+              "name": "3.2 - Given a scenario, use network monitoring technologies.md",
+              "path": "MASTER LIST/3.0 Network Operations/3.2 - Given a scenario, use network monitoring technologies.md"
+            },
+            {
+              "type": "file",
+              "name": "3.3 - Explain disaster recovery (DR) concepts.md",
+              "path": "MASTER LIST/3.0 Network Operations/3.3 - Explain disaster recovery (DR) concepts.md"
+            },
+            {
+              "type": "file",
+              "name": "3.4 - Given a scenario, implement IPv4 and IPv6 network services.md",
+              "path": "MASTER LIST/3.0 Network Operations/3.4 - Given a scenario, implement IPv4 and IPv6 network services.md"
+            },
+            {
+              "type": "file",
+              "name": "3.5 - Compare and contrast network access and management methods.md",
+              "path": "MASTER LIST/3.0 Network Operations/3.5 - Compare and contrast network access and management methods.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "4.0 Network Security",
+          "path": "MASTER LIST/4.0 Network Security",
+          "children": [
+            {
+              "type": "file",
+              "name": "4.1 - Explain the importance of basic network security concepts.md",
+              "path": "MASTER LIST/4.0 Network Security/4.1 - Explain the importance of basic network security concepts.md"
+            },
+            {
+              "type": "file",
+              "name": "4.2 - Summarize various types of attacks and their impact to the network.md",
+              "path": "MASTER LIST/4.0 Network Security/4.2 - Summarize various types of attacks and their impact to the network.md"
+            },
+            {
+              "type": "file",
+              "name": "4.3 - Given a scenario, apply network security features, defense techniques, and solutions.md",
+              "path": "MASTER LIST/4.0 Network Security/4.3 - Given a scenario, apply network security features, defense techniques, and solutions.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "5.0 Network Troubleshooting",
+          "path": "MASTER LIST/5.0 Network Troubleshooting",
+          "children": [
+            {
+              "type": "file",
+              "name": "5.1 - Explain the troubleshooting methodology.md",
+              "path": "MASTER LIST/5.0 Network Troubleshooting/5.1 - Explain the troubleshooting methodology.md"
+            },
+            {
+              "type": "file",
+              "name": "5.2 - Given a scenario, troubleshoot common cabling and physical interface issues.md",
+              "path": "MASTER LIST/5.0 Network Troubleshooting/5.2 - Given a scenario, troubleshoot common cabling and physical interface issues.md"
+            },
+            {
+              "type": "file",
+              "name": "5.3 - Given a scenario, troubleshoot common issues with network services.md",
+              "path": "MASTER LIST/5.0 Network Troubleshooting/5.3 - Given a scenario, troubleshoot common issues with network services.md"
+            },
+            {
+              "type": "file",
+              "name": "5.4 - Given a scenario, troubleshoot common performance issues.md",
+              "path": "MASTER LIST/5.0 Network Troubleshooting/5.4 - Given a scenario, troubleshoot common performance issues.md"
+            },
+            {
+              "type": "file",
+              "name": "5.5 - Given a scenario, use the appropriate tool or protocol to solve networking issues.md",
+              "path": "MASTER LIST/5.0 Network Troubleshooting/5.5 - Given a scenario, use the appropriate tool or protocol to solve networking issues.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "directory",
+      "name": "Notes List A - Video Content",
+      "path": "Notes List A - Video Content",
+      "children": [
+        {
+          "type": "directory",
+          "name": "Video 1 - PLACEHOLDER",
+          "path": "Notes List A - Video Content/Video 1 - PLACEHOLDER",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 1 - PLACEHOLDER/Transcript.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "directory",
+      "name": "Notes List C - Alex's Personal Notes",
+      "path": "Notes List C - Alex's Personal Notes",
+      "children": [
+        {
+          "type": "directory",
+          "name": "Lecture Week 1",
+          "path": "Notes List C - Alex's Personal Notes/Lecture Week 1",
+          "children": [
+            {
+              "type": "file",
+              "name": "Week 1 Notes.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 1/Week 1 Notes.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "Notes List B - Why it's not here.md",
+      "path": "Notes List B - Why it's not here.md"
+    },
+    {
+      "type": "file",
+      "name": "SURVIVAL GUIDE.md",
+      "path": "SURVIVAL GUIDE.md"
+    }
+  ],
+  "defaultNote": "SURVIVAL GUIDE.md"
+}

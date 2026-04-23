@@ -1,0 +1,28 @@
+name: Build Windows Setup EXE
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-windows-setup:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Inno Setup
+        run: choco install innosetup -y
+
+      - name: Build installer
+        shell: powershell
+        run: |
+          & "C:\\Program Files (x86)\\Inno Setup 6\\ISCC.exe" ".\\windows\\RocketQuestionsSetup.iss"
+
+      - name: Upload setup artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: RocketQuestionsSetup
+          path: .\\windows\\Output\\RocketQuestionsSetup.exe

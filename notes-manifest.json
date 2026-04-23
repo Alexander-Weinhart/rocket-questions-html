@@ -440,6 +440,30 @@
               "path": "Notes List A - Video Content/Video 21 - Packet Traveling - How Packets Move Through a Network/Transcript.md"
             }
           ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 22 - Routing Fundamentals",
+          "path": "Notes List A - Video Content/Video 22 - Routing Fundamentals",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 22 - Routing Fundamentals/Transcript.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 23 - Dynamic Routing Protocols",
+          "path": "Notes List A - Video Content/Video 23 - Dynamic Routing Protocols",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 23 - Dynamic Routing Protocols/Transcript.md"
+            }
+          ]
         }
       ]
     },

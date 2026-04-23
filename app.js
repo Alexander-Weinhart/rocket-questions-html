@@ -1,35 +1,62 @@
 (() => {
 if (window.__NETC_QUIZ_APP_BOOTED__) {
   window.__NETC_QUIZ_APP_SCRIPT__ = true;
-  window.__NETC_QUIZ_APP_VERSION__ = "2026-04-02-07";
+    window.__NETC_QUIZ_APP_VERSION__ = "2026-04-16-13";
   return;
 }
 window.__NETC_QUIZ_APP_BOOTED__ = true;
 
 const WEEK_CHOICES = Array.from({ length: 15 }, (_, i) => i + 1);
+const DOMAIN_CHOICES = Array.from({ length: 5 }, (_, i) => i + 1);
 window.__NETC_QUIZ_APP_SCRIPT__ = true;
-window.__NETC_QUIZ_APP_VERSION__ = "2026-04-02-07";
+window.__NETC_QUIZ_APP_VERSION__ = "2026-04-16-13";
 window.__NETC_QUIZ_APP_READY__ = false;
+const API_PORT = "3003";
 const COURSE_STORAGE_KEY = "rocket_questions_selected_course";
-const HISTORY_STORAGE_KEY = "rocket_questions_history_local";
+const CERTIFICATION_STORAGE_KEY = "rocket_questions_selected_certification";
+const TRACK_TYPE_STORAGE_KEY = "rocket_questions_active_track_type";
+const HISTORY_STORAGE_KEY = window.__ROCKET_HISTORY_STORAGE_KEY__ || "rocket_questions_history_local";
 const CHANGES_STORAGE_KEY = "rocket_questions_changes_local";
 const OVERRIDES_STORAGE_KEY = "rocket_questions_overrides";
 const REPORTS_STORAGE_KEY = "rocket_questions_reports";
 const CONFIG_STORAGE_KEY = "rocket_questions_quiz_config";
-const NOTES_MANIFEST_PATH = `./notes-manifest.json?v=${window.__NETC_QUIZ_APP_VERSION__}`;
 const CHANGELOG_PATH = `./changelog.md?v=${window.__NETC_QUIZ_APP_VERSION__}`;
+const TOUR_QUESTION_BANK_PATH = `./tour_question_bank.csv?v=${window.__NETC_QUIZ_APP_VERSION__}`;
+const NO_CERTIFICATION_ID = "";
 const COURSE_CATALOG = [
   {
     id: "netc121",
     browserTitle: "Rocket Questions - Cincinnati State NETC-CS Program",
-    pageTitle: "🚀 Rocket Questions - Cincinnati State NETC-CS Program",
+    pageTitle: "Rocket Questions - Cincinnati State NETC-CS Program",
     insignia: "NETC-121",
     name: "Network Communications 1",
     subtitle: "May we all succeed or fail as a team.",
     yearCreated: 2026,
     copyrightOwners: ["Alexander Weinhart"],
+    contentRoot: "courses/NETC-121",
+    manuallyAvailableWeeks: [11, 13],
+    questionBankChoices: Array.from({ length: 15 }, (_, i) => i + 1),
   },
 ];
+const CERTIFICATION_CATALOG = [
+  {
+    id: "comptia-network-plus-n10-009",
+    browserTitle: "Rocket Questions - CompTIA Network+ N10-009",
+    pageTitle: "Rocket Questions - CompTIA Network+ N10-009",
+    insignia: "N10-009",
+    name: "The CompTIA N10-009 Network+ Certification",
+    subtitle: "Study the objectives, then make the objectives regret meeting you.",
+    yearCreated: 2026,
+    copyrightOwners: ["Alexander Weinhart"],
+    contentRoot: "courses/Network+",
+    questionBankChoices: [1],
+  },
+];
+const MANUALLY_AVAILABLE_WEEKS = new Set([11]);
+const NETC121_COMING_SOON_CHOICES = new Set([14]);
+const NETC121_CHOICE_LABELS = new Map([
+  [15, "Final Exam Prep"],
+]);
 
 const VIDEO_WEEK_MAP = {
   1: 3, 2: 3, 3: 3,
@@ -39,6 +66,10 @@ const VIDEO_WEEK_MAP = {
   12: 7, 13: 7, 14: 7, 15: 7,
   16: 8, 17: 8,
   18: 9, 19: 9,
+  20: 10, 21: 10,
+  22: 11, 23: 11,
+  24: 12, 25: 12,
+  26: 13, 27: 13,
 };
 const VIDEO_TITLE_MAP = {
   1: "Unicast, Broadcast, Multicast",
@@ -60,6 +91,14 @@ const VIDEO_TITLE_MAP = {
   17: "Trunking and 802.1Q",
   18: "Spanning Tree Protocol Explained Step by Step",
   19: "Micronugget: Spanning Tree Protocol Explained CBT Nuggets",
+  20: "What Is a Routing Table?",
+  21: "Packet Traveling - How Packets Move Through a Network",
+  22: "Routing Fundamentals",
+  23: "Dynamic Routing Protocols",
+  24: "Route Summarization",
+  25: "Router Hierarchies and Default Routes",
+  26: "Layer 2 vs Layer 3 Switches",
+  27: "Micronugget What is Route Redistribution",
 };
 const SYLLABUS_TEXTBOOK_BY_WEEK = {
   1: "Textbook 1 - Chapter 1 Network Basics",
@@ -93,6 +132,10 @@ const TEXTBOOK_WEEK_MARKERS = [
 ];
 const HARD_CODED_SOURCE_REFERENCES = [
   {
+    marker: "week 11 - ai master list",
+    label: "Week 11 - AI Master List",
+  },
+  {
     marker: "week 10 - ai master list",
     label: "Week 10 - AI Master List",
   },
@@ -118,9 +161,235 @@ const HARD_CODED_SOURCE_REFERENCES = [
   },
 ];
 const APP_BASE_URL = new URL(".", document.currentScript?.src || window.location.href);
+function apiURL(path) {
+  const cleanPath = String(path || "").startsWith("/") ? String(path || "") : `/${path || ""}`;
+  return `${window.location.protocol}//${window.location.hostname}:${API_PORT}${cleanPath}`;
+}
+
+const TOUR_STEPS = [
+  {
+    screenId: "course-screen",
+    selector: "#continue-course",
+    title: "Start the Tour",
+    body: "This first screen lets you choose your course and preview project updates. Click Continue to move into the workspace chooser.",
+    action: "continue-course",
+  },
+  {
+    screenId: "menu-screen",
+    selector: "#go-notes",
+    title: "Notes Workspace",
+    body: "The workspace menu splits the app into study notes and quiz practice. Click Notes Lists so the tour can show the notes view first.",
+    action: "go-notes",
+  },
+  {
+    screenId: "notes-screen",
+    selector: "#back-notes-to-menu",
+    title: "Explore the Notes Screen",
+    body: "The notes explorer lives on the left, and the markdown reader lives on the right. When you are ready to continue the tour, click Back to Previous Menu.",
+    action: "back-notes-to-menu",
+  },
+  {
+    screenId: "menu-screen",
+    selector: "#go-practice-quiz",
+    title: "Practice Quiz Workspace",
+    body: "Now switch over to the quiz flow. Click Practice Quiz to move into week selection.",
+    action: "go-practice-quiz",
+  },
+  {
+    screenId: "week-screen",
+    selector: "#continue-setup",
+    title: "Week Selection",
+    body: "This screen controls which weeks feed the quiz. For the walkthrough, the week controls are just being introduced, so click Continue to Setup.",
+    action: "continue-setup",
+  },
+  {
+    screenId: "config-screen",
+    selector: "#mode-select",
+    title: "Mode Dropdown",
+    body: "This dropdown controls difficulty. Click it to inspect the options: easy covers beginner-friendly fundamentals, medium includes easy plus in-scope class content, and hard covers advanced expansion topics.",
+    action: "mode-select-click",
+  },
+  {
+    screenId: "config-screen",
+    selector: "#mode-select",
+    title: "Medium Option",
+    body: "Choose medium to preview the broader class-scope pool that includes both easy and medium questions.",
+    action: "mode-medium",
+  },
+  {
+    screenId: "config-screen",
+    selector: "#mode-select",
+    title: "Hard Option",
+    body: "Choose hard to preview the advanced expansion pool beyond the core class scope.",
+    action: "mode-hard",
+  },
+  {
+    screenId: "config-screen",
+    selector: "#mode-select",
+    title: "Easy Option",
+    body: "Set the dropdown back to easy so the walkthrough can launch the simple demo quiz next.",
+    action: "mode-easy",
+  },
+  {
+    screenId: "config-screen",
+    selector: "#question-count",
+    title: "Questions Field",
+    body: "This number field controls quiz length. Set it to 6 for the walkthrough demo.",
+    action: "question-count-6",
+  },
+  {
+    screenId: "config-screen",
+    selector: "#skip-correct",
+    title: "Skip Previously Correct Questions",
+    body: "Turn this checkbox on to hide questions you already answered correctly in this browser.",
+    action: "skip-correct-on",
+  },
+  {
+    screenId: "config-screen",
+    selector: "#include-missed-once",
+    title: "Include Questions Missed Once",
+    body: "Turn this checkbox on to bring back questions that were missed before, even when skip-correct is enabled.",
+    action: "include-missed-on",
+  },
+  {
+    screenId: "config-screen",
+    selector: "#start-quiz",
+    title: "Start Quiz",
+    body: "The configuration summary updates live as you change options. When you are ready, click Start Quiz to launch the special six-question demo bank built for the walkthrough.",
+    action: "start-quiz",
+  },
+  {
+    screenId: "quiz-screen",
+    selector: "#submit-answer",
+    title: "Submit Answer",
+    body: "This first demo question shows the standard answer flow. Select B, then click Submit Answer.",
+    action: "submit-correct",
+  },
+  {
+    screenId: "quiz-screen",
+    selector: "#next-question",
+    title: "Feedback and Next Question",
+    body: "The app now shows feedback, updates your running score, and enables Next Question after you answer. Click Next Question to continue to the second demo question.",
+    action: "next-question",
+  },
+  {
+    screenId: "quiz-screen",
+    selector: "#submit-answer",
+    title: "Question 2: Miss One On Purpose",
+    body: "This second demo question is a riddle. To make sure the walkthrough demonstrates the incorrect-answer flow, choose any wrong answer except n, then click Submit Answer.",
+    action: "submit-incorrect",
+  },
+  {
+    screenId: "quiz-screen",
+    selector: "#next-question",
+    title: "Next Question Again",
+    body: "Question 2 is complete now, so Next Question moves you forward through the quiz. Click it to reach the ineffective-question demo.",
+    action: "next-question",
+  },
+  {
+    screenId: "quiz-screen",
+    selector: "#ineffective-question",
+    title: "Ineffective Question",
+    body: "This third demo question is gloriously awful: every choice is basically some version of 'your mom.' That means the question itself is the problem, not your studying. Click Ineffective Question so the walkthrough can treat this as a comedy example of a badly written item.",
+    action: "open-ineffective-dialog",
+  },
+  {
+    screenId: "quiz-screen",
+    selector: "#submit-ineffective",
+    title: "Report the Joke Question",
+    body: "Amazingly, the tour is now asking you to write feedback about a question whose whole personality is that it deserves feedback. Type a short message in the dialog, then click Submit so the walkthrough can remove it. For the demo, this does not send anything to the server.",
+    action: "submit-ineffective",
+  },
+  {
+    screenId: "quiz-screen",
+    selector: "#flag-question",
+    title: "Not in Current Course Scope",
+    body: "This next CISSP-style zero-trust microsegmentation question is far beyond what this selected NETC-121 course is trying to teach right now. We are absolutely not pretending this belongs in the same bucket as your current class fundamentals, so click Not in Current Course Scope.",
+    action: "flag-not-in-scope",
+  },
+  {
+    screenId: "quiz-screen",
+    selector: "#dont-know-answer",
+    title: "I Don't Know",
+    body: "This fifth demo question is an ASCII question. Even if you know that decimal 64 is @, the point here is to demonstrate the I Don't Know button. Click it so the app can mark the question incorrect without you guessing.",
+    action: "submit-dont-know",
+  },
+  {
+    screenId: "quiz-screen",
+    selector: "#next-question",
+    title: "Move to the Final Question",
+    body: "After using I Don't Know, Next Question becomes available again. Click it to reach the final finish-quiz demo question.",
+    action: "next-question",
+  },
+  {
+    screenId: "quiz-screen",
+    selector: "#back-setup-from-quiz",
+    title: "Back to Setup",
+    body: "This button returns you to quiz setup without finishing the session. For the walkthrough, do not click the real button. Click Next in the walkthrough box instead.",
+    action: "explain-back-setup",
+  },
+  {
+    screenId: "quiz-screen",
+    selector: "#finish-quiz",
+    title: "Finish Quiz",
+    body: "The sixth demo question is here only to prove you can end a run before answering every remaining question. Do not answer the life, the universe, and everything question. Leave it untouched and click Finish Quiz now.",
+    action: "finish-quiz",
+  },
+  {
+    screenId: "review-screen",
+    selector: "#review-text",
+    title: "Quiz Review Report",
+    body: "This review report shows your score, the questions you missed, explanations, and suggested study references. Read this step, then click Next in the walkthrough box to continue.",
+    action: "review-report",
+  },
+  {
+    screenId: "review-screen",
+    selector: "#copy-report",
+    title: "Copy Report",
+    body: "Copy Report puts the review text on your clipboard so you can paste it somewhere else. For the walkthrough, do not click the real button. Click Next in the walkthrough box instead.",
+    action: "copy-report",
+  },
+  {
+    screenId: "review-screen",
+    selector: "#download-report",
+    title: "Download Report",
+    body: "Download Report saves the review as a text file for later. For the walkthrough, do not click the real button. Click Next in the walkthrough box instead.",
+    action: "download-report",
+  },
+  {
+    screenId: "review-screen",
+    selector: "#print-report",
+    title: "Print Report",
+    body: "Print Report opens a print-friendly view of the review. For the walkthrough, do not click the real button. Click Next in the walkthrough box instead.",
+    action: "print-report",
+  },
+  {
+    screenId: "review-screen",
+    selector: "#retake-incorrect",
+    title: "Retake Incorrect Only",
+    body: "Retake Incorrect Only launches a focused retry session using the questions you missed. For the walkthrough, do not click the real button. Click Next in the walkthrough box instead.",
+    action: "retake-incorrect",
+  },
+  {
+    screenId: "review-screen",
+    selector: "#reset-wrong-count",
+    title: "Reset All Answered Questions",
+    body: "This button erases your answered-question history in this browser. Because that would be a terrible surprise during a walkthrough, the button is logically disabled for this demo. Read this step, then click Next in the walkthrough box to continue.",
+    action: "review-reset-demo",
+  },
+  {
+    screenId: "review-screen",
+    selector: "#back-setup-from-review",
+    title: "Back to Setup",
+    body: "Back to Setup returns you to the quiz configuration screen. Click the real Back to Setup button now to finish the walkthrough.",
+    action: "review-back-demo",
+  },
+];
 
 const state = {
   courseId: COURSE_CATALOG[0].id,
+  certificationId: NO_CERTIFICATION_ID,
+  activeTrackType: "course",
   questionBank: [],
   availableWeeks: new Set(),
   weekAvailabilityReady: false,
@@ -142,7 +411,6 @@ const state = {
   currentSelectedAnswer: "",
   currentOptionMap: {},
   localHistoryRows: [],
-  baseChangeRows: [],
   localChangeRows: [],
   reports: [],
   overrides: { removedKeys: {}, difficultyOverrides: {} },
@@ -152,26 +420,121 @@ const state = {
   notesLoadError: "",
   changelogText: "",
   changelogLoadError: "",
+  tourQuestionBank: [],
+  walkthroughSteps: TOUR_STEPS,
+  walkthroughIndex: 0,
+  walkthroughScreenId: "",
+  walkthroughPromptOpen: false,
+  walkthroughActive: false,
+  walkthroughOverrideTitle: "",
+  walkthroughOverrideBody: "",
+  changeServerSaveDisabled: false,
+  historyServerSaveWarningShown: false,
+  historyServerSaveDisabled: false,
 };
 
 const el = {};
 let questionBankReloadPromise = null;
+let notesManifestReloadPromise = null;
 
 function activeCourse() {
   return COURSE_CATALOG.find((c) => c.id === state.courseId) || COURSE_CATALOG[0];
 }
 
+function activeCertification() {
+  return CERTIFICATION_CATALOG.find((c) => c.id === state.certificationId) || null;
+}
+
+function activeTrack() {
+  if (state.activeTrackType === "certification" && activeCertification()) {
+    return activeCertification();
+  }
+  return activeCourse();
+}
+
+function isNetworkPlusTrack() {
+  return state.activeTrackType === "certification" && activeCertification()?.id === "comptia-network-plus-n10-009";
+}
+
+function activePracticeUnitConfig() {
+  if (isNetworkPlusTrack()) {
+    return {
+      singular: "Domain",
+      plural: "Domains",
+      choices: DOMAIN_CHOICES,
+      filenamePrefix: "domain",
+      comingSoonChoices: new Set(DOMAIN_CHOICES),
+      labelForChoice: (choice) => `Domain ${choice}`,
+    };
+  }
+  return {
+    singular: "Week",
+    plural: "Weeks",
+    choices: WEEK_CHOICES,
+    filenamePrefix: "week",
+    comingSoonChoices: new Set(NETC121_COMING_SOON_CHOICES),
+    labelForChoice: (choice) => NETC121_CHOICE_LABELS.get(choice) || `Week ${choice}`,
+  };
+}
+
+function versionedContentURL(...parts) {
+  const clean = parts
+    .flat()
+    .map((part) => String(part || "").replace(/\\/g, "/"))
+    .join("/")
+    .split("/")
+    .filter(Boolean)
+    .map(encodeURIComponent)
+    .join("/");
+  return `./${clean}?v=${encodeURIComponent(window.__NETC_QUIZ_APP_VERSION__)}`;
+}
+
+function activeNotesManifestURL() {
+  return versionedContentURL(activeTrack().contentRoot, "notes-manifest.json");
+}
+
+function activeQuestionBankURL(choice) {
+  const config = activePracticeUnitConfig();
+  return versionedContentURL(activeTrack().contentRoot, "question-banks", `${config.filenamePrefix}${choice}_question_bank.csv`);
+}
+
+function activeQuestionBankChoices() {
+  return activeTrack().questionBankChoices || activePracticeUnitConfig().choices;
+}
+
+function activeTrackManualWeeks() {
+  return new Set(activeTrack().manuallyAvailableWeeks || []);
+}
+
+function rocketBrandHTML(text) {
+  return `<span class="brand-inline"><img class="brand-inline-icon" src="./rocket_icon.png?v=${window.__NETC_QUIZ_APP_VERSION__}" alt="" aria-hidden="true"><span>${escapeHTML(text)}</span></span>`;
+}
+
 function applyCourseBranding() {
-  const course = activeCourse();
+  const course = currentScreenId() === "course-screen" ? activeCourse() : activeTrack();
   const browserTitle = course.browserTitle || course.title || `${course.insignia} ${course.name}`;
   const pageTitle = course.pageTitle || course.title || browserTitle;
   document.title = browserTitle;
-  if (el.appTitle) el.appTitle.textContent = pageTitle;
+  if (el.appTitle) el.appTitle.innerHTML = rocketBrandHTML(pageTitle);
   if (el.appSubtitle) el.appSubtitle.textContent = course.subtitle;
   if (el.notesScreenTitle) {
-    el.notesScreenTitle.textContent = `🚀 Rocket Questions Notes Lists for ${course.name}`;
+    el.notesScreenTitle.innerHTML = rocketBrandHTML(`Rocket Questions Notes Lists for ${course.name}`);
   }
   renderAutoCopyright(course);
+  syncPracticeUnitLabels();
+}
+
+function syncPracticeUnitLabels() {
+  const config = activePracticeUnitConfig();
+  if (el.practiceModeDescription) {
+    el.practiceModeDescription.textContent = `Open ${config.singular.toLowerCase()} selection and start a custom practice run.`;
+  }
+  if (el.practiceUnitTitle) {
+    el.practiceUnitTitle.textContent = `${config.singular} Selection`;
+  }
+  if (el.practiceUnitDescription) {
+    el.practiceUnitDescription.textContent = `Select one or more available ${config.plural.toLowerCase()} before setup.`;
+  }
 }
 
 function renderAutoCopyright(course) {
@@ -202,6 +565,370 @@ function setChangelogStatus(text) {
   if (el.courseChangelogStatus) el.courseChangelogStatus.textContent = text;
 }
 
+function currentScreenId() {
+  const visible = document.querySelector(".screen:not(.hidden)");
+  return visible?.id || "course-screen";
+}
+
+function isMobileWalkthroughBlocked() {
+  const coarsePointer = window.matchMedia?.("(pointer: coarse)")?.matches;
+  const narrowViewport = window.innerWidth <= 900;
+  const mobileUA = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || "");
+  return Boolean(mobileUA || (coarsePointer && narrowViewport));
+}
+
+function isMobileNotesLayout() {
+  return window.innerWidth <= 1200;
+}
+
+function syncMobileNotesLayoutClass() {
+  document.body.classList.toggle("mobile-notes-layout", isMobileNotesLayout());
+}
+
+function screenLabel(screenId) {
+  const labels = {
+    "course-screen": "Course Selection",
+    "menu-screen": "Workspace Menu",
+    "week-screen": "Week Selection",
+    "notes-screen": "Notes Lists",
+    "config-screen": "Quiz Configuration",
+    "quiz-screen": "Practice Quiz",
+    "review-screen": "Quiz Review",
+  };
+  return labels[screenId] || "Screen";
+}
+
+function firstVisible(selector, root = document) {
+  return [...root.querySelectorAll(selector)].find((node) => {
+    if (!(node instanceof HTMLElement)) return false;
+    if (node.closest(".hidden")) return false;
+    return node.offsetWidth > 0 || node.offsetHeight > 0 || node.getClientRects().length > 0;
+  }) || null;
+}
+
+function tourCurrentStep() {
+  return state.walkthroughSteps[state.walkthroughIndex] || null;
+}
+
+function tourCurrentTarget() {
+  const step = tourCurrentStep();
+  if (!step?.selector) return null;
+  return firstVisible(step.selector);
+}
+
+function positionWalkthroughStep(target) {
+  const rect = target.getBoundingClientRect();
+  const padding = 8;
+  const viewportPadding = 12;
+  const top = Math.max(padding, rect.top - padding);
+  const left = Math.max(padding, rect.left - padding);
+  const width = Math.min(window.innerWidth - (left + padding), rect.width + padding * 2);
+  const height = Math.min(window.innerHeight - (top + padding), rect.height + padding * 2);
+  el.walkthroughSpotlight.style.setProperty("--wt-top", `${top}px`);
+  el.walkthroughSpotlight.style.setProperty("--wt-left", `${left}px`);
+  el.walkthroughSpotlight.style.setProperty("--wt-width", `${Math.max(48, width)}px`);
+  el.walkthroughSpotlight.style.setProperty("--wt-height", `${Math.max(48, height)}px`);
+
+  const cardRect = el.walkthroughCard.getBoundingClientRect();
+  const gap = 18;
+  const step = tourCurrentStep();
+  el.walkthroughCard.style.width = "";
+  const isQuizAnswerStep = step?.screenId === "quiz-screen" && step?.selector === "#answers-wrap";
+  const isFinishQuizStep = step?.screenId === "quiz-screen" && step?.action === "finish-quiz";
+  const isFlagScopeStep = step?.screenId === "quiz-screen" && step?.action === "flag-not-in-scope";
+  const isReviewStep = step?.screenId === "review-screen";
+  const preferUpperRightLane = (
+    isQuizAnswerStep
+    || isFlagScopeStep
+    || (step?.screenId === "notes-screen" && step?.action === "back-notes-to-menu")
+  ) && window.innerWidth >= 1100;
+
+  if (isFinishQuizStep) {
+    el.walkthroughCard.style.width = "360px";
+    const tunedCardRect = el.walkthroughCard.getBoundingClientRect();
+    const cardTop = viewportPadding;
+    const cardLeft = Math.max(
+      viewportPadding,
+      window.innerWidth - tunedCardRect.width - 28
+    );
+    el.walkthroughCard.style.top = `${cardTop}px`;
+    el.walkthroughCard.style.left = `${cardLeft}px`;
+    return;
+  }
+
+  if (isReviewStep) {
+    el.walkthroughCard.style.width = "360px";
+    const tunedCardRect = el.walkthroughCard.getBoundingClientRect();
+    const cardTop = viewportPadding;
+    const cardLeft = Math.max(
+      viewportPadding,
+      window.innerWidth - tunedCardRect.width - 28
+    );
+    el.walkthroughCard.style.top = `${cardTop}px`;
+    el.walkthroughCard.style.left = `${cardLeft}px`;
+    return;
+  }
+
+  if (preferUpperRightLane) {
+    if (isQuizAnswerStep) {
+      el.walkthroughCard.style.width = "320px";
+    }
+    const tunedCardRect = el.walkthroughCard.getBoundingClientRect();
+    const cardTop = isFlagScopeStep
+      ? Math.max(viewportPadding, Math.min(window.innerHeight - tunedCardRect.height - viewportPadding, rect.bottom - 120))
+      : viewportPadding;
+    const cardLeft = Math.max(
+      viewportPadding,
+      window.innerWidth - tunedCardRect.width - 28
+    );
+    el.walkthroughCard.style.top = `${cardTop}px`;
+    el.walkthroughCard.style.left = `${cardLeft}px`;
+    return;
+  }
+
+  const candidatePlacements = [
+    {
+      name: "right",
+      room: window.innerWidth - rect.right - gap - viewportPadding,
+      score: (window.innerWidth - rect.right - gap - viewportPadding) * Math.max(0, window.innerHeight - viewportPadding * 2),
+      left: rect.right + gap,
+      top: rect.top,
+    },
+    {
+      name: "left",
+      room: rect.left - gap - viewportPadding,
+      score: (rect.left - gap - viewportPadding) * Math.max(0, window.innerHeight - viewportPadding * 2),
+      left: rect.left - cardRect.width - gap,
+      top: rect.top,
+    },
+    {
+      name: "below",
+      room: window.innerHeight - rect.bottom - gap - viewportPadding,
+      score: (window.innerHeight - rect.bottom - gap - viewportPadding) * Math.max(0, window.innerWidth - viewportPadding * 2),
+      left: rect.left,
+      top: rect.bottom + gap,
+    },
+    {
+      name: "above",
+      room: rect.top - gap - viewportPadding,
+      score: (rect.top - gap - viewportPadding) * Math.max(0, window.innerWidth - viewportPadding * 2),
+      left: rect.left,
+      top: rect.top - cardRect.height - gap,
+    },
+  ].sort((a, b) => b.score - a.score);
+
+  const preferred = candidatePlacements.find((placement) => placement.room >= Math.min(320, cardRect.width)) || candidatePlacements[0];
+  let cardTop = preferred.top;
+  let cardLeft = preferred.left;
+
+  cardTop = Math.max(viewportPadding, Math.min(window.innerHeight - cardRect.height - viewportPadding, cardTop));
+  cardLeft = Math.max(viewportPadding, Math.min(window.innerWidth - cardRect.width - viewportPadding, cardLeft));
+  el.walkthroughCard.style.top = `${cardTop}px`;
+  el.walkthroughCard.style.left = `${cardLeft}px`;
+}
+
+function showWalkthroughPrompt() {
+  state.walkthroughPromptOpen = true;
+  state.walkthroughActive = false;
+  el.walkthroughOverlay.classList.remove("hidden");
+  el.walkthroughOverlay.setAttribute("aria-hidden", "false");
+  el.walkthroughSpotlight.classList.add("hidden");
+  el.walkthroughKicker.textContent = "Guided Tour";
+  if (isMobileWalkthroughBlocked()) {
+    el.walkthroughTitle.textContent = "Guided Tour Unavailable on Mobile";
+    el.walkthroughBody.innerHTML = `the guided tour can only be experienced on your student laptop or any other laptop or desktop web broswer. Please use your laptop or desktop PC or Mac or visit the IT help desk. Information is on Cincinnati State's website, <a href="https://www.cincinnatistate.edu/tech-computer/" target="_blank" rel="noopener noreferrer">https://www.cincinnatistate.edu/tech-computer/</a>`;
+    el.walkthroughPromptActions.classList.add("hidden");
+    el.walkthroughMobileActions.classList.remove("hidden");
+  } else {
+    el.walkthroughTitle.textContent = "Would you like a guided walkthrough?";
+    el.walkthroughBody.textContent = "The walkthrough will guide you across every major page, including Notes Lists, quiz setup, a special six-question demo quiz, and the final review report.";
+    el.walkthroughPromptActions.classList.remove("hidden");
+    el.walkthroughMobileActions.classList.add("hidden");
+  }
+  el.walkthroughProgress.textContent = "";
+  el.walkthroughTourActions.classList.add("hidden");
+  el.walkthroughCard.style.top = "24px";
+  el.walkthroughCard.style.left = "24px";
+}
+
+function renderWalkthroughStep() {
+  const step = tourCurrentStep();
+  const target = tourCurrentTarget();
+  if (!step || !(target instanceof HTMLElement)) {
+    closeWalkthrough();
+    return;
+  }
+  target.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" });
+  el.walkthroughOverlay.classList.remove("hidden");
+  el.walkthroughOverlay.setAttribute("aria-hidden", "false");
+  el.walkthroughSpotlight.classList.remove("hidden");
+  el.walkthroughKicker.textContent = `${screenLabel(step.screenId)} Guided Tour`;
+  el.walkthroughTitle.textContent = state.walkthroughOverrideTitle || step.title;
+  el.walkthroughBody.textContent = state.walkthroughOverrideBody || step.body;
+  el.walkthroughProgress.textContent = `Step ${state.walkthroughIndex + 1} of ${state.walkthroughSteps.length}`;
+  el.walkthroughPromptActions.classList.add("hidden");
+  el.walkthroughMobileActions.classList.add("hidden");
+  el.walkthroughTourActions.classList.remove("hidden");
+  el.walkthroughNext.classList.toggle("hidden", !walkthroughUsesDialogNext(step.action));
+  syncResetCorrectButtons();
+  window.requestAnimationFrame(() => {
+    positionWalkthroughStep(target);
+  });
+}
+
+function closeWalkthrough() {
+  state.walkthroughIndex = 0;
+  state.walkthroughScreenId = "";
+  state.walkthroughPromptOpen = false;
+  state.walkthroughActive = false;
+  state.walkthroughOverrideTitle = "";
+  state.walkthroughOverrideBody = "";
+  el.walkthroughOverlay.classList.add("hidden");
+  el.walkthroughOverlay.setAttribute("aria-hidden", "true");
+  if (el.walkthroughNext) el.walkthroughNext.classList.add("hidden");
+  syncResetCorrectButtons();
+}
+
+function dismissWalkthroughPrompt() {
+  if (!state.walkthroughPromptOpen) return;
+  state.walkthroughPromptOpen = false;
+  state.walkthroughOverrideTitle = "";
+  state.walkthroughOverrideBody = "";
+  el.walkthroughOverlay.classList.add("hidden");
+  el.walkthroughOverlay.setAttribute("aria-hidden", "true");
+  if (el.walkthroughNext) el.walkthroughNext.classList.add("hidden");
+}
+
+function startWalkthrough() {
+  state.walkthroughIndex = 0;
+  state.walkthroughActive = true;
+  state.walkthroughPromptOpen = false;
+  state.walkthroughOverrideTitle = "";
+  state.walkthroughOverrideBody = "";
+  renderWalkthroughStep();
+}
+
+function advanceWalkthrough() {
+  if (!state.walkthroughActive) return;
+  if (state.walkthroughIndex >= state.walkthroughSteps.length - 1) {
+    closeWalkthrough();
+    return;
+  }
+  state.walkthroughIndex += 1;
+  state.walkthroughOverrideTitle = "";
+  state.walkthroughOverrideBody = "";
+  renderWalkthroughStep();
+}
+
+function jumpWalkthroughToAction(action, overrideTitle = "", overrideBody = "") {
+  if (!state.walkthroughActive) return;
+  const index = state.walkthroughSteps.findIndex((step) => step?.action === action);
+  if (index < 0) return;
+  state.walkthroughIndex = index;
+  state.walkthroughOverrideTitle = overrideTitle;
+  state.walkthroughOverrideBody = overrideBody;
+  renderWalkthroughStep();
+}
+
+function syncWalkthroughPosition() {
+  if (el.walkthroughOverlay?.classList.contains("hidden")) return;
+  if (state.walkthroughPromptOpen) return;
+  const target = tourCurrentTarget();
+  if (!(target instanceof HTMLElement)) return;
+  positionWalkthroughStep(target);
+}
+
+function notifyWalkthroughAction(action) {
+  if (!state.walkthroughActive) return;
+  const step = tourCurrentStep();
+  if (!step || step.action !== action) return;
+  advanceWalkthrough();
+}
+
+function rewindWalkthroughQuestionWithRemark(title, body) {
+  state.walkthroughOverrideTitle = title;
+  state.walkthroughOverrideBody = body;
+  state.currentSelectedAnswer = "";
+  state.currentLocked = false;
+  el.feedback.textContent = "";
+  [...document.querySelectorAll('input[name="answer"]')].forEach((rb) => {
+    rb.checked = false;
+    rb.disabled = false;
+  });
+  el.submitAnswer.disabled = false;
+  el.dontKnowAnswer.disabled = false;
+  el.nextQuestion.disabled = true;
+  updateFlagButtonState();
+  renderWalkthroughStep();
+}
+
+function walkthroughCurrentAction() {
+  if (!state.walkthroughActive) return "";
+  return String(tourCurrentStep()?.action || "");
+}
+
+function walkthroughUsesDialogNext(action = walkthroughCurrentAction()) {
+  return [
+    "explain-back-setup",
+    "review-report",
+    "copy-report",
+    "download-report",
+    "print-report",
+    "retake-incorrect",
+    "review-reset-demo",
+  ].includes(String(action || ""));
+}
+
+function isTourWalkthroughDemoQuestion(row) {
+  return String(row?.source_path || "").includes("Tour Walkthrough/Demo Quiz.md");
+}
+
+function walkthroughQuizStepAction() {
+  if (currentScreenId() !== "quiz-screen") return "";
+  return walkthroughCurrentAction();
+}
+
+function walkthroughGuardQuizAction(expectedAction, message) {
+  const currentAction = walkthroughQuizStepAction();
+  if (!currentAction) return false;
+  if (currentAction === expectedAction) return false;
+  alert(message || "Follow the highlighted walkthrough step first.");
+  return true;
+}
+
+function resetWalkthroughConfigState() {
+  state.mode = "easy";
+  state.amount = 10;
+  state.skipPreviouslyCorrect = false;
+  state.includeMissedOnce = false;
+  saveQuizConfig();
+}
+
+function validateWalkthroughAnswer(selected, row, isDontKnow) {
+  if (!state.walkthroughActive) return "";
+  const step = tourCurrentStep();
+  if (!step || currentScreenId() !== "quiz-screen") return "";
+  const correct = String(row.correct_choice || "").toUpperCase();
+  if (step.action === "submit-correct") {
+    if (isDontKnow || selected !== correct) {
+      return "For the first demo question, choose the correct answer in slot B and then click Submit Answer.";
+    }
+  }
+  if (step.action === "submit-incorrect") {
+    if (!isDontKnow && selected === correct) {
+      rewindWalkthroughQuestionWithRemark(
+        "Very Clever. Extremely Inconvenient.",
+        "You picked n, which is actually correct. Congratulations on sabotaging my carefully staged demo. Let's rewind and do that again, but this time choose any wrong answer so the walkthrough can show the incorrect-answer flow."
+      );
+      return "__walkthrough_rewind__";
+    }
+    if (isDontKnow) {
+      return "For the second demo question, choose one of the wrong answer options in the list so the walkthrough can demonstrate the incorrect-answer flow.";
+    }
+  }
+  return "";
+}
+
 function buildCourseOptions() {
   if (!el.courseSelect) return;
   el.courseSelect.innerHTML = "";
@@ -211,6 +938,23 @@ function buildCourseOptions() {
     opt.textContent = `${course.insignia} | ${course.name}`;
     opt.selected = course.id === state.courseId;
     el.courseSelect.appendChild(opt);
+  });
+}
+
+function buildCertificationOptions() {
+  if (!el.certificationSelect) return;
+  el.certificationSelect.innerHTML = "";
+  const placeholder = document.createElement("option");
+  placeholder.value = NO_CERTIFICATION_ID;
+  placeholder.textContent = "None";
+  placeholder.selected = state.certificationId === NO_CERTIFICATION_ID;
+  el.certificationSelect.appendChild(placeholder);
+  CERTIFICATION_CATALOG.forEach((certification) => {
+    const opt = document.createElement("option");
+    opt.value = certification.id;
+    opt.textContent = certification.name;
+    opt.selected = certification.id === state.certificationId;
+    el.certificationSelect.appendChild(opt);
   });
 }
 
@@ -234,8 +978,29 @@ function setStartupStatus(text) {
   if (msg && el.loadStatus) el.loadStatus.textContent = msg;
 }
 
+function hideWalkthroughOverlayOnly() {
+  if (!el.walkthroughOverlay) return;
+  el.walkthroughOverlay.classList.add("hidden");
+  el.walkthroughOverlay.setAttribute("aria-hidden", "true");
+}
+
+function setContinueButtonsLoading(activeButton, isLoading) {
+  [el.continueCourse, el.continueCertification].forEach((button) => {
+    if (!button) return;
+    if (!button.dataset.defaultLabel) {
+      button.dataset.defaultLabel = button.textContent.trim();
+    }
+    const isActive = button === activeButton;
+    button.disabled = Boolean(isLoading);
+    button.classList.toggle("is-loading", Boolean(isLoading && isActive));
+    button.setAttribute("aria-busy", isLoading && isActive ? "true" : "false");
+    button.textContent = isLoading && isActive ? "Loading" : button.dataset.defaultLabel;
+  });
+}
+
 function showStartupSplash(text = "") {
   document.body.classList.add("app-loading");
+  hideWalkthroughOverlayOnly();
   if (el.startupSplash) el.startupSplash.classList.remove("hidden");
   if (text) setStartupStatus(text);
 }
@@ -243,6 +1008,15 @@ function showStartupSplash(text = "") {
 function hideStartupSplash() {
   document.body.classList.remove("app-loading");
   if (el.startupSplash) el.startupSplash.classList.add("hidden");
+  if (state.walkthroughPromptOpen) {
+    showWalkthroughPrompt();
+    return;
+  }
+  if (state.walkthroughActive) {
+    window.requestAnimationFrame(() => {
+      renderWalkthroughStep();
+    });
+  }
 }
 
 function validateFeedbackText(text) {
@@ -257,66 +1031,40 @@ function validateFeedbackText(text) {
 }
 
 async function postChangeToServer(changeRow) {
-  const overrideURL = String(window.NETC_CHANGES_API_URL || "").trim();
-  const protocol = window.location.protocol === "https:" ? "https:" : "http:";
-  const host = window.location.hostname;
-  const baseApi = new URL("./api/changes", APP_BASE_URL).toString();
-  const rootApi = new URL("/api/changes", window.location.origin).toString();
-  const appPath = APP_BASE_URL.pathname.endsWith("/") ? APP_BASE_URL.pathname : `${APP_BASE_URL.pathname}/`;
-  const appRootApi = new URL(`${appPath.replace(/^\/+/, "/")}api/changes`, window.location.origin).toString();
-  const api3003 = `${protocol}//${host}:3003/api/changes`;
-  const candidates = [
-    ...(overrideURL ? [overrideURL] : []),
-    ...(!overrideURL ? [baseApi, rootApi, appRootApi, api3003] : []),
-  ].filter((value, idx, list) => value && list.indexOf(value) === idx);
-  const errors = [];
-  for (const url of candidates) {
-    try {
-      const res = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(changeRow),
-      });
-      if (res.ok) return;
-      errors.push(`${url} (${res.status})`);
-    } catch (err) {
-      errors.push(`${url} (${err?.message || "network error"})`);
-    }
+  if (state.changeServerSaveDisabled) return false;
+  const url = apiURL("/api/changes");
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(changeRow),
+    });
+    if (res.ok) return true;
+    window.__rocketLastChangeSaveError = `Change save failed. Tried: ${url} (${res.status})`;
+  } catch (err) {
+    window.__rocketLastChangeSaveError = `Change save failed. Tried: ${url} (${err?.message || "network error"})`;
   }
-  const hint = overrideURL
-    ? ""
-    : " Set window.NETC_CHANGES_API_URL to your deployed endpoint if this app is behind a reverse proxy.";
-  throw new Error(`Server save failed. Tried: ${errors.join(" | ")}.${hint}`);
+  state.changeServerSaveDisabled = true;
+  return false;
 }
 
 async function postHistoryToServer(historyRow) {
-  const overrideURL = String(window.NETC_HISTORY_API_URL || "").trim();
-  const protocol = window.location.protocol === "https:" ? "https:" : "http:";
-  const host = window.location.hostname;
-  const baseApi = new URL("./api/history", APP_BASE_URL).toString();
-  const rootApi = new URL("/api/history", window.location.origin).toString();
-  const appPath = APP_BASE_URL.pathname.endsWith("/") ? APP_BASE_URL.pathname : `${APP_BASE_URL.pathname}/`;
-  const appRootApi = new URL(`${appPath.replace(/^\/+/, "/")}api/history`, window.location.origin).toString();
-  const api3003 = `${protocol}//${host}:3003/api/history`;
-  const candidates = [
-    ...(overrideURL ? [overrideURL] : []),
-    ...(!overrideURL ? [baseApi, rootApi, appRootApi, api3003] : []),
-  ].filter((value, idx, list) => value && list.indexOf(value) === idx);
-  const errors = [];
-  for (const url of candidates) {
-    try {
-      const res = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(historyRow),
-      });
-      if (res.ok) return;
-      errors.push(`${url} (${res.status})`);
-    } catch (err) {
-      errors.push(`${url} (${err?.message || "network error"})`);
-    }
+  if (window.__ROCKET_DISABLE_HISTORY_SERVER_SYNC__) return false;
+  if (state.historyServerSaveDisabled) return false;
+  const url = apiURL("/api/history");
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(historyRow),
+    });
+    if (res.ok) return true;
+    window.__rocketLastHistorySaveError = `History save failed. Tried: ${url} (${res.status})`;
+  } catch (err) {
+    window.__rocketLastHistorySaveError = `History save failed. Tried: ${url} (${err?.message || "network error"})`;
   }
-  throw new Error(`History save failed. Tried: ${errors.join(" | ")}`);
+  state.historyServerSaveDisabled = true;
+  return false;
 }
 
 function parseCSV(text) {
@@ -380,10 +1128,12 @@ function csvPathCandidates(path) {
 }
 
 async function loadCSV(path, requiredHeaders = null) {
-  const candidates = csvPathCandidates(path);
+  const candidates = [...new Set(
+    csvPathCandidates(path).map((candidate) => new URL(candidate, APP_BASE_URL).toString())
+  )];
   const failures = [];
   for (const candidate of candidates) {
-    const resolvedURL = new URL(candidate, APP_BASE_URL);
+    const resolvedURL = new URL(candidate);
     try {
       const res = await fetch(resolvedURL, { cache: "no-store" });
       if (!res.ok) {
@@ -594,21 +1344,84 @@ function historyStatsForPool(pool) {
     pool.map((q) => String(q.question_key || "").trim()).filter(Boolean)
   );
   const { correct, missed } = historyKeySets(poolKeys);
-  let unanswered = 0;
+  let neverAnswered = 0;
+  let answeredEver = 0;
   let missedOnly = 0;
   let missedThenCorrect = 0;
   for (const key of poolKeys) {
     const wasCorrect = correct.has(key);
     const wasMissed = missed.has(key);
-    if (!wasCorrect && !wasMissed) unanswered += 1;
+    if (wasCorrect || wasMissed) answeredEver += 1;
+    if (!wasCorrect && !wasMissed) neverAnswered += 1;
     else if (!wasCorrect && wasMissed) missedOnly += 1;
     else if (wasCorrect && wasMissed) missedThenCorrect += 1;
   }
   return {
-    unanswered,
+    answeredEver,
+    neverAnswered,
+    unanswered: neverAnswered,
     missedOnly,
     missedThenCorrect,
     missedEver: missedOnly + missedThenCorrect,
+  };
+}
+
+function browserAnsweredQuestionsForPool(pool) {
+  const byKey = new Map(
+    pool.map((q) => [String(q.question_key || "").trim(), q]).filter(([key]) => key)
+  );
+  const answered = new Map();
+  for (const row of allHistoryRows()) {
+    const key = String(row.question_key || "").trim();
+    if (!key || !byKey.has(key)) continue;
+    const question = byKey.get(key);
+    const current = answered.get(key) || {
+      question_key: key,
+      question: question.question || row.question || "",
+      difficulty: getDifficulty(question),
+      week: question.week ?? row.week ?? "",
+      source_path: question.source_path || row.source_path || "",
+      attempts: 0,
+      correct_attempts: 0,
+      incorrect_attempts: 0,
+      latest_result: "",
+      latest_selected_choice: "",
+      latest_timestamp: "",
+    };
+    current.attempts += 1;
+    const result = String(row.result || "").toLowerCase();
+    if (result === "correct") current.correct_attempts += 1;
+    if (result === "incorrect") current.incorrect_attempts += 1;
+    if (!current.latest_timestamp || String(row.timestamp || "") >= current.latest_timestamp) {
+      current.latest_result = row.result || "";
+      current.latest_selected_choice = row.selected_choice || "";
+      current.latest_timestamp = row.timestamp || "";
+    }
+    answered.set(key, current);
+  }
+  return [...answered.values()].sort((a, b) => String(b.latest_timestamp).localeCompare(String(a.latest_timestamp)));
+}
+
+function currentBrowserAnsweredQuestions() {
+  return browserAnsweredQuestionsForPool(filteredPoolByDifficulty(state.mode));
+}
+
+function installBrowserProgressDiagnostics() {
+  window.rocketQuestionsAnsweredQuestions = currentBrowserAnsweredQuestions;
+  window.rocketQuestionsAnsweredSummary = () => {
+    const pool = filteredPoolByDifficulty(state.mode);
+    const stats = historyStatsForPool(pool);
+    return {
+      course: activeTrack().name,
+      mode: state.mode,
+      selectedUnits: [...state.selectedWeeks].sort((a, b) => a - b),
+      possibleQuestions: pool.length,
+      answeredAlreadyInThisBrowser: stats.answeredEver,
+      neverAnsweredInThisBrowser: stats.neverAnswered,
+      stillMissedInThisBrowser: stats.missedOnly,
+      missedThenCorrectInThisBrowser: stats.missedThenCorrect,
+      answeredQuestions: currentBrowserAnsweredQuestions(),
+    };
   };
 }
 
@@ -673,6 +1486,9 @@ function shuffledAnswerOptions(row) {
     { original: "C", text: row.choice_c || "" },
     { original: "D", text: row.choice_d || "" },
   ];
+  if (row.preserve_choice_order) {
+    return options;
+  }
   return shuffled(options);
 }
 
@@ -680,6 +1496,16 @@ function fetchRandomQuestions(mode, count) {
   const basePool = filteredPoolByDifficulty(mode);
   const pool = filterPoolByHistoryRules(basePool);
   return sample(pool, count);
+}
+
+function freshSessionQuestion(question, id = question?.id) {
+  const copy = {
+    ...question,
+    id,
+  };
+  delete copy._sessionAnswer;
+  delete copy._sessionOptionMap;
+  return copy;
 }
 
 function formatTimestamp(d = new Date()) {
@@ -734,6 +1560,7 @@ async function hydrateRuntimeQuestion(row, idx) {
     source_path: source,
     week: row.week ?? null,
     question_key: await sha1Hex(stable),
+    preserve_choice_order: String(row.preserve_choice_order || "").toLowerCase() === "true",
   };
 }
 
@@ -777,7 +1604,7 @@ function appendQuestionHistory(questionRow, selectedChoice, wasCorrect) {
   state.localHistoryRows.push(row);
   saveLocalHistory();
   postHistoryToServer(row).catch((err) => {
-    console.warn("Question history server save failed:", err?.message || err);
+    window.__rocketLastHistorySaveError = err?.message || String(err);
   });
 }
 
@@ -810,9 +1637,13 @@ async function appendChangeRequest(questionRow, userFeedback, opts = {}) {
       row[key] = questionRow[key] || "";
     }
   });
-  await postChangeToServer(row);
   state.localChangeRows.push(row);
   saveLocalChanges();
+  postChangeToServer(row).catch((err) => {
+    window.__rocketLastChangeSaveError = err?.message || String(err);
+    state.changeServerSaveDisabled = true;
+  });
+  return row;
 }
 
 function removeQuestionFromBank(questionKey) {
@@ -829,6 +1660,20 @@ function screen(id) {
   ["course-screen", "menu-screen", "week-screen", "notes-screen", "config-screen", "quiz-screen", "review-screen"].forEach((sid) => {
     document.getElementById(sid).classList.toggle("hidden", sid !== id);
   });
+  applyCourseBranding();
+  if (state.walkthroughPromptOpen && id !== "course-screen") {
+    dismissWalkthroughPrompt();
+  }
+  if (id !== "notes-screen") {
+    closeNotesSidebar();
+  }
+  if (state.walkthroughActive) {
+    window.requestAnimationFrame(() => {
+      if (tourCurrentStep()?.screenId === currentScreenId()) {
+        renderWalkthroughStep();
+      }
+    });
+  }
 }
 
 function normalizeNotePath(path) {
@@ -837,7 +1682,7 @@ function normalizeNotePath(path) {
 
 function noteFetchURL(relativePath) {
   const normalized = normalizeNotePath(relativePath);
-  return `./notes-content/${normalized.split("/").map(encodeURIComponent).join("/")}`;
+  return versionedContentURL(activeTrack().contentRoot, "notes-content", normalized);
 }
 
 function noteLabelFromPath(path) {
@@ -867,9 +1712,9 @@ function indexNoteNodes(nodes) {
 }
 
 async function loadNotesManifest() {
-  const res = await fetch(NOTES_MANIFEST_PATH, { cache: "no-cache" });
+  const res = await fetch(activeNotesManifestURL(), { cache: "no-cache" });
   if (!res.ok) {
-    throw new Error(`Notes manifest could not be loaded (${res.status}). Run the sync script.`);
+    throw new Error(`Notes manifest could not be loaded (${res.status}).`);
   }
   const manifest = await res.json();
   state.notesManifest = manifest;
@@ -881,12 +1726,47 @@ async function loadNotesManifest() {
     : (state.notesFileMap.keys().next().value || "");
 }
 
+async function reloadNotesManifestForTrack() {
+  if (notesManifestReloadPromise) return notesManifestReloadPromise;
+  notesManifestReloadPromise = (async () => {
+    try {
+      state.notesLoadError = "";
+      await loadNotesManifest();
+    } catch (err) {
+      state.notesLoadError = err?.message || "Unable to load notes manifest.";
+      state.notesManifest = { roots: [], defaultNote: "" };
+      state.notesFileMap = new Map();
+      state.currentNotePath = "";
+    } finally {
+      notesManifestReloadPromise = null;
+      if (currentScreenId() === "notes-screen") {
+        renderNotesTree();
+        if (!state.notesLoadError && state.currentNotePath) {
+          await openNote(state.currentNotePath);
+        }
+      }
+    }
+  })();
+  return notesManifestReloadPromise;
+}
+
 async function loadChangelog() {
   const res = await fetch(CHANGELOG_PATH, { cache: "no-cache" });
   if (!res.ok) {
     throw new Error(`Changelog could not be loaded (${res.status}).`);
   }
   state.changelogText = await res.text();
+}
+
+async function loadTourQuestionBank() {
+  const rows = await loadCSV(TOUR_QUESTION_BANK_PATH, ["difficulty", "question", "choice_a", "choice_b", "choice_c", "choice_d", "correct_choice"]);
+  const runtime = [];
+  for (let i = 0; i < rows.length; i += 1) {
+    const row = { ...rows[i], week: "tour" };
+    const q = await hydrateRuntimeQuestion(row, `tour-${i + 1}`);
+    runtime.push(q);
+  }
+  state.tourQuestionBank = runtime;
 }
 
 function escapeHTML(text) {
@@ -899,25 +1779,40 @@ function escapeHTML(text) {
 function parseInlineMarkdown(text) {
   const raw = escapeHTML(text);
   const codeTokens = [];
+  const linkTokens = [];
   const withCodes = raw.replace(/`([^`]+)`/g, (_, code) => {
     const token = `CODETOKEN${codeTokens.length}PLACEHOLDER`;
     codeTokens.push(`<code>${code}</code>`);
     return token;
   });
-  let html = withCodes
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, href) => {
-      const safeLabel = label;
+  const withLinks = withCodes.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, href) => {
+      const token = `LINKTOKEN${linkTokens.length}PLACEHOLDER`;
       const safeHref = escapeHTML(href).replace(/"/g, "&quot;");
-      return `<a href="${safeHref}">${safeLabel}</a>`;
+      linkTokens.push(`<a href="${safeHref}">${label}</a>`);
+      return token;
+    });
+  let html = withLinks
+    .replace(/https?:\/\/[^\s<]+/g, (url) => {
+      const trailing = url.match(/[),.;:!?]+$/)?.[0] || "";
+      const cleanUrl = trailing ? url.slice(0, -trailing.length) : url;
+      const safeHref = cleanUrl.replace(/"/g, "&quot;");
+      return `<a href="${safeHref}">${cleanUrl}</a>${trailing}`;
     })
     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
     .replace(/__([^_]+)__/g, "<strong>$1</strong>")
     .replace(/(^|[^\*])\*([^*\n]+)\*(?!\*)/g, "$1<em>$2</em>")
     .replace(/(^|[^_])_([^_\n]+)_(?!_)/g, "$1<em>$2</em>");
+  linkTokens.forEach((tokenHTML, idx) => {
+    html = html.replace(`LINKTOKEN${idx}PLACEHOLDER`, tokenHTML);
+  });
   codeTokens.forEach((tokenHTML, idx) => {
     html = html.replace(`CODETOKEN${idx}PLACEHOLDER`, tokenHTML);
   });
   return html;
+}
+
+function renderMarkdownLines(lines) {
+  return (lines || []).map((line) => parseInlineMarkdown(String(line || "").trim())).join("<br>");
 }
 
 function isTableSeparator(line) {
@@ -930,17 +1825,99 @@ function parseTableRow(line) {
   return trimmed.split("|").map((cell) => cell.trim());
 }
 
-function consumeList(lines, startIndex, ordered) {
-  const items = [];
-  let index = startIndex;
-  const pattern = ordered ? /^\s*\d+\.\s+(.*)$/ : /^\s*[-*+]\s+(.*)$/;
-  while (index < lines.length && pattern.test(lines[index])) {
-    items.push(lines[index].match(pattern)[1]);
+function consumeTable(lines, startIndex) {
+  const headerLine = lines[startIndex];
+  const separatorLine = lines[startIndex + 1];
+  if (!isTableSeparator(separatorLine)) {
+    return { html: "", nextIndex: startIndex };
+  }
+  const headers = parseTableRow(headerLine);
+  const rows = [];
+  let index = startIndex + 2;
+  while (index < lines.length && lines[index].trim().includes("|")) {
+    rows.push(parseTableRow(lines[index]));
     index += 1;
   }
+  return {
+    html: `<table><thead><tr>${headers.map((cell) => `<th>${parseInlineMarkdown(cell)}</th>`).join("")}</tr></thead><tbody>${rows.map((row) => `<tr>${row.map((cell) => `<td>${parseInlineMarkdown(cell)}</td>`).join("")}</tr>`).join("")}</tbody></table>`,
+    nextIndex: index,
+  };
+}
+
+function expandedIndentWidth(line) {
+  const expanded = String(line || "").replace(/\t/g, "    ");
+  const match = expanded.match(/^ */);
+  return match ? match[0].length : 0;
+}
+
+function parseListMarker(line) {
+  const expanded = String(line || "").replace(/\t/g, "    ");
+  const match = expanded.match(/^(\s*)([-*+]|\d+\.)\s+(.*)$/);
+  if (!match) return null;
+  return {
+    indent: match[1].length,
+    ordered: /\d+\./.test(match[2]),
+    text: match[3],
+  };
+}
+
+function consumeList(lines, startIndex) {
+  const first = parseListMarker(lines[startIndex]);
+  if (!first) return { html: "", nextIndex: startIndex };
+  const baseIndent = first.indent;
+  const ordered = first.ordered;
+  const items = [];
+  let index = startIndex;
+
+  while (index < lines.length) {
+    const marker = parseListMarker(lines[index]);
+    if (!marker) break;
+    if (marker.indent !== baseIndent || marker.ordered !== ordered) break;
+
+    let itemHTML = renderMarkdownLines([marker.text]);
+    index += 1;
+
+    while (index < lines.length) {
+      const nextLine = lines[index];
+      const nextMarker = parseListMarker(nextLine);
+      const nextTrimmed = String(nextLine || "").trim();
+
+      if (!nextTrimmed) {
+        index += 1;
+        continue;
+      }
+      if (nextMarker && nextMarker.indent <= baseIndent) {
+        break;
+      }
+      if (
+        nextTrimmed.startsWith("|") &&
+        index + 1 < lines.length &&
+        isTableSeparator(lines[index + 1])
+      ) {
+        const table = consumeTable(lines, index);
+        itemHTML += table.html;
+        index = table.nextIndex;
+        continue;
+      }
+      if (nextMarker && nextMarker.indent > baseIndent) {
+        const nested = consumeList(lines, index);
+        itemHTML += nested.html;
+        index = nested.nextIndex;
+        continue;
+      }
+      if (expandedIndentWidth(nextLine) > baseIndent) {
+        itemHTML += `<br>${renderMarkdownLines([nextTrimmed])}`;
+        index += 1;
+        continue;
+      }
+      break;
+    }
+
+    items.push(`<li>${itemHTML}</li>`);
+  }
+
   const tag = ordered ? "ol" : "ul";
-  const html = `<${tag}>${items.map((item) => `<li>${parseInlineMarkdown(item)}</li>`).join("")}</${tag}>`;
-  return { html, nextIndex: index };
+  return { html: `<${tag}>${items.join("")}</${tag}>`, nextIndex: index };
 }
 
 function renderMarkdown(text) {
@@ -990,30 +1967,15 @@ function renderMarkdown(text) {
       continue;
     }
     if ((trimmed.startsWith("|") || (i + 1 < lines.length && isTableSeparator(lines[i + 1])))) {
-      const headerLine = lines[i];
-      const separatorLine = lines[i + 1];
-      if (isTableSeparator(separatorLine)) {
-        const headers = parseTableRow(headerLine);
-        const rows = [];
-        i += 2;
-        while (i < lines.length && lines[i].trim().includes("|")) {
-          rows.push(parseTableRow(lines[i]));
-          i += 1;
-        }
-        parts.push(
-          `<table><thead><tr>${headers.map((cell) => `<th>${parseInlineMarkdown(cell)}</th>`).join("")}</tr></thead><tbody>${rows.map((row) => `<tr>${row.map((cell) => `<td>${parseInlineMarkdown(cell)}</td>`).join("")}</tr>`).join("")}</tbody></table>`
-        );
+      const table = consumeTable(lines, i);
+      if (table.html) {
+        parts.push(table.html);
+        i = table.nextIndex;
         continue;
       }
     }
-    if (/^\s*[-*+]\s+/.test(line)) {
-      const list = consumeList(lines, i, false);
-      parts.push(list.html);
-      i = list.nextIndex;
-      continue;
-    }
-    if (/^\s*\d+\.\s+/.test(line)) {
-      const list = consumeList(lines, i, true);
+    if (parseListMarker(line)) {
+      const list = consumeList(lines, i);
       parts.push(list.html);
       i = list.nextIndex;
       continue;
@@ -1033,7 +1995,7 @@ function renderMarkdown(text) {
       paragraphLines.push(nextTrimmed);
       i += 1;
     }
-    parts.push(`<p>${parseInlineMarkdown(paragraphLines.join(" "))}</p>`);
+    parts.push(`<p>${renderMarkdownLines(paragraphLines)}</p>`);
   }
   return parts.join("");
 }
@@ -1069,31 +2031,35 @@ async function openNote(relativePath) {
     const markdown = await res.text();
     el.notesViewer.innerHTML = renderMarkdown(markdown);
     setNotesStatus(`${state.notesFileMap.size} markdown files ready.`);
+    if (isMobileNotesLayout()) {
+      closeNotesSidebar();
+    }
   } catch (err) {
     el.notesViewer.innerHTML = `<div class="notes-empty-state"><h3>Unable to load note</h3><p>${escapeHTML(err?.message || "Unknown error")}</p></div>`;
     setNotesStatus("A notes file failed to load.");
   }
 }
 
-function buildNotesTreeNodes(nodes, container) {
-  (nodes || []).forEach((node) => {
+function buildNotesTreeNodes(nodes, container, expandFirstBranch = false) {
+  (nodes || []).forEach((node, index) => {
     if (node.type === "directory") {
+      const shouldStartExpanded = expandFirstBranch && index === 0;
       const folder = document.createElement("div");
       folder.className = "notes-tree-folder";
       const toggle = document.createElement("button");
       toggle.type = "button";
       toggle.className = "notes-tree-toggle";
-      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-expanded", shouldStartExpanded ? "true" : "false");
       toggle.textContent = node.name;
       const children = document.createElement("div");
       children.className = "notes-tree-children";
-      buildNotesTreeNodes(node.children || [], children);
+      buildNotesTreeNodes(node.children || [], children, shouldStartExpanded);
       toggle.addEventListener("click", () => {
         const expanded = toggle.getAttribute("aria-expanded") === "true";
         toggle.setAttribute("aria-expanded", expanded ? "false" : "true");
         children.hidden = expanded;
       });
-      children.hidden = true;
+      children.hidden = !shouldStartExpanded;
       folder.appendChild(toggle);
       folder.appendChild(children);
       container.appendChild(folder);
@@ -1111,13 +2077,49 @@ function buildNotesTreeNodes(nodes, container) {
   });
 }
 
+function openNotesSidebar() {
+  if (!isMobileNotesLayout()) return;
+  el.notesSidebar?.classList.add("is-open");
+  el.notesSidebarBackdrop?.classList.remove("hidden");
+  el.toggleNotesSidebar?.setAttribute("aria-expanded", "true");
+}
+
+function closeNotesSidebar() {
+  el.notesSidebar?.classList.remove("is-open");
+  el.notesSidebarBackdrop?.classList.add("hidden");
+  el.toggleNotesSidebar?.setAttribute("aria-expanded", "false");
+}
+
+function toggleNotesSidebar() {
+  if (!isMobileNotesLayout()) return;
+  if (el.notesSidebar?.classList.contains("is-open")) {
+    closeNotesSidebar();
+    return;
+  }
+  openNotesSidebar();
+}
+
+function filteredNotesRootsForActiveTrack() {
+  const manifestRoots = state.notesManifest?.roots || [];
+  if (activeTrack().contentRoot !== "courses/Network+") {
+    return manifestRoots;
+  }
+  return manifestRoots.filter((node) => normalizeNotePath(node?.path) !== "Notes List B - Textbook Content");
+}
+
 function renderNotesTree() {
   el.notesTree.innerHTML = "";
   if (state.notesLoadError) {
     el.notesTree.innerHTML = `<div class="notes-empty-state"><h3>Notes unavailable</h3><p>${escapeHTML(state.notesLoadError)}</p></div>`;
     return;
   }
-  buildNotesTreeNodes(state.notesManifest?.roots || [], el.notesTree);
+  const scopedRoots = [{
+    type: "directory",
+    name: activeTrack().contentRoot,
+    path: activeTrack().contentRoot,
+    children: filteredNotesRootsForActiveTrack(),
+  }];
+  buildNotesTreeNodes(scopedRoots, el.notesTree, true);
   updateNotesActiveFile();
 }
 
@@ -1139,6 +2141,7 @@ function renderCourseChangelog() {
 
 async function showNotesScreen() {
   screen("notes-screen");
+  closeNotesSidebar();
   renderNotesTree();
   if (state.notesLoadError) {
     setNotesStatus("Run the notes sync script to populate the viewer.");
@@ -1183,21 +2186,31 @@ function syncConfigScreenAfterPaint() {
   });
 }
 
+function nudgeQuestionCount(delta) {
+  if (!el.questionCount) return;
+  const min = Math.max(1, Number(el.questionCount.min || 1));
+  const max = Math.max(min, Number(el.questionCount.max || 100));
+  const current = Math.max(min, Number(el.questionCount.value || min));
+  const next = Math.min(max, Math.max(min, current + delta));
+  el.questionCount.value = String(next);
+  el.questionCount.dispatchEvent(new Event("input", { bubbles: true }));
+  el.questionCount.dispatchEvent(new Event("change", { bubbles: true }));
+}
+
 function refreshAvailableCount() {
+  const config = activePracticeUnitConfig();
   const mode = state.mode;
   const modePool = filteredPoolByDifficulty(mode);
   const available = countAvailable(mode);
-  const easyTotal = countAvailable("easy");
-  const mediumTotal = countAvailable("medium");
-  const hardTotal = countAvailable("hard");
+  const easyTotal = filteredPoolByDifficulty("easy").length;
+  const mediumTotal = filteredPoolByDifficulty("medium").length;
+  const hardTotal = filteredPoolByDifficulty("hard").length;
   const stats = historyStatsForPool(modePool);
-  const historyLine = state.skipPreviouslyCorrect
-    ? ` | Missed ever in current pool: ${stats.missedEver} (${stats.missedOnly} still missed + ${stats.missedThenCorrect} corrected later)`
-    : "";
-  el.availableCount.textContent = `Available in ${mode[0].toUpperCase()}${mode.slice(1)}: ${available}${historyLine}`;
   el.difficultyTotals.textContent = `Possible Questions by Difficulty -> Easy: ${easyTotal} | Medium (incl. Easy): ${mediumTotal} | Hard: ${hardTotal}`;
   const weeks = [...state.selectedWeeks].sort((a, b) => a - b);
-  el.weekSummary.textContent = weeks.length ? `Selected Weeks: ${weeks.join(", ")}` : "Selected Weeks: none";
+  el.weekSummary.textContent = weeks.length
+    ? `Selected ${config.plural}: ${weeks.join(", ")}`
+    : `Selected ${config.plural}: none`;
   const descriptions = {
     easy: "Easy: Core fundamentals in the class for beginners.",
     medium: "Medium: All questions that have to do with the scope of the class.",
@@ -1205,11 +2218,11 @@ function refreshAvailableCount() {
   };
   let detail = descriptions[mode];
   if (state.skipPreviouslyCorrect) {
-    detail += ` Currently available = ${stats.unanswered} unanswered + ${stats.missedOnly} still-missed`;
+    detail += ` Browser save: ${stats.answeredEver} answered already, ${stats.neverAnswered} never answered. Quiz draw pool after filters = ${available} (${stats.neverAnswered} never answered + ${stats.missedOnly} still-missed`;
     if (state.includeMissedOnce) {
       detail += ` + ${stats.missedThenCorrect} previously-corrected questions that were missed at least once`;
     }
-    detail += ".";
+    detail += ").";
   }
   el.modeDesc.textContent = detail;
 }
@@ -1227,7 +2240,14 @@ function updateFlagButtonState() {
   el.ineffectiveQuestion.disabled = false;
 }
 
+function syncScoreFromSession() {
+  const answeredRows = state.questions.filter((row) => row?._sessionAnswer);
+  state.answeredCount = answeredRows.length;
+  state.correctCount = answeredRows.filter((row) => row._sessionAnswer?.wasCorrect).length;
+}
+
 function updateLiveScore() {
+  syncScoreFromSession();
   if (state.answeredCount === 0) {
     el.liveScore.textContent = "Live Score: 0/0 (0.0%) | Letter: N/A";
     return;
@@ -1244,6 +2264,8 @@ function setAnswerControlsEnabled(enabled) {
   });
   el.submitAnswer.disabled = !enabled;
   el.dontKnowAnswer.disabled = !enabled;
+  el.trustedAiExplanation.disabled = true;
+  el.previousQuestion.disabled = true;
   el.nextQuestion.disabled = true;
   el.finishQuiz.disabled = !enabled;
   el.ineffectiveQuestion.disabled = !enabled;
@@ -1259,6 +2281,90 @@ function selectedAnswer() {
   return chosen ? chosen.value : "";
 }
 
+function previousAnsweredQuestionIndex() {
+  for (let idx = state.currentIndex - 1; idx >= 0; idx -= 1) {
+    if (state.questions[idx]?._sessionAnswer) return idx;
+  }
+  return -1;
+}
+
+function updatePreviousQuestionButton() {
+  if (!el.previousQuestion) return;
+  el.previousQuestion.disabled = previousAnsweredQuestionIndex() < 0;
+}
+
+function updateTrustedAiButton(row) {
+  if (!el.trustedAiExplanation) return;
+  el.trustedAiExplanation.disabled = !row?._sessionAnswer;
+}
+
+function syncRenderedAnswerState(row) {
+  const saved = row?._sessionAnswer || null;
+  state.currentSelectedAnswer = saved?.selected || "";
+  state.currentLocked = Boolean(saved);
+  el.feedback.textContent = saved?.feedback || "";
+  [...document.querySelectorAll('input[name="answer"]')].forEach((rb) => {
+    rb.checked = saved?.selected === rb.value;
+    rb.disabled = Boolean(saved);
+  });
+  el.submitAnswer.disabled = Boolean(saved);
+  el.dontKnowAnswer.disabled = Boolean(saved);
+  el.nextQuestion.disabled = !saved;
+  updateTrustedAiButton(row);
+  updatePreviousQuestionButton();
+}
+
+function trustedAiPromptForQuestion(row) {
+  if (!row?._sessionAnswer || !row?._sessionOptionMap) return "";
+  const answer = row._sessionAnswer;
+  const choiceLines = ["A", "B", "C", "D"].map((slot) => {
+    const option = row._sessionOptionMap[slot];
+    return `${slot}. ${option?.text || ""}`;
+  });
+  const selectedLabel = answer.selected === "E"
+    ? "I don't know"
+    : `${answer.selected}. ${row._sessionOptionMap[answer.selected]?.text || ""}`;
+  const correct = String(row.correct_choice || "").toUpperCase();
+  const correctSlot = ["A", "B", "C", "D"].find(
+    (slot) => row._sessionOptionMap[slot]?.original === correct
+  ) || correct;
+  const correctLabel = correctSlot
+    ? `${correctSlot}. ${row._sessionOptionMap[correctSlot]?.text || row[`choice_${correct.toLowerCase()}`] || ""}`
+    : "Unknown";
+  return [
+    "Please help me understand this quiz question.",
+    "",
+    `Question: ${row.question || ""}`,
+    "",
+    ...choiceLines,
+    "",
+    `User selected answer: ${selectedLabel}`,
+    `Correct answer: ${correctLabel}`,
+    "",
+    "Explain why the correct answer is right, if the user's selected answer is wrong and why it's wrong if it is, and instruct the user how to talk to the AI. Provide examples of useful follow-up responses the user can send after your explanation.",
+  ].join("\n");
+}
+
+function trustedAiSearchURL(row) {
+  const prompt = trustedAiPromptForQuestion(row);
+  if (!prompt) return "";
+  return `https://www.google.com/search?udm=50&aep=11&q=${encodeURIComponent(prompt)}`;
+}
+
+function openTrustedAiExplanation() {
+  const row = state.questions[state.currentIndex];
+  const url = trustedAiSearchURL(row);
+  if (!url) {
+    alert("Answer this question first, then Trusted AI Explanation can open.");
+    return;
+  }
+  window.__rocketLastTrustedAiURL = url;
+  const opened = window.open(url, "_blank", "noopener,noreferrer");
+  if (opened && typeof opened.focus === "function") {
+    opened.focus();
+  }
+}
+
 function renderCurrentQuestion() {
   if (!state.questions.length || state.currentIndex >= state.questions.length) {
     finishQuiz();
@@ -1268,27 +2374,21 @@ function renderCurrentQuestion() {
   const qnum = state.currentIndex + 1;
   el.quizMeta.textContent = `Mode: ${state.mode[0].toUpperCase()}${state.mode.slice(1)} | Question ${qnum} of ${state.questions.length}`;
   el.questionText.textContent = `Q: ${row.question}`;
-  const shuffledOptions = shuffledAnswerOptions(row);
-  state.currentOptionMap = {
-    A: shuffledOptions[0],
-    B: shuffledOptions[1],
-    C: shuffledOptions[2],
-    D: shuffledOptions[3],
-  };
+  if (!row._sessionOptionMap) {
+    const shuffledOptions = shuffledAnswerOptions(row);
+    row._sessionOptionMap = {
+      A: shuffledOptions[0],
+      B: shuffledOptions[1],
+      C: shuffledOptions[2],
+      D: shuffledOptions[3],
+    };
+  }
+  state.currentOptionMap = row._sessionOptionMap;
   el.choiceA.textContent = `A. ${state.currentOptionMap.A.text}`;
   el.choiceB.textContent = `B. ${state.currentOptionMap.B.text}`;
   el.choiceC.textContent = `C. ${state.currentOptionMap.C.text}`;
   el.choiceD.textContent = `D. ${state.currentOptionMap.D.text}`;
-  state.currentSelectedAnswer = "";
-  state.currentLocked = false;
-  el.feedback.textContent = "";
-  [...document.querySelectorAll('input[name="answer"]')].forEach((rb) => {
-    rb.checked = false;
-    rb.disabled = false;
-  });
-  el.submitAnswer.disabled = false;
-  el.dontKnowAnswer.disabled = false;
-  el.nextQuestion.disabled = true;
+  syncRenderedAnswerState(row);
   updateFlagButtonState();
 }
 
@@ -1339,8 +2439,9 @@ async function reloadQuestionBanksForSetup() {
 
 function startQuiz() {
   syncConfigStateFromControls();
+  const config = activePracticeUnitConfig();
   if (!state.selectedWeeks.size) {
-    alert("Select at least one week before starting a quiz.");
+    alert(`Select at least one ${config.singular.toLowerCase()} before starting a quiz.`);
     return;
   }
   const reqCount = Math.max(1, Number(el.questionCount.value || 1));
@@ -1354,7 +2455,16 @@ function startQuiz() {
   if (useCount < reqCount) {
     alert(`Requested ${reqCount}, but only ${available} are available in ${state.mode} mode.\nUsing ${useCount}.`);
   }
-  state.questions = shuffled(fetchRandomQuestions(state.mode, useCount));
+  const useTourDemo = state.walkthroughActive && tourCurrentStep()?.action === "start-quiz" && state.tourQuestionBank.length;
+  if (useTourDemo) {
+    state.mode = "easy";
+    state.amount = state.tourQuestionBank.length;
+    el.modeSelect.value = "easy";
+    el.questionCount.value = String(state.tourQuestionBank.length);
+    state.questions = state.tourQuestionBank.map((q, idx) => freshSessionQuestion(q, `tour-live-${idx + 1}`));
+  } else {
+    state.questions = shuffled(fetchRandomQuestions(state.mode, useCount).map((q) => freshSessionQuestion(q)));
+  }
   state.lastModeFinished = state.mode;
   state.currentIndex = 0;
   state.correctCount = 0;
@@ -1364,6 +2474,7 @@ function startQuiz() {
   state.lastAutoReportName = "";
   state.currentSelectedAnswer = "";
   state.currentLocked = false;
+  state.currentOptionMap = {};
   screen("quiz-screen");
   setAnswerControlsEnabled(true);
   updateLiveScore();
@@ -1374,6 +2485,14 @@ function submitSelectedAnswer(selected) {
   if (state.currentLocked || !state.questions.length) return;
   const isDontKnow = selected === "E";
   const row = state.questions[state.currentIndex];
+  const walkthroughError = validateWalkthroughAnswer(selected, row, isDontKnow);
+  if (walkthroughError) {
+    if (walkthroughError === "__walkthrough_rewind__") {
+      return;
+    }
+    alert(walkthroughError);
+    return;
+  }
   const selectedOption = state.currentOptionMap[selected] || { original: selected, text: "" };
   const selectedOriginal = isDontKnow ? "E" : selectedOption.original;
   const selectedText = isDontKnow
@@ -1411,16 +2530,34 @@ function submitSelectedAnswer(selected) {
   }
   updateLiveScore();
   state.currentLocked = true;
+  row._sessionAnswer = {
+    selected,
+    selectedOriginal,
+    feedback: el.feedback.textContent,
+    wasCorrect: !isDontKnow && selectedOriginal === correct,
+  };
   [...document.querySelectorAll('input[name="answer"]')].forEach((rb) => {
     rb.disabled = true;
   });
   el.submitAnswer.disabled = true;
   el.dontKnowAnswer.disabled = true;
   el.nextQuestion.disabled = false;
+  updateTrustedAiButton(row);
+  updatePreviousQuestionButton();
+  if (isDontKnow) {
+    notifyWalkthroughAction("submit-dont-know");
+  } else {
+    notifyWalkthroughAction(selectedOriginal === correct ? "submit-correct" : "submit-incorrect");
+  }
 }
 
 function submitAnswer() {
   if (state.currentLocked || !state.questions.length) return;
+  const walkthroughAction = walkthroughQuizStepAction();
+  if (walkthroughAction && !["submit-correct", "submit-incorrect"].includes(walkthroughAction)) {
+    alert("Follow the highlighted walkthrough step first before using Submit Answer.");
+    return;
+  }
   const selected = selectedAnswer();
   if (!["A", "B", "C", "D"].includes(selected)) {
     alert("Select A, B, C, or D before submitting.");
@@ -1430,42 +2567,63 @@ function submitAnswer() {
 }
 
 function submitDontKnowAnswer() {
+  const walkthroughAction = walkthroughQuizStepAction();
+  if (walkthroughAction && walkthroughAction !== "submit-dont-know") {
+    alert("Use I Don't Know when the walkthrough is specifically highlighting it.");
+    return;
+  }
   submitSelectedAnswer("E");
 }
 
 function nextQuestion() {
   if (!state.questions.length) return;
+  if (walkthroughGuardQuizAction("next-question", "Use Next Question when the walkthrough is specifically highlighting it.")) {
+    return;
+  }
   state.currentIndex += 1;
+  renderCurrentQuestion();
+  notifyWalkthroughAction("next-question");
+}
+
+function previousQuestion() {
+  if (!state.questions.length) return;
+  const previousIndex = previousAnsweredQuestionIndex();
+  if (previousIndex < 0) return;
+  state.currentIndex = previousIndex;
   renderCurrentQuestion();
 }
 
 async function flagCurrentQuestion() {
   if (!state.questions.length) return;
   const row = state.questions[state.currentIndex];
+  const isDemoQuestion = isTourWalkthroughDemoQuestion(row);
   const movingFromHard = state.mode === "hard";
   const requestedLevel = movingFromHard ? "medium" : "hard";
   const changeAction = movingFromHard ? "move_to_medium" : "not_in_current_scope";
   const feedbackRequest = movingFromHard ? "please change this to medium" : "please change this to hard";
-  try {
+  if (!isDemoQuestion) {
     await appendChangeRequest(row, feedbackRequest, {
       action: changeAction,
       requestedLevel,
     });
-  } catch (err) {
-    alert(`Could not save this change to server.\n${err?.message || err}`);
-    return;
   }
-  setQuestionDifficultyOverride(row.question_key, requestedLevel);
+  if (!isDemoQuestion) {
+    setQuestionDifficultyOverride(row.question_key, requestedLevel);
+  }
   if (state.currentLocked) {
     el.feedback.textContent = movingFromHard
       ? "Saved: this question will be moved to Medium mode for future sessions."
-      : "Saved: this question will be moved to Hard mode for future sessions.";
+      : (isDemoQuestion
+        ? "Walkthrough demo: marked out of course scope and skipped without sending a server change."
+        : "Saved: this question will be moved to Hard mode for future sessions.");
     refreshAvailableCount();
     return;
   }
   el.feedback.textContent = movingFromHard
     ? "Moved to Medium mode and skipped (no impact on grade)."
-    : "Reassigned to Hard mode and skipped (no impact on grade).";
+    : (isDemoQuestion
+      ? "Walkthrough demo: marked not in current course scope and skipped (no impact on grade, no server change recorded)."
+      : "Reassigned to Hard mode and skipped (no impact on grade).");
   refreshAvailableCount();
   state.questions.splice(state.currentIndex, 1);
   if (state.currentIndex >= state.questions.length) {
@@ -1502,34 +2660,31 @@ async function applyIneffectiveFeedback(feedback) {
   if (!state.questions.length) return;
   const row = state.questions[state.currentIndex];
   const selected = state.currentSelectedAnswer;
-  try {
+  const isDemoQuestion = isTourWalkthroughDemoQuestion(row);
+  if (!isDemoQuestion) {
     await appendChangeRequest(row, feedback, {
       action: "ineffective_question",
       requestedLevel: getDifficulty(row),
     });
-  } catch (err) {
-    alert(`Could not save this change to server.\n${err?.message || err}`);
-    return;
   }
-  removeQuestionFromBank(row.question_key);
-  if (state.currentLocked && ["A", "B", "C", "D", "E"].includes(selected) && state.answeredCount > 0) {
-    state.answeredCount -= 1;
-    if (selected === row.correct_choice.toUpperCase() && state.correctCount > 0) {
-      state.correctCount -= 1;
-    } else {
-      let removedOne = false;
-      state.incorrectRecords = state.incorrectRecords.filter((rec) => {
-        if (!removedOne && rec.question === row.question && rec.selected_letter === selected) {
-          removedOne = true;
-          return false;
-        }
-        return true;
-      });
-    }
-    updateLiveScore();
+  if (!isDemoQuestion) {
+    removeQuestionFromBank(row.question_key);
+  }
+  if (state.currentLocked && ["A", "B", "C", "D", "E"].includes(selected)) {
+    let removedOne = false;
+    state.incorrectRecords = state.incorrectRecords.filter((rec) => {
+      if (!removedOne && rec.question === row.question && rec.selected_letter === selected) {
+        removedOne = true;
+        return false;
+      }
+      return true;
+    });
   }
   state.questions.splice(state.currentIndex, 1);
-  el.feedback.textContent = "Question marked ineffective, saved to changes log, and removed from the main question bank.";
+  updateLiveScore();
+  el.feedback.textContent = isDemoQuestion
+    ? "Walkthrough demo: question marked ineffective and removed from this demo run. No server change was sent."
+    : "Question marked ineffective, saved to changes log, and removed from the main question bank.";
   refreshAvailableCount();
   if (state.currentIndex >= state.questions.length) {
     if (state.answeredCount > 0) finishQuiz();
@@ -1547,7 +2702,7 @@ function buildReviewReport(pct, grade) {
   const generated = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")} ${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}:${String(now.getSeconds()).padStart(2, "0")}`;
   const mode = `${state.mode[0].toUpperCase()}${state.mode.slice(1)}`;
   const sourcesToReview = [...new Set(state.incorrectRecords.map((rec) => inferStudyReference(rec.source_path, rec.week)).filter(Boolean))].sort();
-  const course = activeCourse();
+  const course = activeTrack();
   const lines = [
     `🚀 ${course.insignia} QUIZ REVIEW REPORT`,
     "=".repeat(72),
@@ -1587,7 +2742,7 @@ function buildReviewReport(pct, grade) {
 
 function autoSaveReviewReport(reportText) {
   const stamp = formatStamp();
-  const courseTag = activeCourse().insignia.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
+  const courseTag = activeTrack().insignia.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
   const filename = `${courseTag || "course"}_practice_review_${state.mode}_${stamp}.txt`;
   state.reports.push({
     filename,
@@ -1603,11 +2758,13 @@ function autoSaveReviewReport(reportText) {
 }
 
 function syncResetCorrectButtons() {
-  if (el.resetWrongCount) el.resetWrongCount.disabled = false;
-  if (el.resetWrongCountConfig) el.resetWrongCountConfig.disabled = false;
+  const disableForWalkthrough = walkthroughUsesDialogNext() && walkthroughCurrentAction() === "review-reset-demo";
+  if (el.resetWrongCount) el.resetWrongCount.disabled = disableForWalkthrough;
+  if (el.resetWrongCountConfig) el.resetWrongCountConfig.disabled = disableForWalkthrough;
 }
 
 function finishQuiz() {
+  syncScoreFromSession();
   if (state.answeredCount === 0) {
     alert("No answers submitted yet.");
     screen("config-screen");
@@ -1644,7 +2801,7 @@ function retakeIncorrectOnly() {
     alert("Could not load incorrect questions for retake.");
     return;
   }
-  state.questions = shuffled(rows);
+  state.questions = shuffled(rows.map((q) => freshSessionQuestion(q)));
   state.currentIndex = 0;
   state.correctCount = 0;
   state.answeredCount = 0;
@@ -1662,6 +2819,9 @@ function retakeIncorrectOnly() {
 }
 
 function openResetWrongCountDialog() {
+  if (walkthroughCurrentAction() === "review-reset-demo") {
+    return;
+  }
   if (typeof el.resetWrongCountDialog.showModal === "function") {
     el.resetWrongCountDialog.showModal();
     return;
@@ -1682,12 +2842,62 @@ function resetWrongQuestionCount() {
   alert(`Answered-question history reset. Total answered rows: ${before} -> ${after}.`);
 }
 
-function copyReviewText() {
-  if (!state.lastReportText) return;
-  navigator.clipboard.writeText(state.lastReportText).then(
-    () => alert("Report copied to clipboard."),
-    () => alert("Copy failed. You can still Download Report.")
-  );
+function copyTextWithSelectionFallback(text) {
+  const activeElement = document.activeElement;
+  const selection = document.getSelection();
+  const selectedRanges = [];
+  if (selection) {
+    for (let i = 0; i < selection.rangeCount; i += 1) {
+      selectedRanges.push(selection.getRangeAt(i).cloneRange());
+    }
+  }
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.top = "0";
+  textarea.style.left = "-9999px";
+  textarea.style.width = "1px";
+  textarea.style.height = "1px";
+  textarea.style.opacity = "0";
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+  textarea.setSelectionRange(0, textarea.value.length);
+  let copied = false;
+  try {
+    copied = document.execCommand("copy");
+  } catch (err) {
+    copied = false;
+  }
+  textarea.remove();
+  if (selection) {
+    selection.removeAllRanges();
+    selectedRanges.forEach((range) => selection.addRange(range));
+  }
+  if (activeElement instanceof HTMLElement) {
+    activeElement.focus({ preventScroll: true });
+  }
+  return copied;
+}
+
+async function copyReviewText() {
+  const text = state.lastReportText || el.reviewText?.value || "";
+  if (!text) return;
+  window.__rocketLastCopyText = text;
+  if (copyTextWithSelectionFallback(text)) {
+    alert("Report copied to clipboard.");
+    return;
+  }
+  try {
+    if (!navigator.clipboard?.writeText) throw new Error("Clipboard API unavailable.");
+    await navigator.clipboard.writeText(text);
+    alert("Report copied to clipboard.");
+  } catch (err) {
+    el.reviewText.focus();
+    el.reviewText.select();
+    alert("Copy failed. The report text is selected now; press Ctrl+C to copy it, or use Download Report.");
+  }
 }
 
 function saveReviewText() {
@@ -1696,8 +2906,9 @@ function saveReviewText() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  const courseTag = activeCourse().insignia.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
+  const courseTag = activeTrack().insignia.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
   a.download = `${courseTag || "course"}_quiz_review_report.txt`;
+  window.__rocketLastDownloadMeta = { filename: a.download, text: state.lastReportText };
   document.body.appendChild(a);
   a.click();
   a.remove();
@@ -1707,6 +2918,7 @@ function saveReviewText() {
 function printReviewText() {
   if (!state.lastReportText) return;
   el.reviewTextPrint.textContent = state.lastReportText;
+  window.__rocketLastPrintText = state.lastReportText;
   window.print();
 }
 
@@ -1717,8 +2929,13 @@ function bindElements() {
   el.loadStatus = document.getElementById("load-status");
   el.startupSplash = document.getElementById("startup-splash");
   el.startupStatus = document.getElementById("startup-status");
+  el.practiceModeDescription = document.getElementById("practice-mode-description");
+  el.practiceUnitTitle = document.getElementById("practice-unit-title");
+  el.practiceUnitDescription = document.getElementById("practice-unit-description");
   el.courseSelect = document.getElementById("course-select");
+  el.certificationSelect = document.getElementById("certification-select");
   el.continueCourse = document.getElementById("continue-course");
+  el.continueCertification = document.getElementById("continue-certification");
   el.goPracticeQuiz = document.getElementById("go-practice-quiz");
   el.goNotes = document.getElementById("go-notes");
   el.backCourseFromMenu = document.getElementById("back-course-from-menu");
@@ -1731,13 +2948,18 @@ function bindElements() {
   el.courseChangelogViewer = document.getElementById("course-changelog-viewer");
   el.notesScreenTitle = document.getElementById("notes-screen-title");
   el.backNotesToMenu = document.getElementById("back-notes-to-menu");
+  el.toggleNotesSidebar = document.getElementById("toggle-notes-sidebar");
+  el.notesSidebarBackdrop = document.getElementById("notes-sidebar-backdrop");
+  el.notesSidebar = document.getElementById("notes-sidebar");
+  el.closeNotesSidebar = document.getElementById("close-notes-sidebar");
   el.notesSidebarStatus = document.getElementById("notes-sidebar-status");
   el.notesTree = document.getElementById("notes-tree");
   el.notesCurrentPath = document.getElementById("notes-current-path");
   el.notesViewer = document.getElementById("notes-viewer");
   el.modeSelect = document.getElementById("mode-select");
   el.questionCount = document.getElementById("question-count");
-  el.availableCount = document.getElementById("available-count");
+  el.questionCountUp = document.getElementById("question-count-up");
+  el.questionCountDown = document.getElementById("question-count-down");
   el.modeDesc = document.getElementById("mode-desc");
   el.weekSummary = document.getElementById("week-summary");
   el.difficultyTotals = document.getElementById("difficulty-totals");
@@ -1756,6 +2978,8 @@ function bindElements() {
   el.feedback = document.getElementById("feedback");
   el.submitAnswer = document.getElementById("submit-answer");
   el.dontKnowAnswer = document.getElementById("dont-know-answer");
+  el.trustedAiExplanation = document.getElementById("trusted-ai-explanation");
+  el.previousQuestion = document.getElementById("previous-question");
   el.nextQuestion = document.getElementById("next-question");
   el.flagQuestion = document.getElementById("flag-question");
   el.ineffectiveQuestion = document.getElementById("ineffective-question");
@@ -1777,12 +3001,29 @@ function bindElements() {
   el.ineffectiveFeedback = document.getElementById("ineffective-feedback");
   el.submitIneffective = document.getElementById("submit-ineffective");
   el.cancelIneffective = document.getElementById("cancel-ineffective");
+  el.walkthroughOverlay = document.getElementById("walkthrough-overlay");
+  el.walkthroughBackdrop = document.getElementById("walkthrough-backdrop");
+  el.walkthroughSpotlight = document.getElementById("walkthrough-spotlight");
+  el.walkthroughCard = document.getElementById("walkthrough-card");
+  el.walkthroughKicker = document.getElementById("walkthrough-kicker");
+  el.walkthroughTitle = document.getElementById("walkthrough-title");
+  el.walkthroughBody = document.getElementById("walkthrough-body");
+  el.walkthroughProgress = document.getElementById("walkthrough-progress");
+  el.walkthroughPromptActions = document.getElementById("walkthrough-prompt-actions");
+  el.walkthroughMobileActions = document.getElementById("walkthrough-mobile-actions");
+  el.walkthroughTourActions = document.getElementById("walkthrough-tour-actions");
+  el.walkthroughYes = document.getElementById("walkthrough-yes");
+  el.walkthroughNo = document.getElementById("walkthrough-no");
+  el.walkthroughMobileContinue = document.getElementById("walkthrough-mobile-continue");
+  el.walkthroughNext = document.getElementById("walkthrough-next");
+  el.walkthroughClose = document.getElementById("walkthrough-close");
   syncResetCorrectButtons();
 
   // Defensive: prevent accidental form-submit behavior even if stale HTML is cached.
   document.querySelectorAll("button").forEach((btn) => {
     btn.type = "button";
   });
+  syncMobileNotesLayoutClass();
 
   if (el.notesViewer) {
     el.notesViewer.addEventListener("click", (event) => {
@@ -1797,12 +3038,24 @@ function bindElements() {
       }
     });
   }
+
+  if (el.reviewText) {
+    el.reviewText.addEventListener("click", () => {
+      if (walkthroughUsesDialogNext("review-report")) {
+        return;
+      }
+    });
+  }
 }
 
 function buildWeekControls() {
+  const config = activePracticeUnitConfig();
   el.weekGrid.innerHTML = "";
-  WEEK_CHOICES.forEach((week) => {
-    const isAvailable = state.weekAvailabilityReady && state.availableWeeks.has(week);
+  config.choices.forEach((week) => {
+    const isComingSoon = config.comingSoonChoices.has(week);
+    const isAvailable = !isComingSoon && state.weekAvailabilityReady && (
+      state.availableWeeks.has(week) || activeTrackManualWeeks().has(week)
+    );
     if (!isAvailable && state.selectedWeeks.has(week)) {
       state.selectedWeeks.delete(week);
     }
@@ -1826,9 +3079,12 @@ function buildWeekControls() {
       event.stopPropagation();
     });
     const txt = document.createElement("span");
+    const choiceLabel = typeof config.labelForChoice === "function"
+      ? config.labelForChoice(week)
+      : `${config.singular} ${week}`;
     txt.textContent = state.weekAvailabilityReady
-      ? (isAvailable ? `Week ${week}` : `Week ${week} (coming soon)`)
-      : `Week ${week} (loading...)`;
+      ? (isAvailable ? choiceLabel : `${choiceLabel} (coming soon)`)
+      : `${choiceLabel} (loading...)`;
     lbl.addEventListener("click", (event) => {
       if (!isAvailable) return;
       if (event.target === cb) return;
@@ -1841,36 +3097,116 @@ function buildWeekControls() {
   });
 }
 
+async function continueFromCourseScreen(target = "course", triggerButton = null) {
+  dismissWalkthroughPrompt();
+  state.courseId = el.courseSelect.value;
+  setJSONStorage(COURSE_STORAGE_KEY, state.courseId);
+  if (target === "certification" && el.certificationSelect) {
+    state.certificationId = el.certificationSelect.value;
+    if (!state.certificationId) {
+      alert("Select a certification before continuing.");
+      return;
+    }
+    setJSONStorage(CERTIFICATION_STORAGE_KEY, state.certificationId);
+  } else if (el.certificationSelect) {
+    state.certificationId = el.certificationSelect.value;
+    setJSONStorage(CERTIFICATION_STORAGE_KEY, state.certificationId);
+  }
+  state.activeTrackType = target === "certification" ? "certification" : "course";
+  setJSONStorage(TRACK_TYPE_STORAGE_KEY, state.activeTrackType);
+  setContinueButtonsLoading(triggerButton, true);
+  showStartupSplash("Loading your course workspace...");
+  setStartupStatus(`Loading ${activeTrack().name} content...`);
+  try {
+    await Promise.all([reloadQuestionBanksForSetup(), reloadNotesManifestForTrack()]);
+    setNotesStatus(
+      state.notesLoadError
+        ? "Notes manifest missing. Run the notes manifest builder."
+        : `${state.notesFileMap.size} markdown files ready.`
+    );
+    screen("menu-screen");
+    notifyWalkthroughAction("continue-course");
+  } catch (err) {
+    alert(err?.message || "The course workspace could not be loaded.");
+  } finally {
+    setContinueButtonsLoading(triggerButton, false);
+    hideStartupSplash();
+  }
+}
+
 function wireEvents() {
   // Capture phase blocks submits before any default navigation can run.
   document.addEventListener("submit", (event) => {
     event.preventDefault();
     event.stopPropagation();
   }, true);
+  window.addEventListener("resize", syncWalkthroughPosition);
+  window.addEventListener("resize", () => {
+    syncMobileNotesLayoutClass();
+    if (!isMobileNotesLayout()) {
+      closeNotesSidebar();
+    }
+  });
+  window.addEventListener("scroll", syncWalkthroughPosition, true);
+  document.addEventListener("keydown", (event) => {
+    if (el.walkthroughOverlay.classList.contains("hidden")) return;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeWalkthrough();
+    }
+  });
+  el.walkthroughYes.addEventListener("click", (event) => {
+    event.preventDefault();
+    startWalkthrough();
+  });
+  el.walkthroughNo.addEventListener("click", (event) => {
+    event.preventDefault();
+    closeWalkthrough();
+  });
+  el.walkthroughMobileContinue.addEventListener("click", (event) => {
+    event.preventDefault();
+    closeWalkthrough();
+  });
+  el.walkthroughNext.addEventListener("click", (event) => {
+    event.preventDefault();
+    const action = walkthroughCurrentAction();
+    if (action === "review-back-demo") {
+      showSetup();
+    }
+    if (walkthroughUsesDialogNext(action)) {
+      advanceWalkthrough();
+    }
+  });
 
   el.courseSelect.addEventListener("change", () => {
     state.courseId = el.courseSelect.value;
     setJSONStorage(COURSE_STORAGE_KEY, state.courseId);
-    applyCourseBranding();
   });
+  if (el.certificationSelect) {
+    el.certificationSelect.addEventListener("change", () => {
+      state.certificationId = el.certificationSelect.value;
+      setJSONStorage(CERTIFICATION_STORAGE_KEY, state.certificationId);
+    });
+  }
   el.continueCourse.addEventListener("click", (event) => {
     event.preventDefault();
-    if (!state.weekAvailabilityReady) {
-      alert("Question banks are still loading. Please try again in a moment.");
-      return;
-    }
-    state.courseId = el.courseSelect.value;
-    setJSONStorage(COURSE_STORAGE_KEY, state.courseId);
-    applyCourseBranding();
-    screen("menu-screen");
+    continueFromCourseScreen("course", el.continueCourse);
   });
+  if (el.continueCertification) {
+    el.continueCertification.addEventListener("click", (event) => {
+      event.preventDefault();
+      continueFromCourseScreen("certification", el.continueCertification);
+    });
+  }
   el.goPracticeQuiz.addEventListener("click", (event) => {
     event.preventDefault();
     screen("week-screen");
+    notifyWalkthroughAction("go-practice-quiz");
   });
   el.goNotes.addEventListener("click", async (event) => {
     event.preventDefault();
     await showNotesScreen();
+    notifyWalkthroughAction("go-notes");
   });
   el.backCourseFromMenu.addEventListener("click", (event) => {
     event.preventDefault();
@@ -1883,11 +3219,24 @@ function wireEvents() {
   el.backNotesToMenu.addEventListener("click", (event) => {
     event.preventDefault();
     screen("menu-screen");
+    notifyWalkthroughAction("back-notes-to-menu");
+  });
+  el.toggleNotesSidebar.addEventListener("click", (event) => {
+    event.preventDefault();
+    toggleNotesSidebar();
+  });
+  el.closeNotesSidebar.addEventListener("click", (event) => {
+    event.preventDefault();
+    closeNotesSidebar();
+  });
+  el.notesSidebarBackdrop.addEventListener("click", () => {
+    closeNotesSidebar();
   });
   el.selectAllWeeks.addEventListener("click", (event) => {
     event.preventDefault();
+    const config = activePracticeUnitConfig();
     const targetWeeks = state.weekAvailabilityReady
-      ? WEEK_CHOICES.filter((week) => state.availableWeeks.has(week))
+      ? config.choices.filter((week) => state.availableWeeks.has(week) && !config.comingSoonChoices.has(week))
       : [];
     state.selectedWeeks = new Set(targetWeeks);
     buildWeekControls();
@@ -1901,34 +3250,68 @@ function wireEvents() {
   });
   el.continueSetup.addEventListener("click", (event) => {
     event.preventDefault();
+    const config = activePracticeUnitConfig();
     if (!state.selectedWeeks.size) {
-      alert("Choose at least one week to continue.");
+      alert(`Choose at least one ${config.singular.toLowerCase()} to continue.`);
       return;
     }
+    if (state.walkthroughActive && tourCurrentStep()?.action === "continue-setup") {
+      resetWalkthroughConfigState();
+    }
     showSetup();
+    notifyWalkthroughAction("continue-setup");
+  });
+  el.modeSelect.addEventListener("click", () => {
+    notifyWalkthroughAction("mode-select-click");
   });
   el.modeSelect.addEventListener("change", () => {
     state.mode = el.modeSelect.value;
     refreshAvailableCount();
+    notifyWalkthroughAction(`mode-${state.mode}`);
+  });
+  el.questionCount.addEventListener("input", () => {
+    const n = Math.max(1, Number(el.questionCount.value || 1));
+    state.amount = n;
+    if (Number.isFinite(n) && n === 6) {
+      notifyWalkthroughAction("question-count-6");
+    }
   });
   el.questionCount.addEventListener("change", () => {
     const n = Math.max(1, Number(el.questionCount.value || 1));
     state.amount = n;
     el.questionCount.value = String(n);
+    if (Number.isFinite(n) && n === 6) {
+      notifyWalkthroughAction("question-count-6");
+    }
+  });
+  el.questionCountUp.addEventListener("click", (event) => {
+    event.preventDefault();
+    nudgeQuestionCount(1);
+  });
+  el.questionCountDown.addEventListener("click", (event) => {
+    event.preventDefault();
+    nudgeQuestionCount(-1);
   });
   el.skipCorrect.addEventListener("change", () => {
     state.skipPreviouslyCorrect = el.skipCorrect.checked;
     refreshAvailableCount();
+    if (el.skipCorrect.checked) {
+      notifyWalkthroughAction("skip-correct-on");
+    }
   });
   if (el.includeMissedOnce) {
     el.includeMissedOnce.addEventListener("change", () => {
       state.includeMissedOnce = el.includeMissedOnce.checked;
       refreshAvailableCount();
+      if (el.includeMissedOnce.checked) {
+        notifyWalkthroughAction("include-missed-on");
+      }
     });
   }
   el.startQuiz.addEventListener("click", (event) => {
     event.preventDefault();
     startQuiz();
+    notifyWalkthroughAction("start-quiz");
   });
   el.changeWeeks.addEventListener("click", (event) => {
     event.preventDefault();
@@ -1942,40 +3325,81 @@ function wireEvents() {
     event.preventDefault();
     submitDontKnowAnswer();
   });
+  el.trustedAiExplanation.addEventListener("click", (event) => {
+    event.preventDefault();
+    openTrustedAiExplanation();
+  });
+  el.previousQuestion.addEventListener("click", (event) => {
+    event.preventDefault();
+    previousQuestion();
+  });
   el.nextQuestion.addEventListener("click", (event) => {
     event.preventDefault();
     nextQuestion();
   });
-  el.flagQuestion.addEventListener("click", (event) => {
+  el.flagQuestion.addEventListener("click", async (event) => {
     event.preventDefault();
-    flagCurrentQuestion();
+    if (walkthroughGuardQuizAction(
+      "flag-not-in-scope",
+      "The walkthrough will let you use Not in Current Course Scope when it reaches that question."
+    )) {
+      return;
+    }
+    await flagCurrentQuestion();
+    notifyWalkthroughAction("flag-not-in-scope");
   });
   el.ineffectiveQuestion.addEventListener("click", (event) => {
     event.preventDefault();
+    if (walkthroughGuardQuizAction(
+      "open-ineffective-dialog",
+      "The walkthrough will let you use Ineffective Question when it reaches the joke question."
+    )) {
+      return;
+    }
     openIneffectiveDialog();
+    notifyWalkthroughAction("open-ineffective-dialog");
   });
   el.finishQuiz.addEventListener("click", (event) => {
     event.preventDefault();
+    if (walkthroughGuardQuizAction("finish-quiz", "The walkthrough is not ready for Finish Quiz yet.")) {
+      return;
+    }
     finishQuiz();
+    notifyWalkthroughAction("finish-quiz");
   });
   el.backSetupFromQuiz.addEventListener("click", (event) => {
     event.preventDefault();
+    if (walkthroughCurrentAction() === "explain-back-setup") {
+      return;
+    }
     showSetup();
   });
   el.copyReport.addEventListener("click", (event) => {
     event.preventDefault();
+    if (walkthroughCurrentAction() === "copy-report") {
+      return;
+    }
     copyReviewText();
   });
   el.downloadReport.addEventListener("click", (event) => {
     event.preventDefault();
+    if (walkthroughCurrentAction() === "download-report") {
+      return;
+    }
     saveReviewText();
   });
   el.printReport.addEventListener("click", (event) => {
     event.preventDefault();
+    if (walkthroughCurrentAction() === "print-report") {
+      return;
+    }
     printReviewText();
   });
   el.retakeIncorrect.addEventListener("click", (event) => {
     event.preventDefault();
+    if (walkthroughCurrentAction() === "retake-incorrect") {
+      return;
+    }
     retakeIncorrectOnly();
   });
   if (el.resetWrongCount) {
@@ -1990,6 +3414,11 @@ function wireEvents() {
   });
   el.backSetupFromReview.addEventListener("click", (event) => {
     event.preventDefault();
+    if (walkthroughCurrentAction() === "review-back-demo") {
+      showSetup();
+      notifyWalkthroughAction("review-back-demo");
+      return;
+    }
     showSetup();
   });
   el.confirmResetWrongCount.addEventListener("click", (event) => {
@@ -2003,6 +3432,12 @@ function wireEvents() {
   });
   el.submitIneffective.addEventListener("click", async (event) => {
     event.preventDefault();
+    if (walkthroughGuardQuizAction(
+      "submit-ineffective",
+      "The walkthrough will let you submit ineffective-question feedback after it opens the dialog."
+    )) {
+      return;
+    }
     const feedback = String(el.ineffectiveFeedback.value || "").trim();
     const validationError = validateFeedbackText(feedback);
     if (validationError) {
@@ -2011,19 +3446,37 @@ function wireEvents() {
     }
     el.ineffectiveDialog.close("submit");
     await applyIneffectiveFeedback(feedback);
+    notifyWalkthroughAction("submit-ineffective");
   });
   el.cancelIneffective.addEventListener("click", (event) => {
     event.preventDefault();
     el.ineffectiveDialog.close("cancel");
+    if (walkthroughCurrentAction() === "submit-ineffective") {
+      jumpWalkthroughToAction(
+        "open-ineffective-dialog",
+        "Open the Ineffective Question Dialog",
+        "The walkthrough needs that joke question to be reported, so canceling just rewinds you one step. Click Ineffective Question again, type a short note, and then submit it."
+      );
+    }
+  });
+  el.walkthroughClose.addEventListener("click", (event) => {
+    event.preventDefault();
+    closeWalkthrough();
+  });
+  el.walkthroughOverlay.addEventListener("click", (event) => {
+    if (event.target === el.walkthroughOverlay || event.target === el.walkthroughBackdrop) {
+      closeWalkthrough();
+    }
   });
 }
 
 async function loadQuestionBanks() {
   const weekRows = [];
   const loadedWeeks = new Set();
+  const config = activePracticeUnitConfig();
   const questionHeaders = ["difficulty", "question", "choice_a", "choice_b", "choice_c", "choice_d", "correct_choice"];
-  for (const week of WEEK_CHOICES) {
-    const path = `./week${week}_question_bank.csv`;
+  for (const week of activeQuestionBankChoices()) {
+    const path = activeQuestionBankURL(week);
     try {
       const rows = await loadCSV(path, questionHeaders);
       if (rows.length) loadedWeeks.add(week);
@@ -2037,7 +3490,10 @@ async function loadQuestionBanks() {
   }
   const sourceRows = weekRows;
   if (!sourceRows.length) {
-    throw new Error("No weekly question banks were found. Add weekN_question_bank.csv files.");
+    state.questionBank = [];
+    state.availableWeeks = new Set([...activeTrackManualWeeks()]);
+    state.weekAvailabilityReady = true;
+    return;
   }
   const runtime = [];
   for (let i = 0; i < sourceRows.length; i += 1) {
@@ -2048,40 +3504,23 @@ async function loadQuestionBanks() {
     }
   }
   state.questionBank = runtime;
-  state.availableWeeks = loadedWeeks;
+  state.availableWeeks = new Set([...loadedWeeks, ...activeTrackManualWeeks()]);
   state.weekAvailabilityReady = true;
-}
-
-async function loadBaseChanges() {
-  try {
-    state.baseChangeRows = await loadCSV("/api/changes");
-  } catch {
-    try {
-      state.baseChangeRows = await loadCSV("./changes.csv");
-    } catch {
-      state.baseChangeRows = [];
-    }
-  }
-}
-
-function reconcileOverridesWithBaseChanges() {
-  const changedKeys = new Set(
-    (state.baseChangeRows || [])
-      .map((row) => String(row?.question_key || "").trim())
-      .filter(Boolean)
-  );
-  state.overrides.removedKeys = Object.fromEntries(
-    Object.entries(state.overrides.removedKeys || {}).filter(([questionKey]) => changedKeys.has(questionKey))
-  );
-  state.overrides.difficultyOverrides = Object.fromEntries(
-    Object.entries(state.overrides.difficultyOverrides || {}).filter(([questionKey]) => changedKeys.has(questionKey))
-  );
-  saveOverrides();
 }
 
 function loadLocalState() {
   const storedCourse = String(getJSONStorage(COURSE_STORAGE_KEY, COURSE_CATALOG[0].id) || COURSE_CATALOG[0].id);
   state.courseId = COURSE_CATALOG.some((c) => c.id === storedCourse) ? storedCourse : COURSE_CATALOG[0].id;
+  const storedCertification = String(
+    getJSONStorage(CERTIFICATION_STORAGE_KEY, NO_CERTIFICATION_ID) || NO_CERTIFICATION_ID
+  );
+  state.certificationId = storedCertification === NO_CERTIFICATION_ID || CERTIFICATION_CATALOG.some((c) => c.id === storedCertification)
+    ? storedCertification
+    : NO_CERTIFICATION_ID;
+  const storedTrackType = String(getJSONStorage(TRACK_TYPE_STORAGE_KEY, "course") || "course");
+  state.activeTrackType = storedTrackType === "certification" && state.certificationId
+    ? "certification"
+    : "course";
   const storedConfig = getJSONStorage(CONFIG_STORAGE_KEY, {});
   const storedAmount = Number(storedConfig.amount);
   if (Number.isFinite(storedAmount) && storedAmount >= 1) state.amount = Math.max(1, Math.floor(storedAmount));
@@ -2095,9 +3534,11 @@ function loadLocalState() {
 
 async function boot() {
   bindElements();
-  showStartupSplash("Loading local preferences...");
+  syncMobileNotesLayoutClass();
   loadLocalState();
+  installBrowserProgressDiagnostics();
   buildCourseOptions();
+  buildCertificationOptions();
   applyCourseBranding();
   buildWeekControls();
   wireEvents();
@@ -2108,38 +3549,29 @@ async function boot() {
   setAnswerControlsEnabled(false);
   updateLiveScore();
   try {
-    setStartupStatus("Loading question banks, notes, changelog, and change history...");
+    setStartupStatus("Loading changelog and demo quiz...");
     await Promise.all([
-      loadQuestionBanks(),
-      loadBaseChanges(),
-      loadNotesManifest().catch((err) => {
-        state.notesLoadError = err?.message || "Unable to load notes manifest.";
-      }),
       loadChangelog().catch((err) => {
         state.changelogLoadError = err?.message || "Unable to load changelog.";
       }),
+      loadTourQuestionBank().catch(() => {
+        state.tourQuestionBank = [];
+      }),
     ]);
-    reconcileOverridesWithBaseChanges();
-    if (state.weekAvailabilityReady) {
-      state.selectedWeeks = new Set(
-        [...state.selectedWeeks].filter((week) => state.availableWeeks.has(Number(week)))
-      );
-      if (!state.selectedWeeks.size && state.availableWeeks.size) {
-        state.selectedWeeks = new Set([...state.availableWeeks].sort((a, b) => a - b));
-      }
-      buildWeekControls();
-    }
-    setNotesStatus(
-      state.notesLoadError
-        ? "Notes manifest missing. Run the sync script."
-        : `${state.notesFileMap.size} markdown files ready.`
-    );
+    state.questionBank = [];
+    state.availableWeeks = new Set();
+    state.weekAvailabilityReady = false;
+    state.notesManifest = { roots: [], defaultNote: "" };
+    state.notesFileMap = new Map();
+    state.currentNotePath = "";
+    state.notesLoadError = "";
+    setNotesStatus("Choose a course or certification to load notes.");
     renderCourseChangelog();
-    setStartupStatus(`Loaded ${state.questionBank.length} questions.`);
+    setStartupStatus("Choose a course or certification to load the workspace.");
     refreshAvailableCount();
     screen("course-screen");
     window.__NETC_QUIZ_APP_READY__ = true;
-    hideStartupSplash();
+    showWalkthroughPrompt();
   } catch (err) {
     setStartupStatus(`Load failed: ${err?.message || "Unknown error"}`);
     if (el.startupStatus) {

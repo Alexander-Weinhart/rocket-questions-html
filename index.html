@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=2026-04-03-01">
+  <link rel="stylesheet" href="./styles.css?v=2026-04-09-58">
   <style>
     /* Keep core visibility behavior even if external CSS fails to load. */
     .hidden { display: none !important; }
@@ -23,13 +23,13 @@
     gtag('config', 'G-YHL23VLRTD');
   </script>
 </head>
-<body class="app-loading">
+<body>
   <div class="bg-shape bg-shape-a" aria-hidden="true"></div>
   <div class="bg-shape bg-shape-b" aria-hidden="true"></div>
-  <div id="startup-splash" class="startup-splash" role="status" aria-live="polite">
+  <div id="startup-splash" class="startup-splash hidden" role="status" aria-live="polite">
     <div class="startup-card">
       <img class="startup-photo" src="./alex.jpg" alt="Alex portrait">
-      <p class="startup-kicker">🚀 Rocket Questions</p>
+      <p class="startup-kicker"><span class="brand-inline"><img class="brand-inline-icon" src="./rocket_icon.png?v=2026-04-09-58" alt="" aria-hidden="true"><span>Rocket Questions</span></span></p>
       <h1 class="startup-thanks">Tell Alex thank you!</h1>
       <h2>Loading your course workspace...</h2>
       <p id="startup-status">Preparing question banks and progress data.</p>
@@ -38,7 +38,7 @@
 
   <main class="app-shell">
     <header class="app-header">
-      <h1 id="app-title">🚀 Rocket Questions - Cincinnati State NETC-CS Program</h1>
+      <h1 id="app-title"><span class="brand-inline"><img class="brand-inline-icon" src="./rocket_icon.png?v=2026-04-09-58" alt="" aria-hidden="true"><span>Rocket Questions - Cincinnati State NETC-CS Program</span></span></h1>
       <p id="app-subtitle">May we all succeed or fail as a team.</p>
       <div id="copy"></div>
       <p id="load-status" class="load-status">Loading question banks...</p>
@@ -46,13 +46,24 @@
 
     <section id="course-screen" class="screen card">
       <h2>Course Selection</h2>
+      <aside class="maintenance-notice" aria-label="Maintenance notice">
+        <strong>Maintenance Window</strong>
+        <span>Tuesday, April 21, 2026 from 11:45 AM to 2:00 PM. The site will be offline.</span>
+      </aside>
       <p>Select a course before continuing.</p>
-      <label>
-        Course
-        <select id="course-select"></select>
-      </label>
-      <div class="row actions">
-        <button id="continue-course" type="button" class="btn accent push-right">Continue</button>
+      <div class="course-selection-row">
+        <label>
+          Courses
+          <select id="course-select"></select>
+        </label>
+        <button id="continue-course" type="button" class="btn accent">Continue</button>
+      </div>
+      <div class="course-selection-row">
+        <label>
+          Certifications
+          <select id="certification-select"></select>
+        </label>
+        <button id="continue-certification" type="button" class="btn accent">Continue</button>
       </div>
       <section class="course-changelog">
         <div class="course-changelog-header">
@@ -78,7 +89,7 @@
         <button id="go-practice-quiz" type="button" class="mode-card">
           <span class="mode-card-kicker">Quiz Mode</span>
           <strong>Practice Quiz</strong>
-          <span>Open week selection and start a custom practice run.</span>
+          <span id="practice-mode-description">Open week selection and start a custom practice run.</span>
         </button>
         <button id="go-notes" type="button" class="mode-card">
           <span class="mode-card-kicker">Study Mode</span>
@@ -92,10 +103,10 @@
     </section>
 
     <section id="week-screen" class="screen card hidden">
-      <h2>Week Selection</h2>
-      <p>Select one or more available weeks before setup.</p>
+      <h2 id="practice-unit-title">Week Selection</h2>
+      <p id="practice-unit-description">Select one or more available weeks before setup.</p>
       <div class="week-grid" id="week-grid"></div>
-      <div class="row actions">
+      <div class="row actions week-actions">
         <button id="back-course-from-week" type="button" class="btn ghost">Back to Previous Menu</button>
         <button id="select-all-weeks" type="button" class="btn ghost">Select All</button>
         <button id="clear-all-weeks" type="button" class="btn ghost">Clear All</button>
@@ -105,15 +116,23 @@
 
     <section id="notes-screen" class="screen card hidden notes-screen">
       <div class="notes-header">
-        <button id="back-notes-to-menu" type="button" class="btn ghost">Back to Previous Menu</button>
-        <h2 id="notes-screen-title" class="notes-screen-title">🚀 Rocket Questions Notes Lists</h2>
-        <div class="notes-header-spacer" aria-hidden="true"></div>
+        <div class="notes-header-top">
+          <h2 id="notes-screen-title" class="notes-screen-title"><span class="brand-inline"><img class="brand-inline-icon" src="./rocket_icon.png?v=2026-04-09-58" alt="" aria-hidden="true"><span>Rocket Questions Notes Lists</span></span></h2>
+          <button id="toggle-notes-sidebar" type="button" class="btn accent notes-menu-toggle" aria-label="Open notes explorer" aria-expanded="false" aria-controls="notes-sidebar">☰</button>
+        </div>
+        <div class="notes-header-bottom">
+          <button id="back-notes-to-menu" type="button" class="btn ghost">Back to Previous Menu</button>
+        </div>
       </div>
       <div class="notes-layout">
-        <aside class="notes-sidebar" aria-label="Notes files">
+        <div id="notes-sidebar-backdrop" class="notes-sidebar-backdrop hidden" aria-hidden="true"></div>
+        <aside id="notes-sidebar" class="notes-sidebar" aria-label="Notes files">
           <div class="notes-sidebar-header">
-            <p class="notes-sidebar-title">Notes Explorer</p>
-            <p id="notes-sidebar-status" class="notes-sidebar-status">Loading notes content...</p>
+            <div>
+              <p class="notes-sidebar-title">Notes Explorer</p>
+              <p id="notes-sidebar-status" class="notes-sidebar-status">Loading notes content...</p>
+            </div>
+            <button id="close-notes-sidebar" type="button" class="btn ghost notes-sidebar-close">Close</button>
           </div>
           <div id="notes-tree" class="notes-tree" role="tree"></div>
         </aside>
@@ -146,11 +165,14 @@
         </label>
         <label>
           Questions
-          <input id="question-count" type="number" min="1" max="100" value="10">
+          <div class="number-input-wrap">
+            <input id="question-count" type="number" min="1" max="100" value="10">
+            <div class="number-stepper" aria-hidden="true">
+              <button id="question-count-up" type="button" class="number-step-btn number-step-btn-up" tabindex="-1" aria-label="Increase question count">+</button>
+              <button id="question-count-down" type="button" class="number-step-btn number-step-btn-down" tabindex="-1" aria-label="Decrease question count">-</button>
+            </div>
+          </div>
         </label>
-        <div class="available-wrap">
-          <p id="available-count"></p>
-        </div>
       </div>
       <label class="checkline">
         <input id="skip-correct" type="checkbox">
@@ -187,6 +209,8 @@
       <div class="row actions">
         <button id="submit-answer" type="button" class="btn accent">Submit Answer</button>
         <button id="dont-know-answer" type="button" class="btn info">I Don't know</button>
+        <button id="trusted-ai-explanation" type="button" class="btn info" disabled>Trusted AI Explanation</button>
+        <button id="previous-question" type="button" class="btn ghost" disabled>Previous Question</button>
         <button id="next-question" type="button" class="btn ghost" disabled>Next Question</button>
         <button id="flag-question" type="button" class="btn warn">Not in Current Course Scope</button>
         <button id="ineffective-question" type="button" class="btn warn">Ineffective Question</button>
@@ -207,6 +231,7 @@
         <button id="print-report" type="button" class="btn accent">Print Report</button>
         <button id="retake-incorrect" type="button" class="btn accent">Retake Incorrect Only</button>
         <button id="back-setup-from-review" type="button" class="btn ghost push-right">Back to Setup</button>
+        <button id="reset-wrong-count" type="button" class="btn warn">Reset All Answered Questions</button>
       </div>
     </section>
 
@@ -234,9 +259,31 @@
     </div>
   </dialog>
 
+  <div id="walkthrough-overlay" class="walkthrough-overlay hidden" aria-hidden="true">
+    <div id="walkthrough-backdrop" class="walkthrough-backdrop"></div>
+    <div id="walkthrough-spotlight" class="walkthrough-spotlight" aria-hidden="true"></div>
+    <section id="walkthrough-card" class="walkthrough-card" role="dialog" aria-modal="true" aria-labelledby="walkthrough-title">
+      <p id="walkthrough-kicker" class="walkthrough-kicker">Screen Walkthrough</p>
+      <h3 id="walkthrough-title">Walkthrough</h3>
+      <p id="walkthrough-body" class="walkthrough-body"></p>
+      <p id="walkthrough-progress" class="walkthrough-progress"></p>
+      <div id="walkthrough-prompt-actions" class="row actions">
+        <button id="walkthrough-yes" type="button" class="btn accent">Yes</button>
+        <button id="walkthrough-no" type="button" class="btn ghost">No</button>
+      </div>
+      <div id="walkthrough-mobile-actions" class="row actions hidden">
+        <button id="walkthrough-mobile-continue" type="button" class="btn accent">Continue Without Tour</button>
+      </div>
+      <div id="walkthrough-tour-actions" class="row actions hidden">
+        <button id="walkthrough-next" type="button" class="btn accent hidden">Next</button>
+        <button id="walkthrough-close" type="button" class="btn ghost push-right">Close Tour</button>
+      </div>
+    </section>
+  </div>
+
   <script>
     (function loadAppWithFallback() {
-      const REQUIRED_APP_VERSION = "2026-04-03-01";
+      const REQUIRED_APP_VERSION = "2026-04-16-13";
       const candidates = [
         `./app.js?v=${REQUIRED_APP_VERSION}`,
       ];

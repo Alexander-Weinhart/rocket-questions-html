@@ -1,0 +1,981 @@
+{
+  "roots": [
+    {
+      "type": "directory",
+      "name": "MASTER LIST",
+      "path": "MASTER LIST",
+      "children": [
+        {
+          "type": "directory",
+          "name": "Weekly AI Master Lists",
+          "path": "MASTER LIST/Weekly AI Master Lists",
+          "children": [
+            {
+              "type": "file",
+              "name": "README.md",
+              "path": "MASTER LIST/Weekly AI Master Lists/README.md"
+            },
+            {
+              "type": "file",
+              "name": "Week 1 - AI Master List.md",
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 1 - AI Master List.md"
+            },
+            {
+              "type": "file",
+              "name": "Week 2 - AI Master List.md",
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 2 - AI Master List.md"
+            },
+            {
+              "type": "file",
+              "name": "Week 3 - AI Master List.md",
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 3 - AI Master List.md"
+            },
+            {
+              "type": "file",
+              "name": "Week 4 - AI Master List.md",
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 4 - AI Master List.md"
+            },
+            {
+              "type": "file",
+              "name": "Week 5 - AI Master List.md",
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 5 - AI Master List.md"
+            },
+            {
+              "type": "file",
+              "name": "Week 6 - AI Master List.md",
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 6 - AI Master List.md"
+            },
+            {
+              "type": "file",
+              "name": "Week 7 - AI Master List.md",
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 7 - AI Master List.md"
+            },
+            {
+              "type": "file",
+              "name": "Week 8 - AI Master List.md",
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 8 - AI Master List.md"
+            },
+            {
+              "type": "file",
+              "name": "Week 9 - AI Master List.md",
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 9 - AI Master List.md"
+            },
+            {
+              "type": "file",
+              "name": "Week 10 - AI Master List.md",
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 10 - AI Master List.md"
+            },
+            {
+              "type": "file",
+              "name": "Week 11 - AI Master List.md",
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 11 - AI Master List.md"
+            },
+            {
+              "type": "file",
+              "name": "Week 12 - AI Master List.md",
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 12 - AI Master List.md"
+            },
+            {
+              "type": "file",
+              "name": "Week 13 - AI Master List.md",
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 13 - AI Master List.md"
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "name": "Master List.md",
+          "path": "MASTER LIST/Master List.md"
+        }
+      ]
+    },
+    {
+      "type": "directory",
+      "name": "Notes List A - Video Content",
+      "path": "Notes List A - Video Content",
+      "children": [
+        {
+          "type": "directory",
+          "name": "Video 1 - Unicast, Broadcast, Multicast",
+          "path": "Notes List A - Video Content/Video 1 - Unicast, Broadcast, Multicast",
+          "children": [
+            {
+              "type": "file",
+              "name": "Broadcast.md",
+              "path": "Notes List A - Video Content/Video 1 - Unicast, Broadcast, Multicast/Broadcast.md"
+            },
+            {
+              "type": "file",
+              "name": "Multicast.md",
+              "path": "Notes List A - Video Content/Video 1 - Unicast, Broadcast, Multicast/Multicast.md"
+            },
+            {
+              "type": "file",
+              "name": "Unicast.md",
+              "path": "Notes List A - Video Content/Video 1 - Unicast, Broadcast, Multicast/Unicast.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 2 - Ethernet Frame Structure",
+          "path": "Notes List A - Video Content/Video 2 - Ethernet Frame Structure",
+          "children": [
+            {
+              "type": "file",
+              "name": "CRC Error Detection.md",
+              "path": "Notes List A - Video Content/Video 2 - Ethernet Frame Structure/CRC Error Detection.md"
+            },
+            {
+              "type": "file",
+              "name": "Encapsulation.md",
+              "path": "Notes List A - Video Content/Video 2 - Ethernet Frame Structure/Encapsulation.md"
+            },
+            {
+              "type": "file",
+              "name": "Frame Fields.md",
+              "path": "Notes List A - Video Content/Video 2 - Ethernet Frame Structure/Frame Fields.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 3 - CSMA-CD and CSMA-CA",
+          "path": "Notes List A - Video Content/Video 3 - CSMA-CD and CSMA-CA",
+          "children": [
+            {
+              "type": "file",
+              "name": "CSMA-CA.md",
+              "path": "Notes List A - Video Content/Video 3 - CSMA-CD and CSMA-CA/CSMA-CA.md"
+            },
+            {
+              "type": "file",
+              "name": "CSMA-CD.md",
+              "path": "Notes List A - Video Content/Video 3 - CSMA-CD and CSMA-CA/CSMA-CD.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 4 - DHCP",
+          "path": "Notes List A - Video Content/Video 4 - DHCP",
+          "children": [
+            {
+              "type": "file",
+              "name": "DHCP Lease.md",
+              "path": "Notes List A - Video Content/Video 4 - DHCP/DHCP Lease.md"
+            },
+            {
+              "type": "file",
+              "name": "DHCP Reservation.md",
+              "path": "Notes List A - Video Content/Video 4 - DHCP/DHCP Reservation.md"
+            },
+            {
+              "type": "file",
+              "name": "DHCP Scope.md",
+              "path": "Notes List A - Video Content/Video 4 - DHCP/DHCP Scope.md"
+            },
+            {
+              "type": "file",
+              "name": "DHCP Service Locations.md",
+              "path": "Notes List A - Video Content/Video 4 - DHCP/DHCP Service Locations.md"
+            },
+            {
+              "type": "file",
+              "name": "Dynamic IP.md",
+              "path": "Notes List A - Video Content/Video 4 - DHCP/Dynamic IP.md"
+            },
+            {
+              "type": "file",
+              "name": "Static IP.md",
+              "path": "Notes List A - Video Content/Video 4 - DHCP/Static IP.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 5 - TCP-IP Model",
+          "path": "Notes List A - Video Content/Video 5 - TCP-IP Model",
+          "children": [
+            {
+              "type": "file",
+              "name": "Application Layer.md",
+              "path": "Notes List A - Video Content/Video 5 - TCP-IP Model/Application Layer.md"
+            },
+            {
+              "type": "file",
+              "name": "Key Advantages.md",
+              "path": "Notes List A - Video Content/Video 5 - TCP-IP Model/Key Advantages.md"
+            },
+            {
+              "type": "file",
+              "name": "Packet Journey.md",
+              "path": "Notes List A - Video Content/Video 5 - TCP-IP Model/Packet Journey.md"
+            },
+            {
+              "type": "file",
+              "name": "Transport Layer.md",
+              "path": "Notes List A - Video Content/Video 5 - TCP-IP Model/Transport Layer.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 6 - Wireshark",
+          "path": "Notes List A - Video Content/Video 6 - Wireshark",
+          "children": [
+            {
+              "type": "file",
+              "name": "Download and Install.md",
+              "path": "Notes List A - Video Content/Video 6 - Wireshark/Download and Install.md"
+            },
+            {
+              "type": "file",
+              "name": "HTTP vs HTTPS Demo.md",
+              "path": "Notes List A - Video Content/Video 6 - Wireshark/HTTP vs HTTPS Demo.md"
+            },
+            {
+              "type": "file",
+              "name": "Key Lessons.md",
+              "path": "Notes List A - Video Content/Video 6 - Wireshark/Key Lessons.md"
+            },
+            {
+              "type": "file",
+              "name": "Live Capture Examples.md",
+              "path": "Notes List A - Video Content/Video 6 - Wireshark/Live Capture Examples.md"
+            },
+            {
+              "type": "file",
+              "name": "Telnet Demo.md",
+              "path": "Notes List A - Video Content/Video 6 - Wireshark/Telnet Demo.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 7 - Subnetting",
+          "path": "Notes List A - Video Content/Video 7 - Subnetting",
+          "children": [
+            {
+              "type": "file",
+              "name": "ARP.md",
+              "path": "Notes List A - Video Content/Video 7 - Subnetting/ARP.md"
+            },
+            {
+              "type": "file",
+              "name": "Subnetting.md",
+              "path": "Notes List A - Video Content/Video 7 - Subnetting/Subnetting.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 8 - Binary Math and Subnetting",
+          "path": "Notes List A - Video Content/Video 8 - Binary Math and Subnetting",
+          "children": [
+            {
+              "type": "file",
+              "name": "Binary Math.md",
+              "path": "Notes List A - Video Content/Video 8 - Binary Math and Subnetting/Binary Math.md"
+            },
+            {
+              "type": "file",
+              "name": "Subnetting.md",
+              "path": "Notes List A - Video Content/Video 8 - Binary Math and Subnetting/Subnetting.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 9 - CIDR and IP Addressing",
+          "path": "Notes List A - Video Content/Video 9 - CIDR and IP Addressing",
+          "children": [
+            {
+              "type": "file",
+              "name": "CIDR.md",
+              "path": "Notes List A - Video Content/Video 9 - CIDR and IP Addressing/CIDR.md"
+            },
+            {
+              "type": "file",
+              "name": "DARPANET.md",
+              "path": "Notes List A - Video Content/Video 9 - CIDR and IP Addressing/DARPANET.md"
+            },
+            {
+              "type": "file",
+              "name": "Public and Private IP Addresses.md",
+              "path": "Notes List A - Video Content/Video 9 - CIDR and IP Addressing/Public and Private IP Addresses.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 10 - Telnet and SSH",
+          "path": "Notes List A - Video Content/Video 10 - Telnet and SSH",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 10 - Telnet and SSH/Transcript.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 11 - Factory Reset Cisco Switch",
+          "path": "Notes List A - Video Content/Video 11 - Factory Reset Cisco Switch",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 11 - Factory Reset Cisco Switch/Transcript.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 12 - What Is Binary",
+          "path": "Notes List A - Video Content/Video 12 - What Is Binary",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 12 - What Is Binary/Transcript.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 13 - representing numbers and letters with binary",
+          "path": "Notes List A - Video Content/Video 13 - representing numbers and letters with binary",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 13 - representing numbers and letters with binary/Transcript.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 14 - How to convert binary to decimal",
+          "path": "Notes List A - Video Content/Video 14 - How to convert binary to decimal",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 14 - How to convert binary to decimal/Transcript.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 15 - SolarWinds TFTP Server",
+          "path": "Notes List A - Video Content/Video 15 - SolarWinds TFTP Server",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 15 - SolarWinds TFTP Server/Transcript.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 16 - VLANs Made Easy",
+          "path": "Notes List A - Video Content/Video 16 - VLANs Made Easy",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 16 - VLANs Made Easy/Transcript.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 17 - Trunking and 802.1Q",
+          "path": "Notes List A - Video Content/Video 17 - Trunking and 802.1Q",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 17 - Trunking and 802.1Q/Transcript.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 18 - Spanning Tree Protocol Explained Step by Step",
+          "path": "Notes List A - Video Content/Video 18 - Spanning Tree Protocol Explained Step by Step",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 18 - Spanning Tree Protocol Explained Step by Step/Transcript.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 19 - Micronugget Spanning Tree Protocol Explained CBT Nuggets",
+          "path": "Notes List A - Video Content/Video 19 - Micronugget Spanning Tree Protocol Explained CBT Nuggets",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 19 - Micronugget Spanning Tree Protocol Explained CBT Nuggets/Transcript.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 20 - What is a Routing Table?",
+          "path": "Notes List A - Video Content/Video 20 - What is a Routing Table?",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 20 - What is a Routing Table?/Transcript.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 21 - Packet Traveling - How Packets Move Through a Network",
+          "path": "Notes List A - Video Content/Video 21 - Packet Traveling - How Packets Move Through a Network",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 21 - Packet Traveling - How Packets Move Through a Network/Transcript.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 22 - Routing Fundamentals",
+          "path": "Notes List A - Video Content/Video 22 - Routing Fundamentals",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 22 - Routing Fundamentals/Transcript.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 23 - Dynamic Routing Protocols",
+          "path": "Notes List A - Video Content/Video 23 - Dynamic Routing Protocols",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 23 - Dynamic Routing Protocols/Transcript.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 24 - Route Summarization",
+          "path": "Notes List A - Video Content/Video 24 - Route Summarization",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 24 - Route Summarization/Transcript.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 25 - Router Hierarchies and Default Routes",
+          "path": "Notes List A - Video Content/Video 25 - Router Hierarchies and Default Routes",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 25 - Router Hierarchies and Default Routes/Transcript.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 26 - Layer 2 vs Layer 3 Switches",
+          "path": "Notes List A - Video Content/Video 26 - Layer 2 vs Layer 3 Switches",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 26 - Layer 2 vs Layer 3 Switches/Transcript.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 27 - Micronugget What is Route Redistribution",
+          "path": "Notes List A - Video Content/Video 27 - Micronugget What is Route Redistribution",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 27 - Micronugget What is Route Redistribution/Transcript.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "directory",
+      "name": "Notes List B - Textbook Content",
+      "path": "Notes List B - Textbook Content",
+      "children": [
+        {
+          "type": "directory",
+          "name": "Essential - Chapter 8 Introduction to Switch Configuration",
+          "path": "Notes List B - Textbook Content/Essential - Chapter 8 Introduction to Switch Configuration",
+          "children": [
+            {
+              "type": "file",
+              "name": "Essential Chapter 8 - Switch Configuration, VLANs, STP, PoE, and Troubleshooting.md",
+              "path": "Notes List B - Textbook Content/Essential - Chapter 8 Introduction to Switch Configuration/Essential Chapter 8 - Switch Configuration, VLANs, STP, PoE, and Troubleshooting.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Essential - Chapter 9 Routing Protocols",
+          "path": "Notes List B - Textbook Content/Essential - Chapter 9 Routing Protocols",
+          "children": [
+            {
+              "type": "file",
+              "name": "Essential Chapter 9 - Routing Protocols.md",
+              "path": "Notes List B - Textbook Content/Essential - Chapter 9 Routing Protocols/Essential Chapter 9 - Routing Protocols.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Textbook 1 - Chapter 1 Network Basics",
+          "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 1 Network Basics",
+          "children": [
+            {
+              "type": "file",
+              "name": "Book 1 Chapter 1 - Network Basics.md",
+              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 1 Network Basics/Book 1 Chapter 1 - Network Basics.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Textbook 1 - Chapter 2 Network Fundamentals",
+          "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 2 Network Fundamentals",
+          "children": [
+            {
+              "type": "file",
+              "name": "MAC Addresses.md",
+              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 2 Network Fundamentals/MAC Addresses.md"
+            },
+            {
+              "type": "file",
+              "name": "Network Devices.md",
+              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 2 Network Fundamentals/Network Devices.md"
+            },
+            {
+              "type": "file",
+              "name": "Network Topologies.md",
+              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 2 Network Fundamentals/Network Topologies.md"
+            },
+            {
+              "type": "file",
+              "name": "OSI Model Layers 1-3.md",
+              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 2 Network Fundamentals/OSI Model Layers 1-3.md"
+            },
+            {
+              "type": "file",
+              "name": "Packets versus Frames.md",
+              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 2 Network Fundamentals/Packets versus Frames.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Textbook 1 - Chapter 3 Switches, Routers, and VLANs",
+          "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 3 Switches, Routers, and VLANs",
+          "children": [
+            {
+              "type": "file",
+              "name": "Book 1 Chapter 3 - Switches, Routers, and VLANs.md",
+              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 3 Switches, Routers, and VLANs/Book 1 Chapter 3 - Switches, Routers, and VLANs.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Textbook 1 - Chapter 4 Cybersecurity",
+          "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 4 Cybersecurity",
+          "children": [
+            {
+              "type": "file",
+              "name": "Book 1 Chapter 4 - Cybersecurity.md",
+              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 4 Cybersecurity/Book 1 Chapter 4 - Cybersecurity.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Textbook 2 - Chapter 1 Protocols and Standards",
+          "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 1 Protocols and Standards",
+          "children": [
+            {
+              "type": "file",
+              "name": "Ethernet Development.md",
+              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 1 Protocols and Standards/Ethernet Development.md"
+            },
+            {
+              "type": "file",
+              "name": "Network Protocols.md",
+              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 1 Protocols and Standards/Network Protocols.md"
+            },
+            {
+              "type": "file",
+              "name": "TCP-IP Protocol Suite.md",
+              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 1 Protocols and Standards/TCP-IP Protocol Suite.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Textbook 2 - Chapter 2 Internet Foundations",
+          "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 2 Internet Foundations",
+          "children": [
+            {
+              "type": "file",
+              "name": "The Internet, ARPANET, TCP-IP Standards, and RFCs.md",
+              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 2 Internet Foundations/The Internet, ARPANET, TCP-IP Standards, and RFCs.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Textbook 2 - Chapter 3 IP Addressing and Subnetting",
+          "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 3 IP Addressing and Subnetting",
+          "children": [
+            {
+              "type": "file",
+              "name": "Binary, IP Addressing, Subnetting, NAT, and Firewalls.md",
+              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 3 IP Addressing and Subnetting/Binary, IP Addressing, Subnetting, NAT, and Firewalls.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Textbook 2 - Chapter 5 DHCP and Address Management",
+          "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 5 DHCP and Address Management",
+          "children": [
+            {
+              "type": "file",
+              "name": "Understanding DHCP, Scopes, VLANs, and Client Configuration.md",
+              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 5 DHCP and Address Management/Understanding DHCP, Scopes, VLANs, and Client Configuration.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Textbook 2 - Chapter 6 DNS and Name Resolution",
+          "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 6 DNS and Name Resolution",
+          "children": [
+            {
+              "type": "file",
+              "name": "DNS, Queries, Zones, and Resource Records.md",
+              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 6 DNS and Name Resolution/DNS, Queries, Zones, and Resource Records.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Textbook 2 - Chapter 7 Windows Network Commands",
+          "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 7 Windows Network Commands",
+          "children": [
+            {
+              "type": "file",
+              "name": "Windows Network Commands - What They Do.md",
+              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 7 Windows Network Commands/Windows Network Commands - What They Do.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "directory",
+      "name": "Notes List C - Alex's Personal Notes",
+      "path": "Notes List C - Alex's Personal Notes",
+      "children": [
+        {
+          "type": "directory",
+          "name": "Lecture Week 1",
+          "path": "Notes List C - Alex's Personal Notes/Lecture Week 1",
+          "children": [
+            {
+              "type": "file",
+              "name": "Week 1 Notes.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 1/Week 1 Notes.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Lecture Week 2",
+          "path": "Notes List C - Alex's Personal Notes/Lecture Week 2",
+          "children": [
+            {
+              "type": "file",
+              "name": "Week 2 Notes.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 2/Week 2 Notes.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Lecture Week 3",
+          "path": "Notes List C - Alex's Personal Notes/Lecture Week 3",
+          "children": [
+            {
+              "type": "file",
+              "name": "Week 3 Notes.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 3/Week 3 Notes.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Lecture Week 4",
+          "path": "Notes List C - Alex's Personal Notes/Lecture Week 4",
+          "children": [
+            {
+              "type": "file",
+              "name": "DHCP and DORA.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 4/DHCP and DORA.md"
+            },
+            {
+              "type": "file",
+              "name": "DNS, FQDNs, and WINS.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 4/DNS, FQDNs, and WINS.md"
+            },
+            {
+              "type": "file",
+              "name": "Duplex Modes.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 4/Duplex Modes.md"
+            },
+            {
+              "type": "file",
+              "name": "Multiplexing.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 4/Multiplexing.md"
+            },
+            {
+              "type": "file",
+              "name": "Network Latency and Jitter.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 4/Network Latency and Jitter.md"
+            },
+            {
+              "type": "file",
+              "name": "Switch Serial Connections - RS-232.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 4/Switch Serial Connections - RS-232.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Lecture Week 5",
+          "path": "Notes List C - Alex's Personal Notes/Lecture Week 5",
+          "children": [
+            {
+              "type": "file",
+              "name": "ALOHA.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/ALOHA.md"
+            },
+            {
+              "type": "file",
+              "name": "Application Layer Protocols.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/Application Layer Protocols.md"
+            },
+            {
+              "type": "file",
+              "name": "Error Detection - Checksum and CRC.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/Error Detection - Checksum and CRC.md"
+            },
+            {
+              "type": "file",
+              "name": "OSI Encapsulation Table.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/OSI Encapsulation Table.md"
+            },
+            {
+              "type": "file",
+              "name": "Packet Headers and Transmission.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/Packet Headers and Transmission.md"
+            },
+            {
+              "type": "file",
+              "name": "Packets, Frames, and Collisions.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/Packets, Frames, and Collisions.md"
+            },
+            {
+              "type": "file",
+              "name": "Ports.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/Ports.md"
+            },
+            {
+              "type": "file",
+              "name": "TCP - Flags, Handshake, and DDOS.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/TCP - Flags, Handshake, and DDOS.md"
+            },
+            {
+              "type": "file",
+              "name": "UDP vs TCP.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/UDP vs TCP.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Lecture Week 6",
+          "path": "Notes List C - Alex's Personal Notes/Lecture Week 6",
+          "children": [
+            {
+              "type": "file",
+              "name": "CIDR and Subnet Masks.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 6/CIDR and Subnet Masks.md"
+            },
+            {
+              "type": "file",
+              "name": "Hexadecimal and BGP Basics.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 6/Hexadecimal and BGP Basics.md"
+            },
+            {
+              "type": "file",
+              "name": "IANA, Address Classes, and Allocation.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 6/IANA, Address Classes, and Allocation.md"
+            },
+            {
+              "type": "file",
+              "name": "IP Addressing Fundamentals.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 6/IP Addressing Fundamentals.md"
+            },
+            {
+              "type": "file",
+              "name": "Public vs Private IP Addresses.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 6/Public vs Private IP Addresses.md"
+            },
+            {
+              "type": "file",
+              "name": "Week 6 Notes.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 6/Week 6 Notes.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Lecture Week 7",
+          "path": "Notes List C - Alex's Personal Notes/Lecture Week 7",
+          "children": [
+            {
+              "type": "file",
+              "name": "VLAN - Virtual Local Area Network.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 7/VLAN - Virtual Local Area Network.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Lecture Week 8",
+          "path": "Notes List C - Alex's Personal Notes/Lecture Week 8",
+          "children": [
+            {
+              "type": "file",
+              "name": "STP - Spanning Tree Protocol.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 8/STP - Spanning Tree Protocol.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Lecture Week 9",
+          "path": "Notes List C - Alex's Personal Notes/Lecture Week 9",
+          "children": [
+            {
+              "type": "file",
+              "name": "Lecture Week 9.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 9/Lecture Week 9.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Lecture Week 10",
+          "path": "Notes List C - Alex's Personal Notes/Lecture Week 10",
+          "children": [
+            {
+              "type": "file",
+              "name": "Routers and Routing.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 10/Routers and Routing.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Lecture Week 11",
+          "path": "Notes List C - Alex's Personal Notes/Lecture Week 11",
+          "children": [
+            {
+              "type": "file",
+              "name": "Lecture Week 11.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 11/Lecture Week 11.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Lecture Week 12",
+          "path": "Notes List C - Alex's Personal Notes/Lecture Week 12",
+          "children": [
+            {
+              "type": "file",
+              "name": "Lecture Week 12.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 12/Lecture Week 12.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Lecture Week 13",
+          "path": "Notes List C - Alex's Personal Notes/Lecture Week 13",
+          "children": [
+            {
+              "type": "file",
+              "name": "Lecture Week 13.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 13/Lecture Week 13.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "directory",
+      "name": "Notes List D - Alex's Final Exam Preparation",
+      "path": "Notes List D - Alex's Final Exam Preparation",
+      "children": [
+        {
+          "type": "file",
+          "name": "STUDY GUIDE 1.md",
+          "path": "Notes List D - Alex's Final Exam Preparation/STUDY GUIDE 1.md"
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "syllabus.md",
+      "path": "syllabus.md"
+    }
+  ],
+  "defaultNote": "MASTER LIST/Master List.md"
+}

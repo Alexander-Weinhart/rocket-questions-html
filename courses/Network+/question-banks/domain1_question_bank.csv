@@ -1,0 +1,2 @@
+difficulty,question,choice_a,choice_b,choice_c,choice_d,correct_choice,explanation,concept_key,aspect_key,source_path
+easy,What is a LAN?,A network spanning multiple cities,A network within a building or nearby area,A network connecting only to the internet,A wireless-only network,B,A LAN is defined by locality — it covers a building or nearby area regardless of host count.,lan concept,local area network within a building or nearby area,/home/citadel/Documents/NETC-121/Notes List C - Personal Notes/Lecture Week 1/Week 1 Notes.md

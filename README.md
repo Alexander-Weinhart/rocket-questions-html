@@ -24,8 +24,15 @@ This all goes on a web server.
 
 API endpoint used by the web app:
 - `POST /api/changes` -> appends a row to `changes.csv`
-- `POST /api/history` -> appends a row to `question_history.csv`
-- `GET /api/changes` -> returns current `changes.csv`
+- `POST /api/history` -> appends a row to `question_history.csv` only; history cannot be read, replaced, updated, or deleted through the API
+
+Cross-origin API access:
+- the API server sends CORS headers for `https://alex-online.win` and local development on port `3003`
+- this lets the deployed site append to `https://alex-online.win:3003/api/changes` and `/api/history` directly when Apache serves the page from `443`
+
+Apache Content Security Policy:
+- if Apache or Cloudflare reports `connect-src 'none'` warnings, replace that policy with a Rocket Questions-aware policy
+- a ready-to-copy Apache header snippet lives in `deploy/apache-csp.conf`
 
 Server-side record storage directory:
 - default: `/home/citadel/practice-quiz-records/`
@@ -50,12 +57,12 @@ Server-side record storage directory:
 - Retake Incorrect Only
 
 ## Persistence Model
-- Base changes load from `changes.csv`
+- Server sync is one-way from browser to server; the browser does not read server-side change or history CSVs
 - Change actions from:
   - `Not in Current Course Scope`
   - `Ineffective Question`
-  are written server-side to `changes.csv` via `POST /api/changes`
-- Answer history may still be written server-side to `question_history.csv` via `POST /api/history`, but it is not used to drive per-user quiz filtering
+  save browser-locally first, then best-effort append server-side to `changes.csv` via `POST /api/changes`
+- Answer history may still be written server-side to `question_history.csv` via append-only `POST /api/history`, but it is not used to drive per-user quiz filtering
 - Per-user correct/incorrect tracking uses browser-local history only, so one user's attempts do not affect another user's quiz filtering
 - Local browser cache is still used for history, overrides, and reports
 - Difficulty overrides, removed questions, and auto-saved reports save to `localStorage`

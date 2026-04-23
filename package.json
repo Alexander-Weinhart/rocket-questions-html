@@ -1,0 +1,24 @@
+{
+  "name": "rocket-questions-html",
+  "version": "1.0.0",
+  "description": "NETC-121 practice quiz rebuilt as a browser app using only: - HTML - CSS - JavaScript",
+  "main": "app.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexander-Weinhart/rocket-questions-html.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alexander-Weinhart/rocket-questions-html/issues"
+  },
+  "homepage": "https://github.com/Alexander-Weinhart/rocket-questions-html#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1"
+  }
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Static server + API endpoint for server-side change logging."""
+"""Static server + append-only API endpoints for server-side logging."""
 
 from __future__ import annotations
 
@@ -36,6 +36,12 @@ RECORDS_ROOT = _resolve_records_root()
 CHANGES_PATH = RECORDS_ROOT / "changes.csv"
 HISTORY_PATH = RECORDS_ROOT / "question_history.csv"
 LOCK = threading.Lock()
+ALLOWED_CORS_ORIGINS = {
+    "https://alex-online.win",
+    "http://alex-online.win",
+    "http://localhost:3003",
+    "http://127.0.0.1:3003",
+}
 
 PREFERRED_HEADERS = [
     "timestamp",
@@ -177,11 +183,21 @@ class RequestHandler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(ROOT), **kwargs)
 
+    def _send_cors_headers(self) -> None:
+        origin = self.headers.get("Origin", "").strip()
+        if origin in ALLOWED_CORS_ORIGINS:
+            self.send_header("Access-Control-Allow-Origin", origin)
+            self.send_header("Vary", "Origin")
+        else:
+            self.send_header("Access-Control-Allow-Origin", "https://alex-online.win")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.send_header("Access-Control-Max-Age", "86400")
+
     def _send_json(self, code: int, body: dict[str, object]) -> None:
         data = json.dumps(body).encode("utf-8")
         self.send_response(code)
-        self.send_header("Access-Control-Allow-Methods", "POST, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self._send_cors_headers()
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(data)))
         self.end_headers()
@@ -190,6 +206,7 @@ class RequestHandler(SimpleHTTPRequestHandler):
     def _send_text(self, code: int, text: str, content_type: str) -> None:
         data = text.encode("utf-8")
         self.send_response(code)
+        self._send_cors_headers()
         self.send_header("Content-Type", content_type)
         self.send_header("Content-Length", str(len(data)))
         self.end_headers()
@@ -197,8 +214,7 @@ class RequestHandler(SimpleHTTPRequestHandler):
 
     def do_OPTIONS(self) -> None:  # noqa: N802
         self.send_response(204)
-        self.send_header("Access-Control-Allow-Methods", "POST, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self._send_cors_headers()
         self.send_header("Content-Length", "0")
         self.end_headers()
 
@@ -208,9 +224,18 @@ class RequestHandler(SimpleHTTPRequestHandler):
             self._send_text(200, _read_text(CHANGES_PATH), "text/csv; charset=utf-8")
             return
         if path.endswith("/api/history"):
-            self._send_text(200, _read_text(HISTORY_PATH), "text/csv; charset=utf-8")
+            self._send_json(405, {"ok": False, "error": "History is append-only. Use POST /api/history."})
             return
         super().do_GET()
+
+    def do_DELETE(self) -> None:  # noqa: N802
+        self._send_json(405, {"ok": False, "error": "Delete is not supported."})
+
+    def do_PUT(self) -> None:  # noqa: N802
+        self._send_json(405, {"ok": False, "error": "Replace is not supported."})
+
+    def do_PATCH(self) -> None:  # noqa: N802
+        self._send_json(405, {"ok": False, "error": "Update is not supported."})
 
     def do_POST(self) -> None:  # noqa: N802
         path = self.path.split("?", 1)[0].rstrip("/")
@@ -247,8 +272,7 @@ def main() -> None:
     print(f"Records directory: {RECORDS_ROOT}")
     print("POST changes to /api/changes")
     print("GET changes from /api/changes")
-    print("POST history to /api/history")
-    print("GET history from /api/history")
+    print("POST append-only history to /api/history")
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
