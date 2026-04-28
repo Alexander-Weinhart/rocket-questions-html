@@ -163,6 +163,27 @@ test('success criteria release gate', async ({ page, request, browser }) => {
   await page.locator('#back-course-from-week').click();
   await page.locator('#back-course-from-menu').click();
 
+  await page.selectOption('#certification-select', 'comptia-security-plus-sy0-701');
+  await page.locator('#continue-certification').click();
+  await expect(page.locator('#menu-screen')).toBeVisible();
+  await expect(page.locator('#app-title')).toContainText('CompTIA Security+');
+
+  await page.locator('#go-notes').click();
+  await expect(page.locator('#notes-screen')).toBeVisible();
+  await expect(page.locator('#notes-viewer')).toContainText('Security+ Exam Objectives');
+  await expect(page.locator('#notes-tree')).not.toContainText('Notes List B - Textbook Content');
+  await page.locator('#back-notes-to-menu').click();
+
+  await page.locator('#go-practice-quiz').click();
+  await expect(page.locator('#week-screen')).toBeVisible();
+  await expect(page.locator('#practice-unit-title')).toContainText('Domain Selection');
+  await expect(page.locator('#week-grid')).toContainText('Domain 1');
+  await expect(page.locator('#week-grid')).toContainText('coming soon');
+  await page.locator('#back-course-from-week').click();
+  await page.locator('#back-course-from-menu').click();
+
+  await page.selectOption('#certification-select', 'comptia-network-plus-n10-009');
+
   await continueIntoCourseWorkspace(page);
   await page.locator('#go-practice-quiz').click();
   await expect(page.locator('#week-screen')).toBeVisible();

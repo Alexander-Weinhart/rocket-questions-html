@@ -1,7 +1,7 @@
 (() => {
 if (window.__NETC_QUIZ_APP_BOOTED__) {
   window.__NETC_QUIZ_APP_SCRIPT__ = true;
-    window.__NETC_QUIZ_APP_VERSION__ = "2026-04-16-13";
+    window.__NETC_QUIZ_APP_VERSION__ = "2026-04-28-10";
   return;
 }
 window.__NETC_QUIZ_APP_BOOTED__ = true;
@@ -9,7 +9,7 @@ window.__NETC_QUIZ_APP_BOOTED__ = true;
 const WEEK_CHOICES = Array.from({ length: 15 }, (_, i) => i + 1);
 const DOMAIN_CHOICES = Array.from({ length: 5 }, (_, i) => i + 1);
 window.__NETC_QUIZ_APP_SCRIPT__ = true;
-window.__NETC_QUIZ_APP_VERSION__ = "2026-04-16-13";
+window.__NETC_QUIZ_APP_VERSION__ = "2026-04-28-10";
 window.__NETC_QUIZ_APP_READY__ = false;
 const API_PORT = "3003";
 const COURSE_STORAGE_KEY = "rocket_questions_selected_course";
@@ -22,6 +22,7 @@ const REPORTS_STORAGE_KEY = "rocket_questions_reports";
 const CONFIG_STORAGE_KEY = "rocket_questions_quiz_config";
 const CHANGELOG_PATH = `./changelog.md?v=${window.__NETC_QUIZ_APP_VERSION__}`;
 const TOUR_QUESTION_BANK_PATH = `./tour_question_bank.csv?v=${window.__NETC_QUIZ_APP_VERSION__}`;
+const NO_COURSE_ID = "";
 const NO_CERTIFICATION_ID = "";
 const COURSE_CATALOG = [
   {
@@ -50,10 +51,38 @@ const CERTIFICATION_CATALOG = [
     copyrightOwners: ["Alexander Weinhart"],
     contentRoot: "courses/Network+",
     questionBankChoices: [1],
+    practiceUnit: {
+      singular: "Domain",
+      plural: "Domains",
+      choices: DOMAIN_CHOICES,
+      filenamePrefix: "domain",
+      comingSoonChoices: new Set(DOMAIN_CHOICES),
+      labelForChoice: (choice) => `Domain ${choice}`,
+    },
+  },
+  {
+    id: "comptia-security-plus-sy0-701",
+    browserTitle: "Rocket Questions - CompTIA Security+ SY0-701",
+    pageTitle: "Rocket Questions - CompTIA Security+ SY0-701",
+    insignia: "SY0-701",
+    name: "The CompTIA Security+ SY0-701 Certification",
+    subtitle: "Lock the doors, audit the logs, and make the threat actors file a complaint.",
+    yearCreated: 2026,
+    copyrightOwners: ["Alexander Weinhart"],
+    contentRoot: "courses/Security+",
+    questionBankChoices: [1],
+    practiceUnit: {
+      singular: "Domain",
+      plural: "Domains",
+      choices: DOMAIN_CHOICES,
+      filenamePrefix: "domain",
+      comingSoonChoices: new Set(DOMAIN_CHOICES),
+      labelForChoice: (choice) => `Domain ${choice}`,
+    },
   },
 ];
 const MANUALLY_AVAILABLE_WEEKS = new Set([11]);
-const NETC121_COMING_SOON_CHOICES = new Set([14]);
+const NETC121_COMING_SOON_CHOICES = new Set([]);
 const NETC121_CHOICE_LABELS = new Map([
   [15, "Final Exam Prep"],
 ]);
@@ -70,6 +99,7 @@ const VIDEO_WEEK_MAP = {
   22: 11, 23: 11,
   24: 12, 25: 12,
   26: 13, 27: 13,
+  28: 14,
 };
 const VIDEO_TITLE_MAP = {
   1: "Unicast, Broadcast, Multicast",
@@ -99,6 +129,7 @@ const VIDEO_TITLE_MAP = {
   25: "Router Hierarchies and Default Routes",
   26: "Layer 2 vs Layer 3 Switches",
   27: "Micronugget What is Route Redistribution",
+  28: "Wireless Fundamentals Day 55",
 };
 const SYLLABUS_TEXTBOOK_BY_WEEK = {
   1: "Textbook 1 - Chapter 1 Network Basics",
@@ -138,6 +169,10 @@ const HARD_CODED_SOURCE_REFERENCES = [
   {
     marker: "week 10 - ai master list",
     label: "Week 10 - AI Master List",
+  },
+  {
+    marker: "week 14 - ai master list",
+    label: "Week 14 - AI Master List",
   },
   {
     marker: "b_consolidated_config_guide_3850_chapter_01011100.html",
@@ -387,7 +422,7 @@ const TOUR_STEPS = [
 ];
 
 const state = {
-  courseId: COURSE_CATALOG[0].id,
+  courseId: NO_COURSE_ID,
   certificationId: NO_CERTIFICATION_ID,
   activeTrackType: "course",
   questionBank: [],
@@ -452,20 +487,10 @@ function activeTrack() {
   return activeCourse();
 }
 
-function isNetworkPlusTrack() {
-  return state.activeTrackType === "certification" && activeCertification()?.id === "comptia-network-plus-n10-009";
-}
-
 function activePracticeUnitConfig() {
-  if (isNetworkPlusTrack()) {
-    return {
-      singular: "Domain",
-      plural: "Domains",
-      choices: DOMAIN_CHOICES,
-      filenamePrefix: "domain",
-      comingSoonChoices: new Set(DOMAIN_CHOICES),
-      labelForChoice: (choice) => `Domain ${choice}`,
-    };
+  const certification = activeCertification();
+  if (state.activeTrackType === "certification" && certification?.practiceUnit) {
+    return certification.practiceUnit;
   }
   return {
     singular: "Week",
@@ -932,13 +957,17 @@ function validateWalkthroughAnswer(selected, row, isDontKnow) {
 function buildCourseOptions() {
   if (!el.courseSelect) return;
   el.courseSelect.innerHTML = "";
+  const placeholder = document.createElement("option");
+  placeholder.value = NO_COURSE_ID;
+  placeholder.textContent = "Select a Course";
+  el.courseSelect.appendChild(placeholder);
   COURSE_CATALOG.forEach((course) => {
     const opt = document.createElement("option");
     opt.value = course.id;
     opt.textContent = `${course.insignia} | ${course.name}`;
-    opt.selected = course.id === state.courseId;
     el.courseSelect.appendChild(opt);
   });
+  el.courseSelect.value = state.courseId || NO_COURSE_ID;
 }
 
 function buildCertificationOptions() {
@@ -946,16 +975,15 @@ function buildCertificationOptions() {
   el.certificationSelect.innerHTML = "";
   const placeholder = document.createElement("option");
   placeholder.value = NO_CERTIFICATION_ID;
-  placeholder.textContent = "None";
-  placeholder.selected = state.certificationId === NO_CERTIFICATION_ID;
+  placeholder.textContent = "Select a Certification";
   el.certificationSelect.appendChild(placeholder);
   CERTIFICATION_CATALOG.forEach((certification) => {
     const opt = document.createElement("option");
     opt.value = certification.id;
     opt.textContent = certification.name;
-    opt.selected = certification.id === state.certificationId;
     el.certificationSelect.appendChild(opt);
   });
+  el.certificationSelect.value = state.certificationId || NO_CERTIFICATION_ID;
 }
 
 function getJSONStorage(key, fallback) {
@@ -2101,7 +2129,7 @@ function toggleNotesSidebar() {
 
 function filteredNotesRootsForActiveTrack() {
   const manifestRoots = state.notesManifest?.roots || [];
-  if (activeTrack().contentRoot !== "courses/Network+") {
+  if (state.activeTrackType !== "certification") {
     return manifestRoots;
   }
   return manifestRoots.filter((node) => normalizeNotePath(node?.path) !== "Notes List B - Textbook Content");
@@ -3100,6 +3128,16 @@ function buildWeekControls() {
 async function continueFromCourseScreen(target = "course", triggerButton = null) {
   dismissWalkthroughPrompt();
   state.courseId = el.courseSelect.value;
+  if (target === "course" && !state.courseId && state.walkthroughActive && walkthroughCurrentAction() === "continue-course") {
+    state.courseId = COURSE_CATALOG[0]?.id || NO_COURSE_ID;
+    if (el.courseSelect) {
+      el.courseSelect.value = state.courseId;
+    }
+  }
+  if (target === "course" && !state.courseId) {
+    alert("Select a course before continuing.");
+    return;
+  }
   setJSONStorage(COURSE_STORAGE_KEY, state.courseId);
   if (target === "certification" && el.certificationSelect) {
     state.certificationId = el.certificationSelect.value;
@@ -3509,8 +3547,10 @@ async function loadQuestionBanks() {
 }
 
 function loadLocalState() {
-  const storedCourse = String(getJSONStorage(COURSE_STORAGE_KEY, COURSE_CATALOG[0].id) || COURSE_CATALOG[0].id);
-  state.courseId = COURSE_CATALOG.some((c) => c.id === storedCourse) ? storedCourse : COURSE_CATALOG[0].id;
+  const storedCourse = String(getJSONStorage(COURSE_STORAGE_KEY, NO_COURSE_ID) || NO_COURSE_ID);
+  state.courseId = storedCourse === NO_COURSE_ID || COURSE_CATALOG.some((c) => c.id === storedCourse)
+    ? storedCourse
+    : NO_COURSE_ID;
   const storedCertification = String(
     getJSONStorage(CERTIFICATION_STORAGE_KEY, NO_CERTIFICATION_ID) || NO_CERTIFICATION_ID
   );

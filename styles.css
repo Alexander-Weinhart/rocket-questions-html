@@ -178,31 +178,6 @@ p {
   color: var(--muted);
 }
 
-.maintenance-notice {
-  display: grid;
-  gap: 0.45rem;
-  margin: 1rem 0 1.05rem;
-  padding: 1rem;
-  border: 2px solid rgba(255, 229, 122, 0.95);
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(198, 64, 95, 0.92), rgba(255, 115, 92, 0.88));
-  color: #fff8d9;
-  box-shadow: 0 14px 30px rgba(198, 64, 95, 0.28);
-}
-
-.maintenance-notice strong {
-  color: #fffbe9;
-  font-size: clamp(1.6rem, 2.6vw, 2.5rem);
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.maintenance-notice span {
-  color: #fffbe9;
-  font-size: clamp(1.1rem, 1.6vw, 1.45rem);
-  font-weight: 700;
-}
-
 .week-grid {
   display: grid;
   gap: 0.75rem;

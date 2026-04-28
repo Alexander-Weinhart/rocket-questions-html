@@ -1,6 +1,6 @@
 {
   "name": "rocket-questions-html",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "NETC-121 practice quiz rebuilt as a browser app using only: - HTML - CSS - JavaScript",
   "main": "app.js",
   "scripts": {

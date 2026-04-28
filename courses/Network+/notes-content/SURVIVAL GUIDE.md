@@ -1,6 +1,6 @@
 # Network+ Survival Guide
 
-# This is under construction.
+# This is under construction
 
 ## This course is self-administered. 
  - For an academically-paced course, study two days a week. If you study for 4 hours, two days a week, That's equivalent to 1.33 credit hours. You'll be done and possibly certified in 6 weeks, because of a 3 week pre-exam prep period. This is recommended.

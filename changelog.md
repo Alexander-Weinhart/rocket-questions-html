@@ -2,6 +2,130 @@
 
 > A dated history of the features, improvements, and fixes added to Rocket Questions HTML.
 
+## 📅 2026-04-28
+
+### 🔐 CompTIA Security+ Certification Track Added
+
+The certification picker can now open a dedicated CompTIA Security+ workspace that behaves like the existing Network+ flow, with its own notes tree, practice-quiz domain logic, and starter domain content.
+
+**Content updates**
+
+- Added a new `Security+` certification entry to the certification catalog in `app.js`
+- Added starter `courses/Security+` notes content including a survival guide, a copyright placeholder note, and a Security+ exam-objectives page
+- Added `courses/Security+/question-banks/domain1_question_bank.csv` so the Security+ practice quiz has a live first domain instead of a blank shell
+- Generated `courses/Security+/notes-manifest.json` so the notes list page can render the new certification tree immediately
+
+**Bugs fixed / behavior changes**
+
+- Generalized certification practice-unit logic so certification tracks can define their own domain-style quiz structure instead of relying on a Network+-only branch
+- Generalized certification notes filtering so textbook-placeholder roots stay hidden across certification tracks, not just Network+
+- Extended the Playwright smoke test to verify the Security+ certification can load its notes page and domain-selection quiz flow
+- Restored browser-cached course and certification dropdown persistence across refresh and updated the walkthrough/course-selection logic to coexist with the explicit placeholder defaults
+- Bumped the frontend app cache key through `2026-04-28-10` so browsers fetch the Security+ release, dropdown-persistence fix, and Week 14 availability update
+- Bumped the package version through `1.0.3`
+
+### 🔁 Course Selection Persistence Fix
+
+The course and certification selectors now keep their saved values across refresh without breaking the new placeholder defaults or the guided tour.
+
+**Bugs fixed / behavior changes**
+
+- Restored local-storage loading for the course and certification dropdowns on startup
+- Made the rebuilt `<select>` elements explicitly apply their saved `.value` after options are rendered
+- Let the guided tour auto-pick the first course only for its own first step so the new blank default no longer triggers the validation alert
+- Unblocked Week `14` by removing its stale `coming soon` hardcode and adding the missing Week `14` video/source mappings
+- Corrected `courses/Security+/notes-manifest.json` so it reflects the actual Security+ notes filesystem
+- Kept dropdown placeholders as the default when no valid saved selection exists
+
+**Validation**
+
+- Regenerated course notes manifests with `python3 scripts/build_course_notes_manifests.py`
+- Ran `npx playwright test tests/app-smoke.spec.js`; the smoke test passed with the new Security+ flow included
+- Ran a focused Playwright refresh test and confirmed both dropdown selections persisted before and after reload
+- Removed the temporary diagnostic test after verification
+
+### 🧠 Question Bank Cleanup and Week 14 Refresh
+
+The NETC-121 question banks were cleaned up so the generated review material is less repetitive, less source-dependent, and more technically precise. Week 14 also received a fresh 150-question bank tied to the current routing and wireless coverage.
+
+**Content updates**
+
+- Added `courses/NETC-121/question-banks/week14_question_bank.csv` with `150` questions split evenly across `easy`, `medium`, and `hard`
+- Removed approved duplicate question text from later-repeat NETC-121 week banks so repeated concepts are not overcounted across weeks
+- Reworded source-dependent questions that asked students to remember note phrasing or certification wording instead of the actual networking concept
+- Reworded vague question stems across the routing and switching banks so the prompts use clearer nouns and less implied context
+- Corrected the approved misconception patterns for NAT return traffic, classic STP forward delay, router-on-a-stick subinterfaces, and remote-subnet first-hop delivery
+- Removed the leading `*` concept markers from the Week 14 lecture and wireless transcript files after the question generation pass was complete
+
+**Bugs fixed / behavior changes**
+
+- Bumped the frontend app cache key to `2026-04-28-08` so browsers fetch the refreshed question-bank content and latest changelog entry
+- Bumped the package version to `1.0.1` to match the content and release-note update
+
+**Validation**
+
+- Confirmed the Week 14 bank contains `150` generated questions with an even `50 / 50 / 50` difficulty split
+- Confirmed the approved duplicate-removal list was applied to the affected NETC-121 weekly banks
+- Confirmed the targeted memorization, clarity, and misconception rewrites were applied to the approved question IDs and week banks
+- Confirmed the Week 14 lecture and wireless transcript files no longer contain line-leading asterisk markers
+
+### 📚 NETC-121 Week 14 Notes and Syllabus Refresh
+
+Week 14 study content was extended with the wireless fundamentals video note, and the syllabus was cleaned up so the listed readings and videos match the current course materials more explicitly.
+
+**Content updates**
+
+- Added `courses/NETC-121/notes-content/Notes List A - Video Content/Video 28 - Wireless Fundamentals Day 55/Transcript.md`
+- Covered wireless LAN basics including `802.11`, Wi-Fi bands, `RF`, `CSMA/CA`, `SSID`, `BSSID`, service sets, AP roles, and the `1 / 6 / 11` channel recommendation
+- Updated `courses/NETC-121/notes-content/syllabus.md` so Week 14 now lists `Video 28 - Wireless Fundamentals Day 55`
+- Replaced blank reading cells in Weeks `12` through `15` with `no reading assignment` so the table no longer leaves missing textbook rows ambiguous
+
+### 🧹 Expired Maintenance Notice Removed
+
+The old maintenance window announcement was removed from the course selection screen after the scheduled outage had already passed.
+
+**Bugs fixed / behavior changes**
+
+- Removed the expired maintenance notice block from `index.html`
+- Removed the unused `.maintenance-notice` CSS from `styles.css`
+- Left the rest of the course selection screen and changelog panel behavior unchanged
+
+**Validation**
+
+- Confirmed the updated Week 14 row exists in `courses/NETC-121/notes-content/syllabus.md`
+- Confirmed the maintenance notice markup and CSS selectors no longer exist in `index.html` or `styles.css`
+
+---
+
+## 📅 2026-04-23
+
+### 🗂️ Notes Explorer Default Expansion
+
+The notes explorer now opens the first branch in the hierarchy by default so users land on visible note folders instead of a fully collapsed tree.
+
+**Bugs fixed / behavior changes**
+
+- Updated the notes tree builder in `app.js` so the first folder path at each level starts expanded on initial render
+- Added a smoke-test assertion in `tests/app-smoke.spec.js` to verify the first notes-tree toggle starts with `aria-expanded="true"`
+- Regenerated `courses/NETC-121/notes-manifest.json` and `courses/Network+/notes-manifest.json` after the notes-explorer update
+- Added both course manifest files to git tracking in this repo
+
+### 🧰 Local Sync and Ignore Rule Cleanup
+
+Deployment and local-workflow ignore rules were tightened so development artifacts and feedback logs stop creating noisy sync and git status churn.
+
+**Bugs fixed / behavior changes**
+
+- Restored `node_modules/**` to `.vscode/sftp.json` so the VS Code SFTP extension stops trying to upload Playwright and dependency binaries
+- Added `FEEDBACK/changes.csv` and `FEEDBACK/question_history.csv` to `.gitignore` so local feedback logs stay out of git status
+
+**Validation**
+
+- Ran `npx playwright test tests/app-smoke.spec.js`; the smoke test passed
+- Regenerated course notes manifests with `python3 scripts/build_course_notes_manifests.py`
+
+---
+
 ## 📅 2026-04-17
 
 ### 📚 Week 12 and Week 13 Lecture Notes Expanded
@@ -186,6 +310,17 @@ The in-app notes experience was tightened up so the explorer respects the active
 - Updated notes-viewer wrapping rules so long URLs and unbroken text wrap cleanly instead of stretching or clipping lines
 - Replaced visible rocket emoji branding in the splash/header/notes title with `rocket_icon.png`
 
+### 🛠️ Week 11 Availability UI Fix
+
+Week 11 is now treated as a live quiz week in the frontend instead of lingering in placeholder mode after the new content rollout.
+
+**Bugs fixed / behavior changes**
+
+- Bumped the frontend app version in `app.js` to force the browser to pick up the latest week availability state
+- Added Video `22` and Video `23` to the frontend video-to-week mapping as Week `11`
+- Added a hard-coded source label for the Week 11 AI master list so review/report references stay aligned with the new week
+- Added an explicit Week `11` availability override in the frontend so the selector no longer falls back to the `coming soon` placeholder
+
 ---
 
 ## 📅 2026-04-08
@@ -238,21 +373,6 @@ Week 10 notes now include a new video transcript summary for routing fundamental
 - Added `Notes List A - Video Content/Video 22 - Routing Fundamentals/Transcript.md`
 - Updated the notes manifest so Video 22 appears in the in-app Notes Explorer
 - Updated the Week 10 AI master list source references from videos `20-21` to `20-22`
-
----
-
-## 📅 2026-04-09
-
-### 🛠️ Week 11 Availability UI Fix
-
-Week 11 is now treated as a live quiz week in the frontend instead of lingering in placeholder mode after the new content rollout.
-
-**Bugs fixed / behavior changes**
-
-- Bumped the frontend app version in `app.js` to force the browser to pick up the latest week availability state
-- Added Video `22` and Video `23` to the frontend video-to-week mapping as Week `11`
-- Added a hard-coded source label for the Week 11 AI master list so review/report references stay aligned with the new week
-- Added an explicit Week `11` availability override in the frontend so the selector no longer falls back to the `coming soon` placeholder
 
 ---
 

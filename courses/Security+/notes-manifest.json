@@ -1,0 +1,34 @@
+{
+  "roots": [
+    {
+      "type": "directory",
+      "name": "Notes List A - Video Content",
+      "path": "Notes List A - Video Content",
+      "children": [
+        {
+          "type": "directory",
+          "name": "Video 1 - PLACEHOLDER",
+          "path": "Notes List A - Video Content/Video 1 - PLACEHOLDER",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 1 - PLACEHOLDER/Transcript.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "file",
+      "name": "Notes List B - Why it's not here.md",
+      "path": "Notes List B - Why it's not here.md"
+    },
+    {
+      "type": "file",
+      "name": "SURVIVAL GUIDE.md",
+      "path": "SURVIVAL GUIDE.md"
+    }
+  ],
+  "defaultNote": "SURVIVAL GUIDE.md"
+}

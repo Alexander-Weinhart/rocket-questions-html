@@ -13,7 +13,7 @@
 | Week 9 | Spanning Tree Protocol (STP) | Spanning Tree Protocol | Book 1, Chap 4 | Video 18 - Spanning Tree Protocol Explained Step by Step<br>Video 19 - Micronugget: Spanning Tree Protocol Explained CBT Nuggets | Lecture Week 9 |
 | Week 10 | Intro to routing<br>Router-on-a-stick<br>TFTP | TFTP<br>Router on a stick<br>STP | Essential, Chap 9 | Video 20 - What Is a Routing Table?<br>Video 21 - Packet Traveling - How Packets Move Through a Network | Lecture Week 10 |
 | Week 11 | Static routing | BPDU guard<br>Static routing | Essential, Chap 9 | Video 22 - Routing Fundamentals<br>Video 23 - Dynamic Routing Protocols | Lecture Week 11 |
-| Week 12 | Static routing<br>Intro to Dynamic routing | Static routing<br>RIP routing |  | Video 24 - Route Summarization<br>Video 25 - Router Hierarchies and Default Routes | Lecture Week 12 |
-| Week 13 | Routing protocols - EIGRP, OSPF | EIGRP<br>OSPF |  | Video 26 - Layer 2 vs Layer 3 Switches<br>Video 27 - Micronugget What is Route Redistribution | Lecture Week 13 |
-| Week 14 | Router troubleshooting<br>Layer 3 switches | EIGRP<br>Router troubleshooting<br>Layer 3 switches |  |  | Lecture Week 14 |
-| Week 15 | Written Exam | Lab Exam |  |  | Lecture Week 15 |
+| Week 12 | Static routing<br>Intro to Dynamic routing | Static routing<br>RIP routing | no reading assignment | Video 24 - Route Summarization<br>Video 25 - Router Hierarchies and Default Routes | Lecture Week 12 |
+| Week 13 | Routing protocols - EIGRP, OSPF | EIGRP<br>OSPF | no reading assignment | Video 26 - Layer 2 vs Layer 3 Switches<br>Video 27 - Micronugget What is Route Redistribution | Lecture Week 13 |
+| Week 14 | Router troubleshooting<br>Layer 3 switches | EIGRP<br>Router troubleshooting<br>Layer 3 switches | no reading assignment | Video 28 - Wireless Fundamentals Day 55 | Lecture Week 14 |
+| Week 15 | Written Exam | Lab Exam | no reading assignment |  | Lecture Week 15 |

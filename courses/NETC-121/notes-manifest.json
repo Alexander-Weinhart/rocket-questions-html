@@ -522,6 +522,18 @@
               "path": "Notes List A - Video Content/Video 27 - Micronugget What is Route Redistribution/Transcript.md"
             }
           ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 28 - Wireless Fundamentals Day 55",
+          "path": "Notes List A - Video Content/Video 28 - Wireless Fundamentals Day 55",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 28 - Wireless Fundamentals Day 55/Transcript.md"
+            }
+          ]
         }
       ]
     },
@@ -954,6 +966,18 @@
               "type": "file",
               "name": "Lecture Week 13.md",
               "path": "Notes List C - Alex's Personal Notes/Lecture Week 13/Lecture Week 13.md"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Lecture Week 14",
+          "path": "Notes List C - Alex's Personal Notes/Lecture Week 14",
+          "children": [
+            {
+              "type": "file",
+              "name": "Lecture Week 14.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 14/Lecture Week 14.md"
             }
           ]
         }
