@@ -1,0 +1,253 @@
+# [5.5.4 - Basic Network Device Commands](https://www.youtube.com/watch?v=3-KakmVmEpo)
+
+## 5.5.4 - Basic Network Device Commands
+
+- Day: Day 11
+- Duration: 8:56
+
+## Transcript
+
+- `00:01` in your first job working with networks
+- `00:03` you'll probably work with one of the
+- `00:05` major providers of network equipment and
+- `00:07` you'll become very accustomed to using
+- `00:09` the command line for that particular
+- `00:11` equipment but your company might
+- `00:13` purchase equipment from many different
+- `00:15` manufacturers fortunately the commands
+- `00:17` at the command line are very similar
+- `00:20` between these manufacturers so if you
+- `00:22` learn the basics of how to use one
+- `00:24` manufacturer switch you can often use
+- `00:26` that knowledge to also manage another
+- `00:29` manufacturer switch this doesn't mean
+- `00:31` that the syntax of the command line is
+- `00:33` exactly the same between all of these
+- `00:35` different manufacturers but it does come
+- `00:37` very close to each other and the output
+- `00:39` has very similar information from one
+- `00:41` manufacturer to another once you learn
+- `00:44` the technology behind the commands it
+- `00:46` becomes relatively easy to move back and
+- `00:48` forth from one manufacturer to another
+- `00:51` and you'll begin to memorize the
+- `00:53` different commands for the different
+- `00:54` manufacturers and it will soon become
+- `00:56` very second
+- `00:57` nature in our videos where we talk about
+- `01:00` about the switching process we talk a
+- `01:02` lot about the MAC address table this is
+- `01:04` the table inside of the switch that has
+- `01:06` a list of all of the Mac addresses that
+- `01:08` it's learned and it knows which ports
+- `01:10` that it learned that MAC address on now
+- `01:12` when the switch needs to make a decision
+- `01:14` about where certain traffic should be
+- `01:15` sent it can reference that Mac address
+- `01:18` in the table identify the port and send
+- `01:20` that traffic directly out that port on
+- `01:22` Mini manufacturer's equipment there is a
+- `01:24` show command that provides this view
+- `01:27` this is a Cisco switch and I use the
+- `01:29` show m Mac address table command to list
+- `01:31` out all of the Mac addresses in the MAC
+- `01:34` address table so if you're
+- `01:35` troubleshooting a switch and you're
+- `01:37` wondering why certain traffic may be
+- `01:39` sent out every interface or you're
+- `01:41` wondering if you've hit the maximum
+- `01:42` number of entries in your Mac address
+- `01:44` table you can use the show Mac address
+- `01:46` table to get more
+- `01:48` details we've also talked a lot about
+- `01:50` routing in this course and if you'd like
+- `01:52` to see a list of the routes inside of
+- `01:54` the routing table you can use the show
+- `01:56` route command this is a very useful
+- `01:59` command to be a able to see exactly
+- `02:01` where the routes are for a particular
+- `02:03` router and you can use this command on
+- `02:05` each router to be able to build the path
+- `02:07` that it should take to get traffic from
+- `02:09` one end of the network to the other it's
+- `02:12` very common to use the show route
+- `02:14` command have a look at the routes in the
+- `02:15` table find the route that would apply to
+- `02:18` the traffic that you're looking at and
+- `02:19` then follow that traffic out the
+- `02:21` specific interface you can then use that
+- `02:24` process on every route throughout the
+- `02:26` path to track it from one end of the
+- `02:28` network to the other here's an example
+- `02:30` of the show route command from a Cisco
+- `02:32` router at the top of the show route
+- `02:34` command is a list of all of the
+- `02:36` abbreviations that are used in the
+- `02:38` routing table itself on the left side
+- `02:40` you can see these abbreviations there
+- `02:42` are only two that are used in this
+- `02:44` particular routing table one is the r
+- `02:46` abbreviation that correlates back to a
+- `02:48` rip protocol that was used to build that
+- `02:50` route and then we also have a c which is
+- `02:53` a connected route this means that this
+- `02:55` particular network is directly connected
+- `02:57` to an interface of this router you can
+- `03:00` then step through each one of these
+- `03:01` routes to see which might apply towards
+- `03:03` the traffic that you're looking at this
+- `03:05` first line of the routing table is for
+- `03:07` all traffic that would need to go to
+- `03:09` 1.0.0 sl8 it would get to that route
+- `03:12` through
+- `03:14` 2020.2 and you would reach that next hop
+- `03:17` by leaving serial
+- `03:18` 3/0 as the interface there may be a more
+- `03:22` specific route inside of this routing
+- `03:24` table so you would need to evaluate each
+- `03:27` one of these routes to see if you have a
+- `03:29` more spefic specific route that could
+- `03:30` apply to your
+- `03:32` traffic maybe our problem is not with
+- `03:34` switching or routing but instead we're
+- `03:37` more concerned with the speed and duplex
+- `03:39` of a particular interface or we may want
+- `03:41` to know if there's any errors associated
+- `03:44` with a particular interface and you
+- `03:46` would view that by using the show
+- `03:47` interface command the show interface
+- `03:49` command will show you if an interface is
+- `03:52` up if it's down if it's connected or if
+- `03:54` you've administratively disabled that
+- `03:56` interface you can also view information
+- `03:58` about the speed to you and any
+- `04:00` encapsulation types for that interface
+- `04:03` and you may be able to identify problems
+- `04:05` you can see if there's been any CRC
+- `04:07` errors on that interface if you've
+- `04:08` dropped any of the frames coming through
+- `04:10` that particular connection or if there
+- `04:12` was any input or output errors and you
+- `04:14` might be able to get an overall
+- `04:16` performance view you might want to see
+- `04:18` the total number of frames or the total
+- `04:19` number of broadcasts that have gone
+- `04:21` through a particular interface here's a
+- `04:23` view of the show interface command this
+- `04:26` is an interface that is a fast ethernet
+- `04:28` 0 sl0 so that tells us that it's a 100
+- `04:31` megabit interface and it's connected on
+- `04:34` slot zero and Port zero we can see that
+- `04:37` this particular interface is up and the
+- `04:39` line protocol is up so we are getting
+- `04:41` signal on this particular interface we
+- `04:43` can see the hardware configuration this
+- `04:45` is running at full duplex at 100
+- `04:47` megabits per second and the media type
+- `04:49` is an
+- `04:50` RJ45 we can then see input and output
+- `04:53` rates we can view any errors such as CRC
+- `04:55` errors and get an overall view of how
+- `04:58` this interface might be per
+- `05:00` performing when you make a configuration
+- `05:02` change to a device this sometimes is
+- `05:04` done in a web front end but very often
+- `05:07` you can view a text-based view of the
+- `05:09` configuration itself some devices only
+- `05:12` support a text based view for
+- `05:13` configuration and you can view that
+- `05:15` configuration right at the command line
+- `05:17` using the show config command this will
+- `05:20` show you information about the
+- `05:22` configuration that's currently running
+- `05:23` inside of that device and you may be
+- `05:25` able to view configurations that are
+- `05:27` stored on the storage Drive of that
+- `05:29` device device each manufacturer has a
+- `05:31` different format and a different syntax
+- `05:34` that they use when they're storing
+- `05:35` information as part of a configuration
+- `05:37` so you'll need to become more familiar
+- `05:39` with that manufacturer's specific syntax
+- `05:41` and layout to really understand what's
+- `05:44` inside of this configuration file here's
+- `05:47` a configuration file from a router the
+- `05:48` configuration was so long that I had to
+- `05:50` separate it into separate columns you
+- `05:53` can see the command is up here show
+- `05:55` running-config that's the command on
+- `05:57` this particular device that shows us the
+- `05:59` conf configuration that is currently
+- `06:01` active inside of this router we can see
+- `06:03` the configuration is 830 bytes the
+- `06:06` version that we are using information
+- `06:08` about timestamps that will be stored we
+- `06:10` can see router information and then we
+- `06:12` have IP addresses subnet masks and other
+- `06:15` details that are associated with the
+- `06:17` individual router ports there are many
+- `06:19` other details in this configuration but
+- `06:21` it is nice that you're able to read
+- `06:23` through all of these details and if you
+- `06:25` need to modify a configuration you can
+- `06:27` simply change it at the command line and
+- `06:29` then view the configuration
+- `06:31` again in an earlier video we talked
+- `06:34` about viewing the ARP cache that's
+- `06:35` inside of the operating system that
+- `06:37` you're using but there's also a way to
+- `06:39` view the ARP cache inside of switches
+- `06:41` and routers you can do that with the
+- `06:43` show ARP command this views the address
+- `06:46` resolution protocol cache that is loaded
+- `06:48` inside of that device and it's very
+- `06:50` similar to the ARP cache that you would
+- `06:52` see inside of your operating system so
+- `06:54` if you're trying to determine if a
+- `06:56` switch or router sees a particular Mac
+- `06:58` address that's associated with an IP
+- `07:00` address you can view all of that inside
+- `07:03` of your ARP table this is the protocol
+- `07:05` the IP address the hardware or a MAC
+- `07:08` address associated with that IP address
+- `07:10` and the interface that was used to
+- `07:12` identify that particular
+- `07:15` pair if you're working a lot with
+- `07:17` switches then you're probably doing a
+- `07:18` lot of VLAN configurations as well so
+- `07:21` it's important to be able to view what
+- `07:23` vlans are associated with which
+- `07:25` interfaces on that switch you would view
+- `07:27` this by using the show vlink command
+- `07:30` this will list out all of the vlans on
+- `07:33` this device and it will show you what
+- `07:34` interfaces have been assigned to that
+- `07:36` VLAN not only can we view the assigned
+- `07:39` VLAN IDs you can also see what the
+- `07:41` default VLAN is for this entire switch
+- `07:44` you can see interfaces that are part of
+- `07:46` the default VLAN or you can view any
+- `07:48` interfaces that may have been
+- `07:49` specifically assigned to a different
+- `07:52` VLAN a lot of the switches that we use
+- `07:55` today can support power over Ethernet or
+- `07:57` Poe this means that we're going to use
+- `08:00` the ethernet cable to power up devices
+- `08:02` that are on the other end of this switch
+- `08:05` but to do this we need to monitor the
+- `08:06` switch and make sure that we have enough
+- `08:08` power for all of these devices we can
+- `08:10` view this power usage through the show
+- `08:12` Power command this will give us a list
+- `08:15` of all of the interfaces it shows us if
+- `08:17` Poe is turned on or turned off for a
+- `08:19` particular interface and then we can see
+- `08:21` how much power is being used by that
+- `08:24` particular device this also lets us know
+- `08:26` if we can add additional devices to the
+- `08:28` switch this particular switch supports
+- `08:31` 370 Watts we're using 40 Watts so we
+- `08:34` have 330 Watts remaining so if we need
+- `08:37` to add additional devices we probably
+- `08:40` have enough wattage to be able to
+- `08:41` support those using this Poe switch

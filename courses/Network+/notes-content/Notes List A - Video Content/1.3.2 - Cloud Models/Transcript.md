@@ -1,0 +1,123 @@
+# [1.3.2 - Cloud Models](https://www.youtube.com/watch?v=wI2x6eGF1Yg)
+
+## 1.3.2 - Cloud Models
+
+- Day: Day 1
+- Duration: 5:23
+
+## Transcript
+
+- `00:01` When you're deploying a cloud-based application,
+- `00:04` you also need to consider who will
+- `00:06` be accessing that application and from where.
+- `00:09` If you're creating an application
+- `00:10` that anyone on the internet would need to access,
+- `00:13` then you would probably want to include it in a public cloud
+- `00:16` so that everyone can gain access.
+- `00:19` But if you're building out a cloud-based application that
+- `00:22` is for internal use only, you may
+- `00:24` want to deploy this to your own virtualized local data center,
+- `00:28` where you have a private cloud.
+- `00:31` In many organizations, we often use both of these.
+- `00:34` And we need a hybrid configuration
+- `00:36` of both public and private clouds
+- `00:38` for all of these applications.
+- `00:40` One type of cloud model is Software as a Service, or SaaS.
+- `00:45` This is commonly associated with software that is on demand.
+- `00:49` You have a login screen on your browser.
+- `00:52` You log in.
+- `00:52` And now you have access to the application.
+- `00:55` Someone else has written the application.
+- `00:57` Someone else manages the application.
+- `01:00` Your data is stored somewhere within that application.
+- `01:03` And you don't have to do anything else to be able to use
+- `01:06` that particular app.
+- `01:08` You don't have a local installation of software.
+- `01:10` You don't manage or upgrade any of the software itself.
+- `01:14` Instead, you simply log in and use the app.
+- `01:17` This allows for centralized management
+- `01:19` of the application and the data that you're
+- `01:21` putting into the application, which
+- `01:24` means everything is being stored on a third-party cloud platform.
+- `01:28` This is a complete application offering.
+- `01:31` And you don't have to do any type of development work
+- `01:33` to be able to use that app.
+- `01:35` A good example of software as a service
+- `01:37` would be an app like Google Mail or Office 365,
+- `01:41` where you simply log in and use the app.
+- `01:44` There may be times when you would
+- `01:46` like to build your own application
+- `01:48` and deploy and manage your own data.
+- `01:50` And all you really need are the computing resources to be
+- `01:53` able to run that application.
+- `01:55` In that model, you want to use Infrastructure as a Service,
+- `01:59` or IaaS.
+- `02:01` Sometimes you'll see this referred
+- `02:03` to as Hardware as a Service, or HaaS, because you're effectively
+- `02:07` using hardware in the cloud and then using your own software
+- `02:11` on top of that.
+- `02:12` This means that you would be responsible for installing
+- `02:15` your software and managing all of the data associated
+- `02:18` with that software.
+- `02:19` If the software needs to be upgraded,
+- `02:21` you would be the one to upgrade it
+- `02:23` on your infrastructure as a service model.
+- `02:25` The application that you're using
+- `02:27` and the data that you're putting into that application
+- `02:29` is still in the cloud.
+- `02:31` But you have much more control over the access and security
+- `02:35` of that data when you're using infrastructure as a service.
+- `02:39` A good example of infrastructure as a service
+- `02:41` is with web service providers, where you can buy time
+- `02:44` on a particular web server.
+- `02:46` And they make that server available to everyone
+- `02:48` on the internet.
+- `02:50` A middle ground between software as a service and infrastructure
+- `02:54` as a service is Platform as a Service, or PaaS.
+- `02:58` This is still in the cloud.
+- `03:00` But you're the one who manages all of the development efforts
+- `03:03` to customize the application to your specifications.
+- `03:07` The cloud provider gives you all of the tools necessary to build
+- `03:11` this particular app.
+- `03:13` You can think of this as a series of building blocks
+- `03:15` provided by the platform as a service infrastructure.
+- `03:19` And then you build out those blocks
+- `03:21` to create your own application.
+- `03:24` The underlying engine that runs the application
+- `03:27` is the responsibility of the platform as a service provider.
+- `03:30` And your responsibility is to build and maintain
+- `03:33` the apps that are running in platform as a service.
+- `03:37` A good example of a platform as a service infrastructure
+- `03:40` would be something like salesforce.com,
+- `03:42` where they give you all of the tools necessary to create
+- `03:45` a customized application running on the salesforce.com platform.
+- `03:50` Here's an example of a cloud responsibility matrix
+- `03:53` that you might find with any cloud service provider.
+- `03:57` In this chart, I've separated out software as a service,
+- `03:59` platform as a service, infrastructure as a service,
+- `04:02` and then an on-prem device that you would manage yourself.
+- `04:06` Obviously, with on prem, everything
+- `04:09` from the data to the applications
+- `04:11` to the physical data center are all the responsibility
+- `04:14` of the customer.
+- `04:15` But with infrastructure as a service,
+- `04:17` you have the physical data center, the physical network,
+- `04:20` and the physical host all provided by the cloud provider.
+- `04:24` And then you handle all of the other pieces
+- `04:27` of that particular application.
+- `04:29` With platform as a service, you can
+- `04:31` see that network controls, applications, and the identity
+- `04:34` and directory infrastructure may be
+- `04:36` shared between the customer and the cloud provider.
+- `04:39` But you'd still be responsible for the accounts, devices,
+- `04:43` and the information and data.
+- `04:45` With software as a service, much more of these
+- `04:47` are provided by the provider themselves.
+- `04:50` For example, everything associated with the applications
+- `04:53` is clearly in the responsibility of the provider.
+- `04:56` Everything above that would still
+- `04:58` be the responsibility of the customer.
+- `05:01` So depending on the type of infrastructure you want
+- `05:04` and the type of responsibility that you're willing to take on,
+- `05:07` you'll need to pick the right cloud model for your application
+- `05:11` deployment.

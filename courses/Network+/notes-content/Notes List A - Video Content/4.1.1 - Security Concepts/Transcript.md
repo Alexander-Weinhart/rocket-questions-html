@@ -1,0 +1,356 @@
+# [4.1.1 - Security Concepts](https://www.youtube.com/watch?v=51W4Fhds7DQ)
+
+## 4.1.1 - Security Concepts
+
+- Day: Day 8
+- Duration: 13:06
+
+## Transcript
+
+- `00:02` in it security there are a number of
+- `00:04` different topics to consider and in this
+- `00:06` video we'll look at some of those
+- `00:07` security Concepts we'll start with the
+- `00:10` categorization of data if data is
+- `00:13` transferred across the network we refer
+- `00:15` to that as data in transit you'll
+- `00:18` sometimes hear this referred to as data
+- `00:20` in motion anytime you have information
+- `00:23` that's being transferred over a wired or
+- `00:25` wireless network you have data in
+- `00:27` transit most of the devices that we use
+- `00:30` in our Network infrastructure are
+- `00:31` designed to get information from one
+- `00:33` place to another and not necessarily to
+- `00:36` protect that data when you're sending
+- `00:38` information through a switch a router or
+- `00:40` some other network device its primary
+- `00:42` process is to forward that traffic to
+- `00:45` the next location the requirements for
+- `00:47` security would come from other devices
+- `00:49` such as firewalls or intrusion
+- `00:51` prevention systems these are systems
+- `00:54` that are designed to monitor the traffic
+- `00:56` decide if traffic should be forwarded or
+- `00:58` blocked and then look inside the traffic
+- `01:01` itself to make sure that none of that
+- `01:02` information is malicious we might also
+- `01:05` include additional security to data in
+- `01:07` motion through the use of encryption two
+- `01:10` very common encryption types are TLS
+- `01:12` which is transport layer security and IP
+- `01:15` secc which is Internet Protocol
+- `01:18` security if you're saving information to
+- `01:20` a hard drive an SSD or any other type of
+- `01:23` storage device we refer to that data as
+- `01:26` data at rest one common way of
+- `01:28` encrypting data at rest is to encrypt
+- `01:31` the information as you write it to the
+- `01:33` storage drive this means that if someone
+- `01:35` gains access to that storage Drive they
+- `01:37` would have the encrypted files but they
+- `01:39` would have no idea what that information
+- `01:42` actually is some different types of data
+- `01:45` at rest encryption would include the
+- `01:47` entire disk using full disk encryption
+- `01:49` you might encrypt just one single part
+- `01:52` of a database or an entire database of
+- `01:54` information or you might encrypt
+- `01:56` individual files or folders in the file
+- `01:59` system of that oper operating system and
+- `02:01` in most cases we're applying different
+- `02:03` security policies to the data that we're
+- `02:05` storing on these devices for example we
+- `02:07` might create access control lists or
+- `02:09` ACLS that would determine what users
+- `02:12` have access or no access to a particular
+- `02:15` type of data this would allow the system
+- `02:17` administrator or the owner of the data
+- `02:19` to determine who has access to that
+- `02:21` information these security controls are
+- `02:24` usually part of our operating system and
+- `02:26` we can apply it to any data that might
+- `02:28` be at rest
+- `02:30` one of the challenges with security on
+- `02:32` any network is maintaining the control
+- `02:34` and management of all of the different
+- `02:36` encryption keys and certificates we
+- `02:39` refer to the policies and the control of
+- `02:41` all of these different certificates as a
+- `02:43` public key infrastructure or pki if
+- `02:46` you're creating digital certificates
+- `02:48` encryption keys or any other type of
+- `02:51` digital security then you'll want to
+- `02:53` rely on the policies you configure as
+- `02:55` part of your pki as you can imagine a
+- `02:58` pki is not a small part of your security
+- `03:01` infrastructure there's usually quite a
+- `03:03` bit of work that goes into the creation
+- `03:05` of a pki and there's often changes and
+- `03:07` updates to that policy as time goes on
+- `03:10` many organizations will begin building
+- `03:13` out their public key infrastructure when
+- `03:15` they start adding encryption keys to web
+- `03:17` servers or signing public certificates
+- `03:19` to individual users or individual
+- `03:21` devices the pki then becomes a
+- `03:24` requirement for maintaining and managing
+- `03:27` all of these different security assets
+- `03:28` for the entire
+- `03:31` organization one challenge that many
+- `03:33` organizations have is applying a level
+- `03:35` of trust towards a user or device one
+- `03:38` way that they can assign this trust is
+- `03:40` through the use of a digital certificate
+- `03:42` digital certificates are often digitally
+- `03:45` signed by a central certificate
+- `03:47` Authority and that's what adds the trust
+- `03:49` to these individual certificates that
+- `03:51` are then deployed to users or devices
+- `03:54` instead of having a centralized
+- `03:55` certificate Authority some organizations
+- `03:57` will use a more distributed form of
+- `04:00` trust called a web of trust with a web
+- `04:02` of trust if a trusts B and B trust C
+- `04:06` then a can also trust see this process
+- `04:09` of creating certificates a certificate
+- `04:11` Authority and then providing digital
+- `04:13` signatures for those certificates is
+- `04:15` often built into Central operating
+- `04:17` systems for example the certificate
+- `04:20` process is built into the Windows domain
+- `04:22` services but there are many third-party
+- `04:24` options that you can use for many
+- `04:26` different operating
+- `04:27` systems one of the more common ways to
+- `04:30` provide this trust in an organization is
+- `04:32` through the use of a certificate
+- `04:34` Authority this is a centralized
+- `04:36` Authority that all certificates start
+- `04:39` from this means that if anything is
+- `04:41` signed ultimately by this centralized
+- `04:43` Authority you can trust it anywhere in
+- `04:45` your organization some organizations
+- `04:48` will build their own certificate
+- `04:50` Authority within their organization but
+- `04:52` other times they may use a third party
+- `04:54` as an independent Authority whether the
+- `04:57` ca is a trusted internal resource or
+- `04:59` it's a trusted third-party resource the
+- `05:02` ca is responsible for the trust that we
+- `05:05` have in all of the certificates that we
+- `05:07` create and since the certificate
+- `05:09` Authority is digitally signing all of
+- `05:11` these certificates anyone can examine a
+- `05:14` certificate see who signed the
+- `05:15` certificate and then determine if that
+- `05:17` is a signature that they can therefore
+- `05:20` Trust on the Internet it's useful to
+- `05:23` have a third party provide trust that
+- `05:25` way anyone in the world can reference
+- `05:27` that certificate Authority and know that
+- `05:29` 's a trust associated with those digital
+- `05:31` certificates but if all of your devices
+- `05:34` and users are within your own
+- `05:35` organization you could create your own
+- `05:38` certificate Authority this means your
+- `05:40` internal certificate Authority will be
+- `05:42` self- signing all of the certificates
+- `05:44` that are created this means you can get
+- `05:46` public off-the-shelf software to build
+- `05:48` your own certificate Authority and then
+- `05:50` you can start signing your own
+- `05:52` certificates within your organization
+- `05:54` and as long as all of the users in your
+- `05:56` organization can trust the ca they can
+- `05:59` there trust any of the certificates
+- `06:01` created by that same
+- `06:03` CA when we store important data on our
+- `06:06` systems we need to be sure that only the
+- `06:09` authorized users are able to access that
+- `06:11` data this is something that is a common
+- `06:14` issue for all the types of data that we
+- `06:16` use across all of the different systems
+- `06:18` that we're accessing that data from this
+- `06:21` is Complicated by the fact that this
+- `06:22` data could reside anywhere it could be
+- `06:25` on our local computer it could be on a
+- `06:27` central web server or it could be stored
+- `06:29` in the CL Cloud this data might also
+- `06:31` need to be accessed by many different
+- `06:33` individuals that have different rights
+- `06:35` and permissions to that data some of
+- `06:37` this data may need to be accessed by
+- `06:39` customers or contractors or you may need
+- `06:41` internal users to gain access to that
+- `06:43` data we also need to be sure that we
+- `06:46` have controls in place to prevent any
+- `06:48` unauthorized users from Gaining access
+- `06:50` to that data the process of managing the
+- `06:54` permissions and access to that data is
+- `06:56` referred to as IM am or identity and
+- `06:59` access management this involves creating
+- `07:02` an access control to that data to ensure
+- `07:04` that only users access the information
+- `07:06` that they really need to perform their
+- `07:08` job we need to be sure we have proper
+- `07:10` authentication in place so that we can
+- `07:12` verify that that's the user accessing
+- `07:14` the data and we need to be sure that we
+- `07:16` provide authorization for the data once
+- `07:19` those users gain access to the network
+- `07:21` and of course there needs to be a way to
+- `07:23` track and monitor access to the data so
+- `07:26` that we're able to audit and understand
+- `07:28` exactly who access that information at
+- `07:30` any particular
+- `07:32` time an important characteristic of
+- `07:34` identity and access management is the
+- `07:37` concept of least privilege least
+- `07:39` privilege is the concept that a user
+- `07:41` will only have the rights and
+- `07:43` permissions that are necessary to access
+- `07:45` the information they need to perform
+- `07:47` their job function and no additional
+- `07:50` access would be granted this is one of
+- `07:52` the reasons that we don't assign
+- `07:53` administrator access to every system
+- `07:56` that's on the network we need to be sure
+- `07:58` that we are limiting how much access a
+- `08:00` user might have to an application or to
+- `08:02` data and we need to be sure that the
+- `08:04` applications that we're using have just
+- `08:06` the right access for that particular job
+- `08:08` function if you give users too much
+- `08:11` access to data for example give everyone
+- `08:14` administrator access then everyone would
+- `08:16` be able to access any type of data at
+- `08:19` any time and be able to control it in
+- `08:21` any way they would like that would
+- `08:23` obviously be a significant security
+- `08:25` concern and it's one of the reasons that
+- `08:27` least privilege is an important Concept
+- `08:30` in identity and access
+- `08:32` management one way to provide this lease
+- `08:34` privilege is through the process of a
+- `08:36` role-based Access Control most
+- `08:39` organizations will separate individuals
+- `08:41` into separate roles you might have a
+- `08:43` shipping and receiving department there
+- `08:45` might be a manager of that shipping and
+- `08:47` receiving department and there might be
+- `08:49` a vice president that manages not only
+- `08:51` shipping and receiving but also the
+- `08:53` accounting department each one of those
+- `08:55` users has a particular role within the
+- `08:57` organization and their rights and
+- `08:59` permissions will be different depending
+- `09:01` on their role with role-based access
+- `09:03` control the administrator of the network
+- `09:05` determines what type of role an
+- `09:07` individual might have and what
+- `09:09` permissions might be associated with
+- `09:11` that individual role the administrator
+- `09:13` would then assign users to each of those
+- `09:16` role definitions so there might be a
+- `09:18` shipping and receiving role for the
+- `09:20` people performing those functions there
+- `09:21` might be a manager role for shipping and
+- `09:24` receiving and there might be a vice
+- `09:25` president role that handles many
+- `09:27` different aspects of the data across the
+- `09:29` entire organization in Windows we
+- `09:32` provide this role-based Access Control
+- `09:33` through the use of groups we would
+- `09:35` create a separate group for each one of
+- `09:38` those different roles and then we assign
+- `09:40` users to those windows
+- `09:43` groups another way to limit access to
+- `09:45` data is through the use of a geographic
+- `09:48` restriction this means that we would
+- `09:49` identify where a user happens to be and
+- `09:52` then we can assign different rights and
+- `09:54` permissions based on where they may be
+- `09:56` located this can sometimes be done with
+- `09:58` an IP add address if somebody's
+- `10:00` connecting over a VPN they might be
+- `10:02` assigned an internal IP address and we
+- `10:04` might provide them with the rights and
+- `10:06` permissions that are expected for
+- `10:08` someone that's connected to our local
+- `10:10` network but if they're connecting from a
+- `10:12` different state or different country we
+- `10:14` might want to change the type of
+- `10:16` permissions that user might have IP
+- `10:18` addresses are not always the most
+- `10:20` accurate so there might be other ways to
+- `10:22` determine a geographic location for a
+- `10:24` user for example we can use GPS or the
+- `10:27` global positioning system to determine
+- `10:29` where a person might be in the world if
+- `10:31` GPS is not available we might want to
+- `10:33` use the name of the wireless network
+- `10:35` where someone's located and often we can
+- `10:37` determine the location of the access
+- `10:39` point to determine where the user might
+- `10:41` be once we know a user's location we can
+- `10:44` then start assigning rights and
+- `10:45` permissions to where that user may be
+- `10:47` located we refer to this as Geo fencing
+- `10:50` geofencing takes into account where a
+- `10:52` user might be and then allows or
+- `10:55` disallows access to information based on
+- `10:57` a physical location for example certain
+- `11:00` data within the organization might be
+- `11:02` very sensitive and you may only be able
+- `11:04` to view that information if you happen
+- `11:06` to be located in the corporate
+- `11:07` headquarters building itself if you're
+- `11:09` outside of the building you may not have
+- `11:11` access to that
+- `11:13` data many organizations will supplement
+- `11:16` their physical security through the use
+- `11:18` of cameras sometimes refer to this as
+- `11:20` CCTV for closed circuit television this
+- `11:24` is a very common security technology and
+- `11:26` one that is implemented in nearly every
+- `11:28` organization
+- `11:29` some of the more modern cameras can not
+- `11:31` only provide motion detection so you
+- `11:33` know if anyone happens to be in a
+- `11:35` particular area but they might also be
+- `11:37` able to read license tags or be able to
+- `11:39` identify a user based on facial
+- `11:42` recognition usually there are many
+- `11:44` different cameras deployed in locations
+- `11:46` around a building or a campus and all of
+- `11:49` those cameras are networked back to one
+- `11:51` central point where they can store this
+- `11:53` information over a long period of time
+- `11:55` this allows the administrator to go back
+- `11:57` in time and view every video feed that
+- `12:00` may have captured information during a
+- `12:01` particular time frame and if we're
+- `12:04` talking about physical security we're
+- `12:06` also going to talk about door locks a
+- `12:09` conventional lock uses a physical key to
+- `12:11` be able to gain access and it may
+- `12:13` include additional security through the
+- `12:15` use of a deadbolt larger environments
+- `12:18` might have electronic readers where you
+- `12:19` would put in a personal identification
+- `12:22` code to gain access to a door or there
+- `12:24` might be a token based access such as
+- `12:26` the RFID badge associated with this this
+- `12:29` electronic reader or we might not use
+- `12:31` the badge at all and instead focus on
+- `12:34` characteristics of a person such as a
+- `12:37` handprint a fingerprint or a retina scan
+- `12:40` and in some cases we combine these
+- `12:42` together to create multiple factors of
+- `12:44` authentication so you might use a badge
+- `12:46` to be able to badge in but then also
+- `12:49` include a personal identification number
+- `12:51` that someone would not have if they
+- `12:53` simply found your badge lying on the
+- `12:55` ground

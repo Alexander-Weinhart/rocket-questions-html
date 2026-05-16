@@ -16,11 +16,24 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 
 
+def _normalize_base_path(value: str) -> str:
+    cleaned = (value or "").strip()
+    if not cleaned or cleaned == "/":
+        return "/"
+    return f"/{cleaned.strip('/')}"
+
+
+APP_BASE_PATH = _normalize_base_path(os.environ.get("ROCKET_BASE_PATH", "/"))
+
+
 def _resolve_records_root() -> Path:
     """Choose where changes/history CSV files are stored."""
     env_root = os.environ.get("PRACTICE_QUIZ_RECORDS_DIR", "").strip()
     if not env_root:
-        return Path("/home/citadel/practice-quiz-records").expanduser()
+        state_home = os.environ.get("XDG_STATE_HOME", "").strip()
+        if state_home:
+            return Path(state_home).expanduser() / "rocket-questions-html"
+        return Path.home() / ".local" / "state" / "rocket-questions-html"
 
     configured = Path(env_root).expanduser()
     # Guard against web-root writes; keep records in this project directory instead.
@@ -37,8 +50,14 @@ CHANGES_PATH = RECORDS_ROOT / "changes.csv"
 HISTORY_PATH = RECORDS_ROOT / "question_history.csv"
 LOCK = threading.Lock()
 ALLOWED_CORS_ORIGINS = {
+    "https://rocketquestions.com",
+    "https://www.rocketquestions.com",
+    "http://rocketquestions.com",
+    "http://www.rocketquestions.com",
     "https://alex-online.win",
+    "https://www.alex-online.win",
     "http://alex-online.win",
+    "http://www.alex-online.win",
     "http://localhost:3003",
     "http://127.0.0.1:3003",
 }
@@ -183,13 +202,59 @@ class RequestHandler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(ROOT), **kwargs)
 
+    def _strip_base_path(self, request_path: str) -> str:
+        if APP_BASE_PATH == "/":
+            return request_path or "/"
+        if not request_path:
+            return "/"
+        if request_path == APP_BASE_PATH:
+            return "/"
+        prefix = f"{APP_BASE_PATH}/"
+        if request_path.startswith(prefix):
+            stripped = request_path[len(APP_BASE_PATH):]
+            return stripped if stripped.startswith("/") else f"/{stripped}"
+        return request_path
+
+    def translate_path(self, path: str) -> str:
+        return super().translate_path(self._strip_base_path(path))
+
+    def _candidate_path(self, request_path: str) -> Path:
+        relative = request_path.lstrip("/")
+        return (ROOT / relative).resolve()
+
+    def _is_app_route(self, request_path: str) -> bool:
+        if not request_path or request_path == "/":
+            return False
+        clean = request_path.rstrip("/")
+        if clean.endswith("/api/changes") or clean.endswith("/api/history"):
+            return False
+        if Path(clean).suffix:
+            return False
+        try:
+            candidate = self._candidate_path(clean)
+        except OSError:
+            return False
+        if ROOT not in {candidate, *candidate.parents}:
+            return False
+        return not candidate.exists()
+
+    def _send_index_html(self) -> None:
+        index_path = ROOT / "index.html"
+        data = index_path.read_bytes()
+        self.send_response(200)
+        self._send_cors_headers()
+        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Length", str(len(data)))
+        self.end_headers()
+        self.wfile.write(data)
+
     def _send_cors_headers(self) -> None:
         origin = self.headers.get("Origin", "").strip()
         if origin in ALLOWED_CORS_ORIGINS:
             self.send_header("Access-Control-Allow-Origin", origin)
             self.send_header("Vary", "Origin")
         else:
-            self.send_header("Access-Control-Allow-Origin", "https://alex-online.win")
+            self.send_header("Access-Control-Allow-Origin", "https://rocketquestions.com")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
         self.send_header("Access-Control-Max-Age", "86400")
@@ -219,12 +284,16 @@ class RequestHandler(SimpleHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self) -> None:  # noqa: N802
-        path = self.path.split("?", 1)[0].rstrip("/")
+        raw_path = self.path.split("?", 1)[0]
+        path = self._strip_base_path(raw_path).rstrip("/")
         if path.endswith("/api/changes"):
             self._send_text(200, _read_text(CHANGES_PATH), "text/csv; charset=utf-8")
             return
         if path.endswith("/api/history"):
             self._send_json(405, {"ok": False, "error": "History is append-only. Use POST /api/history."})
+            return
+        if self._is_app_route(path):
+            self._send_index_html()
             return
         super().do_GET()
 
@@ -238,7 +307,8 @@ class RequestHandler(SimpleHTTPRequestHandler):
         self._send_json(405, {"ok": False, "error": "Update is not supported."})
 
     def do_POST(self) -> None:  # noqa: N802
-        path = self.path.split("?", 1)[0].rstrip("/")
+        raw_path = self.path.split("?", 1)[0]
+        path = self._strip_base_path(raw_path).rstrip("/")
         if path.endswith("/api/changes"):
             try:
                 length = int(self.headers.get("Content-Length", "0"))
@@ -267,8 +337,9 @@ class RequestHandler(SimpleHTTPRequestHandler):
 def main() -> None:
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 8000
     RECORDS_ROOT.mkdir(parents=True, exist_ok=True)
-    httpd = ThreadingHTTPServer(("0.0.0.0", port), RequestHandler)
-    print(f"Serving {ROOT} at http://0.0.0.0:{port}")
+    httpd = ThreadingHTTPServer(("127.0.0.1", port), RequestHandler)
+    print(f"Serving {ROOT} at http://127.0.0.1:{port}")
+    print(f"App base path: {APP_BASE_PATH}")
     print(f"Records directory: {RECORDS_ROOT}")
     print("POST changes to /api/changes")
     print("GET changes from /api/changes")

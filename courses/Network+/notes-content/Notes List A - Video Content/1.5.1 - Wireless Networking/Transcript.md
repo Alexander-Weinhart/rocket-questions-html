@@ -1,0 +1,148 @@
+# [1.5.1 - Wireless Networking](https://www.youtube.com/watch?v=NeTwL-040ds)
+
+## 1.5.1 - Wireless Networking
+
+- Day: Day 2
+- Duration: 6:36
+
+## Transcript
+
+- `00:01` If you connect to a network at work or at home,
+- `00:04` then you're probably very familiar with wireless networks.
+- `00:07` You may have also noticed that no matter
+- `00:09` where you go with your wireless device
+- `00:11` and whatever network you connect to,
+- `00:13` you always seem to have the required connectivity.
+- `00:16` This is because there is an international standard
+- `00:19` for wireless network that's managed
+- `00:21` by the Institute of Electrical and Electronics
+- `00:24` Engineers or the IEEE.
+- `00:26` The IEEE standard for wireless networks
+- `00:29` is in their standards committee for the 802 series, specifically
+- `00:33` 802.11.
+- `00:35` So anytime you hear anyone mention 802.11,
+- `00:38` they're referring to the standards associated
+- `00:41` with wireless networks.
+- `00:42` Another interesting characteristic
+- `00:44` of wireless networks is that they are constantly evolving
+- `00:47` and constantly changing.
+- `00:49` So you want to check in with the IEEE standards
+- `00:51` to see which type of wireless network you're using.
+- `00:54` There's another organization involved
+- `00:56` with wireless networking called the Wi-Fi Alliance.
+- `00:59` And you'll notice there is a Wi-Fi trademark
+- `01:01` logo on every device that the Wi-Fi alliance is tested.
+- `01:05` This ensures interoperability with the standards
+- `01:08` that are set by the IEEE.
+- `01:10` In the past, we used to refer to these wireless networks with
+- `01:13` their standards name, for example, 802.11b or 802.11ax.
+- `01:19` We've recently added additional names to these standards
+- `01:22` to make them a little easier to understand
+- `01:25` for everyone who's connecting to these wireless networks.
+- `01:28` For example, if you're using the sixth generation of Wi-Fi
+- `01:31` networks, then you're connecting to an 802.11ax network,
+- `01:35` but we also refer to this network as Wi-Fi 6.
+- `01:39` This chart shows a list of all of the major Wi-Fi standards
+- `01:43` listed by their 802.11 name.
+- `01:45` I've also included the new generational name
+- `01:48` for those standards, the frequencies they happen to use,
+- `01:51` and the maximum theoretical link rate for each
+- `01:54` of those standards.
+- `01:55` The first three of these standards, 802.11,a,
+- `01:58` b and g are rarely used today, and we did not formally set
+- `02:02` a generation name to those, although you could colloquially
+- `02:05` refer to these as Wi-Fi 1 Wi-Fi 2, and Wi-Fi 3.
+- `02:09` The newer standards of Wi-Fi 4 through Wi-Fi,
+- `02:12` 7 are covered through the standards of 802.11n ,
+- `02:15` through 802.11b.
+- `02:18` You'll also notice there's a difference on the type
+- `02:20` of frequencies that are used for each of these standards,
+- `02:23` and most of these refer to the 2.4ghz,
+- `02:27` the 5 gigahertz and the 6 gigahertz ranges.
+- `02:30` There are a number of differences
+- `02:32` on how these wireless standards can be implemented.
+- `02:34` There might be a different number of antennas
+- `02:36` or a different number of radios, and that
+- `02:38` accounts for the differences in the theoretical link rates
+- `02:41` that you see in this final column.
+- `02:44` Notice, as we've introduced newer standards
+- `02:46` of wireless networks, that we've also increased the overall link
+- `02:49` rate of those networks.
+- `02:52` But we use more than our local 802.11 networks
+- `02:55` for wireless networking.
+- `02:56` If you have a mobile phone or a mobile tablet,
+- `02:59` then you're probably using a wireless providers network that
+- `03:03` uses 4g, LTE or 5g technologies.
+- `03:07` LTE stands for long term evolution.
+- `03:09` It is what we refer to as the 4G technology,
+- `03:13` and it was a conversion between different standards of GSM
+- `03:17` and CDMA into a single standard that every provider can use.
+- `03:22` These 4G networks supported download rates of approximately
+- `03:25` 150mbps.
+- `03:28` And the improved version of LTE, which is LTE advanced or LTE-A
+- `03:33` supports download rates that double that to 300mbps.
+- `03:38` A more modern version of mobile networking is the 5G networking
+- `03:42` that was introduced in 2020.
+- `03:44` This greatly improved the performance
+- `03:47` of wireless mobile networks.
+- `03:49` And with the right configuration,
+- `03:50` the goal will be to have 10 gigabits per second
+- `03:53` as the overall throughput.
+- `03:55` And in other implementations you may see more reasonable speeds
+- `03:58` such as 100 to 900mbps.
+- `04:01` 5G is dramatically changed the way we look at mobile
+- `04:04` connectivity, especially since we're now able to get similar
+- `04:07` bandwidths over our mobile providers that we currently have
+- `04:11` with wired network providers in our own homes.
+- `04:14` This also means that we're able to greatly increase
+- `04:17` the size of our internet of things or IOT footprint
+- `04:21` because now bandwidth is no longer a constraint.
+- `04:24` This means we can transfer much more data
+- `04:26` over a shorter period of time.
+- `04:28` We can receive notifications much faster
+- `04:30` than we could in the past.
+- `04:32` And because we can transfer more data,
+- `04:34` we can process more of that data in the cloud.
+- `04:37` There may be times when an organization might
+- `04:39` have a remote location that is not
+- `04:41` accessible through any type of traditional internet
+- `04:44` connectivity.
+- `04:46` For that reason, we may want to use
+- `04:47` a non-terrestrial form of connectivity
+- `04:50` known as satellite networking.
+- `04:52` This means that we can add a satellite dish to a location
+- `04:55` and begin sending and receiving data from the satellite.
+- `04:58` This obviously adds additional cost and complexity,
+- `05:02` and the speeds of satellite networking, although reasonable,
+- `05:05` are not as fast as those we might
+- `05:07` have for traditional terrestrial based networking.
+- `05:10` For example, satellite networking
+- `05:12` can commonly provide you with 100 megabits down
+- `05:15` and five megabits up.
+- `05:17` This means that if you have a remote site that
+- `05:19` has no other way to communicate, you
+- `05:21` can add a satellite dish to the roof
+- `05:23` and begin communicating directly to the internet.
+- `05:26` As you can imagine, there is a delay
+- `05:28` as information is sent into space and back down to earth
+- `05:31` again.
+- `05:32` Traditional satellite networking provided 250 milliseconds up
+- `05:36` and 250 milliseconds down.
+- `05:38` So each conversation to and from the satellite
+- `05:41` took approximately half a second.
+- `05:43` Newer technologies such as Starlink
+- `05:45` advertises a 40 millisecond latency,
+- `05:48` and they're working to decrease that down to 20 milliseconds.
+- `05:52` Another challenge with satellite networking
+- `05:54` is that it requires a direct line of sight
+- `05:56` to the satellite that's in orbit above the earth.
+- `05:59` This means if anything does get between the satellite
+- `06:01` receiver and the satellite, then we
+- `06:03` may have a decrease of performance
+- `06:05` or lose connectivity altogether.
+- `06:07` For example, if a thunderstorm was to come through,
+- `06:10` we would suffer through what we call rain fade, where
+- `06:13` we lose connectivity while that storm is going over.
+- `06:16` In those situations, it may be necessary to wait for the storm
+- `06:19` to blow through or we may have other forms of connectivity
+- `06:23` that we might use when a storm is currently active.

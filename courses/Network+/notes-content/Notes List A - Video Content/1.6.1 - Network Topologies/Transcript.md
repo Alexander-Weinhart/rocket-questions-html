@@ -1,0 +1,123 @@
+# [1.6.1 - Network Topologies](https://www.youtube.com/watch?v=3ARTjvpZCoQ)
+
+## 1.6.1 - Network Topologies
+
+- Day: Day 3
+- Duration: 4:42
+
+## Transcript
+
+- `00:01` Networks can connect to each other in many different ways.
+- `00:04` And in this video, we're going to look
+- `00:06` at a number of different network topologies
+- `00:08` and how those different network topologies can be deployed
+- `00:11` in an enterprise network.
+- `00:13` This can be very useful during the planning process, where
+- `00:16` you're designing the network.
+- `00:17` It's also useful during the troubleshooting process
+- `00:20` so that you can tell how different networks are connected
+- `00:22` to other networks.
+- `00:24` This is also useful during the troubleshooting process
+- `00:26` so that you can visually see how one network might
+- `00:29` connect to and send data to another network.
+- `00:32` Let's start this conversation with one
+- `00:35` of the most popular network topologies in use.
+- `00:37` That would be a star network.
+- `00:39` Sometimes you may hear this referred to
+- `00:41` as a hub-and-spoke network.
+- `00:43` This is what we use in most large networks
+- `00:45` to connect devices together.
+- `00:47` There's a central device that is used as the central networking
+- `00:50` component.
+- `00:51` And then everyone on the network is all
+- `00:53` connecting to that same central device.
+- `00:56` A good example of a star network,
+- `00:58` or a hub-and-spoke network, is one
+- `01:00` that we have with switched Ethernet.
+- `01:02` Our Ethernet switch sits in the middle of the network.
+- `01:05` And all of the other devices connect to that same Ethernet
+- `01:08` switch.
+- `01:09` If each of these spokes around the network
+- `01:11` would like to communicate with each other,
+- `01:13` they all must communicate through this central hub.
+- `01:16` A mesh network design is when one location or device connects
+- `01:20` to another location or device over more than one network
+- `01:24` connection.
+- `01:24` This means that we can have one link communicating to another.
+- `01:28` And it might follow one path to get to that location.
+- `01:31` Or it may follow an alternate path
+- `01:33` to be able to get to that location.
+- `01:35` One reason we design a network this way
+- `01:37` is so that if one link in the mesh was to fail,
+- `01:40` we can use one of the other links
+- `01:42` to complete that communication.
+- `01:44` We might also perform load balancing
+- `01:46` over these links, where half of the data
+- `01:48` is sent over one connection, and the other half of the data
+- `01:51` is sent over a different connection.
+- `01:53` Although we can certainly design mesh networks for local area
+- `01:56` networks, we often see them deployed in wide area networks
+- `02:00` so that we can maintain connectivity to a remote site
+- `02:03` regardless of what network connection might be available.
+- `02:07` If you were to look at a large enterprise network,
+- `02:09` you would notice there are a number
+- `02:11` of different architectures all being
+- `02:12` used in different parts of the network.
+- `02:15` And when we combine all of those together,
+- `02:17` we've created a hybrid network.
+- `02:19` One part of the network might be a star network.
+- `02:21` Another part of the network may be point to point.
+- `02:24` And a third part of the network might be a mesh network.
+- `02:26` Once we combine all of these together,
+- `02:28` we've created a hybrid architecture.
+- `02:31` Many data centers take advantage of a spine and leaf
+- `02:35` architecture.
+- `02:36` This is where you would have individual switches
+- `02:38` at the top that are the spine of the network.
+- `02:41` There would be switches in the middle that are leaf networks.
+- `02:44` And then you would have different devices
+- `02:46` connect to the leaf.
+- `02:47` You'll notice that the spine network is
+- `02:49` connected to all of the leafs.
+- `02:51` And the leafs are connected to each of the spines.
+- `02:55` However, those leaf switches do not
+- `02:57` connect directly to each other.
+- `02:58` And the spine switches also do not
+- `03:00` connect directly to each other.
+- `03:02` This works very well for an architecture
+- `03:04` we use in many data centers, known as top-of-rack switching.
+- `03:08` In top-of-rack switching, every rack
+- `03:10` has a leaf switch at the top of every physical rack.
+- `03:14` We would then connect all of the physical devices in that rack
+- `03:18` to the leaf switch that is at the top of that rack.
+- `03:21` This keeps your cabling very simple
+- `03:23` because all of your cabling is self-contained
+- `03:25` within that same rack.
+- `03:26` There is redundancy because you have this rack connected
+- `03:29` to multiple spines.
+- `03:31` This also increases the overall performance of the network
+- `03:34` because we're no more than one switch away
+- `03:36` from any other device in the data center.
+- `03:38` If your data center only has a handful of racks,
+- `03:41` this may be a relatively inexpensive way
+- `03:43` to connect all of these devices together.
+- `03:45` But when you have tens or hundreds or even
+- `03:47` thousands of racks in a data center,
+- `03:50` you would need a separate switch for every rack.
+- `03:52` And of course, the cost of that will increase for each rack
+- `03:56` you have in the network.
+- `03:58` When looking around the network, you
+- `03:59` may find some wide area network connections
+- `04:02` that are point to point.
+- `04:03` And as the name implies, there is a single point
+- `04:06` connected to a single point.
+- `04:08` This was a very common design on older wide area
+- `04:11` networks, where you would use something
+- `04:13` like a T1 or a T3 connection.
+- `04:15` We refer to those as point-to-point T1
+- `04:18` or point-to-point T3.
+- `04:19` We might also use this design in local area networks.
+- `04:23` If you work on a campus, you can connect one building
+- `04:25` to another over two connections.
+- `04:27` And the connection between those two buildings
+- `04:29` would be a point-to-point connection.

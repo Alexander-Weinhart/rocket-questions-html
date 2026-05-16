@@ -1,4 +1,4 @@
-# 📢 Broadcast — One-to-All Communication
+# Broadcast — One-to-All Communication
 
 Broadcast sends a single packet to **every device** on the local network simultaneously. No one is left out — if you're on the network segment, you receive it.
 
@@ -11,10 +11,10 @@ The sender uses a special destination MAC address that every network device is p
 ```
 Sender ──► [Broadcast: FF-FF-FF-FF-FF-FF]
                │
-               ├──► Device A  ✅
-               ├──► Device B  ✅
-               ├──► Device C  ✅
-               └──► Device D  ✅
+               ├──► Device A  
+               ├──► Device B  
+               ├──► Device C  
+               └──► Device D  
 ```
 
 ---
@@ -63,14 +63,14 @@ This is intentional — if broadcasts crossed routers, a single message could fl
 
 ## IPv6 and Broadcast
 
-> ⚠️ IPv6 **removed broadcast entirely**. Instead, IPv6 uses targeted **multicast** groups to accomplish the same tasks (like neighbor discovery). This reduces unnecessary traffic on large networks.
+> IPv6 **removed broadcast entirely**. Instead, IPv6 uses targeted **multicast** groups to accomplish the same tasks (like neighbor discovery). This reduces unnecessary traffic on large networks.
 
 ---
 
 ## Key Properties
 
-- 📌 Destination MAC: `FF-FF-FF-FF-FF-FF`
-- 📌 Scope: local network segment only — stopped by routers
-- 📌 Common uses: ARP requests, DHCP discovery
-- 📌 Every device on the segment must process the frame, even if unrelated
-- 📌 Too many broadcasts = **broadcast storm** — can degrade network performance
+- Destination MAC: `FF-FF-FF-FF-FF-FF`
+- Scope: local network segment only — stopped by routers
+- Common uses: ARP requests, DHCP discovery
+- Every device on the segment must process the frame, even if unrelated
+- Too many broadcasts = **broadcast storm** — can degrade network performance

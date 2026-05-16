@@ -1,0 +1,188 @@
+# [4.2.4 - ARP and DNS Poisoning](https://www.youtube.com/watch?v=2QijB5GtNE4)
+
+## 4.2.4 - ARP and DNS Poisoning
+
+- Day: Day 9
+- Duration: 7:28
+
+## Transcript
+
+- `00:02` spoofing is a term that describes when
+- `00:04` one person or device pretends to be
+- `00:07` another person or device for example a
+- `00:10` fake web server would be a spoofed web
+- `00:12` server a fake DNS server you're spoofing
+- `00:15` the DNS server if you've ever received
+- `00:18` an email that says that it came from a
+- `00:20` person but it really did not come from
+- `00:22` that person then you're a victim of
+- `00:24` email address spoofing and if you've
+- `00:27` received a phone call and the number on
+- `00:29` the screen is is not really the number
+- `00:31` of the person who's calling then you're
+- `00:33` also a victim of caller ID spoofing
+- `00:36` spoofing is a technique that allows an
+- `00:38` attacker to have access to a system or a
+- `00:41` person that normally they would not have
+- `00:43` and this is very commonly used for
+- `00:45` techniques such as on path attacks where
+- `00:48` they can sit in the middle of a
+- `00:49` conversation and be able to monitor or
+- `00:52` even change the contents of that
+- `00:55` conversation one way that a third party
+- `00:57` could sit in the middle of a
+- `00:59` conversation is through the use of ARP
+- `01:01` poisoning this is also called IP
+- `01:04` spoofing where the attacker is
+- `01:06` pretending to be an IP address that they
+- `01:08` really are not in this example we have
+- `01:11` two devices on the network we have a
+- `01:14` 192.168.1 n IP address and you can see
+- `01:17` the MAC address associated with that
+- `01:19` device we also have a router that router
+- `01:22` is
+- `01:24` 192.168.1.1 and obviously the router has
+- `01:26` a completely different Mac address the
+- `01:28` way that address res resolution protocol
+- `01:31` or ARP works is that the device on one
+- `01:34` side needs the MAC address of a device
+- `01:36` that it wants to communicate to all it
+- `01:39` really has is the IP address so if the
+- `01:42` 192.168.1 N needs to communicate to
+- `01:47` 192.168.1.1 it first needs to determine
+- `01:49` what is the MAC address of
+- `01:53` 192.168.1.1 and that is what we would
+- `01:55` use the address resolution protocol for
+- `01:58` ARP will send out a message to everyone
+- `02:00` on the network using a broadcast and
+- `02:02` that broadcast will ask who has
+- `02:07` 192.168.1.1 I need that Mac address and
+- `02:10` the device with that IP address of
+- `02:14` 192.168.1.1 will respond back to the
+- `02:16` requester with the MAC address of that
+- `02:19` particular device you can see in this
+- `02:21` example the MAC address that's responded
+- `02:23` back is exactly the same Mac address
+- `02:25` associated with this router once the
+- `02:28` original device has that response resp
+- `02:30` it will cach that information into a
+- `02:32` local ARP cache on that machine so that
+- `02:35` it now knows that
+- `02:38` 192.168.1.1 is the MAC address that it
+- `02:40` has received as part of that address
+- `02:42` resolution protocol you'll notice that
+- `02:45` there's no authentication or special
+- `02:47` security associated with that art
+- `02:49` process and it's that lack of security
+- `02:52` that the attacker will take advantage of
+- `02:55` this example we have an attacker who is
+- `02:57` at
+- `02:58` 192.168.1.1 14 and you can see they have
+- `03:01` a very different Mac address associated
+- `03:03` with their device they're going to send
+- `03:05` an ARP response to the
+- `03:09` 192.168.1 N device even though that
+- `03:12` device did not originally send a request
+- `03:15` ARP will interpret and take any
+- `03:17` responses that are sent across the
+- `03:19` network and in this case the attacker is
+- `03:22` going to spoof the IP address of the
+- `03:24` router and this attacker says I am
+- `03:27` 192.168.1.1
+- `03:29` and this is the MAC address associated
+- `03:32` with that IP you can see in this example
+- `03:35` the MAC address that's being sent as
+- `03:37` part of that AR response is the MAC
+- `03:39` address of the attacker and not the MAC
+- `03:41` address of the legitimate router when
+- `03:44` that AR response is received this ARP
+- `03:46` cache is now updated with the new
+- `03:48` information so now
+- `03:51` 192.168.1.1 has a completely different
+- `03:53` Mac address than the one that was put
+- `03:55` there originally the attacker has
+- `03:58` effectively spoofed the IP address of
+- `04:00` that router so that the victim now
+- `04:02` believes that the router is located at a
+- `04:05` different Mac address from this point
+- `04:07` forward any traffic sent from this
+- `04:09` device to the router will first be sent
+- `04:12` to the attacker and very commonly the
+- `04:14` attacker will then forward that
+- `04:15` information on to the legitimate router
+- `04:18` this means that neither the victim
+- `04:20` device nor the router realize that there
+- `04:22` is an attacker in the middle of the
+- `04:24` conversation that is intercepting and
+- `04:27` forwarding all of the traffic sent
+- `04:29` between these two devices another type
+- `04:32` of spoofing that can take place is DNS
+- `04:34` spoofing this is also referred to as DNS
+- `04:37` poisoning where we are modifying either
+- `04:40` information contained on the DNS server
+- `04:42` itself or we're modifying the responses
+- `04:45` that are being sent from the DNS server
+- `04:48` we could do this without the DNS server
+- `04:50` Itself by modifying the host file that's
+- `04:52` on the client this host file has a
+- `04:54` higher priority than DNS responses and
+- `04:57` everything in the host file will always
+- `04:59` take Pres Ence over anything else that
+- `05:01` may be on a DNS server this DNS
+- `05:03` poisoning works by sending fake
+- `05:05` responses to legitimate DNS requests and
+- `05:08` if you're not modifying information on
+- `05:10` the DNS server itself this will require
+- `05:13` changing the information on the fly as
+- `05:16` it is sent in real time between the DNS
+- `05:18` server and the victim machine this is a
+- `05:21` perfect example of where onpath attacks
+- `05:23` would be perfect to execute a DNS
+- `05:26` poisoning let's see how this DNS
+- `05:28` poisoning can be used to modify the
+- `05:30` results of a DNS response sent to
+- `05:33` different devices on the network in this
+- `05:35` example we have two users a user one and
+- `05:38` a user two these two devices will be
+- `05:40` querying a DNS server that is also on
+- `05:42` the network and of course you'll notice
+- `05:44` we also have an attacker on the network
+- `05:47` as well the legitimate IP address for
+- `05:49` professor.com is stored currently in
+- `05:52` this DNS server and if user one wanted
+- `05:55` to receive that information it would
+- `05:56` simply make a request to the DNS server
+- `05:58` for profession professormesser.com and
+- `06:01` that DNS server would respond back with
+- `06:03` the IP address of that particular host
+- `06:05` once that's received by user one it's
+- `06:07` added to a cache on the user one machine
+- `06:10` and you can see in this case that the IP
+- `06:12` address that is stored for
+- `06:13` professormesser.com is the same as the
+- `06:16` one that is located on the DNS server at
+- `06:19` this point the attacker could use ARP
+- `06:21` poisoning to sit in the middle of the
+- `06:23` conversation between the DNS server and
+- `06:25` another device or the attacker could
+- `06:27` hack into the DNS server and change the
+- `06:30` configuration of the DNS server itself
+- `06:33` if they do that they'll be able to
+- `06:34` change the IP address of
+- `06:36` professormesser.com to the IP address of
+- `06:39` the attacker's workstation now all
+- `06:41` subsequent requests to the DNS server
+- `06:43` for professormesser.com will return the
+- `06:46` poisoned address instead of the
+- `06:48` legitimate address user to will make
+- `06:51` that request to the DNS server and the
+- `06:53` response from the DNS server does indeed
+- `06:55` send the spoofed address or poisoned
+- `06:58` address to the user to workstation and
+- `07:01` you can see that that is found on the
+- `07:03` user to Cache when that user now wants
+- `07:05` to communicate to Professor m.com
+- `07:08` instead of going to the legitimate IP
+- `07:10` address for that web server they will be
+- `07:12` redirected to a web server that's
+- `07:14` running on the attacker's IP address

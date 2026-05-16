@@ -1,4 +1,4 @@
-# 🦈 Wireshark — Download and Install (Windows 10)
+# Wireshark — Download and Install (Windows 10)
 
 Wireshark is a free, open-source **packet analyser** (also called a network sniffer). It captures all network traffic passing through your NIC and lets you inspect every packet in detail — protocol, source, destination, payload, and more.
 
@@ -16,12 +16,12 @@ Wireshark is a free, open-source **packet analyser** (also called a network snif
 
 | Component | What It Is | Install? |
 |---|---|---|
-| Wireshark (GUI) | The graphical interface — main tool | ✅ Yes |
-| TShark (CLI) | Command-line version of Wireshark | ✅ Yes (included by default) |
-| Npcap | Packet capture driver — **required** for live capture | ✅ Yes — install this |
+| Wireshark (GUI) | The graphical interface — main tool |  Yes |
+| TShark (CLI) | Command-line version of Wireshark |  Yes (included by default) |
+| Npcap | Packet capture driver — **required** for live capture |  Yes — install this |
 | USBpcap | Captures USB traffic instead of network traffic | Optional — only if needed |
 
-> ⚠️ **Npcap is mandatory.** Without it, Wireshark cannot capture live traffic. WinPcap is the older version — Npcap is the current standard.
+> **Npcap is mandatory.** Without it, Wireshark cannot capture live traffic. WinPcap is the older version — Npcap is the current standard.
 
 ---
 
@@ -53,8 +53,8 @@ The interface with activity on the graph is the one currently passing traffic.
 
 ## Key Points
 
-- 📌 Download from **wireshark.org** — Windows 64-bit installer
-- 📌 **Npcap is required** for live capture — install it during setup
-- 📌 GUI (Wireshark) + CLI (TShark) are both installed by default
-- 📌 Npcap Loopback Adapter appears in Network Connections after install
-- 📌 Double-click an interface on the home screen to start capturing
+- Download from **wireshark.org** — Windows 64-bit installer
+- **Npcap is required** for live capture — install it during setup
+- GUI (Wireshark) + CLI (TShark) are both installed by default
+- Npcap Loopback Adapter appears in Network Connections after install
+- Double-click an interface on the home screen to start capturing

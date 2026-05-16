@@ -1,0 +1,74 @@
+# [2.3.4 - Wireless Encryption](https://www.youtube.com/watch?v=YNcobcHXnnY)
+
+## 2.3.4 - Wireless Encryption
+
+- Day: Day 6
+- Duration: 3:23
+
+## Transcript
+
+- `00:01` The wireless networks we use, both at home
+- `00:04` and in our businesses, are sending
+- `00:06` private, confidential, and sensitive information
+- `00:09` all the time.
+- `00:10` And we're very concerned that someone might have access
+- `00:13` to that data, especially on a wireless medium, that
+- `00:16` effectively could be tapped into and listened to by any device
+- `00:21` that happens to be nearby.
+- `00:23` One way that we provide security on this wireless network
+- `00:26` is to limit what users are able to access the network.
+- `00:30` We would commonly do this with some type of authentication
+- `00:33` method, such as a username, a password, or some type
+- `00:37` of multi-factor authentication.
+- `00:39` And, of course, we want to be sure
+- `00:40` that everything sent over this wireless network is protected,
+- `00:43` so we need to add confidentiality
+- `00:45` in the form of encryption.
+- `00:47` And to be sure that we've received the correct information
+- `00:51` over this wireless network, we include a message
+- `00:53` integrity check so that we can verify
+- `00:56` the information that we've received
+- `00:58` is exactly the information that was originally sent.
+- `01:02` One of the first encryption types on wireless networks
+- `01:05` is a method known as wired equivalent privacy, or WEP.
+- `01:10` Unfortunately, WEP was discovered
+- `01:12` to have some significant cryptographic vulnerabilities,
+- `01:15` so we needed to very quickly replace WEP with something that
+- `01:19` was much more secure, and that replacement was known as WPA,
+- `01:23` or Wi-Fi protected access.
+- `01:26` WPA was implemented as a temporary stopgap
+- `01:29` between the insecure WEP and a more secure version of WPA.
+- `01:34` This first iteration of WPA was designed
+- `01:37` to work on exactly the same hardware
+- `01:39` as that older style WEP that we were replacing.
+- `01:43` But we knew that we would need enhanced security
+- `01:45` that we would not currently have available in this initial WPA.
+- `01:50` This replacement, WPA, we named WPA2.
+- `01:54` This is Wi-Fi protected access version two,
+- `01:57` and it's a version that's been around since 2004.
+- `02:00` You'll often see WPA2 reference with a block cipher
+- `02:04` mode known as CCMP.
+- `02:06` If we were to spell this out, it would
+- `02:07` be counter mode with cipher block chaining
+- `02:10` message authentication code protocol,
+- `02:12` or counter slash CBC-MAC.
+- `02:15` This effectively combined encryption and integrity
+- `02:18` in the same protocol.
+- `02:20` The encryption was available with AES
+- `02:23` and the message integrity check was enabled using CBC-MAC.
+- `02:28` The update to WPA two is WPA3.
+- `02:32` This is Wi-Fi protected access version three,
+- `02:34` and it was introduced in 2018.
+- `02:37` This includes a different and more capable
+- `02:39` block cipher mode known as GCMHP.
+- `02:42` This is Galois counter mode protocol.
+- `02:45` This continues to use AES for data confidentiality,
+- `02:49` and we are using a message integrity check
+- `02:51` with the Galois message authentication code, or GMAC.
+- `02:55` If you're planning to implement any type of security
+- `02:58` on your wireless network, you want
+- `02:59` to use the highest level of security
+- `03:01` available in your access points and on your client devices.
+- `03:05` And if you have the option, you should
+- `03:07` consider upgrading all of your devices
+- `03:09` to use the most capable security method available.

@@ -1,0 +1,242 @@
+# [5.5.3 - Hardware Tools](https://www.youtube.com/watch?v=ytcAqNxkI9I)
+
+## 5.5.3 - Hardware Tools
+
+- Day: Day 11
+- Duration: 8:40
+
+## Transcript
+
+- `00:02` as a network administrator you'll be
+- `00:03` working with a lot of cables there may
+- `00:06` be hundreds of cables in large bunches
+- `00:08` coming out of the ceiling and going into
+- `00:10` an IDF or MDF where you're punching it
+- `00:13` down or putting it in patch panels and
+- `00:15` very often you'll need to find one cable
+- `00:17` that's located in this large bunch of
+- `00:20` cables that's in your data center one of
+- `00:22` the ways you can easily find this cable
+- `00:24` is through the use of a tone generator a
+- `00:27` tone generator puts in analog tone on
+- `00:29` The Wire and you can listen into that
+- `00:32` tone using an inductive probe this means
+- `00:35` that you only need to get the probe
+- `00:36` close to the cable to be able to
+- `00:38` identify where that tone might be this
+- `00:41` makes the process of finding a single
+- `00:43` cable and a large bunch of cables very
+- `00:45` very easy you would connect the tone
+- `00:48` generator on one end of the wire this
+- `00:50` can be connected through a modular Jack
+- `00:52` there's coax connections or you might
+- `00:54` even punch it down into a punch down
+- `00:56` block there could also be alligator
+- `00:58` clips so you can manually connect it to
+- `01:00` a piece of copper you would then use the
+- `01:02` probe to locate where that might be in
+- `01:05` that large grouping of cables and
+- `01:07` eventually when you come across the tone
+- `01:09` you know you found the right cable let's
+- `01:12` use a tone generator and an inductive
+- `01:14` probe to find where the end of a cable
+- `01:16` might be I've connected one cable to a
+- `01:19` tone generator and you can see the
+- `01:21` flashing light that's on the tone
+- `01:22` generator tells me that there is a
+- `01:24` analog signal that's being sent over
+- `01:27` this wire so I have this group of cables
+- `01:29` and at the end of one of these cables is
+- `01:31` the tone generator I will use this
+- `01:33` inductive probe that is listening in to
+- `01:36` try to find that particular signal on
+- `01:38` this wire to be able to test it all you
+- `01:40` have to do is touch the outside of the
+- `01:43` cable we can start to hear some of that
+- `01:45` signal coming through but it's not very
+- `01:47` strong for that particular cable let's
+- `01:49` try a different cable and see if we have
+- `01:51` a different response that one has about
+- `01:53` the same signal level we'll try this
+- `01:56` third wire and we finally come across
+- `01:59` the wire that is connected to the other
+- `02:01` end where the tone generator happens to
+- `02:04` be so by simply using that tone
+- `02:06` generator and moving back and forth
+- `02:09` across these wires we're very easily
+- `02:11` able to identify where the end of that
+- `02:14` cable might be another useful tool to
+- `02:17` have around is a cable tester this is a
+- `02:19` relatively simple tester that checks
+- `02:21` continuity from one end of the cable to
+- `02:24` the other if you want to know if pin one
+- `02:25` is connected to pin one and pin two is
+- `02:27` connected to pin two the cable tester
+- `02:29` will tell you very very quickly this
+- `02:32` also means that you can identify pins
+- `02:34` that are not connected so if you have a
+- `02:35` short in the cable it will identify that
+- `02:38` or if there are crossed wires you will
+- `02:40` see that pin one connects to pin three
+- `02:42` or pin two connects to pin six you'll
+- `02:44` notice that in the cable tester as well
+- `02:47` these are usually very simple continuity
+- `02:49` tests they don't show you any
+- `02:50` information about how much signal can be
+- `02:52` supported over that link or what
+- `02:54` category of cable this happens to match
+- `02:57` but it can provide you with verification
+- `02:59` that you've performed the punch down
+- `03:00` properly or that you have the right
+- `03:02` connectors on both ends of the cable the
+- `03:04` tone generator and the inductive probe I
+- `03:06` used earlier also double as a cable
+- `03:08` tester so I plugged in one end of the
+- `03:11` cable to what is the tone generator and
+- `03:13` I put it into the mode of being used as
+- `03:16` a cable tester on the inductive probe
+- `03:18` there is an RJ45 connector at the bottom
+- `03:21` of the inductive probe I'm going to plug
+- `03:23` that in and it's going to act as a cable
+- `03:25` tester and as long as it lights up from
+- `03:28` pins one through pin 8 in that order
+- `03:31` it's telling me that each one of those
+- `03:33` is wired correctly and I have continuity
+- `03:35` for all eight of those
+- `03:38` connections if you'd like to capture
+- `03:40` data from the network itself you may
+- `03:42` need to use some type of external tap
+- `03:45` this allows you to intercept Network
+- `03:47` traffic and send a copy of that traffic
+- `03:49` to a protocol analysis tool or packet
+- `03:52` capture device for a physical tap you
+- `03:54` would physically break the connection
+- `03:56` and put the tap in the middle of this
+- `03:58` connection so this might requires some
+- `04:00` downtime to initially install the tap
+- `04:03` this could be a passive tap which means
+- `04:05` that it's not powered you often see
+- `04:06` passive Taps used for optical fiber or
+- `04:09` it might be an active tap that requires
+- `04:11` additional power to be able to
+- `04:13` regenerate that signal through the tap
+- `04:15` if you don't have a physical tap you may
+- `04:17` be able to perform a similar function
+- `04:20` inside of the switch itself many
+- `04:22` switches support a port mirroring or a
+- `04:25` span connection span stands for switched
+- `04:27` Port analyzer where you you can tell the
+- `04:30` switch to take any data from any of
+- `04:32` those interfaces and send a copy of that
+- `04:35` data to a different interface on the
+- `04:37` switch where of course you've plugged in
+- `04:39` a protocol analyzer one of the
+- `04:41` challenges with a port mirror or span
+- `04:43` connection is that there's a limited
+- `04:44` amount of bandwidth available you may be
+- `04:46` tapping a connection that could send a
+- `04:48` total of two gigabits per second that
+- `04:50` would be 1 gigabit in each connection
+- `04:53` but obviously the port you're connecting
+- `04:54` to the analyzer only has 1 gigabit down
+- `04:57` into the analyzer so for very large
+- `05:00` bandwidth uses you may not want to use a
+- `05:02` port mirror you may instead want to use
+- `05:04` a physical tap here's an example of a
+- `05:07` coax tap but it works very similarly
+- `05:08` whether you're using fiber or twisted
+- `05:10` pair of copper you would be connecting
+- `05:12` two devices one on each side of the
+- `05:15` network you can see there are a transmit
+- `05:17` and a receive pair on each side and
+- `05:20` those will go into the in andout
+- `05:22` connection so you would complete a
+- `05:24` circuit on one connection and complete
+- `05:26` the circuit on the other connection
+- `05:28` there's a copy of the this information
+- `05:30` that is being sent to monitor ports on
+- `05:32` the to and that is where you would plug
+- `05:34` in your analysis tools or your protocol
+- `05:37` analyzer if you have a wireless network
+- `05:40` you may want to gather details about
+- `05:41` what's going over the air with a
+- `05:43` wireless survey tool Wireless survey
+- `05:45` tools can tell you information about the
+- `05:47` coverage of the signal that's being
+- `05:49` received on the network you may be able
+- `05:51` to identify potential interference
+- `05:53` especially if it's coming from another
+- `05:55` access point this might be a tool that's
+- `05:57` built into your operating system or a
+- `05:59` wire wireless access point or it might
+- `06:01` be a third party tool like this one that
+- `06:03` you can install into your operating
+- `06:04` system and be able to gather these
+- `06:06` Wireless statistics if you need detailed
+- `06:09` Wireless information it may require
+- `06:11` specialized hardware and you can use a
+- `06:13` Wi-Fi analyzer to provide that level of
+- `06:15` detail this would be able to see all of
+- `06:18` the 802.11 information that's going
+- `06:20` through the air and in many cases show
+- `06:22` you other information that sharing those
+- `06:24` same frequencies this can provide you
+- `06:26` with Channel strengths you can see what
+- `06:28` channels are in use see what access
+- `06:30` points might be in the area and identify
+- `06:32` any potential sources of interference
+- `06:35` and if you have a more advanced version
+- `06:37` of a Wi-Fi analyzer it may include a
+- `06:39` spectrum analyzer where you can see an
+- `06:42` entire range of frequencies and see
+- `06:44` every signal that's being broadcast on
+- `06:46` any of those frequencies whether it's
+- `06:48` associated with an 802.11 wireless
+- `06:51` network or some other source if you're
+- `06:53` concerned that there's interference
+- `06:55` coming from a thirdparty piece of
+- `06:56` equipment or from a microwave oven you
+- `06:58` can verify that using a spectrum
+- `07:01` analyzer here are the results of
+- `07:03` information that was gathered with a
+- `07:04` Wi-Fi analyzer you can see in this case
+- `07:07` that we have a little bit of noise at
+- `07:09` the bottom of this signal and then a
+- `07:11` little bit of Wireless signal on top of
+- `07:14` that you can see that the signal to
+- `07:16` noise ratio in this particular example
+- `07:18` is very narrow it's very close to each
+- `07:20` other this is very different than
+- `07:22` another view of the network where we can
+- `07:24` see there is a much stronger signal
+- `07:26` there's much more signal than there is
+- `07:28` noise at the bottom our Wi-Fi analyzer
+- `07:31` is able to provide us with a lot of
+- `07:33` detail about just how well our wireless
+- `07:35` network is
+- `07:37` operating if you work a lot with fiber
+- `07:39` optics you might be concerned about
+- `07:41` having Brakes in the fiber optics
+- `07:43` especially if there's a lot of bends in
+- `07:45` a particular fiber optic or maybe you're
+- `07:47` unsure if a particular fiber is in good
+- `07:50` condition one of the ways that you can
+- `07:52` check this is with a visual fault
+- `07:54` locator you can think of this as a
+- `07:56` flashlight that has been specifically
+- `07:58` designed for optic IC fiber the light
+- `08:00` that you shine down the fiber with this
+- `08:02` visual fault locator can be used to
+- `08:05` identify any Brakes in the fiber because
+- `08:07` you'll see the light leaking out from
+- `08:09` around that particular brake you may
+- `08:11` need to turn the lights off in the room
+- `08:13` to see this a little bit better but it
+- `08:14` will be very obvious Once you turn on
+- `08:16` your visual fault locator this is a
+- `08:19` relatively lowtech device but it is very
+- `08:21` effective at finding problems with this
+- `08:23` fiber so you may be able to locate those
+- `08:25` faults before you ever install that
+- `08:27` particular fiber patch into your networ
+- `08:29` work

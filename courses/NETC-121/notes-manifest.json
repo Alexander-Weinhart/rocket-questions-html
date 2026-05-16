@@ -13,79 +13,140 @@
             {
               "type": "file",
               "name": "README.md",
-              "path": "MASTER LIST/Weekly AI Master Lists/README.md"
+              "path": "MASTER LIST/Weekly AI Master Lists/README.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Week 1 - AI Master List.md",
-              "path": "MASTER LIST/Weekly AI Master Lists/Week 1 - AI Master List.md"
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 1 - AI Master List.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Week 2 - AI Master List.md",
-              "path": "MASTER LIST/Weekly AI Master Lists/Week 2 - AI Master List.md"
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 2 - AI Master List.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Week 3 - AI Master List.md",
-              "path": "MASTER LIST/Weekly AI Master Lists/Week 3 - AI Master List.md"
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 3 - AI Master List.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Week 4 - AI Master List.md",
-              "path": "MASTER LIST/Weekly AI Master Lists/Week 4 - AI Master List.md"
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 4 - AI Master List.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Week 5 - AI Master List.md",
-              "path": "MASTER LIST/Weekly AI Master Lists/Week 5 - AI Master List.md"
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 5 - AI Master List.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Week 6 - AI Master List.md",
-              "path": "MASTER LIST/Weekly AI Master Lists/Week 6 - AI Master List.md"
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 6 - AI Master List.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Week 7 - AI Master List.md",
-              "path": "MASTER LIST/Weekly AI Master Lists/Week 7 - AI Master List.md"
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 7 - AI Master List.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Week 8 - AI Master List.md",
-              "path": "MASTER LIST/Weekly AI Master Lists/Week 8 - AI Master List.md"
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 8 - AI Master List.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Week 9 - AI Master List.md",
-              "path": "MASTER LIST/Weekly AI Master Lists/Week 9 - AI Master List.md"
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 9 - AI Master List.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Week 10 - AI Master List.md",
-              "path": "MASTER LIST/Weekly AI Master Lists/Week 10 - AI Master List.md"
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 10 - AI Master List.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Week 11 - AI Master List.md",
-              "path": "MASTER LIST/Weekly AI Master Lists/Week 11 - AI Master List.md"
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 11 - AI Master List.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Week 12 - AI Master List.md",
-              "path": "MASTER LIST/Weekly AI Master Lists/Week 12 - AI Master List.md"
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 12 - AI Master List.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Week 13 - AI Master List.md",
-              "path": "MASTER LIST/Weekly AI Master Lists/Week 13 - AI Master List.md"
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 13 - AI Master List.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Week 14 - AI Master List.md",
+              "path": "MASTER LIST/Weekly AI Master Lists/Week 14 - AI Master List.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
         {
           "type": "file",
           "name": "Master List.md",
-          "path": "MASTER LIST/Master List.md"
+          "path": "MASTER LIST/Master List.md",
+          "video": false,
+          "Video": "false",
+          "youtubeVideo": false
+        },
+        {
+          "type": "file",
+          "name": "syllabus.md",
+          "path": "MASTER LIST/syllabus.md",
+          "video": false,
+          "Video": "false",
+          "youtubeVideo": false
         }
       ]
     },
@@ -96,23 +157,55 @@
       "children": [
         {
           "type": "directory",
+          "name": "Video 1 - TWISTED The dramatic history of twisted-pair Ethernet",
+          "path": "Notes List A - Video Content/Video 1 - TWISTED The dramatic history of twisted-pair Ethernet",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 1 - TWISTED The dramatic history of twisted-pair Ethernet/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "TWISTED The dramatic history of twisted-pair Ethernet.md",
+              "path": "Notes List A - Video Content/Video 1 - TWISTED The dramatic history of twisted-pair Ethernet/TWISTED The dramatic history of twisted-pair Ethernet.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
           "name": "Video 1 - Unicast, Broadcast, Multicast",
           "path": "Notes List A - Video Content/Video 1 - Unicast, Broadcast, Multicast",
           "children": [
             {
               "type": "file",
               "name": "Broadcast.md",
-              "path": "Notes List A - Video Content/Video 1 - Unicast, Broadcast, Multicast/Broadcast.md"
+              "path": "Notes List A - Video Content/Video 1 - Unicast, Broadcast, Multicast/Broadcast.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Multicast.md",
-              "path": "Notes List A - Video Content/Video 1 - Unicast, Broadcast, Multicast/Multicast.md"
+              "path": "Notes List A - Video Content/Video 1 - Unicast, Broadcast, Multicast/Multicast.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Unicast.md",
-              "path": "Notes List A - Video Content/Video 1 - Unicast, Broadcast, Multicast/Unicast.md"
+              "path": "Notes List A - Video Content/Video 1 - Unicast, Broadcast, Multicast/Unicast.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -124,17 +217,49 @@
             {
               "type": "file",
               "name": "CRC Error Detection.md",
-              "path": "Notes List A - Video Content/Video 2 - Ethernet Frame Structure/CRC Error Detection.md"
+              "path": "Notes List A - Video Content/Video 2 - Ethernet Frame Structure/CRC Error Detection.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Encapsulation.md",
-              "path": "Notes List A - Video Content/Video 2 - Ethernet Frame Structure/Encapsulation.md"
+              "path": "Notes List A - Video Content/Video 2 - Ethernet Frame Structure/Encapsulation.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Frame Fields.md",
-              "path": "Notes List A - Video Content/Video 2 - Ethernet Frame Structure/Frame Fields.md"
+              "path": "Notes List A - Video Content/Video 2 - Ethernet Frame Structure/Frame Fields.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 2 - Windows CLI",
+          "path": "Notes List A - Video Content/Video 2 - Windows CLI",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 2 - Windows CLI/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Windows CLI.md",
+              "path": "Notes List A - Video Content/Video 2 - Windows CLI/Windows CLI.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -146,12 +271,41 @@
             {
               "type": "file",
               "name": "CSMA-CA.md",
-              "path": "Notes List A - Video Content/Video 3 - CSMA-CD and CSMA-CA/CSMA-CA.md"
+              "path": "Notes List A - Video Content/Video 3 - CSMA-CD and CSMA-CA/CSMA-CA.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "CSMA-CD.md",
-              "path": "Notes List A - Video Content/Video 3 - CSMA-CD and CSMA-CA/CSMA-CD.md"
+              "path": "Notes List A - Video Content/Video 3 - CSMA-CD and CSMA-CA/CSMA-CD.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 3 - Mac CLI",
+          "path": "Notes List A - Video Content/Video 3 - Mac CLI",
+          "children": [
+            {
+              "type": "file",
+              "name": "Mac CLI.md",
+              "path": "Notes List A - Video Content/Video 3 - Mac CLI/Mac CLI.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 3 - Mac CLI/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -163,32 +317,80 @@
             {
               "type": "file",
               "name": "DHCP Lease.md",
-              "path": "Notes List A - Video Content/Video 4 - DHCP/DHCP Lease.md"
+              "path": "Notes List A - Video Content/Video 4 - DHCP/DHCP Lease.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "DHCP Reservation.md",
-              "path": "Notes List A - Video Content/Video 4 - DHCP/DHCP Reservation.md"
+              "path": "Notes List A - Video Content/Video 4 - DHCP/DHCP Reservation.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "DHCP Scope.md",
-              "path": "Notes List A - Video Content/Video 4 - DHCP/DHCP Scope.md"
+              "path": "Notes List A - Video Content/Video 4 - DHCP/DHCP Scope.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "DHCP Service Locations.md",
-              "path": "Notes List A - Video Content/Video 4 - DHCP/DHCP Service Locations.md"
+              "path": "Notes List A - Video Content/Video 4 - DHCP/DHCP Service Locations.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Dynamic IP.md",
-              "path": "Notes List A - Video Content/Video 4 - DHCP/Dynamic IP.md"
+              "path": "Notes List A - Video Content/Video 4 - DHCP/Dynamic IP.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Static IP.md",
-              "path": "Notes List A - Video Content/Video 4 - DHCP/Static IP.md"
+              "path": "Notes List A - Video Content/Video 4 - DHCP/Static IP.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 4 - Traceroute (tracert) Explained - Network Troubleshooting",
+          "path": "Notes List A - Video Content/Video 4 - Traceroute (tracert) Explained - Network Troubleshooting",
+          "children": [
+            {
+              "type": "file",
+              "name": "Traceroute (tracert) Explained - Network Troubleshooting.md",
+              "path": "Notes List A - Video Content/Video 4 - Traceroute (tracert) Explained - Network Troubleshooting/Traceroute (tracert) Explained - Network Troubleshooting.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 5 - ARP Explained - Address Resolution Protocol",
+          "path": "Notes List A - Video Content/Video 5 - ARP Explained - Address Resolution Protocol",
+          "children": [
+            {
+              "type": "file",
+              "name": "ARP Explained - Address Resolution Protocol.md",
+              "path": "Notes List A - Video Content/Video 5 - ARP Explained - Address Resolution Protocol/ARP Explained - Address Resolution Protocol.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -200,22 +402,57 @@
             {
               "type": "file",
               "name": "Application Layer.md",
-              "path": "Notes List A - Video Content/Video 5 - TCP-IP Model/Application Layer.md"
+              "path": "Notes List A - Video Content/Video 5 - TCP-IP Model/Application Layer.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Key Advantages.md",
-              "path": "Notes List A - Video Content/Video 5 - TCP-IP Model/Key Advantages.md"
+              "path": "Notes List A - Video Content/Video 5 - TCP-IP Model/Key Advantages.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Packet Journey.md",
-              "path": "Notes List A - Video Content/Video 5 - TCP-IP Model/Packet Journey.md"
+              "path": "Notes List A - Video Content/Video 5 - TCP-IP Model/Packet Journey.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Transport Layer.md",
-              "path": "Notes List A - Video Content/Video 5 - TCP-IP Model/Transport Layer.md"
+              "path": "Notes List A - Video Content/Video 5 - TCP-IP Model/Transport Layer.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 6 - Traceroute (tracert) Explained - Network Troubleshooting",
+          "path": "Notes List A - Video Content/Video 6 - Traceroute (tracert) Explained - Network Troubleshooting",
+          "children": [
+            {
+              "type": "file",
+              "name": "Traceroute (tracert) Explained - Network Troubleshooting.md",
+              "path": "Notes List A - Video Content/Video 6 - Traceroute (tracert) Explained - Network Troubleshooting/Traceroute (tracert) Explained - Network Troubleshooting.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 6 - Traceroute (tracert) Explained - Network Troubleshooting/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -227,27 +464,80 @@
             {
               "type": "file",
               "name": "Download and Install.md",
-              "path": "Notes List A - Video Content/Video 6 - Wireshark/Download and Install.md"
+              "path": "Notes List A - Video Content/Video 6 - Wireshark/Download and Install.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "HTTP vs HTTPS Demo.md",
-              "path": "Notes List A - Video Content/Video 6 - Wireshark/HTTP vs HTTPS Demo.md"
+              "path": "Notes List A - Video Content/Video 6 - Wireshark/HTTP vs HTTPS Demo.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Key Lessons.md",
-              "path": "Notes List A - Video Content/Video 6 - Wireshark/Key Lessons.md"
+              "path": "Notes List A - Video Content/Video 6 - Wireshark/Key Lessons.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Live Capture Examples.md",
-              "path": "Notes List A - Video Content/Video 6 - Wireshark/Live Capture Examples.md"
+              "path": "Notes List A - Video Content/Video 6 - Wireshark/Live Capture Examples.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Telnet Demo.md",
-              "path": "Notes List A - Video Content/Video 6 - Wireshark/Telnet Demo.md"
+              "path": "Notes List A - Video Content/Video 6 - Wireshark/Telnet Demo.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 7 - ARP Explained - Address Resolution Protocol",
+          "path": "Notes List A - Video Content/Video 7 - ARP Explained - Address Resolution Protocol",
+          "children": [
+            {
+              "type": "file",
+              "name": "ARP Explained - Address Resolution Protocol.md",
+              "path": "Notes List A - Video Content/Video 7 - ARP Explained - Address Resolution Protocol/ARP Explained - Address Resolution Protocol.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 7 - ARP Explained - Address Resolution Protocol/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 7 - IP Address - IPv4 vs IPv6 Tutorial",
+          "path": "Notes List A - Video Content/Video 7 - IP Address - IPv4 vs IPv6 Tutorial",
+          "children": [
+            {
+              "type": "file",
+              "name": "IP Address - IPv4 vs IPv6 Tutorial.md",
+              "path": "Notes List A - Video Content/Video 7 - IP Address - IPv4 vs IPv6 Tutorial/IP Address - IPv4 vs IPv6 Tutorial.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -259,12 +549,18 @@
             {
               "type": "file",
               "name": "ARP.md",
-              "path": "Notes List A - Video Content/Video 7 - Subnetting/ARP.md"
+              "path": "Notes List A - Video Content/Video 7 - Subnetting/ARP.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Subnetting.md",
-              "path": "Notes List A - Video Content/Video 7 - Subnetting/Subnetting.md"
+              "path": "Notes List A - Video Content/Video 7 - Subnetting/Subnetting.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -276,12 +572,33 @@
             {
               "type": "file",
               "name": "Binary Math.md",
-              "path": "Notes List A - Video Content/Video 8 - Binary Math and Subnetting/Binary Math.md"
+              "path": "Notes List A - Video Content/Video 8 - Binary Math and Subnetting/Binary Math.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Subnetting.md",
-              "path": "Notes List A - Video Content/Video 8 - Binary Math and Subnetting/Subnetting.md"
+              "path": "Notes List A - Video Content/Video 8 - Binary Math and Subnetting/Subnetting.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 8 - Subnet Mask - Explained",
+          "path": "Notes List A - Video Content/Video 8 - Subnet Mask - Explained",
+          "children": [
+            {
+              "type": "file",
+              "name": "Subnet Mask - Explained.md",
+              "path": "Notes List A - Video Content/Video 8 - Subnet Mask - Explained/Subnet Mask - Explained.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -293,17 +610,102 @@
             {
               "type": "file",
               "name": "CIDR.md",
-              "path": "Notes List A - Video Content/Video 9 - CIDR and IP Addressing/CIDR.md"
+              "path": "Notes List A - Video Content/Video 9 - CIDR and IP Addressing/CIDR.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "DARPANET.md",
-              "path": "Notes List A - Video Content/Video 9 - CIDR and IP Addressing/DARPANET.md"
+              "path": "Notes List A - Video Content/Video 9 - CIDR and IP Addressing/DARPANET.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Public and Private IP Addresses.md",
-              "path": "Notes List A - Video Content/Video 9 - CIDR and IP Addressing/Public and Private IP Addresses.md"
+              "path": "Notes List A - Video Content/Video 9 - CIDR and IP Addressing/Public and Private IP Addresses.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 9 - IP Address - IPv4 vs IPv6 Tutorial",
+          "path": "Notes List A - Video Content/Video 9 - IP Address - IPv4 vs IPv6 Tutorial",
+          "children": [
+            {
+              "type": "file",
+              "name": "IP Address - IPv4 vs IPv6 Tutorial.md",
+              "path": "Notes List A - Video Content/Video 9 - IP Address - IPv4 vs IPv6 Tutorial/IP Address - IPv4 vs IPv6 Tutorial.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 9 - IP Address - IPv4 vs IPv6 Tutorial/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 9 - Unicast, Multicast, and Broadcast - CompTIA Network+ N10-006 - 1.8",
+          "path": "Notes List A - Video Content/Video 9 - Unicast, Multicast, and Broadcast - CompTIA Network+ N10-006 - 1.8",
+          "children": [
+            {
+              "type": "file",
+              "name": "Unicast, Multicast, and Broadcast - CompTIA Network+ N10-006 - 1.8.md",
+              "path": "Notes List A - Video Content/Video 9 - Unicast, Multicast, and Broadcast - CompTIA Network+ N10-006 - 1.8/Unicast, Multicast, and Broadcast - CompTIA Network+ N10-006 - 1.8.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 10 - Ethernet Frame Format Explanation",
+          "path": "Notes List A - Video Content/Video 10 - Ethernet Frame Format Explanation",
+          "children": [
+            {
+              "type": "file",
+              "name": "Ethernet Frame Format Explanation.md",
+              "path": "Notes List A - Video Content/Video 10 - Ethernet Frame Format Explanation/Ethernet Frame Format Explanation.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 10 - Subnet Mask - Explained",
+          "path": "Notes List A - Video Content/Video 10 - Subnet Mask - Explained",
+          "children": [
+            {
+              "type": "file",
+              "name": "Subnet Mask - Explained.md",
+              "path": "Notes List A - Video Content/Video 10 - Subnet Mask - Explained/Subnet Mask - Explained.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 10 - Subnet Mask - Explained/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -315,7 +717,25 @@
             {
               "type": "file",
               "name": "Transcript.md",
-              "path": "Notes List A - Video Content/Video 10 - Telnet and SSH/Transcript.md"
+              "path": "Notes List A - Video Content/Video 10 - Telnet and SSH/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 11 - CSMA-CD and CSMA-CA Explained",
+          "path": "Notes List A - Video Content/Video 11 - CSMA-CD and CSMA-CA Explained",
+          "children": [
+            {
+              "type": "file",
+              "name": "CSMA-CD and CSMA-CA Explained.md",
+              "path": "Notes List A - Video Content/Video 11 - CSMA-CD and CSMA-CA Explained/CSMA-CD and CSMA-CA Explained.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -327,7 +747,71 @@
             {
               "type": "file",
               "name": "Transcript.md",
-              "path": "Notes List A - Video Content/Video 11 - Factory Reset Cisco Switch/Transcript.md"
+              "path": "Notes List A - Video Content/Video 11 - Factory Reset Cisco Switch/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 11 - MASTER the OSI Model in Just 5 Minutes! BEST EXPLANATION WITH ANIMATION",
+          "path": "Notes List A - Video Content/Video 11 - MASTER the OSI Model in Just 5 Minutes! BEST EXPLANATION WITH ANIMATION",
+          "children": [
+            {
+              "type": "file",
+              "name": "MASTER the OSI Model in Just 5 Minutes! BEST EXPLANATION WITH ANIMATION.md",
+              "path": "Notes List A - Video Content/Video 11 - MASTER the OSI Model in Just 5 Minutes! BEST EXPLANATION WITH ANIMATION/MASTER the OSI Model in Just 5 Minutes! BEST EXPLANATION WITH ANIMATION.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 11 - MASTER the OSI Model in Just 5 Minutes! BEST EXPLANATION WITH ANIMATION/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 12 - DHCP Explained - Dynamic Host Configuration Protocol",
+          "path": "Notes List A - Video Content/Video 12 - DHCP Explained - Dynamic Host Configuration Protocol",
+          "children": [
+            {
+              "type": "file",
+              "name": "DHCP Explained - Dynamic Host Configuration Protocol.md",
+              "path": "Notes List A - Video Content/Video 12 - DHCP Explained - Dynamic Host Configuration Protocol/DHCP Explained - Dynamic Host Configuration Protocol.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 12 - Unicast, Multicast, and Broadcast - CompTIA Network+ N10-006 - 1.8",
+          "path": "Notes List A - Video Content/Video 12 - Unicast, Multicast, and Broadcast - CompTIA Network+ N10-006 - 1.8",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 12 - Unicast, Multicast, and Broadcast - CompTIA Network+ N10-006 - 1.8/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Unicast, Multicast, and Broadcast - CompTIA Network+ N10-006 - 1.8.md",
+              "path": "Notes List A - Video Content/Video 12 - Unicast, Multicast, and Broadcast - CompTIA Network+ N10-006 - 1.8/Unicast, Multicast, and Broadcast - CompTIA Network+ N10-006 - 1.8.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -339,7 +823,33 @@
             {
               "type": "file",
               "name": "Transcript.md",
-              "path": "Notes List A - Video Content/Video 12 - What Is Binary/Transcript.md"
+              "path": "Notes List A - Video Content/Video 12 - What Is Binary/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 13 - Ethernet Frame Format Explanation",
+          "path": "Notes List A - Video Content/Video 13 - Ethernet Frame Format Explanation",
+          "children": [
+            {
+              "type": "file",
+              "name": "Ethernet Frame Format Explanation.md",
+              "path": "Notes List A - Video Content/Video 13 - Ethernet Frame Format Explanation/Ethernet Frame Format Explanation.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 13 - Ethernet Frame Format Explanation/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -351,7 +861,33 @@
             {
               "type": "file",
               "name": "Transcript.md",
-              "path": "Notes List A - Video Content/Video 13 - representing numbers and letters with binary/Transcript.md"
+              "path": "Notes List A - Video Content/Video 13 - representing numbers and letters with binary/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 14 - CSMA-CD and CSMA-CA Explained",
+          "path": "Notes List A - Video Content/Video 14 - CSMA-CD and CSMA-CA Explained",
+          "children": [
+            {
+              "type": "file",
+              "name": "CSMA-CD and CSMA-CA Explained.md",
+              "path": "Notes List A - Video Content/Video 14 - CSMA-CD and CSMA-CA Explained/CSMA-CD and CSMA-CA Explained.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 14 - CSMA-CD and CSMA-CA Explained/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -363,7 +899,63 @@
             {
               "type": "file",
               "name": "Transcript.md",
-              "path": "Notes List A - Video Content/Video 14 - How to convert binary to decimal/Transcript.md"
+              "path": "Notes List A - Video Content/Video 14 - How to convert binary to decimal/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 14 - Wireshark Tutorial - Installation and Password sniffing",
+          "path": "Notes List A - Video Content/Video 14 - Wireshark Tutorial - Installation and Password sniffing",
+          "children": [
+            {
+              "type": "file",
+              "name": "Wireshark Tutorial - Installation and Password sniffing.md",
+              "path": "Notes List A - Video Content/Video 14 - Wireshark Tutorial - Installation and Password sniffing/Wireshark Tutorial - Installation and Password sniffing.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 15 - DHCP Explained - Dynamic Host Configuration Protocol",
+          "path": "Notes List A - Video Content/Video 15 - DHCP Explained - Dynamic Host Configuration Protocol",
+          "children": [
+            {
+              "type": "file",
+              "name": "DHCP Explained - Dynamic Host Configuration Protocol.md",
+              "path": "Notes List A - Video Content/Video 15 - DHCP Explained - Dynamic Host Configuration Protocol/DHCP Explained - Dynamic Host Configuration Protocol.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 15 - DHCP Explained - Dynamic Host Configuration Protocol/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 15 - Network Ports Explained",
+          "path": "Notes List A - Video Content/Video 15 - Network Ports Explained",
+          "children": [
+            {
+              "type": "file",
+              "name": "Network Ports Explained.md",
+              "path": "Notes List A - Video Content/Video 15 - Network Ports Explained/Network Ports Explained.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -375,7 +967,25 @@
             {
               "type": "file",
               "name": "Transcript.md",
-              "path": "Notes List A - Video Content/Video 15 - SolarWinds TFTP Server/Transcript.md"
+              "path": "Notes List A - Video Content/Video 15 - SolarWinds TFTP Server/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 16 - How to Take Notes - Study Tips - Cornell Notes",
+          "path": "Notes List A - Video Content/Video 16 - How to Take Notes - Study Tips - Cornell Notes",
+          "children": [
+            {
+              "type": "file",
+              "name": "How to Take Notes - Study Tips - Cornell Notes.md",
+              "path": "Notes List A - Video Content/Video 16 - How to Take Notes - Study Tips - Cornell Notes/How to Take Notes - Study Tips - Cornell Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -387,7 +997,25 @@
             {
               "type": "file",
               "name": "Transcript.md",
-              "path": "Notes List A - Video Content/Video 16 - VLANs Made Easy/Transcript.md"
+              "path": "Notes List A - Video Content/Video 16 - VLANs Made Easy/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 17 - Subnetting and IP",
+          "path": "Notes List A - Video Content/Video 17 - Subnetting and IP",
+          "children": [
+            {
+              "type": "file",
+              "name": "Subnetting and IP.md",
+              "path": "Notes List A - Video Content/Video 17 - Subnetting and IP/Subnetting and IP.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -399,7 +1027,56 @@
             {
               "type": "file",
               "name": "Transcript.md",
-              "path": "Notes List A - Video Content/Video 17 - Trunking and 802.1Q/Transcript.md"
+              "path": "Notes List A - Video Content/Video 17 - Trunking and 802.1Q/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 17 - Wireshark Tutorial - Installation and Password sniffing",
+          "path": "Notes List A - Video Content/Video 17 - Wireshark Tutorial - Installation and Password sniffing",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 17 - Wireshark Tutorial - Installation and Password sniffing/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Wireshark Tutorial - Installation and Password sniffing.md",
+              "path": "Notes List A - Video Content/Video 17 - Wireshark Tutorial - Installation and Password sniffing/Wireshark Tutorial - Installation and Password sniffing.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 18 - Network Ports Explained",
+          "path": "Notes List A - Video Content/Video 18 - Network Ports Explained",
+          "children": [
+            {
+              "type": "file",
+              "name": "Network Ports Explained.md",
+              "path": "Notes List A - Video Content/Video 18 - Network Ports Explained/Network Ports Explained.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 18 - Network Ports Explained/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -411,7 +1088,63 @@
             {
               "type": "file",
               "name": "Transcript.md",
-              "path": "Notes List A - Video Content/Video 18 - Spanning Tree Protocol Explained Step by Step/Transcript.md"
+              "path": "Notes List A - Video Content/Video 18 - Spanning Tree Protocol Explained Step by Step/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 18 - Subnetting and Binary Math",
+          "path": "Notes List A - Video Content/Video 18 - Subnetting and Binary Math",
+          "children": [
+            {
+              "type": "file",
+              "name": "Subnetting and Binary Math.md",
+              "path": "Notes List A - Video Content/Video 18 - Subnetting and Binary Math/Subnetting and Binary Math.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 19 - CIDR & Subnet Mask",
+          "path": "Notes List A - Video Content/Video 19 - CIDR & Subnet Mask",
+          "children": [
+            {
+              "type": "file",
+              "name": "CIDR & Subnet Mask.md",
+              "path": "Notes List A - Video Content/Video 19 - CIDR & Subnet Mask/CIDR & Subnet Mask.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 19 - How to Take Notes - Study Tips - Cornell Notes",
+          "path": "Notes List A - Video Content/Video 19 - How to Take Notes - Study Tips - Cornell Notes",
+          "children": [
+            {
+              "type": "file",
+              "name": "How to Take Notes - Study Tips - Cornell Notes.md",
+              "path": "Notes List A - Video Content/Video 19 - How to Take Notes - Study Tips - Cornell Notes/How to Take Notes - Study Tips - Cornell Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 19 - How to Take Notes - Study Tips - Cornell Notes/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -423,19 +1156,63 @@
             {
               "type": "file",
               "name": "Transcript.md",
-              "path": "Notes List A - Video Content/Video 19 - Micronugget Spanning Tree Protocol Explained CBT Nuggets/Transcript.md"
+              "path": "Notes List A - Video Content/Video 19 - Micronugget Spanning Tree Protocol Explained CBT Nuggets/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
         {
           "type": "directory",
-          "name": "Video 20 - What is a Routing Table?",
-          "path": "Notes List A - Video Content/Video 20 - What is a Routing Table?",
+          "name": "Video 20 - Subnetting and IP",
+          "path": "Notes List A - Video Content/Video 20 - Subnetting and IP",
           "children": [
             {
               "type": "file",
+              "name": "Subnetting and IP.md",
+              "path": "Notes List A - Video Content/Video 20 - Subnetting and IP/Subnetting and IP.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
               "name": "Transcript.md",
-              "path": "Notes List A - Video Content/Video 20 - What is a Routing Table?/Transcript.md"
+              "path": "Notes List A - Video Content/Video 20 - Subnetting and IP/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 20 - Telnet vs SSH Explained",
+          "path": "Notes List A - Video Content/Video 20 - Telnet vs SSH Explained",
+          "children": [
+            {
+              "type": "file",
+              "name": "Telnet vs SSH Explained.md",
+              "path": "Notes List A - Video Content/Video 20 - Telnet vs SSH Explained/Telnet vs SSH Explained.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 21 - How to Factory Reset Cisco Switch",
+          "path": "Notes List A - Video Content/Video 21 - How to Factory Reset Cisco Switch",
+          "children": [
+            {
+              "type": "file",
+              "name": "How to Factory Reset Cisco Switch.md",
+              "path": "Notes List A - Video Content/Video 21 - How to Factory Reset Cisco Switch/How to Factory Reset Cisco Switch.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -447,7 +1224,56 @@
             {
               "type": "file",
               "name": "Transcript.md",
-              "path": "Notes List A - Video Content/Video 21 - Packet Traveling - How Packets Move Through a Network/Transcript.md"
+              "path": "Notes List A - Video Content/Video 21 - Packet Traveling - How Packets Move Through a Network/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 21 - Subnetting and Binary Math",
+          "path": "Notes List A - Video Content/Video 21 - Subnetting and Binary Math",
+          "children": [
+            {
+              "type": "file",
+              "name": "Subnetting and Binary Math.md",
+              "path": "Notes List A - Video Content/Video 21 - Subnetting and Binary Math/Subnetting and Binary Math.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 21 - Subnetting and Binary Math/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 22 - CIDR & Subnet Mask",
+          "path": "Notes List A - Video Content/Video 22 - CIDR & Subnet Mask",
+          "children": [
+            {
+              "type": "file",
+              "name": "CIDR & Subnet Mask.md",
+              "path": "Notes List A - Video Content/Video 22 - CIDR & Subnet Mask/CIDR & Subnet Mask.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 22 - CIDR & Subnet Mask/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -459,7 +1285,33 @@
             {
               "type": "file",
               "name": "Transcript.md",
-              "path": "Notes List A - Video Content/Video 22 - Routing Fundamentals/Transcript.md"
+              "path": "Notes List A - Video Content/Video 22 - Routing Fundamentals/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 23 - Certificate",
+          "path": "Notes List A - Video Content/Video 23 - Certificate",
+          "children": [
+            {
+              "type": "file",
+              "name": "Certificate.md",
+              "path": "Notes List A - Video Content/Video 23 - Certificate/Certificate.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 23 - Certificate/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -471,7 +1323,63 @@
             {
               "type": "file",
               "name": "Transcript.md",
-              "path": "Notes List A - Video Content/Video 23 - Dynamic Routing Protocols/Transcript.md"
+              "path": "Notes List A - Video Content/Video 23 - Dynamic Routing Protocols/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 23 - Representing Numbers and Letters with Binary Crash Course Computer Science 4",
+          "path": "Notes List A - Video Content/Video 23 - Representing Numbers and Letters with Binary Crash Course Computer Science 4",
+          "children": [
+            {
+              "type": "file",
+              "name": "Representing Numbers and Letters with Binary Crash Course Computer Science 4.md",
+              "path": "Notes List A - Video Content/Video 23 - Representing Numbers and Letters with Binary Crash Course Computer Science 4/Representing Numbers and Letters with Binary Crash Course Computer Science 4.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 24 - DNS-DHCP",
+          "path": "Notes List A - Video Content/Video 24 - DNS-DHCP",
+          "children": [
+            {
+              "type": "file",
+              "name": "DNS-DHCP.md",
+              "path": "Notes List A - Video Content/Video 24 - DNS-DHCP/DNS-DHCP.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 24 - DNS-DHCP/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 24 - How to Convert Binary to Decimal",
+          "path": "Notes List A - Video Content/Video 24 - How to Convert Binary to Decimal",
+          "children": [
+            {
+              "type": "file",
+              "name": "How to Convert Binary to Decimal.md",
+              "path": "Notes List A - Video Content/Video 24 - How to Convert Binary to Decimal/How to Convert Binary to Decimal.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -483,7 +1391,10 @@
             {
               "type": "file",
               "name": "Transcript.md",
-              "path": "Notes List A - Video Content/Video 24 - Route Summarization/Transcript.md"
+              "path": "Notes List A - Video Content/Video 24 - Route Summarization/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -495,7 +1406,71 @@
             {
               "type": "file",
               "name": "Transcript.md",
-              "path": "Notes List A - Video Content/Video 25 - Router Hierarchies and Default Routes/Transcript.md"
+              "path": "Notes List A - Video Content/Video 25 - Router Hierarchies and Default Routes/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 25 - SolarWinds TFTP Server",
+          "path": "Notes List A - Video Content/Video 25 - SolarWinds TFTP Server",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 25 - SolarWinds TFTP Server/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 25 - Telnet vs SSH Explained",
+          "path": "Notes List A - Video Content/Video 25 - Telnet vs SSH Explained",
+          "children": [
+            {
+              "type": "file",
+              "name": "Telnet vs SSH Explained.md",
+              "path": "Notes List A - Video Content/Video 25 - Telnet vs SSH Explained/Telnet vs SSH Explained.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 25 - Telnet vs SSH Explained/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 26 - How to Factory Reset Cisco Switch",
+          "path": "Notes List A - Video Content/Video 26 - How to Factory Reset Cisco Switch",
+          "children": [
+            {
+              "type": "file",
+              "name": "How to Factory Reset Cisco Switch.md",
+              "path": "Notes List A - Video Content/Video 26 - How to Factory Reset Cisco Switch/How to Factory Reset Cisco Switch.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 26 - How to Factory Reset Cisco Switch/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -507,7 +1482,48 @@
             {
               "type": "file",
               "name": "Transcript.md",
-              "path": "Notes List A - Video Content/Video 26 - Layer 2 vs Layer 3 Switches/Transcript.md"
+              "path": "Notes List A - Video Content/Video 26 - Layer 2 vs Layer 3 Switches/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 26 - VLAN Explained",
+          "path": "Notes List A - Video Content/Video 26 - VLAN Explained",
+          "children": [
+            {
+              "type": "file",
+              "name": "VLAN Explained.md",
+              "path": "Notes List A - Video Content/Video 26 - VLAN Explained/VLAN Explained.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 27 - Classless subnetting",
+          "path": "Notes List A - Video Content/Video 27 - Classless subnetting",
+          "children": [
+            {
+              "type": "file",
+              "name": "Classless subnetting.md",
+              "path": "Notes List A - Video Content/Video 27 - Classless subnetting/Classless subnetting.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 27 - Classless subnetting/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -519,7 +1535,10 @@
             {
               "type": "file",
               "name": "Transcript.md",
-              "path": "Notes List A - Video Content/Video 27 - Micronugget What is Route Redistribution/Transcript.md"
+              "path": "Notes List A - Video Content/Video 27 - Micronugget What is Route Redistribution/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         },
@@ -531,7 +1550,474 @@
             {
               "type": "file",
               "name": "Transcript.md",
-              "path": "Notes List A - Video Content/Video 28 - Wireless Fundamentals Day 55/Transcript.md"
+              "path": "Notes List A - Video Content/Video 28 - Wireless Fundamentals Day 55/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 29 - MicroNugget Spanning Tree Protocol Explained CBT Nuggets",
+          "path": "Notes List A - Video Content/Video 29 - MicroNugget Spanning Tree Protocol Explained CBT Nuggets",
+          "children": [
+            {
+              "type": "file",
+              "name": "MicroNugget Spanning Tree Protocol Explained CBT Nuggets.md",
+              "path": "Notes List A - Video Content/Video 29 - MicroNugget Spanning Tree Protocol Explained CBT Nuggets/MicroNugget Spanning Tree Protocol Explained CBT Nuggets.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 29 - Representing Numbers and Letters with Binary Crash Course Computer Science 4",
+          "path": "Notes List A - Video Content/Video 29 - Representing Numbers and Letters with Binary Crash Course Computer Science 4",
+          "children": [
+            {
+              "type": "file",
+              "name": "Representing Numbers and Letters with Binary Crash Course Computer Science 4.md",
+              "path": "Notes List A - Video Content/Video 29 - Representing Numbers and Letters with Binary Crash Course Computer Science 4/Representing Numbers and Letters with Binary Crash Course Computer Science 4.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 29 - Representing Numbers and Letters with Binary Crash Course Computer Science 4/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 30 - How to Convert Binary to Decimal",
+          "path": "Notes List A - Video Content/Video 30 - How to Convert Binary to Decimal",
+          "children": [
+            {
+              "type": "file",
+              "name": "How to Convert Binary to Decimal.md",
+              "path": "Notes List A - Video Content/Video 30 - How to Convert Binary to Decimal/How to Convert Binary to Decimal.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 30 - Routing Tables CCNA - Explained",
+          "path": "Notes List A - Video Content/Video 30 - Routing Tables CCNA - Explained",
+          "children": [
+            {
+              "type": "file",
+              "name": "Routing Tables CCNA - Explained.md",
+              "path": "Notes List A - Video Content/Video 30 - Routing Tables CCNA - Explained/Routing Tables CCNA - Explained.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 31 - Packet Traveling - How Packets Move Through a Network",
+          "path": "Notes List A - Video Content/Video 31 - Packet Traveling - How Packets Move Through a Network",
+          "children": [
+            {
+              "type": "file",
+              "name": "Packet Traveling - How Packets Move Through a Network.md",
+              "path": "Notes List A - Video Content/Video 31 - Packet Traveling - How Packets Move Through a Network/Packet Traveling - How Packets Move Through a Network.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 31 - SolarWinds TFTP Server",
+          "path": "Notes List A - Video Content/Video 31 - SolarWinds TFTP Server",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 31 - SolarWinds TFTP Server/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 32 - CCNA Routing Fundamentals - Part 1",
+          "path": "Notes List A - Video Content/Video 32 - CCNA Routing Fundamentals - Part 1",
+          "children": [
+            {
+              "type": "file",
+              "name": "CCNA Routing Fundamentals - Part 1.md",
+              "path": "Notes List A - Video Content/Video 32 - CCNA Routing Fundamentals - Part 1/CCNA Routing Fundamentals - Part 1.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 32 - VLAN Explained",
+          "path": "Notes List A - Video Content/Video 32 - VLAN Explained",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 32 - VLAN Explained/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "VLAN Explained.md",
+              "path": "Notes List A - Video Content/Video 32 - VLAN Explained/VLAN Explained.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 33 - EGP IGP Distance Vector Link State Dynamic Routing Protocols OSPF EIGRP BGP RIP IS-IS",
+          "path": "Notes List A - Video Content/Video 33 - EGP IGP Distance Vector Link State Dynamic Routing Protocols OSPF EIGRP BGP RIP IS-IS",
+          "children": [
+            {
+              "type": "file",
+              "name": "EGP IGP Distance Vector Link State Dynamic Routing Protocols OSPF EIGRP BGP RIP IS-IS.md",
+              "path": "Notes List A - Video Content/Video 33 - EGP IGP Distance Vector Link State Dynamic Routing Protocols OSPF EIGRP BGP RIP IS-IS/EGP IGP Distance Vector Link State Dynamic Routing Protocols OSPF EIGRP BGP RIP IS-IS.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 34 - Quick route summarization",
+          "path": "Notes List A - Video Content/Video 34 - Quick route summarization",
+          "children": [
+            {
+              "type": "file",
+              "name": "Quick route summarization.md",
+              "path": "Notes List A - Video Content/Video 34 - Quick route summarization/Quick route summarization.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 34 - SSH setup Packet Tracer",
+          "path": "Notes List A - Video Content/Video 34 - SSH setup Packet Tracer",
+          "children": [
+            {
+              "type": "file",
+              "name": "SSH setup Packet Tracer.md",
+              "path": "Notes List A - Video Content/Video 34 - SSH setup Packet Tracer/SSH setup Packet Tracer.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 34 - SSH setup Packet Tracer/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 35 - Rack and Patch panel overview",
+          "path": "Notes List A - Video Content/Video 35 - Rack and Patch panel overview",
+          "children": [
+            {
+              "type": "file",
+              "name": "Rack and Patch panel overview.md",
+              "path": "Notes List A - Video Content/Video 35 - Rack and Patch panel overview/Rack and Patch panel overview.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 35 - Rack and Patch panel overview/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 35 - Router Hierarchies and Route Summarization - Networking Fundamentals - Lesson 5 - Part 3",
+          "path": "Notes List A - Video Content/Video 35 - Router Hierarchies and Route Summarization - Networking Fundamentals - Lesson 5 - Part 3",
+          "children": [
+            {
+              "type": "file",
+              "name": "Router Hierarchies and Route Summarization - Networking Fundamentals - Lesson 5 - Part 3.md",
+              "path": "Notes List A - Video Content/Video 35 - Router Hierarchies and Route Summarization - Networking Fundamentals - Lesson 5 - Part 3/Router Hierarchies and Route Summarization - Networking Fundamentals - Lesson 5 - Part 3.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 36 - Layer 2 vs Layer 3 Switches - Animated",
+          "path": "Notes List A - Video Content/Video 36 - Layer 2 vs Layer 3 Switches - Animated",
+          "children": [
+            {
+              "type": "file",
+              "name": "Layer 2 vs Layer 3 Switches - Animated.md",
+              "path": "Notes List A - Video Content/Video 36 - Layer 2 vs Layer 3 Switches - Animated/Layer 2 vs Layer 3 Switches - Animated.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 37 - MicroNugget Spanning Tree Protocol Explained CBT Nuggets",
+          "path": "Notes List A - Video Content/Video 37 - MicroNugget Spanning Tree Protocol Explained CBT Nuggets",
+          "children": [
+            {
+              "type": "file",
+              "name": "MicroNugget Spanning Tree Protocol Explained CBT Nuggets.md",
+              "path": "Notes List A - Video Content/Video 37 - MicroNugget Spanning Tree Protocol Explained CBT Nuggets/MicroNugget Spanning Tree Protocol Explained CBT Nuggets.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 37 - MicroNugget Spanning Tree Protocol Explained CBT Nuggets/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 38 - Free CCNA Wireless Fundamentals Day 55 CCNA 200-301 Complete Course",
+          "path": "Notes List A - Video Content/Video 38 - Free CCNA Wireless Fundamentals Day 55 CCNA 200-301 Complete Course",
+          "children": [
+            {
+              "type": "file",
+              "name": "Free CCNA Wireless Fundamentals Day 55 CCNA 200-301 Complete Course.md",
+              "path": "Notes List A - Video Content/Video 38 - Free CCNA Wireless Fundamentals Day 55 CCNA 200-301 Complete Course/Free CCNA Wireless Fundamentals Day 55 CCNA 200-301 Complete Course.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 38 - Routing Tables CCNA - Explained",
+          "path": "Notes List A - Video Content/Video 38 - Routing Tables CCNA - Explained",
+          "children": [
+            {
+              "type": "file",
+              "name": "Routing Tables CCNA - Explained.md",
+              "path": "Notes List A - Video Content/Video 38 - Routing Tables CCNA - Explained/Routing Tables CCNA - Explained.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 38 - Routing Tables CCNA - Explained/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 39 - Packet Traveling - How Packets Move Through a Network",
+          "path": "Notes List A - Video Content/Video 39 - Packet Traveling - How Packets Move Through a Network",
+          "children": [
+            {
+              "type": "file",
+              "name": "Packet Traveling - How Packets Move Through a Network.md",
+              "path": "Notes List A - Video Content/Video 39 - Packet Traveling - How Packets Move Through a Network/Packet Traveling - How Packets Move Through a Network.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 39 - Packet Traveling - How Packets Move Through a Network/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 40 - CCNA Routing Fundamentals - Part 1",
+          "path": "Notes List A - Video Content/Video 40 - CCNA Routing Fundamentals - Part 1",
+          "children": [
+            {
+              "type": "file",
+              "name": "CCNA Routing Fundamentals - Part 1.md",
+              "path": "Notes List A - Video Content/Video 40 - CCNA Routing Fundamentals - Part 1/CCNA Routing Fundamentals - Part 1.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 40 - CCNA Routing Fundamentals - Part 1/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 41 - EGP IGP Distance Vector Link State Dynamic Routing Protocols OSPF EIGRP BGP RIP IS-IS",
+          "path": "Notes List A - Video Content/Video 41 - EGP IGP Distance Vector Link State Dynamic Routing Protocols OSPF EIGRP BGP RIP IS-IS",
+          "children": [
+            {
+              "type": "file",
+              "name": "EGP IGP Distance Vector Link State Dynamic Routing Protocols OSPF EIGRP BGP RIP IS-IS.md",
+              "path": "Notes List A - Video Content/Video 41 - EGP IGP Distance Vector Link State Dynamic Routing Protocols OSPF EIGRP BGP RIP IS-IS/EGP IGP Distance Vector Link State Dynamic Routing Protocols OSPF EIGRP BGP RIP IS-IS.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 41 - EGP IGP Distance Vector Link State Dynamic Routing Protocols OSPF EIGRP BGP RIP IS-IS/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 42 - Quick route summarization",
+          "path": "Notes List A - Video Content/Video 42 - Quick route summarization",
+          "children": [
+            {
+              "type": "file",
+              "name": "Quick route summarization.md",
+              "path": "Notes List A - Video Content/Video 42 - Quick route summarization/Quick route summarization.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 42 - Quick route summarization/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 43 - Router Hierarchies and Route Summarization - Networking Fundamentals - Lesson 5 - Part 3",
+          "path": "Notes List A - Video Content/Video 43 - Router Hierarchies and Route Summarization - Networking Fundamentals - Lesson 5 - Part 3",
+          "children": [
+            {
+              "type": "file",
+              "name": "Router Hierarchies and Route Summarization - Networking Fundamentals - Lesson 5 - Part 3.md",
+              "path": "Notes List A - Video Content/Video 43 - Router Hierarchies and Route Summarization - Networking Fundamentals - Lesson 5 - Part 3/Router Hierarchies and Route Summarization - Networking Fundamentals - Lesson 5 - Part 3.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 43 - Router Hierarchies and Route Summarization - Networking Fundamentals - Lesson 5 - Part 3/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 44 - Layer 2 vs Layer 3 Switches - Animated",
+          "path": "Notes List A - Video Content/Video 44 - Layer 2 vs Layer 3 Switches - Animated",
+          "children": [
+            {
+              "type": "file",
+              "name": "Layer 2 vs Layer 3 Switches - Animated.md",
+              "path": "Notes List A - Video Content/Video 44 - Layer 2 vs Layer 3 Switches - Animated/Layer 2 vs Layer 3 Switches - Animated.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 44 - Layer 2 vs Layer 3 Switches - Animated/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Video 46 - Free CCNA Wireless Fundamentals Day 55 CCNA 200-301 Complete Course",
+          "path": "Notes List A - Video Content/Video 46 - Free CCNA Wireless Fundamentals Day 55 CCNA 200-301 Complete Course",
+          "children": [
+            {
+              "type": "file",
+              "name": "Free CCNA Wireless Fundamentals Day 55 CCNA 200-301 Complete Course.md",
+              "path": "Notes List A - Video Content/Video 46 - Free CCNA Wireless Fundamentals Day 55 CCNA 200-301 Complete Course/Free CCNA Wireless Fundamentals Day 55 CCNA 200-301 Complete Course.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/Video 46 - Free CCNA Wireless Fundamentals Day 55 CCNA 200-301 Complete Course/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
         }
@@ -550,7 +2036,10 @@
             {
               "type": "file",
               "name": "Essential Chapter 8 - Switch Configuration, VLANs, STP, PoE, and Troubleshooting.md",
-              "path": "Notes List B - Textbook Content/Essential - Chapter 8 Introduction to Switch Configuration/Essential Chapter 8 - Switch Configuration, VLANs, STP, PoE, and Troubleshooting.md"
+              "path": "Notes List B - Textbook Content/Essential - Chapter 8 Introduction to Switch Configuration/Essential Chapter 8 - Switch Configuration, VLANs, STP, PoE, and Troubleshooting.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -562,7 +2051,10 @@
             {
               "type": "file",
               "name": "Essential Chapter 9 - Routing Protocols.md",
-              "path": "Notes List B - Textbook Content/Essential - Chapter 9 Routing Protocols/Essential Chapter 9 - Routing Protocols.md"
+              "path": "Notes List B - Textbook Content/Essential - Chapter 9 Routing Protocols/Essential Chapter 9 - Routing Protocols.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -574,7 +2066,10 @@
             {
               "type": "file",
               "name": "Book 1 Chapter 1 - Network Basics.md",
-              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 1 Network Basics/Book 1 Chapter 1 - Network Basics.md"
+              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 1 Network Basics/Book 1 Chapter 1 - Network Basics.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -586,27 +2081,42 @@
             {
               "type": "file",
               "name": "MAC Addresses.md",
-              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 2 Network Fundamentals/MAC Addresses.md"
+              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 2 Network Fundamentals/MAC Addresses.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Network Devices.md",
-              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 2 Network Fundamentals/Network Devices.md"
+              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 2 Network Fundamentals/Network Devices.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Network Topologies.md",
-              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 2 Network Fundamentals/Network Topologies.md"
+              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 2 Network Fundamentals/Network Topologies.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "OSI Model Layers 1-3.md",
-              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 2 Network Fundamentals/OSI Model Layers 1-3.md"
+              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 2 Network Fundamentals/OSI Model Layers 1-3.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Packets versus Frames.md",
-              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 2 Network Fundamentals/Packets versus Frames.md"
+              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 2 Network Fundamentals/Packets versus Frames.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -618,7 +2128,10 @@
             {
               "type": "file",
               "name": "Book 1 Chapter 3 - Switches, Routers, and VLANs.md",
-              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 3 Switches, Routers, and VLANs/Book 1 Chapter 3 - Switches, Routers, and VLANs.md"
+              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 3 Switches, Routers, and VLANs/Book 1 Chapter 3 - Switches, Routers, and VLANs.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -630,7 +2143,10 @@
             {
               "type": "file",
               "name": "Book 1 Chapter 4 - Cybersecurity.md",
-              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 4 Cybersecurity/Book 1 Chapter 4 - Cybersecurity.md"
+              "path": "Notes List B - Textbook Content/Textbook 1 - Chapter 4 Cybersecurity/Book 1 Chapter 4 - Cybersecurity.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -642,17 +2158,26 @@
             {
               "type": "file",
               "name": "Ethernet Development.md",
-              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 1 Protocols and Standards/Ethernet Development.md"
+              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 1 Protocols and Standards/Ethernet Development.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Network Protocols.md",
-              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 1 Protocols and Standards/Network Protocols.md"
+              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 1 Protocols and Standards/Network Protocols.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "TCP-IP Protocol Suite.md",
-              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 1 Protocols and Standards/TCP-IP Protocol Suite.md"
+              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 1 Protocols and Standards/TCP-IP Protocol Suite.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -664,7 +2189,10 @@
             {
               "type": "file",
               "name": "The Internet, ARPANET, TCP-IP Standards, and RFCs.md",
-              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 2 Internet Foundations/The Internet, ARPANET, TCP-IP Standards, and RFCs.md"
+              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 2 Internet Foundations/The Internet, ARPANET, TCP-IP Standards, and RFCs.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -676,7 +2204,10 @@
             {
               "type": "file",
               "name": "Binary, IP Addressing, Subnetting, NAT, and Firewalls.md",
-              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 3 IP Addressing and Subnetting/Binary, IP Addressing, Subnetting, NAT, and Firewalls.md"
+              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 3 IP Addressing and Subnetting/Binary, IP Addressing, Subnetting, NAT, and Firewalls.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -688,7 +2219,10 @@
             {
               "type": "file",
               "name": "Understanding DHCP, Scopes, VLANs, and Client Configuration.md",
-              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 5 DHCP and Address Management/Understanding DHCP, Scopes, VLANs, and Client Configuration.md"
+              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 5 DHCP and Address Management/Understanding DHCP, Scopes, VLANs, and Client Configuration.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -700,7 +2234,10 @@
             {
               "type": "file",
               "name": "DNS, Queries, Zones, and Resource Records.md",
-              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 6 DNS and Name Resolution/DNS, Queries, Zones, and Resource Records.md"
+              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 6 DNS and Name Resolution/DNS, Queries, Zones, and Resource Records.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -712,7 +2249,10 @@
             {
               "type": "file",
               "name": "Windows Network Commands - What They Do.md",
-              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 7 Windows Network Commands/Windows Network Commands - What They Do.md"
+              "path": "Notes List B - Textbook Content/Textbook 2 - Chapter 7 Windows Network Commands/Windows Network Commands - What They Do.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         }
@@ -731,7 +2271,10 @@
             {
               "type": "file",
               "name": "Week 1 Notes.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 1/Week 1 Notes.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 1/Week 1 Notes.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -743,7 +2286,10 @@
             {
               "type": "file",
               "name": "Week 2 Notes.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 2/Week 2 Notes.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 2/Week 2 Notes.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -755,7 +2301,10 @@
             {
               "type": "file",
               "name": "Week 3 Notes.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 3/Week 3 Notes.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 3/Week 3 Notes.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -767,32 +2316,50 @@
             {
               "type": "file",
               "name": "DHCP and DORA.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 4/DHCP and DORA.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 4/DHCP and DORA.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "DNS, FQDNs, and WINS.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 4/DNS, FQDNs, and WINS.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 4/DNS, FQDNs, and WINS.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Duplex Modes.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 4/Duplex Modes.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 4/Duplex Modes.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Multiplexing.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 4/Multiplexing.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 4/Multiplexing.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Network Latency and Jitter.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 4/Network Latency and Jitter.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 4/Network Latency and Jitter.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Switch Serial Connections - RS-232.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 4/Switch Serial Connections - RS-232.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 4/Switch Serial Connections - RS-232.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -804,47 +2371,74 @@
             {
               "type": "file",
               "name": "ALOHA.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/ALOHA.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/ALOHA.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Application Layer Protocols.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/Application Layer Protocols.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/Application Layer Protocols.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Error Detection - Checksum and CRC.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/Error Detection - Checksum and CRC.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/Error Detection - Checksum and CRC.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "OSI Encapsulation Table.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/OSI Encapsulation Table.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/OSI Encapsulation Table.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Packet Headers and Transmission.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/Packet Headers and Transmission.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/Packet Headers and Transmission.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Packets, Frames, and Collisions.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/Packets, Frames, and Collisions.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/Packets, Frames, and Collisions.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Ports.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/Ports.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/Ports.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "TCP - Flags, Handshake, and DDOS.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/TCP - Flags, Handshake, and DDOS.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/TCP - Flags, Handshake, and DDOS.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "UDP vs TCP.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/UDP vs TCP.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 5/UDP vs TCP.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -856,32 +2450,50 @@
             {
               "type": "file",
               "name": "CIDR and Subnet Masks.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 6/CIDR and Subnet Masks.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 6/CIDR and Subnet Masks.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Hexadecimal and BGP Basics.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 6/Hexadecimal and BGP Basics.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 6/Hexadecimal and BGP Basics.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "IANA, Address Classes, and Allocation.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 6/IANA, Address Classes, and Allocation.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 6/IANA, Address Classes, and Allocation.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "IP Addressing Fundamentals.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 6/IP Addressing Fundamentals.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 6/IP Addressing Fundamentals.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Public vs Private IP Addresses.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 6/Public vs Private IP Addresses.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 6/Public vs Private IP Addresses.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             },
             {
               "type": "file",
               "name": "Week 6 Notes.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 6/Week 6 Notes.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 6/Week 6 Notes.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -893,7 +2505,18 @@
             {
               "type": "file",
               "name": "VLAN - Virtual Local Area Network.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 7/VLAN - Virtual Local Area Network.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 7/VLAN - Virtual Local Area Network.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Week 7 Notes.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 7/Week 7 Notes.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -905,7 +2528,10 @@
             {
               "type": "file",
               "name": "STP - Spanning Tree Protocol.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 8/STP - Spanning Tree Protocol.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 8/STP - Spanning Tree Protocol.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -917,7 +2543,10 @@
             {
               "type": "file",
               "name": "Lecture Week 9.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 9/Lecture Week 9.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 9/Lecture Week 9.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -929,7 +2558,18 @@
             {
               "type": "file",
               "name": "Routers and Routing.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 10/Routers and Routing.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 10/Routers and Routing.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Week 10 Notes.md",
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 10/Week 10 Notes.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -941,7 +2581,10 @@
             {
               "type": "file",
               "name": "Lecture Week 11.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 11/Lecture Week 11.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 11/Lecture Week 11.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -953,7 +2596,10 @@
             {
               "type": "file",
               "name": "Lecture Week 12.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 12/Lecture Week 12.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 12/Lecture Week 12.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -965,7 +2611,10 @@
             {
               "type": "file",
               "name": "Lecture Week 13.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 13/Lecture Week 13.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 13/Lecture Week 13.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         },
@@ -977,7 +2626,10 @@
             {
               "type": "file",
               "name": "Lecture Week 14.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 14/Lecture Week 14.md"
+              "path": "Notes List C - Alex's Personal Notes/Lecture Week 14/Lecture Week 14.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         }
@@ -991,14 +2643,20 @@
         {
           "type": "file",
           "name": "STUDY GUIDE 1.md",
-          "path": "Notes List D - Alex's Final Exam Preparation/STUDY GUIDE 1.md"
+          "path": "Notes List D - Alex's Final Exam Preparation/STUDY GUIDE 1.md",
+          "video": false,
+          "Video": "false",
+          "youtubeVideo": false
         }
       ]
     },
     {
       "type": "file",
       "name": "syllabus.md",
-      "path": "syllabus.md"
+      "path": "syllabus.md",
+      "video": false,
+      "Video": "false",
+      "youtubeVideo": false
     }
   ],
   "defaultNote": "MASTER LIST/Master List.md"

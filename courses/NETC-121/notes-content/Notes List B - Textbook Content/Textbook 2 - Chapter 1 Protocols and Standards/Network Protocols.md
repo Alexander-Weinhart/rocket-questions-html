@@ -1,4 +1,4 @@
-# 📋 Network Protocols and Standards
+# Network Protocols and Standards
 
 Before devices from different manufacturers can communicate, everyone has to agree on the rules. That's what protocols and standards are for.
 
@@ -17,7 +17,7 @@ Without protocols:
 
 With protocols:
   Device A: sends HTTP GET (per RFC 2616)
-  Device B: knows exactly how to read and respond to an HTTP GET ✅
+  Device B: knows exactly how to read and respond to an HTTP GET 
 ```
 
 ---
@@ -47,7 +47,7 @@ With standards:
   Windows PC   ──► speaks TCP/IP     ──► Linux server
   iPhone       ──► speaks 802.11     ──► TP-Link access point
 
-All interoperable because they all follow the same published rules ✅
+All interoperable because they all follow the same published rules 
 ```
 
 Without standards, every vendor would build proprietary systems that only work with their own equipment.
@@ -56,8 +56,8 @@ Without standards, every vendor would build proprietary systems that only work w
 
 ## Key Points
 
-- 📌 **Protocol** — a defined set of rules for data communication
-- 📌 **Standard** — a formally published protocol that any manufacturer can implement
-- 📌 Standards ensure **interoperability** between different vendors' equipment
-- 📌 IEEE publishes hardware standards; IETF publishes internet protocol standards (RFCs)
-- 📌 Without standards, devices from different manufacturers couldn't communicate
+- **Protocol** — a defined set of rules for data communication
+- **Standard** — a formally published protocol that any manufacturer can implement
+- Standards ensure **interoperability** between different vendors' equipment
+- IEEE publishes hardware standards; IETF publishes internet protocol standards (RFCs)
+- Without standards, devices from different manufacturers couldn't communicate

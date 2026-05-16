@@ -1,0 +1,327 @@
+# [1.2.1 - Networking Devices](https://www.youtube.com/watch?v=iqjj4ZSPV08)
+
+## 1.2.1 - Networking Devices
+
+- Day: Day 1
+- Duration: 14:31
+
+## Transcript
+
+- `00:01` If you were to walk through a data center,
+- `00:03` you will see many of these racks all together
+- `00:06` with a lot of different equipment
+- `00:08` installed in each one of them.
+- `00:10` All of these devices work together
+- `00:12` to be able to take data from one part of the network
+- `00:15` and move it to another part of the network.
+- `00:17` Each of these devices is installed for a specific reason,
+- `00:20` and it's helpful if we understand
+- `00:22` why we installed that particular piece of equipment
+- `00:25` to begin with.
+- `00:26` Over time, we may be installing more of this existing
+- `00:29` equipment into our racks, or we may
+- `00:31` be installing new technology.
+- `00:32` So in this video, we'll look at different types of devices
+- `00:36` and how we might use them in our data center.
+- `00:39` Let's start with one of the most common devices that you'll find,
+- `00:42` which is a router.
+- `00:44` A router allows us to take data on one IP subnet and route
+- `00:48` that information to a different IP subnet.
+- `00:52` These may be subnets that are next to each other
+- `00:54` in the same data center, or these IP subnets
+- `00:57` may be located in different parts of the world.
+- `01:00` We refer to a router as an OSI layer 3 device.
+- `01:04` At the OSI layer 3, or network layer,
+- `01:06` we're referring to IP addresses.
+- `01:09` And IP addresses is exactly what's used by a router
+- `01:12` to be able to determine the next hop for this information.
+- `01:16` You may sometimes see this routing functionality
+- `01:18` also included inside of an existing switch.
+- `01:22` And we'll often refer to these as layer 3 switches, which,
+- `01:26` of course, is referring to that OSI layer 3 functionality.
+- `01:29` It's not that the switch itself is now operating
+- `01:32` at a different OSI layer.
+- `01:34` It's just, within that same piece of equipment,
+- `01:36` we have both a layer 2 switch and a layer 3 router.
+- `01:40` So we've abbreviated that as a layer 3 switch.
+- `01:43` These routers often connect many different types of networks.
+- `01:47` So we may be connecting a Local Area Network, or a LAN,
+- `01:51` to a Wide Area Network, or a WAN.
+- `01:54` These might also be copper-based connections
+- `01:56` or fiber-based connections.
+- `01:58` So we may have routers with many different connections
+- `02:01` or interfaces on them, and we're connecting
+- `02:03` many different diverse networks to all
+- `02:06` of those different interfaces.
+- `02:08` Another common device is a network switch.
+- `02:11` Switches operate at the MAC address layer
+- `02:14` to be able to forward traffic.
+- `02:15` So we'll often refer to that as an OSI layer
+- `02:18` 2 or datalink device.
+- `02:20` These operate mostly in hardware.
+- `02:23` The hardware inside of these devices
+- `02:25` is referred to as an ASIC, that is, an Application-Specific
+- `02:29` Integrated Circuit.
+- `02:30` There are many different functions and capabilities
+- `02:33` inside of these switches, especially
+- `02:35` if you're using one designed for the enterprise.
+- `02:38` For example, many of these switches
+- `02:40` have the ability to include power
+- `02:42` on the same wires as your ethernet connection,
+- `02:45` and we refer to that as Power Over Ethernet, or POE.
+- `02:49` And as we mentioned before, you may
+- `02:51` hear folks refer to this as a layer 3 switch
+- `02:54` if the switch includes some type of routing functionality
+- `02:57` built into the device itself.
+- `03:00` Security on our networks is also important.
+- `03:03` That's why you probably are using a firewall at home
+- `03:06` and you most certainly have a firewall in your office.
+- `03:10` A traditional firewall allows you to filter traffic
+- `03:12` based on a TCP or UDP port number,
+- `03:15` but if you have a more modern firewall,
+- `03:18` you're probably using a Next-Generation Firewall,
+- `03:21` or NGFW, which is able to identify applications traversing
+- `03:26` your network and allow you to manage
+- `03:28` whether that application should be allowed or not allowed
+- `03:31` on your network.
+- `03:33` Most firewalls also have additional functionality.
+- `03:36` For example, it's common to find firewalls
+- `03:38` that will allow us to encrypt traffic
+- `03:40` traversing the network through a Virtual Private Network, or VPN.
+- `03:44` It's very common to have a firewall at one remote site
+- `03:47` and a firewall at another remote site
+- `03:50` and be able to create an encrypted tunnel
+- `03:52` between those firewalls using this VPN functionality.
+- `03:56` And most firewalls can also operate
+- `03:58` as a layer 3 device, which means the firewall themselves
+- `04:01` can act as a router.
+- `04:03` That's because they are often sitting right
+- `04:05` between the ingress and egress point of your network,
+- `04:09` where all the traffic on the inside of your network
+- `04:11` is going to the outside or internet connection
+- `04:14` and your internet traffic is coming inbound
+- `04:17` to your local network.
+- `04:18` We rely on the firewall to be able to manage
+- `04:21` the communication between the inside
+- `04:23` and the outside of the network.
+- `04:25` To be able to perform this functionality,
+- `04:28` many firewalls also provide Network Address Translation,
+- `04:31` or NAT.
+- `04:32` And because they are a router, it's
+- `04:34` very common to have dynamic routing protocols supported
+- `04:37` inside of the firewall as well.
+- `04:40` Many data centers might also have standalone IDS or IPS
+- `04:44` devices, although much of that functionality
+- `04:46` is also integrated into the more modern next-generation firewall.
+- `04:50` IDS refers to an Intrusion Detection System,
+- `04:54` and the IPS refers to an Intrusion Prevention System.
+- `04:58` Both of these work in similar ways.
+- `04:59` They're looking for attacks that are inbound to your network
+- `05:03` and are able to identify, alert, and in many cases,
+- `05:06` prevent that attack from gaining access to your network.
+- `05:10` These are commonly known attack types.
+- `05:12` These might be exploits against operating systems
+- `05:14` or the applications that you're using,
+- `05:17` and they might take advantage of known vulnerabilities
+- `05:20` with those applications or systems
+- `05:22` by taking advantage of a buffer overflow, a cross-site scripting
+- `05:25` vulnerability, or other known vulnerabilities
+- `05:28` to those systems.
+- `05:29` If you're using an intrusion detection system,
+- `05:32` it's able to alarm or alert if it ever sees
+- `05:35` any of these inbound attacks.
+- `05:38` If you're using an intrusion prevention system,
+- `05:41` it's able to go a step further and block that particular attack
+- `05:44` before it gets inside of your network.
+- `05:47` Since an intrusion detection system is not
+- `05:50` able to block that traffic, it's very common
+- `05:53` to see an intrusion prevention system used on our enterprise
+- `05:56` networks.
+- `05:58` If you've ever used a website that
+- `06:00` may be accessed by millions of people every day,
+- `06:03` you may be wondering how that site is able to remain up
+- `06:07` and running without any type of downtime.
+- `06:09` In most cases, it's because that site is using a load balancer
+- `06:13` to be able to distribute that load
+- `06:15` across multiple physical servers.
+- `06:18` As the end user, you may have no idea that this load balancing is
+- `06:21` taking place, but if you were to look
+- `06:23` at the data center for this organization,
+- `06:26` you might find a large number of web servers or database servers
+- `06:30` in farms that can be used in conjunction with this load
+- `06:33` balancer to maintain uptime and availability.
+- `06:36` These load balancers are also very good at identifying
+- `06:39` any outages to these servers.
+- `06:41` So if one of the servers happens to fail due to a hardware
+- `06:45` error or some type of software problem,
+- `06:47` the load balancer can recognize the issue,
+- `06:49` take that server out of the rotation,
+- `06:52` and continue to provide access to these services using
+- `06:55` the remaining devices that are connected to the load balancer.
+- `06:59` Here's a common design for a load balancer
+- `07:02` where users on the internet would be accessing
+- `07:04` a service at a location.
+- `07:06` To the end user's perspective, they're
+- `07:08` accessing a single server, but they're really
+- `07:10` accessing a load balancer that is distributing
+- `07:13` that load between multiple servers inside of that company's
+- `07:16` data center.
+- `07:17` These load balancers can also optimize the communication.
+- `07:21` For example, it may perform TCP offloading
+- `07:23` so that the communication to all of these servers
+- `07:25` on the inside of the network are occurring
+- `07:27` as quickly as possible.
+- `07:29` These load balancers can also act
+- `07:31` as an SSL offload, which means that they will provide
+- `07:34` the encryption and decryption capabilities instead
+- `07:38` of having the servers themselves manage that process.
+- `07:41` Data might also be cached on the load balancer
+- `07:43` so requests made to the load balancer
+- `07:45` can be answered immediately instead
+- `07:47` of going all the way down to the server to provide that data.
+- `07:50` And load balancers are also very good at prioritizing
+- `07:53` different types of traffic over others.
+- `07:56` There might be certain web pages that
+- `07:58` have higher access than others, and you can commonly
+- `08:01` perform that prioritization using Quality of Service,
+- `08:04` or QOS.
+- `08:05` Load balancers can also provide application-centric load
+- `08:08` balancing, where certain pages may
+- `08:11` be located on certain servers and all
+- `08:13` of the requests to those pages would go exclusively
+- `08:16` to those individual servers.
+- `08:19` Many organizations have security concerns about individual users
+- `08:23` being able to directly communicate
+- `08:25` with a server or service that's on the internet.
+- `08:28` One of the ways that the organization can manage
+- `08:30` these connections is by putting a device
+- `08:32` in the middle of this conversation called a proxy.
+- `08:36` This proxy is responsible for taking the user's request,
+- `08:39` performing that request on their behalf,
+- `08:42` receiving the answer to that request,
+- `08:44` verifying that the answer doesn't contain
+- `08:47` some type of malicious software or malicious code,
+- `08:50` and then providing that answer to the end user.
+- `08:53` That is the purpose of a proxy, to sit
+- `08:56` in the middle of the communication
+- `08:58` and make that communication on the user's behalf.
+- `09:01` Since the proxy is sitting in the middle of the conversation,
+- `09:04` it's a perfect place to do caching so the user can
+- `09:07` make a request to a web server.
+- `09:09` If that request has already been cached by the proxy server,
+- `09:12` the answer can go right back to the user
+- `09:14` without having to access the internet.
+- `09:16` We might also provide access control from the proxy server
+- `09:20` so that we can request a username and password
+- `09:22` from the user in order to gain access to the internet.
+- `09:26` From that point, we might want to filter URLs
+- `09:28` or perform some type of content scanning to make sure
+- `09:31` that the user is not receiving any type of malicious software.
+- `09:35` Some proxies require you to configure the operating system
+- `09:38` or the applications that you're using to identify the proxy
+- `09:42` and be able to use that to send and receive communication.
+- `09:46` But not all proxies work in that explicit manner.
+- `09:49` There are also transparent proxies
+- `09:52` that will work invisibly without making
+- `09:54` any changes to the operating system or the applications
+- `09:57` in use.
+- `09:58` It's very common to store documents and other files
+- `10:02` on centralized storage facilities
+- `10:04` inside of our data centers.
+- `10:06` One type of storage is referred to as
+- `10:08` a Network-Attached Storage, or NAS.
+- `10:11` We often refer to this network-attached storage
+- `10:14` as providing file-level access.
+- `10:16` That means that if we wanted to gain access to information
+- `10:19` within a file, we need to pull the entire file
+- `10:21` across the network into the memory of our system.
+- `10:24` And when we're writing information or changing
+- `10:26` information in that file, we will
+- `10:28` need to write the entire file back to the NAS.
+- `10:31` A more efficient way of communication
+- `10:33` might be through the use of a Storage Area Network, or a SAN.
+- `10:38` This is very similar to reading and writing information
+- `10:41` from a local storage drive, where
+- `10:43` instead of copying the entire file
+- `10:45` to be able to change just a bit of information within it,
+- `10:49` we have block-level access, which
+- `10:51` means that we can change just the blocks that
+- `10:53` have been modified.
+- `10:54` And when you have very large files,
+- `10:56` this can be a very efficient way to modify
+- `10:58` just a little bit of information within that very large document.
+- `11:03` Whether you're using a NAS or a SAN,
+- `11:05` you're probably transferring a lot of files to these systems.
+- `11:09` And for that reason, we want to be sure
+- `11:11` that we're using the most efficient method
+- `11:13` of communication.
+- `11:14` It's very common, for example, to put the NAS
+- `11:16` or the SAN on its own isolated network,
+- `11:19` and it's commonly a network that has very high bandwidths.
+- `11:23` If you're in your office and you look at the ceiling,
+- `11:26` you might see a device like this.
+- `11:27` This is an access point.
+- `11:29` This device allows us to communicate wirelessly
+- `11:31` from our device to the rest of the network.
+- `11:34` This is not the wireless router that you
+- `11:37` might be using at home, which is a router and a wireless access
+- `11:41` point and a switch in the same device.
+- `11:44` When you're in larger enterprise environments,
+- `11:46` you're usually using a device that is purpose
+- `11:49` built for a single function.
+- `11:51` And having an access point means that we're
+- `11:53` using this for wireless communication and wireless
+- `11:56` communication only.
+- `11:58` On the other side of this wireless
+- `12:00` access point is very commonly an ethernet connection.
+- `12:03` So this is bridging communication
+- `12:05` between the wireless network and the wired ethernet network.
+- `12:09` That's why we refer to access points as an OSI layer 2
+- `12:13` device, or a data link layer device,
+- `12:16` because it's making that translation between the 802.11
+- `12:19` wireless network and the 802.3 ethernet network.
+- `12:24` In most businesses of any size, you probably
+- `12:27` have more than one access point.
+- `12:29` That's because you probably have a very large building or series
+- `12:32` of buildings, and you need to be sure
+- `12:34` that everyone is able to access that wireless network wherever
+- `12:38` they happen to be inside of these buildings.
+- `12:40` But this means that we have to manage
+- `12:42` many different wireless access points wherever
+- `12:45` they might be in our local network
+- `12:48` or in a remote site network.
+- `12:50` And we might need to manage security settings, access
+- `12:53` policies, and other configuration parameters
+- `12:55` within that access point.
+- `12:58` We also have users that may be very mobile and moving
+- `13:01` between different parts of the building
+- `13:02` or moving from one building to the other.
+- `13:04` And we need to make sure that they can seamlessly
+- `13:07` roam from one access point to the other
+- `13:09` so that they are always connected to the network.
+- `13:12` Instead of connecting to each individual access point
+- `13:16` to make these configuration changes or manage this process,
+- `13:20` we can have a centralized management tool
+- `13:22` that allows us to manage all of our access points
+- `13:25` from one central place.
+- `13:27` This is a wireless LAN controller,
+- `13:29` and it gives us that single pane of glass
+- `13:31` so that we can manage the entire infrastructure while we're
+- `13:35` sitting in one chair.
+- `13:36` From this single device, we can deploy new access points
+- `13:40` with a full configuration.
+- `13:41` We might want to set up performance or security
+- `13:44` monitoring and be alerted if we happen
+- `13:46` to see anything across any of our access points.
+- `13:49` We can also take any changes that we need to make and deploy
+- `13:52` those automatically to all of our access points
+- `13:55` with one click of the mouse.
+- `13:57` This also allows us, very commonly,
+- `13:59` to create reports on how much our access points are being used
+- `14:03` and be able to understand if we need to update or change any
+- `14:06` of our access point locations.
+- `14:08` These are often proprietary systems.
+- `14:10` So if we have an access point from one
+- `14:13` particular manufacturer, then we're
+- `14:15` also using the wireless LAN controller that is also
+- `14:18` from that same manufacturer.

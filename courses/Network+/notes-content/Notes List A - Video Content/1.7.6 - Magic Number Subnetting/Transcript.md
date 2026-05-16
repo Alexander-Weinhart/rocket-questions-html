@@ -1,0 +1,420 @@
+# [1.7.6 - Magic Number Subnetting](https://www.youtube.com/watch?v=P1ROXMLjL04)
+
+## 1.7.6 - Magic Number Subnetting
+
+- Day: Day 4
+- Duration: 21:09
+
+## Transcript
+
+- `00:01` If you've been with us with the videos just prior to this one,
+- `00:05` then you've learned a lot about subnetting, masks, CIDR block
+- `00:08` notation, and other important fundamentals
+- `00:11` when it comes to subnetting via IP version 4.
+- `00:15` All of that work has brought us to this point,
+- `00:17` where we can start to answer questions like this one.
+- `00:21` Here's a network layout.
+- `00:22` And it says, here's your IP address assignment.
+- `00:25` We've been given the IP address of 192.168.1.0/24.
+- `00:32` And this says we need an IP addressing scheme
+- `00:34` with more than one network address that can
+- `00:36` support 40 devices per subnet.
+- `00:40` That is the optimal number we're looking for.
+- `00:42` And we need to determine how to subnet this network
+- `00:46` address to be able to get 40 devices per subnet.
+- `00:50` Now, you could, of course, write out
+- `00:52` all of the possibilities in decimal and binary
+- `00:55` and be able to calculate what the differences are
+- `00:58` with the number of networks and the number of hosts per network.
+- `01:01` For example, if you look at the default subnet mask that we were
+- `01:04` given, which is 255.255.255.0, you can see this is the binary
+- `01:10` representation of that subnet mask, and the CIDR notation,
+- `01:14` which is a /24.
+- `01:16` That gives us one single network with 254 hosts per network.
+- `01:21` If we borrow 1 bit from the host side so that we are
+- `01:25` 255.255.255.128 as our subnet mask, or a /25,
+- `01:32` we would be able to create two networks with 126 hosts per
+- `01:37` network.
+- `01:38` We are getting closer to that number of 40.
+- `01:41` Let's keep going by borrowing another bit so that our subnet
+- `01:45` mask is 255.255.255.192, or a /26.
+- `01:51` This allows us to have four networks with a total of 62
+- `01:55` hosts on each of those subnets.
+- `01:57` This is certainly getting close to 40.
+- `02:00` But let's go one more step to see
+- `02:02` if we're getting even closer to that 40 value.
+- `02:05` The next step would be to borrow one more bit from the host side.
+- `02:09` So now we're borrowing three subnet bits,
+- `02:11` which means our subnet mask is 255.255.255.224, or a /27.
+- `02:19` If we subnet in this way, we can have
+- `02:22` a maximum of eight networks.
+- `02:24` But it would only allow for 30 hosts per network.
+- `02:27` This means that the optimal subnet mask,
+- `02:30` if we're looking for a total of 40 devices per subnet,
+- `02:33` would be the next one up, or the /26,
+- `02:37` which would give us four networks and a maximum of 62
+- `02:40` hosts per network.
+- `02:42` Now, we can certainly speed this process along
+- `02:45` by performing a calculation based on powers of 2.
+- `02:48` Let's look to see how we might do that.
+- `02:51` We have a starting IP address of 192.168.1.0 and a subnet mask
+- `02:56` of 255.255.255.192.
+- `03:00` And based on this information, we
+- `03:02` can show the network address and the subnet mask in binary.
+- `03:05` And you'll notice, in the subnet mask,
+- `03:07` we have the default number of bits for that address
+- `03:10` plus the two extra bits that we borrowed from the host side.
+- `03:13` Visually, you can see where the 24 subnet bits might be,
+- `03:17` the two extra bits we borrowed for the subnet,
+- `03:20` and the six bits that are left over on the host side.
+- `03:23` If we were to now calculate the number of subnets
+- `03:26` and the number of hosts per subnets using this powers of 2
+- `03:30` formula, we would take 2 to the second power,
+- `03:33` because the second power would be 2 bits,
+- `03:35` and that would be a total of four networks.
+- `03:38` We would determine the number of hosts per subnet
+- `03:40` by taking those six host bits that are left over at the end
+- `03:44` and calculating 2 to the sixth power minus 2, which
+- `03:48` would be 64 minus 2, or a total of 62 hosts per subnet.
+- `03:53` This is a relatively straightforward way
+- `03:55` to calculate the number of subnets
+- `03:57` and the number of hosts per subnet.
+- `03:59` But it requires you to perform a binary conversion
+- `04:02` and then count the number of bits
+- `04:04` to be able to calculate what that total might be at the end.
+- `04:08` There are some shortcuts that we can use.
+- `04:10` And in this video, we're going to look at a shortcut that
+- `04:13` uses the magic number method.
+- `04:16` These calculations are intended to give us four separate pieces
+- `04:19` of information.
+- `04:20` First, we need the network address, or subnet ID.
+- `04:23` This would be the first address in the subnet.
+- `04:26` We also need a broadcast address.
+- `04:28` This is the last address in the subnet.
+- `04:30` We need the first available host address.
+- `04:32` This is an address that we can assign
+- `04:34` to a device on this subnet.
+- `04:36` And then we need the last available host address.
+- `04:39` We need to be able to calculate these as quickly as possible.
+- `04:43` Now, obviously, we could calculate this
+- `04:45` by converting everything to binary,
+- `04:47` looking at the subnet bits, and then calculating
+- `04:49` for every possible scenario what this particular network
+- `04:53` address might be and the subnet mask for each one of these.
+- `04:56` And for this particular IP address,
+- `04:58` where we determine there were four separate subnets,
+- `05:01` these are all the calculations that we
+- `05:03` would need to do to be able to calculate
+- `05:05` all of that information.
+- `05:07` For all four of those subnets.
+- `05:09` You can see, looking at this screen,
+- `05:10` that there are a lot of separate binary-to-decimal conversions
+- `05:14` you'd have to do just to calculate those specific details
+- `05:18` for all four of those subnets.
+- `05:20` We can simplify this process by using the magic number shortcut.
+- `05:25` This allows us to perform subnet calculations very quickly.
+- `05:28` And very often, we can do all of these calculations in our head.
+- `05:31` There's still a little bit of math involved
+- `05:33` with the magic number method.
+- `05:34` But it's limited to powers of 2 and some very simple addition
+- `05:37` and subtraction.
+- `05:39` You could even create a few charts that might help you
+- `05:41` with the process.
+- `05:42` But once you get accustomed to using this method,
+- `05:45` you'll find that you memorize very easily what's
+- `05:47` in the charts.
+- `05:48` You may not have to write them down at all during your exam.
+- `05:52` One chart that might help you is a chart
+- `05:54` that easily converts between a CIDR block
+- `05:56` notation and the decimal subnet mask notation.
+- `06:00` You can see an example of this might be to use a /9 is
+- `06:03` 255.128.0.0.
+- `06:06` /10 is 255.192.0.0, and so on.
+- `06:11` You will notice that there are some patterns after a while.
+- `06:14` For example, a /9 has the 128 as the number that is a bit
+- `06:19` different than a 0 or a 255.
+- `06:22` And a /17 also has a 128.
+- `06:25` So we could write this chart in a simplified form that shows
+- `06:29` a /9, a /17, and a /25 use the 128 as the decimal value.
+- `06:36` In the magic number method, we have a number of different tasks
+- `06:40` that we perform based on the octet that we're working with.
+- `06:43` So we might want to modify this CIDR-to-decimal chart
+- `06:47` to have something that's a little bit different.
+- `06:49` For example, if you wanted to see the CIDR notation
+- `06:52` for interesting octet 2, you can see it ranges from a /9 through
+- `06:57` /16.
+- `06:58` The CIDR block notation for interesting octet 3 would be /17
+- `07:02` through /24.
+- `07:03` And the CIDR block notation for interesting octet 4 ranges from
+- `07:07` /25 to /30.
+- `07:09` You notice that we don't use /31, by default,
+- `07:12` because it doesn't leave any room for any hosts
+- `07:15` on the subnet.
+- `07:16` And we don't use a /32, because that leaves 0 bits available
+- `07:20` for any hosts.
+- `07:21` For each of these columns with the CIDR block notation,
+- `07:25` you'll notice there is a magic number.
+- `07:27` And in a moment, we'll learn how to use that magic number value.
+- `07:31` We can also put in this chart the subnet mask
+- `07:33` for an interesting octet.
+- `07:34` And you can see those mask values are also
+- `07:37` listed as well, starting at 128 and working
+- `07:40` all the way up to 255.
+- `07:43` Optionally, you could also create a host range chart,
+- `07:46` where you can take an address block
+- `07:48` and then separate out what the differences are
+- `07:51` for that particular block.
+- `07:52` For example, an address block of 128
+- `07:55` splits the network into two different pieces, 0
+- `07:58` through 127 and 128 through 255.
+- `08:02` An address block of 64 hosts per block
+- `08:05` would be 0 through 63, 64 through 127, and so on.
+- `08:09` And you can continue this process
+- `08:11` with a host block of 32 hosts, 16 hosts, 8 hosts, and so on.
+- `08:16` So let's see how the magic number method works.
+- `08:19` It's a series of steps.
+- `08:21` And once you go through these a couple of times,
+- `08:23` they become very second nature.
+- `08:25` The first step is to convert the subnet mask to decimal,
+- `08:28` if it's not in decimal already.
+- `08:30` From there, we need to identify the interesting octet.
+- `08:33` And we'll talk about the interesting octet
+- `08:36` in just a moment.
+- `08:37` We then need to calculate the magic number, which
+- `08:39` is 256 minus the value of the interesting octet.
+- `08:44` We could then calculate the host range based on that,
+- `08:47` identify the network address, which
+- `08:49` would be the first address in that range,
+- `08:52` and then identify the broadcast address, which would be
+- `08:54` the last address in that range.
+- `08:57` So now let's take an IP version 4 subnetting problem
+- `09:00` and answer this problem using the magic number method.
+- `09:04` We'll start with this IP address of 165.245.77.14.
+- `09:09` And we've been given a subnet mask of 255.255.240.0.
+- `09:15` Our first step would be to put the subnet mask into the chart.
+- `09:18` And you can see that it's already in decimal form.
+- `09:21` So we simply need to copy it over with 255.255.240.0.
+- `09:26` We can then also fill in the IP address that we've been given,
+- `09:30` which is 165.245.77.14.
+- `09:34` From here, we can start to make some decisions about what
+- `09:37` to put into this chart.
+- `09:39` For example, if the mask is 255, you simply
+- `09:42` copy the IP address down.
+- `09:44` So in this case, the mask is 255 in the first octet.
+- `09:47` So we're going to copy that down, which means our subnet
+- `09:51` ID will be copied down with the same number that's
+- `09:53` in the IP address row.
+- `09:55` Let's perform that same task again with the second octet.
+- `09:58` It is also 255.
+- `10:00` So we're going to copy that through.
+- `10:01` This 245 then will be brought down into the subnet ID row.
+- `10:06` We no longer have any octets with the 255.
+- `10:09` So our next step would be to look at any octets
+- `10:11` where the mask is 0.
+- `10:13` And if the mask is 0, we bring that
+- `10:15` 0 down to the subnet ID row.
+- `10:18` In this case, our last octet does have a 0.
+- `10:21` So we're going to copy that 0 all the way down
+- `10:24` and put it into the subnet ID row in the last octet.
+- `10:28` In our example, the subnet mask in the third octet is a 240.
+- `10:32` That is obviously not 0 and not 255.
+- `10:35` So that octet is our interesting octet.
+- `10:39` Now that we know the interesting octet,
+- `10:40` we can use that to calculate the subnet ID value
+- `10:44` for that particular octet.
+- `10:46` To be able to do that, we need to subtract
+- `10:48` the interesting octet subnet mask from 256.
+- `10:53` In our interesting octet, the subnet mask is 240.
+- `10:56` So if we subtract 240 from 256, we have the value of 16.
+- `11:01` This means our magic number is 16.
+- `11:04` And there would be 16 hosts available
+- `11:07` on that particular subnet.
+- `11:08` If we put our chart at the bottom that
+- `11:11` shows the 16 different hosts that you would have
+- `11:14` and the delineation between each one of those subnets,
+- `11:17` you can see that we have a range between 0 and 15, 16 through 31,
+- `11:22` 32 through 47, and so on.
+- `11:25` Now, if we look at the IP address,
+- `11:27` we can see the IP address is 77.
+- `11:29` And if we look on our chart, we can fit the 77 IP address
+- `11:33` in the range between 64 and 79.
+- `11:37` Since we're trying to determine the subnet ID,
+- `11:39` we take the very first number in that particular range,
+- `11:43` which would be 64.
+- `11:45` And we add that 64 into that subnet
+- `11:47` ID in our interesting octet.
+- `11:50` So for the IP address, 165.245.77.14 that has a subnet
+- `11:56` mask of 255.255.240.0, the subnet ID is 165.245.64.0.
+- `12:06` Of course, not only do we need to know the subnet ID,
+- `12:09` but we also need to know the broadcast address.
+- `12:12` To calculate the broadcast address
+- `12:13` using the magic number method, it's a very similar process.
+- `12:17` We use the same chart with the same subnet
+- `12:19` mask and the subnet ID.
+- `12:20` But at the very bottom, we have broadcast
+- `12:23` address instead of subnet ID.
+- `12:26` The rules for determining the broadcast address
+- `12:28` are very similar to the rules we used for the subnet ID.
+- `12:31` If the subnet mask is 255, we copy
+- `12:34` the subnet ID all the way down into the broadcast address row.
+- `12:39` We have two of our octets that show a 255.
+- `12:42` So we'll do this for the first and the second octet.
+- `12:45` Here's where the rules are a little bit different when
+- `12:47` calculating the broadcast address versus calculating
+- `12:50` the subnet ID.
+- `12:51` If the mask is 0, we're going to write into that column a 255.
+- `12:58` And of course, if the subnet mask octet doesn't contain a 0
+- `13:01` and it doesn't contain a 255, then that octet
+- `13:05` is our interesting octet.
+- `13:07` This will obviously be the same interesting octet
+- `13:10` when we're calculating the broadcast
+- `13:11` address as it was when we were calculating the subnet ID.
+- `13:15` To calculate the magic number, we perform the same process
+- `13:18` that we did earlier.
+- `13:20` We take 256.
+- `13:21` We subtract from that the value that's in that interesting octet
+- `13:25` mask, leaving us with a magic number of 16.
+- `13:28` To calculate the broadcast address
+- `13:31` for that interesting octet, we take the subnet ID.
+- `13:34` And we add the magic number and subtract 1.
+- `13:37` So in this example, we use 64 because that
+- `13:40` is the number in our subnet ID.
+- `13:42` We add 16, which is our magic number.
+- `13:45` We subtract 1.
+- `13:46` And that leaves us with 79.
+- `13:49` So in this example, the broadcast address is
+- `13:52` 165.245.79.255.
+- `13:57` Now that we know the subnet ID and we know the broadcast
+- `14:00` address, calculating the first available IP address
+- `14:03` and the last available IP address
+- `14:05` is relatively straightforward.
+- `14:07` To calculate the first host, we would take the subnet ID
+- `14:09` and add 1.
+- `14:10` So the first address on the subnet is 165.245.64.1.
+- `14:17` To find the last usable address on the subnet,
+- `14:20` we take the broadcast address and subtract 1.
+- `14:23` So the last usable address on this subnet is 165.245.79.254.
+- `14:30` And that is the magic number process.
+- `14:32` Without doing any type of conversions between binary
+- `14:35` and decimal, we were able to calculate
+- `14:38` the subnet ID, the broadcast address, the first available IP
+- `14:42` address, and the last available IP address.
+- `14:45` Let's see how well we can use this magic number
+- `14:48` method with another example.
+- `14:50` We'll use the IP address of 10.180.122.244.
+- `14:55` And the subnet mask is 255.248.0.0.
+- `14:59` We will first fill in our chart.
+- `15:01` So we'll put our subnet mask in that mask row.
+- `15:04` And we'll put our IP address in the IP address row.
+- `15:07` We'll now look at our subnet mask.
+- `15:09` And everywhere there's a 255, we will
+- `15:11` use that to copy down the IP address.
+- `15:14` So in this case, in the first octet,
+- `15:16` we'll copy down that value of 10.
+- `15:19` Every place there is a 0, we're going to copy down the 0
+- `15:22` and put that into the subnet ID row.
+- `15:25` And the third and the fourth octets both have a 0.
+- `15:28` Since we don't have a 0 or a 255 in this second octet,
+- `15:33` that means that this octet is our interesting octet.
+- `15:37` To calculate the magic number, we use 256.
+- `15:40` Subtract the value that we have in that subnet mask range, which
+- `15:44` means we use 256 minus 248.
+- `15:47` So in this example, our magic number is 8.
+- `15:50` This means that each subnet has a total of eight IP addresses
+- `15:54` that can be assigned, including our subnet ID and our broadcast
+- `15:58` ID.
+- `15:58` And we've put the chart at the bottom that separates this
+- `16:02` into those multiples of eight.
+- `16:04` Now we need to find the IP address that
+- `16:06` is the starting for this particular block.
+- `16:09` If we look at our interesting octet,
+- `16:11` we know that the IP address is 180.
+- `16:13` So if we look at our chart, we can
+- `16:15` find that 180, which is in the block starting with 176.
+- `16:21` Since that starts with 176, we can simply fill that in, which
+- `16:24` means the subnet ID for this example will be 10.176.0.0.
+- `16:30` Now we need to find the broadcast address
+- `16:33` for this example.
+- `16:34` We'll use a similar process we did before,
+- `16:36` where if we had a 255 in the list,
+- `16:39` we're going to copy and bring down that subnet ID.
+- `16:42` So the first octet, we'll simply copy down the number 10.
+- `16:45` Anywhere that we have a 0, we're going
+- `16:47` to copy down and put a 255.
+- `16:50` And we have 0's in both our third octet
+- `16:52` and our fourth octet.
+- `16:54` As we already know, the second octet is our interesting octet.
+- `16:58` So we're going to perform our calculation,
+- `16:59` taking 256, subtracting 248 from that,
+- `17:04` meaning our magic number is 8.
+- `17:06` This is obviously the same magic number we calculated earlier.
+- `17:09` To calculate the broadcast address,
+- `17:12` we need to take the subnet ID, add the magic number,
+- `17:15` and subtract 1.
+- `17:17` So the example here would be 176 plus 8,
+- `17:22` since that's our magic number.
+- `17:24` And if we subtract 1, that leaves us with a number of 183.
+- `17:28` We'll add this to our broadcast address row,
+- `17:31` which means the broadcast address for this example is
+- `17:34` 10.183.255.255.
+- `17:38` Now that we've calculated the subnet ID and the broadcast
+- `17:41` address, it's relatively easy to determine the first host ID,
+- `17:45` because we take the subnet ID and add 1.
+- `17:47` So the first available host on the subnet is 10.176.0.1.
+- `17:52` To determine the last address, we
+- `17:54` take the broadcast address and subtract 1.
+- `17:57` So in this case, it would be 10.183.255.254.
+- `18:03` Hopefully, now you can see that the magic number
+- `18:05` method is a bit faster than going
+- `18:07` through the steps of converting to binary and then
+- `18:10` back to decimal again.
+- `18:11` But there are some ways to make this process even more
+- `18:14` efficient.
+- `18:15` If you've already created a chart that
+- `18:17` shows all of the possibilities of an interesting octet CIDR
+- `18:20` block notation and has the magic number predefined along
+- `18:25` with the subnet mask for the interesting octet,
+- `18:27` you can perform this entire process in one single chart.
+- `18:31` Let's take the example of 172.16.242.133/27.
+- `18:37` If we look at our predefined chart,
+- `18:39` we know that /27 falls into the CIDR block notation
+- `18:43` for interesting octet 4.
+- `18:45` This means that octet 4 will have a decimal value of 224.
+- `18:50` So if we wanted to write out the entire subnet mask,
+- `18:53` it would be 255.255.255.224 because 224 is in that
+- `19:00` interesting octet number 4.
+- `19:02` The process for calculating the magic number
+- `19:04` is exactly the same as it was before.
+- `19:06` We take 256.
+- `19:08` We subtract that subnet mask in the interesting octet, which
+- `19:11` in this case is 224, which means our magic number is 32.
+- `19:15` There are 32 available addresses on each subnet
+- `19:19` of this particular IP address and subnet mask combination.
+- `19:23` Here's our chart, which is written out
+- `19:25` with 32 numbers in each of those sections.
+- `19:28` And if we look at our IP address that has a 133,
+- `19:33` we can move forward to where the 133 would be.
+- `19:35` And it is in the block that starts with a 128.
+- `19:39` Since we know it starts with a 128,
+- `19:41` that means that we can now change
+- `19:43` our fourth interesting octet to be that value as the subnet ID.
+- `19:48` So the subnet ID in this example would be 172.16.242.128.
+- `19:54` If you recall from our earlier calculations,
+- `19:57` to be able to calculate the broadcast information,
+- `20:00` we need to take the subnet ID value in the interesting octet,
+- `20:03` add that to the magic number, and subtract 1.
+- `20:06` So we'll take 128.
+- `20:08` We'll add 32 to make 160.
+- `20:11` We'll subtract 1.
+- `20:12` And that makes 159.
+- `20:14` So the broadcast address on this subnet is 172.16.242.159.
+- `20:21` Now that we know the subnet ID and the broadcast,
+- `20:23` we can calculate the first available IP
+- `20:26` address and the last available IP address.
+- `20:28` We add 1 to the subnet ID to determine the first IP.
+- `20:32` So the first IP would be 172.16.242.129.
+- `20:38` If we subtract 1 from the broadcast address,
+- `20:41` we would get 172.16.242.158.
+- `20:46` So there is the faster way to be able to calculate
+- `20:49` our subnet ID, our broadcast address, the first IP
+- `20:53` address, and the last IP address using the--

@@ -1,0 +1,188 @@
+# [3.5.1 - VPNs](https://www.youtube.com/watch?v=tm7i0zEitPQ)
+
+## 3.5.1 - VPNs
+
+- Day: Day 8
+- Duration: 6:54
+
+## Transcript
+
+- `00:02` a VPN is a virtual private Network that
+- `00:05` is a way of taking information that
+- `00:07` would normally be sent across a network
+- `00:09` in the clear and encrypting all of that
+- `00:11` data so that we're then able to send it
+- `00:13` over a public network such as the
+- `00:15` internet if you're using a VPN from your
+- `00:18` workstation then you're probably
+- `00:19` connecting to a VPN concentrator this is
+- `00:22` a functionality that's usually built
+- `00:24` into our modern firewalls that allows us
+- `00:26` to encrypt and decrypt information on
+- `00:29` that concentrator this means we can
+- `00:31` encrypt information send it across that
+- `00:33` public network and on the concentrator
+- `00:35` we can decrypt that information and send
+- `00:37` it on its way this might be a piece of
+- `00:40` Hardware that is specifically designed
+- `00:42` for this encryption and decryption
+- `00:44` process or all of this may occur within
+- `00:46` software that we can install on an
+- `00:48` existing server VPN clients can be
+- `00:51` installed on many different operating
+- `00:53` systems and some operating systems may
+- `00:55` include VPN clients built into the
+- `00:58` operating system itself
+- `01:00` if you're using a client to site VPN
+- `01:03` then you would have software that's
+- `01:04` installed onto the client workstation
+- `01:07` and that client workstation would be
+- `01:08` communicating back to a Central site for
+- `01:11` example you could be using a laptop at a
+- `01:13` coffee shop and you may want to enable
+- `01:15` this VPN functionality so that you can
+- `01:18` communicate securely to a concentrator
+- `01:20` that's located on your corporate Network
+- `01:23` sometimes this is software that you can
+- `01:24` manually enable or disable depending on
+- `01:27` when you might want to use it but some
+- `01:29` VPN software can be configured as an
+- `01:31` always on connection so when you turn on
+- `01:33` your laptop and log in it has already
+- `01:36` created the VPN connection back to your
+- `01:38` corporate Network so you would either
+- `01:40` start your VPN software and enable it
+- `01:42` manually or that software would be
+- `01:44` automatically loaded and as soon as you
+- `01:46` begin sending information across the
+- `01:48` network all of that communication will
+- `01:50` be encrypted when that encrypted data is
+- `01:52` received by your VPN concentrator it
+- `01:54` decrypts that data and then sends all of
+- `01:57` that into your internal Network whenever
+- `01:59` you're sending information back to the
+- `02:01` laptop it reverses this process where it
+- `02:03` takes the information from the corporate
+- `02:05` Network encrypts it sends it across the
+- `02:07` internet and it will decrypt down at
+- `02:09` your
+- `02:10` laptop another type of VPN connectivity
+- `02:13` is between different sites this is a
+- `02:15` site tosite VPN where all of the
+- `02:18` communication between one site and
+- `02:19` another is encrypted over this VPN
+- `02:22` tunnel this is something that's commonly
+- `02:24` used as an always on connection so that
+- `02:27` you can be assured that everything
+- `02:28` between those locations will always be
+- `02:30` encrypted this is usually built into an
+- `02:33` existing firewall so you would turn on
+- `02:35` the VPN concentrator function on each
+- `02:37` firewall at each location and you would
+- `02:40` have all of the data sent between these
+- `02:42` locations Traverse this encrypted tunnel
+- `02:45` of course the concentrators will be
+- `02:46` decrypting this data on either side of
+- `02:48` the connection so the users at the
+- `02:50` different remote sites have no idea that
+- `02:53` this data is being encrypted between the
+- `02:55` two
+- `02:55` locations instead of installing a
+- `02:58` separate piece of software just for this
+- `03:00` VPN connectivity your organization may
+- `03:02` choose to use clientless vpns that don't
+- `03:05` require any specific VPN client this is
+- `03:08` something that usually runs inside of a
+- `03:10` browser using HTML 5 this is the
+- `03:13` hypertext markup language version 5 HTML
+- `03:16` 5 allows us to use an application
+- `03:19` programming interface to be able to
+- `03:21` interact with the browser and one of
+- `03:23` those apis is a web cryptography API
+- `03:26` which allows us to run a VPN client
+- `03:29` inside of our browser without using a
+- `03:31` separate client this means we don't have
+- `03:33` to install any additional software we
+- `03:36` just visit the appropriate webpage and
+- `03:38` the VPN software within that API takes
+- `03:40` over and provides that encrypted tunnel
+- `03:43` all you have to do is make sure you're
+- `03:45` using an HTML 5 compliant browser and
+- `03:48` you'll be able to use this clientless
+- `03:50` functionality within the browser on your
+- `03:53` system the administrator of your VPN
+- `03:55` system May configure the connectivity in
+- `03:58` a number of different ways one of these
+- `04:00` methods may be through the use of a full
+- `04:02` tunnel a full VPN tunnel means that all
+- `04:05` traffic that's being sent out of your
+- `04:07` machine is traversing that VPN tunnel
+- `04:10` and is encrypted on the other side where
+- `04:12` the concentrator is located your local
+- `04:14` machine doesn't make any special
+- `04:16` forwarding decisions where some traffic
+- `04:18` is sent through the tunnel and other
+- `04:19` traffic is not instead everything is
+- `04:22` being sent over that VPN connection in
+- `04:25` some cases though the administrator of
+- `04:27` your VPN May configure a split tunnel a
+- `04:30` split tunnel means that some traffic
+- `04:32` will be sent over the encrypted VPN but
+- `04:34` other types of traffic perhaps something
+- `04:36` that is not related to your corporate
+- `04:38` environment is sent outside of the VPN
+- `04:41` connection so let's take the scenario
+- `04:43` where we're using a VPN we are connected
+- `04:46` over this VPN connection to a VPN
+- `04:48` concentrator that's at our corporate
+- `04:50` office but we might also want to
+- `04:52` communicate to a web server that's on
+- `04:54` the internet that's not part of our
+- `04:55` organization so you might want to
+- `04:57` connect to my server at professor.com
+- `05:00` this means that normally traffic that's
+- `05:02` destined for your corporate Network
+- `05:04` would go from your remote user's
+- `05:05` workstation to the VPN concentrator that
+- `05:08` would then be decrypted and sent to the
+- `05:10` inside of your corporate network but if
+- `05:12` traffic needs to go to
+- `05:13` professormesser.com that traffic still
+- `05:16` needs to Traverse that VPN tunnel it is
+- `05:19` decrypted at the concentrator just like
+- `05:21` all of the other VPN traffic but then is
+- `05:24` redirected to the internet and to the
+- `05:26` external web server any communication
+- `05:29` back to the client would then need to go
+- `05:30` back to the concentrator and then be
+- `05:32` sent back through that VPN tunnel with a
+- `05:36` split tunnel we can avoid that
+- `05:38` additional routing that occurs when
+- `05:40` you're talking to a third-party website
+- `05:43` so now at the remote users workstation
+- `05:45` we effectively have two different paths
+- `05:48` we have our VPN tunnel back to our
+- `05:50` corporate Network and then we would have
+- `05:52` a separate path that is used for other
+- `05:54` third-party traffic if we want to
+- `05:56` communicate to our corporate Network we
+- `05:58` would send that traffic through the V
+- `05:59` VPN as usual to our VPN concentrator
+- `06:02` which then decrypts the traffic and
+- `06:04` sends it to our corporate network but if
+- `06:06` we also at the same time would like to
+- `06:08` communicate to professormesser.com we
+- `06:11` would then at the remote users's
+- `06:12` workstation simply send that traffic as
+- `06:15` normal the VPN client would recognize
+- `06:17` that we're talking to a device that's
+- `06:19` not part of our corporate Network and
+- `06:21` would directly send that traffic to the
+- `06:23` third party website without traversing
+- `06:25` the VPN tunnel and of course the traffic
+- `06:28` back to our device device would also not
+- `06:31` use that VPN connection this means we
+- `06:33` can continue to have an encrypted and
+- `06:36` secure connection to our corporate
+- `06:37` network but use a more efficient process
+- `06:40` of communicating to third-party websites

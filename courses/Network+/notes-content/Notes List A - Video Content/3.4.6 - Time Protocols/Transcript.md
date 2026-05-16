@@ -1,0 +1,129 @@
+# [3.4.6 - Time Protocols](https://www.youtube.com/watch?v=9MwHexC3Fkc)
+
+## 3.4.6 - Time Protocols
+
+- Day: Day 8
+- Duration: 5:02
+
+## Transcript
+
+- `00:02` in this video we're going to talk about
+- `00:03` ntp or the network time protocol this is
+- `00:06` the protocol that we use across all of
+- `00:09` the devices on our Network to be able to
+- `00:11` synchronize their clocks so if you're
+- `00:13` looking at the clock that's in your
+- `00:14` laptop or desktop computer or you're
+- `00:17` examining log files that have timestamps
+- `00:19` that are from a switch or router or
+- `00:21` firewall all of those clocks were
+- `00:23` probably synchronized using the network
+- `00:26` time protocol as you can imagine having
+- `00:28` every device using EX exactly the same
+- `00:30` Tim stamp can be critical especially
+- `00:33` when you're comparing log files and
+- `00:35` other information that may have been
+- `00:37` taken from multiple devices this is also
+- `00:40` an automatic process so that every
+- `00:42` device can automatically get exactly the
+- `00:44` correct time of day configured this is
+- `00:47` also something that we can configure so
+- `00:49` we might have some devices that update
+- `00:51` their clocks every day and other devices
+- `00:53` that might update every hour and in many
+- `00:56` cases these time updates are very
+- `00:58` accurate in most cases you might find
+- `01:00` that the devices on your network may
+- `01:02` only be different by a matter of
+- `01:05` milliseconds for ntp to work properly we
+- `01:08` need a Time server This ntp Server
+- `01:11` listens on UDP Port 123 and it's
+- `01:14` responsible for responding to any time
+- `01:16` requests from your ntp clients the ntp
+- `01:20` server does not modify its own time and
+- `01:23` if it needs to update its own time then
+- `01:25` it needs to have a separate ntp client
+- `01:28` that then queries a different ntp server
+- `01:31` the client is the software that's
+- `01:33` responsible for querying the server and
+- `01:35` obtaining the latest update of time
+- `01:37` information and in some cases we might
+- `01:40` have both an ntp client and an ntp
+- `01:43` server on the same device the server is
+- `01:45` handing out timestamps to any of your
+- `01:47` ntp clients and then if you need to
+- `01:49` update the time on that device a
+- `01:52` separate ntp client on that device will
+- `01:55` perform the same query to a different
+- `01:57` ntp server some organizations will an
+- `02:00` external ntp server to provide that time
+- `02:02` information but if ntp is important for
+- `02:05` your organization you may choose to have
+- `02:06` your own ntp server you would then
+- `02:09` configure all of the ntp clients on your
+- `02:11` network to query your own internal ntp
+- `02:15` servers by default ntp sends information
+- `02:18` in the clear after all the time of day
+- `02:21` is not something that's generally
+- `02:22` private so it's common to send this in a
+- `02:25` non-encrypted form across the network
+- `02:27` but time can be an important security
+- `02:30` concern for example keros is often used
+- `02:33` to authenticate devices on a Microsoft
+- `02:35` Windows network but keros won't work if
+- `02:38` the client and the server's timestamps
+- `02:40` are off by more than 5 minutes so you
+- `02:43` could potentially cause a denial of
+- `02:45` service by providing the wrong time to
+- `02:47` all of the clients on this network for
+- `02:50` that reason we need some way that we
+- `02:51` could trust the response that we're
+- `02:53` getting from these ntp servers one way
+- `02:56` to do this is by using network time
+- `02:58` security or n TS this adds a level of
+- `03:01` authentication so that we know the
+- `03:03` response that we're getting back from
+- `03:05` these servers is one that can be trusted
+- `03:07` to use Network time security we need an
+- `03:10` additional device on the network known
+- `03:12` as the network time security key
+- `03:14` exchange server this is a server that's
+- `03:16` responsible for authenticating the
+- `03:18` clients and making sure that they all
+- `03:20` have a cookie that can then be used to
+- `03:23` perform the ntp query so this now turns
+- `03:26` into a two-step process where we first
+- `03:28` obtain the authentic details and then
+- `03:31` provide that cookie to the ntp server
+- `03:34` here's a better view of this we first
+- `03:36` have a TLS handshake that occurs between
+- `03:38` the client and the NTS key exchange
+- `03:40` server and then we can request a cookie
+- `03:43` from that server and then receive it in
+- `03:45` that response from this point we can
+- `03:47` perform the ntp request to an ntp server
+- `03:50` but we include that cookie information
+- `03:52` to show that we have authenticated to
+- `03:55` the key exchange server we can then
+- `03:57` receive the ntp response and we now know
+- `03:59` that we have a valid timestamp from a
+- `04:02` trusted server with a local ntp server
+- `04:05` we can get accuracies down to around 10
+- `04:08` milliseconds but in some environments we
+- `04:11` need very precise time synchronization
+- `04:13` and we can do that by using Precision
+- `04:15` Time protocol or PTP this is a
+- `04:19` hardware-based Time synchronization that
+- `04:21` provides granularity down to the Nan
+- `04:23` second this is especially important for
+- `04:26` industrial uses where you need to make
+- `04:28` sure that the time stamps across all of
+- `04:30` these devices are very precise PTP often
+- `04:33` requires a separate piece of Hardware
+- `04:35` that is separated from our operating
+- `04:37` system and any of our applications that
+- `04:40` means that it has its own operating
+- `04:42` system it can run without any delays
+- `04:44` from any type of thirdparty process and
+- `04:47` it can provide the most accurate
+- `04:48` timestamps for all of your devices

@@ -1,4 +1,4 @@
-# 🌐 Application Layer Protocols
+# Application Layer Protocols
 
 > **Lecture note:** The application layer is not explained in detail in this class. The goal is enough knowledge to **understand what you're seeing in Wireshark** — recognise a protocol name, know roughly what it does, and know if it uses TCP, UDP, or ICMP.
 
@@ -73,8 +73,8 @@ Network diagnostic / error reporting?          → ICMP
 
 ## Key Points
 
-- 📌 Application layer = where user programs meet the network
-- 📌 This layer is learned enough to **read Wireshark** — not in deep detail
-- 📌 HTTP (80) TCP / HTTPS (443) TCP / DNS (53) UDP+TCP / FTP (20/21) TCP
-- 📌 TFTP (69) UDP / NTP (123) UDP / SNMP (161/162) UDP
-- 📌 ping and tracert use **ICMP**, not TCP or UDP
+- Application layer = where user programs meet the network
+- This layer is learned enough to **read Wireshark** — not in deep detail
+- HTTP (80) TCP / HTTPS (443) TCP / DNS (53) UDP+TCP / FTP (20/21) TCP
+- TFTP (69) UDP / NTP (123) UDP / SNMP (161/162) UDP
+- ping and tracert use **ICMP**, not TCP or UDP

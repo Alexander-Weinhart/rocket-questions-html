@@ -1,0 +1,268 @@
+# [4.3.2 - Security Rules](https://www.youtube.com/watch?v=ORRcLSS9_Ps)
+
+## 4.3.2 - Security Rules
+
+- Day: Day 10
+- Duration: 10:23
+
+## Transcript
+
+- `00:02` one common way to limit the type of
+- `00:04` traffic that can Traverse the network is
+- `00:05` by using an ACL or an access control
+- `00:08` list this is a generic term that
+- `00:10` describes a list of traffic that is
+- `00:12` allowed and traffic that is disallowed
+- `00:15` it's often grouped with different
+- `00:16` categories so that you can create very
+- `00:19` complex combinations for example you
+- `00:21` might want to use Source IP address
+- `00:24` destination IP address a port number a
+- `00:26` time of day or an application and
+- `00:29` combine all of those together to create
+- `00:31` a rule where traffic may be allowed or
+- `00:33` disallowed acl's can also refer to a
+- `00:36` group of these criteria for example you
+- `00:38` can have a group of IP addresses and
+- `00:40` some of those IP addresses would be
+- `00:42` allowed access to the system and another
+- `00:44` group of IP addresses would be denied
+- `00:47` Access Control list can be found on many
+- `00:49` different devices including routers
+- `00:51` firewalls operating systems and anything
+- `00:54` that needs to make a decision about
+- `00:56` access the security policies we often
+- `00:58` see in a firewall are a very complex
+- `01:01` form of an access control list this
+- `01:04` Access Control list or set of security
+- `01:06` policies includes the name of the rule a
+- `01:08` source and destination Zone a source and
+- `01:11` destination address a destination port a
+- `01:14` username and so on as you can see from
+- `01:17` this console you can make some very
+- `01:19` specific and very fine grain security
+- `01:22` controls using this security policy list
+- `01:25` most firewall rules are interpreted by
+- `01:27` starting with the first rule number and
+- `01:29` working down through the list until it
+- `01:31` finds a match this top to bottom
+- `01:34` approach is very common on most
+- `01:35` firewalls that you'll run into this can
+- `01:38` be a very specific set of rules or they
+- `01:40` may be very generalized we tend to put
+- `01:43` the more specific rules on the top of
+- `01:45` this list so they'll be matched first
+- `01:47` before it ever gets to the more general
+- `01:49` rules and with most firewalls if you get
+- `01:52` all the way through the rule base and
+- `01:54` none of those rules are matching the
+- `01:55` data that's flowing through the firewall
+- `01:57` that data is automatically denied
+- `02:00` we refer to this as an implicit deny
+- `02:03` although there is not a specific rule
+- `02:05` denying that traffic the lack of any
+- `02:07` other rule matching that traffic means
+- `02:09` that we implicitly deny that traffic in
+- `02:12` this rule set there is an implicit deny
+- `02:15` at the bottom you can imagine a rule
+- `02:16` eight at the bottom of this firewall
+- `02:18` rule set that denies all other traffic
+- `02:21` that didn't match any of the rules from
+- `02:23` Rule Number 1 through 7 let's step
+- `02:26` through this firewall rule set and see
+- `02:28` what each line is providing us for
+- `02:30` security rule number one allows any IP
+- `02:33` address from any port number to connect
+- `02:35` to port number 22 on this particular
+- `02:38` device over protocol TCP you can see the
+- `02:41` allow action is the disposition at the
+- `02:43` end of this particular rule Port 22 is
+- `02:46` commonly associated with SSH so this
+- `02:48` would allow anyone to connect to this
+- `02:50` device over that SSH Port rule two is a
+- `02:54` similar rule to Port one it has a remote
+- `02:56` IP of all and a remote port number of
+- `02:58` any so anyone can connected this device
+- `03:01` over local port number 80 running the
+- `03:03` TCP protocol we know that Port 80 is
+- `03:06` commonly used for web traffic and all of
+- `03:08` that traffic would be allowed well if
+- `03:10` we're allowing Port 80 for our web
+- `03:12` server then we're probably also going to
+- `03:15` allow Port 443 and the next rule in the
+- `03:17` rule set is Port 443 and it is allowed
+- `03:21` to this service port 4 allows any remote
+- `03:24` IP and port number to connect to TCP
+- `03:26` port
+- `03:27` 3389 on this device all of these are
+- `03:30` allowed and of course Port 3389 is
+- `03:33` commonly associated with the Microsoft
+- `03:35` Remote Desktop protocol or RDP This
+- `03:38` Server must also make DNS requests
+- `03:40` because in rule five we're able to
+- `03:42` connect to any remote IP address over
+- `03:44` Port 53 from any local port on this
+- `03:47` device using UDP you can see that action
+- `03:50` is indeed to allow that traffic and very
+- `03:53` similarly we have rule six where we can
+- `03:56` connect to any remote IP address using
+- `03:58` Port 123 over UDP from any local Port
+- `04:02` that is allowed traffic and Port 123 of
+- `04:06` course would be the network time
+- `04:07` protocol or ntp and then lastly our
+- `04:11` network administrator has decided not to
+- `04:13` allow someone to Ping this device or use
+- `04:16` any other aspect of the internet Control
+- `04:18` Management protocol or
+- `04:21` icmp this is Rule 7 and it says that any
+- `04:24` remote IP address using icmp is
+- `04:28` denied being able to filter traffic
+- `04:31` based on an IP address or port number is
+- `04:33` important but it's only part of the
+- `04:35` security posture that we might want to
+- `04:37` present there are other ways to filter
+- `04:39` traffic one of these is through URL
+- `04:41` filtering this allows you to specify
+- `04:44` either a specific uniform resource
+- `04:47` locator URL or you can specify a
+- `04:50` category of URL sometimes you'll see
+- `04:52` this referred to as a uniform resource
+- `04:55` identifier or URI and often this is put
+- `04:58` into an allow list or a block list for
+- `05:01` an organization we could of course
+- `05:03` specify individual URLs that people are
+- `05:06` able to visit but we might have to put
+- `05:08` hundreds or even thousands of URLs in a
+- `05:11` database to be able to make that happen
+- `05:13` it's much easier if we could roll all of
+- `05:16` those URLs up into a very broad category
+- `05:19` and that's what most URL filtering
+- `05:21` devices will do they might allow you to
+- `05:23` allow or disallow access to auction
+- `05:26` sites hacking sites travel sites
+- `05:28` Recreation sites and many other
+- `05:31` categories users often try to find ways
+- `05:33` around the URL filtering or find
+- `05:36` different ways to access those websites
+- `05:38` without having to go through this filter
+- `05:40` for that reason we often combine URL
+- `05:42` filtering with a firewall rule set so
+- `05:45` that we can prevent any type of
+- `05:46` circumvention of our security rules and
+- `05:49` most Next Generation firewalls have URL
+- `05:51` filtering already built into the
+- `05:53` software so you can simply enable or
+- `05:55` disable these categories and include
+- `05:57` them in an existing firewall rule
+- `06:01` URL filtering is a type of content
+- `06:03` filtering we are choosing what content
+- `06:05` inside of the data is allowed or
+- `06:08` disallowed through the network but other
+- `06:10` types of data may be used for content
+- `06:12` filtering as well we might have internal
+- `06:14` documents inside of our company that we
+- `06:16` don't want to get out or there might be
+- `06:18` Financial details we might have content
+- `06:21` filtering software or Hardware that is
+- `06:23` looking for that data and if it finds
+- `06:25` any of that data inside of our Network
+- `06:27` traffic it can allow or prevent that
+- `06:29` traffic from traversing the network some
+- `06:32` organizations will use content filtering
+- `06:34` to prevent any non-safe for work type
+- `06:36` content being shown on the screen or you
+- `06:38` might use it at home for your parental
+- `06:40` controls and one of the most common
+- `06:42` types of content filtering are built
+- `06:44` into our antivirus and antimalware
+- `06:47` software we're looking for malicious
+- `06:49` software being transferred across the
+- `06:51` network and this software will filter
+- `06:54` any of that bad
+- `06:55` content one of the challenges we have is
+- `06:58` making services available to the public
+- `07:00` over our network but we don't want that
+- `07:03` public to have access to our internal
+- `07:05` Network one of the ways we can
+- `07:07` accomplish this is through the use of a
+- `07:09` screened subnet this allows us to create
+- `07:11` a separate area of the network that is
+- `07:14` specifically designed for visitors to
+- `07:16` our Network this allows them to access
+- `07:19` services that we'd like to make public
+- `07:20` such as public web servers or public
+- `07:22` email servers but all of that traffic is
+- `07:25` going to this separate screened subnet
+- `07:28` we still have our internal Network and
+- `07:30` anybody on that Network can communicate
+- `07:32` out to the internet but anyone who needs
+- `07:34` to visit our web server will be directed
+- `07:36` to the screen subnet and away from our
+- `07:38` internal
+- `07:40` services on the firewall console we saw
+- `07:43` earlier you might have noticed that
+- `07:45` there were zones referenced as part of
+- `07:47` the firewall rule these zones can be
+- `07:50` used to create very broad references
+- `07:52` inside of our firewall rules instead of
+- `07:55` using an IP address range you can simply
+- `07:58` use a security Zone you would first need
+- `08:00` to separate the network into different
+- `08:02` zones there might be two zones on your
+- `08:04` network a trusted Zone and an unrusted
+- `08:07` zone or you might have an internal Zone
+- `08:10` and an external Zone and if you wanted
+- `08:12` to have additional zones for additional
+- `08:15` granularity you might have an inside
+- `08:17` Zone an internet Zone a server Zone a
+- `08:20` databases Zone and a screen subnet Zone
+- `08:24` this allows us to simplify all of these
+- `08:26` security policies that we're building
+- `08:27` inside of our firewall so we could
+- `08:29` create one rule that says if you're on
+- `08:31` the trusted Zone you can communicate to
+- `08:34` the untrusted zone you don't have to add
+- `08:36` any IP addresses there's no port numbers
+- `08:39` there's no specific applications you're
+- `08:41` simply saying that all traffic in one
+- `08:43` part of the network is able to
+- `08:44` communicate to a different part of the
+- `08:46` network the same thing might apply from
+- `08:49` the Internet or from the untrusted zone
+- `08:51` you may allow that traffic to visit your
+- `08:53` screened subnet or perhaps you'd like to
+- `08:56` prevent anyone from an untrusted part of
+- `08:58` the network from being able to
+- `09:00` communicate to The Trusted part of the
+- `09:02` network and we could create a firewall
+- `09:04` rule that denies that traffic based on
+- `09:06` those two zones visually we can overlay
+- `09:10` some zones onto our existing Network
+- `09:12` design we have an internet connection
+- `09:14` coming into a firewall there's a router
+- `09:17` with another firewall that firewall
+- `09:19` takes some traffic and sends it over to
+- `09:21` honeypots and the rest of that traffic
+- `09:23` is sent inside to our normal Network we
+- `09:26` can overlay some security zones on top
+- `09:28` of this for example example we can make
+- `09:30` a security Zone where the internet is
+- `09:32` first connecting to our firewall and
+- `09:34` then everything else on the network can
+- `09:36` be another security Zone we can then
+- `09:38` name these zones one of them might be
+- `09:40` the untrusted Zone which is where the
+- `09:42` internet lives and the other would be
+- `09:44` the trusted Zone which is the inside of
+- `09:46` our network if you need more granularity
+- `09:49` with your firewall rules you could break
+- `09:51` this into other zones for example we can
+- `09:54` have an internet Zone at the top you
+- `09:56` might have a screen subnet where people
+- `09:58` are connecting and there may be an
+- `10:00` internal Network that is separated by a
+- `10:02` separate firewall if you'd like to have
+- `10:04` more control over the firewall rules and
+- `10:06` you'd like more granularity you might
+- `10:08` want to add more security zones to your
+- `10:10` zone-based firewall

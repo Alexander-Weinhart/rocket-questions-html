@@ -1,0 +1,174 @@
+# [0.1.1 - How to Pass Your N10-009 Network+ Exam](https://www.youtube.com/watch?v=k7IOn3TiUc8)
+
+## 0.1.1 - How to Pass Your N10-009 Network+ Exam
+
+- Day: Day 1
+- Duration: 7:30
+
+## Transcript
+
+- `00:01` Hello, everyone.
+- `00:02` I'm James Messer, and welcome to Professor Messer's N10-009
+- `00:07` Network+ training course.
+- `00:08` In this training course, we'll take you through everything you
+- `00:11` need to know to pass your Network+ exam.
+- `00:14` CompTIA, of course, is one of the largest certification
+- `00:17` bodies in the world, and regardless
+- `00:19` of why you're taking this exam, I
+- `00:21` think you'll find there's something
+- `00:22` here for practically anyone in information technology.
+- `00:26` If you're working on moving up the ranks within IT,
+- `00:29` then the Network+ exam provides you with information you'll need
+- `00:32` across many different areas of these technologies.
+- `00:36` There are also organizations that require you to have certain
+- `00:39` certifications, and Network+ might be one of those.
+- `00:42` But even if you're not taking this
+- `00:44` for a certification or to even take the exam,
+- `00:47` there's still a lot of great information
+- `00:49` in this course that can help you with your IT career.
+- `00:52` CompTIA stands for the Computing Technology Industry Association,
+- `00:56` and it is one of the largest vendor-neutral IT certification
+- `01:00` entities in the world.
+- `01:02` CompTIA certifications cover everything from basic IT
+- `01:05` all the way into detailed cybersecurity topics.
+- `01:09` And the members of CompTIA consist
+- `01:11` of resellers, distributors, IT training organizations,
+- `01:15` and many other companies that are focused
+- `01:17` on information technology.
+- `01:19` These are also certifications that are
+- `01:21` recognized around the world.
+- `01:23` These exams can be taken in over a hundred different countries,
+- `01:26` and there are many different languages to choose from.
+- `01:29` If you found your way to this Network+ training course,
+- `01:32` you may already be familiar with myself and the training courses
+- `01:35` that we provide here at Messer Studios.
+- `01:38` Personally, I have been in information technology
+- `01:40` over 30 years, with jobs that range anywhere
+- `01:43` from supercomputer operations through systems engineering,
+- `01:46` network analysis, network troubleshooting, and finally,
+- `01:50` cyber security engineering.
+- `01:51` If you're looking for someone who
+- `01:53` is well-versed in the intricacies of the technology,
+- `01:56` the industry, and what employers might be looking for,
+- `01:59` then you've come to the right place.
+- `02:01` If you look at our video course, you'll
+- `02:03` notice that there are a lot of individual videos.
+- `02:06` But those videos tend to be less than 10 minutes apiece.
+- `02:09` That way you can find exactly what you're looking to learn,
+- `02:12` focus in on those individual topics,
+- `02:15` and then if you need to watch some more,
+- `02:17` you have another 10 minutes available.
+- `02:18` Or you can stop right there and step back into your studies
+- `02:21` at any time.
+- `02:23` Our goal is to create a video series that is the highest
+- `02:26` quality possible.
+- `02:27` This means that we focus on providing you
+- `02:29` with content that's valuable, focused on the exam objectives,
+- `02:33` and gives you exactly what you need to know to pass your exam.
+- `02:37` Our goal is to give you the skills and knowledge that you
+- `02:39` need to get your first job in information technology
+- `02:42` or to move up within IT to get an even better job.
+- `02:46` If you're watching this online, then you've
+- `02:48` probably noticed that there was no registration,
+- `02:51` nothing's hidden behind a paywall,
+- `02:53` and that our entire course is available for you
+- `02:55` to watch online for free.
+- `02:57` So your natural question might be, what's the catch?
+- `03:01` Is there something that we have to do
+- `03:03` to be able to gain access to this information?
+- `03:05` And the simple answer is no.
+- `03:06` Everything is available for you to watch online for free
+- `03:09` with no limitations at all.
+- `03:11` If you want a version of this course that's available offline,
+- `03:14` we have downloadable versions that you can purchase.
+- `03:17` And we also have other supporting materials
+- `03:19` that might help you throughout your studies,
+- `03:21` including our course notes, discounted vouchers, and much
+- `03:24` more.
+- `03:24` If you want to find out more about exactly what's available,
+- `03:27` all of it is on our website.
+- `03:29` Simply visit professormesser.com.
+- `03:32` We never remove our training videos from YouTube,
+- `03:35` so you can go back a number of years to find different versions
+- `03:38` of our Network+ course available.
+- `03:40` So how do you know if the Network+ course you're watching
+- `03:43` right now is the latest version?
+- `03:45` Well, the N10-009, which is the version of the exam that this
+- `03:49` series is based on, was released on June the 20th of 2024.
+- `03:53` We know that CompTIA tends to keep these courses available
+- `03:57` for about 3 and 1/2 years.
+- `03:58` That means that this series of the Network+ exam would probably
+- `04:03` retire somewhere around the end of 2027.
+- `04:06` So if you're watching this video within that time frame,
+- `04:09` then you're probably watching the right version associated
+- `04:12` with the N10-009 exam.
+- `04:15` But of course, the CompTIA website
+- `04:17` is the best place to go to determine what the latest
+- `04:20` version of the exam might be.
+- `04:22` So if you have any questions about which exam version
+- `04:25` you should be watching or which video series applies to you,
+- `04:29` make sure you check the CompTIA website.
+- `04:31` To earn your Network+ certification,
+- `04:33` you need to pass a single exam.
+- `04:35` This exam is a 90-minute exam, and you get a maximum of 90
+- `04:40` questions.
+- `04:40` You might get fewer than 90 questions on your exam.
+- `04:43` The passing score you're looking for is a 720,
+- `04:46` and this is on a scale between 100 and 900.
+- `04:50` The exam itself consists of five different domains.
+- `04:53` Domain one is networking concepts,
+- `04:56` and that consists of 23% of the exam.
+- `04:59` Domain two is network implementation at 20%.
+- `05:02` Domain three is network operations at 19%.
+- `05:06` Domain four is network security at 14%.
+- `05:08` And domain five is network troubleshooting
+- `05:10` at 24% of the exam.
+- `05:13` If you're following along with our video series,
+- `05:16` I would highly recommend that you also download a free
+- `05:19` resource from the CompTIA website called the CompTIA
+- `05:23` Network+ Certification Objectives.
+- `05:25` This is a set of exam objectives that
+- `05:27` will tell you everything you need to know before you walk in
+- `05:30` to take that exam.
+- `05:31` You can find a link to these objectives from the Professor
+- `05:34` Messer website at professormesser.com/objectives.
+- `05:39` All of the videos in this course follow these objectives
+- `05:42` in the objective order, so it should
+- `05:43` be relatively easy to find exactly what you're looking
+- `05:46` for during your studies.
+- `05:48` I would also recommend that you get a good book on Network+,
+- `05:51` and we have recommendations on our site that can help you with
+- `05:54` your studies.
+- `05:54` There are also many people that are studying for their A+,
+- `05:58` Network+, Security+ and other certifications,
+- `06:01` and you can talk with them directly on our Discord
+- `06:04` at professormesser.com/discord.
+- `06:07` There are a lot of people studying for their Network+
+- `06:09` exam, and on our Discord, you can start or attend any ad hoc
+- `06:13` study session at any time.
+- `06:16` We also have other resources that can help you with
+- `06:18` your Network+ journey.
+- `06:19` You can find those available on our website
+- `06:22` at professormesser.com/netplus resources.
+- `06:26` So now you've got all the training materials you need
+- `06:29` to be successful with your Network+ studies.
+- `06:31` We have our entire course available on our website
+- `06:34` for you to watch at any time.
+- `06:36` We also have our 24 by 7 Discord chat.
+- `06:39` We also include monthly live study groups.
+- `06:42` So if you'd like to join us for some interactive Q&A
+- `06:45` and your chance to ask any question that you would like
+- `06:48` in our aftershow, you can find those available on YouTube
+- `06:52` as a replay at professormesser.com/youtube.
+- `06:56` And if you check our calendar on our website,
+- `06:58` you can join those sessions live.
+- `07:00` Now you've got everything you need to be successful with
+- `07:03` your Network+ studies.
+- `07:05` Our video course, additional resources
+- `07:07` on our website, an entire community of people
+- `07:10` that are studying to get their certifications, and so much more
+- `07:13` is available on our website.
+- `07:15` Visit professormesser.com and join us in the next video as we
+- `07:20` begin your process through your Network+ certification.
+- `07:23` Best of luck with your studies, and we'll
+- `07:25` see you in the next video.

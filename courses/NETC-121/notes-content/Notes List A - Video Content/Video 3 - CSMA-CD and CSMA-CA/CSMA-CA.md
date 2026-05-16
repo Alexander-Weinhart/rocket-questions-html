@@ -1,4 +1,4 @@
-# 📶 CSMA/CA — Carrier Sense Multiple Access with Collision Avoidance
+# CSMA/CA — Carrier Sense Multiple Access with Collision Avoidance
 
 CSMA/CA is the access method used by **Wi-Fi networks**. Unlike wired CSMA/CD which detects collisions after they happen, CSMA/CA tries to **avoid them before they occur** — because on wireless networks, collisions can't be reliably detected mid-transmission.
 
@@ -12,41 +12,41 @@ On a wired network, a device can listen to the cable while transmitting and dete
 
 ## The 4-Step Process
 
-### Step 1 — If Idle, Wait Random Backoff Then Transmit 👂⏱️📤
+### Step 1 — If Idle, Wait Random Backoff Then Transmit 
 The device listens to the wireless channel.
 - Channel is **idle** → wait a random backoff period from the contention window, then transmit.
 - Channel is **busy** → go to Step 2.
 
 ```
 Channel idle:
-  Device A waits: 3 slots ──► transmits
-  Device B waits: 7 slots ──► channel busy by then → Step 2
+  Device A waits: 3 slots  transmits
+  Device B waits: 7 slots  channel busy by then → Step 2
                                   ↑
                              collision avoided
 ```
 
-### Step 2 — If Not Idle, Wait ⏸️
+### Step 2 — If Not Idle, Wait 
 The channel is in use. The device waits until it goes idle, then returns to Step 1.
 
-### Step 3 — If No ACK, Assume Collision ❌
+### Step 3 — If No ACK, Assume Collision 
 Unlike CSMA/CD, Wi-Fi **requires an acknowledgment (ACK)** from the receiver after every frame.
-- ACK received → transmission confirmed ✅ — done, return to Step 1 when needed.
+- ACK received → transmission confirmed  — done, return to Step 1 when needed.
 - No ACK within timeout → frame was lost or collided → go to Step 4.
 
 ```
-Device ──► Frame ──────────────────► Access Point
-Device ◄── ACK  ◄────────────────── Access Point
-           ✅ confirmed → done
+Device  Frame  Access Point
+Device  ACK   Access Point
+            confirmed → done
 ```
 
-### Step 4 — Double Contention Window, Repeat Step 1 ⏱️
+### Step 4 — Double Contention Window, Repeat Step 1 
 The device **doubles the contention window** (exponential backoff) and returns to Step 1.
 A larger window spreads retries over more time slots, reducing the chance of repeated collisions.
 
 ```
 Attempt 1: contention window = 16 slots  → no ACK → double
 Attempt 2: contention window = 32 slots  → no ACK → double
-Attempt 3: contention window = 64 slots  → ACK ✅
+Attempt 3: contention window = 64 slots  → ACK 
 ```
 
 ---
@@ -65,8 +65,8 @@ Attempt 3: contention window = 64 slots  → ACK ✅
 
 ## Key Points
 
-- 📌 Used in **Wi-Fi (802.11)** networks
-- 📌 Avoids collisions with random backoff **before** transmitting
-- 📌 ACK required from receiver to confirm successful delivery
-- 📌 No ACK = double contention window and retry
-- 📌 Can never fully eliminate collisions — only reduce their probability
+- Used in **Wi-Fi (802.11)** networks
+- Avoids collisions with random backoff **before** transmitting
+- ACK required from receiver to confirm successful delivery
+- No ACK = double contention window and retry
+- Can never fully eliminate collisions — only reduce their probability

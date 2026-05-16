@@ -2,15 +2,20 @@ __pycache__/
 scripts/__pycache__/
 *.pyc
 *.bak
+**/*.mp4
 
 .venv/
 node_modules/
 playwright-report/
 test-results/
+.playwright-browsers/
+tmp-playwright-browser/
 quiz_reports/
 Output/
 logs/
 sites-enabled/
+tools/
+deploy/
 
 .codex
 question_history.csv
@@ -18,7 +23,8 @@ FEEDBACK/changes.csv
 FEEDBACK/question_history.csv
 test1/
 
-.vscode/sftp.json
+.vscode/
 courses/Network+/Exam Objectives.md
 courses/Network+/notes-content/MASTER LIST/Exam Objectives.md
 courses/Network+/notes-content/Notes List B - Textbook Content/
+.env

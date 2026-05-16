@@ -1,0 +1,206 @@
+# [3.5.2 - Remote Access](https://www.youtube.com/watch?v=QbEDRTjcom4)
+
+## 3.5.2 - Remote Access
+
+- Day: Day 8
+- Duration: 7:52
+
+## Transcript
+
+- `00:02` if you've done anything in networking
+- `00:04` relating to switches routers firewalls
+- `00:06` or other devices then you've probably
+- `00:09` connected over the network to a terminal
+- `00:11` or console to do this over an encrypted
+- `00:13` Channel you use a protocol known as SSH
+- `00:17` this is secure shell this allows you to
+- `00:19` use this terminal screen to a Remote
+- `00:21` device but all of the traffic sent over
+- `00:23` the network is encrypted this means you
+- `00:26` can put in your username your password
+- `00:28` and all other information and no one
+- `00:30` else will be able to capture that
+- `00:31` traffic and see any of that important
+- `00:33` data secure shell operates using TCP
+- `00:37` Port 22 and it's designed to replace a
+- `00:40` protocol known as telnet which uses TCP
+- `00:43` Port 23 telnet is very similar in
+- `00:46` operation to SSH it provides this
+- `00:48` console-based view of a Remote device
+- `00:51` but it provides no encryption and that's
+- `00:53` why the best practice is to always use
+- `00:55` SSH and to not use telnet working at a
+- `00:59` command log is useful especially on
+- `01:01` devices that support it but occasionally
+- `01:04` you need to be able to provide remote
+- `01:05` access to a graphical front end you can
+- `01:08` do that by using some type of remote
+- `01:10` sharing software so that you can be at a
+- `01:13` remote location yet still see and
+- `01:16` operate the same desktop as someone
+- `01:18` who's sitting directly in front of that
+- `01:19` computer if this is a Windows computer
+- `01:22` then you're using RDP which is the
+- `01:24` Microsoft Remote Desktop protocol that
+- `01:27` allows you to connect to a Windows
+- `01:29` machine and be be able to access and use
+- `01:31` the front end as if you were in front of
+- `01:34` the actual Monitor and keyboard if this
+- `01:37` is a Windows computer that you're
+- `01:38` connecting to you're probably using RDP
+- `01:41` or Microsoft Remote Desktop protocol
+- `01:44` this allows you to remotely control a
+- `01:45` Windows machine either from another
+- `01:48` Windows machine across the network or by
+- `01:50` using remote desktop protocol clients
+- `01:52` that are available for nearly any other
+- `01:55` operating system another option for
+- `01:57` remote control of a device would be to
+- `01:59` use VN C or virtual network computing
+- `02:02` this uses a protocol known as RFB or
+- `02:04` remote frame buffer this is very similar
+- `02:07` in function to Microsoft's RDP but the
+- `02:10` VNC functionality can be run on many
+- `02:13` different operating systems if you're
+- `02:15` part of a help desk or support team and
+- `02:17` you need a way to remotely connect and
+- `02:19` control any of these remote desktops
+- `02:22` you're probably going to be using RDP or
+- `02:25` VNC sometimes you need to be able to
+- `02:28` make changes to hundreds or even
+- `02:30` thousands of different devices you could
+- `02:32` automate this at the command line using
+- `02:35` scripts and batch files but because this
+- `02:37` operates at the command line you don't
+- `02:39` have a lot of control over the process
+- `02:41` if you happen to run into problems for
+- `02:43` that reason you might want to use a more
+- `02:45` automated method of controlling that
+- `02:47` device using an API or application
+- `02:50` programming interface using an API you
+- `02:52` can connect in control a device using
+- `02:55` the language that that device would
+- `02:57` expect this also allows us to automate
+- `02:59` the process
+- `03:00` and set up additional tasks if we need
+- `03:02` to do any type of error handling if you
+- `03:05` happen to be in the same physical
+- `03:07` location as the device you may be able
+- `03:09` to plug in a cable and directly connect
+- `03:11` to the device with switches routers and
+- `03:14` other infrastructure devices you might
+- `03:16` even have a separate port on the front
+- `03:18` labeled console that console allows you
+- `03:20` to connect through a serial connection
+- `03:23` so that you can plug in your RJ45 serial
+- `03:26` a DB9 serial connection or a more modern
+- `03:29` US B connection to be able to gain
+- `03:31` access to that system the console is
+- `03:34` also a perfect solution if you lose
+- `03:35` network connectivity to the device if
+- `03:37` you're not able to Ping or SSH into the
+- `03:40` device you can always connect your
+- `03:42` console cable and directly communicate
+- `03:44` with that system these consoles are
+- `03:47` commonly text based interfaces so you
+- `03:49` need to know the command line interface
+- `03:50` for that particular device these console
+- `03:53` connections are commonly serial
+- `03:54` connections so we will need a laptop or
+- `03:57` desktop computer with a Serial port or
+- `03:59` we will need an adapter that can convert
+- `04:01` between USB to a serial
+- `04:04` connection instead of individually
+- `04:07` connecting to devices some organizations
+- `04:09` will create a jump server that allows
+- `04:12` you to connect to one device from there
+- `04:14` you can jump to the other devices within
+- `04:17` that particular organization this means
+- `04:19` from your external device you would use
+- `04:21` some type of VPN tunnel or SSH
+- `04:24` connection to initially connect to the
+- `04:26` jump server because this jump server is
+- `04:29` often an externally facing device where
+- `04:31` anyone on the internet could potentially
+- `04:34` connect to that system this needs to be
+- `04:36` very hardened we need to be sure that
+- `04:38` we're using authentication with multiple
+- `04:40` factors to be able to prevent anyone
+- `04:42` from brute forcing their way into that
+- `04:45` jump server from our external client we
+- `04:47` would use some type of thirdparty
+- `04:49` software VPN SSH or some other secure
+- `04:53` mechanism to gain access to the jump
+- `04:55` server once we're on the jump server we
+- `04:57` can then connect to all of the other
+- `04:59` devices within that organization without
+- `05:02` having to set up separate connections
+- `05:04` for each individual device we obviously
+- `05:07` need to be sure that this jump server is
+- `05:08` always kept up to date with security
+- `05:10` patches and that we provide a high level
+- `05:13` of authentication to prevent any third
+- `05:15` parties from Gaining access to the
+- `05:17` inside of this private
+- `05:19` Network the console connection on a
+- `05:22` switch router or other device allows us
+- `05:24` to directly connect but very often we're
+- `05:27` located in a different network at a
+- `05:29` different facility and we still need
+- `05:31` some way to gain access to those systems
+- `05:34` fortunately most devices support inband
+- `05:37` management where you can assign an IP
+- `05:39` address to that device and then connect
+- `05:41` to it using SSH or web-based front end
+- `05:44` sometimes this inband management is a
+- `05:46` separate interface on the device other
+- `05:48` times it's built into other interfaces
+- `05:51` that already exist on that device when
+- `05:53` configuring that switch router or other
+- `05:56` device you would provide it with a
+- `05:58` management IP address address subnet
+- `06:00` mask and other important networking
+- `06:02` details and from that point forward you
+- `06:04` can connect to this device across the
+- `06:06` network usually this device has a web
+- `06:09` server running internally to the device
+- `06:11` or it may be using an SSH server so that
+- `06:13` we can connect from our SSH
+- `06:16` client here's an example of a switch
+- `06:18` that not only has a Serial console
+- `06:21` connection that you can directly connect
+- `06:22` to but it also has a separate Tim 100
+- `06:25` 1000 management interface this is the
+- `06:28` interface that you would assign an i I
+- `06:29` address and then you would connect your
+- `06:31` network directly to that interface from
+- `06:34` that point you can simply reference the
+- `06:35` IP address and be able to connect to the
+- `06:37` device across the
+- `06:39` network if inband management is using an
+- `06:42` IP address that we connect to through
+- `06:44` our existing Network then out ofand
+- `06:46` management is using a Serial interface
+- `06:49` that does not use our existing Network
+- `06:52` commonly this would be something like a
+- `06:54` separate management or console interface
+- `06:56` that we'd plug into using that serial
+- `06:59` connction
+- `07:00` on more modern devices you might find
+- `07:01` this to be a USB connection this
+- `07:04` separate console or comp port on the
+- `07:06` device also allows us to connect a modem
+- `07:09` so we might use a standard phone line
+- `07:11` connect a modem to that phone line and
+- `07:13` be able to dial into that device even
+- `07:16` when the network happens to be down in
+- `07:19` some organizations you can even install
+- `07:21` a Comm server so you can dial into one
+- `07:23` server and from that server you can jump
+- `07:26` to other devices through that com server
+- `07:28` connection you would need to look at
+- `07:30` your switch router or other device to
+- `07:32` see if there is a serial connection or
+- `07:35` console connection that you can either
+- `07:37` directly connect to or use a modem to
+- `07:39` dial into from a remote site

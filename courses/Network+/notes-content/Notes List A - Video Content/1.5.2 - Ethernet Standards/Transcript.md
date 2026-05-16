@@ -1,0 +1,94 @@
+# [1.5.2 - Ethernet Standards](https://www.youtube.com/watch?v=BxpRuARS56g)
+
+## 1.5.2 - Ethernet Standards
+
+- Day: Day 2
+- Duration: 4:04
+
+## Transcript
+
+- `00:01` If you've connected your computer to a wired network,
+- `00:05` then you're probably using Ethernet.
+- `00:07` Ethernet is the most popular networking standard
+- `00:10` in the world.
+- `00:11` And almost any device you use will
+- `00:13` be able to connect to an Ethernet network.
+- `00:16` There are also many different types of Ethernet.
+- `00:18` They vary in speed, the type of cabling we use,
+- `00:22` the connectors at the end of these cables,
+- `00:24` and the type of equipment that's required to connect
+- `00:27` all of these devices together.
+- `00:29` Our modern Ethernet networks have many different standards
+- `00:32` for both twisted-pair copper cabling
+- `00:34` and for fiber-optic connectivity.
+- `00:37` The reason we're able to connect any device in the world
+- `00:40` to any Ethernet network and be able to have this connectivity
+- `00:44` is because there is a single set of standards for all
+- `00:47` of these Ethernet networks.
+- `00:49` Those standards are created by the IEEE 802.3 committee.
+- `00:54` IEEE is the Institute of Electrical and Electronics
+- `00:57` Engineers.
+- `00:58` And they're responsible for designing and documenting
+- `01:00` the standards we use to connect all of these Ethernet networks
+- `01:04` together.
+- `01:05` For example, a very common Ethernet network would be
+- `01:08` 1000BASE-T. This is a Gigabit Ethernet network that operates
+- `01:13` over twisted-pair copper cabling and operates at a speed of 1
+- `01:17` gigabit per second.
+- `01:19` A newer version of that standard is the 10GBASE-T,
+- `01:22` or the 10 Gigabit Ethernet network.
+- `01:25` This also uses twisted-pair copper cabling
+- `01:27` and operates at a speed of 10 gigabits per second.
+- `01:31` There are also Ethernet networks that use fiber optics.
+- `01:34` An example of that would be 1000BASE-SX,
+- `01:37` which is a Gigabit Ethernet network that uses fiber optics
+- `01:40` and operates at a speed of 1 gigabit per second.
+- `01:44` This is just a sample of a few of the more popular Ethernet
+- `01:48` standards.
+- `01:48` But there are many Ethernet standards
+- `01:50` to choose from, using different types of media
+- `01:52` and supporting different speeds.
+- `01:55` The IEEE has told us that the names
+- `01:57` they use for these standards don't necessarily correlate back
+- `02:00` to the details of the standard.
+- `02:03` But there is usually some information
+- `02:05` that we can discern from the name itself.
+- `02:07` For example, if we look at a standard such as 1000BASE-T,
+- `02:11` we should be able to break that term apart and determine what
+- `02:14` type of media and technology is used as part of that standard.
+- `02:19` For example, the number that's used in the name of the standard
+- `02:22` is often related to the speed of the standard itself.
+- `02:25` For example, the 1000BASE-T, that 1000 refers to the 1,000
+- `02:30` megabits per second, or 1 gigabit per second,
+- `02:33` overall speed.
+- `02:34` If the standard started with 10G,
+- `02:37` then it would be related to a 10 gigabit per second network.
+- `02:41` We often see the term BASE in the name of the standard.
+- `02:44` And that's referring to the term "baseband,"
+- `02:46` which means there is a single frequency that is used to be
+- `02:50` able to send this data over the network.
+- `02:52` This is in contrast to something like broadband,
+- `02:55` which uses many different frequencies
+- `02:57` to be able to communicate across that network.
+- `03:00` And very often, you can determine what type of media
+- `03:03` is associated with that standard by looking
+- `03:05` at the additional letters at the end of the standard.
+- `03:08` For example, 1000BASE-T has a T at the end.
+- `03:12` And we can assume that that T means that this
+- `03:14` is twisted-pair copper.
+- `03:16` If there was an F at the end, it's
+- `03:18` very possible that this particular standard
+- `03:20` would use fiber optics.
+- `03:22` There may be additional letters at the end of the standard.
+- `03:25` For example, if there is an SX at the end of the standard,
+- `03:29` it might be referring to a short wavelength
+- `03:31` light that is sent over that fiber optic connection.
+- `03:34` As mentioned previously, the IEEE
+- `03:37` tries to put the name and terms within the standard
+- `03:40` so that it would be recognizable.
+- `03:42` But that is not a requirement for the name
+- `03:44` of the standard itself.
+- `03:45` If you were interested in the details of what
+- `03:47` that standard supports, you would
+- `03:49` need to read the entire standard and not just look
+- `03:52` at the name of the standard.

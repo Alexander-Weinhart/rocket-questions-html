@@ -9,8 +9,8 @@
 
 Sources included for this master list:
 
-- `Notes List A - Video Content/Video 26 - Layer 2 vs Layer 3 Switches/Transcript.md`
-- `Notes List A - Video Content/Video 27 - Micronugget What is Route Redistribution/Transcript.md`
+- `Notes List A - Video Content/Video 36 - Layer 2 vs Layer 3 Switches - Animated/Layer 2 vs Layer 3 Switches - Animated.md`
+- `Notes List A - Video Content/Video 37 - What is Route Redistribution?/What is Route Redistribution?.md`
 - `Notes List C - Alex's Personal Notes/Lecture Week 13/Lecture Week 13.md`
 
 Note: The Week 13 syllabus does not list a textbook reading assignment, so this master list is limited to the Week 13 videos and lecture notes.

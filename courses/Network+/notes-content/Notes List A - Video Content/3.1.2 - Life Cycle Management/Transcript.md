@@ -1,0 +1,192 @@
+# [3.1.2 - Life Cycle Management](https://www.youtube.com/watch?v=E8423-hdsHg)
+
+## 3.1.2 - Life Cycle Management
+
+- Day: Day 6
+- Duration: 8:17
+
+## Transcript
+
+- `00:01` One of the challenges we have when
+- `00:03` installing new equipment into our data centers
+- `00:05` and our networks is that eventually this hardware
+- `00:09` and software will be outdated.
+- `00:11` We refer to this as end of life, or EOL.
+- `00:15` This is when the manufacturer of that piece of equipment
+- `00:18` decides they are no longer going to support
+- `00:20` that particular product.
+- `00:22` They may continue to provide security patches and updates,
+- `00:25` but they are no longer going to provide new versions of software
+- `00:28` or enhance the features associated with that product.
+- `00:32` And eventually, the manufacturer of this equipment
+- `00:34` may decide to no longer produce any type of security updates.
+- `00:38` When there are no type of updates coming from a product,
+- `00:41` we refer to that as end of support, or EOS.
+- `00:44` You won't receive any patches, any updates, any new features
+- `00:48` or anything associated with that particular product.
+- `00:52` When a product moves into end of life,
+- `00:54` we can put together a plan and a budget
+- `00:56` for replacing that product over a period of time.
+- `01:00` But when a product hits end of support,
+- `01:03` this becomes a significant security concern, especially
+- `01:06` since we know that we will never receive another security
+- `01:09` update for that product.
+- `01:11` These ongoing patches and bug fixes
+- `01:13` can be very important for maintaining the uptime
+- `01:16` and availability of these devices, especially
+- `01:19` when these updates are associated with stability fixes.
+- `01:22` But these might also be fixes that close security holes, which
+- `01:25` may be just as important as maintaining
+- `01:27` the uptime of the device.
+- `01:29` We often see this with operating systems
+- `01:31` where we may receive a service pack every quarter
+- `01:34` and we may have to install a large number of updates
+- `01:37` to these systems when we first install the OS.
+- `01:40` Many organizations provide monthly updates
+- `01:42` on a recurring schedule.
+- `01:44` This means we know exactly when the latest updates are going
+- `01:47` to arrive and we can set up our plans
+- `01:49` for deployment around those update time frames.
+- `01:53` And occasionally, a manufacturer will
+- `01:54` introduce an update outside of the scope
+- `01:57` of that normal monthly update.
+- `01:58` This is often associated with a security concern, especially
+- `02:02` when a zero-day or some other type of significant security
+- `02:06` event occurs.
+- `02:08` It's not unusual to see updates to operating systems occur
+- `02:11` constantly across many aspects of that operating system.
+- `02:15` For example, we can have updates for Windows, Linux, our iOS
+- `02:19` and Android devices and anything else
+- `02:21` that might be running an OS.
+- `02:23` It's very common to see these monthly updates occur
+- `02:26` for the operating systems.
+- `02:28` These might have bug fixes and security patches,
+- `02:30` but we might also be making changes to the operating system
+- `02:33` ourselves.
+- `02:34` We might be modifying user accounts
+- `02:36` and changing the way that users interact with the operating
+- `02:39` system.
+- `02:39` For example, we might increase the minimum password lengths.
+- `02:43` We might change the complexity of the passwords required
+- `02:46` for the operating systems.
+- `02:47` Or we might change the way that users
+- `02:49` are able to access the operating systems
+- `02:52` and we might deploy those updates to the operating
+- `02:54` systems on demand.
+- `02:56` We might also change the configurations
+- `02:58` of the built-in firewalls on these devices.
+- `03:01` These operating systems provide us
+- `03:02` with a way to limit where a user may visit by IP address or URL
+- `03:07` or there might be changes that enhance the security
+- `03:09` features on that device.
+- `03:11` And there are constant changes to the embedded anti-malware
+- `03:14` and antivirus that's included with many of these operating
+- `03:17` systems.
+- `03:19` If we're managing a purpose-built appliance
+- `03:22` or a purpose-built piece of hardware,
+- `03:24` then we don't usually have access
+- `03:25` to the operating system that's on that device.
+- `03:28` And often these devices have their own operating system
+- `03:31` and configurations.
+- `03:32` We refer to the software that's running this piece of hardware
+- `03:35` as the firmware of that device.
+- `03:38` So if you're working with printers, cable modems
+- `03:40` or other devices that have their own embedded operating system,
+- `03:44` you might be required to update that firmware occasionally
+- `03:47` to close security holes.
+- `03:49` This update may be done over the network
+- `03:51` or it may require you to visit the device
+- `03:53` and physically connect to the device to perform the update.
+- `03:56` We know that we can't use this hardware
+- `03:59` unless the software in this device is working properly.
+- `04:02` So it's a good idea to have a plan for upgrading this that
+- `04:05` would include a way to fall back to a previous version
+- `04:09` if that newer version runs into a problem.
+- `04:11` It's often a good idea to save those firmware binaries
+- `04:14` in a safe place so that later on down the road
+- `04:17` you wanted to go back to a previous version,
+- `04:19` you would have access to all of that code.
+- `04:22` One of the challenges with managing firmware
+- `04:25` in your printers, your modems and other devices
+- `04:27` is that these companies are very good at manufacturing hardware,
+- `04:31` but they may not be as good at maintaining the firmware that
+- `04:35` runs in those devices.
+- `04:36` An example of this would be the Trane Comfortlink to thermostats
+- `04:40` where you could control the temperature on the thermostat
+- `04:43` from your phone.
+- `04:44` There were three vulnerabilities presented
+- `04:46` to train in April of 2014, but we didn't receive updates
+- `04:51` to the firmware until April 2015,
+- `04:54` and it took until January of 2016
+- `04:57` to be able to get the final update for that device.
+- `05:00` It would be up to the security team of your organization
+- `05:03` to determine if that device should remain on the network
+- `05:06` or if you should find other alternatives instead
+- `05:09` of that thermostat.
+- `05:11` Another important aspect of lifecycle management
+- `05:14` is what you do with the device when you don't need it anymore.
+- `05:17` This would be the decommissioning process.
+- `05:19` And it's the way that you dispose of an asset
+- `05:22` once you no longer need to use it.
+- `05:24` We see this often with desktops, laptops, mobile devices
+- `05:28` and anything else that becomes outdated
+- `05:30` and is no longer supported by the manufacturer.
+- `05:33` But there's data on that device that we
+- `05:35` want to be sure doesn't get into the hands of someone else.
+- `05:38` We need some way to sanitize the media
+- `05:41` or simply destroy the device to protect all of that data.
+- `05:45` This might also involve legal issues, especially
+- `05:47` if there's certain types of data that your organization is not
+- `05:50` allowed to destroy.
+- `05:52` So you may end up storing this equipment
+- `05:54` off site or in a secure location until such time
+- `05:57` that it's able to be destroyed or disposed of properly.
+- `06:00` And what you do not want to do is simply
+- `06:03` dispose of this in your normal trash.
+- `06:06` Eventually, someone will come across that equipment
+- `06:09` and they will either get access to the data
+- `06:11` or they'll sell that equipment to someone else who will then
+- `06:14` get access to the data.
+- `06:16` Although we often want to recycle this hardware,
+- `06:18` we want to be sure we do it in a way that
+- `06:20` protects the confidentiality of the data contained
+- `06:23` on all of these devices.
+- `06:26` An ongoing part of lifecycle management is change management.
+- `06:30` That's because we are constantly making changes in our computing
+- `06:34` environments.
+- `06:35` We're upgrading software on a switch,
+- `06:37` we're making changes to a firewall configuration,
+- `06:39` we're modifying a router table or making
+- `06:42` some other modification to software or configurations.
+- `06:46` This needs to be a managed process and something
+- `06:49` that we can track, monitor and be able to modify
+- `06:53` if we run into a problem.
+- `06:54` Most organizations will have a very clearly defined change
+- `06:58` management process.
+- `06:59` This would include how often you're
+- `07:01` able to make changes, the window that you have
+- `07:04` to be able to make those changes in an environment, the process
+- `07:07` itself for installing those changes in your environment.
+- `07:10` And then finally, a process for rolling
+- `07:13` back if you run into problems.
+- `07:15` And if your organization does not
+- `07:17` have a formal change management process,
+- `07:19` this might be difficult to implement.
+- `07:21` You need to make sure that everyone understands
+- `07:23` the importance of having a centralized change management
+- `07:26` process and that everyone follows
+- `07:29` that process before making any modifications to any device.
+- `07:34` Another important aspect of lifecycle management
+- `07:36` is how we handle ongoing service requests.
+- `07:39` This is often done through a help desk.
+- `07:41` They'll receive a phone call.
+- `07:43` They'll input a ticket into a centralized process tracking
+- `07:46` system.
+- `07:47` Those tickets will be triaged and provided
+- `07:49` to someone who can resolve the problem.
+- `07:52` And then they will close the ticket
+- `07:53` and move to the next one in the list.
+- `07:56` Almost every organization has a process tracking system.
+- `08:00` And although there are many different types of software
+- `08:02` to provide this function, they're
+- `08:03` all very similar in how they operate.

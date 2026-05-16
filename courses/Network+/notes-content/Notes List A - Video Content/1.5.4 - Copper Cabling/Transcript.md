@@ -1,0 +1,170 @@
+# [1.5.4 - Copper Cabling](https://www.youtube.com/watch?v=zoefzxHIfPc)
+
+## 1.5.4 - Copper Cabling
+
+- Day: Day 2
+- Duration: 7:21
+
+## Transcript
+
+- `00:01` Cabling is the foundation of everything we do in networking.
+- `00:05` Whether you're using a router, a switch, a wireless access point,
+- `00:08` or any other infrastructure device,
+- `00:10` cabling is going to be a critical part
+- `00:13` of that communication.
+- `00:14` Once the cabling is installed, it's very difficult
+- `00:17` to uninstall or remove that cabling
+- `00:20` and replace it with something else.
+- `00:22` So make sure you're using the right cabling
+- `00:24` for the right infrastructure.
+- `00:26` And even if your network happens to be mostly wireless,
+- `00:29` eventually that wireless connection
+- `00:31` will need to connect to a cable.
+- `00:33` So you need to make sure you have the right cables installed
+- `00:36` in the right place to be able to provide
+- `00:38` the best possible throughput of your network.
+- `00:42` One of the most common cable types
+- `00:43` is the twisted pair copper cable.
+- `00:46` This is something we use for practically
+- `00:47` all wired ethernet connections, and it usually
+- `00:51` consists of multiple wires twisted together
+- `00:53` within a single sheath.
+- `00:55` You'll often see that the cables themselves are paired together.
+- `00:59` That's because there's often one type
+- `01:01` of signal on one of the wires and a reverse of that signal
+- `01:05` on the other wire.
+- `01:06` You may see this written as transmit plus
+- `01:09` or transmit minus or receive plus and receive minus.
+- `01:13` The reason that we have the same signal being
+- `01:15` sent in different forms is so that we
+- `01:18` can recognize and correct if there happens
+- `01:20` to be any type of interference.
+- `01:22` This twist in these two wires means that at least one
+- `01:26` of these wires will always be moving away from interference.
+- `01:29` This allows us to compare these signals on the receiving end
+- `01:32` to determine what the actual signal should look like.
+- `01:36` Another interesting part is that the different cable pairs
+- `01:39` have different twist rates.
+- `01:40` So if you look very carefully at an individual cable,
+- `01:43` you'll notice that some pairs of cables are twisted much tighter
+- `01:47` than other pairs.
+- `01:49` One common misnomer that I often hear about cables
+- `01:52` is that a certain cable has a particular speed.
+- `01:56` But in reality, the cable doesn't have any speed at all.
+- `01:59` The copper is literally just sitting there in the cable.
+- `02:02` The cable itself is supporting a signal,
+- `02:05` and that signal is allowing us to send
+- `02:07` a certain amount of data over that particular type
+- `02:10` of connection.
+- `02:11` The specific ethernet standard that you're
+- `02:13` sending over that wire determines just how much data
+- `02:17` you'll be able to move across that particular cable.
+- `02:20` If you're ever wondering what type of cable
+- `02:22` you should be using for the type of ethernet network
+- `02:25` that you have, you should go back to the 802.3 standards.
+- `02:29` Those standards will specify the minimum cable type that's
+- `02:32` allowed for that particular standard,
+- `02:34` and it will specify the type of signal
+- `02:36` and the total throughput expected over that cable.
+- `02:39` To be able to easily determine the type of cable that's
+- `02:42` appropriate for a specific ethernet standard.
+- `02:45` We've created a set of standards for the cables themselves.
+- `02:48` We refer to these standards as a category of cable.
+- `02:51` For example, you might find category 5, category 6,
+- `02:55` or category 7.
+- `02:56` If you check the ethernet standard,
+- `02:58` it will specify the minimum category of cable
+- `03:01` that is required for that particular standard.
+- `03:04` For example, if you're using 1000BASE-T,
+- `03:06` you can look at the 1000BASE-T standards from the IEEE,
+- `03:10` and it will tell you that the minimum cable category for that
+- `03:13` specific ethernet standard is a category 5 cable.
+- `03:17` If you install category 5 cable or anything above category 5,
+- `03:21` it will work properly with the 1000BASE-T standard.
+- `03:25` Although twisted pair wiring is very common for our local area
+- `03:29` networks, another type of ethernet cable that's very often
+- `03:33` used is a coaxial cable.
+- `03:35` This describes a cable where two or more forms within that cable
+- `03:38` share a common axis.
+- `03:40` For example, you can see the single wire
+- `03:42` conductor that's in the middle of this coaxial cable.
+- `03:45` There's also an insulator, a shielding,
+- `03:47` and a jacket that are also sharing that same axis.
+- `03:51` One common type of coaxial cable,
+- `03:53` especially on our ethernet and internet connections,
+- `03:56` is an RG-6 cable.
+- `03:57` If you have a cable modem or you're bringing in a cable modem
+- `04:01` connection into your data center,
+- `04:02` it's probably being brought in on a coaxial cable.
+- `04:06` If we put two conductors inside of this cable type, then
+- `04:09` we have a twin axial cable.
+- `04:12` We often refer to this as simply twinax.
+- `04:14` Twinax is a type of cable that you can commonly
+- `04:16` associate with 10 gigabit per second ethernet.
+- `04:19` It's often installed as part of an SFP+ interface.
+- `04:23` This allows for full duplex communication
+- `04:25` over a single cable, but it limits the amount of distance
+- `04:29` that you can send this signal to about 5 meters.
+- `04:32` This has a relatively low cost when
+- `04:34` associated with fiber optics.
+- `04:35` And very often, it has a much lower latency
+- `04:38` when you compare it to using something like a twisted pair
+- `04:41` connection.
+- `04:43` If you're at work and you look at the ceiling,
+- `04:45` you may notice that you're not seeing the actual ceiling
+- `04:48` of that floor.
+- `04:49` Instead, you're seeing a drop ceiling and something
+- `04:51` like acoustic tiles that is sitting
+- `04:53` above the actual ceiling.
+- `04:55` There is a space between this drop ceiling
+- `04:58` and the actual ceiling, and we refer
+- `05:00` to that space as the plenum.
+- `05:02` Inside the plenum, we may have network cables,
+- `05:05` there might be heat sensors, you might have cables for power.
+- `05:08` And there may be other pieces of the infrastructure that
+- `05:10` run inside the plenum as well.
+- `05:13` In some environments, there may be a drop ceiling,
+- `05:15` and above the drop ceiling may be
+- `05:17` ductwork where all of the air supply happens to flow.
+- `05:20` You may have air supplied as part of a heating
+- `05:23` or cooling system in that ductwork,
+- `05:25` and there may be return air that's
+- `05:27` using additional duct work to go back to that heating or cooling
+- `05:31` system.
+- `05:31` Since a plenum implies that there is a shared air
+- `05:34` space in a configuration such as this where only duct work is
+- `05:38` used to transfer the air, there would be no plenum.
+- `05:41` But if there's no duct work and we share this same air space
+- `05:45` with all of our networking cables,
+- `05:47` then we need to consider that we're
+- `05:48` using the proper type of network cables in that shared plenum.
+- `05:52` This would obviously be a concern in a fire,
+- `05:55` especially if we're using a network cable type that produces
+- `05:58` a large amount of smoke or perhaps
+- `06:00` even hazardous fumes if it was to catch on fire.
+- `06:03` If this was in a plenum, that smoke and those fumes
+- `06:06` would be distributed to everyone in the building.
+- `06:09` This means we need to make sure we're installing
+- `06:11` the correct type of cable if we happen to be installing this
+- `06:14` into a shared plenum.
+- `06:17` Ethernet cables have a jacket on the outside of the cable,
+- `06:20` and many of those ethernet cables
+- `06:22` are manufactured with a Polyvinyl Chloride,
+- `06:24` or PVC, manufacturing.
+- `06:27` If you're putting this cable into a plenum,
+- `06:29` then you need a plenum-rated cable.
+- `06:31` And that cable is usually manufactured
+- `06:33` with a Fluorinated Ethylene Polymer, FEP,
+- `06:36` or a low-smoke Polyvinyl Chloride, PVC.
+- `06:39` This plenum-rated cable is designed
+- `06:41` to be much safer in a fire than one that
+- `06:43` is not designed for a plenum.
+- `06:45` One challenge when working with plenum-rated cable is it
+- `06:48` may not be quite as flexible as non-plenum-rated cable.
+- `06:52` So if you're going around a lot of twists and turns,
+- `06:54` it may be a bit more of a challenge
+- `06:56` to install that cable into the plenum.
+- `06:58` So if you're installing cable into a new building
+- `07:01` or you're replacing cable in an existing building, make sure
+- `07:04` you see where that cable is being run
+- `07:06` and you use the correct type of cable for that location.

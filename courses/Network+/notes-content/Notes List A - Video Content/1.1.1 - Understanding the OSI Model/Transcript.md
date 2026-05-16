@@ -1,0 +1,289 @@
+# [1.1.1 - Understanding the OSI Model](https://www.youtube.com/watch?v=AYgXr1dynKU)
+
+## 1.1.1 - Understanding the OSI Model
+
+- Day: Day 1
+- Duration: 13:51
+
+## Transcript
+
+- `00:01` We'll start our Network+ course with a broad discussion
+- `00:05` of something we refer to as the OSI model.
+- `00:08` This is referring to the Open Systems Interconnection
+- `00:12` Reference model, and it's a model
+- `00:13` we use in it to describe the process that data takes
+- `00:17` as it traverses our networks.
+- `00:19` The OSI model is not designed to be a detailed description
+- `00:23` of this data but instead is intended
+- `00:26` to describe a broad overview of how data traverses our systems.
+- `00:31` We're also not describing the OSI protocol suite.
+- `00:35` Indeed, most of the protocols we use today are based on TCP/IP,
+- `00:40` but the OSI model is one that we can
+- `00:42` apply to many different protocols,
+- `00:44` and it works perfectly with the TCP/IP protocols
+- `00:47` that we use today.
+- `00:48` Also keep in mind that there are many different protocols that
+- `00:51` might operate at an individual layer of the OSI model.
+- `00:55` So as we step through an individual layer, keep in mind
+- `00:58` there might be tens or even hundreds
+- `01:00` of protocols that might exist and work
+- `01:03` at that particular layer.
+- `01:05` By understanding this OSI model, we
+- `01:07` can converse with other people in information technologies
+- `01:10` in a way that we would all understand.
+- `01:13` It doesn't matter if they're working inside
+- `01:14` of your own company or with a different organization.
+- `01:18` When you mention OSI layer 7 or OSI layer 4,
+- `01:21` everyone understands what that means
+- `01:24` and what effect it has on the overall operation
+- `01:27` of the network.
+- `01:28` If we start at the top of the OSI layer, or OSI layer 7,
+- `01:32` and work our way down to OSI layer 1,
+- `01:35` we have layer 7 being the application layer.
+- `01:38` Layer 6 is the presentation layer.
+- `01:40` Layer 5 is the session layer.
+- `01:42` Layer 4 is transport.
+- `01:44` Layer 3 is network.
+- `01:45` Layer 2 is the data link layer.
+- `01:47` And layer 1 is the physical layer.
+- `01:50` There are many different mnemonics
+- `01:51` that people use to memorize this,
+- `01:53` but if you start at the top and work your way down,
+- `01:56` you can take the first letter of each one of these layers,
+- `02:00` and you might have a term such as All People Seem To Need Data
+- `02:04` Processing.
+- `02:05` That's Application, Presentation, Session,
+- `02:07` Transport, Network, Data link, and Physical.
+- `02:12` Let's start our conversation of the OSI model
+- `02:14` at the bottom of the OSI model, or layer 1.
+- `02:18` We refer to this as the physical layer
+- `02:20` because it's describing the physical signals
+- `02:23` that we send through the cable and fibers on our network.
+- `02:27` At this layer, we really don't have many protocols to speak of,
+- `02:30` because we're really just talking
+- `02:32` about getting a signal from one part of the network to another.
+- `02:36` When we refer to a physical layer problem with the network,
+- `02:40` we are referring to the OSI layer 1, physical layer.
+- `02:43` This means that we might have a bad cable, a bad fiber.
+- `02:47` There might be interference on a wireless network.
+- `02:50` And it may require us to do a series of tests
+- `02:52` to determine if we are really able to get
+- `02:55` a signal across this particular wire or this particular fiber
+- `02:59` so that we can keep this network running.
+- `03:01` A lot of the troubleshooting that you do at layer one
+- `03:04` is running loopback tests, testing cables and fibers,
+- `03:07` and checking different adapter cards and other devices
+- `03:10` to make sure they're working properly on the network.
+- `03:14` One step up from the physical layer
+- `03:16` is layer 2, the data link layer.
+- `03:18` This is the fundamental layer that's
+- `03:20` used to communicate between two devices on the network.
+- `03:24` We often refer to this as the MAC address layer
+- `03:26` because that is the Data Link Control layer, or DLC layer,
+- `03:31` that is commonly associated with the network cards that
+- `03:34` are in our devices.
+- `03:35` And most of the time, these are ethernet adapters or wireless
+- `03:39` adapters, and we refer to that physical address on that device
+- `03:43` as the data link control address or the MAC address.
+- `03:47` In this case, MAC address is not referring
+- `03:49` to an operating system.
+- `03:50` It's referring to the Media Access Control address.
+- `03:54` So any time you hear someone talk about a MAC address,
+- `03:57` they are referring to the hardware
+- `03:58` address of that particular adapter card.
+- `04:01` Since the network switches that we use on our network
+- `04:04` determine how to forward traffic based on the destination MAC
+- `04:07` address, this is a layer that we often refer to as the switching
+- `04:11` layer.
+- `04:12` So any time we're referring to a MAC address,
+- `04:15` a problem with a switch being able to operate,
+- `04:18` or anything else that may be associated
+- `04:20` with this particular hardware address,
+- `04:23` we're referring to OSI layer 2, the data link layer.
+- `04:27` The next layer up is OSI layer 3, or the network layer.
+- `04:31` We often refer to this as the routing layer
+- `04:33` because this is the layer that routers use to determine how
+- `04:37` to forward traffic.
+- `04:38` And they are specifically looking at the destination IP
+- `04:42` address in order to determine what
+- `04:44` the next hop might be for traffic traversing the network.
+- `04:47` This is also the layer that we're
+- `04:49` able to fragment these frames into multiple pieces,
+- `04:53` especially if we're sending it across a network that
+- `04:56` may require smaller frames than what is on our local network.
+- `04:59` So we can cut those frames up into smaller pieces
+- `05:02` to be able to fit them through the network
+- `05:04` and then put those pieces back together on the other side.
+- `05:08` Any time we're referring to a problem relating
+- `05:10` to IP addressing, subnet masks, anything related to an IP
+- `05:15` address or anything about routing,
+- `05:17` then we're probably referring to layer 3, the network layer.
+- `05:21` Layer 4 is the transport layer.
+- `05:23` And as the name implies, we're referring to the ability
+- `05:26` to transport information from one device to another.
+- `05:30` You might also refer to this as the post office layer
+- `05:33` because this is responsible for getting
+- `05:35` your letter or your information from one side of the network
+- `05:39` to the other.
+- `05:39` The protocols that are often used and operate at layer
+- `05:43` 4 of the OSI model is TCP--
+- `05:46` this stands for Transmission Control Protocol-- and UDP,
+- `05:50` or User Datagram Protocol.
+- `05:52` These two protocols are commonly responsible for getting
+- `05:56` all of the information within our IP packets from one device
+- `05:59` to the other.
+- `06:00` In many cases, this involves taking a large amount of data,
+- `06:04` putting it into smaller pieces to be
+- `06:06` able to get it across the network,
+- `06:08` and then putting those pieces back together on the other side.
+- `06:12` Before we can send that information
+- `06:13` from one side of the network to the other,
+- `06:16` we may need to create a session so that a device is
+- `06:19` able to receive that data.
+- `06:21` Layer 5 is the session layer, and it
+- `06:23` provides communication management between point A
+- `06:26` and point B. Anything relating to the initiation of a session,
+- `06:31` stopping the session, or restarting the session
+- `06:33` can commonly be associated with that layer
+- `06:35` 5 session layer communication.
+- `06:38` If an application is using some type of control protocol
+- `06:41` or your tunneling information within existing data,
+- `06:44` then you're probably using OSI layer 5.
+- `06:48` OSI layer 6 is responsible for putting all of this data
+- `06:52` into a format that we will eventually
+- `06:54` see with our human eyes.
+- `06:56` This refers to character encoding, application encryption
+- `06:59` and decryption, and it's often combined and discussed
+- `07:03` in conjunction with the application layer at layer 7.
+- `07:07` Layer 6, or the presentation layer,
+- `07:09` is the layer that is commonly in operation just prior to us
+- `07:13` seeing this data on our screen.
+- `07:16` And the top layer of the OSI model
+- `07:18` is OSI layer 7, or the application layer.
+- `07:21` This is the layer that we see on our screen.
+- `07:24` So any time that we are interacting with an application,
+- `07:27` we are operating at layer 7 of the OSI model.
+- `07:31` Common applications that would operate at OSI layer 7
+- `07:34` are HTTP and HTTPS, FTP, DNS, POP3,
+- `07:39` and thousands of other application protocols.
+- `07:42` Well, that's a broad overview of the OSI model, but how do
+- `07:46` we fit things in the real world into each of those layers?
+- `07:51` Let's start down at the bottom with layer 1,
+- `07:53` or the physical layer.
+- `07:54` When we refer to cables, fiber optic connections,
+- `07:58` the signal going across those connections,
+- `08:00` or a wireless network, then we're
+- `08:02` operating at OSI layer 1, or the physical layer.
+- `08:06` When we refer to OSI layer 2 or the data link layer,
+- `08:09` then we're talking about ethernet frames, MAC addresses,
+- `08:12` or addresses referred to as Extended Unique Identifiers,
+- `08:17` or EUI.
+- `08:18` There are EUI-48 addresses and EUI-64 addresses, for example.
+- `08:23` And as we described earlier, any time we're
+- `08:25` referring to the switching process,
+- `08:27` we are referring to OSI layer 2.
+- `08:30` At OSI layer 3, or the network layer,
+- `08:32` we're referring to IP addresses.
+- `08:34` So anything that has an IP address or a subnet mask
+- `08:38` or referring to the way that routers forward
+- `08:40` traffic all happen at OSI layer 3.
+- `08:43` If you're referring to a TCP port or a UDP port,
+- `08:47` then we're operating at OSI layer 4,
+- `08:50` which is the transport layer.
+- `08:52` At OSI layer 5, or the session layer,
+- `08:55` we're using control protocols to start and end
+- `08:57` different sessions.
+- `08:58` Or we may be tunneling traffic using protocols
+- `09:01` that operate at OSI layer 5.
+- `09:03` We often associate the encryption of application data
+- `09:07` with OSI layer 6, or the presentation layer.
+- `09:10` So if you're communicating to a website
+- `09:12` and you're using SSL or TLS to be able to encrypt and decrypt
+- `09:17` that data, that process is occurring at OSI layer 6.
+- `09:21` And at OSI layer 7, or the application layer,
+- `09:24` is where you are interacting with the application itself.
+- `09:27` Anything that you're seeing on the screen,
+- `09:29` the application itself or any messages from the application,
+- `09:33` are often referred to as layer 7 information.
+- `09:37` If you wanted to drill down a little bit further
+- `09:39` into the OSI model, you might want
+- `09:42` to capture some data on your network
+- `09:44` and view that data inside of an application such as Wireshark.
+- `09:48` I have a Wireshark protocol decode on my screen
+- `09:51` where I've captured data on my network,
+- `09:53` and this Wireshark has three separate windows
+- `09:55` that is displaying different views of the same data.
+- `09:59` The top window is a frame-by-frame breakdown.
+- `10:01` For example, I have highlighted frame 88 on this top window.
+- `10:05` The middle window describes more detail
+- `10:08` of what different information is contained
+- `10:10` within that single frame.
+- `10:12` And on the bottom window, we have a hexadecimal and ASCII
+- `10:16` breakdown of the data itself.
+- `10:18` Let's focus our view on this middle window,
+- `10:21` which is a summary of this highlighted frame 88.
+- `10:24` You can see that there are 1, 2, 3, 4, 5 different lines of data
+- `10:29` inside of this single frame where the protocol decode has
+- `10:32` separated out the individual protocols
+- `10:35` within the single ethernet frame.
+- `10:37` Let's start with the one at the very top,
+- `10:40` which describes frame 88, which has 2,005 bytes on the wire,
+- `10:45` and 2,005 bytes were captured by Wireshark.
+- `10:48` If you wanted to associate that line with the OSI model,
+- `10:52` that would be best associated with layer 1
+- `10:54` or the physical model.
+- `10:56` Next down is Ethernet II, which has a source MAC address
+- `11:00` and a destination MAC address.
+- `11:02` And since we are describing MAC addresses,
+- `11:05` everything within that line of the Wireshark decode
+- `11:08` is associated with layer 2 of the OSI model,
+- `11:11` or the data link layer.
+- `11:12` The next line down describes the Internet Protocol, or IP.
+- `11:16` And as we described before, IP fits squarely
+- `11:19` in layer 3 of the OSI model, or the network layer.
+- `11:23` And in fact, there are individual IP addresses
+- `11:25` listed here for the source IP address and the destination IP
+- `11:29` address.
+- `11:30` And you can see there is a DNS resolution here that shows that
+- `11:33` the IP address of 72.14.247.19 is also associated with
+- `11:39` googlemail.l.google.com.
+- `11:42` As we move down this list, we're moving up
+- `11:44` the layers of the OSI model.
+- `11:46` And the next one is the Transmission Control Protocol,
+- `11:49` which means we're communicating via TCP for this Google Mail
+- `11:53` communication.
+- `11:54` Since TCP is in this list, we must
+- `11:57` be at OSI layer 4, or the transport layer.
+- `12:00` And indeed, you can see TCP port numbers for the source
+- `12:03` and the destination of this traffic.
+- `12:06` Since the destination port is port 443,
+- `12:08` Wireshark has already filled in that we're
+- `12:10` communicating over an encrypted channel using HTTPS.
+- `12:15` And if we go one layer down into the secure socket layer,
+- `12:18` this effectively encapsulates the top three layers
+- `12:22` of the OSI model.
+- `12:23` So secure socket layer and everything underneath it
+- `12:26` are referring to layer 5, the session layer, layer 6,
+- `12:30` presentation layer, and layer 7, the application layer.
+- `12:34` Here's a summary of that protocol decode broken out
+- `12:38` into the different layers of the OSI model.
+- `12:41` We had electrical signals at the physical layer.
+- `12:43` Layer 2 at the data link layer had ethernet frame information.
+- `12:47` Our IP addresses were at layer 3, or the network layer.
+- `12:51` Our TCP encapsulation with our TCP port numbers
+- `12:54` is at the transport layer.
+- `12:56` Our session layer linked the presentation information
+- `12:59` to the transport.
+- `13:00` Presentation layer was obviously performing that SSL or TLS
+- `13:04` encryption and decryption.
+- `13:06` And layer 7, or the application layer,
+- `13:08` is referring to that Google Mail front end
+- `13:11` and being able to send and receive emails
+- `13:14` using mail.google.com.
+- `13:17` Hopefully you're now able to see how this very broad description
+- `13:20` of an OSI model can be applied to practically
+- `13:23` any communication that's occurring over the network.
+- `13:26` And this allows us to talk with other it professionals
+- `13:29` and communicate in a way where everyone understands
+- `13:32` exactly what we're referring to when we talk about a layer 1
+- `13:36` physical problem or a layer 7 application problem.

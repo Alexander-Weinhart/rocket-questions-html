@@ -1,0 +1,197 @@
+# [2.3.1 - Wireless Technologies](https://www.youtube.com/watch?v=_VwpcLiBkAQ)
+
+## 2.3.1 - Wireless Technologies
+
+- Day: Day 6
+- Duration: 8:34
+
+## Transcript
+
+- `00:01` We've become so accustomed to wireless networks
+- `00:04` being available that we often forget that there's
+- `00:06` a lot of work that happens behind the scenes
+- `00:08` to create these wireless connections.
+- `00:11` This work is done primarily by the Institute of Electrical
+- `00:14` and Electronics Engineers, or the IEEE.
+- `00:17` There's a committee in the IEEE called the 802.11 committee,
+- `00:22` and that is the committee that focuses
+- `00:23` on creating worldwide standards for wireless networking.
+- `00:27` In the past, we've referred to the standards name
+- `00:30` to be able to describe the network.
+- `00:32` For example, we'll describe 802.11ac, 802.11ax, or 802.11be.
+- `00:39` The IEEE committee realized that these numbers and letters
+- `00:42` combinations weren't very appealing for most people,
+- `00:45` so they've also assigned separate names
+- `00:48` that are a little easier to keep track of.
+- `00:50` For example, 802.11ac is Wi-Fi 5,
+- `00:54` 802.11ax is Wi-Fi 6 and Wi-Fi 63,
+- `00:58` the extended version of Wi-Fi 6, and 802.11be is also called
+- `01:04` Wi-Fi 7.
+- `01:05` As additional major releases of the 802.11 wireless standards
+- `01:10` are released, they will also increment those Wi-Fi numbers.
+- `01:13` So in the future, we should see Wi-Fi 8, Wi-Fi 9, and so on.
+- `01:18` There are a number of technologies used
+- `01:19` by 802.11 wireless networking.
+- `01:22` And the first is the frequencies that are in use.
+- `01:25` 802.11 commonly uses 2.4 gigahertz, 5 gigahertz, and 6
+- `01:30` gigahertz frequency ranges.
+- `01:32` Sometimes there's a combination of those.
+- `01:34` You may have an access point that
+- `01:35` supports both 2.4 and 5 gigahertz,
+- `01:38` and some access points may support all of those frequencies
+- `01:41` at the same time.
+- `01:43` Instead of having to memorize individual frequency numbers,
+- `01:47` the IEEE has created groupings of these frequencies known
+- `01:50` as channels.
+- `01:51` These channels help us easily understand what
+- `01:54` frequencies we may be using.
+- `01:56` For example, on this access point,
+- `01:58` we're using both the 2.4 gigahertz range
+- `02:00` and the 5 gigahertz range.
+- `02:02` The 2.4 gigahertz range is using channel 6,
+- `02:05` which is centered on 2.437 gigahertz,
+- `02:09` and the 5 gigahertz band is using channel 44,
+- `02:12` which is centered on 5.220 gigahertz.
+- `02:16` You can see that referring to this as channel 6
+- `02:18` is much faster and more efficient than saying
+- `02:20` that this particular access point is
+- `02:22` centered on 2.437 gigahertz.
+- `02:26` The amount of frequency that we use
+- `02:27` is referred to as the wireless bandwidth.
+- `02:30` And when I say that channel 6 is centered on 2.437 gigahertz,
+- `02:34` there's actually more frequencies
+- `02:36` that we're using for that single channel.
+- `02:39` Different frequency bands have different sizes
+- `02:41` of bandwidths that can be used, but it's very common
+- `02:44` to see 20 megahertz, 40 megahertz, 80 megahertz, and 160
+- `02:48` megahertz bandwidths.
+- `02:50` Here's a diagram that shows the 2.4 gigahertz range, the 5
+- `02:54` gigahertz range, and the 6 gigahertz range that's used
+- `02:58` by 802.11 wireless networks.
+- `03:00` We'll start with the 2.4 gigahertz spectrum.
+- `03:03` You can see there are three nonoverlapping
+- `03:05` channels in that particular range,
+- `03:07` and it's using the 20 megahertz bandwidth
+- `03:10` to describe those three channels.
+- `03:12` Next is the 5 gigahertz spectrum.
+- `03:15` And you can see there are many more frequencies available
+- `03:17` in the 5 gigahertz range.
+- `03:19` You'll also notice that we might use different bandwidths
+- `03:22` depending on the access point that we're using.
+- `03:24` So we might use anywhere from 20 megahertz to 160 megahertz.
+- `03:28` And you can see the ranges that are
+- `03:30` available for those particular frequencies.
+- `03:33` And in the 6 gigahertz range, we have even more
+- `03:35` frequencies available, giving us options
+- `03:38` to be able to transmit and use these wireless networks
+- `03:41` without conflicting with other wireless
+- `03:43` networks that might be nearby.
+- `03:46` As you can tell, there are many frequencies
+- `03:48` available to choose from for your wireless networks,
+- `03:51` but not every frequency is going to be the best one to use.
+- `03:54` There may be differences in the environment
+- `03:57` where you happen to be where one frequency might work better
+- `03:59` than the other, or there may be other access
+- `04:02` points that are already using certain frequencies.
+- `04:05` You might also be using older devices that
+- `04:07` aren't able to communicate on the 5 or 6 gigahertz ranges
+- `04:10` and may only be able to communicate on 2.4 gigahertz
+- `04:14` frequencies.
+- `04:15` But if you have a modern wireless device,
+- `04:17` you might have options.
+- `04:18` Your phone, for example, may be able to support
+- `04:21` two or more different types of frequencies.
+- `04:23` It just needs to be able to choose the optimal frequency
+- `04:26` for where you happen to be.
+- `04:28` Your access points can be set up with a feature known
+- `04:31` as band steering.
+- `04:32` This allows you to specify how the users might
+- `04:36` be able to use the frequencies in the best possible way.
+- `04:40` For example, you might have a user that has a mobile phone,
+- `04:43` and that phone can support either a 2.4 gigahertz
+- `04:46` connection or a 5 gigahertz connection.
+- `04:48` And you might have access points that also support
+- `04:51` both of those frequencies.
+- `04:53` So which frequency does your phone
+- `04:55` choose when it's connecting to that access point?
+- `04:57` If band steering is not configured in the access point,
+- `05:01` the device will simply use the one that
+- `05:03` has the best possible signal.
+- `05:05` Sometimes that best signal will provide you
+- `05:07` with the best throughput, but that's not always the case.
+- `05:10` And you may find that you get better throughput using
+- `05:13` a different frequency, even though that frequency may not
+- `05:16` be the one that has the strongest signal.
+- `05:19` If band steering is turned on, the administrator
+- `05:22` of the access point can determine
+- `05:24` what frequency a user will choose if they have a choice.
+- `05:27` For example, if a user is connecting to an access point
+- `05:30` with band steering enabled and that device
+- `05:32` can support either 2.4 gigahertz or 5 gigahertz,
+- `05:36` you can force it or steer it into using the 5 gigahertz
+- `05:40` frequencies by default.
+- `05:42` One of the challenges with these wireless networks
+- `05:45` is that each country makes its own decisions
+- `05:47` about how this wireless bandwidth is to be used.
+- `05:50` For example, in the United States,
+- `05:52` we have the Federal Communications Commission,
+- `05:54` and they are responsible for managing all of the frequency
+- `05:57` allocations in the US.
+- `05:59` Of course, the FCC can't control how other countries manage
+- `06:03` their frequencies, but they do work very closely
+- `06:05` with other countries around the world to make sure
+- `06:08` that everyone is properly managing these very
+- `06:10` important frequencies.
+- `06:12` Another challenge with this is that we are coming up
+- `06:14` with new technologies and new ways
+- `06:16` to use these frequencies all the time,
+- `06:18` and we sometimes have to make sure
+- `06:20` that different services can use similar frequencies
+- `06:23` without any type of conflict.
+- `06:25` The popularity of these wireless networks
+- `06:27` has almost required that all of these countries
+- `06:30` work together to come up with standards that everyone
+- `06:33` can agree on.
+- `06:34` A good example of these organizations working together
+- `06:36` can be found in the 802.11h standard.
+- `06:40` This adds a number of interoperability features
+- `06:43` to 802.11 wireless networks so that you
+- `06:45` can have many different wireless networks in one area
+- `06:48` but still allow all of those networks to work together.
+- `06:52` There are a series of guidelines for wireless communications
+- `06:55` that are published by the International Telecommunications
+- `06:58` Union.
+- `06:58` The ITU provides a worldwide approach
+- `07:01` to managing these many different wireless technologies.
+- `07:05` One of the things that is included in these standards
+- `07:08` is called DFS.
+- `07:10` This is Dynamic Frequency Selection.
+- `07:12` This allows our wireless access points
+- `07:14` to use frequencies that are not going
+- `07:16` to conflict with other access points that may already
+- `07:19` be operating.
+- `07:20` This is one of the reasons that when
+- `07:22` you turn on your wireless access point
+- `07:24` today that you don't have to manually configure
+- `07:26` any of the wireless settings inside of that device.
+- `07:29` It automatically looks at the frequencies that are in use
+- `07:33` and chooses a series of frequencies for you
+- `07:35` that are not going to conflict with anything
+- `07:37` that may already be operating.
+- `07:39` And if something does change with the wireless environment
+- `07:42` and your access point needs to change its channel,
+- `07:45` it will tell all of the devices on that network to also move
+- `07:48` along with the access point.
+- `07:51` Another interoperable feature is TPC, or the Transmit Power
+- `07:55` Control.
+- `07:56` Traditionally, we've set the power
+- `07:58` that we would use for these wireless networks
+- `08:00` on our clients.
+- `08:01` But TPC puts the transmit power control
+- `08:04` in the hands of the access point.
+- `08:07` This means that the access point can tell a client
+- `08:09` to use less power to be able to communicate over
+- `08:12` this wireless network.
+- `08:14` This means that we can have many devices communicating
+- `08:17` at their optimal power level without having
+- `08:19` any type of conflict with other third-party services.

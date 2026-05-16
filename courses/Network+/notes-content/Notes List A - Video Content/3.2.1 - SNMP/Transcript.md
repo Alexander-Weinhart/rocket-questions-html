@@ -1,0 +1,196 @@
+# [3.2.1 - SNMP](https://www.youtube.com/watch?v=We5MkaEJOs0)
+
+## 3.2.1 - SNMP
+
+- Day: Day 7
+- Duration: 8:58
+
+## Transcript
+
+- `00:01` As a network administrator, you will install switches, routers,
+- `00:05` servers, firewalls and many other pieces of equipment
+- `00:08` into your infrastructure.
+- `00:09` Once you install that equipment, how
+- `00:11` do you ensure that it's running optimally
+- `00:13` and that there are no errors or problems that you
+- `00:16` need to address?
+- `00:17` One of the ways to do that is by querying this device
+- `00:20` through a protocol known as SNMP.
+- `00:23` This is the simple network management protocol.
+- `00:26` And it is designed to provide a management interface
+- `00:29` to these devices over a standard set of protocols,
+- `00:32` regardless of who happens to manufacture that device.
+- `00:36` Usually, the network team will have a central network
+- `00:38` management console.
+- `00:40` And that management console will query devices via SNMP
+- `00:44` and ask information that it would like to receive.
+- `00:46` For example, it would request from a switch
+- `00:49` how many bytes have gone into a particular interface.
+- `00:53` And that device will respond back with a particular value.
+- `00:56` And that information is stored in the management station.
+- `00:59` The query that is being made to this device
+- `01:02` is querying a number of different parameters
+- `01:05` that are stored in what is known as a MIB.
+- `01:07` This is a management information base
+- `01:10` or a central database of data that is
+- `01:12` stored on that remote device.
+- `01:14` SNMP queries specific values in that database
+- `01:17` by referring to an object identifier,
+- `01:20` sometimes you'll hear this referred to as an OID or an OID.
+- `01:24` All of this polling occurs over udp port 161
+- `01:28` and allows us to access any of the devices on our network
+- `01:32` and gather information about how those devices are performing.
+- `01:36` When configuring SNMP on your network management station,
+- `01:39` it may ask which version of SNMP that device is using.
+- `01:43` There are usually three different versions
+- `01:45` you can choose from.
+- `01:46` The first is the original version, or SNMP version 1.
+- `01:50` This provided a way to query those structured tables that
+- `01:53` are stored within the management information base on this device,
+- `01:57` but it sent all of that information
+- `01:59` across the network in the clear.
+- `02:01` There was no encryption associated
+- `02:02` with any of the transmission using SNMP version 1.
+- `02:06` A newer version of SNMP was released that we named SNMP
+- `02:10` version 2, you'll sometimes hear this referred to as SNMP version
+- `02:14` 2c.
+- `02:15` This is an improvement to SNMP version 1 because it's
+- `02:19` able to query large chunks of data
+- `02:21` and have a more efficient communication to that device.
+- `02:24` But that entire communication remained non-encrypted
+- `02:27` or in the clear, so anybody tapping
+- `02:30` that connection would be able to see the entire communication.
+- `02:34` The latest version of SNMP is SNMP version 3.
+- `02:37` This provides encryption and a number
+- `02:40` of different cryptographic capabilities such as message
+- `02:42` integrity and authentication.
+- `02:45` When we are performing a query to a device using SNMP,
+- `02:49` we need to refer to a specific variable
+- `02:51` that we would like to pull back to our management station.
+- `02:54` That individual variable is called an object identifier,
+- `02:58` or an OID.
+- `02:59` That object identifier is a series of numbers.
+- `03:03` In fact, here is an ode.
+- `03:04` 1.3.6.1.2.1.11.28.0.
+- `03:09` Each one of those numbers is associated with a particular set
+- `03:13` of values.
+- `03:14` For example, the 1 is iso, 3 is org, 6 is dod, 1 is internet,
+- `03:20` 2 is management, and so on.
+- `03:22` And you can go all the way down this line
+- `03:24` until you can see that we're looking
+- `03:26` for SNMP OutGetResponses, and that would be the number
+- `03:30` 28 at the end of that OID.
+- `03:33` This is how we're able to have hundreds or even
+- `03:35` thousands of different variables inside of that management
+- `03:38` information base.
+- `03:39` And we can query each of those variables
+- `03:42` individually by referring to their OID.
+- `03:45` Sometimes, these object identifiers
+- `03:47` are very standardized across devices.
+- `03:49` One of these standards is the MIB2 standard.
+- `03:52` It's referred to here as the SNMPV2-MIB.
+- `03:56` That MIB2 standard is a set of OIDs
+- `03:58` that are identical across multiple devices.
+- `04:01` But sometimes, a manufacturer has unique variables that
+- `04:05` are specific to that device.
+- `04:07` And in that case the manufacturer
+- `04:08` will create their own OID.
+- `04:11` And so you'll need to refer back to the manufacturer's
+- `04:13` documentation to determine what OIDs are associated with,
+- `04:17` what values within that MIB.
+- `04:19` Sometimes, the manufacturer will provide
+- `04:21` a file that documents the MIB, and you
+- `04:24` can add that file to your network management station.
+- `04:27` At that point, you can retrieve those OIDs from that device
+- `04:30` and know exactly what that OID is associated with.
+- `04:34` One of the ways that you can query
+- `04:36` a device for SNMP information is to use a MIB logger.
+- `04:40` This is software that will cycle through every possible MIB value
+- `04:43` and pull down everything associated with the MIB
+- `04:46` inside of an individual device.
+- `04:49` This is a MIB logger on my Mac OS device called MIBBrowser.
+- `04:52` And you can see that I have it directed to a host
+- `04:55` at 10.1.10.64.
+- `04:57` It's using port 161.
+- `04:59` And I've configured this MIB walker to use version 2c
+- `05:03` of SNMP.
+- `05:04` The default community string on this device is public
+- `05:08` and my route OID is 1.3.6.1.
+- `05:12` And when I click the Fetch button,
+- `05:13` it begins gathering information about every possible MIB
+- `05:17` value that could be contained on that device.
+- `05:20` And when it finds a match, it adds it to the list.
+- `05:23` For example, it found a number of SNMP V2 MIB values.
+- `05:26` And you can see the list of those here.
+- `05:29` In fact, it even pulled back a system ID information,
+- `05:32` some contact information with my email.
+- `05:35` It even shows me the name of the system
+- `05:37` and how I can then correlate that back
+- `05:40` to a specific physical device.
+- `05:42` If we scroll down a bit in this list,
+- `05:44` we can even find individual variables as part of this MIB
+- `05:47` and see the individual values associated
+- `05:50` with each one of those.
+- `05:51` For example, SNMP In Get Request has a total number of 4,
+- `05:56` and SNMP In Get Next has a value of 1,540.
+- `06:02` If you start collecting that information over time,
+- `06:04` you can begin to build out very large visualizations of how
+- `06:08` the network may be performing.
+- `06:10` For example, this is a graph that
+- `06:11` has been created through a series of SNMP queries
+- `06:14` that take place on a standard basis.
+- `06:17` So you could see that going for an entire day,
+- `06:20` you can start to map out information such as response
+- `06:23` time values, any type of errors, or anything else that might
+- `06:27` be contained within that MIB.
+- `06:29` This implementation of SNMP assumes
+- `06:32` that your network management station
+- `06:34` will be querying all of your SNMP enabled devices
+- `06:37` on your network at regular intervals.
+- `06:40` It would be common, for example, for a management station
+- `06:43` to query every device on the network every minute,
+- `06:45` every five minutes or whatever interval makes sense
+- `06:48` for your management station.
+- `06:50` But if there's a problem on that device,
+- `06:52` you may not know the problem has occurred until the next time you
+- `06:55` perform that poll.
+- `06:57` For that reason, you may want to configure
+- `06:59` a different feature of SNMP referred to as an SNMP trap.
+- `07:04` You can think of this as a proactive alarm that
+- `07:07` is sent from the device to the management station
+- `07:10` without the management station needing
+- `07:11` to poll that device first.
+- `07:13` These SNMP traps use a different port number.
+- `07:16` They use UDP 162.
+- `07:18` For example, you could configure a switch or router
+- `07:22` to look for a certain number of CRC errors to occur.
+- `07:25` And if you get a large number of errors, for example,
+- `07:28` it increases by 5, that device will proactively
+- `07:31` send a trap message back to your network management station.
+- `07:35` As soon as that trap is received by the network management
+- `07:38` station, it can then alert other people
+- `07:40` on the network of the problem or start
+- `07:42` running scripts to help resolve whatever issue that might be.
+- `07:46` In the MIB logger that we were using earlier,
+- `07:48` there was a value that we were adding to that MIB logger
+- `07:52` to be able to gain access to that system.
+- `07:54` That value is referred to as a community string.
+- `07:57` You can think of this as a simple password that
+- `08:00` allows you access to the SNMP data on that device.
+- `08:03` You can usually set up multiple community strings
+- `08:06` within a device.
+- `08:06` So it's not unusual to have a read only string such as public.
+- `08:10` There might be a read-write string such as private.
+- `08:13` And there might be a separate string
+- `08:14` that you would use for traps.
+- `08:16` These community strings are relatively simplistic
+- `08:19` and they're only used for SNMP version 1 and SNMP version 2
+- `08:23` or version 2c.
+- `08:25` There are other ways to authenticate
+- `08:27` using newer versions of SNMP.
+- `08:30` And in SNMP version 3, we use a username and password
+- `08:34` that is sent across the network as a password hash.
+- `08:37` This is a much more secure way to authenticate.
+- `08:40` And if you're running SNMP in your environment,
+- `08:42` it's probably a good idea to use SNMP
+- `08:45` to have the most secure type of monitoring available.

@@ -38,18 +38,18 @@
 - `Notes List C - Personal Notes/Lecture Week 4/Multiplexing.md`
 - `Notes List B - Textbook Content/Textbook 2 - Chapter 2 Internet Foundations/The Internet, ARPANET, TCP-IP Standards, and RFCs.md`
 - `Notes List B - Textbook Content/Textbook 2 - Chapter 3 IP Addressing and Subnetting/Binary, IP Addressing, Subnetting, NAT, and Firewalls.md`
-- `Notes List A - Video Content/Video 4 - DHCP/Dynamic IP.md`
-- `Notes List A - Video Content/Video 4 - DHCP/Static IP.md`
-- `Notes List A - Video Content/Video 4 - DHCP/DHCP Scope.md`
-- `Notes List A - Video Content/Video 4 - DHCP/DHCP Lease.md`
-- `Notes List A - Video Content/Video 4 - DHCP/DHCP Reservation.md`
-- `Notes List A - Video Content/Video 4 - DHCP/DHCP Service Locations.md`
-- `Notes List A - Video Content/Video 5 - TCP-IP Model/Application Layer.md`
-- `Notes List A - Video Content/Video 5 - TCP-IP Model/Transport Layer.md`
-- `Notes List A - Video Content/Video 5 - TCP-IP Model/Packet Journey.md`
-- `Notes List A - Video Content/Video 5 - TCP-IP Model/Key Advantages.md`
-- `Notes List A - Video Content/Video 6 - Wireshark/Download and Install.md`
-- `Notes List A - Video Content/Video 6 - Wireshark/Live Capture Examples.md`
-- `Notes List A - Video Content/Video 6 - Wireshark/HTTP vs HTTPS Demo.md`
-- `Notes List A - Video Content/Video 6 - Wireshark/Telnet Demo.md`
-- `Notes List A - Video Content/Video 6 - Wireshark/Key Lessons.md`
+- `Notes List A - Video Content/Video 12 - DHCP Explained - Dynamic Host Configuration Protocol/DHCP Explained - Dynamic Host Configuration Protocol.md`
+- `Notes List A - Video Content/Video 12 - DHCP Explained - Dynamic Host Configuration Protocol/DHCP Explained - Dynamic Host Configuration Protocol.md`
+- `Notes List A - Video Content/Video 12 - DHCP Explained - Dynamic Host Configuration Protocol/DHCP Explained - Dynamic Host Configuration Protocol.md`
+- `Notes List A - Video Content/Video 12 - DHCP Explained - Dynamic Host Configuration Protocol/DHCP Explained - Dynamic Host Configuration Protocol.md`
+- `Notes List A - Video Content/Video 12 - DHCP Explained - Dynamic Host Configuration Protocol/DHCP Explained - Dynamic Host Configuration Protocol.md`
+- `Notes List A - Video Content/Video 12 - DHCP Explained - Dynamic Host Configuration Protocol/DHCP Explained - Dynamic Host Configuration Protocol.md`
+- `Notes List A - Video Content/Video 13 - What is TCP-IP?/What is TCP-IP?.md`
+- `Notes List A - Video Content/Video 13 - What is TCP-IP?/What is TCP-IP?.md`
+- `Notes List A - Video Content/Video 13 - What is TCP-IP?/What is TCP-IP?.md`
+- `Notes List A - Video Content/Video 13 - What is TCP-IP?/What is TCP-IP?.md`
+- `Notes List A - Video Content/Video 14 - Wireshark Tutorial - Installation and Password sniffing/Wireshark Tutorial - Installation and Password sniffing.md`
+- `Notes List A - Video Content/Video 14 - Wireshark Tutorial - Installation and Password sniffing/Wireshark Tutorial - Installation and Password sniffing.md`
+- `Notes List A - Video Content/Video 14 - Wireshark Tutorial - Installation and Password sniffing/Wireshark Tutorial - Installation and Password sniffing.md`
+- `Notes List A - Video Content/Video 14 - Wireshark Tutorial - Installation and Password sniffing/Wireshark Tutorial - Installation and Password sniffing.md`
+- `Notes List A - Video Content/Video 14 - Wireshark Tutorial - Installation and Password sniffing/Wireshark Tutorial - Installation and Password sniffing.md`

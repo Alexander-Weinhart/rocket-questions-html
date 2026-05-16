@@ -1,0 +1,147 @@
+# [2.1.4 - Network Address Translation](https://www.youtube.com/watch?v=UILwCNOC5EI)
+
+## 2.1.4 - Network Address Translation
+
+- Day: Day 5
+- Duration: 7:02
+
+## Transcript
+
+- `00:01` There are many devices connected to the internet.
+- `00:04` Some estimates are 20 to 30 billion.
+- `00:07` And by the time you watch this video,
+- `00:09` it's probably, of course, going to be more than that.
+- `00:12` One of the challenges, of course,
+- `00:13` is that IP version 4 only supports 4.29 billion addresses,
+- `00:18` and we have completely exhausted our list of IP version 4.
+- `00:22` There are no more addresses or subnets to be handed out.
+- `00:26` So now we have to find some way to communicate
+- `00:29` across the internet to these billions of devices
+- `00:32` using a protocol with a relatively few number of IP
+- `00:36` addresses.
+- `00:37` The way that we're able to make this work
+- `00:39` is through a technology known as network address
+- `00:42` translation, or NAT.
+- `00:44` We often refer to NAT as being the way
+- `00:45` that we are able to extend the functionality of ipv4
+- `00:49` and use so many different IP addresses.
+- `00:51` But NAT can be used for many different use cases.
+- `00:55` We just, in this video, happened to be talking about one
+- `00:57` of the most popular use cases where
+- `00:59` we are able to translate IP version 4 from a private address
+- `01:04` to a public address.
+- `01:06` If you wanted to get more details
+- `01:07` on the difference between a private IP and a public IP,
+- `01:11` you'll want to look at RFC 1918, which
+- `01:14` defines these different ranges of private IP addresses.
+- `01:18` These are IP addresses that are not
+- `01:20` routable on the public internet.
+- `01:22` So we most often use these inside of our homes
+- `01:25` and inside of our businesses.
+- `01:27` And we'll perform translation if we ever need to communicate out
+- `01:30` to the internet.
+- `01:31` Certain ranges of these IP addresses
+- `01:34` are probably already familiar to you.
+- `01:36` For example, one IP address range that is private is
+- `01:39` 10.0.0.0 through 10.255.255.255.
+- `01:45` In a large enterprise network, this is probably the IP address
+- `01:48` range that you're using.
+- `01:50` This RFC also allocates 172.16.0.0 through
+- `01:54` 172.31.255.255.
+- `01:58` And if you're using network address translation at home,
+- `02:01` you're probably using the IP address range of 192.168.0.0
+- `02:06` through 192.168.255.255.
+- `02:11` So how are we able to take these private addresses,
+- `02:14` which we already know we cannot route across the internet,
+- `02:17` and somehow we are able to communicate to these internet
+- `02:20` connected sites?
+- `02:22` We are able to do this using network address translation.
+- `02:25` Let's take this example where Vala
+- `02:27` would like to communicate to the Professor Messer web server.
+- `02:31` Vala's IP address is a private IP address of 10.10.20.50,
+- `02:36` and Vala wants to communicate to a public IP address
+- `02:39` of 104.20.19.63.
+- `02:43` To follow this process, let's break these two addresses out
+- `02:46` and identify them as the source IP address of 10.10.20.50
+- `02:50` and the destination IP address of 104.20.19.63.
+- `02:55` This packet will first hit a router
+- `02:57` that is configured with network address translation.
+- `03:00` This router knows that the source IP address of 10.10.20.50
+- `03:05` is an internal IP address.
+- `03:06` And we can't use this IP address if we want to communicate out
+- `03:09` to the internet.
+- `03:10` So this router will change or translate that address
+- `03:14` to something different.
+- `03:15` This router already has a list of IP addresses
+- `03:18` that could be used.
+- `03:19` And in this case it's changed that IP address to 94.1.1.1.
+- `03:24` Now we have a public IP address, so now we
+- `03:27` can communicate directly to the Professor Messer web server.
+- `03:30` For this web server to communicate back to Vala,
+- `03:33` it's obviously not going to communicate back to the internal
+- `03:36` 10.10.20 address.
+- `03:38` Instead, it's going to reverse those IP addresses.
+- `03:42` And the source IP address now becomes 104.20.19.63.
+- `03:47` And the destination IP address is the 94.1.1.1 that was
+- `03:52` originally assigned by the network address translation
+- `03:55` router.
+- `03:55` When this router now receives that packet,
+- `03:58` it's going to perform the translation again,
+- `04:01` except in reverse, and modify that destination IP address
+- `04:05` to be the internal address of 10.10.20.50,
+- `04:09` which obviously matches the IP address of Vala.
+- `04:12` And now Vala has received that message
+- `04:15` from the Professor Messer website,
+- `04:17` even though Vala has an internal private IP address.
+- `04:22` With standard network address translation,
+- `04:24` we are translating from one IP address
+- `04:27` to a different IP address.
+- `04:29` This means that if we wanted to have many people performing
+- `04:32` this translation, we would need to have many more public IP
+- `04:36` addresses available.
+- `04:37` There's a way to make this much more efficient using
+- `04:40` a different form of network address translation called
+- `04:43` NAT overload, or port address translation, or PAT.
+- `04:48` Let's take that same example where
+- `04:49` Vala would like to communicate to professormesser.com.
+- `04:52` Vala's IP address is 10.10.20.50.
+- `04:56` But you'll notice we'll also include the source port number,
+- `04:59` which in this case is 3233.
+- `05:02` The destination IP address is obviously the IP address
+- `05:05` of the Professor Messer web server at 104.20.19.63.
+- `05:10` And in this case, Vala is communicating
+- `05:12` to that server over port 80.
+- `05:15` When that packet is received by the router,
+- `05:17` it understands that 10 dot address
+- `05:19` needs to be translated to a public IP address.
+- `05:22` And inside of this router is a network address translation
+- `05:25` table that shows both the private address
+- `05:27` and the public address that it's translated to.
+- `05:30` You'll notice here that the private address
+- `05:32` of 10.10.20.50.3233 is converted to 94.1.1.1 with a port number
+- `05:39` of 1055.
+- `05:41` And when that translation takes place,
+- `05:43` our source IP address is now a public IP address.
+- `05:46` And that's what's received by professormesser.com.
+- `05:50` Because we're translating both the network address
+- `05:53` and the port number, other devices on this network
+- `05:56` could use the same public IP address.
+- `05:58` For example, let's take another scenario where we have Jonas
+- `06:02` at 10.10.20.70.
+- `06:05` Jonas' random port number that's used for this transaction
+- `06:08` is 5782.
+- `06:10` And of course, the destination IP address
+- `06:12` is the same as the professormesser.com web
+- `06:15` server with a port number of port 80.
+- `06:18` When that packet is received by the network address translation
+- `06:21` router, it knows that that address has not
+- `06:23` been used before.
+- `06:24` And it puts that into the network address translation
+- `06:27` table with a different port number on the public IP address
+- `06:31` side.
+- `06:32` So now we're using the same IP address of 94.1.1.1
+- `06:36` as our public IP.
+- `06:38` But notice that the port number has incremented by one.
+- `06:41` This means that we can now have many people
+- `06:44` on the inside of our network communicating externally
+- `06:47` to a server, all using the same public IP address.

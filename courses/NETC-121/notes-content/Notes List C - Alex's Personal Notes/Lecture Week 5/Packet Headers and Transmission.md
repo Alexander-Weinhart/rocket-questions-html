@@ -1,4 +1,4 @@
-# 📋 Packet Headers and Transmission
+# Packet Headers and Transmission
 
 ---
 
@@ -61,7 +61,7 @@ Destination reassembles using Fragment Offset values
 
 Two fundamentally different philosophies for how packets travel across a network:
 
-### Datagram (Connectionless) 📦
+### Datagram (Connectionless) 
 
 Each packet is **independent** — it carries its own full destination address and routers decide the best path for each packet individually.
 
@@ -77,7 +77,7 @@ Packets may arrive out of order — TCP reassembles them
 - Resilient — if a router fails, packets reroute automatically
 - No setup required — packets just go
 
-### Virtual Circuit (Connection-Oriented) 🛤️
+### Virtual Circuit (Connection-Oriented) 
 
 A **dedicated path** is established before data flows. Every packet follows the same predetermined route.
 
@@ -107,8 +107,8 @@ Close: path released
 
 ## Key Points
 
-- 📌 IP packet header contains: version, TTL, protocol, src/dst IP, checksum, flags
-- 📌 TTL decrements at each hop — prevents packets looping forever
-- 📌 **Datagram** = connectionless, each packet independent (how the internet works)
-- 📌 **Virtual circuit** = pre-established path, all packets follow same route (MPLS, ATM)
-- 📌 Fragmentation splits oversized packets; destination reassembles using fragment offset
+- IP packet header contains: version, TTL, protocol, src/dst IP, checksum, flags
+- TTL decrements at each hop — prevents packets looping forever
+- **Datagram** = connectionless, each packet independent (how the internet works)
+- **Virtual circuit** = pre-established path, all packets follow same route (MPLS, ATM)
+- Fragmentation splits oversized packets; destination reassembles using fragment offset

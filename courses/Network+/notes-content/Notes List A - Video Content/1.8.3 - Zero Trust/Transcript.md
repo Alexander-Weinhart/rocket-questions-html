@@ -1,0 +1,157 @@
+# [1.8.3 - Zero Trust](https://www.youtube.com/watch?v=jlMwWL4yalM)
+
+## 1.8.3 - Zero Trust
+
+- Day: Day 4
+- Duration: 6:41
+
+## Transcript
+
+- `00:01` Traditionally, we've always done a good job
+- `00:04` at protecting the edges of our network.
+- `00:06` This allowed us to control who may be entering the network
+- `00:09` and who might be leaving the network.
+- `00:12` But once you're on the inside, all of the network
+- `00:14` tends to be very accessible.
+- `00:16` This obviously creates security concerns
+- `00:19` if you want to be sure that you have the highest level
+- `00:21` of security on your network.
+- `00:23` In recent years, many companies have
+- `00:25` transitioned to more of a zero trust approach.
+- `00:28` This is a holistic approach to security
+- `00:31` that affects every user and every application being
+- `00:34` used on the network.
+- `00:35` With zero trust, every user, every device,
+- `00:38` and every application is inherently untrusted.
+- `00:42` We want to check and verify any type of traffic
+- `00:45` going over our network to ensure that only the right users are
+- `00:49` accessing the right type of data.
+- `00:51` This means that we'll be implementing technologies inside
+- `00:54` of our network, such as authentication, encryption,
+- `00:57` additional firewalls, monitoring of this network,
+- `01:00` and many other security controls.
+- `01:03` When you connect to a resource, there's
+- `01:05` generally an authentication process that occurs.
+- `01:08` There's usually a username and a password that you have to enter,
+- `01:11` and there may be additional authentication factors as well.
+- `01:14` Many organizations may also create
+- `01:17` a policy based authentication, and one
+- `01:19` of the characteristics of that is an adaptive identity.
+- `01:23` With an adaptive identity, every authentication process
+- `01:26` considers who's trying to authenticate to the network.
+- `01:30` Is this an individual who's been employed
+- `01:32` with the company for 10 years?
+- `01:33` Or is this a vendor who just started
+- `01:35` working with the company only a few months ago?
+- `01:38` We might also consider where this person
+- `01:40` may be authenticating from.
+- `01:42` Are they located in our local geographic area?
+- `01:45` Or are they trying to authenticate
+- `01:46` from a different country?
+- `01:48` We might also evaluate the IP address
+- `01:50` that's in use and the type of connection that's being used
+- `01:53` during this authentication.
+- `01:54` And we might want to combine all of those together
+- `01:57` to determine how risky this authentication process might be.
+- `02:01` If a user is inside of the building,
+- `02:02` they may only need to use a username and password.
+- `02:05` But if they're coming from an unknown IP
+- `02:07` address in a different country using a VPN connection,
+- `02:11` we might want to require additional authentication
+- `02:14` factors.
+- `02:15` We might also want to add additional rules and processes
+- `02:19` based on the information we're gathering
+- `02:21` during this authentication process.
+- `02:23` If someone is using the correct username and password,
+- `02:26` but they're connecting at an unusual time of the day
+- `02:29` from an unusual location, we may still
+- `02:32` choose to deny that particular authentication.
+- `02:35` If this same person was trying to authenticate from inside
+- `02:38` of the corporate headquarters during normal working hours,
+- `02:42` then instead we may want to allow that authentication.
+- `02:46` Once the authentication process has completed and is successful,
+- `02:50` we can trust that that person really is who they say they are.
+- `02:53` Now that that trust has been created,
+- `02:56` we need to understand what type of access that user should have.
+- `03:00` This may depend on the user who's
+- `03:02` provided the authentication.
+- `03:03` If they're part of the help desk,
+- `03:04` they may be able to view the hardware database
+- `03:06` for the entire company.
+- `03:08` If they're the manager of the help desk,
+- `03:10` they may be able to make modifications to that database.
+- `03:13` And if they're not part of the help desk
+- `03:15` or managing the help desk, they may have
+- `03:17` no access at all to that data.
+- `03:20` We might also want to consider someone's location.
+- `03:22` If they happen to be in a different country,
+- `03:24` they might have a completely set of rights and permissions
+- `03:27` than if they were inside of the corporate headquarters.
+- `03:29` And if the user is accessing the systems
+- `03:32` using a laptop that has been provided by the company
+- `03:35` and we can verify the certificate on that laptop,
+- `03:38` then we may give them additional rights and permissions.
+- `03:41` A good best practice for IT security
+- `03:44` is to only provide rights and permissions
+- `03:46` to a user that match the requirements for their job.
+- `03:49` If your job requires that you have read access to a database,
+- `03:53` then we shouldn't provide that user with any ability
+- `03:56` to change that database.
+- `03:57` This means that we would not arbitrarily provide someone
+- `04:00` with administrator rights just to be able to access
+- `04:03` a certain type of data.
+- `04:05` All users should be accessing these applications
+- `04:08` with a limited set of rights and permissions.
+- `04:11` One of the reasons we don't want to provide administrative access
+- `04:14` to everyone on the network is that administrators
+- `04:17` have full access to all data on all systems.
+- `04:20` And if a device is infected with malware
+- `04:22` and the user on that device has administrative access,
+- `04:26` then effectively, the malware now has administrative access
+- `04:29` to all of our systems.
+- `04:31` One of the challenges with providing
+- `04:33` the right type of authentication and authorization
+- `04:36` is that users can be located anywhere.
+- `04:39` Some users may be located in the corporate office,
+- `04:42` others may work from home, and others
+- `04:44` may have a field service position which
+- `04:47` takes them across the world.
+- `04:48` And the applications that we use may
+- `04:50` be located on a public cloud, across the internet,
+- `04:54` or they may be in our private data center.
+- `04:56` We need some way to provide a secure mechanism
+- `04:59` for communication, regardless of where
+- `05:01` the user happens to be and regardless of where
+- `05:03` the application resides.
+- `05:05` One way that we can create this secure environment
+- `05:08` is through the use of SASE.
+- `05:10` This stands for Secure Access Service Edge.
+- `05:13` And you can think of this as a next generation virtual
+- `05:16` private network.
+- `05:17` This moves our security technologies
+- `05:19` into the cloud itself, very close to where the application
+- `05:23` data might be.
+- `05:24` And we would have a SASE client installed on every user's device
+- `05:28` so no matter what system they're using
+- `05:30` or where they happen to be, they're
+- `05:32` able to take advantage of this secure access service edge.
+- `05:36` At the top of this SASE diagram is a public cloud,
+- `05:39` a data center, software as a service,
+- `05:42` or an internet connection.
+- `05:43` This is where our applications reside.
+- `05:45` Our users may be at our corporate office,
+- `05:47` they may be working from home, or they may be mobile users.
+- `05:51` As the users are accessing these resources,
+- `05:54` we're able to provide network as a service,
+- `05:56` so there's quality of service and routing that we can provide.
+- `05:59` We might also have security built into this, zero trust
+- `06:03` network access, firewall is a service,
+- `06:05` and DNS security are just a few examples
+- `06:08` of what SASE can provide.
+- `06:10` And because the SASE clients are installed on all of the devices
+- `06:14` and these connections are made automatically,
+- `06:16` the users don't have to worry about turning on or turning off
+- `06:19` this SASE functionality.
+- `06:21` The users simply use the devices they've always used.
+- `06:24` They connect to the applications that they need to access,
+- `06:27` and security is built in to the entire process.

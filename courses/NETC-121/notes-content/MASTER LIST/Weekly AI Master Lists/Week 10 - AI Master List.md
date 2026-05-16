@@ -9,10 +9,10 @@
 
 Sources included for this master list:
 
-- `Notes List A - Video Content/Video 20 - What is a Routing Table?/Transcript.md`
-- `Notes List A - Video Content/Video 21 - Packet Traveling - How Packets Move Through a Network/Transcript.md`
-- `Notes List A - Video Content/Video 22 - Routing Fundamentals/Transcript.md`
-- `Notes List A - Video Content/Video 23 - Dynamic Routing Protocols/Transcript.md`
+- `Notes List A - Video Content/Video 30 - Routing Tables CCNA - Explained/Routing Tables CCNA - Explained.md`
+- `Notes List A - Video Content/Video 31 - Packet Traveling - How Packets Move Through a Network/Packet Traveling - How Packets Move Through a Network.md`
+- `Notes List A - Video Content/Video 32 - CCNA Routing Fundamentals - Part 1/CCNA Routing Fundamentals - Part 1.md`
+- `Notes List A - Video Content/Video 33 - EGP IGP Distance Vector Link State Dynamic Routing Protocols OSPF EIGRP BGP RIP IS-IS/EGP IGP Distance Vector Link State Dynamic Routing Protocols OSPF EIGRP BGP RIP IS-IS.md`
 - `Notes List B - Textbook Content/Essential - Chapter 9 Routing Protocols/Essential Chapter 9 - Routing Protocols.md`
 - `Notes List C - Personal Notes/Lecture Week 10/Routers and Routing.md`
 - `Notes List C - Personal Notes/Lecture Week 10/Week 10 Notes.md`

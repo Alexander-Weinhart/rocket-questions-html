@@ -1,3 +1,5 @@
+for this prompt, the parts to do are numbered from 1 to 7. Create a to-do list that reflects each number in order from 1 to 7. Then complete 1-7 instructions in order. after you complete a number, check it off the to-do list and proceed to the next number. Let's begin:
+
 1. 
 Example: "### STP port states
 
@@ -18,14 +20,14 @@ Example: "### STP port states
 ***| Example | RIP, IGRP | OSPF |
 **| Convergence | Usually slower | Usually faster |"
 
-This week is week 14. For every line you see fit in the content markdowns for this week, as shown in the syllabus, place an asterisk at the beginning of each line for each concept that is taught. Do this for the content of the week in the syllabus. Only have an asterisk for each thing that can possibly feature a practice question, where number of asterisks indicates number of practice quiz questions possible. Don't minimize questions marked because of how long the user will take to complete the practice quiz.
+This domain in Domain 1. For every line you see fit in the content markdowns for this domain, as shown in the syllabus, place an asterisk at the beginning of each line for each concept that is taught. Do this for the content of the domain in the syllabus. Only have an asterisk for each thing that can possibly feature a practice question, where number of asterisks indicates number of practice quiz questions possible. Don't minimize questions marked because of how long the user will take to complete the practice quiz.
 
 2.
-create questions going over what you marked with asterisks, one question per asterisk. Exam weeks have dedicated "STUDY GUIDE #" markdowns, only focus on that if it is exam week. Use easy, being easy concepts from this week, medium, for hard concepts in this week, and hard for similar content found on the CCNA and Network+ certifications that are not in the scope of the class. Assume the student didn't go over any of the class content, so be exhaustive in coverage, but do not reference content, do not repeat specific concepts that already exist in this week, and do not refer to examples. do an equal amount of easy, medium, and hard. Do 10 at a time, don't stop working until all 150 are done, don't do it in one pass. by that I mean 15 edits of 10, but don't ask me if you should continue, just continue.
+create questions going over what you marked with asterisks, one question per asterisk. Exam weeks have dedicated "STUDY GUIDE #" markdowns, only focus on that if it is exam week. The Network+ has no exam week, so ignore that part. Use easy, being easy concepts from this domain, medium, for hard concepts in this domain, and hard for similar content found on the CCNA and Network+ certifications that are not in the scope of the class. Assume the student didn't go over any of the class content, so be exhaustive in coverage, but do not reference content, do not repeat specific concepts that already exist in this domain, and do not refer to examples. do an equal amount of easy, medium, and hard. Do 10 at a time, don't stop working until all 150 are done, don't do it in one pass. by that I mean 15 edits of 10, but don't ask me if you should continue, just continue.
 
 
 3.
-find redundant questions in the question bank. Only use the scope of that, there can be redundancies between weeks. Turn this into a delete/keep recommendation list with the exact questions you’d remove from each week. Show all questions in the list. show only the reword questions in this prompt answer, not a file. Allow me to reccommend an action, execute that action and move on to the next step.
+find redundant questions in the question bank. Only use the scope of that, there can be redundancies between weeks. Turn this into a delete/keep recommendation list with the exact questions you’d remove from each domain. Show all questions in the list. show only the reword questions in this prompt answer, not a file. Allow me to reccommend an action, execute that action and move on to the next step.
 
 4. 
 isolate Questions that rely on content memorization. By content memorization, a question will ask "What page in Chapter 1 says this..." or "In example 2, what subnet is PC0 on?" reword all of these so they don't refer back to content. Do this by restating the content. Comb the questions list and sort each question based on recommended action to reword or leave the question alone. Show all questions in the list. show only the reword questions in this prompt answer, not a file. what would the improved questions look like and what would be the reason for changing each one? Allow me to tell you what actions to do, and complete that before moving onto the next step.
@@ -83,4 +85,4 @@ When editing the question bank now, correct these specific misconceptions and do
     - For each edited question, return the full revised question, answer choices, correct answer, and explanation.
     - Ensure exactly one answer is unambiguously correct.
 
-7. remove any asterisk you placed at the beginning of each line for each concept that is taught for this week's content.
+7. remove any asterisk you placed at the beginning of each line for each concept that is taught for this domain's content.

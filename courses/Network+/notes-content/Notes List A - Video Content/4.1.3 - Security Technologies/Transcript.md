@@ -1,0 +1,195 @@
+# [4.1.3 - Security Technologies](https://www.youtube.com/watch?v=qIQQKCv6P_s)
+
+## 4.1.3 - Security Technologies
+
+- Day: Day 9
+- Duration: 7:15
+
+## Transcript
+
+- `00:02` in it security there is a constant fight
+- `00:04` happening between the attackers and the
+- `00:07` folks that are being attacked and one of
+- `00:09` the ways that we can learn more about
+- `00:10` our attackers is to watch the attacks
+- `00:13` themselves one of the ways that we can
+- `00:15` do this is through the use of a Honeypot
+- `00:17` we know that these attacks are often Not
+- `00:19` a Human Being who's typing into a
+- `00:21` keyboard interactively usually these are
+- `00:24` scripts or programs that are designed to
+- `00:26` attack many different systems
+- `00:28` simultaneously so one of the things we
+- `00:30` could do is to create a virtual network
+- `00:32` with virtual servers and virtual
+- `00:34` components that would be very attractive
+- `00:37` to one of these attackers we're
+- `00:39` effectively leaving out this virtual
+- `00:41` honey that hopefully will attract this
+- `00:43` attacker Sweet Tooth if you want to see
+- `00:45` what people are using as a Honeypot or
+- `00:47` you'd like to build your own there are
+- `00:49` many open-source versions available that
+- `00:51` you can install on your own systems the
+- `00:54` attackers though are very good at
+- `00:55` determining what might be real and what
+- `00:57` might be fake so there is a constant
+- `01:00` battle to build the best possible
+- `01:02` Honeypot so that you can attract the
+- `01:04` attackers and be able to watch what
+- `01:06` they're doing during these attacks but
+- `01:08` to make this attractive to the attacker
+- `01:10` we need more than simply a single server
+- `01:13` or a single device we need a number of
+- `01:15` different components we need servers
+- `01:17` workstations routers firewalls switches
+- `01:20` proxy servers and anything else that can
+- `01:23` make this system seem a little more real
+- `01:26` when we compile all of these together
+- `01:28` we've now created a honey net we now
+- `01:30` have a much larger deception framework
+- `01:33` we might have the attacker start with a
+- `01:35` workstation that's part of the honey net
+- `01:36` then they would move to a honey net
+- `01:38` server and then we might see if we can
+- `01:40` move them over to the honey net NZ these
+- `01:42` are commonly virtual devices and we can
+- `01:45` build any number of these to be able to
+- `01:47` attract the attackers if you want to
+- `01:49` read more about honey pots and honey
+- `01:51` Nets there is a wealth of information on
+- `01:53` the internet and a good place to start
+- `01:55` would be project Honeypot
+- `01:58` dorg in the world of it security a lot
+- `02:00` of the decisions that we make are based
+- `02:03` on risk risk is the exposure that we
+- `02:06` have to something that might be harmful
+- `02:08` or something that might be dangerous if
+- `02:10` we need to describe how possible it
+- `02:12` might be for something bad to happen
+- `02:15` then we would be describing risk risk is
+- `02:18` a constant concern for every
+- `02:20` organization and the larger the
+- `02:22` organization grows the more risk they
+- `02:24` tend to take on we would always want to
+- `02:26` consider how risky a situation might be
+- `02:29` during the process of expanding adding
+- `02:32` new applications making changes to a
+- `02:34` configuration or anything else in our
+- `02:36` organization that might open us up for
+- `02:38` attack whenever we're making business
+- `02:41` decisions on what we do next we always
+- `02:43` have a level of risk associated with
+- `02:46` that and it's important to be able to
+- `02:48` identify what that risk happens to be so
+- `02:50` that we can then make a business
+- `02:51` decision on whether we continue with
+- `02:54` that particular task or whether we add
+- `02:56` additional security controls to help
+- `02:58` protect that task
+- `03:00` if you've been reading through your
+- `03:02` monthly Microsoft patch notes then
+- `03:04` you've probably seen a list of
+- `03:06` vulnerabilities that have been
+- `03:08` identified by Microsoft these
+- `03:10` vulnerabilities are listing a set of
+- `03:12` weaknesses that are associated with the
+- `03:14` current version of the operating system
+- `03:16` and if someone was to take advantage of
+- `03:18` those vulnerabilities they could
+- `03:20` potentially gain access to our systems
+- `03:22` or our data and just because of
+- `03:24` vulnerability hasn't been discovered
+- `03:26` doesn't mean the vulnerability doesn't
+- `03:27` exist researchers are identifying
+- `03:30` vulnerabilities all the time that may
+- `03:32` have existed in an operating system for
+- `03:34` months or even years and of course there
+- `03:36` are many different types of
+- `03:38` vulnerabilities there might be a
+- `03:39` vulnerability associated with the type
+- `03:41` of data that could be injected into a
+- `03:43` data stream maybe the authentication
+- `03:45` process that's being used for the
+- `03:47` operating system has a vulnerability or
+- `03:49` a flaw that would allow someone to gain
+- `03:51` access to your system or maybe there's
+- `03:53` data that's exposed or security
+- `03:56` misconfiguration all of these can be
+- `03:58` categorized as a vul unability
+- `04:01` identifying that an operating system has
+- `04:03` a vulnerability is not the same thing as
+- `04:06` someone taking advantage of a data
+- `04:08` breach the data breach itself is
+- `04:10` described as an exploit this is when
+- `04:13` someone takes advantage of the
+- `04:15` vulnerability to gain access to a system
+- `04:17` or gain access to data usually the
+- `04:20` exploit is taking advantage of that
+- `04:22` vulnerability and there may be many
+- `04:24` different ways to accomplish this this
+- `04:26` might be a relatively straightforward
+- `04:28` exploit where a username is embedded
+- `04:31` within the code and we can use that
+- `04:32` username to gain access to the system or
+- `04:35` it may be a relatively complex series of
+- `04:37` tasks that an attacker needs to complete
+- `04:39` before gaining access to that operating
+- `04:42` system the threat is what is used by the
+- `04:45` attacker to exploit that vulnerability
+- `04:48` threats can also be things that might be
+- `04:51` accidental for example a fire or a flood
+- `04:53` could certainly be a threat to an
+- `04:55` organization's building but threats in
+- `04:58` our local area are things that we often
+- `05:00` understand and we can prepare for on the
+- `05:02` internet many of the threats to our
+- `05:04` systems are coming from somewhere
+- `05:05` outside of our organization so if your
+- `05:08` operating system has a vulnerability
+- `05:11` there may be a threat agent that takes
+- `05:13` advantage of that vulnerability by
+- `05:15` creating a threat action this threat
+- `05:18` action will exploit the vulnerability
+- `05:20` and allow the attacker to gain access to
+- `05:22` the system the results of that entire
+- `05:25` process means that an attacker could
+- `05:27` cause the system to become unavailable
+- `05:29` or they may gain access to private
+- `05:31` information or perhaps make that
+- `05:33` information available to others on the
+- `05:36` internet to be able to combat these
+- `05:38` attacks we rely on three fundamental
+- `05:41` principles of it security we refer to
+- `05:43` these as the CIA Triad this is sometimes
+- `05:46` referred to as the AIC Triad to be able
+- `05:50` to differentiate it from the CIA Central
+- `05:53` Intelligence Agency of the US federal
+- `05:56` government the C in the CIA Triad refers
+- `05:59` to confidentiality one way that we can
+- `06:02` help protect our data is to make that
+- `06:04` data confidential we can create data
+- `06:06` confidentiality by restricting access to
+- `06:09` the data or perhaps encrypting the data
+- `06:12` another leg of the CIA Triad is
+- `06:14` integrity integrity means that the data
+- `06:17` that we are referencing has not been
+- `06:19` modified by any third-party means for
+- `06:22` example messages sent across the network
+- `06:24` can't be modified unless there's some
+- `06:26` type of detection in place we commonly
+- `06:29` associate digital signatures with the
+- `06:32` Integrity arm of the CIA Triad and of
+- `06:35` course one of the core principles not
+- `06:36` only of it security but information
+- `06:39` technology in general is availability we
+- `06:42` want to be sure that all of the security
+- `06:44` that we're applying towards our data in
+- `06:45` our systems doesn't affect the overall
+- `06:48` access and availability of those systems
+- `06:51` themselves and for most people in
+- `06:53` Information Technology we understand
+- `06:55` that the importance of maintaining these
+- `06:57` systems and security involves making
+- `06:59` making sure that they are available to
+- `07:01` anyone who needs access

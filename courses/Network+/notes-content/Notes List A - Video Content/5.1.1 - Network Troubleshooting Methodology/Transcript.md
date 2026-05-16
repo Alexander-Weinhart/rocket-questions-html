@@ -1,0 +1,229 @@
+# [5.1.1 - Network Troubleshooting Methodology](https://www.youtube.com/watch?v=dovuPm3dGhc)
+
+## 5.1.1 - Network Troubleshooting Methodology
+
+- Day: Day 10
+- Duration: 8:04
+
+## Transcript
+
+- `00:02` when you work with networks there will
+- `00:03` be problems that need to be resolved and
+- `00:06` issues that will need troubleshooting
+- `00:08` and in this video we'll look at a
+- `00:10` flowchart that takes you through the
+- `00:11` process of how you can troubleshoot
+- `00:14` different aspects of your network this
+- `00:16` is a highlevel overview and the idea is
+- `00:19` to apply these Concepts to any problem
+- `00:21` that you might run into in the field we
+- `00:24` start with identifying the problem
+- `00:26` understanding where the issue really is
+- `00:29` associated with this particular problem
+- `00:31` and then we need to establish theories
+- `00:33` test those theories and evaluate the
+- `00:35` results of those theories we can then
+- `00:38` establish a plan of action implement the
+- `00:40` plan verify full system functionality
+- `00:42` and document our findings for the first
+- `00:45` phase where we are identifying what the
+- `00:47` problem really is it might be very
+- `00:50` obvious you might walk up and there is a
+- `00:52` cable along the floor that is in two
+- `00:54` pieces that's an easy one to determine
+- `00:57` where the problem happens to be but
+- `00:59` often the issue is not quite so cut and
+- `01:01` dry and you might want to see if you've
+- `01:03` really found the problem by attempting
+- `01:06` to duplicate the issue one of the best
+- `01:08` places to go for more information is the
+- `01:10` users themselves what are they
+- `01:12` experiencing what have they seen
+- `01:13` associated with this problem those
+- `01:16` experiences can be combined with the
+- `01:18` statistics and metrics that you're
+- `01:19` Gathering from your routers and your
+- `01:20` switches to try to build a better view
+- `01:23` of what the problem actually is we often
+- `01:26` think of these problems as having a
+- `01:28` single symptom that we need to solve but
+- `01:30` in reality there might be multiple
+- `01:32` symptoms working together that are
+- `01:34` causing this particular issue one of the
+- `01:36` questions we should often ask ourself is
+- `01:38` what has changed from this configuration
+- `01:41` today to the one we were using yesterday
+- `01:44` is someone in the wiring closet is
+- `01:45` moving cables around is there a
+- `01:47` particular system that has been powered
+- `01:49` off did we make changes to a
+- `01:51` configuration in the meantime all of
+- `01:53` these questions need to be considered to
+- `01:55` help understand what the problem might
+- `01:57` actually be many Network professionals
+- `02:00` will build a lab where they can attempt
+- `02:01` to duplicate the problem if they can
+- `02:04` duplicate the problem then it's easier
+- `02:06` to find the root cause and ultimately
+- `02:08` resolve the issue and if the scope of a
+- `02:10` problem is too large you may want to
+- `02:12` break it into smaller pieces and take
+- `02:14` one unit at a time or one component at a
+- `02:17` time to try to determine where the
+- `02:19` problem is really
+- `02:21` happening now that we've gathered all of
+- `02:23` this information about the problem
+- `02:25` itself it's time to start creating
+- `02:27` theories of what could possibly be
+- `02:29` caused ing this issue we usually want to
+- `02:31` start with obvious problems and problems
+- `02:34` that can be solved very quickly is the
+- `02:36` issue related to a cable we can swap a
+- `02:38` cable and see if that changes the issue
+- `02:40` often though the problem is more complex
+- `02:42` and we need to dive into the specifics
+- `02:45` to really understand where the probable
+- `02:47` cause might be we might want to start
+- `02:49` with a top- down approach from the
+- `02:51` perspective of the OSI model so we would
+- `02:54` start with an application and work our
+- `02:56` way down into the network or maybe this
+- `02:58` is a new network implementation and we
+- `03:01` would prefer working from the bottom up
+- `03:03` you might want to verify the network is
+- `03:05` working properly and then move towards
+- `03:08` the application and if you can eliminate
+- `03:10` different aspects of the environment you
+- `03:12` might simplify the troubleshooting
+- `03:14` process if the issue appears in one
+- `03:16` operating system and it also appears in
+- `03:18` a different operating system then the
+- `03:20` problem obviously is not directly
+- `03:23` associated with the operating system now
+- `03:26` that we have a theory of what we think
+- `03:27` the probable cause might be let's let's
+- `03:29` put together a series of steps where we
+- `03:31` can test this Theory to see if it really
+- `03:34` might be the cause of the issue for
+- `03:36` example we may have a theory that the
+- `03:38` problem is associated with a
+- `03:40` configuration so in our lab we might
+- `03:42` change that configuration and evaluate
+- `03:45` the change did this change have a
+- `03:47` positive effect and effectively solve
+- `03:49` the problem or does the problem still
+- `03:51` exist if making that configuration
+- `03:53` change did not solve the problem then
+- `03:55` it's not fixed yet we can go back and
+- `03:57` establish a new theory of what we think
+- `04:00` the issue might
+- `04:01` be let's say that we have finally
+- `04:03` identified the configuration change that
+- `04:06` is going to solve this issue for
+- `04:08` everyone in our production environment
+- `04:10` now we have to come up with a plan of
+- `04:12` how we're going to implement that change
+- `04:14` into the existing production systems
+- `04:16` with some organizations and some types
+- `04:18` of changes you can make some updates
+- `04:21` during the day to help resolve that
+- `04:22` issue but many times the production
+- `04:25` Network cannot be touched during the day
+- `04:27` and you have to schedule change control
+- `04:29` to make any significant changes and of
+- `04:31` course if we're going to be making any
+- `04:33` changes to our production environment we
+- `04:35` need to be prepared for anything so we
+- `04:37` want to have a plan that we're going to
+- `04:39` use to put this change into effect and
+- `04:41` if we run into problems we'll need a
+- `04:43` plan B and if that runs into problems we
+- `04:46` might even need a plan C and of course
+- `04:48` if you're following the normal Change
+- `04:50` Control process there's probably also a
+- `04:52` roll back process just in case you need
+- `04:54` to go back to the way things were before
+- `04:57` you even
+- `04:58` started so now we've identified what we
+- `05:01` believe will fix the issue we've gone
+- `05:02` through the Change Control process and
+- `05:04` we've gotten some time during the day
+- `05:06` that we can make this particular change
+- `05:08` now it's time to implement the fix into
+- `05:11` our production environment usually
+- `05:13` during the Change Control window that
+- `05:15` was assigned to us and in some companies
+- `05:17` the folks that implement the change are
+- `05:19` different than the folks that determine
+- `05:21` what change needs to be made so you
+- `05:23` might have a troubleshooting team that
+- `05:24` determines what needs to be changed and
+- `05:27` that change is then handed off to the
+- `05:28` operations team team to make the actual
+- `05:31` change although we've had this in our
+- `05:34` lab and we made the appropriate changes
+- `05:36` and we believe those changes will
+- `05:38` resolve this problem it's never
+- `05:40` confirmed until we can get users to make
+- `05:43` sure that the problem they saw before is
+- `05:45` really now resolved we need to verify
+- `05:48` full system functionality and often this
+- `05:50` involves the enduser or the folks that
+- `05:52` identified the problem to begin with
+- `05:55` this might also be a good time to sit
+- `05:56` down with those users and talk about
+- `05:58` ways that we could prevent the this
+- `05:59` problem from occurring in the future
+- `06:02` they might have ideas of things that
+- `06:03` might help them work better and you
+- `06:05` might have ideas of how you could
+- `06:07` prevent this from a technology
+- `06:09` perspective and of course nothing is
+- `06:11` finished until it's documented we need
+- `06:14` to be sure that we are not only
+- `06:15` documenting the process we followed but
+- `06:18` we need to identify what change we made
+- `06:20` that resolved this issue this way if we
+- `06:23` happen to run into this issue a year
+- `06:25` from now we can refer back to our
+- `06:27` documentation to see exactly what we did
+- `06:29` to resolve this problem in many cases
+- `06:32` there's a help desk database or
+- `06:33` knowledge base where we can store this
+- `06:35` information search through those details
+- `06:37` and hopefully a year from now we'll be
+- `06:39` able to easily find and reference this
+- `06:42` information that we work so hard on
+- `06:45` today so that's the troubleshooting
+- `06:47` process we need to identify the problem
+- `06:49` which involves gathering information
+- `06:51` symptoms talking to users and
+- `06:53` determining if anything in our Network
+- `06:55` may have changed we then need to
+- `06:57` establish a theory on what we think is
+- `07:00` really causing this problem of course
+- `07:02` the only way to tell if our theory is
+- `07:03` correct is to put it to the test so we
+- `07:06` might go to the lab make those
+- `07:07` configuration changes and see if they
+- `07:09` had any effect on the problem that we're
+- `07:11` seeing if that theory did not fix the
+- `07:14` problem we can go back to a stablishing
+- `07:15` a theory and go through the process
+- `07:17` again once we've identified the fix in
+- `07:20` the lab we now need to put together a
+- `07:22` plan of how we're going to implement
+- `07:24` this in our production Network we would
+- `07:26` then get a change control window
+- `07:28` implement this into our prod production
+- `07:29` Network and then have our users test the
+- `07:32` fix to see if it really resolved the
+- `07:34` problem and of course we need to
+- `07:36` document this entire process so that
+- `07:38` ourselves or someone else can use what
+- `07:41` we did today if this problem happens to
+- `07:43` occur tomorrow that's our
+- `07:45` troubleshooting process hopefully that's
+- `07:47` given you some ideas of how you can make
+- `07:50` your troubleshooting process go as
+- `07:52` smoothly as possible

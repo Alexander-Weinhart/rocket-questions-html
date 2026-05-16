@@ -1,0 +1,345 @@
+# [2.1.3 - Routing Technologies](https://www.youtube.com/watch?v=hU9bbmFhKxk)
+
+## 2.1.3 - Routing Technologies
+
+- Day: Day 5
+- Duration: 16:10
+
+## Transcript
+
+- `00:01` The job of a router is to evaluate incoming traffic,
+- `00:05` determine what the destination might be for that traffic,
+- `00:08` and then send it out the appropriate interface.
+- `00:11` The router is effectively determining what direction
+- `00:13` a packet might go to depending on the knowledge it has
+- `00:17` about the rest of the network.
+- `00:19` To be able to make this decision about where traffic goes,
+- `00:22` we need a routing table.
+- `00:24` And fortunately, most devices have a routing table.
+- `00:27` The workstation that you're using has a routing table.
+- `00:30` The servers that you're accessing have routing tables.
+- `00:33` And, of course, the routers themselves
+- `00:34` maintain their own routing tables as well.
+- `00:37` For the router to be able to make the right decision on what
+- `00:40` the best route would be to a destination,
+- `00:43` it refers to this routing table.
+- `00:45` So everything that we do when we're troubleshooting a router
+- `00:48` will begin and end with the information contained
+- `00:51` within that routing table.
+- `00:53` One thing you might even find with a router
+- `00:55` is that there may be multiple ways to get to a location,
+- `00:59` and there will be a tie as to which
+- `01:02` route a router might choose.
+- `01:04` Fortunately, there are ways to break the tie within the router,
+- `01:07` and in this video, we'll look at a number of ways
+- `01:10` that that tie-breaking process might occur.
+- `01:13` Let's look at a routing table.
+- `01:15` This is a routing table I pulled from a Cisco router,
+- `01:18` but it's almost identical in form and function
+- `01:21` to routing tables that you would find in a workstation,
+- `01:24` in a server, or in any other manufacturer's router.
+- `01:27` In this particular example, this routing table
+- `01:30` was built based on a number of networks
+- `01:32` that were directly connected and routes
+- `01:35` that were received using the RIP dynamic routing
+- `01:38` protocol, specifically RIP version 2.
+- `01:41` If we look at the routing table, the top part
+- `01:43` of this routing table is a legend
+- `01:45` that gives us more information about the codes that
+- `01:47` are used within the routing table itself.
+- `01:50` In the bottom is the routing table,
+- `01:52` and you can see that the first set of letters
+- `01:55` on each one of these lines corresponds back
+- `01:57` to a different set of codes that are shown in that legend.
+- `02:01` For example, you can see the first line of this routing table
+- `02:04` starts with the letter C, which means
+- `02:06` that that particular route is directly connected
+- `02:09` to this router.
+- `02:10` If we want to see the route that was added using RIP version 2,
+- `02:14` then we need to find a line that starts with an R.
+- `02:17` And indeed, there is a line that has
+- `02:18` an R, which means that everything on this line
+- `02:21` was created because of information that was received
+- `02:24` by this router using the RIP version 2 dynamic routing
+- `02:28` protocol.
+- `02:29` And you can see there is a lot of information
+- `02:31` contained within this line.
+- `02:32` We can make out some IP addresses.
+- `02:35` There are different values, such as 120/1.
+- `02:37` And it does appear there are even
+- `02:39` counters here along with information
+- `02:42` about specific interfaces.
+- `02:44` Let's break out just this line of information
+- `02:46` to determine what is contained within this line
+- `02:50` of a routing table.
+- `02:51` Let's break out this line of information
+- `02:54` to see which each one of these provides.
+- `02:56` We know that that first R at the beginning of the line
+- `02:59` is the route code.
+- `03:00` And if we refer back to the R in the list of codes,
+- `03:03` it does say that this was received using the RIP protocol.
+- `03:06` The next one is 10.0.30.0/24.
+- `03:11` This is the destination subnet that has been added
+- `03:14` into the routing table along with a prefix length of /24.
+- `03:19` We also have the 120/1.
+- `03:22` This is actually two different values.
+- `03:24` The 120 is an administrative distance.
+- `03:27` We'll learn more about administrative distance
+- `03:29` in a moment.
+- `03:29` And the next is a metric.
+- `03:31` We'll also talk about metrics in this video.
+- `03:34` You can also see that it's via 10.10.50.2.
+- `03:38` This would be the next hop, or the destination
+- `03:41` that we would be sending this traffic if we needed to go
+- `03:44` to this particular location.
+- `03:46` We also have this time value.
+- `03:48` This is a timestamp that tells us
+- `03:50` how long this route has been active inside
+- `03:53` of this routing table.
+- `03:54` And in this case, this route has only been active for 14 seconds.
+- `03:59` And lastly, you can see the outgoing interface
+- `04:02` that would be used.
+- `04:03` Sometimes this interface is included,
+- `04:05` sometimes it's optional depending
+- `04:07` on the routing protocol or the router that you're using.
+- `04:10` But it's sometimes nice to see that this particular next hop is
+- `04:13` one that we would reach by going out
+- `04:15` a specific physical interface in that router.
+- `04:19` So when the router is making its routing decision
+- `04:21` on where traffic should go, it's evaluating everything
+- `04:25` in this routing table to determine
+- `04:26` if this would be the best possible route
+- `04:29` to use to forward this traffic along to the next hop.
+- `04:33` One of the first things that a router is going to evaluate
+- `04:36` is where this particular traffic is destined.
+- `04:39` We need to be able to look at the destination IP address
+- `04:42` and compare that to the subnet IDs and prefix links that
+- `04:45` are contained within the routing table.
+- `04:48` If there's a match, then we'll know
+- `04:49` where to forward this traffic.
+- `04:51` This means that this IP address range and prefix length
+- `04:55` becomes an important consideration when
+- `04:57` we begin to forward traffic.
+- `04:59` We need to look at both of those together
+- `05:01` to determine if this is the best possible route for this traffic.
+- `05:05` And if you were to look at a routing table,
+- `05:07` you may find that there are multiple routes listed
+- `05:10` to a particular subnet, but there
+- `05:12` might be different prefix lengths
+- `05:14` in each one of those lines.
+- `05:16` So you might need to evaluate each individual line
+- `05:19` of a routing table to determine which
+- `05:21` one is the most specific for this particular route.
+- `05:25` For example, let's say that you need to communicate with
+- `05:28` a device that's located at 192.168.1.6,
+- `05:32` and your routing table has three different routes that would
+- `05:36` match that particular IP address.
+- `05:38` One of them is 192.168.0.0/16, the other is 192.168.1.0/24,
+- `05:46` and the third is 192.168.1.6/32.
+- `05:51` All of these would be valid routes
+- `05:53` to that particular destination, but only one
+- `05:56` is the most specific.
+- `05:58` We need to evaluate not just the subnet ID, but also
+- `06:01` the prefix length to determine which one of these
+- `06:04` is the most specific for that particular destination.
+- `06:08` And if we were to look at 192.168.1.6,
+- `06:12` we would know that 192.168.1.6/32 would be the most
+- `06:17` specific route.
+- `06:18` In fact, that is the most specific route because a /32 is
+- `06:23` specific to an individual IP address, in this case,
+- `06:26` 192.168.1.6.
+- `06:29` Now, if this route was not in our routing table,
+- `06:32` we would have to choose between 192.168.0.0/16
+- `06:37` and 192.168.1.0/24.
+- `06:40` The /24 is the more specific route than the /16.
+- `06:45` So we would choose the middle route
+- `06:47` if we had a choice between those two locations.
+- `06:50` This can get even more complicated
+- `06:53` if your routing table happens to have
+- `06:55` identical routes to a location that go to different next hops.
+- `07:00` How do you know which next hop would
+- `07:02` be the correct one if everything else was identical?
+- `07:06` And the one way that you would be
+- `07:07` able to make that determination is
+- `07:10` by examining the administrative distance.
+- `07:13` Different routing protocols are assigned
+- `07:15` different administrative distances
+- `07:17` within the router itself.
+- `07:19` This allows the router to pick the best route based
+- `07:22` on the type of protocols or the type of information
+- `07:25` that it has received.
+- `07:26` For example, if this is a local connection,
+- `07:29` it is physically connected to the router,
+- `07:31` this is the best possible way to get to that subnet.
+- `07:34` So it has an administrative distance of 0.
+- `07:37` As you can see here, the lower the administrative distance,
+- `07:40` the better the route might be.
+- `07:42` If you have manually configured a static route,
+- `07:45` the router assumes that you must be the most knowledgeable person
+- `07:48` for that particular route.
+- `07:50` So static routes have an administrative distance of 1.
+- `07:53` If this route was added to the routing table using EIGRP,
+- `07:57` the administrative distance is 90,
+- `07:59` and if you receive this route via OSPF,
+- `08:02` the administrative distance is 110.
+- `08:04` You can see that other dynamic routing protocols and methods
+- `08:07` are listed in this table with the appropriate administrative
+- `08:10` distance for a Cisco router.
+- `08:13` In some cases, the routing protocol
+- `08:15` itself may be in a position where
+- `08:17` there might be duplicate routes to a particular location,
+- `08:20` and the routing protocol has to make a decision on where
+- `08:24` the best route might be.
+- `08:25` In that case, we will want to look at the routing metric
+- `08:28` to be able to break that tie.
+- `08:30` Routing metrics are an internal value
+- `08:32` that are used by the routing protocol itself.
+- `08:35` So BGP has its own set of routing metrics,
+- `08:38` OSPF has a completely different set of routing metrics,
+- `08:41` and EIGRP uses its own set of routing metrics as well.
+- `08:45` This means that you can't compare routing metrics
+- `08:48` across different routing protocols.
+- `08:50` The routing metrics used for BGP are
+- `08:53` very different than the routing metrics used for EIGRP,
+- `08:56` and there's no way to compare or contrast those routing metrics
+- `08:59` across routing protocols.
+- `09:01` But similar to an administrative distance,
+- `09:04` BGP might create its own set of routing metrics
+- `09:07` to a particular site, and then it
+- `09:09` can determine what the best route might
+- `09:11` be based on its own internal set of routing metrics.
+- `09:15` For example, the routing metrics for BGP might be 1 or 2.
+- `09:18` It will choose the route for 1 because that
+- `09:21` is the lowest routing metric.
+- `09:23` Let's look at our routing table for RIP version 2 again.
+- `09:27` We have that one line in the routing table,
+- `09:28` the 10.10.30.0/24.
+- `09:32` It has an administrative distance of 120
+- `09:34` because it is RIP version 2, and it has a routing metric of 1.
+- `09:40` RIP uses the number of hops to a location as its routing metric.
+- `09:44` So we know that this particular destination is one hop away.
+- `09:48` To be able to reach that particular network,
+- `09:50` we would go to 10.10.50.2, and we would get to that particular
+- `09:55` location by sending this traffic out Serial0/3/1 on this router.
+- `10:01` If you were to use a different routing protocol, for example,
+- `10:05` EIGRP, you would have a very different routing metric.
+- `10:09` Here is the same routing table to the same location,
+- `10:12` but we've enabled EIGRP instead of RIP 2.
+- `10:16` You can see this line in the routing table
+- `10:18` was created with the code D, and if we refer back to our legend,
+- `10:21` we can see that D does refer to EIGRP.
+- `10:25` Everything in this line is very similar to what
+- `10:27` we saw with RIP version 2, although you'll
+- `10:30` notice the administrative distance is different.
+- `10:32` It's a 90 because EIGRP has a higher
+- `10:35` priority in its administrative distance than RIP version 2.
+- `10:39` But you'll notice that the routing metric that
+- `10:41` is determined by EIGRP is very different
+- `10:44` than the routing metric that we saw for RIP version 2.
+- `10:48` RIP version 2 uses the number of hops,
+- `10:50` whereas EIGRP has a completely different calculation
+- `10:53` that it uses to determine what the best route might be.
+- `10:57` As you work more with routing tables
+- `10:59` and begin evaluating these routes on the fly,
+- `11:02` you'll become much more comfortable
+- `11:04` with determining where the best next hop might
+- `11:07` be for a particular packet.
+- `11:09` One of the challenges we have when working with routers
+- `11:12` is that there's only one best route to a different location.
+- `11:17` If you were to look at the IP configuration of your device,
+- `11:20` you'll notice that you have a default gateway.
+- `11:23` That default gateway is your local router
+- `11:25` that allows you to communicate outside of your local IP subnet.
+- `11:29` But you'll notice that there is only one IP address
+- `11:32` available to list as the default gateway.
+- `11:35` You can't list multiple gateways in that list.
+- `11:38` And this brings up a challenge, especially when
+- `11:40` you'd like to have redundant routers on a single network.
+- `11:44` One way to provide redundancy, even though you only
+- `11:47` have places for a single default gateway,
+- `11:50` is to create a virtual IP address
+- `11:53` for the router that's in use.
+- `11:55` We refer to this virtual IP as a VIP,
+- `11:58` and the idea is that if the primary router disappears,
+- `12:01` we can move that virtual IP to another router on the subnet
+- `12:05` so that you don't have to change everyone's workstation
+- `12:08` to maintain the uptime and availability of the network.
+- `12:12` This means you, as the end user, may have no idea
+- `12:15` how many different redundant routers might
+- `12:17` be on your local subnet.
+- `12:19` And if the primary router on your network was to fail
+- `12:22` and the virtual IP address was to move,
+- `12:24` you would seamlessly continue to have connectivity using
+- `12:27` that redundant router.
+- `12:29` Here's how this would work.
+- `12:31` You, as the end user, would communicate
+- `12:33` to a router or a default gateway on your network,
+- `12:36` and that default gateway gives you access to other subnets
+- `12:39` or allows you to communicate out to the internet.
+- `12:41` In this particular example, we're
+- `12:43` going to use the first hop redundancy protocol, or FHRP,
+- `12:47` in conjunction with a virtual IP address
+- `12:50` that we've associated with router 1.
+- `12:52` This is our active router.
+- `12:55` Also on this same subnet is a standby or backup router.
+- `12:59` That's our router 2.
+- `13:00` Our default gateway is going to be associated
+- `13:03` with the virtual IP address that we've got associated with router
+- `13:06` 1, and that means that all of our traffic
+- `13:08` will flow out of our network through router 1.
+- `13:11` If router 1 was to fail, there would
+- `13:14` need to be some type of method to failover to router 2.
+- `13:18` But router 2 has a completely different IP address.
+- `13:21` In this configuration, router 1 and router 2
+- `13:24` are always in communication with each other.
+- `13:26` But if router 2 suddenly realizes
+- `13:28` that it's not able to communicate
+- `13:29` with the active router, it then removes
+- `13:32` that as the active router and becomes
+- `13:34` the active router itself.
+- `13:36` Then it takes control of that virtual IP address
+- `13:40` so that everyone on the network is now
+- `13:42` able to communicate out to the internet
+- `13:44` through router 2 using that original virtual IP address.
+- `13:49` All of the traffic will flow just as it normally did,
+- `13:52` and the end user has no idea that it's now
+- `13:54` using a completely different router to be able to perform
+- `13:58` that communication.
+- `14:00` Another interesting characteristic
+- `14:01` of switches and routers is that you
+- `14:04` can assign multiple interfaces to a single physical interface.
+- `14:09` We refer to these as subinterfaces.
+- `14:11` So even though there might be a single ethernet
+- `14:14` interface on a router, we can take that single ethernet
+- `14:17` interface and separate it into multiple virtual interfaces.
+- `14:22` For example, we might have a trunk connection that
+- `14:25` has multiple IP subnets connecting
+- `14:27` to a single physical connection, but we
+- `14:30` may need to reference each individual VLAN in a trunk
+- `14:33` with a separate IP address on our router.
+- `14:36` We do that by assigning that physical interface
+- `14:39` with an additional parameter called a subinterface.
+- `14:43` So although the physical interface on that router is
+- `14:45` referred to as ethernet1/1, we would have separate
+- `14:50` subinterfaces within that physical interface that might be
+- `14:53` called ethernet1/1.10, ethernet1/1.20,
+- `14:58` and ethernet1/1.100.
+- `15:01` This means that we can set different configurations
+- `15:04` for each of these subinterfaces so that we can reference them
+- `15:08` with the appropriate IP address for that VLAN.
+- `15:11` Here's how this would look on a network configuration.
+- `15:15` You can see there are three devices.
+- `15:17` All three of these devices are in separate VLANs.
+- `15:19` There's the red VLAN, the green VLAN, and the blue VLAN,
+- `15:23` and, of course, they're connecting
+- `15:24` two separate physical interfaces on a switch.
+- `15:27` The switch then has a single cable
+- `15:29` between the switch and the router,
+- `15:31` and it's trunking each individual VLAN
+- `15:33` within that single gigabit connection.
+- `15:36` On the router side, we've configured three subinterfaces
+- `15:40` for that ethernet connection, subinterface g0/0.1, .2, and .3.
+- `15:47` And then we can assign IP addresses,
+- `15:49` subnet masks, and have completely different routing
+- `15:52` tables for each of these individual subinterfaces
+- `15:55` as if they were physical interfaces on that router.

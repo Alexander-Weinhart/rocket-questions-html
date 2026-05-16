@@ -1,0 +1,83 @@
+# [2.4.3 - Environmental Factors](https://www.youtube.com/watch?v=v7AIXZi7pyA)
+
+## 2.4.3 - Environmental Factors
+
+- Day: Day 6
+- Duration: 3:29
+
+## Transcript
+
+- `00:01` In the United States and indeed around the world,
+- `00:04` we have many different data centers
+- `00:06` that are operating 24 hours a day, seven days a week.
+- `00:10` It is estimated that approximately 2%
+- `00:13` of all US power consumption is used by these data centers.
+- `00:17` Much of the power we use in these data centers
+- `00:20` is to manage the environment where all of this equipment
+- `00:23` resides.
+- `00:24` This allows us to manage the humidity, the temperature,
+- `00:27` and other environmental controls.
+- `00:29` Managing humidity in a data center
+- `00:31` can be a bit of a challenge.
+- `00:32` If you have a high humidity, then you've got condensation,
+- `00:35` and having any type of water in a data center
+- `00:38` is never a good idea.
+- `00:40` If your humidity is too low, you could
+- `00:42` have excessive static discharge, which is also potentially
+- `00:46` harmful to the equipment.
+- `00:48` Many industry guidelines put the ideal humidity levels
+- `00:51` somewhere around 40% to 60%.
+- `00:54` This is high enough to prevent any type of static discharge
+- `00:57` but low enough to prevent any type of condensation.
+- `01:00` This can vary a bit depending on the geography,
+- `01:03` but these humidity levels tend to be the average that you'll
+- `01:06` find in most data centers.
+- `01:08` A lot of this power also goes to keeping the data center cool.
+- `01:12` As this equipment is running, it's generating heat,
+- `01:15` and all of that heat needs to be cooled down.
+- `01:17` There is an optimal temperature range,
+- `01:20` and many data centers are trying to keep the temperature
+- `01:22` somewhere around 64 to 81 degrees Fahrenheit.
+- `01:26` The cooling equipment in our data centers
+- `01:28` is constantly working to keep the temperature at that range.
+- `01:32` But of course, there are external influences
+- `01:34` that can affect the temperature inside the building.
+- `01:37` For example, the outdoor temperature
+- `01:39` may increase or decrease, and that may add additional load
+- `01:41` to the cooling systems.
+- `01:43` You might also find that as your system load increases,
+- `01:46` and you're creating more heat from the systems inside
+- `01:49` of the data center, that we will need to add additional cooling.
+- `01:53` Most data centers will have a well-engineered heating,
+- `01:56` ventilation, and air conditioning system.
+- `01:58` This is an HVAC.
+- `02:00` This HVAC system is designed to maintain a particular humidity
+- `02:04` and temperature level.
+- `02:05` Most of these HVAC systems have sensors
+- `02:07` that are located throughout the data center,
+- `02:10` and they're working to make sure that the same temperature
+- `02:12` and humidity is the same across the entire data center.
+- `02:17` Another important concern for data centers
+- `02:19` is what you do if there is a fire.
+- `02:22` Data centers contain a large amount of electrical equipment
+- `02:25` that are in a very large area, so we
+- `02:27` need to be sure that we have some way
+- `02:29` to suppress any type of fire.
+- `02:31` Normally, we would use water to be able to control a fire.
+- `02:35` But in an environment such as a data center,
+- `02:37` when you have this much electrical equipment,
+- `02:39` you'll want to use other means for fire suppression.
+- `02:42` If you were to look into the back of the data center,
+- `02:44` there's probably a tank that contains some type of inert gas
+- `02:48` or chemical agent that is designed
+- `02:50` to either suppress the fire or remove any type of oxygen
+- `02:54` from the air.
+- `02:55` If somebody pulls the fire alarm, all of those chemicals
+- `02:58` are dispersed throughout the entire data center.
+- `03:00` And although this may cause damage to the equipment,
+- `03:03` it will prevent a fire from spreading.
+- `03:05` You'll often see these fire suppression systems integrated
+- `03:08` with the existing HVAC.
+- `03:10` This means that if a fire is detected,
+- `03:12` the HVAC system will shut down and prevent any type of oxygen
+- `03:16` from feeding that fire.

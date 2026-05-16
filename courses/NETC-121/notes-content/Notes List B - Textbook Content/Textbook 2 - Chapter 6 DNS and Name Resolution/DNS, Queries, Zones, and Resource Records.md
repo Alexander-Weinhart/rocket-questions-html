@@ -1,4 +1,4 @@
-# Textbook 2, Chapter 6: DNS and Name Resolution 🌐
+# Textbook 2, Chapter 6: DNS and Name Resolution 
 
 ## Core Concepts
 
@@ -12,7 +12,7 @@
 - A **domain name** is a label in that hierarchy.
 - Subdomains extend it (for example `www.wiley.com`, `mail.wiley.com`).
 
-### 3. DNS Domain Tree 🌳
+### 3. DNS Domain Tree 
 - DNS is structured like an inverted tree:
   - Root (`.`)
   - Top-level domains (TLDs) like `.com`, `.org`, `.edu`
@@ -25,7 +25,7 @@
 
 ## URL Structure
 
-### 5. Parts of a URL 🔗
+### 5. Parts of a URL 
 Example URL:
 `https://www.example.com:443/docs/index.html?q=dns#ttl`
 
@@ -44,7 +44,7 @@ Example URL:
 
 ## Historic Name Resolution
 
-### 7. The `hosts` File (Historic Internet) 📜
+### 7. The `hosts` File (Historic Internet) 
 - Before DNS scale-out, host-name mappings were distributed as a shared `hosts` file.
 - This became unmanageable as the Internet grew.
 - Modern OSes still have a local hosts file override:
@@ -68,7 +68,7 @@ Example URL:
 - Resolvers bootstrap with a **root hints** file (often `named.root` or `root.hints`).
 - That file contains root server names and addresses used to start iterative resolution.
 
-### 11. DNS Caching 🧠
+### 11. DNS Caching 
 - Resolvers and clients cache answers to reduce latency and traffic.
 - Cache lifetime is controlled by TTL values in records.
 - Caching improves performance but can delay visibility of recent DNS changes.
@@ -109,7 +109,7 @@ Example URL:
 - A **zone file** is text data containing DNS resource records for a zone.
 - It defines SOA, NS, host mappings, mail routing, aliases, and more.
 
-### 16. Resource Record (RR) Core Fields 📘
+### 16. Resource Record (RR) Core Fields 
 
 | Field | Meaning | Example |
 |---|---|---|
@@ -122,7 +122,7 @@ Example URL:
 Record format pattern:
 `Owner TTL Class Type RDATA`
 
-### 17. Common Resource Record Types (with Examples) 📋
+### 17. Common Resource Record Types (with Examples) 
 
 | Type | What It Does | Example |
 |---|---|---|
@@ -142,7 +142,7 @@ Record format pattern:
   - Forward: `www.wiley.com` -> `203.0.113.25`
   - Reverse: `25.113.0.203.in-addr.arpa` -> `www.wiley.com`
 
-## Misconceptions and Common Confusions ⚠️
+## Misconceptions and Common Confusions 
 - **"DNS is just one server on the Internet."**
   - False. DNS is distributed and hierarchical.
 
@@ -161,7 +161,7 @@ Record format pattern:
 - **"CNAME and A records can safely coexist at same owner name in all cases."**
   - False. A CNAME owner should not have other data types at that same name.
 
-## Quick Memory Hooks 🧠
+## Quick Memory Hooks 
 - DNS tree: root -> TLD -> domain -> host.
 - Client asks resolver recursively; resolver walks hierarchy iteratively.
 - Zone file = record database for one managed namespace chunk.

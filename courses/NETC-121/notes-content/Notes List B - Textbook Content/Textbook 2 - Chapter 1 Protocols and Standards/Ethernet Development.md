@@ -1,4 +1,4 @@
-# 📡 Ethernet Development
+# Ethernet Development
 
 Ethernet is the dominant wired networking technology. It didn't arrive fully formed — it evolved over decades from a shared-cable experiment into the multi-gigabit standard running in virtually every wired network today.
 
@@ -53,9 +53,9 @@ Ethernet is the dominant wired networking technology. It didn't arrive fully for
 
 ## Key Points
 
-- 📌 Invented at **Xerox PARC in the 1970s**
-- 📌 Standardised as **IEEE 802.3**
-- 📌 Original speed: **10 Mbps** (10BASE-T)
-- 📌 Fast Ethernet: **100 Mbps** (100BASE-TX)
-- 📌 Gigabit Ethernet: **1000 Mbps / 1 Gbps** (1000BASE-T)
-- 📌 Each generation is backwards-compatible with the previous
+- Invented at **Xerox PARC in the 1970s**
+- Standardised as **IEEE 802.3**
+- Original speed: **10 Mbps** (10BASE-T)
+- Fast Ethernet: **100 Mbps** (100BASE-TX)
+- Gigabit Ethernet: **1000 Mbps / 1 Gbps** (1000BASE-T)
+- Each generation is backwards-compatible with the previous

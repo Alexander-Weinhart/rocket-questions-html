@@ -1,4 +1,4 @@
-# 📦 Encapsulation
+# Encapsulation
 
 Encapsulation is how data gets wrapped in layers as it travels down the network stack. Each layer adds its own header (and sometimes footer) around the data from the layer above — like putting a letter in an envelope, then that envelope in a box, then labelling the box for shipping.
 
@@ -71,8 +71,8 @@ Each time a router receives a frame, it:
 
 ## Key Points
 
-- 📌 IP packet is placed inside the Ethernet frame's **data field**
-- 📌 Frame uses MAC addresses for **local delivery** (hop to hop)
-- 📌 IP packet uses IP addresses for **end-to-end delivery** (source to destination)
-- 📌 Frame is replaced at every router; IP packet is not
-- 📌 This layered approach is the foundation of how the internet works
+- IP packet is placed inside the Ethernet frame's **data field**
+- Frame uses MAC addresses for **local delivery** (hop to hop)
+- IP packet uses IP addresses for **end-to-end delivery** (source to destination)
+- Frame is replaced at every router; IP packet is not
+- This layered approach is the foundation of how the internet works

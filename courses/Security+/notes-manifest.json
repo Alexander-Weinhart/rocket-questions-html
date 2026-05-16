@@ -13,21 +13,38 @@
             {
               "type": "file",
               "name": "Transcript.md",
-              "path": "Notes List A - Video Content/Video 1 - PLACEHOLDER/Transcript.md"
+              "path": "Notes List A - Video Content/Video 1 - PLACEHOLDER/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
             }
           ]
+        },
+        {
+          "type": "file",
+          "name": "video-list.md",
+          "path": "Notes List A - Video Content/video-list.md",
+          "video": false,
+          "Video": "false",
+          "youtubeVideo": false
         }
       ]
     },
     {
       "type": "file",
       "name": "Notes List B - Why it's not here.md",
-      "path": "Notes List B - Why it's not here.md"
+      "path": "Notes List B - Why it's not here.md",
+      "video": false,
+      "Video": "false",
+      "youtubeVideo": false
     },
     {
       "type": "file",
       "name": "SURVIVAL GUIDE.md",
-      "path": "SURVIVAL GUIDE.md"
+      "path": "SURVIVAL GUIDE.md",
+      "video": false,
+      "Video": "false",
+      "youtubeVideo": false
     }
   ],
   "defaultNote": "SURVIVAL GUIDE.md"

@@ -1,4 +1,4 @@
-# 🔍 Error Detection — Checksum and CRC
+# Error Detection — Checksum and CRC
 
 Two methods for detecting data corruption in transit. Both work by computing a value from the data before sending, then recomputing it at the destination and comparing — any difference means something changed.
 
@@ -10,7 +10,7 @@ Bits flip. Electrical interference, cable damage, and hardware faults can change
 
 ---
 
-## Checksum — The Older Method ➕
+## Checksum — The Older Method 
 
 A checksum is calculated by **adding up the values of all bytes** in the data and sending the result as a small field in the header.
 
@@ -23,8 +23,8 @@ Sum: 0x12 + 0x34 + 0x56 + 0x78 = 0x114
 Checksum stored in header: 0x114 (or 1's complement: 0xEB)
 
 Receiver adds up received bytes:
-  If sum matches checksum → data intact ✅
-  If sum doesn't match   → data corrupted ❌ → discard
+  If sum matches checksum → data intact 
+  If sum doesn't match   → data corrupted  → discard
 ```
 
 ### Used In
@@ -48,7 +48,7 @@ Corrupted:      0x20, 0x10   → sum = 0x30  (same checksum — corruption undet
 
 ---
 
-## CRC — Cyclic Redundancy Check 🔄
+## CRC — Cyclic Redundancy Check 
 
 CRC is a much more robust error detection algorithm based on **polynomial division** rather than simple addition.
 
@@ -71,12 +71,12 @@ Sender:
 Receiver:
   Receives: 110101100 011
   Divides by generator 1011
-  Remainder = 000 → ✅ no corruption
+  Remainder = 000 →  no corruption
 
 If a bit flipped:
   Receives: 110101110 011
   Divides by 1011
-  Remainder ≠ 000 → ❌ corrupted — frame dropped
+  Remainder ≠ 000 →  corrupted — frame dropped
 ```
 
 ### CRC Covers Header AND Data
@@ -88,9 +88,9 @@ Unlike the IPv4 checksum (which only covers the IP header), Ethernet's CRC cover
 | | Checksum | CRC |
 |---|---|---|
 | Method | Addition of byte values | Polynomial division |
-| Detects single-bit errors | ✅ Yes | ✅ Yes |
-| Detects burst errors | Sometimes | ✅ Much more reliably |
-| Cancellation vulnerability | ✅ Yes — two errors can cancel | Extremely unlikely |
+| Detects single-bit errors |  Yes |  Yes |
+| Detects burst errors | Sometimes |  Much more reliably |
+| Cancellation vulnerability |  Yes — two errors can cancel | Extremely unlikely |
 | Where used | IP, TCP, UDP headers | Ethernet FCS, HDLC, storage |
 
 ---
@@ -113,8 +113,8 @@ Error **correction** is handled by higher-layer protocols (TCP), not at Layer 2.
 
 ## Key Points
 
-- 📌 **Checksum** — add up all bytes, compare at receiver; fast but can miss cancelling errors
-- 📌 **CRC** — polynomial division over header + data; far more reliable, used in Ethernet FCS
-- 📌 Both are **detect only** — no correction, no retransmit (that's TCP's job)
-- 📌 Checksum weakness: two flipped bytes can produce the same sum → undetected corruption
-- 📌 CRC covers the **entire frame** (header and data); IP checksum covers only the IP header
+- **Checksum** — add up all bytes, compare at receiver; fast but can miss cancelling errors
+- **CRC** — polynomial division over header + data; far more reliable, used in Ethernet FCS
+- Both are **detect only** — no correction, no retransmit (that's TCP's job)
+- Checksum weakness: two flipped bytes can produce the same sum → undetected corruption
+- CRC covers the **entire frame** (header and data); IP checksum covers only the IP header

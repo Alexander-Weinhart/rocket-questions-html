@@ -1,4 +1,4 @@
-# 🔓 Wireshark Telnet Demo
+# Wireshark Telnet Demo
 
 This demo captures a live Telnet session to a Cisco 3750 switch and shows how **every keystroke and credential is visible in plaintext** — no decryption required.
 
@@ -74,14 +74,14 @@ Every command, every response, the entire session — readable by anyone on the 
 - Telnet sends **zero encryption** — username, password, commands, output all in plaintext
 - Even a port SPAN or RSPAN on a managed switch lets an attacker capture remote traffic
 
-> ⚠️ **Telnet should never be used on any network.** SSH (Secure Shell) encrypts the entire session — Wireshark captures it but cannot read it.
+> **Telnet should never be used on any network.** SSH (Secure Shell) encrypts the entire session — Wireshark captures it but cannot read it.
 
 ---
 
 ## Key Points
 
-- 📌 Telnet transmits everything in **cleartext** — visible in Wireshark with no effort
-- 📌 **Follow → TCP Stream** shows the complete login session
-- 📌 Blue = switch output, Red = what you typed
-- 📌 Credentials and commands are fully exposed to anyone sniffing the network
-- 📌 Modern standard: use **SSH** instead — Wireshark goes blind
+- Telnet transmits everything in **cleartext** — visible in Wireshark with no effort
+- **Follow → TCP Stream** shows the complete login session
+- Blue = switch output, Red = what you typed
+- Credentials and commands are fully exposed to anyone sniffing the network
+- Modern standard: use **SSH** instead — Wireshark goes blind

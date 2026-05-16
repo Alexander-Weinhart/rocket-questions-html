@@ -1,4 +1,4 @@
-# 🚚 Transport Layer (TCP/IP Model)
+# Transport Layer (TCP/IP Model)
 
 The Transport layer sits between the Application layer above and the Internet layer below. It is responsible for **getting data reliably from one application to the correct application** on the destination machine.
 
@@ -32,7 +32,7 @@ Sender                              Receiver
   │                                  │
   │  [timeout — no ACK received]     │
   │──── [Seg 3, seq=3] ────────────►│  retransmit
-  │◄─── ACK 4 ──────────────────────│  ✅
+  │◄─── ACK 4 ──────────────────────│  
 ```
 
 ---
@@ -67,8 +67,8 @@ Port number →  identifies the correct application on that machine
 
 ## Key Points
 
-- 📌 Transport layer sits between Application and Internet layers
-- 📌 TCP: reliable, ordered, acknowledged — for web, email, file transfer
-- 📌 UDP: fast, connectionless — for gaming, streaming, DNS
-- 📌 Ports identify which application receives the data
-- 📌 TCP handles retransmission when segments are lost
+- Transport layer sits between Application and Internet layers
+- TCP: reliable, ordered, acknowledged — for web, email, file transfer
+- UDP: fast, connectionless — for gaming, streaming, DNS
+- Ports identify which application receives the data
+- TCP handles retransmission when segments are lost

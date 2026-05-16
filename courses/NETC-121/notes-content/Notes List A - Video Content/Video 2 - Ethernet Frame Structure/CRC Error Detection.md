@@ -1,4 +1,4 @@
-# 🔍 CRC Error Detection
+# CRC Error Detection
 
 CRC (Cyclic Redundancy Check) is the error detection mechanism built into every Ethernet frame. It catches frames that were corrupted in transit — flipped bits, electrical noise, cable damage.
 
@@ -51,7 +51,7 @@ Then it compares its result to the FCS value in the frame.
 Receiver:
   Received frame contents ──► [CRC algorithm] ──► result: 0xA3F2C1D8
   Compare to FCS value:                                    0xA3F2C1D8
-  Match ✅ → frame is intact, pass it up
+  Match  → frame is intact, pass it up
 ```
 
 ### Step 4 — Mismatch means corruption
@@ -61,7 +61,7 @@ If the values don't match, the frame was damaged in transit.
 Receiver:
   Recalculated CRC: 0xA3F2C1D8
   FCS in frame:     0x00000000  ← different
-  Result: ❌ frame dropped silently
+  Result:  frame dropped silently
 ```
 
 ---
@@ -76,8 +76,8 @@ Receiver:
 
 ## Key Points
 
-- 📌 CRC is calculated over the entire frame by both sender and receiver
-- 📌 If CRC values match → frame is good
-- 📌 If CRC values don't match → frame is **silently dropped**
-- 📌 Ethernet does not retransmit — TCP handles that at Layer 4
-- 📌 CRC detects errors but cannot identify **where** the corruption occurred
+- CRC is calculated over the entire frame by both sender and receiver
+- If CRC values match → frame is good
+- If CRC values don't match → frame is **silently dropped**
+- Ethernet does not retransmit — TCP handles that at Layer 4
+- CRC detects errors but cannot identify **where** the corruption occurred

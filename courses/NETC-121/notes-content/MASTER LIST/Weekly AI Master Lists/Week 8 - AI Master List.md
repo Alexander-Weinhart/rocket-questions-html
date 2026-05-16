@@ -192,10 +192,10 @@ Note: the current `Lecture Week 8` folder contains an `STP - Spanning Tree Proto
 ---
 
 ## Sources Used (Week 8)
-- `Notes List A - Video Content/Video 16 - VLANs Made Easy/Transcript.md`
-- `Notes List A - Video Content/Video 17 - Trunking and 802.1Q/Transcript.md`
+- `Notes List A - Video Content/Video 26 - VLAN Explained/VLAN Explained.md`
+- `Notes List A - Video Content/Video 27 - What is Trunking in Networking?/What is Trunking in Networking?.md`
 - `Notes List B - Textbook Content/Textbook 1 - Chapter 3 Switches, Routers, and VLANs/Book 1 Chapter 3 - Switches, Routers, and VLANs.md`
-- `Notes List A - Video Content/Video 10 - Telnet and SSH/Transcript.md` (used only to cover the Week 8 `SSH` lab item from the syllabus)
+- `Notes List A - Video Content/Video 20 - Telnet vs SSH Explained/Telnet vs SSH Explained.md` (used only to cover the Week 8 `SSH` lab item from the syllabus)
 
 ## Excluded Due to Syllabus Mismatch
 - `Notes List C - Personal Notes/Lecture Week 8/STP - Spanning Tree Protocol.md`

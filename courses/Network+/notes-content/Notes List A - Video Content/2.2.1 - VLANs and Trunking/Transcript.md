@@ -1,0 +1,269 @@
+# [2.2.1 - VLANs and Trunking](https://www.youtube.com/watch?v=ATbzbST_OIw)
+
+## 2.2.1 - VLANs and Trunking
+
+- Day: Day 5
+- Duration: 12:29
+
+## Transcript
+
+- `00:01` As a very broad description, a local area network, or a LAN,
+- `00:06` is a group of devices that are in the same broadcast domain.
+- `00:10` For example, when we connect devices to a switch,
+- `00:13` all of those devices are in the same broadcast domain.
+- `00:16` In this diagram, we have one switch
+- `00:18` on the left, that's our red switch.
+- `00:20` And all of the devices connected to that switch
+- `00:23` are in the same broadcast domain.
+- `00:25` On the right side is a blue network.
+- `00:27` This blue network is also on its own switch.
+- `00:29` And all of the devices connected to this switch
+- `00:32` are on their own broadcast domain.
+- `00:34` Because there are two separate switches
+- `00:36` and these switches are not connected to each other,
+- `00:39` no one on the red network can communicate directly
+- `00:42` with anyone on the blue network.
+- `00:44` One of the challenges with this configuration,
+- `00:47` however, is that we have two devices on the red network
+- `00:50` and two devices on the blue network.
+- `00:52` But you can see that there are 24 interfaces on the front
+- `00:56` of each of these switches.
+- `00:57` This means we're running two separate switches with two
+- `01:00` separate power sources.
+- `01:02` They're both taking up space within our rack.
+- `01:04` And we have to manage each of them individually.
+- `01:07` It would be much more efficient, much easier to manage,
+- `01:10` and much less expensive if we could have all of these devices
+- `01:13` reside on the same physical switch.
+- `01:16` We can do exactly that and continue
+- `01:19` to provide that separation between the red network
+- `01:21` and the blue network on the same switch
+- `01:24` by using a functionality known as Virtual Local Area networks
+- `01:28` or VLANs.
+- `01:29` The red network is still on its own broadcast domain
+- `01:32` and the blue network is on its own broadcast domain.
+- `01:35` But all of these devices are connected to the same switch.
+- `01:38` We've gone into the switch and defined each interface
+- `01:42` on the switch as belonging to either the red VLAN
+- `01:45` or the blue VLAN.
+- `01:47` And only devices plugged into the blue interfaces
+- `01:49` would be able to communicate with each other.
+- `01:51` And only the devices plugged into the red interfaces
+- `01:54` would be able to communicate with each other.
+- `01:57` Instead of colors, VLANs are defined by number.
+- `02:00` So in this switch we have a VLAN 1, a VLAN 2, and a VLAN 3.
+- `02:04` We can see that there are devices
+- `02:06` that are connected to interfaces that are configured for VLAN 1.
+- `02:10` Other devices connected to interfaces
+- `02:12` that have been configured for VLAN 2.
+- `02:14` And still, other devices that are
+- `02:16` configured for interfaces that will only communicate on VLAN 3.
+- `02:21` This becomes a bit of a challenge
+- `02:23` when you want to connect VLANs across individual switches.
+- `02:27` For example, you have two switches in this scenario.
+- `02:30` One of the switches has a VLAN 100 and a VLAN 200.
+- `02:33` And the other switch also has a VLAN 100 and VLAN 200.
+- `02:38` We would like for VLAN 100 on one switch
+- `02:41` to be able to communicate with VLAN 100 on the other switch
+- `02:44` and perform the same functionality for VLAN 200.
+- `02:47` Of course, one of the ways we could do this
+- `02:49` is to simply connect an ethernet cable between VLAN 200
+- `02:53` on both switches and connect another ethernet cable
+- `02:56` between VLAN 100 on both switches.
+- `02:58` You can tell, however, that we're going to run into problems
+- `03:01` if we want to connect 10, 20, 100,
+- `03:05` or even 1,000 VLANs across both of these switches.
+- `03:08` We can't connect 1,000 interfaces across each of these.
+- `03:13` So instead, we should find a way to connect these switches
+- `03:16` together by using a minimum of physical connectivity.
+- `03:20` We can do this by implementing a VLAN trunk.
+- `03:24` This is also referred to as an 802.1Q trunk, or a .1Q trunk.
+- `03:29` Instead of having these multiple ethernet connections
+- `03:32` between VLANs, we have a single ethernet connection
+- `03:36` between these two switches.
+- `03:37` And you can see that we've configured that interface
+- `03:40` as a trunk interface.
+- `03:42` This means that anything sent from VLAN 100
+- `03:44` or VLAN 200 across this trunk will
+- `03:47` be dropped off onto the appropriate VLAN
+- `03:50` on the other side.
+- `03:51` So how is the trunk connection able to keep
+- `03:54` track of what traffic is coming from VLAN 100
+- `03:57` and what traffic is coming from VLAN 200?
+- `04:00` The way we do this is by tagging each frame.
+- `04:03` This is a normal ethernet frame.
+- `04:05` We have a preamble, a start frame delimiter, a destination
+- `04:08` MAC, a source MAC, a type a payload,
+- `04:11` and a frame check sequence.
+- `04:13` To be able to add additional tags into this frame,
+- `04:17` we're going to add an additional field right in the middle right
+- `04:20` after the source MAC address.
+- `04:22` And we refer to this as the VLAN tag.
+- `04:24` These VLAN tags are 12 bits long.
+- `04:27` And if we're not counting the VLAN numbers that are reserved,
+- `04:30` we can have a total of 4,094 VLANs that can traverse that
+- `04:34` trunk connection.
+- `04:35` This makes the process relatively
+- `04:37` easy for connecting these VLANs together between switches.
+- `04:41` Instead of having 4,000 physical interfaces that we are
+- `04:44` connecting to each other, we have a single interface
+- `04:47` and we're simply tagging all of the data sent over that
+- `04:51` connection.
+- `04:52` Before there was an 802.1Q standard to provide this
+- `04:55` trunking functionality, there was a proprietary form
+- `04:58` of trunking known as ISL, or inter-switch link.
+- `05:02` ISL is relatively outdated at this point.
+- `05:05` And it's likely that any trunk that you'll ever run into will
+- `05:08` be an 802.1Q standard trunk.
+- `05:12` Let's see how these trunks will use that tag functionality
+- `05:15` to be able to transfer data from a VLAN 200 on one switch
+- `05:20` to a VLAN 200 on the other switch.
+- `05:22` We'll start with a normal ethernet frame
+- `05:25` from a device that is connected to an interface defined
+- `05:28` as VLAN 200.
+- `05:30` This packet needs to find its way
+- `05:31` to a device that is on the other switch on VLAN 200.
+- `05:35` So that packet will be sent to the trunk
+- `05:37` interface on the switch.
+- `05:39` At that time, an additional tag will
+- `05:41` be added that includes the VLAN 200,
+- `05:45` and it is sent across that trunk connection to the other switch.
+- `05:49` The switch that receives that frame will look at the tag,
+- `05:52` see that it was destined for VLAN 200,
+- `05:55` it will remove the tag from the frame,
+- `05:57` and send that traffic to the end station.
+- `06:00` So now we have a much more simplified design.
+- `06:02` Instead of having a separate cable that's
+- `06:04` running between switches for VLAN 1, VLAN 2, and VLAN 3,
+- `06:09` we can have a single ethernet connection between those two
+- `06:13` and simply trunk all of the traffic between those switches.
+- `06:17` When you first configure a switch,
+- `06:19` there will be a default VLAN for this switch.
+- `06:22` That means that every device you connect to this switch
+- `06:24` by default will be connected to a VLAN.
+- `06:27` Very commonly, this is VLAN 1 that
+- `06:30` is defined as the default VLAN.
+- `06:32` But there's another type of VLAN configuration
+- `06:35` that you would have inside of a switch known as a native VLAN.
+- `06:39` A native VLAN is one that can traverse a trunk,
+- `06:42` but a VLAN tag is not added to any of the traffic going
+- `06:46` over that trunk connection.
+- `06:48` So it's common to define a single native VLAN
+- `06:51` within a switch that will never be
+- `06:53` tagged as that traffic is sent over that trunk connection.
+- `06:56` This is because there are some devices that will not
+- `06:59` communicate over an 802.1Q network.
+- `07:02` And some of the administrative functions within your switches,
+- `07:05` where switches are communicating with each other,
+- `07:08` may need to use the native VLAN to perform that communication.
+- `07:12` For example, management traffic or switch notification messages
+- `07:15` may use the native VLAN rather than
+- `07:18` being tagged as a separate VLAN inside of that switch.
+- `07:21` If you're defining a native VLAN on one switch,
+- `07:24` you'll need to make sure that that native VLAN is
+- `07:27` identical on the other switch that you're connecting to.
+- `07:30` Otherwise you'll see error messages appear
+- `07:32` in the log of your switch.
+- `07:35` Up to this point, we've been describing a traditional layer
+- `07:38` 2 switch that is referring to the OSI layer two or data link
+- `07:42` layer, where switches make their forwarding decisions based
+- `07:45` on the MAC address of an ethernet frame.
+- `07:47` But there's another type of switch known as a layer 3
+- `07:50` switch that's able to make forwarding decisions based
+- `07:53` on the OSI layer 3 or network layer of an IP packet.
+- `07:58` This is looking at the destination IP address
+- `08:01` and making a routing decision on where that traffic should go.
+- `08:05` You're effectively taking switch functionality at layer 2
+- `08:08` and router functionality at layer 3
+- `08:10` and combining both of those into the same unit.
+- `08:14` With a layer 3 switch, we're not changing the switching process.
+- `08:18` The switch is still operating at layer 2.
+- `08:20` And we're not changing the way that a router operates.
+- `08:23` The routing functionality within this device
+- `08:25` is still operating at layer 3.
+- `08:27` But both of these are now combined within the same device,
+- `08:30` saving space, saving power, and making the administration
+- `08:33` process that much easier.
+- `08:35` This means that we can have layer 2 functionality
+- `08:38` within our switch, where we might
+- `08:39` have separate VLANs within the same physical switch.
+- `08:42` But now we can also have routing functionality
+- `08:45` that allows us to route between those VLANs,
+- `08:48` all within the same switch.
+- `08:51` This means that we'll need to configure interfaces inside
+- `08:54` of the switch that are designed to route from one VLAN
+- `08:57` to another.
+- `08:57` We refer to these as SVIs, or switched virtual interfaces.
+- `09:02` If you have a layer 3 switch, it may not
+- `09:04` have the layer 3 functionality turned on by default,
+- `09:08` so you may need to enable that in your switch configuration.
+- `09:11` Many switches require you to restart the switch once you
+- `09:14` make that configuration change.
+- `09:16` And you may be thinking, why don't we
+- `09:18` use layer 3 switches for everything?
+- `09:20` Instead of having two separate physical devices,
+- `09:23` it seems that having one single physical device would
+- `09:26` be much easier to manage.
+- `09:28` And in many cases, that's true.
+- `09:30` But the routing functionality of a layer 3 switch
+- `09:32` tends to be less capable than the routing functionality
+- `09:35` of a standalone router.
+- `09:37` There is a term within the industry where
+- `09:39` we tell the switch needs to switch
+- `09:41` and a router needs to route.
+- `09:43` When you start combining those devices together,
+- `09:45` you begin to lose functionality.
+- `09:47` So if you have a smaller remote site or perhaps even
+- `09:50` an internet router at home, you might
+- `09:52` have this layer 3 switching functionality
+- `09:55` to be able to route and switch within the same device.
+- `09:59` It's very common on our corporate networks
+- `10:02` to need both data functionality for our computing devices
+- `10:05` and voice functionality to be able to make telephone calls.
+- `10:09` Before the days of voice over IP,
+- `10:11` we would need to run one cable for our ethernet network
+- `10:14` and a separate cable for our telephones.
+- `10:17` Our ethernet cables would connect to a switch
+- `10:19` and our telephone cables would connect
+- `10:21` to a PBX, or a private branch exchange.
+- `10:25` With the advent of voice over IP technologies,
+- `10:28` we can get rid of that individual voice cable
+- `10:31` completely and run both voice and data over the same ethernet
+- `10:35` connection.
+- `10:36` And in many enterprise environments
+- `10:38` you have a switch that is on the network,
+- `10:40` you have telephone that you would connect to the switch,
+- `10:43` and on the back of the telephone is an additional ethernet
+- `10:46` cable where you can plug in your local computing device.
+- `10:49` One of the challenges that comes with adding both voice
+- `10:53` and data to the same network is that you now
+- `10:56` have a great deal of contention between both
+- `10:58` of those technologies.
+- `11:00` Data likes to use a lot of bursty bandwidth on the network.
+- `11:04` But voice communication prefers a very consistent level
+- `11:08` of access.
+- `11:09` If there's any type of congestion
+- `11:11` or a lot of usage on the network,
+- `11:13` this could affect the voice over IP communication
+- `11:16` and none of your phone calls would sound very good.
+- `11:18` To resolve this issue, we can put our voice communication
+- `11:22` on one VLAN and put our data communication on the other VLAN.
+- `11:27` But of course, we're using a single wire
+- `11:29` to connect both our phones and our computers,
+- `11:32` so we can use VLAN technologies to do
+- `11:35` that within that same cable through the use of trunking.
+- `11:39` This requires you to use a switch that
+- `11:41` will recognize that you're connecting
+- `11:43` both a phone and a computer at the same time.
+- `11:46` But once you're using the right equipment,
+- `11:48` this becomes a relatively straightforward process.
+- `11:51` So now with this switch configuration,
+- `11:53` we can assign our phones to be VLAN 200,
+- `11:57` assign our computers to be VLAN 100,
+- `11:59` and send all of that traffic to our switch,
+- `12:02` where it will be able to break those two apart
+- `12:05` and put them on the correct VLAN for that particular use.
+- `12:08` This means we can now download as much information
+- `12:11` as we'd like from our computer while we're
+- `12:13` on the phone communicating with others
+- `12:15` and be able to perform both of those seamlessly.

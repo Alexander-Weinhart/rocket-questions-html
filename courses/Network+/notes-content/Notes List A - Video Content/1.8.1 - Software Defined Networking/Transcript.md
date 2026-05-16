@@ -1,0 +1,166 @@
+# [1.8.1 - Software Defined Networking](https://www.youtube.com/watch?v=A6tPNGEfOzc)
+
+## 1.8.1 - Software Defined Networking
+
+- Day: Day 4
+- Duration: 6:56
+
+## Transcript
+
+- `00:01` One of the challenges with the virtual world
+- `00:04` is we have to somehow take the functions that we would normally
+- `00:07` use in our physical devices and move it
+- `00:10` into a more virtualized environment.
+- `00:12` This challenge exists for our servers and operating systems,
+- `00:16` but it also exists for our routers, switches,
+- `00:19` and other networking devices.
+- `00:21` If we were to break out the different functions
+- `00:24` of these networking components, we
+- `00:27` would see there was a data plane, a control
+- `00:29` plane, and a management plane.
+- `00:32` If we could take those individual functions that
+- `00:35` are handled in hardware and create virtualized software
+- `00:38` versions of each of those, we would
+- `00:40` be able to deploy this nearly anywhere
+- `00:43` in a virtual environment.
+- `00:45` This would not only provide us with a way
+- `00:47` to create these virtualized systems,
+- `00:49` but it would also give us additional functionality
+- `00:52` on the network.
+- `00:53` If we were to take a switch or a router
+- `00:56` and look at how that device functions
+- `00:58` and how it forwards data, we would
+- `01:01` categorize that particular capability
+- `01:03` into the infrastructure layer or the data plane.
+- `01:07` This is the part of the device that does the heavy lifting.
+- `01:10` It does the forwarding of traffic,
+- `01:12` it transfers information from one interface to another,
+- `01:15` and it provides forwarding, trunking, encrypting,
+- `01:18` and network address translation.
+- `01:20` These networking devices also need
+- `01:22` to reference other data to determine
+- `01:25` how to perform this function in the data plane.
+- `01:27` This ability to control where the data may be going
+- `01:31` is part of the control layer or the control plane.
+- `01:34` So if you look at routing tables, switching tables,
+- `01:37` network address translation tables, or anything else that
+- `01:40` determines how this device functions,
+- `01:43` it's probably located in the control plane.
+- `01:46` And ultimately, you as the network administrator
+- `01:49` will need to manage this device.
+- `01:50` We do this through the application layer
+- `01:52` or the management plane.
+- `01:54` Any time you SSH into a console or control a device
+- `01:57` from a web-based front end, you're
+- `01:59` using this management plane.
+- `02:01` So let's take a physical networking device
+- `02:04` and turn it into this software-defined networking
+- `02:07` device.
+- `02:08` Let's start with a physical firewall.
+- `02:10` A firewall generally has functionality within it
+- `02:13` to be able to connect different networks together.
+- `02:15` We have logic inside that is able to determine
+- `02:18` how information is forwarded from one interface to another.
+- `02:21` And we have ways to manage the device on the front console
+- `02:24` or through a web-based front end.
+- `02:26` We'll start with all of the interfaces
+- `02:28` on the front of the firewall, where we will
+- `02:30` connect all of our networks.
+- `02:31` This is the data plane or the infrastructure layer,
+- `02:34` and this is where all of the data
+- `02:36` is forwarded from one interface to another.
+- `02:39` Inside of the firewall itself, we
+- `02:40` have tables that allow us to control
+- `02:43` what traffic is forwarded and what traffic is not forwarded.
+- `02:46` We might also keep routing tables or switching tables
+- `02:49` inside of this control plane.
+- `02:51` And any time we're managing the device,
+- `02:53` either by connecting directly to the console
+- `02:55` or through a web-based management front end,
+- `02:57` we are using the management plane.
+- `03:00` One of the ways that we're able to take advantage
+- `03:03` of this software-based networking
+- `03:05` functionality is through the use of an SD-WAN.
+- `03:08` This stands for Software-Defined Networking in a Wide Area
+- `03:11` Network.
+- `03:12` This is a wide area network that was specifically
+- `03:15` built to manage the complexities of a cloud-based environment.
+- `03:19` We've created this SD-WAN because we've
+- `03:21` changed where we manage and connect
+- `03:23` to all of the different resources on our network.
+- `03:26` We used to have everything in one data center,
+- `03:28` and anytime we needed to access our email
+- `03:31` or perform a query on a database,
+- `03:33` we simply accessed those resources in our existing data
+- `03:36` center.
+- `03:37` But now we've taken those email services,
+- `03:39` and we've put them into the cloud.
+- `03:41` We've taken our applications, and we've also
+- `03:44` moved those to the cloud.
+- `03:45` It's now not quite as simple as connecting to a central data
+- `03:49` center to gain access to all of our resources
+- `03:52` because our emails, databases, and other applications
+- `03:55` might exist anywhere in the cloud.
+- `03:58` And that location may change at any time.
+- `04:01` Here's a view of what we had before the cloud,
+- `04:04` where all of our services were in one centralized data center.
+- `04:07` If we had remote locations, we would simply
+- `04:10` have wide area network links from that remote site
+- `04:12` to our centralized data center.
+- `04:14` This made it very easy to set up wide area network connections.
+- `04:18` That connection was always connected
+- `04:20` between the remote site and the data center.
+- `04:22` And that provided everyone with access to the data
+- `04:25` that they needed.
+- `04:26` But now we've moved much of that data from our data center
+- `04:29` into the cloud.
+- `04:30` So the cloud may have databases, it might have web services,
+- `04:33` it might have our email access.
+- `04:35` And these cloud-based services may
+- `04:37` be located in multiple cloud providers anywhere in the world.
+- `04:41` SD-WAN was created because we needed
+- `04:43` some type of wide area network that was application aware.
+- `04:47` It would know if we were using email,
+- `04:49` and it would be able to immediately send
+- `04:51` our data to the closest email service specific to us.
+- `04:55` An important characteristic of an SD-WAN
+- `04:58` is its ability to know what application is being transmitted
+- `05:01` through the network.
+- `05:02` If it knows the application, it will
+- `05:04` know where to forward that application data to gain access
+- `05:07` to an email, a database, or some other application.
+- `05:11` Since these cloud-based services can move anywhere at any time,
+- `05:15` we need all of the systems that are connected to this wide area
+- `05:19` network to automatically update themselves any time
+- `05:22` there happens to be a change.
+- `05:24` This is called zero-touch provisioning,
+- `05:26` and it allows us to have all of our remote routers
+- `05:29` and switches know exactly how to reach those services wherever
+- `05:33` they might be and wherever they might be moved.
+- `05:36` This means if anything changes with the network or anything
+- `05:39` changes with the location of these services,
+- `05:41` our SD-WAN routers will automatically update themselves
+- `05:45` without any type of user intervention.
+- `05:47` We also need to keep in mind that the connectivity
+- `05:50` to these sites may be very different based on the cloud
+- `05:53` provider.
+- `05:54` Some cloud providers might be accessible through high-speed
+- `05:56` fiber, whereas others may be connected through 5G or DSL-type
+- `06:01` connections.
+- `06:02` For that reason, SD-WAN is designed
+- `06:04` to be agnostic to the transport type.
+- `06:07` So no matter how you're connected,
+- `06:08` we'll be able to connect to that remote location.
+- `06:11` And instead of configuring the policies used for this network
+- `06:14` through each individual SD-WAN router,
+- `06:17` we have central policy management
+- `06:19` where we make all of those changes on one
+- `06:21` central management console, and those changes
+- `06:24` are pushed out to all of those SD-WAN routers automatically.
+- `06:28` So if there are resources in the data center
+- `06:30` that need to be accessed from a remote site,
+- `06:32` those locations can still go directly to the data center.
+- `06:35` But if someone in a remote site needs
+- `06:37` to access a database or their email system,
+- `06:40` they can go directly to that cloud-based service
+- `06:43` using this SD-WAN technology.

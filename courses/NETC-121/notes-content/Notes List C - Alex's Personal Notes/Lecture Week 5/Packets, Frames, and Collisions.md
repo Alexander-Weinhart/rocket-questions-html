@@ -1,4 +1,4 @@
-# 📦 Packets, Frames, and Collisions
+# Packets, Frames, and Collisions
 
 A foundational recap of the three concepts that underpin how data physically moves across a network — and what happens when it goes wrong.
 
@@ -47,7 +47,7 @@ A collision happens when two devices on a **shared medium** (hub, legacy coaxial
 ```
 Device A ──────────────────────────────────────────────►
 Device B ──────────────────────────────────────────────►
-                        💥 COLLISION — both frames destroyed
+                         COLLISION — both frames destroyed
 ```
 
 ### Collision Domain
@@ -80,7 +80,7 @@ Modern switched networks effectively **eliminated** collision domains. CSMA/CD i
 
 ## Key Points
 
-- 📌 Packet = Layer 3 cargo (IP, end-to-end); Frame = Layer 2 vehicle (MAC, one hop)
-- 📌 Frame is rebuilt at each router; packet is not
-- 📌 Collisions occur on shared media — hubs create one big collision domain
-- 📌 Switches isolate collision domains per port — no collisions in modern LANs
+- Packet = Layer 3 cargo (IP, end-to-end); Frame = Layer 2 vehicle (MAC, one hop)
+- Frame is rebuilt at each router; packet is not
+- Collisions occur on shared media — hubs create one big collision domain
+- Switches isolate collision domains per port — no collisions in modern LANs

@@ -22,20 +22,33 @@ python3 server.py 3003
 ```
 This all goes on a web server.
 
+Professor Messer transcript puller:
+```bash
+python3 scripts/pull_youtube_transcripts.py --course 'Network+' --limit 1
+```
+Add `--day 'Day 3'`, `--match 'Routing'`, or `--overwrite` as needed.
+
 API endpoint used by the web app:
 - `POST /api/changes` -> appends a row to `changes.csv`
 - `POST /api/history` -> appends a row to `question_history.csv` only; history cannot be read, replaced, updated, or deleted through the API
 
 Cross-origin API access:
-- the API server sends CORS headers for `https://alex-online.win` and local development on port `3003`
-- this lets the deployed site append to `https://alex-online.win:3003/api/changes` and `/api/history` directly when Apache serves the page from `443`
+- the API server sends CORS headers for `https://rocketquestions.com`, `https://www.rocketquestions.com`, `https://alex-online.win`, and local development on port `3003`
+- this lets either deployed domain append to its matching `:3003` API endpoint directly when Apache serves the page from `443`
+
+Dual-domain deployment notes:
+- `rocketquestions.com` and `rocketquestions.com/test1` can serve the live app normally
+- `alex-online.win/test1` can also serve the live app normally
+- `alex-online.win/` can remain a legacy splash page that points visitors to `rocketquestions.com`
+- if both domains point to the same server, Apache should expose the same document root for both hosts and make `/test1` resolve to the same Rocket Questions build tree
 
 Apache Content Security Policy:
 - if Apache or Cloudflare reports `connect-src 'none'` warnings, replace that policy with a Rocket Questions-aware policy
 - a ready-to-copy Apache header snippet lives in `deploy/apache-csp.conf`
 
 Server-side record storage directory:
-- default: `/home/citadel/practice-quiz-records/`
+- default: `$XDG_STATE_HOME/rocket-questions-html/` when `XDG_STATE_HOME` is set
+- otherwise: `~/.local/state/rocket-questions-html/`
 - override with env var: `PRACTICE_QUIZ_RECORDS_DIR`
 - safety guard: if env var points under `/var/www/html`, records write to the project folder
 

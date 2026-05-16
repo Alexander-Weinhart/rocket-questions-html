@@ -1,0 +1,206 @@
+# [5.4.1 - Performance Issues](https://www.youtube.com/watch?v=FVxENIjdAJk)
+
+## 5.4.1 - Performance Issues
+
+- Day: Day 11
+- Duration: 7:18
+
+## Transcript
+
+- `00:01` our networks run at a predefined speed
+- `00:04` for example a 1,00 Bas T gigabit Network
+- `00:08` operates and sends traffic at 1 gbit per
+- `00:11` second this network cannot pass traffic
+- `00:14` faster than 1 gabit per second but what
+- `00:16` if you have multiple 1 gig links plugged
+- `00:19` into a switch and both of those
+- `00:21` connections are sending traffic at 1
+- `00:23` gbit per second to the same destination
+- `00:27` obviously we can't fit 2 gbits per
+- `00:29` second into a 1 gabit per second link
+- `00:32` and in those cases we run into
+- `00:34` congestion this contention of both
+- `00:36` networks trying to send information at
+- `00:38` the same time we'll certainly queue up
+- `00:41` some packets into a buffer but
+- `00:43` eventually we will fill up that buffer
+- `00:45` and have congestion these buffers that
+- `00:47` are in a switch or a router are
+- `00:49` relatively small and they're not going
+- `00:51` to hold a lot of packets So eventually
+- `00:53` packets are going to need to be
+- `00:54` discarded so that we can keep the system
+- `00:56` running this means that we're going to
+- `00:58` lose information that we're sending
+- `01:00` between one station and another so to
+- `01:03` resolve that we will need to either
+- `01:04` increase the size and speed of the
+- `01:06` network or we will need to decrease the
+- `01:08` amount of traffic that's going over that
+- `01:11` Network often people will say the
+- `01:13` network is slow and what they're really
+- `01:15` saying is that there's some type of
+- `01:17` bottleneck on the network that is
+- `01:19` causing a Slowdown unfortunately this
+- `01:21` can be very difficult to troubleshoot
+- `01:23` because the problem might be with a
+- `01:25` number of different Technologies it
+- `01:27` might be related to the bus of the
+- `01:29` system that you're you're using maybe
+- `01:30` the speed of a CPU inside of a switch or
+- `01:33` a router perhaps you're using a hard
+- `01:35` drive or an SSD which would be very
+- `01:37` different in the speeds of that storage
+- `01:39` drive and of course we have different
+- `01:41` networks with different speeds that are
+- `01:43` sent across different locations we have
+- `01:45` to look at all of these different
+- `01:47` parameters between one device and
+- `01:49` another to really understand where the
+- `01:51` bottlenecks might be on a network
+- `01:54` sometimes it might be very obvious
+- `01:55` what's causing this bottleneck but often
+- `01:57` you need to drill down into the det
+- `01:59` details of these systems to be able to
+- `02:02` understand what resources are being used
+- `02:04` or slowing down that's causing this
+- `02:06` problem for everyone else here's an
+- `02:09` example of a web transaction response
+- `02:11` time you can see transactions on this
+- `02:13` network were running somewhere around
+- `02:15` 1500 1750 milliseconds that's almost 2
+- `02:19` seconds of delay when somebody requested
+- `02:22` data notice that there was a lot of time
+- `02:24` that was being used by the database in
+- `02:27` this particular example it seemed
+- `02:29` obvious that our problem was somehow
+- `02:31` located in the database server itself
+- `02:34` and by making some configuration changes
+- `02:35` to this database server we were able to
+- `02:38` eliminate this bottleneck and you can
+- `02:40` see the response times went down to
+- `02:41` around 500
+- `02:43` milliseconds if you want to know how
+- `02:45` much a network is being used you might
+- `02:47` want to look at the bandwidth percentage
+- `02:50` this is a measure of how much a network
+- `02:51` is being used over a particular amount
+- `02:53` of time usually this is a percentage
+- `02:56` that's being presented so that we can
+- `02:58` understand how much of this network
+- `02:59` network is in use during that time frame
+- `03:02` we might also want to measure throughput
+- `03:04` which tells us how much data we were
+- `03:05` able to move through that Network during
+- `03:08` that time frame this gives us
+- `03:09` information about what size of data
+- `03:11` we're able to move and in what time
+- `03:13` frames we're able to move it there are
+- `03:15` different ways to monitor bandwidth
+- `03:17` statistics you may be able to gather
+- `03:19` these directly from a switch or you may
+- `03:21` use SNMP or netf flow to be able to
+- `03:23` gather this over time and if you're
+- `03:25` looking at bandwidth usage over a number
+- `03:28` of different links between two devices
+- `03:30` you'll find that the slowest link is the
+- `03:32` one that probably is holding up the
+- `03:34` throughput for all of the other
+- `03:37` networks latency is calculated as the
+- `03:40` delay between the
+- `03:41` request and the response whenever we're
+- `03:44` measuring latency we want to know how
+- `03:47` fast or how slow is this transaction
+- `03:49` occurring there will always be some type
+- `03:51` of latency on a connection because it
+- `03:53` takes time to move that information from
+- `03:56` one device to another but ideally we
+- `03:58` would want to measure these respon times
+- `04:00` at every stop along the way this allows
+- `04:02` us to understand just how quickly we can
+- `04:04` move data from one segment to another
+- `04:07` and we can break it down into its
+- `04:08` smallest parts to get a true measurement
+- `04:11` of this we would need some type of
+- `04:13` measuring tool in every single Network
+- `04:15` link along that path so this could be
+- `04:18` rather involved to be able to set up all
+- `04:20` of those devices but once you do you'll
+- `04:22` be able to capture the packets and
+- `04:24` determine what the true latency is of
+- `04:26` that connection because you're capturing
+- `04:29` packets you have microsc granularity so
+- `04:31` you're able to know exactly how long a
+- `04:33` packet stayed in a device how long it
+- `04:35` took to Traverse that Network and how
+- `04:37` long it took to forward to the next
+- `04:39` segment one of the problems a network
+- `04:41` administrator would like to avoid is
+- `04:43` packet loss if we're sending traffic
+- `04:45` across the network the ideal situation
+- `04:48` is for all of that traffic to make it
+- `04:50` across the network all of the time but
+- `04:52` there will be scenarios where that
+- `04:53` information simply can't make it across
+- `04:55` the network for one reason or another a
+- `04:58` packet loss or a discard means that
+- `05:00` there weren't any errors with the packet
+- `05:02` but some other reason caused us to
+- `05:05` discard that packet instead of sending
+- `05:07` it to its destination this may be due to
+- `05:09` an outage on the network or it could be
+- `05:11` that we have contention we simply don't
+- `05:13` have enough bandwidth to send all of
+- `05:14` that traffic across the network
+- `05:17` sometimes we're on a bad wireless
+- `05:18` network maybe we have a bad cable and
+- `05:21` the information we're sending across the
+- `05:22` network becomes corrupted when that
+- `05:24` corruption occurs during the
+- `05:25` transmission of that data it's
+- `05:27` identified when it reaches the other
+- `05:29` side and because that data is corrupted
+- `05:31` it is completely discarded and we have
+- `05:33` to resend that traffic across the
+- `05:35` network this takes additional time and
+- `05:38` resources and could cause significant
+- `05:40` delays to your
+- `05:42` application talking on a Voiceover IP
+- `05:44` phone call or watching live video
+- `05:47` streams are very sensitive to any type
+- `05:49` of delay you might put on the network we
+- `05:52` would like these packets to arrive at
+- `05:54` regular predictable intervals and as
+- `05:56` long as that's happening we can continue
+- `05:58` to have our phone call or watch our live
+- `06:00` stream and everything is working as
+- `06:02` expected but if we have congestion on
+- `06:04` the network or the packet is corrupted
+- `06:07` we have to discard that packet we can't
+- `06:09` rewind our conversation or rewind the
+- `06:12` live stream we simply have to discard
+- `06:14` that packet and continue forward this
+- `06:17` might cause a delay or a clicking noise
+- `06:19` on the phone call or we might see a
+- `06:21` small stutter on our live stream to be
+- `06:24` able to see if we're receiving frames at
+- `06:26` regular intervals we can measure the
+- `06:28` Jitter on the network Jitter is the time
+- `06:30` between those frames and we would like
+- `06:32` that Jitter value to be a consistent
+- `06:34` value all the time this is what we would
+- `06:37` like to see which has a relatively small
+- `06:40` amount of Jitter because there's a small
+- `06:41` amount of delay between each of these
+- `06:43` packets there is a little bit of
+- `06:45` variability between each of these
+- `06:47` packets but they are being received at
+- `06:49` regular intervals if we're having high
+- `06:51` Jitter values then we might have three
+- `06:54` of those packets come through and then a
+- `06:56` long delay and then three more packets
+- `06:58` very quickly and then another delay it's
+- `07:00` these high Jitter values that give you
+- `07:02` problems hearing on a phone call or give
+- `07:04` you that stutter during a live video
+- `07:06` feed

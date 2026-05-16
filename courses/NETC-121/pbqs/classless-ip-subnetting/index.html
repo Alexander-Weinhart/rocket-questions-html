@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classless IP Subnetting PBQ</title>
+  <link rel="icon" type="image/png" href="../../../../rocket_icon.png?q=1.0.14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../../styles.css?q=1.0.14">
+  <style>
+    body { font-size: 15px; }
+    .app-shell { width: min(1520px, 99vw); margin: 0.8rem auto; }
+    .app-header p { margin: 0.25rem 0 0; }
+    .card { padding: 0.95rem 1rem 1rem; }
+    .pbq-page-header { display: grid; gap: 0.35rem; margin-bottom: 0.6rem; }
+    .pbq-kicker { margin: 0; color: var(--accent-2); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    .pbq-page-header h2 { margin: 0; font-size: clamp(1.4rem, 1.8vw, 1.9rem); }
+    .pbq-source-note, .pbq-instruction-list { margin: 0; color: var(--muted); font-size: 0.92rem; }
+    .pbq-instruction-list { padding-left: 1.2rem; }
+    .pbq-status-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.6rem; margin: 0.75rem 0 0.9rem; }
+    .pbq-status-card, .pbq-panel { border: 1px solid var(--line); border-radius: 16px; background: rgba(7, 14, 24, 0.66); box-shadow: 0 18px 50px rgba(0,0,0,0.18); }
+    .pbq-status-card { padding: 0.7rem 0.8rem; }
+    .pbq-status-card strong, .pbq-status-card span { display: block; }
+    .pbq-status-card span { color: var(--muted); font-size: 0.82rem; margin-bottom: 0.18rem; }
+    .pbq-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(330px, 0.9fr); gap: 0.85rem; align-items: start; }
+    .pbq-panel { padding: 0.85rem; }
+    .pbq-panel h3 { margin: 0 0 0.3rem; font-size: 1.05rem; }
+    .pbq-panel p { margin: 0 0 0.55rem; color: var(--muted); font-size: 0.92rem; }
+    .scenario-banner { border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 0.85rem 0.95rem; background: rgba(255,255,255,0.03); margin-bottom: 0.8rem; }
+    .scenario-banner strong { display: block; font: 600 1.05rem/1.35 "JetBrains Mono", monospace; color: var(--accent-2); }
+    .response-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; }
+    .response-field { display: grid; gap: 0.3rem; }
+    .response-field label { font-size: 0.88rem; color: var(--muted); }
+    .response-field input { width: 100%; padding: 0.75rem 0.85rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.12); background: rgba(4, 13, 24, 0.75); color: var(--ink); font: 600 0.95rem/1.2 "JetBrains Mono", monospace; }
+    .response-field input.is-correct { border-color: rgba(83,229,155,0.88); box-shadow: 0 0 0 2px rgba(83,229,155,0.16); }
+    .response-field input.is-wrong { border-color: rgba(255,123,123,0.88); box-shadow: 0 0 0 2px rgba(255,123,123,0.16); }
+    .field-note { min-height: 1rem; font-size: 0.8rem; color: var(--muted); }
+    .utility-grid { display: grid; gap: 0.85rem; }
+    .calculator-display { width: 100%; min-height: 52px; margin-bottom: 0.6rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.12); background: rgba(4,13,24,0.75); color: var(--ink); padding: 0.7rem 0.85rem; font: 600 1rem/1.2 "JetBrains Mono", monospace; }
+    .calculator-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.5rem; }
+    .calculator-grid button, .scratch-controls button { min-height: 44px; }
+    .calculator-grid .wide { grid-column: span 2; }
+    .scratch-controls { display: flex; justify-content: space-between; align-items: center; gap: 0.6rem; margin-bottom: 0.45rem; }
+    .scratch-pad { width: 100%; min-height: 280px; resize: vertical; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12); background: rgba(4,13,24,0.88); color: var(--ink); padding: 0.85rem; font: 500 0.92rem/1.45 "JetBrains Mono", monospace; }
+    .pbq-inline-status { min-height: 1rem; margin: 0.45rem 0 0; color: var(--accent-2); font-size: 0.85rem; }
+    .pbq-report-document { margin-top: 0.9rem; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,0.03); padding: 1rem 1rem 1.1rem; font-family: "JetBrains Mono", monospace; font-size: 0.88rem; line-height: 1.5; }
+    .pbq-report-heading { margin: 0 0 0.55rem; font-size: 1rem; font-family: "Space Grotesk", sans-serif; }
+    .pbq-report-meta { margin: 0 0 0.25rem; color: var(--muted); }
+    .pbq-report-section { margin-top: 0.95rem; padding-top: 0.85rem; border-top: 1px solid rgba(255,255,255,0.08); }
+    .pbq-report-row { margin-top: 0.75rem; }
+    .pbq-report-line { margin: 0.12rem 0; color: var(--muted); }
+    .pbq-report-line strong { color: var(--ink); }
+    .pbq-badge { display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; padding: 0.18rem 0.58rem; font-size: 0.76rem; font-weight: 700; font-family: "JetBrains Mono", monospace; }
+    .pbq-badge.pass { background: #53e59b; color: #062e1d; }
+    .pbq-badge.fail { background: #ff7b7b; color: #3b0707; }
+    .pbq-report-store, .hidden { display: none !important; }
+    @media (max-width: 980px) {
+      .pbq-status-row, .pbq-grid, .response-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-shape bg-shape-a" aria-hidden="true"></div>
+  <div class="bg-shape bg-shape-b" aria-hidden="true"></div>
+
+  <main class="app-shell">
+    <header class="app-header">
+      <h1><span class="brand-inline"><img class="brand-inline-icon" src="../../../../rocket_icon.png?q=1.0.14" alt="" aria-hidden="true"><span>Rocket Questions - Classless IP Subnetting PBQ</span></span></h1>
+      <p>Work one IPv4 address and subnet mask at a time, convert the mask, calculate the CIDR, and solve the full network range.</p>
+    </header>
+
+    <section id="workspace-screen" class="screen card">
+      <div class="pbq-page-header">
+        <p class="pbq-kicker">NETC-121 PBQ</p>
+        <h2>Classless IP Subnetting</h2>
+        <p class="pbq-source-note">Source focus: subnet masks, CIDR notation, network ranges, and host calculations.</p>
+      </div>
+
+      <div class="pbq-status-row">
+        <div class="pbq-status-card"><span>Scenario</span><strong id="scenario-count">1</strong></div>
+        <div class="pbq-status-card"><span>Fields Correct</span><strong id="correct-count">0 / 6</strong></div>
+        <div class="pbq-status-card"><span>Current IP</span><strong id="status-address">Loading...</strong></div>
+        <div class="pbq-status-card"><span>Submit Status</span><strong id="submit-status-label">Fill out every field first</strong></div>
+      </div>
+
+      <div class="pbq-grid">
+        <section class="pbq-panel">
+          <h3>Scenario</h3>
+          <p>Given an IPv4 address and subnet mask, convert the subnet mask to binary, identify the CIDR prefix, and calculate the network range details.</p>
+          <div class="scenario-banner">
+            <span>Given IP address</span>
+            <strong id="question-address">0.0.0.0</strong>
+            <span>Given subnet mask</span>
+            <strong id="question-mask">255.255.255.0</strong>
+          </div>
+          <ol class="pbq-instruction-list">
+            <li>Type the subnet mask in binary.</li>
+            <li>Type the CIDR prefix.</li>
+            <li>Type the network address.</li>
+            <li>Type the broadcast address.</li>
+            <li>Type the first host address.</li>
+            <li>Type the last host address.</li>
+          </ol>
+          <div class="response-grid" id="response-grid"></div>
+          <p id="workspace-status" class="pbq-inline-status" aria-live="polite"></p>
+        </section>
+
+        <aside class="utility-grid">
+          <section class="pbq-panel">
+            <h3>Basic Calculator</h3>
+            <p>Supports addition, subtraction, multiplication, division, and exponent.</p>
+            <input id="calculator-display" class="calculator-display" type="text" inputmode="decimal" aria-label="Calculator display">
+            <div class="calculator-grid">
+              <button type="button" class="btn ghost calc-btn" data-value="7">7</button>
+              <button type="button" class="btn ghost calc-btn" data-value="8">8</button>
+              <button type="button" class="btn ghost calc-btn" data-value="9">9</button>
+              <button type="button" class="btn info calc-btn" data-value="/">÷</button>
+              <button type="button" class="btn ghost calc-btn" data-value="4">4</button>
+              <button type="button" class="btn ghost calc-btn" data-value="5">5</button>
+              <button type="button" class="btn ghost calc-btn" data-value="6">6</button>
+              <button type="button" class="btn info calc-btn" data-value="*">×</button>
+              <button type="button" class="btn ghost calc-btn" data-value="1">1</button>
+              <button type="button" class="btn ghost calc-btn" data-value="2">2</button>
+              <button type="button" class="btn ghost calc-btn" data-value="3">3</button>
+              <button type="button" class="btn info calc-btn" data-value="-">−</button>
+              <button type="button" class="btn ghost calc-btn" data-value="0">0</button>
+              <button type="button" class="btn ghost calc-btn" data-value=".">.</button>
+              <button type="button" class="btn info calc-btn" data-value="**">^</button>
+              <button type="button" class="btn info calc-btn" data-value="+">+</button>
+              <button type="button" class="btn warn wide" id="calc-clear">Clear</button>
+              <button type="button" class="btn accent wide" id="calc-equals">=</button>
+            </div>
+          </section>
+
+          <section class="pbq-panel">
+            <div class="scratch-controls">
+              <div>
+                <h3>Scratch Paper</h3>
+                <p>Use this monospace space to work out mask bits and address ranges.</p>
+              </div>
+              <button id="clear-scratch" type="button" class="btn warn">Clear</button>
+            </div>
+            <textarea id="scratch-pad" class="scratch-pad" spellcheck="false" aria-label="Scratch paper"></textarea>
+          </section>
+        </aside>
+      </div>
+
+      <div class="row actions">
+        <button id="submit-pbq" type="button" class="btn accent" disabled>Submit PBQ</button>
+        <button id="new-scenario" type="button" class="btn ghost">New Problem</button>
+        <button id="reset-pbq" type="button" class="btn ghost">Reset Answers</button>
+        <button id="back-to-pbq-menu" type="button" class="btn ghost push-right">Back to PBQ Menu</button>
+      </div>
+    </section>
+
+    <section id="review-screen" class="screen card hidden">
+      <h2>PBQ Review Report</h2>
+      <p id="review-summary"></p>
+      <p>Print tip: use Copy Report or Download Report for clean formatting.</p>
+      <article id="review-rich-text" class="pbq-report-document" aria-live="polite"></article>
+      <textarea id="review-text" class="pbq-report-store" readonly></textarea>
+      <p id="review-action-status" class="pbq-inline-status" aria-live="polite"></p>
+      <div class="row actions">
+        <button id="copy-report" type="button" class="btn ghost">Copy Report</button>
+        <button id="download-report" type="button" class="btn ghost">Download Report</button>
+        <button id="print-report" type="button" class="btn accent">Print Report</button>
+        <button id="retry-pbq" type="button" class="btn ghost">Retry PBQ</button>
+        <button id="new-scenario-review" type="button" class="btn ghost">New Problem</button>
+        <button id="back-to-pbq-menu-review" type="button" class="btn ghost push-right">Back to PBQ Menu</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="results-confetti" class="results-confetti hidden" aria-hidden="true"></div>
+
+  <script>
+    (() => {
+      const RESULTS_CONFETTI_COLORS = ["#44cfaa", "#ff735c", "#f5d76e", "#7dcfff", "#f58fb0", "#9fefc2"];
+      const RESULTS_CONFETTI_SHAPES = ["shape-square", "shape-ribbon", "shape-circle", "shape-diamond", "shape-triangle"];
+      const FIELD_CONFIG = [
+        { id: "subnetMaskBinary", label: "Subnet mask in binary" },
+        { id: "cidr", label: "CIDR prefix" },
+        { id: "networkAddress", label: "Network address" },
+        { id: "broadcastAddress", label: "Broadcast address" },
+        { id: "firstHost", label: "First host address" },
+        { id: "lastHost", label: "Last host address" },
+      ];
+      const MASK_CHOICES = [
+        { mask: '255.255.255.0', cidr: 24 },
+        { mask: '255.255.255.128', cidr: 25 },
+        { mask: '255.255.255.192', cidr: 26 },
+        { mask: '255.255.255.224', cidr: 27 },
+        { mask: '255.255.255.240', cidr: 28 },
+        { mask: '255.255.255.248', cidr: 29 },
+        { mask: '255.255.255.252', cidr: 30 },
+        { mask: '255.255.255.254', cidr: 31 },
+        { mask: '255.255.0.0', cidr: 16 },
+        { mask: '255.255.128.0', cidr: 17 },
+        { mask: '255.255.192.0', cidr: 18 },
+        { mask: '255.255.224.0', cidr: 19 },
+        { mask: '255.255.240.0', cidr: 20 },
+        { mask: '255.255.248.0', cidr: 21 },
+        { mask: '255.255.252.0', cidr: 22 },
+        { mask: '255.255.254.0', cidr: 23 },
+      ];
+
+      const state = {
+        scenarioIndex: 1,
+        scenario: null,
+        lastResults: [],
+        lastReportText: '',
+      };
+
+      const el = {
+        workspaceScreen: document.getElementById('workspace-screen'),
+        reviewScreen: document.getElementById('review-screen'),
+        responseGrid: document.getElementById('response-grid'),
+        questionAddress: document.getElementById('question-address'),
+        questionMask: document.getElementById('question-mask'),
+        scenarioCount: document.getElementById('scenario-count'),
+        correctCount: document.getElementById('correct-count'),
+        statusAddress: document.getElementById('status-address'),
+        submitStatusLabel: document.getElementById('submit-status-label'),
+        workspaceStatus: document.getElementById('workspace-status'),
+        submitPBQ: document.getElementById('submit-pbq'),
+        newScenario: document.getElementById('new-scenario'),
+        newScenarioReview: document.getElementById('new-scenario-review'),
+        resetPBQ: document.getElementById('reset-pbq'),
+        backToPBQMenu: document.getElementById('back-to-pbq-menu'),
+        backToPBQMenuReview: document.getElementById('back-to-pbq-menu-review'),
+        calculatorDisplay: document.getElementById('calculator-display'),
+        calcClear: document.getElementById('calc-clear'),
+        calcEquals: document.getElementById('calc-equals'),
+        clearScratch: document.getElementById('clear-scratch'),
+        scratchPad: document.getElementById('scratch-pad'),
+        reviewSummary: document.getElementById('review-summary'),
+        reviewRichText: document.getElementById('review-rich-text'),
+        reviewText: document.getElementById('review-text'),
+        reviewActionStatus: document.getElementById('review-action-status'),
+        copyReport: document.getElementById('copy-report'),
+        downloadReport: document.getElementById('download-report'),
+        printReport: document.getElementById('print-report'),
+        retryPBQ: document.getElementById('retry-pbq'),
+        resultsConfetti: document.getElementById('results-confetti'),
+      };
+
+      function detectAppBasePath(pathname = window.location.pathname) {
+        const normalized = String(pathname || '/').split(/[?#]/, 1)[0];
+        const coursesMarker = normalized.indexOf('/courses/');
+        if (coursesMarker === -1) return '/';
+        const base = normalized.slice(0, coursesMarker);
+        return `${base || ''}/`;
+      }
+
+      function withAppBase(path) {
+        const normalized = String(path || '/').startsWith('/') ? String(path || '/') : `/${path || ''}`;
+        const base = detectAppBasePath().replace(/\/$/, '');
+        return `${base}${normalized}` || '/';
+      }
+
+      function ipToInt(ip) {
+        return ip.split('.').reduce((sum, octet) => ((sum << 8) >>> 0) + Number(octet), 0) >>> 0;
+      }
+
+      function intToIp(value) {
+        return [24, 16, 8, 0].map((shift) => String((value >>> shift) & 255)).join('.');
+      }
+
+      function maskToBinary(mask) {
+        return mask.split('.').map((octet) => Number(octet).toString(2).padStart(8, '0')).join('.');
+      }
+
+      function normalizeAnswer(value) {
+        return String(value || '').trim().replace(/\s+/g, ' ').toUpperCase();
+      }
+
+      function safeEval(expression) {
+        const normalized = String(expression || '').trim();
+        if (!normalized) return '';
+        if (!/^[0-9+\-*/().\s*]+$/.test(normalized)) {
+          throw new Error('Only numbers and + - * / ^ style operators are allowed.');
+        }
+        const jsExpression = normalized.replace(/\^/g, '**');
+        const result = Function(`"use strict"; return (${jsExpression});`)();
+        if (!Number.isFinite(result)) throw new Error('Expression did not produce a finite number.');
+        return String(result);
+      }
+
+      function randomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      function buildScenario() {
+        const maskChoice = MASK_CHOICES[randomInt(0, MASK_CHOICES.length - 1)];
+        const firstOctetPool = [
+          randomInt(1, 126),
+          randomInt(128, 191),
+          randomInt(192, 223),
+        ];
+        const octets = [firstOctetPool[randomInt(0, firstOctetPool.length - 1)], randomInt(0, 255), randomInt(0, 255), randomInt(1, 254)];
+        const address = octets.join('.');
+        const addressInt = ipToInt(address);
+        const maskInt = ipToInt(maskChoice.mask);
+        const networkInt = addressInt & maskInt;
+        const broadcastInt = (networkInt | (~maskInt >>> 0)) >>> 0;
+        const usableHosts = Math.max(0, broadcastInt - networkInt - 1);
+        const firstHostInt = usableHosts > 0 ? networkInt + 1 : networkInt;
+        const lastHostInt = usableHosts > 0 ? broadcastInt - 1 : broadcastInt;
+        return {
+          address,
+          mask: maskChoice.mask,
+          answers: {
+            subnetMaskBinary: maskToBinary(maskChoice.mask),
+            cidr: `/${maskChoice.cidr}`,
+            networkAddress: intToIp(networkInt),
+            broadcastAddress: intToIp(broadcastInt),
+            firstHost: intToIp(firstHostInt),
+            lastHost: intToIp(lastHostInt),
+          },
+        };
+      }
+
+      function clearStatuses() {
+        el.workspaceStatus.textContent = '';
+        el.reviewActionStatus.textContent = '';
+      }
+
+      function renderFields() {
+        el.responseGrid.innerHTML = '';
+        FIELD_CONFIG.forEach((field) => {
+          const wrap = document.createElement('div');
+          wrap.className = 'response-field';
+          const label = document.createElement('label');
+          label.setAttribute('for', field.id);
+          label.textContent = field.label;
+          const input = document.createElement('input');
+          input.id = field.id;
+          input.autocomplete = 'off';
+          input.spellcheck = false;
+          input.setAttribute('data-field-id', field.id);
+          const note = document.createElement('div');
+          note.className = 'field-note';
+          note.id = `${field.id}-note`;
+          input.addEventListener('input', () => {
+            input.classList.remove('is-correct', 'is-wrong');
+            note.textContent = '';
+            updateSubmitState();
+          });
+          wrap.append(label, input, note);
+          el.responseGrid.appendChild(wrap);
+        });
+      }
+
+      function fieldInput(fieldId) {
+        return el.responseGrid.querySelector(`[data-field-id="${fieldId}"]`);
+      }
+
+      function fieldNote(fieldId) {
+        return document.getElementById(`${fieldId}-note`);
+      }
+
+      function updateSubmitState() {
+        const allFilled = FIELD_CONFIG.every((field) => String(fieldInput(field.id)?.value || '').trim());
+        el.submitPBQ.disabled = !allFilled;
+        el.submitStatusLabel.textContent = allFilled ? 'Ready to grade' : 'Fill out every field first';
+      }
+
+      function loadScenario() {
+        state.scenario = buildScenario();
+        el.questionAddress.textContent = state.scenario.address;
+        el.questionMask.textContent = state.scenario.mask;
+        el.statusAddress.textContent = state.scenario.address;
+        el.scenarioCount.textContent = String(state.scenarioIndex);
+        el.correctCount.textContent = '0 / 6';
+        FIELD_CONFIG.forEach((field) => {
+          const input = fieldInput(field.id);
+          const note = fieldNote(field.id);
+          if (input) {
+            input.value = '';
+            input.classList.remove('is-correct', 'is-wrong');
+          }
+          if (note) note.textContent = '';
+        });
+        clearStatuses();
+        el.workspaceScreen.classList.remove('hidden');
+        el.reviewScreen.classList.add('hidden');
+        updateSubmitState();
+      }
+
+      function evaluateAnswers() {
+        const results = FIELD_CONFIG.map((field) => {
+          const submitted = String(fieldInput(field.id)?.value || '').trim();
+          const expected = state.scenario.answers[field.id];
+          const correct = normalizeAnswer(submitted) === normalizeAnswer(expected);
+          return { ...field, submitted, expected, correct };
+        });
+        state.lastResults = results;
+        const correctCount = results.filter((item) => item.correct).length;
+        el.correctCount.textContent = `${correctCount} / ${results.length}`;
+        results.forEach((result) => {
+          const input = fieldInput(result.id);
+          const note = fieldNote(result.id);
+          if (!input || !note) return;
+          input.classList.toggle('is-correct', result.correct);
+          input.classList.toggle('is-wrong', !result.correct);
+          note.textContent = result.correct ? 'Correct' : `Expected: ${result.expected}`;
+        });
+        renderResults();
+      }
+
+      function buildReportText() {
+        const correctCount = state.lastResults.filter((item) => item.correct).length;
+        const lines = [
+          'PBQ REVIEW REPORT',
+          '',
+          'PBQ: Classless IP Subnetting',
+          'Track: NETC-121',
+          `Given IP Address: ${state.scenario.address}`,
+          `Given Subnet Mask: ${state.scenario.mask}`,
+          `Score: ${correctCount}/${state.lastResults.length} (${((correctCount / state.lastResults.length) * 100).toFixed(1)}%)`,
+          '',
+          'Field Results:',
+        ];
+        state.lastResults.forEach((result) => {
+          lines.push(`- ${result.label}`);
+          lines.push(`  Submitted: ${result.submitted || '(blank)'}`);
+          lines.push(`  Expected: ${result.expected}`);
+          lines.push(`  Status: ${result.correct ? 'Correct' : 'Incorrect'}`);
+        });
+        return lines.join('\n');
+      }
+
+      function buildReviewConfetti() {
+        el.resultsConfetti.replaceChildren();
+        for (let index = 0; index < 96; index += 1) {
+          const piece = document.createElement('span');
+          piece.className = 'results-confetti-piece';
+          piece.style.setProperty('--x', String(3 + ((index * 11) % 94)));
+          piece.style.setProperty('--drift-start', String(((index % 6) - 2.5) * 1.8));
+          piece.style.setProperty('--drift-end', String((((index * 5) % 11) - 5) * 1.9));
+          piece.style.setProperty('--fall-duration', `${7 + (index % 6) * 0.55}s`);
+          piece.style.setProperty('--delay', `${index * -0.32}s`);
+          const shape = document.createElement('span');
+          shape.className = `results-confetti-shape ${RESULTS_CONFETTI_SHAPES[index % RESULTS_CONFETTI_SHAPES.length]}`;
+          shape.style.setProperty('--piece-color', RESULTS_CONFETTI_COLORS[index % RESULTS_CONFETTI_COLORS.length]);
+          shape.style.setProperty('--size', `${8 + (index % 5) * 2}px`);
+          shape.style.setProperty('--stretch', `${1 + ((index + 2) % 4) * 0.28}`);
+          shape.style.setProperty('--spin-duration', `${1.7 + (index % 5) * 0.26}s`);
+          shape.style.setProperty('--spin-delay', `${index * -0.18}s`);
+          shape.style.setProperty('--turn-direction', index % 2 === 0 ? '1' : '-1');
+          piece.appendChild(shape);
+          el.resultsConfetti.appendChild(piece);
+        }
+      }
+
+      function hideReviewConfetti() {
+        el.resultsConfetti.classList.remove('active');
+        el.resultsConfetti.classList.add('hidden');
+      }
+
+      function syncPBQConfetti() {
+        const perfect = state.lastResults.every((item) => item.correct);
+        if (!perfect) {
+          hideReviewConfetti();
+          return;
+        }
+        buildReviewConfetti();
+        el.resultsConfetti.classList.remove('active');
+        el.resultsConfetti.classList.remove('hidden');
+        void el.resultsConfetti.offsetWidth;
+        el.resultsConfetti.classList.add('active');
+      }
+
+      function renderResults() {
+        const correctCount = state.lastResults.filter((item) => item.correct).length;
+        state.lastReportText = buildReportText();
+        el.reviewSummary.innerHTML = `<strong>Score:</strong> ${correctCount}/${state.lastResults.length} (${((correctCount / state.lastResults.length) * 100).toFixed(1)}%)`;
+        const fragment = document.createDocumentFragment();
+        const heading = document.createElement('h3');
+        heading.className = 'pbq-report-heading';
+        heading.textContent = 'PBQ REVIEW REPORT';
+        fragment.appendChild(heading);
+        [
+          'PBQ: Classless IP Subnetting',
+          'Track: NETC-121',
+          `Given IP Address: ${state.scenario.address}`,
+          `Given Subnet Mask: ${state.scenario.mask}`,
+        ].forEach((line) => {
+          const meta = document.createElement('p');
+          meta.className = 'pbq-report-meta';
+          meta.textContent = line;
+          fragment.appendChild(meta);
+        });
+        const section = document.createElement('section');
+        section.className = 'pbq-report-section';
+        state.lastResults.forEach((result) => {
+          const row = document.createElement('div');
+          row.className = 'pbq-report-row';
+          const title = document.createElement('p');
+          title.className = 'pbq-report-line';
+          title.innerHTML = `<strong>${result.label}</strong> <span class="pbq-badge ${result.correct ? 'pass' : 'fail'}">${result.correct ? 'Correct' : 'Incorrect'}</span>`;
+          const submitted = document.createElement('p');
+          submitted.className = 'pbq-report-line';
+          submitted.innerHTML = `<strong>Submitted:</strong> ${result.submitted || '(blank)'}`;
+          const expected = document.createElement('p');
+          expected.className = 'pbq-report-line';
+          expected.innerHTML = `<strong>Expected:</strong> ${result.expected}`;
+          row.append(title, submitted, expected);
+          section.appendChild(row);
+        });
+        fragment.appendChild(section);
+        el.reviewRichText.replaceChildren(fragment);
+        el.reviewText.value = state.lastReportText;
+        syncPBQConfetti();
+        el.workspaceScreen.classList.add('hidden');
+        el.reviewScreen.classList.remove('hidden');
+      }
+
+      async function copyReport() {
+        try {
+          await navigator.clipboard.writeText(state.lastReportText || '');
+          el.reviewActionStatus.textContent = 'Report copied to clipboard.';
+        } catch {
+          el.reviewActionStatus.textContent = 'Could not copy the report from this browser.';
+        }
+      }
+
+      function downloadReport() {
+        const blob = new Blob([state.lastReportText || ''], { type: 'text/plain;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'classless-ip-subnetting-pbq-report.txt';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(link.href);
+        el.reviewActionStatus.textContent = 'Report downloaded.';
+      }
+
+      function printReport() {
+        window.print();
+      }
+
+      function resetAnswers() {
+        FIELD_CONFIG.forEach((field) => {
+          const input = fieldInput(field.id);
+          const note = fieldNote(field.id);
+          if (input) {
+            input.value = '';
+            input.classList.remove('is-correct', 'is-wrong');
+          }
+          if (note) note.textContent = '';
+        });
+        el.correctCount.textContent = '0 / 6';
+        clearStatuses();
+        updateSubmitState();
+      }
+
+      function newScenario() {
+        state.scenarioIndex += 1;
+        hideReviewConfetti();
+        loadScenario();
+      }
+
+      function retryPBQ() {
+        hideReviewConfetti();
+        el.workspaceScreen.classList.remove('hidden');
+        el.reviewScreen.classList.add('hidden');
+        resetAnswers();
+      }
+
+      function goToPBQMenu() {
+        window.location.href = withAppBase('/netc-121/pbqs?q=1.0.14');
+      }
+
+      function wireCalculator() {
+        document.querySelectorAll('.calc-btn').forEach((button) => {
+          button.addEventListener('click', () => {
+            el.calculatorDisplay.value += button.dataset.value || '';
+          });
+        });
+        el.calcClear.addEventListener('click', () => {
+          el.calculatorDisplay.value = '';
+        });
+        el.calcEquals.addEventListener('click', () => {
+          try {
+            el.calculatorDisplay.value = safeEval(el.calculatorDisplay.value);
+          } catch (error) {
+            el.workspaceStatus.textContent = error.message || 'Calculator error.';
+          }
+        });
+      }
+
+      function wireScratchPad() {
+        el.clearScratch.addEventListener('click', () => {
+          el.scratchPad.value = '';
+        });
+      }
+
+      renderFields();
+      loadScenario();
+      wireCalculator();
+      wireScratchPad();
+      el.submitPBQ.addEventListener('click', evaluateAnswers);
+      el.newScenario.addEventListener('click', newScenario);
+      el.newScenarioReview.addEventListener('click', newScenario);
+      el.resetPBQ.addEventListener('click', resetAnswers);
+      el.retryPBQ.addEventListener('click', retryPBQ);
+      el.copyReport.addEventListener('click', copyReport);
+      el.downloadReport.addEventListener('click', downloadReport);
+      el.printReport.addEventListener('click', printReport);
+      el.backToPBQMenu.addEventListener('click', goToPBQMenu);
+      el.backToPBQMenuReview.addEventListener('click', goToPBQMenu);
+
+      window.__CLASSLESS_IP_PBQ__ = {
+        getDebug() {
+          return {
+            address: state.scenario?.address || '',
+            mask: state.scenario?.mask || '',
+            answers: state.scenario?.answers || {},
+            results: state.lastResults,
+          };
+        },
+        fillAnswers(values = {}) {
+          FIELD_CONFIG.forEach((field) => {
+            const input = fieldInput(field.id);
+            if (input && Object.prototype.hasOwnProperty.call(values, field.id)) {
+              input.value = values[field.id];
+            }
+          });
+          updateSubmitState();
+        },
+        submit() {
+          evaluateAnswers();
+        },
+      };
+    })();
+  </script>
+</body>
+</html>

@@ -1,10 +1,10 @@
-# ✅ Key Advantages of TCP/IP
+# Key Advantages of TCP/IP
 
 The TCP/IP model isn't just a way to organise network concepts — its design choices are what make the modern internet reliable, scalable, and capable of carrying billions of simultaneous connections.
 
 ---
 
-## 1. 🔀 Packet Switching
+## 1.  Packet Switching
 
 Unlike old telephone networks that reserved a dedicated circuit between two parties for the entire call, TCP/IP uses **packet switching**: data is broken into small packets and each one finds its own path to the destination.
 
@@ -27,7 +27,7 @@ Packet switching:
 
 ---
 
-## 2. 📱 Multi-Application Handling
+## 2.  Multi-Application Handling
 
 A single TCP/IP stack can handle **many applications simultaneously** using port numbers to keep traffic separated.
 
@@ -47,7 +47,7 @@ All sharing the same network interface — no conflicts
 
 ---
 
-## 3. 🔢 Sequencing and Reassembly
+## 3.  Sequencing and Reassembly
 
 TCP assigns a **sequence number** to every segment. Even if packets arrive out of order (because they took different routes), the destination reassembles them correctly.
 
@@ -56,12 +56,12 @@ Sent:     [Seg 1] [Seg 2] [Seg 3] [Seg 4]
 
 Arrived:  [Seg 3] [Seg 1] [Seg 4] [Seg 2]  ← different order
 
-Reassembled by TCP: [1][2][3][4] ✅  ← correct order restored
+Reassembled by TCP: [1][2][3][4]   ← correct order restored
 ```
 
 ---
 
-## 4. 🌐 Directed Routing vs Broadcasting
+## 4.  Directed Routing vs Broadcasting
 
 The internet uses **directed routing** — packets know their exact destination and are forwarded there specifically.
 
@@ -78,7 +78,7 @@ TCP/IP:      ──────────────────────�
 
 ## Key Points
 
-- 📌 **Packet switching** — routes around damage/congestion, shares infrastructure efficiently
-- 📌 **Multi-app** — port numbers let one IP serve many applications at once
-- 📌 **Reassembly** — sequence numbers correct out-of-order arrival
-- 📌 **Directed** — packets go to exactly one destination, not broadcast to the world
+- **Packet switching** — routes around damage/congestion, shares infrastructure efficiently
+- **Multi-app** — port numbers let one IP serve many applications at once
+- **Reassembly** — sequence numbers correct out-of-order arrival
+- **Directed** — packets go to exactly one destination, not broadcast to the world

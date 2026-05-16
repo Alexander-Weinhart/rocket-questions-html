@@ -1,4 +1,4 @@
-# 🧱 OSI Model — Encapsulation Table
+# OSI Model — Encapsulation Table
 
 This table shows how a web request (HTTP over TCP) is **encapsulated** as it travels down the OSI stack. Each layer wraps the layer above it in its own header (and sometimes trailer), adding the addressing and control information needed at that layer.
 
@@ -30,7 +30,7 @@ Receiving side — data travels UP ↑↑↑ (each layer strips its own header)
          │              │   ↑
  Layer 4 │ Transport    │  [  TCP Header  │  HTTP Request  ]                 → reassemble, strip TCP
          │              │   ↑
- Layer 7 │ Application  │  [  HTTP Request: GET /index.html  ]               → browser renders ✅
+ Layer 7 │ Application  │  [  HTTP Request: GET /index.html  ]               → browser renders 
 ```
 
 ---
@@ -85,8 +85,8 @@ No layer reads or modifies the headers of another layer.
 
 ## Key Points
 
-- 📌 Encapsulation = each layer **wraps** the layer above with its own header
-- 📌 Decapsulation = each layer **strips** its own header going up the stack
-- 📌 Layer 1 (Physical) adds no header — it converts bits to signals
-- 📌 Layer 2 adds both a **header** (MACs) and a **trailer** (FCS/CRC)
-- 📌 TCP segment lives inside an IP packet which lives inside an Ethernet frame
+- Encapsulation = each layer **wraps** the layer above with its own header
+- Decapsulation = each layer **strips** its own header going up the stack
+- Layer 1 (Physical) adds no header — it converts bits to signals
+- Layer 2 adds both a **header** (MACs) and a **trailer** (FCS/CRC)
+- TCP segment lives inside an IP packet which lives inside an Ethernet frame

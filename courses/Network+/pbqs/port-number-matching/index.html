@@ -1,0 +1,1269 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Port Number Matching PBQ</title>
+  <link rel="icon" type="image/png" href="../../../../rocket_icon.png?q=1.0.14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../../styles.css?q=1.0.14">
+  <style>
+    body {
+      font-size: 15px;
+    }
+
+    .app-shell {
+      width: min(1600px, 99vw);
+      margin: 0.8rem auto;
+    }
+
+    .app-header p {
+      margin: 0.25rem 0 0;
+    }
+
+    .card {
+      padding: 0.9rem 1rem 1rem;
+    }
+
+    .pbq-page-header {
+      display: grid;
+      gap: 0.35rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .pbq-kicker {
+      margin: 0;
+      color: var(--accent-2);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .pbq-page-header h2 {
+      margin: 0;
+      font-size: clamp(1.4rem, 1.7vw, 1.8rem);
+    }
+
+    .pbq-source-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .pbq-status-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.6rem;
+      margin: 0.7rem 0 0.8rem;
+    }
+
+    .pbq-status-card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 0.65rem 0.8rem;
+    }
+
+    .pbq-status-card strong,
+    .pbq-status-card span {
+      display: block;
+    }
+
+    .pbq-status-card span {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 0.18rem;
+    }
+
+    .pbq-board {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(220px, 0.8fr);
+      gap: 0.8rem;
+      align-items: start;
+    }
+
+    .pbq-panel {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(7, 14, 24, 0.66);
+      padding: 0.8rem;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+    }
+
+    .pbq-panel h3 {
+      margin-top: 0;
+      margin-bottom: 0.25rem;
+      font-size: 1.05rem;
+    }
+
+    .pbq-panel p {
+      margin: 0 0 0.5rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .pbq-protocol-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.55rem;
+    }
+
+    .pbq-protocol-row {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 0.65rem 0.7rem;
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .pbq-protocol-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.55rem;
+    }
+
+    .pbq-protocol-row h4 {
+      margin: 0;
+      font-size: 0.86rem;
+      line-height: 1.2;
+      flex: 1 1 auto;
+    }
+
+    .pbq-slot-rack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      justify-content: flex-end;
+      flex: 0 0 auto;
+    }
+
+    .pbq-drop-slot {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      min-width: 92px;
+      padding: 0.28rem 0.35rem;
+      border: 2px dashed rgba(140, 214, 255, 0.35);
+      border-radius: 12px;
+      background: rgba(10, 30, 52, 0.42);
+      transition: border-color 120ms ease, background 120ms ease, transform 120ms ease;
+    }
+
+    .pbq-drop-slot.is-ready {
+      border-color: var(--accent-2);
+      background: rgba(22, 71, 118, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .pbq-drop-slot.has-token {
+      border-style: solid;
+      border-color: rgba(104, 203, 255, 0.58);
+      background: rgba(11, 42, 72, 0.62);
+    }
+
+    .pbq-drop-slot.is-graded {
+      border-color: rgba(160, 210, 255, 0.82);
+      background: rgba(16, 49, 82, 0.7);
+    }
+
+    .pbq-drop-slot button {
+      width: 100%;
+      padding: 0.45rem 0.6rem;
+    }
+
+    .pbq-slot-grade-mark {
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 14px;
+      height: 14px;
+      opacity: 0;
+      transform: scale(0.7);
+      filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.45));
+      transition: opacity 130ms ease, transform 130ms ease;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .pbq-slot-grade-mark.is-visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .pbq-drop-placeholder {
+      color: var(--muted);
+      font-size: 0.74rem;
+      text-align: center;
+    }
+
+    .pbq-bank {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      min-height: 0;
+      align-content: flex-start;
+    }
+
+    .pbq-token {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(104, 203, 255, 0.18), rgba(255, 255, 255, 0.08));
+      color: var(--ink);
+      padding: 0.42rem 0.72rem;
+      font: 600 0.78rem/1 "JetBrains Mono", monospace;
+      cursor: grab;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    }
+
+    .pbq-token:active {
+      cursor: grabbing;
+    }
+
+    .pbq-token.is-selected {
+      outline: 3px solid rgba(104, 203, 255, 0.35);
+      outline-offset: 2px;
+    }
+
+    .pbq-action-note {
+      color: var(--muted);
+      margin: 0.45rem 0 0;
+      font-size: 0.82rem;
+    }
+
+    .pbq-inline-status {
+      min-height: 1rem;
+      margin: 0.4rem 0 0;
+      color: var(--accent-2);
+      font-size: 0.85rem;
+    }
+
+    .pbq-is-grading .pbq-token,
+    .pbq-is-grading .pbq-drop-slot,
+    .pbq-is-grading #token-bank {
+      pointer-events: none;
+    }
+
+    #workspace-screen .actions {
+      margin-top: 0.85rem;
+    }
+
+    .pbq-report-document {
+      margin-top: 0.9rem;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 1rem 1rem 1.1rem;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .pbq-report-heading {
+      margin: 0 0 0.55rem;
+      font-size: 1rem;
+      font-family: "Space Grotesk", sans-serif;
+    }
+
+    .pbq-report-meta {
+      margin: 0 0 0.25rem;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    .pbq-report-section {
+      margin-top: 0.95rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .pbq-report-row {
+      margin-top: 0.8rem;
+    }
+
+    .pbq-report-row-title {
+      margin: 0 0 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.98rem;
+    }
+
+    .pbq-report-line {
+      margin: 0.12rem 0;
+      color: var(--muted);
+    }
+
+    .pbq-report-line strong {
+      color: var(--ink);
+    }
+
+    .pbq-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 0.18rem 0.58rem;
+      font-size: 0.76rem;
+      font-weight: 700;
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    .pbq-badge.pass {
+      background: #53e59b;
+      color: #062e1d;
+    }
+
+    .pbq-badge.fail {
+      background: #ff7b7b;
+      color: #3b0707;
+    }
+
+    .pbq-report-store {
+      display: none;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 1220px) {
+      .pbq-board {
+        grid-template-columns: minmax(0, 1.25fr) minmax(200px, 0.75fr);
+      }
+
+      .pbq-protocol-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .pbq-status-row {
+        grid-template-columns: 1fr;
+      }
+
+      .pbq-board {
+        grid-template-columns: 1fr;
+      }
+
+      .pbq-protocol-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .pbq-slot-rack {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+  <!-- PostHog -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]);t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+" (stub)"},o="init me ws ys ps bs Ss identify capture captureException alias people.set people.set_once set_config get_config get_distinct_id get_session_id alias reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId setPersonPropertiesForFlags".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_mh6PnrdHdsC5gvNomNT2zByXGVHA3qZNUfeHao6XUBux', {
+      api_host: 'https://us.i.posthog.com',
+      person_profiles: 'identified_only',
+    });
+  </script>
+</head>
+<body>
+  <div class="bg-shape bg-shape-a" aria-hidden="true"></div>
+  <div class="bg-shape bg-shape-b" aria-hidden="true"></div>
+
+  <main class="app-shell">
+    <header class="app-header">
+      <h1><span class="brand-inline"><img class="brand-inline-icon" src="../../../../rocket_icon.png?q=1.0.14" alt="" aria-hidden="true"><span>Rocket Questions - Port Number Matching PBQ</span></span></h1>
+      <p>Drag each port beside the correct protocol, then submit once every slot is filled.</p>
+    </header>
+
+    <section id="workspace-screen" class="screen card">
+      <div class="pbq-page-header">
+        <p class="pbq-kicker">Network+ PBQ</p>
+        <h2>Port Number Matching</h2>
+        <p class="pbq-source-note">Source: Notes List C - Alex's Personal Notes / Day 2 / 1.4.2 - Common Ports</p>
+      </div>
+
+      <div class="pbq-status-row">
+        <div class="pbq-status-card">
+          <span>Placed</span>
+          <strong id="placed-count">0 / 25</strong>
+        </div>
+        <div class="pbq-status-card">
+          <span>Remaining</span>
+          <strong id="remaining-count">25</strong>
+        </div>
+        <div class="pbq-status-card">
+          <span>Submit Status</span>
+          <strong id="submit-status-label">Fill every port slot first</strong>
+        </div>
+      </div>
+
+      <div class="pbq-board">
+        <section class="pbq-panel">
+          <h3>Protocol Targets</h3>
+          <p>Some protocols need more than one separate draggable port token.</p>
+          <div id="protocol-list" class="pbq-protocol-list" aria-live="polite"></div>
+        </section>
+
+        <section class="pbq-panel">
+          <h3>Port Bank</h3>
+          <p>Drag tokens onto the slots, or click a token and then click a slot.</p>
+          <div id="token-bank" class="pbq-bank" aria-label="Available ports"></div>
+          <p class="pbq-action-note">Tip: you can drag a placed token back here to reshuffle your answers before submitting.</p>
+          <p id="workspace-status" class="pbq-inline-status" aria-live="polite"></p>
+        </section>
+      </div>
+
+      <div class="row actions">
+        <button id="submit-pbq" type="button" class="btn accent" disabled>Submit PBQ</button>
+        <button id="reset-pbq" type="button" class="btn ghost">Reset Board</button>
+        <button id="back-to-pbq-menu" type="button" class="btn ghost push-right">Back to PBQ Menu</button>
+      </div>
+    </section>
+
+    <section id="review-screen" class="screen card hidden">
+      <h2>PBQ Review Report</h2>
+      <p id="review-summary"></p>
+      <p>Print tip: use Copy Report or Download Report for clean formatting.</p>
+      <article id="review-rich-text" class="pbq-report-document" aria-live="polite"></article>
+      <textarea id="review-text" class="pbq-report-store" readonly></textarea>
+      <p id="review-action-status" class="pbq-inline-status" aria-live="polite"></p>
+      <div class="row actions">
+        <button id="copy-report" type="button" class="btn ghost">Copy Report</button>
+        <button id="download-report" type="button" class="btn ghost">Download Report</button>
+        <button id="print-report" type="button" class="btn accent">Print Report</button>
+        <button id="retry-missed-pbq" type="button" class="btn ghost hidden">Retake Only Missed</button>
+        <button id="retry-pbq" type="button" class="btn ghost">Retry PBQ</button>
+        <button id="back-to-pbq-menu-review" type="button" class="btn ghost push-right">Back to PBQ Menu</button>
+      </div>
+    </section>
+  </main>
+  <div id="results-confetti" class="results-confetti hidden" aria-hidden="true"></div>
+
+  <script>
+    (() => {
+      const PBQ_CONFETTI_THRESHOLD = 77.5;
+      const GRADE_MARK_REVEAL_MS = 320;
+      const GRADE_MARK_BUFFER_MS = 130;
+      const RESULTS_CONFETTI_COLORS = ["#44cfaa", "#ff735c", "#f5d76e", "#7dcfff", "#f58fb0", "#9fefc2"];
+      const RESULTS_CONFETTI_SHAPES = ["shape-square", "shape-ribbon", "shape-circle", "shape-diamond", "shape-triangle"];
+      const PROTOCOLS = [
+        { id: "ftp", label: "File Transfer Protocol (FTP)", ports: ["tcp/20", "tcp/21"] },
+        { id: "sftp", label: "Secure File Transfer Protocol (SFTP)", ports: ["tcp/22"] },
+        { id: "ssh", label: "Secure Shell (SSH)", ports: ["tcp/22"] },
+        { id: "telnet", label: "Telnet", ports: ["tcp/23"] },
+        { id: "smtp", label: "Simple Mail Transfer Protocol (SMTP)", ports: ["tcp/25"] },
+        { id: "dns", label: "Domain Name System (DNS)", ports: ["tcp/53", "udp/53"] },
+        { id: "dhcp", label: "Dynamic Host Configuration Protocol (DHCP)", ports: ["udp/67", "udp/68"] },
+        { id: "tftp", label: "Trivial File Transfer Protocol (TFTP)", ports: ["udp/69"] },
+        { id: "http", label: "Hypertext Transfer Protocol (HTTP)", ports: ["tcp/80"] },
+        { id: "ntp", label: "Network Time Protocol (NTP)", ports: ["udp/123"] },
+        { id: "snmp", label: "Simple Network Management Protocol (SNMP)", ports: ["udp/161", "udp/162"] },
+        { id: "ldap", label: "Lightweight Directory Access Protocol (LDAP)", ports: ["tcp/389"] },
+        { id: "https", label: "Hypertext Transfer Protocol Secure (HTTPS)", ports: ["tcp/443"] },
+        { id: "smb", label: "Server Message Block (SMB)", ports: ["tcp/445"] },
+        { id: "syslog", label: "Syslog", ports: ["udp/514"] },
+        { id: "smtps", label: "Simple Mail Transfer Protocol Secure (SMTPS)", ports: ["tcp/587"] },
+        { id: "ldaps", label: "Lightweight Directory Access Protocol over SSL (LDAPS)", ports: ["tcp/636"] },
+        { id: "sql-server", label: "Structured Query Language (SQL) Server", ports: ["tcp/1433"] },
+        { id: "rdp", label: "Remote Desktop Protocol (RDP)", ports: ["tcp/3389"] },
+        { id: "sip", label: "Session Initiation Protocol (SIP)", ports: ["tcp/5060", "tcp/5061"] },
+      ];
+
+      const ALL_PORT_TOKENS = PROTOCOLS.flatMap((protocol) => protocol.ports.map((label, index) => ({
+        id: `${protocol.id}-token-${index + 1}`,
+        label,
+        expectedProtocolId: protocol.id,
+      })));
+
+      const ALL_SLOTS = PROTOCOLS.flatMap((protocol) => protocol.ports.map((label, index) => ({
+        id: `${protocol.id}-slot-${index + 1}`,
+        protocolId: protocol.id,
+        protocolLabel: protocol.label,
+        expected: label,
+      })));
+
+      const state = {
+        selectedTokenId: "",
+        draggedTokenId: "",
+        placements: Object.fromEntries(ALL_SLOTS.map((slot) => [slot.id, ""])),
+        lastReportText: "",
+        isGrading: false,
+        gradingRunId: 0,
+        gradingResults: [],
+        audioEvents: [],
+        activeProtocolIds: PROTOCOLS.map((protocol) => protocol.id),
+        protocolOrder: [],
+        tokenOrder: [],
+        lastResults: [],
+      };
+
+      const el = {
+        workspaceScreen: document.getElementById("workspace-screen"),
+        reviewScreen: document.getElementById("review-screen"),
+        protocolList: document.getElementById("protocol-list"),
+        tokenBank: document.getElementById("token-bank"),
+        placedCount: document.getElementById("placed-count"),
+        remainingCount: document.getElementById("remaining-count"),
+        submitStatusLabel: document.getElementById("submit-status-label"),
+        workspaceStatus: document.getElementById("workspace-status"),
+        submitPBQ: document.getElementById("submit-pbq"),
+        resetPBQ: document.getElementById("reset-pbq"),
+        reviewSummary: document.getElementById("review-summary"),
+        reviewRichText: document.getElementById("review-rich-text"),
+        reviewText: document.getElementById("review-text"),
+        resultsConfetti: document.getElementById("results-confetti"),
+        reviewActionStatus: document.getElementById("review-action-status"),
+        copyReport: document.getElementById("copy-report"),
+        downloadReport: document.getElementById("download-report"),
+        printReport: document.getElementById("print-report"),
+        retryMissedPBQ: document.getElementById("retry-missed-pbq"),
+        retryPBQ: document.getElementById("retry-pbq"),
+        backToPBQMenu: document.getElementById("back-to-pbq-menu"),
+        backToPBQMenuReview: document.getElementById("back-to-pbq-menu-review"),
+      };
+
+      const media = {
+        correctIcon: withAppBase("/media/img/correct-right-arrow-direction-left-down-up-svgrepo-com.svg"),
+        wrongIcon: withAppBase("/media/img/wrong-delete-remove-trash-minus-cancel-close-svgrepo-com.svg"),
+        correctAudio: new Audio(withAppBase("/media/audio/correct.wav")),
+        wrongAudio: new Audio(withAppBase("/media/audio/wrong.wav")),
+      };
+
+      media.correctAudio.preload = "auto";
+      media.wrongAudio.preload = "auto";
+      media.wrongAudio.volume = 0.5;
+
+      function phCapture(event, properties) {
+        try {
+          if (typeof window.posthog === "undefined" || !window.posthog.capture) return;
+          window.posthog.capture(event, properties || {});
+        } catch (_) {
+          // Never let analytics errors affect the PBQ.
+        }
+      }
+
+      function detectAppBasePath(pathname = window.location.pathname) {
+        const normalized = String(pathname || "/").split(/[?#]/, 1)[0];
+        const coursesMarker = normalized.indexOf("/courses/");
+        if (coursesMarker === -1) return "/";
+        const base = normalized.slice(0, coursesMarker);
+        return `${base || ""}/`;
+      }
+
+      function withAppBase(path) {
+        const normalized = String(path || "/").startsWith("/") ? String(path || "/") : `/${path || ""}`;
+        const base = detectAppBasePath().replace(/\/$/, "");
+        return `${base}${normalized}` || "/";
+      }
+
+      function shuffle(items) {
+        const out = [...items];
+        for (let i = out.length - 1; i > 0; i -= 1) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [out[i], out[j]] = [out[j], out[i]];
+        }
+        return out;
+      }
+
+      function activeProtocols() {
+        return PROTOCOLS.filter((protocol) => state.activeProtocolIds.includes(protocol.id));
+      }
+
+      function activeSlots() {
+        return ALL_SLOTS.filter((slot) => state.activeProtocolIds.includes(slot.protocolId));
+      }
+
+      function activeTokens() {
+        return ALL_PORT_TOKENS.filter((token) => state.activeProtocolIds.includes(token.expectedProtocolId));
+      }
+
+      function ensureActiveOrder() {
+        const protocolIdSet = new Set(state.activeProtocolIds);
+        if (state.protocolOrder.length !== state.activeProtocolIds.length || state.protocolOrder.some((id) => !protocolIdSet.has(id))) {
+          state.protocolOrder = shuffle([...state.activeProtocolIds]);
+        }
+        const tokenIdSet = new Set(activeTokens().map((token) => token.id));
+        if (state.tokenOrder.length !== tokenIdSet.size || state.tokenOrder.some((id) => !tokenIdSet.has(id))) {
+          state.tokenOrder = shuffle([...tokenIdSet]);
+        }
+      }
+
+      function tokenById(tokenId) {
+        return ALL_PORT_TOKENS.find((token) => token.id === tokenId) || null;
+      }
+
+      function slotById(slotId) {
+        return ALL_SLOTS.find((slot) => slot.id === slotId) || null;
+      }
+
+      function slotTokenId(slotId) {
+        return state.placements[slotId] || "";
+      }
+
+      function tokenCurrentSlot(tokenId) {
+        return activeSlots().find((slot) => state.placements[slot.id] === tokenId)?.id || "";
+      }
+
+      function allPlaced() {
+        return activeSlots().every((slot) => slotTokenId(slot.id));
+      }
+
+      function clearStatuses() {
+        el.workspaceStatus.textContent = "";
+        el.reviewActionStatus.textContent = "";
+      }
+
+      function updateCounters() {
+        const slots = activeSlots();
+        const placed = slots.filter((slot) => slotTokenId(slot.id)).length;
+        const remaining = slots.length - placed;
+        el.placedCount.textContent = `${placed} / ${slots.length}`;
+        el.remainingCount.textContent = String(remaining);
+        el.submitPBQ.disabled = !allPlaced();
+        el.submitStatusLabel.textContent = allPlaced()
+          ? "Ready to grade"
+          : "Fill every port slot first";
+      }
+
+      function slotResultSummary() {
+        return activeSlots().map((slot) => {
+          const token = tokenById(slotTokenId(slot.id));
+          const submitted = token?.label || "";
+          return {
+            slotId: slot.id,
+            protocolId: slot.protocolId,
+            protocolLabel: slot.protocolLabel,
+            expected: slot.expected,
+            submitted,
+            correct: submitted === slot.expected,
+          };
+        });
+      }
+
+      function moveToken(tokenId, destinationSlotId) {
+        const currentSlotId = tokenCurrentSlot(tokenId);
+        if (!destinationSlotId) {
+          if (currentSlotId) state.placements[currentSlotId] = "";
+          return;
+        }
+        if (currentSlotId === destinationSlotId) return;
+        const displacedTokenId = slotTokenId(destinationSlotId);
+        state.placements[destinationSlotId] = tokenId;
+        if (currentSlotId) {
+          state.placements[currentSlotId] = displacedTokenId || "";
+        }
+      }
+
+      function handleTokenPlacement(tokenId, destinationSlotId) {
+        clearStatuses();
+        moveToken(tokenId, destinationSlotId);
+        state.selectedTokenId = "";
+        state.draggedTokenId = "";
+        renderBoard();
+      }
+
+      function createTokenButton(tokenId) {
+        const token = tokenById(tokenId);
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "pbq-token";
+        button.draggable = true;
+        button.dataset.tokenId = token.id;
+        button.textContent = token.label;
+        button.setAttribute("aria-label", `Port token ${token.label}`);
+        if (state.selectedTokenId === token.id) {
+          button.classList.add("is-selected");
+        }
+        button.addEventListener("click", () => {
+          state.selectedTokenId = state.selectedTokenId === token.id ? "" : token.id;
+          el.workspaceStatus.textContent = state.selectedTokenId
+            ? `Selected ${token.label}. Click a slot to place it.`
+            : "";
+          renderBoard();
+        });
+        button.addEventListener("dragstart", (event) => {
+          state.draggedTokenId = token.id;
+          event.dataTransfer.effectAllowed = "move";
+          event.dataTransfer.setData("text/plain", token.id);
+        });
+        button.addEventListener("dragend", () => {
+          state.draggedTokenId = "";
+          document.querySelectorAll(".pbq-drop-slot.is-ready").forEach((slot) => slot.classList.remove("is-ready"));
+        });
+        return button;
+      }
+
+      function createSlot(slot) {
+        const dropSlot = document.createElement("div");
+        dropSlot.className = "pbq-drop-slot";
+        dropSlot.dataset.slotId = slot.id;
+        if (slotTokenId(slot.id)) {
+          dropSlot.classList.add("has-token");
+        }
+        dropSlot.addEventListener("dragover", (event) => {
+          event.preventDefault();
+          dropSlot.classList.add("is-ready");
+        });
+        dropSlot.addEventListener("dragleave", () => {
+          dropSlot.classList.remove("is-ready");
+        });
+        dropSlot.addEventListener("drop", (event) => {
+          event.preventDefault();
+          dropSlot.classList.remove("is-ready");
+          const tokenId = event.dataTransfer.getData("text/plain") || state.draggedTokenId;
+          if (!tokenId) return;
+          handleTokenPlacement(tokenId, slot.id);
+        });
+        dropSlot.addEventListener("click", () => {
+          if (!state.selectedTokenId) return;
+          handleTokenPlacement(state.selectedTokenId, slot.id);
+        });
+
+        const placedTokenId = slotTokenId(slot.id);
+        if (placedTokenId) {
+          dropSlot.appendChild(createTokenButton(placedTokenId));
+        } else {
+          const placeholder = document.createElement("span");
+          placeholder.className = "pbq-drop-placeholder";
+          placeholder.textContent = "Drop port here";
+          dropSlot.appendChild(placeholder);
+        }
+        return dropSlot;
+      }
+
+      function renderProtocolRows() {
+        el.protocolList.innerHTML = "";
+        ensureActiveOrder();
+        state.protocolOrder.forEach((protocolId) => {
+          const protocol = PROTOCOLS.find((item) => item.id === protocolId);
+          if (!protocol) return;
+          const row = document.createElement("article");
+          row.className = "pbq-protocol-row";
+          const head = document.createElement("div");
+          head.className = "pbq-protocol-head";
+          const title = document.createElement("h4");
+          title.textContent = protocol.label;
+          const rack = document.createElement("div");
+          rack.className = "pbq-slot-rack";
+          activeSlots().filter((slot) => slot.protocolId === protocol.id).forEach((slot) => {
+            rack.appendChild(createSlot(slot));
+          });
+          head.append(title, rack);
+          row.appendChild(head);
+          el.protocolList.appendChild(row);
+        });
+      }
+
+      function renderTokenBank() {
+        const placedIds = new Set(Object.values(state.placements).filter(Boolean));
+        el.tokenBank.innerHTML = "";
+        ensureActiveOrder();
+        state.tokenOrder
+          .map((tokenId) => tokenById(tokenId))
+          .filter((token) => token && !placedIds.has(token.id))
+          .forEach((token) => {
+            el.tokenBank.appendChild(createTokenButton(token.id));
+          });
+      }
+
+      function renderBoard() {
+        renderProtocolRows();
+        renderTokenBank();
+        updateCounters();
+        renderGradingMarkers();
+      }
+
+      function renderGradingMarkers() {
+        if (!state.gradingResults.length) return;
+        state.gradingResults.forEach((result) => {
+          const slot = el.protocolList.querySelector(`[data-slot-id="${result.slotId}"]`);
+          if (!slot) return;
+          slot.classList.toggle("is-graded", Boolean(result.visible));
+          let marker = slot.querySelector(".pbq-slot-grade-mark");
+          if (!result.visible) {
+            if (marker) marker.remove();
+            return;
+          }
+          if (!marker) {
+            marker = document.createElement("span");
+            marker.className = "pbq-slot-grade-mark";
+            marker.setAttribute("aria-hidden", "true");
+            slot.appendChild(marker);
+          }
+          marker.classList.toggle("is-visible", Boolean(result.visible));
+        });
+      }
+
+      function resetGradingState() {
+        state.isGrading = false;
+        state.gradingResults = [];
+        el.workspaceScreen.classList.remove("pbq-is-grading");
+      }
+
+      function setupBankHandlers() {
+        el.tokenBank.addEventListener("dragover", (event) => {
+          event.preventDefault();
+          el.tokenBank.classList.add("is-ready");
+        });
+        el.tokenBank.addEventListener("dragleave", () => {
+          el.tokenBank.classList.remove("is-ready");
+        });
+        el.tokenBank.addEventListener("drop", (event) => {
+          event.preventDefault();
+          el.tokenBank.classList.remove("is-ready");
+          const tokenId = event.dataTransfer.getData("text/plain") || state.draggedTokenId;
+          if (!tokenId) return;
+          handleTokenPlacement(tokenId, "");
+        });
+        el.tokenBank.addEventListener("click", () => {
+          if (!state.selectedTokenId) return;
+          handleTokenPlacement(state.selectedTokenId, "");
+        });
+      }
+
+      function percent(correct, total) {
+        return ((correct / total) * 100).toFixed(1);
+      }
+
+      function numericPercent(correct, total) {
+        if (!total) return 0;
+        return (correct / total) * 100;
+      }
+
+      function summarizeProtocol(protocol) {
+        const slots = activeSlots().filter((slot) => slot.protocolId === protocol.id);
+        const submitted = slots.map((slot) => tokenById(slotTokenId(slot.id))?.label || "(empty)");
+        const expected = slots.map((slot) => slot.expected);
+        const correctSlots = slots.filter((slot) => {
+          const token = tokenById(slotTokenId(slot.id));
+          return token?.label === slot.expected;
+        }).length;
+        return {
+          protocolLabel: protocol.label,
+          submitted,
+          expected,
+          correctSlots,
+          totalSlots: slots.length,
+          fullyCorrect: correctSlots === slots.length,
+        };
+      }
+
+      function buildReportText(results, correctCount) {
+        const activeSlotCount = activeSlots().length;
+        const lines = [
+          "PBQ REVIEW REPORT",
+          "",
+          "PBQ: Port Number Matching",
+          "Track: CompTIA Network+ N10-009",
+          "Source: Notes List C - Alex's Personal Notes / Day 2 / 1.4.2 - Common Ports",
+          `Score: ${correctCount}/${activeSlotCount} (${percent(correctCount, activeSlotCount)}%)`,
+          "",
+          "Protocol Results:",
+        ];
+
+        results.forEach((result) => {
+          lines.push(`- ${result.protocolLabel}`);
+          lines.push(`  Submitted: ${result.submitted.join(", ")}`);
+          lines.push(`  Expected: ${result.expected.join(", ")}`);
+          lines.push(`  Status: ${result.correctSlots}/${result.totalSlots} correct`);
+        });
+
+        lines.push("");
+        lines.push("Study Reference:");
+        lines.push("- Notes List C - Alex's Personal Notes");
+        lines.push("- Day 2");
+        lines.push("- 1.4.2 - Common Ports");
+        return lines.join("\n");
+      }
+
+      function buildReviewConfetti() {
+        if (!el.resultsConfetti) return;
+        el.resultsConfetti.replaceChildren();
+        for (let index = 0; index < 96; index += 1) {
+          const piece = document.createElement("span");
+          piece.className = "results-confetti-piece";
+          piece.style.setProperty("--x", String(3 + ((index * 11) % 94)));
+          piece.style.setProperty("--drift-start", String(((index % 6) - 2.5) * 1.8));
+          piece.style.setProperty("--drift-end", String((((index * 5) % 11) - 5) * 1.9));
+          piece.style.setProperty("--fall-duration", `${7 + (index % 6) * 0.55}s`);
+          piece.style.setProperty("--delay", `${index * -0.32}s`);
+
+          const shape = document.createElement("span");
+          shape.className = `results-confetti-shape ${RESULTS_CONFETTI_SHAPES[index % RESULTS_CONFETTI_SHAPES.length]}`;
+          shape.style.setProperty("--piece-color", RESULTS_CONFETTI_COLORS[index % RESULTS_CONFETTI_COLORS.length]);
+          shape.style.setProperty("--size", `${8 + (index % 5) * 2}px`);
+          shape.style.setProperty("--stretch", `${1 + ((index + 2) % 4) * 0.28}`);
+          shape.style.setProperty("--spin-duration", `${1.7 + (index % 5) * 0.26}s`);
+          shape.style.setProperty("--spin-delay", `${index * -0.18}s`);
+          shape.style.setProperty("--turn-direction", index % 2 === 0 ? "1" : "-1");
+
+          piece.appendChild(shape);
+          el.resultsConfetti.appendChild(piece);
+        }
+      }
+
+      function hideReviewConfetti() {
+        if (!el.resultsConfetti) return;
+        el.resultsConfetti.classList.remove("active");
+        el.resultsConfetti.classList.add("hidden");
+      }
+
+      function syncPBQConfetti(scorePercentValue) {
+        if (!el.resultsConfetti) return;
+        if (scorePercentValue < PBQ_CONFETTI_THRESHOLD) {
+          hideReviewConfetti();
+          return;
+        }
+        buildReviewConfetti();
+        el.resultsConfetti.classList.remove("active");
+        el.resultsConfetti.classList.remove("hidden");
+        void el.resultsConfetti.offsetWidth;
+        el.resultsConfetti.classList.add("active");
+      }
+
+      function renderRichReport(results) {
+        const fragment = document.createDocumentFragment();
+
+        const heading = document.createElement("h3");
+        heading.className = "pbq-report-heading";
+        heading.textContent = "PBQ REVIEW REPORT";
+        fragment.appendChild(heading);
+
+        [
+          "PBQ: Port Number Matching",
+          "Track: CompTIA Network+ N10-009",
+          "Source: Notes List C - Alex's Personal Notes / Day 2 / 1.4.2 - Common Ports",
+        ].forEach((line) => {
+          const meta = document.createElement("p");
+          meta.className = "pbq-report-meta";
+          meta.textContent = line;
+          fragment.appendChild(meta);
+        });
+
+        const section = document.createElement("section");
+        section.className = "pbq-report-section";
+        const sectionTitle = document.createElement("p");
+        sectionTitle.className = "pbq-report-meta";
+        sectionTitle.textContent = "Protocol Results";
+        section.appendChild(sectionTitle);
+
+        results.forEach((result) => {
+          const row = document.createElement("div");
+          row.className = "pbq-report-row";
+
+          const title = document.createElement("p");
+          title.className = "pbq-report-row-title";
+          const titleText = document.createElement("strong");
+          titleText.textContent = result.protocolLabel;
+          const badge = document.createElement("span");
+          badge.className = `pbq-badge ${result.fullyCorrect ? "pass" : "fail"}`;
+          badge.textContent = result.fullyCorrect ? "Correct" : `${result.correctSlots}/${result.totalSlots}`;
+          title.append(titleText, badge);
+
+          const submitted = document.createElement("p");
+          submitted.className = "pbq-report-line";
+          submitted.innerHTML = `<strong>Submitted:</strong> ${result.submitted.join(", ")}`;
+
+          const expected = document.createElement("p");
+          expected.className = "pbq-report-line";
+          expected.innerHTML = `<strong>Expected:</strong> ${result.expected.join(", ")}`;
+
+          row.append(title, submitted, expected);
+          section.appendChild(row);
+        });
+
+        fragment.appendChild(section);
+        el.reviewRichText.replaceChildren(fragment);
+      }
+
+      function renderResults(results = PROTOCOLS.map(summarizeProtocol)) {
+        const activeSlotCount = activeSlots().length;
+        const correctCount = results.reduce((sum, result) => sum + result.correctSlots, 0);
+        const perfectProtocols = results.filter((result) => result.fullyCorrect).length;
+        const scorePercentValue = numericPercent(correctCount, activeSlotCount);
+        state.lastResults = results.map((result) => ({ ...result }));
+        state.lastReportText = buildReportText(results, correctCount);
+
+        el.reviewSummary.innerHTML = [
+          `<strong>Score:</strong> ${correctCount}/${activeSlotCount} (${percent(correctCount, activeSlotCount)}%)`,
+          `<strong>Perfect Protocol Rows:</strong> ${perfectProtocols}/${results.length}`,
+        ].join(" &nbsp; | &nbsp; ");
+        renderRichReport(results);
+        el.reviewText.value = state.lastReportText;
+        phCapture("pbq graded", {
+          pbq_id: "port-number-matching",
+          pbq_title: "Port Number Matching",
+          track_id: "network-plus",
+          correct_count: correctCount,
+          total_slots: activeSlotCount,
+          score_percent: Math.round(scorePercentValue * 10) / 10,
+          perfect_protocols: perfectProtocols,
+          total_protocols: results.length,
+        });
+        syncPBQConfetti(scorePercentValue);
+        syncRetakeMissedButton();
+        resetGradingState();
+        el.workspaceScreen.classList.add("hidden");
+        el.reviewScreen.classList.remove("hidden");
+        clearStatuses();
+      }
+
+      function syncRetakeMissedButton() {
+        const missedCount = state.lastResults.filter((result) => !result.fullyCorrect).length;
+        if (!missedCount) {
+          el.retryMissedPBQ.classList.add("hidden");
+          el.retryMissedPBQ.disabled = true;
+          return;
+        }
+        el.retryMissedPBQ.classList.remove("hidden");
+        el.retryMissedPBQ.disabled = false;
+        el.retryMissedPBQ.textContent = `Retake Only Missed (${missedCount})`;
+      }
+
+      function delay(ms) {
+        return new Promise((resolve) => window.setTimeout(resolve, ms));
+      }
+
+      async function playGradeAudio(correct) {
+        const audio = correct ? media.correctAudio : media.wrongAudio;
+        state.audioEvents.push(correct ? "correct" : "wrong");
+        window.__PORT_MATCHING_PBQ_AUDIO_EVENTS__ = [...state.audioEvents];
+        try {
+          audio.pause();
+          audio.currentTime = 0;
+          const playback = audio.play();
+          if (playback && typeof playback.catch === "function") {
+            playback.catch(() => {});
+          }
+        } catch (_) {
+          // Keep the grading flow moving even when audio playback is unavailable.
+        }
+        await delay(GRADE_MARK_REVEAL_MS);
+      }
+
+      async function runGradingSequence() {
+        if (!allPlaced() || state.isGrading) return;
+
+        const gradingRunId = state.gradingRunId + 1;
+        state.gradingRunId = gradingRunId;
+        state.isGrading = true;
+        state.audioEvents = [];
+        window.__PORT_MATCHING_PBQ_AUDIO_EVENTS__ = [];
+        state.gradingResults = slotResultSummary().map((result) => ({ ...result, visible: false }));
+        phCapture("pbq submitted", {
+          pbq_id: "port-number-matching",
+          pbq_title: "Port Number Matching",
+          track_id: "network-plus",
+          slot_count: activeSlots().length,
+        });
+        el.workspaceScreen.classList.add("pbq-is-grading");
+        el.submitPBQ.disabled = true;
+        el.resetPBQ.disabled = true;
+        el.backToPBQMenu.disabled = true;
+        el.submitStatusLabel.textContent = "Grading in progress...";
+        el.workspaceStatus.textContent = "Checking each port one by one.";
+        renderGradingMarkers();
+
+        for (const result of state.gradingResults) {
+          if (state.gradingRunId !== gradingRunId) return;
+          result.visible = true;
+          renderGradingMarkers();
+          await playGradeAudio(result.correct);
+          await delay(GRADE_MARK_BUFFER_MS);
+        }
+
+        if (state.gradingRunId !== gradingRunId) return;
+
+        const results = activeProtocols().map(summarizeProtocol);
+        el.workspaceStatus.textContent = "Grading complete. Building review report.";
+        el.resetPBQ.disabled = false;
+        el.backToPBQMenu.disabled = false;
+        renderResults(results);
+      }
+
+      function resetBoard(protocolIds = PROTOCOLS.map((protocol) => protocol.id)) {
+        ALL_SLOTS.forEach((slot) => {
+          state.placements[slot.id] = "";
+        });
+        state.gradingRunId += 1;
+        state.selectedTokenId = "";
+        state.draggedTokenId = "";
+        state.activeProtocolIds = [...protocolIds];
+        state.protocolOrder = shuffle([...state.activeProtocolIds]);
+        state.tokenOrder = shuffle(activeTokens().map((token) => token.id));
+        resetGradingState();
+        el.submitPBQ.disabled = false;
+        el.resetPBQ.disabled = false;
+        el.backToPBQMenu.disabled = false;
+        clearStatuses();
+        renderBoard();
+      }
+
+      function copyTextWithSelectionFallback(text) {
+        const activeElement = document.activeElement;
+        const selection = window.getSelection ? window.getSelection() : null;
+        const selectedRanges = [];
+        if (selection && selection.rangeCount) {
+          for (let i = 0; i < selection.rangeCount; i += 1) {
+            selectedRanges.push(selection.getRangeAt(i).cloneRange());
+          }
+        }
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "fixed";
+        textarea.style.top = "0";
+        textarea.style.left = "-9999px";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        textarea.setSelectionRange(0, textarea.value.length);
+        let copied = false;
+        try {
+          copied = document.execCommand("copy");
+        } catch (_) {
+          copied = false;
+        }
+        textarea.remove();
+        if (selection) {
+          selection.removeAllRanges();
+          selectedRanges.forEach((range) => selection.addRange(range));
+        }
+        if (activeElement instanceof HTMLElement) {
+          activeElement.focus({ preventScroll: true });
+        }
+        return copied;
+      }
+
+      async function copyReport() {
+        const text = state.lastReportText || el.reviewText.value || "";
+        if (!text) return;
+        window.__rocketLastCopyText = text;
+        if (copyTextWithSelectionFallback(text)) {
+          el.reviewActionStatus.textContent = "Report copied to clipboard.";
+          return;
+        }
+        try {
+          if (!navigator.clipboard?.writeText) throw new Error("Clipboard API unavailable.");
+          await navigator.clipboard.writeText(text);
+          el.reviewActionStatus.textContent = "Report copied to clipboard.";
+        } catch (_) {
+          el.reviewText.focus();
+          el.reviewText.select();
+          el.reviewActionStatus.textContent = "Copy failed, so the report text is selected now.";
+        }
+      }
+
+      function downloadReport() {
+        if (!state.lastReportText) return;
+        const blob = new Blob([state.lastReportText], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "network_plus_port_number_matching_report.txt";
+        window.__rocketLastDownloadMeta = { filename: link.download, text: state.lastReportText };
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+        el.reviewActionStatus.textContent = "Report download started.";
+      }
+
+      function printReport() {
+        window.__rocketLastPrintText = state.lastReportText || el.reviewText.value || "";
+        el.reviewActionStatus.textContent = "Opening print view.";
+        window.print();
+      }
+
+      function goToPBQMenu() {
+        window.location.href = withAppBase("/network-plus/pbqs?q=1.0.14");
+      }
+
+      function retryPBQ() {
+        resetBoard(PROTOCOLS.map((protocol) => protocol.id));
+        el.retryMissedPBQ.classList.add("hidden");
+        el.retryMissedPBQ.disabled = true;
+        hideReviewConfetti();
+        el.reviewScreen.classList.add("hidden");
+        el.workspaceScreen.classList.remove("hidden");
+      }
+
+      function retryOnlyMissedPBQ() {
+        const missedProtocolIds = state.lastResults
+          .filter((result) => !result.fullyCorrect)
+          .map((result) => PROTOCOLS.find((protocol) => protocol.label === result.protocolLabel)?.id)
+          .filter(Boolean);
+        if (!missedProtocolIds.length) return;
+        resetBoard(missedProtocolIds);
+        hideReviewConfetti();
+        el.reviewScreen.classList.add("hidden");
+        el.workspaceScreen.classList.remove("hidden");
+        el.workspaceStatus.textContent = `Retake mode: ${missedProtocolIds.length} missed protocol${missedProtocolIds.length === 1 ? "" : "s"}.`;
+      }
+
+      el.submitPBQ.addEventListener("click", () => {
+        if (!allPlaced() || state.isGrading) return;
+        runGradingSequence();
+      });
+      el.resetPBQ.addEventListener("click", resetBoard);
+      el.copyReport.addEventListener("click", copyReport);
+      el.downloadReport.addEventListener("click", downloadReport);
+      el.printReport.addEventListener("click", printReport);
+      el.retryMissedPBQ.addEventListener("click", retryOnlyMissedPBQ);
+      el.retryPBQ.addEventListener("click", retryPBQ);
+      el.backToPBQMenu.addEventListener("click", goToPBQMenu);
+      el.backToPBQMenuReview.addEventListener("click", goToPBQMenu);
+
+      window.__PORT_MATCHING_PBQ__ = {
+        placeTokenByLabel(label, slotId) {
+          const tokenId = activeTokens().find((token) => token.label === label && !tokenCurrentSlot(token.id))?.id || "";
+          if (!tokenId) return false;
+          handleTokenPlacement(tokenId, slotId);
+          return true;
+        },
+        autofillCorrect() {
+          activeSlots().forEach((slot) => {
+            const tokenId = activeTokens().find((token) => token.label === slot.expected && !tokenCurrentSlot(token.id) && !Object.values(state.placements).includes(token.id))?.id;
+            if (tokenId) state.placements[slot.id] = tokenId;
+          });
+          renderBoard();
+        },
+        setPlacements(nextPlacements) {
+          Object.entries(nextPlacements || {}).forEach(([slotId, tokenLabel]) => {
+            const slot = slotById(slotId);
+            if (!slot || !state.activeProtocolIds.includes(slot.protocolId)) return;
+            const tokenId = activeTokens().find((token) => token.label === tokenLabel && !Object.values(state.placements).includes(token.id))?.id;
+            if (tokenId) state.placements[slotId] = tokenId;
+          });
+          renderBoard();
+        },
+        getState() {
+          return JSON.parse(JSON.stringify(state));
+        },
+        getDebug() {
+          return {
+            isGrading: state.isGrading,
+            gradingRunId: state.gradingRunId,
+            gradingResults: state.gradingResults.map((result) => ({ ...result })),
+            audioEvents: [...state.audioEvents],
+            activeProtocolIds: [...state.activeProtocolIds],
+            protocolOrder: [...state.protocolOrder],
+            tokenOrder: [...state.tokenOrder],
+            activeSlotIds: activeSlots().map((slot) => slot.id),
+          };
+        },
+      };
+
+      hideReviewConfetti();
+      setupBankHandlers();
+      resetBoard(PROTOCOLS.map((protocol) => protocol.id));
+    })();
+  </script>
+</body>
+</html>

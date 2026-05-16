@@ -1,4 +1,4 @@
-# 🔐 HTTP vs HTTPS in Wireshark
+# HTTP vs HTTPS in Wireshark
 
 This demo compares capturing **HTTP (unencrypted)** vs **HTTPS (encrypted)** traffic using ox.ac.uk (University of Oxford) as the target site. The difference in what Wireshark can see is dramatic.
 
@@ -71,18 +71,18 @@ Wireshark can see that a connection exists and roughly how much data is flowing,
 
 | | HTTP (port 80) | HTTPS (port 443) |
 |---|---|---|
-| Wireshark can read content | ✅ Yes — fully visible | ❌ No — TLS encrypted |
-| Passwords visible | ✅ Yes — plaintext | ❌ No |
+| Wireshark can read content |  Yes — fully visible |  No — TLS encrypted |
+| Passwords visible |  Yes — plaintext |  No |
 | Certificate required | No | Yes (TLS/SSL cert) |
-| Safe for login pages | ❌ Never | ✅ Yes |
+| Safe for login pages |  Never |  Yes |
 
 ---
 
 ## Key Lessons
 
-> 🔑 Any site that handles logins, forms, or personal data **must** use HTTPS. HTTP is never acceptable for authenticated sessions.
+> Any site that handles logins, forms, or personal data **must** use HTTPS. HTTP is never acceptable for authenticated sessions.
 
-- 📌 HTTP = cleartext — Wireshark reads everything including passwords
-- 📌 HTTPS = TLS encrypted — Wireshark sees only gibberish
-- 📌 Use `nslookup` to find a site's IP, then filter `ip.dst==x.x.x.x` in Wireshark
-- 📌 Even legitimate tools like Wireshark make HTTP a liability on any shared network
+- HTTP = cleartext — Wireshark reads everything including passwords
+- HTTPS = TLS encrypted — Wireshark sees only gibberish
+- Use `nslookup` to find a site's IP, then filter `ip.dst==x.x.x.x` in Wireshark
+- Even legitimate tools like Wireshark make HTTP a liability on any shared network

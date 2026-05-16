@@ -1,4 +1,4 @@
-# 📌 DHCP Reservation
+# DHCP Reservation
 
 A DHCP reservation ties a **specific MAC address** to a **specific IP address** on the DHCP server. Every time that device connects, it always receives the same IP — automatically, with no manual configuration on the device itself.
 
@@ -9,9 +9,9 @@ A DHCP reservation ties a **specific MAC address** to a **specific IP address** 
 Some devices need a consistent, predictable IP address — but you still want DHCP managing it centrally rather than configuring each device by hand.
 
 A reservation gives you the best of both worlds:
-- ✅ Device always gets the same IP (like static)
-- ✅ Configuration is centralised on the server (like dynamic)
-- ✅ No manual IP configuration on the device itself
+- Device always gets the same IP (like static)
+- Configuration is centralised on the server (like dynamic)
+- No manual IP configuration on the device itself
 
 ---
 
@@ -26,7 +26,7 @@ DHCP Server reservation table:
   AA:BB:CC:DD:EE:FF → always give 192.168.1.50
 
 Server responds with OFFER: 192.168.1.50
-→ Device always gets 192.168.1.50, every single time ✅
+→ Device always gets 192.168.1.50, every single time 
 ```
 
 ---
@@ -60,8 +60,8 @@ Both are DHCP — the device doesn't know the difference. The server handles it.
 
 ## Key Points
 
-- 📌 Ties a specific **MAC address** to a specific **IP address**
-- 📌 Device is still set to "Obtain IP automatically" — DHCP handles it
-- 📌 Configured on the **server**, not the device
-- 📌 Used for printers, servers, cameras, network infrastructure
-- 📌 Combines predictability of static with central management of DHCP
+- Ties a specific **MAC address** to a specific **IP address**
+- Device is still set to "Obtain IP automatically" — DHCP handles it
+- Configured on the **server**, not the device
+- Used for printers, servers, cameras, network infrastructure
+- Combines predictability of static with central management of DHCP

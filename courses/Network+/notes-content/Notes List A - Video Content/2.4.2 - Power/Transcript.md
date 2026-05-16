@@ -1,0 +1,169 @@
+# [2.4.2 - Power](https://www.youtube.com/watch?v=Ok0XpAzwCVQ)
+
+## 2.4.2 - Power
+
+- Day: Day 6
+- Duration: 7:19
+
+## Transcript
+
+- `00:01` In this video, we're going to talk about power.
+- `00:04` And an important thing to remember
+- `00:06` is that you should never put yourself in a position
+- `00:08` where you will be able to in some way
+- `00:11` come in contact with any type of voltage.
+- `00:14` You want to be sure that when you're working with a device,
+- `00:16` that you are always disconnecting from the power
+- `00:19` source before ever putting your hands or any part of you
+- `00:22` near that particular component.
+- `00:25` Even when you disconnect from the power source,
+- `00:27` you should also keep in mind that some devices will
+- `00:30` store a charge in capacitors.
+- `00:33` Older CRT monitors, laser printers, and other devices
+- `00:37` can easily shock you even when they're not
+- `00:40` connected to a power source.
+- `00:42` Your goal should never be to connect any part of your body
+- `00:45` to anything that could potentially be energized.
+- `00:48` For example, you should never connect yourself
+- `00:51` to the ground wire of an electrical system
+- `00:53` or anything else that might have some type of voltage
+- `00:56` go across it.
+- `00:57` If you respect electricity, you will
+- `00:59` have no problems keeping yourself and others around you
+- `01:03` safe as you're working on these devices.
+- `01:06` When you start looking into the electrical specifications
+- `01:09` and the design of electrical systems,
+- `01:12` you'll see a lot of different terms being used.
+- `01:14` One of those is an ampere.
+- `01:16` We often refer to this as an amp,
+- `01:18` and it's often abbreviated with a capital letter A.
+- `01:21` This value measures the rate of electrons
+- `01:24` that are moving past a particular point
+- `01:26` in a single second.
+- `01:27` You'll often hear electricity compared to a water hose, where
+- `01:31` electricity flowing through a wire
+- `01:33` is very similar to water that may be flowing through a water
+- `01:36` hose.
+- `01:37` The amount of water that you can fit through a hose
+- `01:39` will depend on the diameter of that hose,
+- `01:42` and the diameter would be the number of amps.
+- `01:45` We also measure electricity in terms of voltage.
+- `01:48` This is often abbreviated as volt or the capital letter
+- `01:51` V. This is describing a pressure of electricity flowing
+- `01:55` through a particular wire.
+- `01:57` If we go back to our hose analogy,
+- `01:59` as we are turning the water on, we
+- `02:00` are increasing the amount of pressure of that water
+- `02:03` through the hose.
+- `02:04` And as we increase the pressure, we are increasing the voltage.
+- `02:08` For example, you'll often see electrical systems
+- `02:10` described as a 120 volt system or a 240 volt system.
+- `02:16` And if you need to describe how much power is being used,
+- `02:19` we would describe that as a number of watts.
+- `02:22` You'll often see this abbreviated with a capital W.
+- `02:25` We can calculate watts by multiplying the number of volts
+- `02:28` times the number of amps.
+- `02:30` For example, if you're connected to a 120 volt power source
+- `02:34` and you have a device that is using 0.5 amps,
+- `02:37` you are using a total of 60 watts.
+- `02:40` The type of power that we usually
+- `02:43` get from our wall outlets is Alternating Current, or AC.
+- `02:47` AC power is relatively easy to distribute over long distances,
+- `02:51` so it is perfect to use for bringing
+- `02:54` into a home or an office.
+- `02:56` You'll often see Alternating Current abbreviated as AC,
+- `02:59` and it's often represented as a wavy line.
+- `03:01` This wavy line demonstrates the directional change of this power
+- `03:06` as it's moving through the wire.
+- `03:07` That up-and-down frequency of that wave
+- `03:10` is different depending on where you happen to live.
+- `03:13` If you're in the US or Canada, we commonly
+- `03:15` see 110 to 120 volts of alternating current,
+- `03:19` and it's usually running at a frequency of 60 hertz,
+- `03:22` or 60 cycles per second.
+- `03:24` If you're in Europe, it's common to see
+- `03:26` 220 to 240 volts of AC current, and its frequency is 50 hertz.
+- `03:31` Our electrical components often use DC power to operate.
+- `03:36` This is Direct Current, where all of the current
+- `03:38` is moving in a single direction with a constant amount
+- `03:41` of voltage.
+- `03:42` This is often abbreviated with a DC.
+- `03:45` And the symbol for direct current
+- `03:46` is this solid line on top with the multiple lines
+- `03:50` across the bottom.
+- `03:51` This is why when we look on the back of our routers,
+- `03:54` our switches, and our other devices,
+- `03:56` we often see that we're plugging into a wall
+- `03:59` outlet with this alternating current,
+- `04:01` and we are converting that alternating
+- `04:03` current to direct current using the power
+- `04:06` supplies that are in those devices.
+- `04:08` This conversion may be occurring in power supplies built
+- `04:11` into the device, or it may be in the power cord
+- `04:14` that you're using to connect that device.
+- `04:16` And obviously, as an information technology, professional,
+- `04:19` power is one of the most important components we have.
+- `04:22` None of these systems would work without this power source.
+- `04:25` So it's important to consider how our switches, our routers,
+- `04:29` and our other devices will continue
+- `04:30` to operate even if there is an interruption of that power.
+- `04:35` One way to protect yourself against a power outage
+- `04:37` is to use a UPS. This is an Uninterruptible Power Supply.
+- `04:42` This is usually a device that is connected to our power source.
+- `04:46` And inside of this device are a number
+- `04:48` of batteries that provide us with additional power
+- `04:51` if we lose that main power connection.
+- `04:53` This can also help if the voltage on our line
+- `04:56` tends to drop a bit.
+- `04:57` We refer to that as a brownout.
+- `04:59` And if the voltage tends to spike or go much higher,
+- `05:02` we refer to that as a surge.
+- `05:04` The UPS will even out that particular
+- `05:06` surge or brownout and provide us with the power we
+- `05:09` need to remain up and running.
+- `05:11` There are a number of different types of uninterruptible power
+- `05:14` supplies.
+- `05:15` One of the least expensive are the offline or standby UPS,
+- `05:19` which is simply waiting for the power
+- `05:21` to go out before it kicks in.
+- `05:23` As you can imagine, there's a small amount of time
+- `05:26` where there would be no power available to your systems.
+- `05:29` And often with switches and routers, that small gap of time
+- `05:32` is enough to cause that device to reboot.
+- `05:35` One step up from that is the line-interactive
+- `05:37` UPS. If you happen to have brownouts
+- `05:39` and your voltage begins to drop, the line-interactive UPS
+- `05:43` will begin to increase the amount
+- `05:45` of power provided to be able to compensate for that drop.
+- `05:49` But many data centers prefer to run
+- `05:51` an online or double-conversion UPS where you are always
+- `05:55` running from battery power and the batteries
+- `05:57` are constantly being refreshed by the power source.
+- `06:01` If you lose the power source, it has no effect
+- `06:03` on the systems that are connected to the UPS
+- `06:05` because they've always been running
+- `06:07` from that primary battery power.
+- `06:09` There are many different types of UPS's with many types
+- `06:12` of features.
+- `06:13` There are some that can automatically
+- `06:15` shut down your system if the batteries happen
+- `06:17` to become very low.
+- `06:18` Some of them have a higher battery capacity than others.
+- `06:21` The number of outlets on the back of the UPS can vary,
+- `06:24` and some of them have additional interfaces
+- `06:26` to plug in phone lines or cable modem connections.
+- `06:30` Another useful power component is a PDU.
+- `06:33` This is a Power Distribution Unit
+- `06:35` and although it looks like a normal surge suppressor,
+- `06:37` these are actually relatively intelligent devices that
+- `06:40` allow us to remotely connect to the device,
+- `06:42` manage each of those interfaces, and even allow you to power off
+- `06:46` and power on a device from a remote location.
+- `06:50` You can see this one is a rack mountable unit.
+- `06:53` And we would put that in our rack
+- `06:54` and connect our routers and switches to these interfaces.
+- `06:57` There's also an ethernet connection.
+- `06:59` We would assign an IP address to this device.
+- `07:02` Inside is a web server.
+- `07:03` And that allows us to connect and manage this device
+- `07:06` from wherever we happen to be.

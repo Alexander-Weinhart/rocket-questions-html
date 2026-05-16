@@ -1,0 +1,200 @@
+# [1.7.1 - Binary Math](https://www.youtube.com/watch?v=94dcHJfEAIo)
+
+## 1.7.1 - Binary Math
+
+- Day: Day 3
+- Duration: 9:15
+
+## Transcript
+
+- `00:01` In the next part of this course, we're
+- `00:03` going to talk a lot about IP subnetting.
+- `00:06` And a big part of subnetting is the ability
+- `00:08` to convert between decimal and binary.
+- `00:11` So I thought it would be useful in this video
+- `00:13` if we step through the fundamentals of performing
+- `00:15` binary calculations.
+- `00:17` Binary, of course, is a type of numbering
+- `00:20` that uses two different numbers, either a 0 or a 1.
+- `00:24` This means that there are only two possible options
+- `00:27` when doing mathematics.
+- `00:29` In binary, the answer is either going to include a 0,
+- `00:32` or it's going to include a 1.
+- `00:34` Each one of these 0's or 1's is referred to as a bit.
+- `00:38` And when we combine eight of these bits together,
+- `00:41` we have a byte.
+- `00:43` Occasionally, you will see a byte referred to as an octet
+- `00:46` to be sure that everyone understands that this is
+- `00:49` an 8-bit byte.
+- `00:50` In this video, we're going to perform a lot of calculations
+- `00:53` between binary and decimal.
+- `00:55` So what we need to create is a conversion chart
+- `00:58` to convert between binary and decimal.
+- `01:01` We'll create this chart by starting on the right side.
+- `01:03` And we'll simply put the number 1.
+- `01:05` Then we're going to double that number and put it to the left.
+- `01:09` So doubling 1 makes the number 2.
+- `01:11` If we double the number 2, we have the number 4.
+- `01:14` 4 times 2 is 8.
+- `01:16` 8 times 2 is 16.
+- `01:18` 16 times 2 is 32, and so on.
+- `01:21` This is the conversion chart that we will use for almost all
+- `01:24` of our decimal-to-binary conversions.
+- `01:26` We created this chart with eight individual places.
+- `01:29` But you could keep moving to the left with this chart
+- `01:32` and go past 128.
+- `01:34` We'll double it to 256.
+- `01:36` We'll double that to 512, and so on.
+- `01:39` You can keep continuing this process
+- `01:41` so that if you have a very large binary number,
+- `01:44` you can still perform the same type of conversion
+- `01:46` back to decimal.
+- `01:48` Let's now use this chart to answer this question.
+- `01:51` What is the binary 00000010 in decimal?
+- `01:58` First, let's write down this value in decimal.
+- `02:01` So it's 00000010.
+- `02:05` And of course, we want to know what the decimal equivalent is
+- `02:08` of that binary value.
+- `02:10` We'll then layer on top of this our conversion chart.
+- `02:12` So of course, we start on the right side with a 1,
+- `02:15` then 2, 4, 8, 16, 32, 64, and 128.
+- `02:19` Now we have everything we need to perform
+- `02:22` this binary calculation.
+- `02:24` In each of these places where we have a binary 0,
+- `02:28` we're going to bring that 0 down to the bottom line.
+- `02:30` In every place where we have a binary of 1,
+- `02:33` we're going to take the number just above that
+- `02:35` and bring it down onto the bottom line.
+- `02:37` We're then going to add all of these numbers
+- `02:39` together on the bottom line.
+- `02:41` So 0 plus 0 plus 0 plus 0 plus 0 plus 0 plus 2 plus 0
+- `02:46` equals 2 in decimal.
+- `02:49` So the answer to this question of converting binary 00000010 is
+- `02:56` the same as 2 decimal.
+- `02:59` Let's do another one.
+- `03:00` What is the binary 10000010 in decimal?
+- `03:05` We will write down our binary value.
+- `03:07` And then we'll layer on top of that our conversion chart.
+- `03:10` Every place there is a 0, we're going
+- `03:12` to pull that down and put a 0.
+- `03:14` And every place there is a 1, we're
+- `03:16` going to pull down the number just above that 1.
+- `03:19` And you can see we only have two binary 1's in this number.
+- `03:22` And that's associated with the 2 and associated with the 128.
+- `03:27` So we'll bring down the 128.
+- `03:28` We'll bring down the 2.
+- `03:29` We add those together.
+- `03:31` And we've got 130 in decimal.
+- `03:33` So the binary value 10000010 is the same as 130 in decimal.
+- `03:41` And finally, let's do one more binary-to-decimal conversion.
+- `03:45` This binary value is 11111111.
+- `03:49` We'll bring down that binary value.
+- `03:51` And we'll layer on top of that our conversion chart.
+- `03:54` And because each one of these spaces has a 1,
+- `03:57` we're going to bring down all of the numbers of our conversion.
+- `04:01` And if we were to count 128 plus 64 plus 32 plus 16 plus 8 plus 4
+- `04:07` plus 2 plus 1, you would have the value of 255 decimal.
+- `04:12` So the conversion of 11111111 in binary is the same as 255
+- `04:19` in decimal.
+- `04:20` Now let's do the same conversion but in reverse.
+- `04:24` Let's take a decimal number and convert it to binary.
+- `04:27` This question asks, what is the decimal 154 in binary?
+- `04:32` It's the same process.
+- `04:33` We're going to bring down our binary number.
+- `04:36` But of course, we don't know what that binary number is yet.
+- `04:39` So we'll put some place marks here.
+- `04:40` And then we'll layer on top of this our conversion chart.
+- `04:44` Now we need to determine which one of these binary values
+- `04:47` will be a 0 and which one will be a 1 to make up 154 decimal.
+- `04:53` And there is only one combination
+- `04:55` of 0's and 1's in this chart that
+- `04:58` would equal that decimal value.
+- `05:00` We'll start on the right side, where we have our 128 column.
+- `05:04` And we'll ask ourself, is 128 less than or equal to 154?
+- `05:09` This is obviously less than 154.
+- `05:12` So we'll put a 1 in that column.
+- `05:15` And we'll bring down the 128.
+- `05:18` Now let's look at our next column of 64.
+- `05:20` And we'll combine that next column with the numbers
+- `05:23` that we've currently brought down previously--
+- `05:25` in this case, the number 128.
+- `05:27` So 128 plus 64 is 192.
+- `05:32` And we have to ask ourself, is 192 less than or equal to 154?
+- `05:37` In this case, 192 is more than 154.
+- `05:40` So the answer is no.
+- `05:42` And we'll put a 0 in that column.
+- `05:44` Now we move to the next column, which is our 32.
+- `05:47` We'll add 32 plus anything that we brought down.
+- `05:50` That would be 128 plus 32, which equals 160.
+- `05:54` Is 160 less than or equal to 154?
+- `05:57` It is not.
+- `05:58` So we'll bring down a 0 in that column.
+- `06:01` We'll continue with this process by looking at the fourth column,
+- `06:04` which is 16.
+- `06:05` We'll add that to anything that we brought down.
+- `06:07` So 128 plus 16 is 144.
+- `06:11` Is 144 less than or equal to 154?
+- `06:14` It is.
+- `06:15` So we'll put a 1 in that column and bring down the 16.
+- `06:18` Our next column is the 8.
+- `06:20` So we'll add 8 to anything that we've previously brought down.
+- `06:23` So 128 plus 16 plus 8 is 152.
+- `06:28` Is 152 less than or equal to 154?
+- `06:31` It is.
+- `06:31` So we'll put a 1 in that column and bring down the number 8.
+- `06:34` Our next column is the number 4.
+- `06:36` We will add 4 to everything that we brought down
+- `06:39` into that bottom row.
+- `06:40` So that all adds up to 156.
+- `06:44` And is 156 less than or equal to 154?
+- `06:48` It is not.
+- `06:48` So we'll put a 0 in the 4 column.
+- `06:51` The next column is the number 2.
+- `06:53` We'll add the number 2 to everything
+- `06:54` that we brought down so far.
+- `06:56` And if we add all of those up, it would be 154.
+- `06:59` Is 154 less than or equal to 154?
+- `07:03` It's obviously equal to 154.
+- `07:05` So we'll put a 1 in that column and bring down the number 2.
+- `07:09` And obviously, we've hit the number 154.
+- `07:11` So we know that the number 1 on the last column
+- `07:14` will not be added to this final value.
+- `07:16` And if we add up everything in that last row,
+- `07:19` we see it does equal 154.
+- `07:21` And now all we have to do is look at the middle row
+- `07:24` to determine what the binary value of this is.
+- `07:26` And it would be 10011010.
+- `07:30` If we look at 154 decimal, we know that that is exactly
+- `07:34` the same as 10011010 in binary.
+- `07:39` With these eight individual bits,
+- `07:41` we can convert any number between 0 and 255.
+- `07:45` So take any number you would like.
+- `07:47` Put it into this particular format.
+- `07:49` And see if you can perform the conversion between binary
+- `07:52` and decimal.
+- `07:54` As you're increasing the number of bits in a binary value,
+- `07:57` you're increasing the total possible number
+- `07:59` of decimal results.
+- `08:01` For example, if you have 2 bits, there
+- `08:03` are only four possible outcomes--
+- `08:05` 00, 01, 10, and 11.
+- `08:09` And if you were to perform that conversion between binary
+- `08:12` and decimal, that's the same as 0, 1, 2, and 3.
+- `08:16` If you have 3 bits, then you can have eight possible outcomes.
+- `08:20` If you use four individual bits, you
+- `08:22` have up to 16 different options.
+- `08:24` 5 bits moves you up to 32.
+- `08:26` Six would be 64.
+- `08:28` 7 bits is 128 possible options.
+- `08:31` And if you were to increase the number of bits into 9 bits,
+- `08:34` 10 bits, 11 bits, and so on, you would also
+- `08:37` increase the total decimal number.
+- `08:40` You can see that this value is listed in this chart.
+- `08:43` And notice that I've also added the powers of 2 on top of this.
+- `08:47` This is effectively what we've been doing the whole time.
+- `08:50` 2 to the 0 power is 1.
+- `08:52` 2 to the first power is 2.
+- `08:54` 2 to the second power is 4.
+- `08:56` 2 to the third power is 8, and so on.
+- `08:58` So as we increase this powers of 2,
+- `09:01` we are also increasing the total decimal value.

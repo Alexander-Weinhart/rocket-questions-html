@@ -1,0 +1,285 @@
+# [1.2.2 - Networking Functions](https://www.youtube.com/watch?v=9uDpWfMbAdQ)
+
+## 1.2.2 - Networking Functions
+
+- Day: Day 1
+- Duration: 13:25
+
+## Transcript
+
+- `00:01` If you were to somehow get inside of the networking cable
+- `00:06` and see what was going back and forth over that connection,
+- `00:09` you would see there was a lot of different activity going on
+- `00:13` across many, many different systems.
+- `00:15` All of these are designed to focus on specific functions.
+- `00:19` For example, we may need to get a piece of data from our network
+- `00:23` to a network that is on another part of the world.
+- `00:26` Or we might need to access a system that is already
+- `00:29` located somewhere else and provide technical support
+- `00:32` or be able to share a screen.
+- `00:34` There's also a need to have traffic management
+- `00:37` on our network so that certain applications have a higher
+- `00:40` priority than other applications.
+- `00:43` And lastly, we need to be sure that all of our systems
+- `00:46` are up and available.
+- `00:47` And it may take specialized protocols
+- `00:49` to make sure that that occurs every step along the way.
+- `00:53` One way to speed up the process of getting access to data
+- `00:57` is through the use of a CDN.
+- `00:59` This is a Content Delivery Network,
+- `01:02` and as the name implies, it is designed
+- `01:05` to provide a way to get data very efficiently from one
+- `01:09` central point to an end user.
+- `01:11` These are often set up in geographical areas,
+- `01:14` so there might be a CDN server in North America, South America,
+- `01:19` Africa, Asia, other parts of the world.
+- `01:21` And you're able to cache information
+- `01:24` at each one of these points.
+- `01:25` It takes time to get data sent from one part of the world
+- `01:28` to the other.
+- `01:29` So if you can have all of your North America users
+- `01:32` access the North American CDN, it's
+- `01:35` much faster than having them all go out to a centralized server
+- `01:38` that might be located in Europe.
+- `01:40` So if you're watching this video on YouTube or on the Professor
+- `01:44` Messer website, you're using a CDN right now.
+- `01:48` It's a way for very small or very large
+- `01:50` sites to be able to distribute their data to users
+- `01:54` all over the world and make sure that that data is
+- `01:57` as accessible and efficient as possible.
+- `02:01` For those of you that work outside
+- `02:03` of your corporate facility or perhaps do
+- `02:05` a lot of work from home, then you're
+- `02:07` probably already familiar with a virtual private network,
+- `02:11` or a VPN.
+- `02:12` This allows you to connect to a remote network
+- `02:15` while sending all of this data encrypted across the network.
+- `02:18` It's a very secure way to transfer data even
+- `02:21` across networks that would be inherently insecure,
+- `02:25` such as the public internet.
+- `02:27` VPNs often use a device called a concentrator
+- `02:31` or a head-end device to be the central connection
+- `02:34` point for all of the users who are accessing that VPN.
+- `02:39` This is often a purpose-built appliance
+- `02:41` that's designed to do high-speed encryption and decryption
+- `02:45` of network data in real time so that you
+- `02:48` can have many people being able to send
+- `02:51` secure data across the network, decrypt all of that data,
+- `02:55` send it to the inside of the network,
+- `02:57` and then reverse that process to get the response back
+- `03:00` to the user.
+- `03:01` This can be a standalone device, but very commonly, we
+- `03:05` integrate this VPN concentrator function
+- `03:08` within a next-generation firewall itself.
+- `03:11` Because of the encryption and decryption process
+- `03:14` required to perform this VPN concentration,
+- `03:17` we usually will use a purpose-built appliance
+- `03:20` or a piece of hardware to be able to do
+- `03:22` this that provides very high throughput
+- `03:25` and can support hundreds or even thousands of users
+- `03:28` simultaneously.
+- `03:29` But if you have a smaller network,
+- `03:31` you may not need a purpose-built appliance,
+- `03:34` and there are many VPN concentrators
+- `03:36` that will run as software on an existing operating system.
+- `03:40` You may have to install a specialized piece of software
+- `03:43` to be able to use a manufacturer's VPN,
+- `03:45` although there is VPN software that does ship with Windows,
+- `03:49` MacOS, and Linux operating systems so that you can connect
+- `03:53` to many different kinds of VPNs using that generic software.
+- `03:57` Not all applications are designed to run simultaneously
+- `04:01` on a network.
+- `04:02` And certainly, some applications may have a higher priority
+- `04:05` to your organization than other applications.
+- `04:08` For example, there might be a real-time audio or video
+- `04:11` stream that has a higher priority than a file transfer.
+- `04:15` Because of these requirements, it's
+- `04:17` very common for network administrators
+- `04:19` to provide some type of prioritization
+- `04:21` to these applications.
+- `04:23` This is often done through a quality of service,
+- `04:25` or QoS, configuration.
+- `04:28` You might also refer to this as traffic shaping or packet
+- `04:31` shaping.
+- `04:32` This allows the administrator to control
+- `04:34` what type of applications can flow through their network,
+- `04:37` usually based on bandwidth usage or particular data rates.
+- `04:41` This might allow your real-time applications
+- `04:43` to have full control or access to the network
+- `04:46` and put a lower priority on other applications that may
+- `04:50` simply be transferring files.
+- `04:52` To control this quality of service,
+- `04:54` you may need to make configuration changes inside
+- `04:57` of a firewall, a router, or a switch.
+- `05:00` These devices might have a pre-built list of applications
+- `05:03` and might also allow you to add your own applications
+- `05:06` to the list.
+- `05:07` And at that point, you can decide what priority
+- `05:09` the applications might have relative to everything else
+- `05:12` that's running on the network.
+- `05:14` One of the challenges we often run into with technology
+- `05:17` is that it's very good at performing a task.
+- `05:20` And often, it can perform these tasks over and over
+- `05:23` and over again without any type of human intervention.
+- `05:27` Unfortunately, this could also put a device into a state
+- `05:30` where it's performing the task over and over
+- `05:33` and over again and never finds a way to complete or end
+- `05:37` that particular task.
+- `05:39` For that reason, we've often built in different functions
+- `05:42` with our protocols so that we can recognize
+- `05:45` when a task may be going on too long
+- `05:47` and simply remove that task from the network.
+- `05:50` One common way to provide this identification
+- `05:53` is through the use of a time to live, or TTL.
+- `05:57` A time to live is effectively some type of timer.
+- `06:00` This timer may be based on the time of day,
+- `06:03` or it may be based on the number of iterations
+- `06:06` that a particular task completes.
+- `06:08` Once that timer hits zero, we can then
+- `06:10` have that task stop what it's doing,
+- `06:12` or we can drop that task from the network.
+- `06:15` There are many different cases for a time to live.
+- `06:17` One is a packet that is constantly looping
+- `06:20` between different routers.
+- `06:22` We might want to have that packet automatically
+- `06:24` dropped if that loop occurs a certain number of times.
+- `06:27` Another good example of a time to live
+- `06:29` might be to clear a cache, where we might access a website,
+- `06:32` have that website stored in a cache,
+- `06:35` and then that cache is only available for the next 60
+- `06:38` seconds or a number of minutes.
+- `06:40` When that timer hits zero, the cache is cleared.
+- `06:43` And the next time that website is
+- `06:45` accessed, you would have to go all the way out to the site
+- `06:48` to be able to bring that information back, at which point
+- `06:51` that is placed in the cache, and another timer starts.
+- `06:54` Another example of using a time to live
+- `06:57` to stop traffic that is looping around your network
+- `06:59` is through the use of a routing loop.
+- `07:01` This is a really good example of where
+- `07:03` you might have Router A thinks the next hop is
+- `07:06` Router B. And Router B thinks the next hop is Router A.
+- `07:10` And what you'll find is that the packet goes back
+- `07:12` and forth between those routers over and over and over again.
+- `07:17` If you were going to perform a trace route,
+- `07:19` you would see this loop in the trace route itself,
+- `07:22` where the route goes to 10.1.10.1.
+- `07:25` Then it goes to 10.2.10.2, then back to 10.1.10.1,
+- `07:30` then back to 10.2.10.2 and so on.
+- `07:34` And this will continue all the way
+- `07:36` through until it reaches a time to live.
+- `07:39` This is something that does occur occasionally
+- `07:41` because you might have many different routers.
+- `07:44` And those routers have many different routes.
+- `07:46` So it's very easy to make one single IP address
+- `07:49` mistake in a static route and create this routing loop
+- `07:52` on your network.
+- `07:53` For routing loops, we use a TTL field inside of the IP packet
+- `07:59` itself.
+- `08:00` This allows us to identify and stop a loop
+- `08:03` automatically if one occurs.
+- `08:05` In this example, we have Router 1,
+- `08:07` and Router 1's next hop is Router 2.
+- `08:09` We've configured Router 2 with a next hop of Router 1,
+- `08:12` which means that this packet is going
+- `08:14` to go back and forth between these routers
+- `08:17` until something stops that loop from occurring.
+- `08:20` Fortunately, we've built functions within IP,
+- `08:23` or the Internet Protocol, to look for this loop
+- `08:26` to occur and stop it if it finds that it's
+- `08:29` occurring over and over again.
+- `08:31` In IP, the time to live is referring to the number of hops
+- `08:36` that a packet will go through a router.
+- `08:38` Each time a router processes a packet,
+- `08:41` it decreases the time to live by one.
+- `08:44` And when that value gets down to zero,
+- `08:46` it discards the packet, effectively ending the loop.
+- `08:50` The default time to live for MacOS and Linux is usually 64
+- `08:54` hops, and the default time to live for Windows is 128 hops.
+- `08:59` Since the router is decreasing the time
+- `09:01` to live by one each time the packet goes through,
+- `09:05` it's watching that number decrease every time it goes
+- `09:08` through a looped connection.
+- `09:10` And when the time to live gets to zero,
+- `09:12` the router drops that particular packet.
+- `09:14` If we were to look at the frame of IP,
+- `09:17` you could see there's version numbers, header length, type
+- `09:20` of service, total length, and other fields
+- `09:22` within the IPv4 header.
+- `09:25` The one we're interested in is the one called Time to Live.
+- `09:28` And that's the one that the router will
+- `09:29` use to determine if it's gotten down to zero
+- `09:32` and if it should discard this packet from the network.
+- `09:35` Here's a very simple protocol decode of an IP header.
+- `09:39` You can see this is frame 1.
+- `09:41` We have the Ethernet information with the Mac addresses
+- `09:44` for the source Mac address and the destination Mac address.
+- `09:47` And this is an IP version four header.
+- `09:50` You can see the source IP address
+- `09:51` and the destination IP address in the header itself.
+- `09:54` If we were to break this header open and look
+- `09:57` at those individual fields that we mentioned
+- `09:59` from that previous slide, you can
+- `10:01` see there is a Differentiated Services field, a Total Length
+- `10:04` field, an Identification field, and right here
+- `10:07` is a Time to Live field.
+- `10:09` The time to live for this particular packet is 58 hops.
+- `10:14` So this packet would need to go through 58 more routers
+- `10:17` until this got down to zero, at which point
+- `10:20` it would be removed from the network.
+- `10:22` In most cases, our total number of hops between us
+- `10:26` and the destination that we're trying to visit somewhere
+- `10:29` on the internet is usually around 12 to 16
+- `10:32` hops, sometimes more and sometimes less.
+- `10:35` But that's a relatively small number
+- `10:37` when you consider that the total default time
+- `10:39` to live on MacOS or Linux is 64 hops, and the default on Windows
+- `10:45` is 128 hops.
+- `10:47` That gives us plenty of room to be
+- `10:49` able to get data from one side of the internet to the other
+- `10:52` and not have that information accidentally dropped
+- `10:55` by a router.
+- `10:57` Depending on the protocol you're using, time to live
+- `10:59` may have a different definition.
+- `11:01` With routers, time to live is associated
+- `11:04` with the number of hops.
+- `11:05` But in DNS, or the Domain Name System, the time to live
+- `11:09` is associated with the total number of seconds.
+- `11:12` Let's take a scenario where we're performing a DNS lookup.
+- `11:15` And you can do this yourself by using nslookup or dig,
+- `11:18` and you can resolve or look for the device
+- `11:22` www.professormesser.com.
+- `11:25` And your DNS server will return some type
+- `11:27` of IP address associated with the Professor Messer web server.
+- `11:32` Inside of that DNS resolution is information about time to live.
+- `11:36` This tells us how long we should cache this local entry
+- `11:41` on our system.
+- `11:42` So we want to cache it for a certain number of seconds.
+- `11:46` How many seconds?
+- `11:47` Well, we're going to cache it for the time to live seconds.
+- `11:50` The time to live is included with the configuration on a DNS
+- `11:54` server, and this is the output from the command dig
+- `11:58` www.professormesser.com.
+- `12:01` You can see that the Answer Section, where the DNS server is
+- `12:04` providing us information, says that the server
+- `12:07` www.professormesser.com has a time to live of 300.
+- `12:12` This is an internet address.
+- `12:14` The A is for address.
+- `12:15` And then we have three different IP addresses
+- `12:18` associated with my web server.
+- `12:21` This 300 value is the one telling our local machine,
+- `12:25` keep this IP address in your cache for 300 seconds.
+- `12:29` If you do the math, that is five minutes.
+- `12:32` Once that five minutes has elapsed,
+- `12:34` our local cache removes that particular resolution.
+- `12:37` And if you want to know the IP address for that same server,
+- `12:41` you would need to perform another DNS
+- `12:43` query to update your cache for another five minutes.
+- `12:47` This allows me, as the administrator of my web server,
+- `12:51` to be able to change the IP address in my DNS configuration.
+- `12:55` And I can feel relatively secure that most people will
+- `12:58` have an updated version of that IP address within five minutes.
+- `13:02` We use time to live for many other protocols as well,
+- `13:06` so make sure you look at the documentation for that protocol
+- `13:08` to understand exactly how we're measuring time to live
+- `13:12` for that particular protocol.

@@ -1,4 +1,4 @@
-# 🔗 TCP — Flags, Handshake, and DDoS
+# TCP — Flags, Handshake, and DDoS
 
 TCP (Transmission Control Protocol) is the reliable, connection-oriented transport protocol. This note covers ACKs, TCP flags, the 3-way handshake, sequence numbers, and how DDoS attacks exploit the handshake.
 
@@ -82,7 +82,7 @@ Client                              Server
 
 ---
 
-## DDoS — Distributed Denial of Service 💀
+## DDoS — Distributed Denial of Service 
 
 DDoS attacks exploit the 3-way handshake (and other mechanisms) to overwhelm a server with traffic until it can no longer serve legitimate users.
 
@@ -96,7 +96,7 @@ Attacker (thousands of bots) ──► SYN ──► Server
 
 Server allocates memory for each half-open connection and waits for ACK
 → Server's connection table fills up
-→ Legitimate users' SYNs are dropped — server unreachable ❌
+→ Legitimate users' SYNs are dropped — server unreachable 
 ```
 
 **Why it's "distributed":** Using a single machine, the server could block the source IP. DDoS uses **thousands of compromised machines (a botnet)** from different IPs worldwide — impossible to block by IP alone.
@@ -114,8 +114,8 @@ Server allocates memory for each half-open connection and waits for ACK
 
 ## Key Points
 
-- 📌 ACK confirms receipt — missing ACK triggers retransmission
-- 📌 Sequence numbers track every byte; **sliding window** = range of unacknowledged bytes in flight
-- 📌 TCP flags (SYN, ACK, RST, FIN) are bits in the **TCP header**
-- 📌 3-way handshake: SYN → SYN+ACK → ACK
-- 📌 DDoS SYN flood exploits the handshake — bots send SYNs but never complete the handshake
+- ACK confirms receipt — missing ACK triggers retransmission
+- Sequence numbers track every byte; **sliding window** = range of unacknowledged bytes in flight
+- TCP flags (SYN, ACK, RST, FIN) are bits in the **TCP header**
+- 3-way handshake: SYN → SYN+ACK → ACK
+- DDoS SYN flood exploits the handshake — bots send SYNs but never complete the handshake

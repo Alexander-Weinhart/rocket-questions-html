@@ -1,4 +1,4 @@
-# 🔌 Ports
+# Ports
 
 A port is a **16-bit number** (0–65535) in the TCP or UDP header that identifies which **application** on a device should receive incoming data. IP addresses route to the right machine; port numbers route to the right application on that machine.
 
@@ -101,8 +101,8 @@ Each connection has a unique source port — TCP/IP treats them as separate stre
 
 ## Key Points
 
-- 📌 Port = identifies the **application**, not the machine (IP does that)
-- 📌 Written as `IP:port` — e.g. `192.168.1.1:80`
-- 📌 **Port multiplexing** = one IP serves many apps simultaneously via different ports
-- 📌 Well-known (0–1023) → Registered (1024–49151) → Ephemeral (49152–65535)
-- 📌 Know the CompTIA A+ port list: 20/21 FTP, 22 SSH, 23 Telnet, 25 SMTP, 53 DNS, 80 HTTP, 443 HTTPS, 3389 RDP
+- Port = identifies the **application**, not the machine (IP does that)
+- Written as `IP:port` — e.g. `192.168.1.1:80`
+- **Port multiplexing** = one IP serves many apps simultaneously via different ports
+- Well-known (0–1023) → Registered (1024–49151) → Ephemeral (49152–65535)
+- Know the CompTIA A+ port list: 20/21 FTP, 22 SSH, 23 Telnet, 25 SMTP, 53 DNS, 80 HTTP, 443 HTTPS, 3389 RDP

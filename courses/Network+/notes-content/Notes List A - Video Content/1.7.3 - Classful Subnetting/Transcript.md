@@ -1,0 +1,218 @@
+# [1.7.3 - Classful Subnetting](https://www.youtube.com/watch?v=XVIOtj-Z9m0)
+
+## 1.7.3 - Classful Subnetting
+
+- Day: Day 3
+- Duration: 10:58
+
+## Transcript
+
+- `00:01` When you start working with IP version 4, one of the things
+- `00:04` you'll hear about are classes of IP addresses.
+- `00:08` And in casual conversation, we might even
+- `00:10` refer to an address as a class A address, a class B address,
+- `00:14` or a class C address.
+- `00:16` This was a method of describing an IP address as it
+- `00:19` related to its subnet mask.
+- `00:21` Anything that is a class A address
+- `00:23` has eight bits assigned for the network address and 24 bits
+- `00:27` that are associated with the host address.
+- `00:30` This means that the subnet mask for a class A address would be
+- `00:33` 255.0.0.0.
+- `00:37` A class B address default subnet mask is 255.255.0.0.
+- `00:42` And the default subnet mask for a class C address is
+- `00:45` 255.255.255.0.
+- `00:49` This style of class-based subnetting
+- `00:52` is one that we have not used since 1993.
+- `00:55` But we still refer to some of these addresses
+- `00:58` in a very colloquial sense.
+- `01:00` And although you may hear someone
+- `01:01` refer to an address as a class A address or a class C address,
+- `01:05` in reality, we no longer use a class-based form
+- `01:09` of subnet masking.
+- `01:10` So if we don't use classes, why are we
+- `01:13` doing a video on class-based networking?
+- `01:16` That's because these classes do act as a starting point
+- `01:20` when we begin any type of subnetting on our networks.
+- `01:23` If you're going to subnet a network,
+- `01:25` it's important to know where to begin the subnetting process.
+- `01:28` And this class-based system is the starting point.
+- `01:31` These class A, class B, and class C addresses
+- `01:35` have an obvious demarcation between the network
+- `01:38` part of the address and the host part of the address.
+- `01:41` With class A, that line is drawn after the first eight.
+- `01:45` Bits in a class B address, that line is after the first 16 bits.
+- `01:49` And in a class C address, that line is after the first 24 bits.
+- `01:54` Here's a table that defines the different subnet classes
+- `01:57` for class A, class B, class C, class D,
+- `02:01` and the reserved class E. And you can see,
+- `02:03` if you look on the right side, the default subnet masks are
+- `02:06` the ones we just saw, where class A has a default mask
+- `02:10` of 255.0.0.0.
+- `02:12` Class B is 255.255.0.0.
+- `02:16` And class C is 255.255.255.0.
+- `02:20` The way that you can look at an IP address
+- `02:23` and tell immediately what class that IP address is associated
+- `02:27` with is the very first octet of the address.
+- `02:30` If the decimal octet is between 0 and 127
+- `02:33` as the first number of that IP address, it's a class A address.
+- `02:38` If the first number of the IP address is between 128 and 191,
+- `02:42` that's a class B address.
+- `02:44` And if the first number is between 192 and 223,
+- `02:48` that is a class C address.
+- `02:50` If you were to look at that address in binary,
+- `02:53` if the first bit was 0, it's a class A address.
+- `02:56` If the first bits are 1, 0, it's a class B address.
+- `02:59` And if the first three bits are 1,1,0, it's a class C address.
+- `03:04` Class D addresses are used for multicast communication.
+- `03:07` And therefore, they are not assigned
+- `03:09` to an individual device.
+- `03:11` But there is a range for class D addresses,
+- `03:13` and that is between 224 and 239.
+- `03:16` Or the first four bits of a class D address are 1,1,1,0.
+- `03:21` And there is a range of IP addresses
+- `03:22` that are not used for any purpose.
+- `03:24` This is a reserved range.
+- `03:26` We refer to this as the class E range, between 240 and 255,
+- `03:31` or the first four bits of 1,1,1,1.
+- `03:35` So based on that chart and those ranges of IP addresses,
+- `03:39` let's see what class a particular IP
+- `03:42` address would be part of.
+- `03:43` Let's start with the IP address of 17.22.90.7.
+- `03:47` To be able to determine the class,
+- `03:49` we need to look at the first octet, which in this case
+- `03:52` is the number 17.
+- `03:54` And if you refer back to that chart,
+- `03:56` the number 17 is in a class A address.
+- `03:59` Let's do another one.
+- `04:00` IP address is 220.10.77.40.
+- `04:04` If we look at that first octet, it is 220.
+- `04:07` And 220 is in the C class.
+- `04:10` The next IP address is 165.245.0.1.
+- `04:14` We need to look at that first octet.
+- `04:16` In this case, that's 165, and 165
+- `04:19` is in the range of a class B address.
+- `04:23` Next on our list is 128.90.10.2.
+- `04:26` That first number is 128, which means
+- `04:29` that is also a class B address.
+- `04:31` The IP address of 191.77.24.250 has the first octet as 191.
+- `04:39` And if we refer to our chart, 191
+- `04:41` is in the range of a class B address.
+- `04:44` And lastly, 192.1.12.5.
+- `04:48` We're looking at that first octet of 192,
+- `04:50` which falls in the range of a class C address.
+- `04:55` When you start calculating an IP subnet,
+- `04:57` there are four different values that are very important to know.
+- `05:01` The first is the IP address associated
+- `05:03` with the network address.
+- `05:05` This is the one that defines all of the other devices
+- `05:08` on this particular subnet.
+- `05:10` To calculate a network address, you
+- `05:12` set all of the host bits of that address to 0
+- `05:15` and then determine what the decimal representation of that
+- `05:18` might be.
+- `05:19` The second important piece of information
+- `05:21` you need for an IP subnet is the first usable host address
+- `05:25` on that subnet.
+- `05:26` This is always going to be one number higher than this
+- `05:29` previously defined network address.
+- `05:32` You also need to know the network broadcast address.
+- `05:36` This is the last IP address of this particular network address.
+- `05:40` To be able to calculate the network broadcast address,
+- `05:43` you would set all of your host bits
+- `05:45` to 1, which is the same as 255 decimal,
+- `05:48` and perform the conversion between the binary
+- `05:51` and the decimal.
+- `05:52` And just as you need to know the first usable host
+- `05:54` address on the network, you also need
+- `05:56` to know the last usable host address.
+- `05:59` And to calculate that, you look at the network broadcast
+- `06:01` address, and it's one number fewer
+- `06:03` than the broadcast address.
+- `06:06` So let's calculate those four important subnet values.
+- `06:09` And let's start with the IP address of 10.74.222.11.
+- `06:15` If we look at our chart, we know that this
+- `06:17` starts with the number 10.
+- `06:19` Therefore, this must be a class A address.
+- `06:22` And the default subnet mask for a class A address is 255.0.0.0.
+- `06:28` Since we're using this class A subnet mask,
+- `06:31` we know that everything that's on the left side
+- `06:34` of our bar, or this first octet, is going
+- `06:37` to be our network address.
+- `06:38` And everything on the right side will
+- `06:40` be associated with the host ID.
+- `06:43` So let's add those to our chart.
+- `06:44` We have a network column and a host column.
+- `06:47` Obviously, the 10-dot is going to be in the network column.
+- `06:50` That's what's on the left side of that bar.
+- `06:52` And then everything on the right side
+- `06:54` is going to be the host address.
+- `06:56` We first need to calculate the network address.
+- `06:59` And to do that, we set all the host bits to 0.
+- `07:02` This means that everything in that second column will be 0.
+- `07:05` And the network address, therefore, will be 10.0.0.0.
+- `07:09` The first host address is one more than the network address.
+- `07:13` So our first host address would be 10.0.0.1.
+- `07:16` To calculate the broadcast address for this subnet,
+- `07:19` we set all the host bits to 1, which means that the broadcast
+- `07:23` address is 10.255.255.255.
+- `07:28` And as you recall, to calculate the last usable
+- `07:31` address on this subnet, we need to subtract 1
+- `07:34` from the broadcast address.
+- `07:36` So the last usable address on this network is 10.255.255.254.
+- `07:42` With these four values, you'll be
+- `07:44` able to determine the network address.
+- `07:46` You'll know if an IP address happens
+- `07:48` to be one of the usable addresses within that range.
+- `07:51` And you'll know what the last, or broadcast address
+- `07:54` is for that entire network.
+- `07:56` Let's do another one.
+- `07:58` In this case, the IP address is 172.16.88.200.
+- `08:03` If we look at that first octet, we can see that that is a class
+- `08:06` B address, which means the default subnet mask for this
+- `08:09` network is 255.255.0.0.
+- `08:14` This means that we would draw our line right in the middle,
+- `08:16` between the first 16 bits and the last 16 bits.
+- `08:20` So everything on the left side is associated with the network
+- `08:23` address, and everything on the right side
+- `08:25` is associated with the host address.
+- `08:28` Now, let's perform those exact same calculations.
+- `08:30` We want to determine what the network address is.
+- `08:33` So we will set all host bits to 0.
+- `08:35` This means that the network address for this particular
+- `08:38` subnet is 172.16.0.0.
+- `08:42` To be able to calculate the first host address,
+- `08:44` we need to add 1 to that value or 172.16.0.1.
+- `08:49` To calculate the broadcast address,
+- `08:51` we set all host bits to 1, which means the broadcast address
+- `08:55` for this subnet is 172.16.255.255.
+- `09:00` And to define the last usable host address on this network,
+- `09:03` we subtract 1 from the broadcast address,
+- `09:06` which means the last usable address is 172.16.255.254.
+- `09:13` Let's see if we've figured out this process and step through
+- `09:16` another IP address, in this case, 192.168.4.77.
+- `09:21` Looking at this first octet of 192,
+- `09:24` that fits into the range of a class C address,
+- `09:28` which means the default subnet mask is 255.255.255.0.
+- `09:33` If we were to draw our line, the network side of the address
+- `09:36` is the first three octets, and the host side is the last octet.
+- `09:41` Let's put that into our chart.
+- `09:43` So our first three octets, 192.168.4, is the network side.
+- `09:48` And .77 is the host side.
+- `09:51` To be able to calculate the network address,
+- `09:53` we set all host bits to 0.
+- `09:54` So the network address for this particular subnet is
+- `09:57` 192.168.4.0.
+- `10:00` If we add 1 to that address, we get our first host address
+- `10:04` of 192.168.4.1.
+- `10:07` To be able to calculate the broadcast address,
+- `10:09` we set all host bits to 1, which means the broadcast address is
+- `10:13` 192.168.4.255.
+- `10:17` And if we subtract 1 from that broadcast address,
+- `10:20` we get the last host address, and that would be 192.168.4.254.
+- `10:27` Although we no longer use class-based subnetting,
+- `10:30` we can still use the same process
+- `10:32` when we look at anything that may be class or non-class based.
+- `10:37` And as we go through our additional subnetting videos,
+- `10:40` you'll notice that this same process is used over and over
+- `10:44` again, regardless of the IP address and the subnet mask.

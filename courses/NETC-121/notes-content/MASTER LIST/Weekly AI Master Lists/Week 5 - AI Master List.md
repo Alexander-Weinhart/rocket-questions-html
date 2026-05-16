@@ -41,10 +41,10 @@
 - `Notes List C - Personal Notes/Lecture Week 5/Error Detection - Checksum and CRC.md`
 - `Notes List B - Textbook Content/Textbook 2 - Chapter 5 DHCP and Address Management/Understanding DHCP, Scopes, VLANs, and Client Configuration.md`
 - `Notes List B - Textbook Content/Textbook 2 - Chapter 6 DNS and Name Resolution/DNS, Queries, Zones, and Resource Records.md`
-- `Notes List A - Video Content/Video 7 - Subnetting/Subnetting.md`
-- `Notes List A - Video Content/Video 7 - Subnetting/ARP.md`
-- `Notes List A - Video Content/Video 8 - Binary Math and Subnetting/Binary Math.md`
-- `Notes List A - Video Content/Video 8 - Binary Math and Subnetting/Subnetting.md`
-- `Notes List A - Video Content/Video 9 - CIDR and IP Addressing/CIDR.md`
-- `Notes List A - Video Content/Video 9 - CIDR and IP Addressing/Public and Private IP Addresses.md`
-- `Notes List A - Video Content/Video 9 - CIDR and IP Addressing/DARPANET.md`
+- `Notes List A - Video Content/Video 17 - Subnetting and IP/Subnetting and IP.md`
+- `Notes List A - Video Content/Video 17 - Subnetting and IP/Subnetting and IP.md`
+- `Notes List A - Video Content/Video 18 - Subnetting and Binary Math/Subnetting and Binary Math.md`
+- `Notes List A - Video Content/Video 18 - Subnetting and Binary Math/Subnetting and Binary Math.md`
+- `Notes List A - Video Content/Video 19 - CIDR & Subnet Mask/CIDR & Subnet Mask.md`
+- `Notes List A - Video Content/Video 19 - CIDR & Subnet Mask/CIDR & Subnet Mask.md`
+- `Notes List A - Video Content/Video 19 - CIDR & Subnet Mask/CIDR & Subnet Mask.md`

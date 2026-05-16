@@ -1,4 +1,4 @@
-# 🎯 Unicast — One-to-One Communication
+# Unicast — One-to-One Communication
 
 Unicast is the most common transmission method on modern networks. One sender, one receiver — a direct, private line of communication between two specific devices.
 
@@ -9,9 +9,9 @@ Unicast is the most common transmission method on modern networks. One sender, o
 Every unicast packet is addressed to **one specific destination IP address**. The network delivers it only to that device and no one else.
 
 ```
-Sender ──────────────────────────► Receiver A   ✅ gets the data
-                                   Receiver B   ❌ nothing
-                                   Receiver C   ❌ nothing
+Sender ──────────────────────────► Receiver A    gets the data
+                                   Receiver B    nothing
+                                   Receiver C    nothing
 ```
 
 ---
@@ -49,7 +49,7 @@ This is why **multicast** exists — to solve this exact problem.
 
 ## Key Properties
 
-- 📌 Destination: one specific device (one IP address)
-- 📌 Used for: web browsing, file transfers, email, most everyday traffic
-- 📌 Bandwidth: multiplies per additional receiver — not efficient for groups
-- 📌 Most internet traffic today is unicast
+- Destination: one specific device (one IP address)
+- Used for: web browsing, file transfers, email, most everyday traffic
+- Bandwidth: multiplies per additional receiver — not efficient for groups
+- Most internet traffic today is unicast

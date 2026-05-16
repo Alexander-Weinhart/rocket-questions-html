@@ -1,0 +1,95 @@
+# [1.5.6 - Fiber Connectors](https://www.youtube.com/watch?v=PNoqhs5QvFw)
+
+## 1.5.6 - Fiber Connectors
+
+- Day: Day 2
+- Duration: 3:56
+
+## Transcript
+
+- `00:01` When working with fiber optics, one
+- `00:03` of the first things you'll notice
+- `00:05` is there are many different connector types.
+- `00:07` You have to make sure that you use the right connector
+- `00:09` type for the right connection.
+- `00:11` A very common fiber connector type
+- `00:13` is the SC connector, or the Subscriber Connector.
+- `00:17` We also have other names that we associate with this connector.
+- `00:20` One is a square connector because the connector
+- `00:22` itself is rather square when you look at it.
+- `00:25` You might also see this referred to as a standard connector,
+- `00:28` although there are certainly other types of fiber connectors
+- `00:31` that you might use.
+- `00:32` To use an SC connector, it simply pushes
+- `00:35` into the connection and snaps in place with a lock.
+- `00:39` Once you have that connector in place,
+- `00:41` it's not going to accidentally slip out of that connection.
+- `00:44` You first have to pull on the connector to unlock it,
+- `00:47` and then it can be removed from that interface.
+- `00:50` This is a common connector type, and if you're
+- `00:52` plugging into a connection in a data center,
+- `00:55` you're probably using some connections
+- `00:57` that are identified as SC.
+- `00:59` The connectors themselves support individual fibers,
+- `01:02` but they're often combined together into a pair
+- `01:05` because one of these is commonly used for transmit
+- `01:08` and the other is commonly used for receive.
+- `01:11` Another common fiber connector is the LC, or Local Connector.
+- `01:16` This is slightly smaller than an SC connector,
+- `01:19` and as you can see, it has a clip
+- `01:20` on the top to lock it in place once you put it
+- `01:22` into the interface.
+- `01:24` This also means that it won't accidentally
+- `01:26` get pulled out of an interface, and to remove it,
+- `01:28` you need to push down on the clip.
+- `01:30` That will release the lock and allow you to easily remove it
+- `01:33` from the interface.
+- `01:34` Instead of local connector, you might also
+- `01:36` see this referred to as a Lucent connector or a little connector.
+- `01:40` The LC connector can also be combined
+- `01:43` in a pair-- looks like this-- and you can plug both of them
+- `01:46` in simultaneously.
+- `01:48` And again, one is used for transmit and the other used for
+- `01:50` receive.
+- `01:52` Another fiber on our list is the ST connector.
+- `01:55` That stands for Straight Tip.
+- `01:57` It uses a bayonet connector.
+- `01:59` So you push it into an interface,
+- `02:01` give it a slight twist, and it is locked in place.
+- `02:04` This will not easily get removed from the interface
+- `02:07` unless you reverse that twist, and then you can remove it
+- `02:10` from the interface.
+- `02:11` When you're working inside of a rack
+- `02:13` and there's a large number of cables and fiber,
+- `02:15` it can be very easy to accidentally dislodge
+- `02:18` one of those connections.
+- `02:19` That's why we have all of these different locking mechanisms
+- `02:23` for these different interface types.
+- `02:25` Here's a closer view of the ST connector.
+- `02:28` There is a protective ferrule around the fiber, which
+- `02:30` you can barely see in this picture,
+- `02:32` and you can easily see the bayonet connector
+- `02:35` where you would plug it in and twist it in place so that it
+- `02:38` is locked into that interface.
+- `02:41` One of the challenges with the connector types that we've
+- `02:43` seen so far is that those fiber connections take up
+- `02:47` a lot of real estate.
+- `02:48` It would be a lot more efficient if we
+- `02:50` could put more fiber into a smaller connection,
+- `02:54` and there is a connector type for that called the MPO, which
+- `02:57` is Multi-fiber Push On.
+- `02:59` Inside the MPO are 12 individual fibers
+- `03:02` that are contained in that single cable connection.
+- `03:05` This also has a lock in place that's
+- `03:08` very similar to the SC connector where you would push it
+- `03:11` in place, and you would have to pull it out slightly
+- `03:13` to unlock it from the interface.
+- `03:16` You might also see this connector referred to as an MTP.
+- `03:19` That name is provided by Corning,
+- `03:21` and they refer to this as an MTP MPO connector.
+- `03:26` Here's a side view of the connector.
+- `03:28` It has this lock on the top, and the individual fibers
+- `03:31` are these smaller dots you can barely see in this picture.
+- `03:35` If we look at it straight on with some light being
+- `03:37` sent through the fiber, you can see that all 12 of those fibers
+- `03:41` are much easier to see on the MPO connector.

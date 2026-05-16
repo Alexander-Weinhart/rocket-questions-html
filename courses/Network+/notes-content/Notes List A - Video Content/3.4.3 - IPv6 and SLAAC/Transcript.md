@@ -1,0 +1,120 @@
+# [3.4.3 - IPv6 and SLAAC](https://www.youtube.com/watch?v=A6WVj82by3Y)
+
+## 3.4.3 - IPv6 and SLAAC
+
+- Day: Day 7
+- Duration: 4:53
+
+## Transcript
+
+- `00:02` with IPv6 we've taken a number of
+- `00:04` techniques we've used with ipv4 and
+- `00:06` we've updated them for the modern
+- `00:08` network of course there's DHCP for IP
+- `00:11` version 6 those DHCP servers use a very
+- `00:15` similar process to what we saw with ipv4
+- `00:17` to assign IP addresses with IP version 6
+- `00:21` this uses redundant DHCP servers so it's
+- `00:24` ready for the Enterprise and you as the
+- `00:26` DHCP administrator will be managing this
+- `00:29` DHCP version 6 server as well but unlike
+- `00:33` IP version 4 IP version 6 can assign an
+- `00:37` IP address to itself and be able to
+- `00:39` communicate with anyone on the network
+- `00:42` we refer to this as stateless addressing
+- `00:45` there's no DHCP server that manages the
+- `00:48` process you don't have to keep track of
+- `00:50` IP addresses or Mac addresses and with
+- `00:52` this stateless addressing there's no
+- `00:54` lease time so you never have to worry
+- `00:57` about giving up your IP address and
+- `01:00` important protocol that's used for IPv6
+- `01:02` stateless dressing and other purposes is
+- `01:05` the NDP protocol that stands for
+- `01:08` neighbor Discovery protocol in IP
+- `01:10` version 4 we use the address resolution
+- `01:13` protocol or ARP to be able to find other
+- `01:15` devices on the network but ARP requires
+- `01:18` broadcast to be able to operate with NDP
+- `01:21` we're using multicast so the overall
+- `01:23` communication is much more efficient the
+- `01:25` way that an IPv6 device is able to
+- `01:28` effectively assign it self an IPv6
+- `01:31` address is using stateless address
+- `01:34` autoconfiguration or slack you don't
+- `01:36` need a DHCP server the device running
+- `01:39` IPv6 creates its own IP address to use
+- `01:43` one of the concerns we obviously have is
+- `01:45` that if a device is creating its own IP
+- `01:47` address it could potentially conflict
+- `01:50` with an existing IP address on the
+- `01:52` network but in IP version 6 we have
+- `01:54` duplicate address detection or dad and
+- `01:57` it checks to be sure that there are no
+- `01:59` dup duplicate IP addresses on the
+- `02:01` network neighbor Discovery protocol can
+- `02:04` do more than simply find other devices
+- `02:06` on your network can also identify
+- `02:08` routers using the router solicitation
+- `02:10` and router advertisement
+- `02:13` features if a device wants to find a
+- `02:15` router that's on its local subnet it
+- `02:17` uses this neighbor Discovery protocol
+- `02:20` and uses the router solicitation feature
+- `02:23` and sends that to a multicast that says
+- `02:25` if there's any router out there please
+- `02:27` respond back and if a router sees that
+- `02:29` multicast it will send a router
+- `02:31` advertisement directly back to that
+- `02:33` workstation routers can also send their
+- `02:36` own advertisements out without being
+- `02:38` queried refer to those as unsolicited ra
+- `02:41` messages they're sent to a slightly
+- `02:43` different multicast location and they
+- `02:46` are sent to all of the devices on the
+- `02:47` network that might be interested in
+- `02:49` knowing where routers exist this router
+- `02:52` advertisement is useful because it can
+- `02:55` provide information about the local
+- `02:56` subnet things such as prefix values
+- `02:59` prefix fix lengths DNS server
+- `03:01` configuration and other IPv6
+- `03:04` configuration
+- `03:05` parameters so here's how slack or the
+- `03:08` stateless address autoc configuration
+- `03:10` works with IP version 6 the first thing
+- `03:13` your device does is determine what local
+- `03:15` subnet am I on and it does that by using
+- `03:17` the neighbor Discovery protocol and
+- `03:19` asking a router through the router
+- `03:21` solicitation feature what subnet is this
+- `03:24` the router will respond back with a
+- `03:26` router advertisement containing that
+- `03:28` information for for example we can query
+- `03:31` the router using this neighbor Discovery
+- `03:32` protocol and we'll receive back this
+- `03:35` 64-bit IPv6 subnet prefix you can see an
+- `03:38` example of that is listed here but of
+- `03:41` course that's only half of the IPv6
+- `03:43` address we also need what's known as the
+- `03:46` last 64 bits or the interface ID many
+- `03:49` devices will take a modified version of
+- `03:52` their Mac address put the letters FF Fe
+- `03:55` in the middle to create 64 bits that it
+- `03:58` can then use as the last part of the
+- `04:00` address other devices will simply
+- `04:02` randomize this value to create those
+- `04:04` last 64 bits and just to make sure that
+- `04:07` this random value or the value
+- `04:09` associated with the MAC address doesn't
+- `04:12` somehow already match an IPv6 address on
+- `04:15` the network the neighbor Discovery
+- `04:17` protocol is used again it uses a feature
+- `04:19` called duplicate address detection or
+- `04:21` dad and checks the rest of the network
+- `04:24` to be sure that no one else is using
+- `04:27` that specific IPv6 address now that the
+- `04:30` stateless address autoconfiguration
+- `04:32` process is complete your device now has
+- `04:35` a completely routable IPv6 address that
+- `04:38` is unique to that particular station

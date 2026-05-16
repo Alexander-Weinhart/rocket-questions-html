@@ -1,0 +1,264 @@
+# [5.3.2 - Routing and IP Issues](https://www.youtube.com/watch?v=pbOi48USeVw)
+
+## 5.3.2 - Routing and IP Issues
+
+- Day: Day 11
+- Duration: 9:37
+
+## Transcript
+
+- `00:02` if you're the administrator of routers
+- `00:03` then you're certainly familiar with the
+- `00:05` importance of routing tables we use
+- `00:08` routing tables to determine what the
+- `00:10` best next hop will be when we're
+- `00:12` forwarding traffic through the router so
+- `00:14` if you need to know how to get from
+- `00:15` point A to point B we ask the router the
+- `00:17` best Direction and then it sends the
+- `00:19` information on its way the routing
+- `00:21` information builds a map of where data
+- `00:23` will be forwarded within that router so
+- `00:25` you can look at default gateways so you
+- `00:27` could look at default gateway
+- `00:29` configuration or routes that have been
+- `00:31` statically added to the router it would
+- `00:33` certainly help if you had a map of the
+- `00:35` network that way you could look at the
+- `00:36` routing table compare that to a map and
+- `00:39` make sure that data is being forwarded
+- `00:41` out the correct interface normally when
+- `00:43` troubleshooting routing problems you
+- `00:44` should look at the routing table of
+- `00:46` every router along that path not only
+- `00:49` the route to get from one end of the
+- `00:51` network to the other but you also have
+- `00:53` to confirm that you have proper routes
+- `00:54` to get back to the original workstation
+- `00:57` this routing table is important we need
+- `00:59` to be sure that we have a route for
+- `01:01` every possible location and if we don't
+- `01:04` have a route inside of our routing table
+- `01:06` the router will simply drop that traffic
+- `01:09` sometimes the router will send back a
+- `01:10` message to the station that sent the
+- `01:12` traffic called an icmp host unreachable
+- `01:15` message so you may be informed that that
+- `01:18` information was not able to make its way
+- `01:20` through the network because of this
+- `01:22` issue with the routing table so the
+- `01:24` network we have here has a laptop on one
+- `01:26` side of the network and a laptop on the
+- `01:28` other side of the network and separating
+- `01:30` those two networks are three separate
+- `01:33` routers between each router of course is
+- `01:35` a switch that allows us to connect those
+- `01:37` together so we would need to check the
+- `01:39` routing table in router one and make
+- `01:41` sure that it had a route for the
+- `01:43` destination Network we were trying to
+- `01:45` reach so you might want to check the
+- `01:46` router one routing table and make sure
+- `01:48` that it had a route to the network that
+- `01:50` the laptop is connected to which in this
+- `01:52` case is
+- `01:54` 10410
+- `01:55` sl24 so in this example we're trying to
+- `01:58` Ping 10.3.1 .2 from our laptop on this
+- `02:02` side of the network you can see that
+- `02:03` that 10.3.1 10.2 address is located
+- `02:07` right here on the other side of router 2
+- `02:10` so we would need to have a route to this
+- `02:12` particular subnet which is 10310 do0 24
+- `02:17` we would go to router 1 look at the
+- `02:19` routing table in router 1 and confirm
+- `02:21` that it had a route to that particular
+- `02:23` network if it doesn't we'll receive a
+- `02:26` message like this when we try to Ping
+- `02:28` that says the destination host is is
+- `02:31` unreachable as you can imagine on a
+- `02:33` large Network you may have a very large
+- `02:35` routing table but often the router can
+- `02:38` be configured in a way that summarizes
+- `02:40` these routes into one Central default
+- `02:43` route this would be our Gateway of Last
+- `02:46` Resort if there's no other route in the
+- `02:48` routing table that matches the
+- `02:50` destination of the traffic that we're
+- `02:51` sending we could choose to have one
+- `02:53` final route that's used as the default
+- `02:56` if none of those other routes exist this
+- `02:59` is usually added as a static route so
+- `03:01` you would administratively configure
+- `03:02` that route in your router configuration
+- `03:05` and if there's nothing in the routing
+- `03:06` table that matches that destination we
+- `03:08` can always use that static route as our
+- `03:11` Gateway of Last Resort if you have a
+- `03:14` Gateway of Last Resort in your router
+- `03:16` the destination is probably
+- `03:18` 0.0.0.0
+- `03:20` sl0 that encompasses every host on every
+- `03:23` Network this way if nothing else matches
+- `03:26` within that routing table we know that
+- `03:28` this final Gateway of last Resort will
+- `03:30` match all other traffic here's a routing
+- `03:33` table from a router that shows a number
+- `03:36` of directly connected routes you can see
+- `03:38` 10.10.10
+- `03:40` Z24 we've also got
+- `03:42` 101040 Z24 and 101050 sl24 all of these
+- `03:48` are directly connected to this
+- `03:49` particular router there are also some
+- `03:51` routes that have been added with a
+- `03:53` static route to 10.10.20
+- `03:56` Z24 and another route that has been
+- `03:58` learned through rip this is
+- `04:00` 101030
+- `04:02` Z24 we don't have any other route in
+- `04:05` this particular router to tell us where
+- `04:07` to go if we don't match any of these
+- `04:10` existing routes in fact you'll see that
+- `04:12` it says that the Gateway of Last Resort
+- `04:15` is not set for this particular router to
+- `04:18` add this Gateway of Last Resort We'll
+- `04:20` add a static route that has a
+- `04:21` destination to
+- `04:23` 0.0.0.0
+- `04:25` and if you want to go to that Gateway of
+- `04:28` Last Resort you need to leave via
+- `04:30` 101050 do2 if nothing matches in this
+- `04:34` routing table then it will use the
+- `04:36` Gateway of Last Resort and send all
+- `04:38` traffic out 101050 do2 to the next
+- `04:42` router down the
+- `04:44` line if you've turned on your computer
+- `04:46` and you did not receive a DHCP address
+- `04:49` and instead your system was configured
+- `04:51` with an apipa address this could be a
+- `04:55` case where we have run out of addresses
+- `04:57` on our DHCP server if the address pool
+- `05:00` has been exhausted then we'll receive an
+- `05:02` automatic private IP address in IP
+- `05:05` version 4 although an apipa address
+- `05:08` allows you to communicate to other
+- `05:09` devices on your local subnet it is a
+- `05:11` non-routable address and you would not
+- `05:13` be able to communicate outside of your
+- `05:16` local subnet we would certainly check
+- `05:18` the DHCP server and see if it has
+- `05:20` available IP addresses and if we need to
+- `05:22` add additional addresses to that then we
+- `05:24` can do that on the DHCP server itself
+- `05:27` many organizations will have a
+- `05:29` management console for all of their DHCP
+- `05:31` servers this is an IP address management
+- `05:34` device or ipam where you can monitor and
+- `05:37` view all of the available addresses you
+- `05:39` can look at the pools of addresses and
+- `05:41` the availability on each DHCP server if
+- `05:44` this network is one where people are
+- `05:46` only there for a short period of time
+- `05:48` before leaving you might want to
+- `05:50` decrease your lease time so that there's
+- `05:52` no more address pool exhaustion this
+- `05:55` means we'll be able to free up more IP
+- `05:57` addresses in a shorter period of time
+- `05:59` and and therefore minimize the chance of
+- `06:01` an address pull
+- `06:03` exhaustion usually IP address
+- `06:05` information is configured and defined by
+- `06:07` the network administrator they'll add it
+- `06:09` to a DHCP server and you'll receive
+- `06:11` those parameters when you connect to the
+- `06:13` network however sometimes you might
+- `06:15` receive incorrect information there
+- `06:18` might be the wrong IP address subnet
+- `06:20` mask or default gateway so you might
+- `06:22` want to check with the network
+- `06:23` administrator and confirm that the IP
+- `06:25` address values that you've received are
+- `06:27` correct for the interface that you're
+- `06:29` connect connected to sometimes you can
+- `06:31` perform a packet capture to see what
+- `06:33` other devices on your local subnet might
+- `06:35` be configured as and that might give you
+- `06:37` an idea as to the IP address or subnet
+- `06:40` mask for a particular Network you could
+- `06:42` also try looking at other devices that
+- `06:44` are on the same network if you're
+- `06:46` configuring a router and there's a
+- `06:48` different router already connected to
+- `06:50` this network you might want to look at
+- `06:51` that configuration and see what IP
+- `06:53` address it's been assigned and for
+- `06:55` normal troubleshooting we would normally
+- `06:57` start with pinging our local address and
+- `06:59` if that works we would ping our default
+- `07:01` gateway and if that works we would try
+- `07:03` an IP address on the other side of the
+- `07:06` default gateway if we step through this
+- `07:08` process using ping and trace route we
+- `07:11` should be able to put together a map of
+- `07:13` where we are in this network and based
+- `07:15` on that information we should be able to
+- `07:17` determine if we've been assigned an IP
+- `07:19` address that's correct for the interface
+- `07:21` that we're connected
+- `07:23` to even with all the work that goes into
+- `07:26` configuring these DHCP servers we will
+- `07:29` occasionally Ally still see a duplicate
+- `07:31` IP address often this is from a device
+- `07:33` that has been manually configured and
+- `07:35` it's using an IP address that exists in
+- `07:38` an existing DHCP pool or perhaps you've
+- `07:41` configured multiple DHCP servers but
+- `07:43` you've accidentally overlap those pools
+- `07:46` between the servers and each one of
+- `07:48` those is giving out duplicate addresses
+- `07:50` and sometimes a device is added to the
+- `07:52` network with DHCP turned on by default
+- `07:55` and it starts handing out IP addresses
+- `07:57` that are different than the IP addresses
+- `07:59` that you would expect on your network
+- `08:01` with older operating systems we would
+- `08:03` have the two devices fight over which
+- `08:05` one has priority on the network usually
+- `08:07` based on the Mac address table of a
+- `08:09` switch but in most modern operating
+- `08:12` systems this duplicate IP address is
+- `08:14` discovered when a device first connects
+- `08:16` to the network and it prevents any type
+- `08:18` of duplication you'll see an error
+- `08:20` message on the screen and from there you
+- `08:22` can decide what to do next to
+- `08:23` troubleshoot this duplicate problem if
+- `08:26` this is a manually configured device you
+- `08:28` want to look at the config figuration
+- `08:29` you've been given check the IP address
+- `08:32` the subnet mask and the default gateway
+- `08:34` if you have a different workstation that
+- `08:36` you can test with you might want to try
+- `08:38` pinging that IP address before
+- `08:40` statically configuring it inside of a
+- `08:42` device if you receive a response and you
+- `08:44` haven't configure the device yet then
+- `08:47` adding that system to the network would
+- `08:49` certainly cause a conflict if you do
+- `08:51` receive a response to a ping and you
+- `08:53` weren't expecting that IP address to be
+- `08:55` on the network then you'll have to hunt
+- `08:57` down where that workstation happens to
+- `08:58` be an easy way to do this is to Ping the
+- `09:01` IP address and then check the ARP table
+- `09:03` if this device is on your local
+- `09:05` broadcast domain then you now have the
+- `09:06` MAC address of that device and you
+- `09:09` should be able to go to the MAC address
+- `09:10` table of your switch to see which
+- `09:12` interface this device is plugged into
+- `09:15` and if this problem is associated with
+- `09:17` two DHCP servers handing out the same
+- `09:19` address you might want to perform a
+- `09:21` packet capture to see exactly what these
+- `09:24` DHCP servers are offering

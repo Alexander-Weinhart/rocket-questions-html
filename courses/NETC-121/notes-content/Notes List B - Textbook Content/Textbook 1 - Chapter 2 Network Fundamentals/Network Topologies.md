@@ -1,16 +1,16 @@
-# 🗺️ Network Topologies
+# Network Topologies
 
 A network topology describes the **physical or logical arrangement** of devices and connections in a network. The topology affects performance, fault tolerance, cost, and scalability.
 
 ---
 
-## Bus Topology 🚌
+## Bus Topology 
 
 All devices connect to a **single shared cable** (the bus). Signals travel in both directions along the cable and every device receives every transmission.
 
 ```
-Device A ──┬── Device B ──┬── Device C ──┬── Device D
-           │              │              │
+Device A  Device B  Device C  Device D
+                                       
         (shared coaxial cable — one collision domain)
 ```
 
@@ -23,15 +23,15 @@ Device A ──┬── Device B ──┬── Device C ──┬── Devic
 
 ---
 
-## Star Topology ⭐
+## Star Topology 
 
 All devices connect to a **central device** (switch or hub). No device connects directly to another.
 
 ```
          Device A
-             │
-Device D ───Switch─── Device B
-             │
+             
+Device D Switch Device B
+             
          Device C
 ```
 
@@ -44,14 +44,14 @@ Device D ───Switch─── Device B
 
 ---
 
-## Ring Topology 💍
+## Ring Topology 
 
 Devices connect in a **closed loop**. Data travels in one direction (or both in dual-ring) around the ring until it reaches its destination.
 
 ```
-Device A ──► Device B ──► Device C
-   ▲                          │
-   └────── Device D ◄─────────┘
+Device A  Device B  Device C
+                             
+    Device D 
 ```
 
 **Characteristics:**
@@ -62,7 +62,7 @@ Device A ──► Device B ──► Device C
 
 ---
 
-## Mesh Topology 🕸️
+## Mesh Topology 
 
 Every device connects to **multiple other devices** directly. Offers maximum redundancy.
 
@@ -70,12 +70,12 @@ Every device connects to **multiple other devices** directly. Offers maximum red
 Every device connects to every other device.
 
 ```
-A ──── B
-│ ╲  ╱ │
-│  ╲╱  │
-│  ╱╲  │
-│ ╱  ╲ │
-C ──── D
+A  B
+    
+    
+    
+    
+C  D
 ```
 
 - Maximum redundancy — multiple paths exist
@@ -103,7 +103,7 @@ Some devices have multiple connections, others have just one.
 
 ## Key Points
 
-- 📌 **Bus** — single cable, all share, one break = everything fails (legacy)
-- 📌 **Star** — central switch, most common, easy to manage
-- 📌 **Ring** — circular loop, token-based, used in telecoms
-- 📌 **Mesh** — multiple paths, expensive but highly redundant
+- **Bus** — single cable, all share, one break = everything fails (legacy)
+- **Star** — central switch, most common, easy to manage
+- **Ring** — circular loop, token-based, used in telecoms
+- **Mesh** — multiple paths, expensive but highly redundant

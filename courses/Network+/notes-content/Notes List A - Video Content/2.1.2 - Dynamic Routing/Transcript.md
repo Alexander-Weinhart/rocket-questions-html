@@ -1,0 +1,205 @@
+# [2.1.2 - Dynamic Routing](https://www.youtube.com/watch?v=YRZxshxI1xs)
+
+## 2.1.2 - Dynamic Routing
+
+- Day: Day 5
+- Duration: 9:12
+
+## Transcript
+
+- `00:01` Static routing requires the network administrator manually
+- `00:05` configure every route on every router in the organization.
+- `00:10` If you have three or four routers,
+- `00:11` that might not be a big problem.
+- `00:13` But if you have tens or even hundreds of routers,
+- `00:17` you might want to have a more automated way for configuring
+- `00:20` your routing tables.
+- `00:21` One way to do that is through the process of dynamic routing.
+- `00:25` Dynamic routing will have the routers
+- `00:27` handle this process for you, automatically discover
+- `00:31` these routes, and update each other as to where
+- `00:34` the best route might be.
+- `00:35` This means that you as the network administrator
+- `00:38` don't have to do any type of static route configuration.
+- `00:42` You don't have to SSH into the router,
+- `00:44` make any configuration changes, or update
+- `00:47` those routes if anything changes with your network
+- `00:49` infrastructure.
+- `00:50` Any time you bring a new router online, all of the other routers
+- `00:54` will automatically know where the new route is.
+- `00:57` And if you happen to remove a router from the network,
+- `00:59` all of the routers also know that that route is now
+- `01:02` no longer available.
+- `01:04` There is a bit of overhead required inside of the router
+- `01:07` to be able to automatically discover these routes
+- `01:10` and update the routing tables.
+- `01:12` This will require some CPU and memory inside of the router,
+- `01:16` so you may need to do additional monitoring
+- `01:19` to make sure that your router is able to handle that load.
+- `01:22` This also requires you to initially configure
+- `01:25` the dynamic routing protocol.
+- `01:27` This may be a relatively easy configuration process,
+- `01:30` or it may require additional planning and engineering
+- `01:33` to be able to implement it properly
+- `01:35` in the config of the router.
+- `01:37` Let's look at this network configuration where we have Sam
+- `01:41` that may want to communicate across the network to Jack
+- `01:44` or to Teal'c.
+- `01:45` You'll notice that there are three different routers.
+- `01:48` And for this particular example, let's focus on router one.
+- `01:51` You'll notice that router one is directly connected
+- `01:54` to three different subnets, but there
+- `01:57` are two subnets on the other side of router two
+- `01:59` and router three that router one simply can't see.
+- `02:03` So we need some way to update router one
+- `02:06` with those additional routes.
+- `02:08` One way to do this would be to have router
+- `02:10` to send a routing update via EIGRP to router one.
+- `02:15` Router one receives that update and then updates its own routing
+- `02:19` table with this new route to 10.10.20.0/24.
+- `02:24` And the way that you get to that network is to go to 10.10.40.2.
+- `02:29` We also have another EIGRP update that
+- `02:32` has come from router three.
+- `02:33` And when that update is received,
+- `02:35` router one identifies a new route to 10.10.30.0.
+- `02:40` That's the subnet down at the bottom.
+- `02:42` And you can see that the next hop is 10.10.50.2.
+- `02:47` All of these updates occurred in real time behind the scenes
+- `02:50` without any type of user intervention.
+- `02:53` And if we happen to add or remove routers
+- `02:55` from this network, this routing table
+- `02:57` will be updated with an additional EIGRP
+- `03:00` update that will either add or remove
+- `03:03` those routes from the table.
+- `03:05` Although it looks relatively straightforward to perform
+- `03:08` these dynamic routing updates, there's actually a lot of work
+- `03:11` that occurs behind the scenes.
+- `03:13` First, the router needs to listen to the traffic that
+- `03:15` is on the local subnet and see if there are other routers that
+- `03:19` are sending routing updates that it can use
+- `03:21` to build its own routing table.
+- `03:23` These are very often sent directly from router to router,
+- `03:26` either directly or with a multicast.
+- `03:29` Once a router then builds its routing table,
+- `03:31` it needs to inform other routers of routes that it knows.
+- `03:35` So it will send its own multicast
+- `03:37` to other routers that are nearby,
+- `03:39` informing them of all of the routes
+- `03:41` that that router happens to know.
+- `03:44` Once the other routers receive this update,
+- `03:46` they need to interpret this information
+- `03:48` and determine if that's a better route than what they already
+- `03:51` have or if they should use this as a secondary route.
+- `03:55` Different routing tables use different methods
+- `03:57` to make these decisions, and they
+- `03:59` will update their routing tables differently
+- `04:01` depending on the protocol you happen to be using.
+- `04:04` And of course, if there is any change to the network
+- `04:07` infrastructure, these routers need
+- `04:08` to inform all of the other routers
+- `04:10` that the change has occurred.
+- `04:12` So if we add a new link into our router, we remove a router,
+- `04:15` or we add a router, we need to make sure
+- `04:18` that all of our routing tables are updated
+- `04:20` across the entire network.
+- `04:22` There are a number of different dynamic routing protocols
+- `04:25` to choose from.
+- `04:26` So which one would be the best for
+- `04:28` your particular implementation?
+- `04:30` Different routing protocols make routing decisions
+- `04:33` in different ways.
+- `04:34` For example, would you like your traffic to be routed based
+- `04:37` on the state of the link-- whether the link is up or down--
+- `04:40` or would you like to be able to make that decision based
+- `04:43` on the number of hops that a link might be away
+- `04:45` from you or the speed of that connection?
+- `04:48` Based on the routing protocol that you're using,
+- `04:50` that decision might be very different.
+- `04:52` Some routing protocols will use a different criteria
+- `04:55` to determine the best way to get to a remote location.
+- `04:59` You might also find that some routing protocols are
+- `05:01` able to make changes very quickly if anything happens
+- `05:05` to the underlying infrastructure.
+- `05:06` So if you add a new router to the network,
+- `05:09` it might take a number of seconds
+- `05:10` or it might take a minute, depending
+- `05:13` on the type of dynamic routing protocol that you're using.
+- `05:16` And in some cases, we need to take into account the type
+- `05:19` of router that we're using.
+- `05:20` Some routing protocols such as BGP and OSPF are very common
+- `05:25` and can be used across many manufacturers' devices.
+- `05:28` Some routing protocols such as EIGRP
+- `05:30` may work best in a Cisco-centric environment.
+- `05:33` So if you have a lot of Cisco routers,
+- `05:35` that might be a better routing protocol for you.
+- `05:38` Although EIGRP tends to be very Cisco-centric,
+- `05:42` you may find EIGRP is also available on
+- `05:45` other manufacturers' routers.
+- `05:47` But there are some aspects of EIGRP
+- `05:49` that are proprietary to Cisco, so you
+- `05:51` tend to see it mostly in Cisco-related configurations.
+- `05:55` But one advantage of EIGRP is that it
+- `05:58` is relatively easy to set up.
+- `06:00` You would turn on EIGRP in your Cisco router,
+- `06:03` give it a few minor configuration options,
+- `06:06` and it's now up and running with the EIGRP protocol.
+- `06:10` When there are changes, EIGRP tends
+- `06:12` to converge relatively quickly, and it's also
+- `06:15` able to identify any loops and prevent those from occurring
+- `06:18` on your routed network.
+- `06:20` EIGRP is also very good at identifying other EIGRP enabled
+- `06:25` routers and sending updates over a minimum of network traffic.
+- `06:30` This keeps your network more efficient
+- `06:32` and leaves your bandwidth available
+- `06:33` for other applications.
+- `06:36` If you want a more generic dynamic routing protocol that
+- `06:39` can be used across different manufacturers' routers,
+- `06:41` then you might want to try OSPF.
+- `06:43` This is the Open Shortest Path First routing protocol,
+- `06:47` and it's one that you'll find available
+- `06:49` on a number of different manufacturers' devices.
+- `06:52` This is often implemented in a network
+- `06:54` where you have complete control of those systems.
+- `06:57` We often refer to this as an AS, or an Autonomous System.
+- `07:02` For example, if you're running a wide area network that
+- `07:05` has 50 different routers, those 50 routers
+- `07:07` would be part of your single autonomous system.
+- `07:10` Another advantage of OSPF is that it's
+- `07:13` available on many different manufacturers' devices.
+- `07:16` This is a common standard, and you
+- `07:17` can download this standard from the internet
+- `07:19` and read through every aspect of OSPF.
+- `07:23` We refer to OSPF as a link-state protocol, which
+- `07:26` means it determines what the best route is based
+- `07:29` on uptime and availability between the different OSPF
+- `07:32` routers.
+- `07:33` OSPFs can be used to assign costs to an individual link,
+- `07:37` so certain links may have a higher cost than another.
+- `07:41` This allows OSPF to make routing decisions
+- `07:43` based on what the least cost might be.
+- `07:45` This cost is often associated with how much throughput
+- `07:48` may be available on a particular link,
+- `07:51` if that link is up or down, and how long it takes to traverse
+- `07:55` that particular connection.
+- `07:56` With OSPF, the lowest cost and the fastest path
+- `07:59` is going to be the best route to a remote location.
+- `08:02` And if there are identical costs on OSPF,
+- `08:05` many implementations will allow you to load balance
+- `08:08` across both of those links.
+- `08:10` If you need to route traffic outside of your autonomous
+- `08:14` system to other organizations, then you
+- `08:16` might want to use an external gateway protocol such as BGP.
+- `08:21` BGP is the Border Gateway Protocol,
+- `08:24` and it's commonly used on our wide area networks and internet
+- `08:28` connections.
+- `08:28` Connecting the internet together and being
+- `08:31` able to dynamically update the routes on the entire internet
+- `08:35` is a daunting task, and this particular routing protocol
+- `08:38` was designed with this specific task in mind.
+- `08:41` Sometimes you'll hear BGP referred
+- `08:43` to as the three-napkins protocol because it was sketched out
+- `08:47` on napkins initially to solve this particular type of problem.
+- `08:51` If your organization has one or more connections to the internet
+- `08:54` and you want to be able to dynamically route
+- `08:57` to those internet sites, then you'll
+- `08:58` want to use a protocol such as BGP.

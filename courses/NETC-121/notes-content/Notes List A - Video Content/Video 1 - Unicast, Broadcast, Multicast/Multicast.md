@@ -1,4 +1,4 @@
-# 📡 Multicast — One-to-Many (Selected Group)
+# Multicast — One-to-Many (Selected Group)
 
 Multicast is the middle ground between unicast and broadcast. One sender delivers data to a **specific group** of receivers — only devices that have opted in receive it.
 
@@ -11,10 +11,10 @@ Devices that want multicast data **join a multicast group**. The sender transmit
 ```
 Sender ──► [Multicast Group 224.0.0.1]
                │
-               ├──► Device A  ✅ (joined the group)
-               ├──► Device B  ❌ (not in group — ignored)
-               ├──► Device C  ✅ (joined the group)
-               └──► Device D  ❌ (not in group — ignored)
+               ├──► Device A   (joined the group)
+               ├──► Device B   (not in group — ignored)
+               ├──► Device C   (joined the group)
+               └──► Device D   (not in group — ignored)
 ```
 
 ---
@@ -25,7 +25,7 @@ Sender ──► [Multicast Group 224.0.0.1]
 |---|---|
 | Unicast | 100 separate streams — 100× bandwidth |
 | Broadcast | 1 stream — but sent to everyone, even those who don't want it |
-| Multicast | 1 stream — delivered only to interested devices ✅ |
+| Multicast | 1 stream — delivered only to interested devices  |
 
 Multicast lets the server send **one copy** of the data, and the network handles distribution to all group members. The server doesn't even need to know how many are watching.
 
@@ -56,14 +56,14 @@ Multicast uses a reserved IP range: **224.0.0.0 – 239.255.255.255**
 
 ## Requirements
 
-> ⚙️ Multicast requires **special network configuration**. Routers must be set up to support multicast routing protocols (like **PIM — Protocol Independent Multicast**) to forward multicast traffic between network segments. Without this, multicast stays local.
+> Multicast requires **special network configuration**. Routers must be set up to support multicast routing protocols (like **PIM — Protocol Independent Multicast**) to forward multicast traffic between network segments. Without this, multicast stays local.
 
 ---
 
 ## Key Properties
 
-- 📌 Destination: a multicast group address (224.x.x.x range)
-- 📌 Receivers must **opt in** by joining the group
-- 📌 Single stream from sender — far more efficient than unicast for groups
-- 📌 Used for live streams, routing protocols, stock feeds
-- 📌 Requires special router configuration to cross network boundaries
+- Destination: a multicast group address (224.x.x.x range)
+- Receivers must **opt in** by joining the group
+- Single stream from sender — far more efficient than unicast for groups
+- Used for live streams, routing protocols, stock feeds
+- Requires special router configuration to cross network boundaries

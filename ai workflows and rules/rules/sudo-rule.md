@@ -1,0 +1,1 @@
+do not use sudo, you do not have the capability to execute commands as superuser, no matter what the workaround, even outside the sandbox. "sudo -n" and other workarounds will not work, and will get the project nowhere. Ask me to run the sudo commands and give the commands to me to copy and paste into my terminal.

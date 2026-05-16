@@ -1,0 +1,277 @@
+# [2.4.1 - Installing Networks](https://www.youtube.com/watch?v=7NLsuBIvVVA)
+
+## 2.4.1 - Installing Networks
+
+- Day: Day 6
+- Duration: 11:40
+
+## Transcript
+
+- `00:01` A distribution frame is an area of the network where you are
+- `00:05` passively terminating cables.
+- `00:07` This usually involves punch down blocks,
+- `00:09` like the ones we see here.
+- `00:10` Could be patch panels or any other method
+- `00:13` where we are terminating those cables, usually
+- `00:16` in a data center or some other large facility.
+- `00:19` You will usually find this distribution frame
+- `00:21` on the back wall of the data center,
+- `00:23` and it's often terminating cables
+- `00:24` that are coming in for your local area network and voice
+- `00:27` communication.
+- `00:29` And although the punch down blocks and patch panels
+- `00:31` that we have on the wall are technically the distribution
+- `00:34` frame, we often refer to the entire room
+- `00:37` as the distribution frame room.
+- `00:40` For example, the primary distribution frame
+- `00:43` is called the Main Distribution Frame or MDF,
+- `00:46` and we often refer to the entire room
+- `00:48` where it's located as the MDF facility.
+- `00:51` The MDF is usually a single room.
+- `00:53` It's often the data center or central point of the network.
+- `00:57` And this is where we might bring in wide area network connections
+- `01:00` and punch those down, along with all of our internal local area
+- `01:03` connections as well.
+- `01:05` Since we have all of this connectivity in one place,
+- `01:07` it is a perfect testing point, especially
+- `01:10` if you need to test both your internal local networks
+- `01:12` and your external wide area network connections.
+- `01:15` And even if your network doesn't have this large set of punch
+- `01:18` down blocks in the back, we sometimes
+- `01:21` even often refer to this central data center room as the MDF.
+- `01:26` Here's a view of one MDF.
+- `01:28` This one contains a number of different racks,
+- `01:30` with computer equipment and the networking components as well.
+- `01:34` Here's another MDF.
+- `01:35` You can see a large number of punch
+- `01:37` down blocks or patch panels that are on the single rack and some
+- `01:41` on individual racks as well.
+- `01:43` And it's intermixed with the equipment
+- `01:45` that we need to run inside of this data center.
+- `01:48` Another type of distribution frame
+- `01:50` is the Intermediate Distribution Frame or the IDF.
+- `01:54` Usually the IDF is in a separate floor or a separate building,
+- `01:58` and it's often directly connected to the MDF.
+- `02:02` Most IDFs these days include switches, routers,
+- `02:05` and other equipment that you need
+- `02:07` to be able to connect this area of the network
+- `02:09` to the larger MDF.
+- `02:11` Usually find this combination of MDFs and IDFs in medium
+- `02:15` to larger scale environments, where
+- `02:17` you need to have many different remote rooms
+- `02:20` all connecting back to the central data center.
+- `02:23` Here's a view of what that would look like,
+- `02:25` where you have the MDF.
+- `02:26` Maybe this is where our internet connection comes in.
+- `02:29` There might be a core router and a core switch.
+- `02:31` You might even have file servers and database servers in the MDF.
+- `02:36` Maybe on different floors of the building,
+- `02:38` you would then have individual IDFs.
+- `02:40` In this case, there are two.
+- `02:41` But there might be more than that
+- `02:43` in this particular environment.
+- `02:44` And in the IDF, you might be connecting users on the floor
+- `02:48` to a central switch in the IDF.
+- `02:50` And that switch is connecting back
+- `02:52` to the main core switch in the MDF.
+- `02:55` We've already seen an example of an IDF and an MDF.
+- `02:59` And one of the things that you'll notice
+- `03:01` is there are racks that are very common in each
+- `03:04` of those environments.
+- `03:06` That's because the racks that we use in these environments are
+- `03:09` standardized and most rack sizes are 19-inch racks.
+- `03:12` They're 19 inches across in each of these.
+- `03:16` And we design our equipment to fit perfectly into that 19-inch
+- `03:21` width.
+- `03:21` You'll also notice that the equipment in these racks
+- `03:24` might also have different heights.
+- `03:26` And we have a standard for those heights known as a rack unit
+- `03:29` or a U. 1U would be 1.75 inches.
+- `03:33` And we can measure a different number of units
+- `03:36` based on that value.
+- `03:38` So you can easily tell somebody that we need 2U or 3U of space
+- `03:42` to be able to install a piece of equipment.
+- `03:45` And most racks, like the ones we see here,
+- `03:47` are generally about 42U in height.
+- `03:50` Although the width is standardized,
+- `03:53` the depth of these racks can often vary.
+- `03:56` There might be racks that are very shallow
+- `03:58` or others that might support a much longer piece of equipment
+- `04:02` that you would install.
+- `04:03` Fortunately, most devices follow the standardized form.
+- `04:06` We know that if we're receiving a piece of equipment that
+- `04:09` is rack mountable, that it will most likely be 19 inches wide.
+- `04:12` We'll just need to make sure that we
+- `04:14` have a rack that is deep enough to handle that particular piece
+- `04:17` of equipment.
+- `04:18` Since we have these standard widths,
+- `04:20` we can start stacking this equipment
+- `04:23` and using every bit of real estate
+- `04:25` that we might have available.
+- `04:26` For example, this system administrator has installed
+- `04:29` a server that's about 3U in height.
+- `04:31` And they're installing another set just above it
+- `04:34` so that they can stack them one right on top of the other.
+- `04:38` Now that we have all of this equipment in the data center
+- `04:41` and it's all running constantly, it's
+- `04:43` creating quite a bit of heat.
+- `04:45` We need to make sure that we have a way
+- `04:46` to cool this data center so that all of this equipment
+- `04:49` continues to work optimally.
+- `04:51` We would do this by implementing an H-V-A-C or HVAC system.
+- `04:55` This stands for Heating, Ventilating,
+- `04:57` and Air Conditioning.
+- `04:58` This is very different than simply purchasing
+- `05:01` a window-mounted air conditioner and turning it on.
+- `05:03` There's a lot of engineering that
+- `05:05` goes to designing and implementing an HVAC system
+- `05:08` in these large data centers.
+- `05:10` For example, we not only need to make sure
+- `05:12` that the HVAC can support the amount of heat that's going
+- `05:16` to be created by these systems.
+- `05:17` We also need to make sure we have enough power
+- `05:19` to run the HVAC.
+- `05:21` And we also need to make sure this is integrated into the fire
+- `05:24` system so that we're able to turn this off automatically
+- `05:27` if a fire is detected.
+- `05:29` One thing that you'll notice in a data center
+- `05:31` is that the different aisles of the data center
+- `05:34` may be designated as a hot aisle or a cold aisle.
+- `05:38` This hot and cold aisle is an important designation,
+- `05:41` especially as we're installing new equipment into the data
+- `05:44` center.
+- `05:45` We want to be sure that we're installing the equipment
+- `05:47` in a way where the hot air is being blown into the hot aisle
+- `05:51` and it's pulling in cold air from the cold aisle.
+- `05:54` Here's a cross reference of a data center.
+- `05:57` On the left and right sides, we have our HVAC system.
+- `06:01` And in this particular environment,
+- `06:02` the cold air is going under the floor
+- `06:05` and the hot air is being pulled out of the ceiling.
+- `06:08` The cycle starts with the HVAC creating the cold air
+- `06:11` and that cold air is going underneath the floor
+- `06:14` in this raised floor environment.
+- `06:16` There are vents and holes in the floor
+- `06:18` that will allow the cold air to flow into a cold aisle.
+- `06:23` This is often the front of the servers
+- `06:25` and the servers are pulling in that cold air
+- `06:28` to cool the inside of the server itself.
+- `06:31` Once that air is heated up, it will
+- `06:33` be sent out the back of the server into a hot aisle.
+- `06:37` And that hot air is going to rise into the ceiling, where
+- `06:40` it will then be pulled back into the HVAC, re-cooled,
+- `06:44` and the entire system repeats again.
+- `06:47` Here's a data center where we can see both the hot aisles
+- `06:50` and the cold aisles.
+- `06:51` You'll see the cold aisles are covered with this plastic
+- `06:54` to keep that cold air inside, and the hot aisles
+- `06:57` would be the ones on the outside without the plastic.
+- `07:00` You'll also notice this is a bit different than the previous
+- `07:03` diagram, because there is a concrete floor,
+- `07:06` and there's no way to have a raised
+- `07:07` floor in this environment.
+- `07:09` So it looks like they're blowing the cold air directly
+- `07:11` into the cold aisle from above, it's being pulled through
+- `07:14` into a hot aisle, and then it goes back into the ceiling where
+- `07:18` the entire process repeats.
+- `07:21` When we install network cabling, one of our goals
+- `07:24` is to not move or touch that cabling again.
+- `07:27` We want to be sure that once it's installed,
+- `07:29` we can trust that that cable will always
+- `07:31` be working optimally.
+- `07:33` One of the things that we'll commonly do
+- `07:35` is have all of the desks that are
+- `07:37` on a floor of a building all have single runs of wire
+- `07:40` all the way back to an IDF.
+- `07:42` Inside of the IDF closet, we'll have a patch panel,
+- `07:45` and commonly we might have a patch panel with a 110 block
+- `07:49` where we will punch down those wires onto the back side
+- `07:52` of the patch panel.
+- `07:53` And on the other side of the patch
+- `07:54` panel will be the traditional RJ45 modular connectors.
+- `07:58` This means that if we need to connect any user on the floor
+- `08:02` to any switch on our switches, all we have to do
+- `08:05` is run the appropriate cable from the RJ45 connector.
+- `08:09` We no longer have to touch any of the cable that's
+- `08:11` running from the back of this patch panel
+- `08:13` to the end user's desk.
+- `08:15` So we can begin installing all of the connections we need
+- `08:18` through these patch cables from the patch panel itself
+- `08:22` into the switch that we might be using.
+- `08:24` This also allows us to address any type of moves,
+- `08:28` adds, or changes.
+- `08:29` If someone out on the floor moves to a different desk,
+- `08:32` we can simply move where their patch
+- `08:34` cable happens to be and plug them
+- `08:36` into a different connection.
+- `08:38` And of course, if we hire new employees
+- `08:40` and we want to make sure that they have the correct network
+- `08:42` connectivity, we don't have to run additional cables,
+- `08:45` because we've already run those cables.
+- `08:47` All we have to do is add new connections from our patch panel
+- `08:50` to the appropriate switch connection.
+- `08:53` Here's what this patch panel looks like in our IDF.
+- `08:56` You can see on this side of the patch panel,
+- `08:57` we have the RJ45 connections.
+- `08:59` And we're coming out of those RJ45 connections,
+- `09:02` and we're plugging them into the switches that
+- `09:04` are directly underneath.
+- `09:06` This means we can keep all of those cables in place
+- `09:08` between the patch panel and the desk out on the floor.
+- `09:11` All we have to change are the internal connections inside
+- `09:15` of our IDF.
+- `09:16` Here's another view of a patch panel.
+- `09:18` This one is connecting from the patch panel
+- `09:20` directly to the switch that's above it.
+- `09:22` And notice there are numbered connections on that patch panel
+- `09:25` so we know exactly which desk we're
+- `09:27` connecting or disconnecting.
+- `09:30` There are similar but slightly different
+- `09:32` configurations for fiber optics.
+- `09:34` This is a fiber optic distribution
+- `09:36` panel, where we're bringing in fiber runs
+- `09:38` from another building or another floor,
+- `09:41` and we're bringing all of those back to connections
+- `09:43` that we have access to on the distribution panel.
+- `09:46` One of the important characteristics
+- `09:47` when installing fiber optics is making sure that we
+- `09:50` don't exceed the bend radius.
+- `09:52` And you'll notice in this distribution panel
+- `09:54` that we are looping together in a very large loop
+- `09:57` the fiber to make sure that we don't break the fiber by bending
+- `10:00` it too far in the panel itself.
+- `10:03` And it looks like in this distribution panel,
+- `10:05` we have some additional fiber that is wrapped around.
+- `10:08` We refer to this as a service loop,
+- `10:10` so that if we need to move this distribution panel
+- `10:13` or add additional fiber, we can simply
+- `10:15` extend it with the fiber that's already run.
+- `10:18` This gives us flexibility in the future
+- `10:20` to be able to make changes without having
+- `10:22` to rerun a very expensive fiber optic connection.
+- `10:26` In some of the previous pictures of the data centers,
+- `10:29` you saw that some of the racks were open.
+- `10:31` But there were some racks that were completely closed that had
+- `10:35` locks on the front of the rack.
+- `10:37` This is not uncommon in any type of data center
+- `10:39` because it allows the system administrator
+- `10:42` a level of additional security and control
+- `10:44` over the components inside of the rack.
+- `10:47` We'll often install these racks side by side
+- `10:50` directly to each other to optimize the space that we
+- `10:53` have in the data center.
+- `10:54` And it's not unusual to have a door on the front of the rack,
+- `10:57` where we can have a lock and a way
+- `10:59` to prevent others from gaining access to the equipment
+- `11:02` inside of the rack.
+- `11:04` Here's a good example of racks that are completely locked up.
+- `11:08` You can see in this case that we do
+- `11:10` have ventilation in the front.
+- `11:12` There's often ventilation in the top and the bottom
+- `11:14` as well, so that the equipment inside
+- `11:16` is able to be cooled properly.
+- `11:18` Here's a closer view of these racks.
+- `11:20` You can see that each of these racks
+- `11:21` has a handle with a lock on it.
+- `11:24` And you can see where you would add the key
+- `11:25` to be able to gain access to the equipment that's on the inside.

@@ -1,10 +1,10 @@
-# 🧱 OSI Model — Layers 1, 2, and 3
+# OSI Model — Layers 1, 2, and 3
 
 The OSI (Open Systems Interconnection) model has 7 layers. Chapters 1–3 of networking focus on the bottom three — the layers that handle physical transmission, local delivery, and routing between networks.
 
 ---
 
-## Layer 1 — Physical 🔌
+## Layer 1 — Physical 
 
 The Physical layer deals with the **raw transmission of bits** across a medium. It has no concept of addresses, packets, or protocols — just electrical signals, light pulses, or radio waves.
 
@@ -25,7 +25,7 @@ Device A ─── signal ───► Hub ─── copies to all ports ──�
 
 ---
 
-## Layer 2 — Data Link 🔗
+## Layer 2 — Data Link 
 
 The Data Link layer manages **frame-level communication** between devices on the same local network. It introduces addressing via MAC addresses and provides basic error detection.
 
@@ -46,7 +46,7 @@ Device A ──► [Frame: src=A, dst=B] ──► Switch ──► only port co
 
 ---
 
-## Layer 3 — Network 🌐
+## Layer 3 — Network 
 
 The Network layer handles **routing packets between different networks**. It introduces IP addresses, which unlike MAC addresses, carry location information that routers can use to make forwarding decisions.
 
@@ -81,7 +81,7 @@ Network A (192.168.1.0/24) ──► Router ──► Network B (10.0.0.0/8)
 
 ## Key Points
 
-- 📌 Layer 1 — bits, cables, signals, hubs (no addressing)
-- 📌 Layer 2 — frames, MAC addresses, switches (local delivery)
-- 📌 Layer 3 — packets, IP addresses, routers (inter-network routing)
-- 📌 Each layer only communicates with the layer directly above and below it
+- Layer 1 — bits, cables, signals, hubs (no addressing)
+- Layer 2 — frames, MAC addresses, switches (local delivery)
+- Layer 3 — packets, IP addresses, routers (inter-network routing)
+- Each layer only communicates with the layer directly above and below it

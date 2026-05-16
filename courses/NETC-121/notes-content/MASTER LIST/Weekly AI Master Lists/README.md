@@ -14,6 +14,8 @@ These files are week-by-week master notes derived from syllabus references and l
 - Week 10 - AI Master List.md
 - Week 11 - AI Master List.md
 - Week 12 - AI Master List.md
+- Week 13 - AI Master List.md
+- Week 14 - AI Master List.md
 
 Rules applied:
 - Concepts are deduplicated within each week (shown once per week).

@@ -1,4 +1,4 @@
-# 🖥️ DHCP Service Locations
+# DHCP Service Locations
 
 DHCP is a service — something that has to be **running somewhere** on the network. Where it runs depends on the size and type of the network.
 
@@ -71,7 +71,7 @@ Client (VLAN 10) ──broadcast──► Relay Agent (router) ──unicast─�
 
 ## Key Points
 
-- 📌 **Enterprise:** runs as a role on Windows Server or Linux — handles multiple subnets
-- 📌 **SOHO/Home:** built into the router — simple, automatic, limited
-- 📌 DHCP Relay allows one server to serve clients across multiple subnets
-- 📌 The service location is transparent to the client — DORA process is the same either way
+- **Enterprise:** runs as a role on Windows Server or Linux — handles multiple subnets
+- **SOHO/Home:** built into the router — simple, automatic, limited
+- DHCP Relay allows one server to serve clients across multiple subnets
+- The service location is transparent to the client — DORA process is the same either way

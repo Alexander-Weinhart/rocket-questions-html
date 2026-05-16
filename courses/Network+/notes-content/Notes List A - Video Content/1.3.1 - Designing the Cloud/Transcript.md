@@ -1,0 +1,214 @@
+# [1.3.1 - Designing the Cloud](https://www.youtube.com/watch?v=HzF7sg6Nx0c)
+
+## 1.3.1 - Designing the Cloud
+
+- Day: Day 1
+- Duration: 9:49
+
+## Transcript
+
+- `00:01` Cloud computing has undeniably changed the way
+- `00:04` we approach technology.
+- `00:06` With one click of a button, we can deploy an application
+- `00:10` and multiple services, all seemingly
+- `00:13` with unlimited resources.
+- `00:15` We're able to scale up and scale down these applications as we
+- `00:19` need, providing elasticity, especially in times when we have
+- `00:23` large demand, and then scale it back down when
+- `00:26` that demand goes away.
+- `00:27` We also have applications that we can now
+- `00:30` scale up or scale down and access those applications
+- `00:33` from anywhere in the world.
+- `00:35` Cloud computing also uses multitenancy,
+- `00:38` where many different customers are using the same cloud
+- `00:41` infrastructure.
+- `00:42` This allows for efficiency in the use of technology
+- `00:45` and efficiency in how much it costs to use this technology.
+- `00:50` Not only do we have virtual servers
+- `00:53` that can live in that cloud computing infrastructure,
+- `00:56` we can also have virtual networks.
+- `00:58` Let's take the scenario where we might
+- `01:00` have 100 individual servers that are running in our data center.
+- `01:04` That's a relatively large farm of servers.
+- `01:07` We've designed this infrastructure
+- `01:09` to have redundancy in the network.
+- `01:11` There are multiple servers, we've
+- `01:12` got load balancers and multiple firewalls,
+- `01:15` and we've designed it for uptime and availability.
+- `01:19` But now let's take this entire physical infrastructure,
+- `01:22` and let's move this infrastructure to the cloud.
+- `01:25` We're going to migrate 100 physical servers to effectively
+- `01:29` one very large physical server.
+- `01:32` Inside that one very large physical server,
+- `01:34` we will run 100 virtual servers inside of it.
+- `01:38` Now that we've taken these 100 physical servers
+- `01:41` and migrated them to a cloud infrastructure,
+- `01:44` what do we do with our networking infrastructure?
+- `01:47` Not surprisingly, we will virtualize this network
+- `01:50` infrastructure as well.
+- `01:52` This is referred to as Network Function Virtualization, or NFV,
+- `01:56` where we can replace our routers and our switches
+- `01:59` and our other networking devices with virtual versions
+- `02:02` of those networking devices that are
+- `02:04` running in this virtualized environment.
+- `02:07` Although our firewall and our switches and our routers
+- `02:10` are no longer physical, they still
+- `02:12` have the same functionality.
+- `02:13` We can see those devices, our network interfaces,
+- `02:16` and everything about the network configuration, all
+- `02:19` from our hypervisor.
+- `02:20` So we have the same functionality.
+- `02:22` It's just now in a virtual appliance.
+- `02:25` Just as we're able to push a button and deploy a new server,
+- `02:28` we can push a button and deploy a new firewall or a new switch
+- `02:32` or make a router configuration, all
+- `02:34` within this virtualized world.
+- `02:36` This gives us a lot of flexibility
+- `02:39` for deploying applications, designing the network
+- `02:41` connectivity for those applications,
+- `02:43` and connecting our different cloud infrastructures wherever
+- `02:47` they might be in the world.
+- `02:49` A common application instance inside of a cloud infrastructure
+- `02:53` might include a web server, a database server.
+- `02:56` There could be load balancers, virtual switches and routers,
+- `02:59` and virtual firewalls.
+- `03:01` All of these will run inside of a Virtual Private Cloud,
+- `03:05` or a VPC.
+- `03:07` It's very common, especially in larger environments,
+- `03:10` that you would have separate VPCs for different application
+- `03:13` instances or different parts of the company.
+- `03:16` This allows you to keep all of these systems separated
+- `03:18` but still allow you to manage all of them
+- `03:21` as individual virtual appliances.
+- `03:23` Although these VPCs may be different application instances,
+- `03:27` we might still want to have devices
+- `03:28` within those separate VPCs be able to communicate
+- `03:31` with each other.
+- `03:32` To provide that communication, we need a device in the middle
+- `03:35` called a transit gateway to be able to connect
+- `03:39` all of these VPCs together.
+- `03:41` You can think of this transit gateway
+- `03:42` as a cloud router that allows us to connect and allow
+- `03:46` communication between all of our different VPCs.
+- `03:49` If you need connectivity to these VPCs from the outside,
+- `03:53` you may need to add additional security in the form of a VPN
+- `03:57` connection.
+- `03:57` This allows someone who may be at a remote site
+- `04:00` to be able to bring up a VPN tunnel,
+- `04:02` connect to the transit gateway, and effectively have
+- `04:05` communication to all of your different VPCs.
+- `04:08` It's very common to use a VPN at a remote site
+- `04:11` or from a user's workstation to be able to gain access
+- `04:14` to these private VPCs.
+- `04:17` But there may be times when you want
+- `04:18` to make your application instances available to anyone
+- `04:21` on the internet.
+- `04:22` In that scenario, you might want to use a VPC gateway,
+- `04:25` or what we refer to as an internet gateway,
+- `04:28` so that users anywhere in the world
+- `04:30` will have access to your applications.
+- `04:32` We might also want to have these devices in each of our VPCs
+- `04:37` communicate outbound over the internet to other resources.
+- `04:41` We would use a VPC NAT gateway to provide this communication,
+- `04:45` and the NAT stands for Network Address Translation.
+- `04:48` Our VPCs and the private networks
+- `04:51` that we're running inside of those VPCs
+- `04:53` can translate to a public IP address
+- `04:56` to be able to communicate out over the internet.
+- `04:59` This includes security rules so that your VPCs can connect
+- `05:02` outbound to internet resources, but you may not necessarily
+- `05:06` allow inbound access from external devices.
+- `05:10` And it's not uncommon for many organizations
+- `05:12` to use multiple cloud providers but still require connectivity
+- `05:16` between those cloud providers.
+- `05:18` We can provide that connectivity through the use of a VPC
+- `05:21` endpoint, where we create a direct connection
+- `05:24` from a VPC on one cloud provider to a VPC on another cloud
+- `05:29` provider.
+- `05:30` Here's an example that has a number of different VPCs.
+- `05:33` We've got a virtual private cloud
+- `05:35` with a public subnet for public applications
+- `05:38` that people can access from anywhere on the internet.
+- `05:41` We also have a private subnet on this same cloud provider,
+- `05:44` where we have a private virtual machine.
+- `05:47` Well, if we have a different storage network, which certainly
+- `05:50` could be at a different cloud provider,
+- `05:52` that cloud storage can easily connect
+- `05:54` to the public subnet over the existing internet
+- `05:57` and using a VPC internet gateway.
+- `06:00` But our private subnet is not accessible from the internet.
+- `06:03` So we need to add a VPC endpoint that will allow our cloud
+- `06:07` storage to communicate directly to what
+- `06:10` is a private subnet and virtual machine.
+- `06:13` Many cloud providers will include additional security
+- `06:16` that you can layer on top of your VPCs.
+- `06:19` Security groups and lists are effectively
+- `06:22` a firewall that's created for your cloud-based services.
+- `06:25` This allows you to control what traffic
+- `06:27` can go outbound and inbound to your VPCs.
+- `06:31` Most of these are based around a series of port numbers
+- `06:34` and protocols.
+- `06:35` So you can define a TCP or UDP port number
+- `06:39` and add that to your inbound or outbound rules in your security
+- `06:43` groups.
+- `06:43` You can also add layer 3 addresses to this.
+- `06:46` So you can add IP addresses that are individual addresses, maybe
+- `06:50` an entire block of addresses using CIDR block notation,
+- `06:53` or specify IPv4 or IPv6 ranges directly
+- `06:57` within your security groups.
+- `06:59` This is very similar to configuring
+- `07:01` a traditional firewall which operates looking at TCP or UDP
+- `07:05` port numbers.
+- `07:06` In this example, the inbound rules
+- `07:08` have a number of predefined rules,
+- `07:10` but you can customize these as well with your own port numbers
+- `07:13` specific to your application.
+- `07:16` In your cloud provider's front end,
+- `07:17` you would include in your network security list
+- `07:20` the list of rules that you would like to assign.
+- `07:23` For example, I have a rule that is inbound using TCP port 443,
+- `07:27` and any IP address is allowed to communicate
+- `07:30` inbound with that rule.
+- `07:32` I have another rule that's an inbound rule for TCP port 22,
+- `07:36` and it's the same broad range of any IP address.
+- `07:40` Once you define your network security list,
+- `07:42` it will be applied to all of your virtual private clouds.
+- `07:45` And you can see that I have a virtual cloud network for Subnet
+- `07:48` X, Subnet Y, and Subnet Z. And these very broad network
+- `07:53` security lists will automatically
+- `07:55` be assigned to each one of those individual networks.
+- `07:58` One of the challenges with these network security lists
+- `08:01` is that they don't provide a lot of granularity.
+- `08:04` When you configure a network security list,
+- `08:06` it's automatically assigned to all of your virtual cloud
+- `08:10` networks, even if you don't need that particular rule
+- `08:13` in that cloud network and even if you
+- `08:15` need additional rules for one of the individual cloud networks.
+- `08:20` Fortunately, there are ways to add additional granularity
+- `08:23` using a network security group.
+- `08:25` With a network security group, I can assign rules
+- `08:27` to individual Virtual Network Interface Cards, or VNICs.
+- `08:31` So you can see I have similar security rules
+- `08:34` that I've defined as a network security group.
+- `08:37` I have Network Security Group A, which
+- `08:39` is inbound TCP to port 443, and I have a Network Security Group
+- `08:43` B, which is also an inbound rule to TCP port 22.
+- `08:47` I've identified these as the Network Security Group A
+- `08:50` with the green shield and the Network Security Group B
+- `08:53` with the blue shield.
+- `08:55` And you can see that I can assign those network security
+- `08:57` groups to individual network interface
+- `09:00` cards that may be inside of a virtual cloud network.
+- `09:03` This one is on a single subnet, where
+- `09:05` I've defined different rules for different interface cards
+- `09:09` within the same virtual cloud network subnet.
+- `09:12` You can see by using these network security groups
+- `09:15` that we do have additional granularity that we
+- `09:17` could bring down to the individual interfaces.
+- `09:20` But this also increases the amount
+- `09:22` of administration required to manage
+- `09:24` all of these different lists.
+- `09:26` If you find that you need additional security above this,
+- `09:29` you might want to look into a virtual firewall
+- `09:32` or other virtualized platform to include additional security
+- `09:36` to your application instances.

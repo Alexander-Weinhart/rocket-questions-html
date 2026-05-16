@@ -1,0 +1,120 @@
+# [1.6.2 - Network Architectures](https://www.youtube.com/watch?v=vVEL1LokboE)
+
+## 1.6.2 - Network Architectures
+
+- Day: Day 3
+- Duration: 4:53
+
+## Transcript
+
+- `00:01` Many enterprise networks take advantage
+- `00:04` of a three-tiered architecture.
+- `00:06` This is a very common design.
+- `00:08` And you'll find many organizations
+- `00:09` use a three-tiered network design for their network.
+- `00:12` This starts with the core of the network.
+- `00:15` And this is where we might have the central point for all
+- `00:18` of our resources.
+- `00:19` So our servers, our applications, our databases,
+- `00:22` and other critical points are going
+- `00:25` to be contained within the core of the network.
+- `00:27` The second tier in a three-tiered architecture
+- `00:30` is the distribution layer.
+- `00:31` This distribution is the midpoint
+- `00:34` between the users and those core resources.
+- `00:37` This is usually a series of switches
+- `00:39` that provides redundancy and connectivity for those users
+- `00:42` to access those critical resources.
+- `00:44` And lastly, our users need somewhere to connect.
+- `00:47` And they often connect to an access layer.
+- `00:50` These are switches that are usually
+- `00:51` located very close to the user, usually on the same floor
+- `00:55` of a building, for example.
+- `00:56` And that access layer allows us to connect
+- `00:58` to the distribution, which then connects
+- `01:00` to the core of the network.
+- `01:02` This three-tiered architecture is
+- `01:04` very common to what we might see in a large city.
+- `01:07` The downtown area of the city is the core of the city.
+- `01:11` And all of the major resources for that city
+- `01:14` may be located in a very small geographical area in the center
+- `01:18` or core of that location.
+- `01:20` To be able to get to downtown, we
+- `01:22` need some type of distribution method.
+- `01:24` For example, we need some type of highway
+- `01:27` that might connect our homes to the downtown area.
+- `01:30` And our homes are usually connected to these larger
+- `01:32` highways through access roads.
+- `01:35` This allows us to use our local roads
+- `01:36` for all of our daily chores.
+- `01:38` But when we need to get to the core downtown,
+- `01:41` we may need to use those distribution highways.
+- `01:44` Here's what this three-tiered architecture looks
+- `01:46` like in a network diagram.
+- `01:48` The core of the network usually has core routers
+- `01:50` that are allowing us to connect to other resources in the core.
+- `01:54` The distribution layer in the middle
+- `01:56` is the one connecting the core to the access switches.
+- `01:59` And at the very bottom, the access layer
+- `02:01` is the one that all of the users are connected to.
+- `02:04` You'll notice there are multiple links between the access
+- `02:07` and the distribution.
+- `02:08` And occasionally, you might even find
+- `02:09` multiple links between the distribution and the core.
+- `02:12` So if one component happens to fail,
+- `02:14` we can always use other parts of the network
+- `02:17` to complete that communication path.
+- `02:19` This is often combined with multiple buildings.
+- `02:22` So here on a single campus, we have two separate buildings.
+- `02:25` All the users are connected on each floor of the building
+- `02:28` to an access switch.
+- `02:30` Each access switch in the building
+- `02:32` is usually connected to one or more distribution switches,
+- `02:35` and those distribution switches are
+- `02:37` connected to the core of the network, which may be located
+- `02:40` in a central data center.
+- `02:42` If you're a smaller organization,
+- `02:44` there may not be a need for a much larger
+- `02:46` three-tiered architecture.
+- `02:48` Instead, you might want to use a collapsed core architecture.
+- `02:51` This is a two-tier architecture that
+- `02:54` combines the core and distribution layer
+- `02:56` into a single collapsed core.
+- `02:58` And you could see the access layer is still exactly the same
+- `03:02` as it was before.
+- `03:03` This allows for a more simplified design
+- `03:05` and hopefully a much easier design
+- `03:08` when you're troubleshooting.
+- `03:09` This is also a lot less expensive
+- `03:11` to implement because you have less devices
+- `03:13` that you have to purchase and install onto the network.
+- `03:16` However, as you can tell by this diagram,
+- `03:19` there's not a lot of options for redundancy.
+- `03:21` So this may not be quite as resilient
+- `03:23` if you happen to lose any of these individual components.
+- `03:27` When you're describing the flow of traffic within a data center,
+- `03:31` it's important to know where the traffic originates
+- `03:33` and what the destination is for that traffic.
+- `03:36` One way to describe traffic flow is an east-west traffic flow.
+- `03:40` This means that the origination and destination for this data
+- `03:43` flow is all within the same data center.
+- `03:46` This also means that we probably have very good response
+- `03:49` times from one device to another,
+- `03:51` since they're all located on the same local network.
+- `03:55` If the traffic flow is one that is leaving the data center
+- `03:58` or is coming into the data center from an external source,
+- `04:01` you would refer to that as north-south traffic.
+- `04:04` This would probably have a bit of a different security
+- `04:07` posture than something that is east-west traffic,
+- `04:09` because we really don't know where this traffic is going
+- `04:12` once it leaves the data center.
+- `04:14` And any inbound traffic could be coming
+- `04:16` from potentially anywhere.
+- `04:18` Here's a better view of this traffic type.
+- `04:21` If data is coming into the network from the internet
+- `04:24` or we're sending information out to the internet,
+- `04:26` we refer to that as north-south traffic.
+- `04:29` Any traffic that is inside this local data center-- for example,
+- `04:33` if we have a file server that is sending information to an image
+- `04:36` server, all of that traffic is staying within the data center
+- `04:40` and would be considered east-west traffic.

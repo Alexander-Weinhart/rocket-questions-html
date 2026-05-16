@@ -1,0 +1,164 @@
+# [2.1.1 - Static Routing](https://www.youtube.com/watch?v=23a6_qexTvs)
+
+## 2.1.1 - Static Routing
+
+- Day: Day 5
+- Duration: 7:21
+
+## Transcript
+
+- `00:01` The routers that we use in our homes and our offices
+- `00:04` have an important job of forwarding traffic between one
+- `00:07` IP subnet and another.
+- `00:09` It's a relatively straightforward process,
+- `00:11` although there is a lot of technology under the surface
+- `00:14` that makes this happen.
+- `00:15` But if we were to look at this in a very simplified form,
+- `00:18` we could see that the router is performing a series
+- `00:21` of relatively simple steps.
+- `00:23` The first step is to identify what the destination IP
+- `00:26` address might be for incoming traffic into the router.
+- `00:30` It looks into the packet, identifies what the destination
+- `00:33` IP address is, and makes a note of where it
+- `00:36` should be sending this traffic.
+- `00:38` The router then examines some tables
+- `00:40` to determine what the best route will
+- `00:42` be for this particular packet.
+- `00:44` If the destination IP address of this particular packet
+- `00:47` is associated with a subnet that is directly connected
+- `00:51` to this router, then the router simply sends the packet
+- `00:53` onto that local subnet.
+- `00:55` But in many cases, the destination IP address
+- `00:58` is on a subnet that is not locally connected
+- `01:01` to this router.
+- `01:02` The router will examine that routing table,
+- `01:04` determine what the best next hop might be,
+- `01:07` and then send the traffic out that particular interface.
+- `01:11` This next hop is the IP address of the next router
+- `01:14` down the line.
+- `01:15` And when that router receives this packet,
+- `01:17` it performs the same process again,
+- `01:19` until the packet finally makes its way
+- `01:21` to its final destination.
+- `01:23` As you can imagine, that routing table becomes very important.
+- `01:26` And when we're troubleshooting routers,
+- `01:28` we refer often to the routing table, what the next hop might
+- `01:31` be, and determining where these packets should be going
+- `01:34` once they leave our router.
+- `01:37` If a router refers to its table and does not
+- `01:40` find a next hop for that destination IP address,
+- `01:43` it will simply discard that traffic.
+- `01:45` So you can see why having a valid routing table
+- `01:48` becomes very important.
+- `01:49` Let's look at this network diagram.
+- `01:52` There are three separate routers in this network diagram
+- `01:55` and three individuals that would like
+- `01:57` to communicate with each other.
+- `01:59` In this case, let's focus on router 1.
+- `02:01` You can see router 1 is connected
+- `02:03` to three different subnets.
+- `02:04` We have a subnet 10.10.10.0/24.
+- `02:08` There's another subnet between router 1 and router 2--
+- `02:11` that is the 10.10.40 network--
+- `02:13` and then another subnet between router 1 and router 3.
+- `02:17` That's the 10.10.50 subnet.
+- `02:20` Those three subnets are directly connected to router 1.
+- `02:23` So if we were to look at the routing table for router 1,
+- `02:26` it would see the route for 10.10.10.0/24, 10.10.40.0/24,
+- `02:33` and 10.10.50.0/24.
+- `02:36` And all of those networks are locally connected
+- `02:39` to this router.
+- `02:40` The problem occurs if Sam would like to communicate to Jack.
+- `02:45` Although router 1 knows about the local networks,
+- `02:47` it has no idea that there are more networks on the other side
+- `02:51` of router 2 and of router 3.
+- `02:53` And those particular networks of 10.10.20.0/24 and 10.10.30.0/24
+- `03:01` are nowhere in this routing table.
+- `03:04` This means if Sam wants to send traffic to Jack,
+- `03:07` Sam will put this packet out on the network.
+- `03:09` It gets to router 1.
+- `03:11` Router 1 examines the destination IP address
+- `03:13` of 10.10.20.2 and then looks through its table and realizes
+- `03:18` there is no 10.10.20 network in the routing table.
+- `03:22` And the packet is discarded and never makes its way
+- `03:26` down the network.
+- `03:28` One way that we could create a more complete routing table
+- `03:31` is to build it ourselves.
+- `03:33` This administrative creation of a routing table
+- `03:36` is referred to as static routing.
+- `03:38` And if you would like to build static routes
+- `03:40` as the administrator of your routers,
+- `03:42` then you will manually be configuring these routes inside
+- `03:46` of every router that you use.
+- `03:48` Static routing is a very quick way
+- `03:50` to configure a route inside of the router.
+- `03:52` And if you're managing a smaller network,
+- `03:54` this might be a perfectly reasonable way
+- `03:56` to manage where the routes might be.
+- `03:58` Because we're static routing, there's no overhead
+- `04:01` that you would normally see from a dynamic routing protocol.
+- `04:04` We'll talk about dynamic routing in a future video.
+- `04:07` So there's no CPU cycles.
+- `04:09` There's no memory usage.
+- `04:10` We are simply adding the route ourselves.
+- `04:13` And we don't have to do any additional processing
+- `04:15` to the routing table from there.
+- `04:17` This is very common for remote locations, where
+- `04:19` you might have a single internet connection
+- `04:22` into that remote site, and all communication
+- `04:24` takes place over that single connection.
+- `04:27` We often refer to these as stub networks.
+- `04:29` And because we don't have to worry about any type of dynamic
+- `04:33` routing updates or having any changes to the router
+- `04:35` configuration because of those updates,
+- `04:38` this is a relatively secure form of routing.
+- `04:41` However, this can be challenging to configure on larger networks.
+- `04:45` Configuring a handful of routers with their own static routes
+- `04:48` is relatively straightforward.
+- `04:49` But if you're managing hundreds or thousands of routers,
+- `04:53` manually configuring a static route in each of those routers
+- `04:56` could take quite a bit of time.
+- `04:58` This also relies on you adding the correct routes
+- `05:02` to every router.
+- `05:03` There have been times when I've configured static routes,
+- `05:06` and I've set up my own routing loop within my network because
+- `05:09` of a misconfiguration.
+- `05:11` And as the name implies, these routes are static.
+- `05:14` They don't change once you've configured them.
+- `05:16` So if there are changes to your network,
+- `05:18` you'll need to manually log into your routers
+- `05:21` and make those configuration updates
+- `05:23` to the routing table that match the changes to your network.
+- `05:26` This also means that there is no automatic rerouting if something
+- `05:30` happens on your network.
+- `05:31` You will need to manually configure these routes
+- `05:34` if anything needs to be routed in a different direction.
+- `05:38` So let's configure some static routes for router 1.
+- `05:41` We know that we have our three locally connected routes.
+- `05:44` But we also have these additional two routes,
+- `05:46` one that's behind router 2 and one that's behind router 3.
+- `05:50` This would be the 10.10.20 network and the 10.10.30
+- `05:54` network.
+- `05:54` So we might SSH into router 1.
+- `05:56` And at the command line, we would
+- `05:58` begin to add additional static routes.
+- `06:01` For example, we might tell router 1 that if it receives any
+- `06:04` packet coming through with a destination IP address that
+- `06:07` matches the range of 10.10.20.0/24,
+- `06:11` then send that particular packet to 10.10.40.2.
+- `06:16` So if the packet does come through with that destination
+- `06:19` that needs to go to the local network that Jack is connected
+- `06:22` to, it will send all of that traffic to the IP address
+- `06:26` 10.10.40.2, which is located on router 2.
+- `06:30` At that point, router 2 will examine its own routing table
+- `06:34` and know that the 10.10.20 network is locally connected
+- `06:38` and send that packet on its way.
+- `06:40` We can do the same thing with the 10.10.30.0 network.
+- `06:44` So we will manually configure a static route that if any
+- `06:47` destination traffic is going to 10.10.30.0/24,
+- `06:52` then send all of that traffic to 10.10.50.2,
+- `06:55` which means all of that traffic will go to router 3.
+- `06:59` Now that we've configured those static routes
+- `07:01` in router 1, any time those additional networks are seen
+- `07:05` as a destination IP address, router 1
+- `07:08` will know exactly where to send that traffic.

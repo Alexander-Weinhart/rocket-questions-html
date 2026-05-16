@@ -1,0 +1,201 @@
+# [1.7.5 - Calculating IPv4 Subnets and Hosts](https://www.youtube.com/watch?v=cYQOMifDlKI)
+
+## 1.7.5 - Calculating IPv4 Subnets and Hosts
+
+- Day: Day 3
+- Duration: 9:46
+
+## Transcript
+
+- `00:01` In this video, we're going to look
+- `00:03` at a detailed calculation of subnets and hosts
+- `00:07` using IP version 4.
+- `00:09` If you stumbled across this video,
+- `00:11` I highly recommend you go back and look at our video
+- `00:14` on binary math, classful subnetting, and IPv4 subnet
+- `00:18` masks.
+- `00:19` As we've been going through these subnetting videos, you
+- `00:22` may be asking yourself, why do we
+- `00:24` have to go through this process of calculating
+- `00:26` IP addresses, their mask, looking at default gateways,
+- `00:30` and understanding what the first and last available IP
+- `00:33` address might be?
+- `00:34` Well, that's because it would be functionally impossible to have
+- `00:38` one device that would know where every other device in the world
+- `00:42` might be.
+- `00:43` Instead, we create smaller networks.
+- `00:46` And we build routers that are able to get information
+- `00:49` between all of these smaller networks.
+- `00:51` This allows us to communicate to anywhere in the world
+- `00:54` without knowing exactly where that destination location might
+- `00:58` be.
+- `00:59` We simply send out the packet.
+- `01:01` And the routers every step of the way
+- `01:03` allow us to get that information to the final destination.
+- `01:08` Well, this means that we need to create these smaller networks.
+- `01:11` And we do this by using a process known as VLSM,
+- `01:14` or Variable-Length Subnet Masks.
+- `01:17` As the name implies, these subnet masks
+- `01:19` are not like the class-based networks
+- `01:21` that we looked at earlier, which have a very fixed number of bits
+- `01:26` in the subnet mask.
+- `01:27` Instead, we can create a subnet mask
+- `01:30` that has a different number of bits on every network,
+- `01:33` therefore creating a variable length of a subnet mask.
+- `01:37` This means you, as the network administrator,
+- `01:39` can build a network that is exactly
+- `01:41` the right size with the right number of networks
+- `01:44` and the right number of hosts.
+- `01:46` And you have complete control over what the subnet
+- `01:48` mask might be for that network.
+- `01:51` This is a lot like cutting a pizza into smaller pieces.
+- `01:55` How many pieces do you need in the pizza?
+- `01:57` Should the pizza be cut in two pieces?
+- `01:59` Should it be four?
+- `02:00` Should it be eight?
+- `02:01` Or should it be even more than that?
+- `02:03` If we apply this to IP, we can look at a class A network which
+- `02:07` has 10.0.0.0 and a subnet mask with a /8.
+- `02:13` But if we wanted to cut that pizza into smaller pieces,
+- `02:17` we might have a subnet mask of a /24 or even a /26.
+- `02:22` Since we're using a different number of bits than eight
+- `02:25` in the subnet mask, we're using a variable-length subnet mask
+- `02:30` that we can define to be whatever we'd like.
+- `02:34` Let's perform some of this variable-length subnet masking.
+- `02:37` But let's first look at the default
+- `02:39` subnet mask for a class A address.
+- `02:42` This would be 10.0.0.0.
+- `02:44` The default is class A, since that starts with the number 10.
+- `02:48` And the default subnet mask for that would be 255.0.0.0.
+- `02:53` This would be the default subnet mask if all we did
+- `02:57` was have classful addressing.
+- `02:59` If you were to look at this classful address in binary,
+- `03:03` the first 8 bits would be 1.
+- `03:04` And the remaining bits would be 0.
+- `03:07` In decimal, that means it would be 255.0.0.0.
+- `03:11` And if you were to use the CIDR block notation,
+- `03:14` this would be a /8 subnet.
+- `03:17` This means that the network bits would be those first 8
+- `03:20` bits of the address.
+- `03:21` And the host bits would be the last 24 bits of the address.
+- `03:25` Since this is a /8 subnet mask, we are drawing our line after
+- `03:30` those first 8 bits of the subnet mask.
+- `03:33` But in reality, of course, we could pick a different number
+- `03:37` of subnet bits.
+- `03:38` We just need to decide what works best for our network.
+- `03:42` For example, let's draw our line right after the third octet.
+- `03:46` This means that we still have our default first 8 bits
+- `03:50` as part of that class A address.
+- `03:53` But we're going to borrow the middle 16 bits as what
+- `03:57` we call our subnet bits.
+- `03:59` This means those subnet bits would now be turned into one.
+- `04:02` And the host section of the IP address
+- `04:05` would shrink down to 8 bits.
+- `04:07` This means that the decimal subnet mask would be
+- `04:09` 255.255.255.0.
+- `04:13` And the CIDR block notation for this new subnet mask would be
+- `04:17` /24.
+- `04:18` We've been doing a lot of these calculations in binary,
+- `04:22` and then we've been converting that binary back to decimal.
+- `04:25` But that process tends to take time.
+- `04:27` And one of the faster ways to perform these calculations
+- `04:30` is to look at a list of the powers of 2.
+- `04:34` For example, you can look at 2 to the first power is 2.
+- `04:37` 2 to the second power is 4.
+- `04:39` 2 to the third power is 8, and so on.
+- `04:42` If you want to calculate the number of subnets
+- `04:45` and the number of hosts, you can calculate
+- `04:47` the number of subnets as 2 to the number of subnet bits.
+- `04:51` And the number of hosts per subnet
+- `04:52` would be 2 to the number of host bits minus 2.
+- `04:57` That's subtraction for the 2 means
+- `04:59` that we are subtracting the number
+- `05:01` that we would use for our network address and the number
+- `05:04` that we would use for our broadcast address.
+- `05:06` Everything in the middle would be our host addresses.
+- `05:10` So let's now use this chart with our powers of 2
+- `05:13` to calculate the number of subnets
+- `05:15` and the number of hosts per subnet.
+- `05:17` Let's take the IP address of 10.1.1.0/24.
+- `05:22` If we perform our calculation in binary,
+- `05:25` we would write out all 24 of those bits as 1's.
+- `05:28` And the last 8 bits would be 0.
+- `05:31` The default for a class A address such as this one,
+- `05:34` though, would normally have our network address
+- `05:37` as the first 8 bits.
+- `05:38` But we are moving that line another 16 bits over
+- `05:42` so that we are borrowing an additional 16
+- `05:46` bits for the subnet.
+- `05:47` That leaves us with 8 bits left over for the host.
+- `05:51` If we were to calculate the number of subnets using
+- `05:53` these powers of 2, we would take 2 to the number of subnet bits.
+- `05:58` And since we have 16 subnet bits,
+- `06:00` 2 to the power of 16 is 65,536.
+- `06:05` If we were to calculate number of hosts per subnet,
+- `06:07` it's 2 to the number of host bits minus 2.
+- `06:10` We have 8 host bits, which means 2 to the 8 minus 2
+- `06:14` is 256 minus 2, or 254.
+- `06:18` So for this IP address of 10.1.1.0/24,
+- `06:23` we can have a maximum number of subnets of 65,536.
+- `06:28` And on each of those subnets, we can
+- `06:30` have a maximum of 254 devices.
+- `06:34` Let's calculate another one.
+- `06:36` We'll look at an IP address of 192.168.11.0/26.
+- `06:41` If we were to write out that /26,
+- `06:44` you can see there are 26 1's.
+- `06:46` That leaves us with two 1's in the last octet.
+- `06:49` And we have six 0's left over at the end.
+- `06:53` If we calculate the class of this address,
+- `06:56` we look at the first octet, which
+- `06:57` is 192, which means this is a class C address.
+- `07:01` That means it has a total number of 24
+- `07:04` bits as the network address by default.
+- `07:08` But we've borrowed a couple of extra bits into the last octet.
+- `07:12` So there are two additional bits available that we
+- `07:15` will call our subnet bits.
+- `07:17` And then, of course, we have the last 6 bits
+- `07:19` available as the host bits.
+- `07:21` Let's perform our calculation again.
+- `07:23` To calculate the number of subnets,
+- `07:25` we use 2 to the number of subnet bits.
+- `07:27` We have 2 bits left over as the subnet bits.
+- `07:30` 2 to the second power is 4.
+- `07:33` To calculate the host per subnet, we have 6 bits.
+- `07:36` So we take 2 to the sixth power and subtract 2 from there.
+- `07:40` That means we have 64 minus 2, or 62.
+- `07:43` So for this IP address of 192.168.11.0/26,
+- `07:49` we can create a total of four subnets.
+- `07:51` And on each of those subnets, we can have a total of 62 devices.
+- `07:57` This same process works with any type of subnet mask.
+- `08:00` Let's take, for example, 172.16.55.0/21.
+- `08:06` If we looked at this in binary, we would have 21 1's,
+- `08:10` which means we have eight in the first octet, eight
+- `08:13` in the second octet, and five 1's in the third octet.
+- `08:16` Everything else, of course, would be 0's.
+- `08:19` And if we look at this IP address,
+- `08:21` it starts with 172, which by default would be a class B
+- `08:24` address.
+- `08:25` So by default, the first 16 bits would be your network address.
+- `08:29` We borrowed some additional bits--
+- `08:31` in this case, five additional bits-- to be our subnet bits.
+- `08:35` And then everything left would be our 11 host bits.
+- `08:39` Performing our calculation again, we have five subnet bits.
+- `08:42` So to calculate the number of subnets,
+- `08:44` it's 2 to the fifth power, or 32.
+- `08:47` We have 11 host bits left over.
+- `08:49` So if we calculate that as 2 to the 11th power minus 2,
+- `08:53` that would be the same as 2,048 minus 2,
+- `08:56` or a total of 2,046 devices.
+- `08:59` So for this IP address of 172.16.55.0/21,
+- `09:04` we can have a total of 32 subnets.
+- `09:07` And on each of those subnets, we can have a maximum of 2,046
+- `09:11` devices.
+- `09:13` If you use these powers of 2 to perform these calculations,
+- `09:17` it can be a very quick way to determine
+- `09:19` what the number of subnets might be and what the host per subnet
+- `09:23` might be.
+- `09:23` But there are some shortcuts available that might get you
+- `09:26` to these values much faster.
+- `09:28` And in the next couple of videos,
+- `09:30` we'll give you some different options
+- `09:31` for calculating this process using those shortcuts.

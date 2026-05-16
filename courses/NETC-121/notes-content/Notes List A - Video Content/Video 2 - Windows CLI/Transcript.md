@@ -1,0 +1,89 @@
+# Video 2 - Windows CLI
+
+## Transcript
+
+### 0:01 - 1:12
+
+Here's a quick tutorial to go through the command line interface. So we can go in and use a Windows R, which is customary, CMD for command prompt, and it comes up. I'll get my window adjusted here.
+
+So in here, this is the typed interface. So we can say ipconfig is one of the commands we need, ipconfiguration, and we see a bunch of information. We see an IP version six address, which we do not use at all in Netcom 1. Netcom 2, we get an IPv6.
+
+We're focused exclusively on the IP version four addresses throughout the entire semester. Here we see my address is 10.211.55.3, and dot, not period, is the term that's used to separate those values. When we type in things, we would type in 10.211.55.3, not 03.
+
+We don't include leading zeros. Okay, so the IP address is kind of like, I think about it as a phone number. If your phone doesn't have a phone number, like you don't have service, you can't make calls.
+
+### 1:12 - 3:32
+
+Same kind of thing. You need an IP address, an appropriate IP address for your computer, smartphone, whatever the device is, whatever the nick, you know, that's in your device, tablet, phone, desktop, laptop, so forth. So that's one piece of information.
+
+The next is we need, we have something called the subnet mask. And what this is, is this the first thing that any node, any endpoint needs to do when it's trying to reach something else, like a website, you know, is to say, is the destination in my local network, is it local to me? Because if it is, I'm going to send it directly, which would be way faster. Or do I need to send it out the gateway, right? Everything in our classroom, in our lecture room, everything in the known universe is in that classroom, or it's out the door.
+
+The door to the hallway is the gateway that leads to the rest of the world. So what the subnet mask does is it contains and describes how large or how small our local grouping is. It's just a grouping technology, and we'll get into that later, but that's what it's for.
+
+Then the gateway, if it's not local, where do I send it? You know, if I go in the kitchen to make something and I reach in the cupboard and I don't, and I have it there locally, grab it and use it. If it's not there, then to move forward, I'd have to go up to the store and purchase it. I'd have to go outside of my local home, kitchen, whatever, to the big world and obtain it that way.
+
+So now in our labs, we'll often see in early labs that there is no gateway address. If we're just all connecting our machines locally, we don't need to go anywhere. But that's a little bit unusual.
+
+It's more of a learning environment. Everybody will always have an IP address, a subnet mask, and a gateway. Now, the physical address, the MAC address, if we say ipconfig space forward slash all, we get a whole listing of information.
+
+### 3:32 - 9:38
+
+It tells us that my parallel adapter, it shows me the physical address is my MAC address. We said the first six characters of that hexadecimal number show the vendor, which if we look up, we would see that it's parallels. It shows my IPv6.
+
+It shows our IPv4 address. We see that again. It shows our subnet mask.
+
+It shows our gateway. It also shows our DNS server. DNS servers are, think about in a 411 lookup, if you will, or real old school would be when they had printed white page telephone directories.
+
+So you just can't dial in Walmart on your phone, WAL and push the numbers for that. You have to dial the number for Walmart or wherever you're calling. So to get that number, if you didn't know it, you'd have to look it up.
+
+So you'd look it up under the W's, Walmart, look it up, and you'd find the number for the store you want or wherever you're after. So everything is IP based in our world, in our IT world. Everything works with those IP addresses in a similar way that in smartphones, in telephones, everything works with phone numbers.
+
+So we typically though think about more common names, whether it's Walmart or Google.com or ESPN.com or whatever. Those are easier to remember than the IP addresses for each one. So we use, and it happens automatically, the computer uses the domain name system and it reaches out to a server and says, here is the name, let's say google.com, and it replies with the IP address.
+
+This happens when we use a web browser, it happens transparently. It just happens in the background. So we can get those.
+
+Next, we see this lease information. There are two ways to get an IP address. One is, which we'll do in lab early on, is we type it in, set the IP to this specific schema.
+
+The other way to do it, which is 99% used for endpoints, is to obtain it automatically. So your phone, your tablet, your laptop, whatever, they're all set. Everybody's are set by default to go ahead and ask, reach out to a server, a local server, and ask for an IP, a subnet, and a gateway and DNS.
+
+Ask for all those things. And if that server's there, it hands it out and you can go on your way and you can surf browser, do whatever you need to do. So when the server provides it, it provides it for a period of time.
+
+So here, I've got a lease that's about what? 24 hours or so? The long, not quite. So that means at the end of the lease, my computer would go out and ask the server and say, my lease expired, I need to renew it. And the server would respond and say, you can keep the same address and you're renewed and give you a new renewal time, or it may give you a different address and a new renewal time.
+
+So the IP address can change. It's kind of like musical chairs, or we're going to give you an IP address, but what you get is you don't have a lot of control over. It doesn't really matter.
+
+It'll work fine. So that's a really useful command. One of the things that we're doing, and you can do a CLS for clear.
+
+There we go. For clear, clear screen. And that just tidies things up.
+
+Next, we test connectivity extensively. So ping, packet internet group is what it stands for, but nobody just says, everybody says ping. If we say ping google.com, it's going to go through.
+
+And the first thing that it actually does is it has to do that DNS lookup. And it says this, I went and asked the server who google.com is, and the server came back with this IP. I will then use the IP address because we can only use IPs and I'll reach out and say, are you there? That's what this is.
+
+The reply from tells us, we don't care about how much information, but the time is, is what's of interest to us. It's measured in milliseconds, not seconds, not minutes, not anything else, always milliseconds. So 27 milliseconds, you know, not, not a big deal.
+
+And then it'll in windows, it'll do it four times and then stop automatically. As the end, it'll give us some statistics. The minimum time was 27, which we can verify.
+
+We see that up here. The maximum is 32. We see that the last one, and then it calculates the average for us because we're often interested, or I should say it differently.
+
+We're rarely interested in one data point. What, you know, what's the average and assuming the minimum maximum are at some extremes, the average is a little bit more meaningful. So that's nice.
+
+The other thing we can do is we can say trace RT trace route, show me the path, the data. If I go to google.com and boom, that was a quick hop. The let's try another one.
+
+Trace route, ESPN.com one hop. I find that unlikely, but it had one server. So it shows us some, some timing information.
+
+### 9:39 - 11:19
+
+It shows us what it went through to get there. Cloud front.net cloud front is, is a very common response we see. And it says the trace was complete.
+
+If we say trace route one dot two dot, you know, or 10.4.5.6 or something, it's going to crash and burn. It's not that, that IP address. I knew I used, I knew it was not going to go anywhere.
+
+So we'll start seeing these things are timing out and it doesn't mean it's dead, but just yet it could resolve, but it's not going to in this case. So you have to wait. So it's going through and it's trying and it's no good.
+
+Control C will stop that. So we've got CLS, clear the screen. We've got IP config, show me my IP address, show me my subnet mask, showing my gateway.
+
+If I need the full Mac address or other information, I can say IP config space slash all. And that all is a switch. We talk to that slash is what's the switch for that command.
+
+And then we see, we get the physical address, which is the Mac address, the hardware address. We see that we also see our IP, our subnet and our gateway. We see that here we can tell that it's not a static assigned address because there's a lease.
+
+And we can lastly see our DNS server if we're interested in that. And that's a quick intro to windows and the CLI.

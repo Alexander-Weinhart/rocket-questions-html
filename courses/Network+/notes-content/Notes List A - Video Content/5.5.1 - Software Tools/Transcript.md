@@ -1,0 +1,203 @@
+# [5.5.1 - Software Tools](https://www.youtube.com/watch?v=b81_GeoN12I)
+
+## 5.5.1 - Software Tools
+
+- Day: Day 11
+- Duration: 7:29
+
+## Transcript
+
+- `00:02` every network administrator will
+- `00:03` eventually be faced with a problem that
+- `00:05` says the network is slow in actuality
+- `00:08` the network probably is working just
+- `00:10` fine but it will be the responsibility
+- `00:12` of the network administrator to
+- `00:14` determine what part of the network
+- `00:16` communication is performing poorly and
+- `00:19` one of the ways that you can find this
+- `00:20` information is with a protocol analyzer
+- `00:23` this will capture frames that are on a
+- `00:25` wired or wireless network and present
+- `00:27` the results of those frames in a format
+- `00:29` that a human being can understand this
+- `00:32` capture capability may be built into the
+- `00:34` device you're using so the switch the
+- `00:36` router or the firewall may have a
+- `00:38` capture function built into the software
+- `00:41` sometimes you can view the output on
+- `00:42` that device or you may be able to Output
+- `00:45` the file and view it in a protocol
+- `00:46` analyzer such as wire shark wire shark
+- `00:49` can often Show additional protocol
+- `00:51` decodes and additional details about the
+- `00:53` entire conversation traversing the
+- `00:55` network and some Network administrators
+- `00:58` will capture all packets to dis for
+- `01:00` later analysis this is a big data
+- `01:03` analysis feature that allows you to
+- `01:05` store large amounts of information and
+- `01:07` quickly sift through that information to
+- `01:09` find exactly what you're looking
+- `01:11` for although this is used often in it
+- `01:14` security a network administrator will
+- `01:17` also find a great deal of use in the
+- `01:19` program inmap inmap is network mapper
+- `01:22` and it's able to find a great deal of
+- `01:23` information about open port numbers
+- `01:26` operating systems and the versions of
+- `01:28` applications you would use inmap app to
+- `01:30` scan this device and it could return
+- `01:32` information such as all of the open port
+- `01:34` numbers that may be available on that
+- `01:36` Remote device you can also use inmap to
+- `01:38` find information about operating systems
+- `01:41` what type of operating system is on a
+- `01:43` device what version of operating system
+- `01:45` is on a device and you can do all of
+- `01:47` that without actually logging in to that
+- `01:49` device and inmap is able to scan
+- `01:52` services on that device so not only are
+- `01:54` you able to tell that there's an open
+- `01:56` port you are able to tell what service
+- `01:58` is running on that open port mmap also
+- `02:01` has an additional scripting engine so
+- `02:03` you can write your own scripts and
+- `02:05` extend the capability of this utility
+- `02:08` inmap is an active scan it sends queries
+- `02:11` to a device and it examines the results
+- `02:13` of those queries to make decisions about
+- `02:16` what ports may be open what operating
+- `02:18` systems are on that device and what
+- `02:19` services may be running if you're not
+- `02:21` scanning a single device you can tell
+- `02:23` inmap to scan an entire range and it
+- `02:25` will find all of the active devices in
+- `02:28` that IP address range this allows you to
+- `02:30` build a map not only of the IP addresses
+- `02:32` that are on the network but information
+- `02:34` about the operating system services and
+- `02:36` so much more if you were trying to find
+- `02:38` rogue devices or devices that you were
+- `02:41` not expecting to find on the network
+- `02:43` inmap is a great way to scan for those
+- `02:45` mmap can perform scans on the same
+- `02:47` subnet with just Layer Two which makes
+- `02:50` it very difficult for a rogue device to
+- `02:52` hide from an inmap scan here's the
+- `02:54` results of an inmap scan that was done
+- `02:56` to a single device at 10110 222 you can
+- `03:00` see that inmap ran and found the host
+- `03:02` was up and then found a number of
+- `03:05` different open ports on that device
+- `03:07` including Port 22 which normally would
+- `03:09` be for SSH Port 80 for HTTP and of
+- `03:12` course Port 443 for https there's also
+- `03:16` other ports open on this device such as
+- `03:18` 548 for the Apple filing protocol and
+- `03:21` NFS is open on this device on Port
+- `03:24` 2049 if your inmap scan discovers that
+- `03:27` there are port numbers on that device
+- `03:29` that are open but you weren't expecting
+- `03:31` those port numbers to be open then you
+- `03:33` might need to do additional research and
+- `03:35` find out what services are running on
+- `03:37` those individual
+- `03:39` ports if you were to look at the front
+- `03:41` of a switch it's very difficult to tell
+- `03:43` what devices are plugged in what vlans
+- `03:45` they might be a part of or what their IP
+- `03:47` address might be fortunately there are
+- `03:49` some protocols that we can use on this
+- `03:51` network to be able to gather that
+- `03:53` information automatically one of those
+- `03:56` protocols is a proprietary protocol from
+- `03:58` Cisco known as CDP or the Cisco
+- `04:01` Discovery protocol although this is very
+- `04:04` specific to Cisco devices it can provide
+- `04:07` a lot of information about the
+- `04:08` configurations of that switch without
+- `04:10` having to log into the device itself a
+- `04:13` more vendor neutral version of this
+- `04:15` protocol is llddp or the link layer
+- `04:18` Discovery protocol and almost all
+- `04:20` switches support llddp at a minimum so
+- `04:24` that you can start to gather information
+- `04:26` about how that device has been
+- `04:27` configured here's a protocol code I took
+- `04:30` of a device that has both CDP and llddp
+- `04:33` on it this Cisco device is sending CDP
+- `04:37` packets and you can see a breakdown of
+- `04:39` the Cisco Discovery protocol version two
+- `04:41` in this protocol decode within this
+- `04:43` decode we can see that CDP is telling us
+- `04:46` that we have one address on this
+- `04:48` particular interface and it is
+- `04:50` 101102 51 and the port number associated
+- `04:53` with that IP address is Port gigabit
+- `04:56` Ethernet number two you can also see
+- `04:58` information about the software that's
+- `05:00` running on this device the native VLAN
+- `05:02` on this device and how individual
+- `05:04` interfaces may be configured at the
+- `05:06` hardware level llddp shows similar
+- `05:09` information this is the protocol decode
+- `05:11` for the link layer Discovery protocol
+- `05:14` you can see Mac address information for
+- `05:16` the interface it is indeed gigabit
+- `05:18` Ethernet interface number two this is a
+- `05:20` switch named Studio
+- `05:23` 328 and you can see for this there is a
+- `05:26` VLAN ID associated with this interface
+- `05:28` it's running on VLAN 10
+- `05:30` using both CDP and lldp can tell you a
+- `05:32` lot about a switch without having to log
+- `05:34` in and many thirdparty applications and
+- `05:37` devices can use these protocols to
+- `05:39` present this information in a
+- `05:40` Consolidated
+- `05:42` form when you're connecting to the
+- `05:44` internet it's often useful to know how
+- `05:46` much bandwidth is available on that
+- `05:48` particular link and one way that you
+- `05:50` could test this is to send a lot of
+- `05:52` information over the link and measure
+- `05:53` how long it took to send that
+- `05:55` information both in a download and an
+- `05:57` upload form we can do that by using a
+- `06:00` number of free sites that are speed test
+- `06:02` sites this can be very useful to perform
+- `06:05` prior to making a change and then after
+- `06:07` making a change to the network so that
+- `06:09` you can tell if there's any difference
+- `06:11` in speeds between the pre and postc
+- `06:14` configuration update it might also be
+- `06:16` useful to measure this information at
+- `06:18` different times of the day you will
+- `06:20` probably have more bandwidth available
+- `06:22` during the off hours than you might have
+- `06:24` during the middle of a workday and
+- `06:26` although there are many different speed
+- `06:28` test sites they are certainly not the
+- `06:30` same some are located farther away and
+- `06:32` therefore may give you a different value
+- `06:34` than a speed test site that might be
+- `06:36` located closer to you some speed test
+- `06:38` sites may also be constrained by
+- `06:40` bandwidth and therefore may not be able
+- `06:42` to provide you with the most accurate
+- `06:44` statistics often some of the most
+- `06:47` accurate speed test sites are going to
+- `06:48` be those that are provided by your local
+- `06:50` ISP so if you're running on an Xfinity
+- `06:53` Network you might want to use the
+- `06:54` Xfinity speed test site if you're on an
+- `06:57` AT&T network you might want to use at
+- `06:59` TNT speed test that way you're getting
+- `07:01` the most accurate representation of the
+- `07:04` speeds available on your local network
+- `07:06` if you'd rather use some third-party
+- `07:08` speed test sites there are number
+- `07:10` available on the internet fast.com and
+- `07:12` speed ofme are very good choices along
+- `07:15` with speed test.net and testmy.net

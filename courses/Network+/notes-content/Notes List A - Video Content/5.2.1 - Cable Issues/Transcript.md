@@ -1,0 +1,399 @@
+# [5.2.1 - Cable Issues](https://www.youtube.com/watch?v=L6P6ovTEPvU)
+
+## 5.2.1 - Cable Issues
+
+- Day: Day 10
+- Duration: 14:40
+
+## Transcript
+
+- `00:01` when you're working with fiber optics
+- `00:03` you have to make sure that you're using
+- `00:05` exactly the right kind of fiber optic
+- `00:07` connection this is because the light
+- `00:08` works very differently in one type of
+- `00:10` fiber versus the other for example with
+- `00:13` multimode fiber the fiber can use
+- `00:15` multiple modes to be able to find its
+- `00:17` way to the other end of the connection
+- `00:20` this means the light will use different
+- `00:22` paths to find its way from one end of
+- `00:24` the fiber to the other this is very
+- `00:26` different than using single mode fiber
+- `00:28` with single mode fiber the light sour
+- `00:30` uses a single path to go all the way
+- `00:32` through the fiber and you can see with
+- `00:34` single mode fiber that it is a much
+- `00:36` smaller fiber diameter than it is with
+- `00:39` multimode fiber and it's difficult to
+- `00:41` tell the size of the fiber core and
+- `00:43` cladding unless you look very carefully
+- `00:46` and even then it becomes very difficult
+- `00:48` for example in multimode fiber you often
+- `00:50` find two different sizes one that is a
+- `00:53` 50 Micron and one that's a little bit
+- `00:55` larger that is a 62 and 1/2 Micron and
+- `00:58` there's also cladding around around that
+- `01:00` that makes the total size of the fiber
+- `01:02` 125 microns which is identical if you
+- `01:05` were to hold them in your hand single
+- `01:07` mode fiber is very different you can see
+- `01:10` it's around 9 microns but still we have
+- `01:12` clading around the outside that brings
+- `01:14` it up to 125 microns so you could be
+- `01:17` holding one piece of fiber but that
+- `01:19` fiber could be one of three different
+- `01:22` standards that are commonly used on your
+- `01:24` network if you do mix fibers where you
+- `01:26` plug in a single mode fiber where multi
+- `01:28` mode should be or multi mode fiber where
+- `01:31` single mode should be you should see
+- `01:33` signal errors and have a difficult time
+- `01:35` communicating across that link often the
+- `01:38` fiber will have different colors to help
+- `01:40` designate what size it happens to be but
+- `01:42` you cannot always rely on those colors
+- `01:45` so make sure you document all of the
+- `01:46` fibers that you receive there will often
+- `01:48` be writing on the outside of the fiber
+- `01:51` that will tell you what type of fiber
+- `01:52` optic is inside and what sizes it
+- `01:55` happens to be this will help when you're
+- `01:56` troubleshooting to verify exactly what
+- `01:59` type of fiber you might be
+- `02:01` using not only can we mix fiber but we
+- `02:04` can also mix copper there are many
+- `02:06` different types of copper cables and
+- `02:08` they all look very similar from the
+- `02:09` outside the way that these cables are
+- `02:12` constructed is very standardized by the
+- `02:14` Telecommunications industry Association
+- `02:17` or Tia the Tia set standards for how
+- `02:20` certain types of cables should be
+- `02:22` manufactured and they have tests that
+- `02:24` confirm that the cable that was
+- `02:26` manufactured meets their strict
+- `02:28` guidelines once cable are manufactured
+- `02:31` and tested they will qualify as a
+- `02:33` certain category of cable and that's how
+- `02:36` we reference different types of cable
+- `02:38` and different constructions of those
+- `02:40` cable types so if you were to look at
+- `02:42` Category 5 cable versus Category 6
+- `02:44` versus category 7 you will not only see
+- `02:47` that they are constructed very
+- `02:48` differently but they're able to support
+- `02:50` different types of signals across that
+- `02:52` copper so if you look at the I standards
+- `02:55` for ethernet networks it will specify
+- `02:58` the minimum cable type that could be
+- `03:00` used for that particular standard so if
+- `03:02` you're reading through the 1000 Bas T
+- `03:04` standard it states that the minimum
+- `03:07` cable you can use for this is a category
+- `03:09` 5 cable but if you read through the
+- `03:11` 10gbase T standard you'll see that the
+- `03:13` minimum cable is a category 6 and a
+- `03:16` category 6A depending on how far you
+- `03:18` need to transmit that signal these it
+- `03:22` standards will often specify the speed
+- `03:24` of the signal moving through that copper
+- `03:26` cable so you'll see a bandwidth rating
+- `03:28` or speed rating associated with that
+- `03:31` this is the theoretical maximum data
+- `03:33` rate that we can get across that
+- `03:35` particular piece of copper and it's
+- `03:37` often measured in a number of bits per
+- `03:39` second sometimes you'll hear bandwidth
+- `03:41` and throughput mentioned in similar ways
+- `03:44` but throughput is different than
+- `03:46` bandwidth bandwidth is our theoretical
+- `03:48` maximum data rate over that link whereas
+- `03:50` throughput is the total amount of data
+- `03:52` that we're putting over that link in a
+- `03:54` particular time frame this is often
+- `03:57` measured also in bits per second but
+- `03:59` sometimes it's also measured in bytes
+- `04:01` per second so you may have to do a bit
+- `04:02` of a calculation to be able to translate
+- `04:05` between both of those and with all of
+- `04:07` these cable standards there is a maximum
+- `04:09` length that we're able to extend that
+- `04:11` cable and still maintain the standard
+- `04:13` amount of signal we need to know the
+- `04:15` maximum distances and they are usually
+- `04:18` part of the i e standard for example the
+- `04:21` i e standard for 1000 Bas t specifies a
+- `04:24` minimum category type of category 5 and
+- `04:27` you can extend that particular link to
+- `04:29` to 100 m of distance if you are using
+- `04:32` unshielded twisted pair and you are
+- `04:35` running 10g based T signals over that
+- `04:37` cable you need to use Category 6 and
+- `04:40` that unshielded cable will be able to
+- `04:42` run 55 M and still comply with the
+- `04:45` standard if you're installing cable into
+- `04:48` an existing building or you're building
+- `04:50` out a new network run it's always useful
+- `04:53` to test the cable that you're installing
+- `04:55` you need to validate the cable that it
+- `04:57` is not only installed properly but that
+- `04:59` it can support the signals that you plan
+- `05:01` to put over that particular link it's
+- `05:03` common to use a cable tester that will
+- `05:05` perform tests that are very similar to
+- `05:07` the ones that are used to qualify a
+- `05:09` particular category of cable so you can
+- `05:12` install your cable and run your tests
+- `05:14` and your tester will tell you what
+- `05:15` category of cable best matches the cable
+- `05:18` that you've recently installed if you
+- `05:20` use the wrong category of cable you'll
+- `05:22` see errors on the link and that will
+- `05:24` certainly cause a Slowdown these
+- `05:26` physical errors are often caused by
+- `05:28` signal attenuation you might have a loss
+- `05:30` of signal completely or you may be
+- `05:32` receiving CRC errors UTP stands for
+- `05:36` unshielded twisted pair cable this is a
+- `05:38` good example of an unshielded twisted
+- `05:40` pair cable you can see that there are
+- `05:42` four pairs of wires inside of this cable
+- `05:44` and none of those wires have any type of
+- `05:46` shield around them you can also see that
+- `05:49` each of these pairs is twisted and
+- `05:51` that's how we get the term unshielded
+- `05:53` twisted pair there's also a type of
+- `05:55` cable that is more resistant to
+- `05:57` electrical interference this is a
+- `05:59` shielded twisted pair or STP shielded
+- `06:02` twisted pair has a shield either around
+- `06:05` the entire cable or around individual
+- `06:07` pairs inside of the cable to help
+- `06:09` prevent interference and you'll also see
+- `06:11` that shielded twisted pair has a
+- `06:13` grounding wire so you can ground that
+- `06:15` Shield here's a shielded twisted pair
+- `06:17` cable that not only has a braid around
+- `06:19` the entire set of cables but each
+- `06:22` individual pair of the cables is
+- `06:24` shielded you would need to pull those
+- `06:26` back to be able to put it into an RJ45
+- `06:28` connector or to punch it down to a
+- `06:30` punchdown block the wires inside of
+- `06:33` those cables are very close to each
+- `06:35` other and sending an electrical signal
+- `06:37` through one pair of wires could affect
+- `06:40` the signal that's being transmitted or
+- `06:42` received on another pair of wires we
+- `06:44` refer to that interference as cross talk
+- `06:47` or XT this cross talk value describes
+- `06:50` how much of that signal is leaking into
+- `06:52` other wires and we can often measure
+- `06:54` exactly how much of this signal is being
+- `06:57` transferred over from one wire to
+- `06:59` another
+- `07:00` one of these cross talk measurements is
+- `07:01` known as next this is near end cross
+- `07:04` talk this means that we are measuring
+- `07:06` how much of this signal is leaking into
+- `07:09` those other wires at the closest end
+- `07:12` next to the testing device this is
+- `07:14` usually the strongest part of the signal
+- `07:16` and often that is the first cross talk
+- `07:18` value we'd like to see but we might also
+- `07:21` want to see cross talk values at the far
+- `07:23` end of the cable we refer to that as far
+- `07:26` end cross talk these two measurements
+- `07:29` can give you an idea of just how much
+- `07:31` signal happens to be shared between
+- `07:33` those wires as it's going from one end
+- `07:35` of the cable to the other you might also
+- `07:38` find that there's cross talk in your
+- `07:39` cable that's being transmitted from
+- `07:41` another cable we refer to this as alien
+- `07:44` cross talk because that's how you would
+- `07:46` describe interference that's coming from
+- `07:48` other cables and then you have the
+- `07:50` attenuation to cross talk Ratio or ACR
+- `07:54` this allows us to compare two different
+- `07:56` values one of those values is
+- `07:58` attenuation or it's our signal loss that
+- `08:00` we see when we plug into a connection
+- `08:02` the other value is near in Cross talk so
+- `08:05` we're able to compare how much signal
+- `08:07` we're losing versus how much signal is
+- `08:09` leaked between the different wires we
+- `08:11` can often see this as a signal to noise
+- `08:14` ratio where we have a total amount of
+- `08:16` signal that we're putting on the wire
+- `08:18` and then we have interference that's
+- `08:19` being caused by the near and cross talk
+- `08:22` we can then see how much good signal is
+- `08:24` getting through the wire versus how much
+- `08:26` is noise that may be disrupting that
+- `08:28` communication we would obviously like
+- `08:30` that ratio to be very large if we had a
+- `08:33` 10:1 signal to noise ratio our signal
+- `08:36` would be 10 times stronger than the
+- `08:38` noise but if the ratio was a 1: one your
+- `08:41` signal and your noise would be exactly
+- `08:43` the same signal strength on that
+- `08:45` wire if you're seeing a lot of cross
+- `08:48` talk it may be related to the punchdown
+- `08:50` or the connectors that you're putting on
+- `08:52` the end of the cable and it might be
+- `08:54` worth reconnecting that particular cable
+- `08:57` you also want to be sure to maintain as
+- `08:58` many twists as you can in this cable you
+- `09:01` obviously need to untwist a little bit
+- `09:03` from the end to either put it into a
+- `09:05` punchdown block or into an RJ45
+- `09:07` connector but you want to maintain as
+- `09:09` much of that twist as possible category
+- `09:12` 6A has increased the cable size and many
+- `09:15` category 6A cables will have the spacer
+- `09:18` in between that physically separates the
+- `09:20` different wires in order to minimize the
+- `09:22` amount of cross Talk and of course if
+- `09:24` you're wondering if a cable is working
+- `09:26` the way it should or you're installing
+- `09:27` new cables into a facility
+- `09:29` it always makes sense to perform tests
+- `09:31` on that cable to see if it passes a
+- `09:34` particular level of cable
+- `09:37` category earlier we described electrical
+- `09:39` interference and how a shielded twisted
+- `09:42` pair cable would resist that type of
+- `09:44` interference it's always useful to
+- `09:46` minimize the amount of Emi or
+- `09:49` electromagnetic interference that we
+- `09:51` would have both on an unshielded and a
+- `09:53` shielded cable you always want to be
+- `09:55` careful to protect the wire that is
+- `09:57` inside of these cables especially if it
+- `09:59` is a shielded cable and maintain that
+- `10:01` Shield all the way through that
+- `10:03` particular cable run if there is a break
+- `10:05` in that Shield there's a possibility
+- `10:07` that electrical magnetic interference
+- `10:09` will get into those wires there's also a
+- `10:11` minimum Bend radius that you can use and
+- `10:14` you'll want to check what the
+- `10:15` documentation for your cable to see just
+- `10:17` how much of a Bend you can make to that
+- `10:19` cable without causing any damage and of
+- `10:22` course you never want to use Staples on
+- `10:23` these cables and you want to limit the
+- `10:25` number of plastic cable ties a good best
+- `10:28` practice is to use some type of
+- `10:30` removable cable tie such as Velcro so
+- `10:33` that you don't crimp any of those wires
+- `10:35` inside of the cable it's also useful if
+- `10:37` you avoid any of these external sources
+- `10:40` of interference such as power cords
+- `10:42` fluorescent lights any type of
+- `10:44` electrical system or generator and any
+- `10:46` fire prevention components all of these
+- `10:48` can put out electromagnetic interference
+- `10:51` and that interference can find its way
+- `10:52` into your network cables and if you're
+- `10:55` wondering if your cable is coming close
+- `10:57` to one of those sources of interference
+- `10:58` you could always a cable test and see
+- `11:00` what your signal to noise ratio might be
+- `11:02` over that
+- `11:04` link attenuation describes a loss of
+- `11:07` signal as it is sent over a particular
+- `11:09` distance attenuation is something you'll
+- `11:12` find both in copper cables and in fiber
+- `11:14` optic connections as you are moving down
+- `11:17` that fiber or moving through that copper
+- `11:19` we are losing some of the strength of
+- `11:21` that signal as we are moving farther and
+- `11:24` farther away from the source you've
+- `11:26` probably seen this on wireless networks
+- `11:28` As you move farther and farther away
+- `11:29` from the antennas the attenuation of the
+- `11:32` signal becomes stronger and you start to
+- `11:34` lose the signal As you move farther away
+- `11:37` this is one of the reasons that we see
+- `11:38` distance limitations when we start
+- `11:40` referencing i e standards and the
+- `11:42` different categories of cable that we
+- `11:44` can
+- `11:45` use if you've ever worked with a cable
+- `11:48` plant or you've been terminating cables
+- `11:50` into a punchdown block or putting RJ45
+- `11:52` connectors on you know how challenging
+- `11:55` it is to have the perfect type of cable
+- `11:57` termination and often you can make or
+- `12:00` break a network configuration just by
+- `12:02` the terminations that you're doing with
+- `12:04` the cables themselves part of the
+- `12:06` problem is that many of these connectors
+- `12:08` look very similar to each other and yet
+- `12:10` there may be different specifications
+- `12:12` depending on the different connector
+- `12:14` type you also may find that different
+- `12:16` cable installers may have a different
+- `12:18` quality to the punch Downs that they're
+- `12:20` doing and it's true that connectors that
+- `12:22` are made by one individual may work
+- `12:24` better than connectors that were
+- `12:25` installed by a different individual it's
+- `12:28` always a good idea to find somebody who
+- `12:29` is well-versed in the standards for
+- `12:31` installing network cables versus other
+- `12:34` types of cables in most cable runs we're
+- `12:37` trying to match the pins on each side of
+- `12:39` the cable for example pin one on one end
+- `12:42` of the cable should be matched to pin
+- `12:44` one on the other side of the cable pin
+- `12:47` two should be matched to pin two pin
+- `12:49` three to pin three and so on if you have
+- `12:51` a mismatch between these different pins
+- `12:54` or you miss connecting the pins together
+- `12:56` you may find that the cable speed drops
+- `12:58` to a different stand standard for
+- `12:59` example you may be expecting to get a 1
+- `13:02` gbit connection and it's only able to
+- `13:04` support a 100 megabit connection it's
+- `13:06` very easy to make one little mistake
+- `13:09` where you might connect pin one to pin
+- `13:10` two and pin two to pin one and when you
+- `13:13` plug in that ethernet cable you get no
+- `13:15` signal at all sometimes you may find
+- `13:17` that a cable has crossed pairs where pin
+- `13:20` one might connect to pin 3 and pin 3
+- `13:22` might connect to pin one this is a half
+- `13:25` crossed view where you have four of the
+- `13:27` wires acrossed and the other other four
+- `13:29` wires are straight through this is
+- `13:32` sometimes a mistake that can be made at
+- `13:33` the ends of the cable when you're
+- `13:34` crimping on the RJ45 it could also be a
+- `13:37` problem at the punchdown Block so you'll
+- `13:40` want to check every connection along
+- `13:41` that path to see where this cross might
+- `13:44` have occurred this will be something
+- `13:45` that's very easy to see when you plug in
+- `13:47` your cable tester which is another good
+- `13:49` reason to always test a cable that
+- `13:51` you've installed and it will show you
+- `13:53` that instead of pin one connecting to
+- `13:54` pin one and pin two connecting to pin
+- `13:57` two you have a very different cross set
+- `13:59` of cables some ethernet chipsets however
+- `14:02` will recognize when a cable cross has
+- `14:04` occurred and it will reverse that cross
+- `14:07` in the electronics of the ethernet card
+- `14:09` itself effectively turning it back into
+- `14:12` a straight through cable this is
+- `14:14` something that's built around the auto
+- `14:15` IMX capability but it's not always
+- `14:17` turned on and it's not something that
+- `14:19` will always work across every ethernet
+- `14:21` chipset so it's always the best practice
+- `14:23` to install a properly terminated cable
+- `14:26` rather than relying on auto imex

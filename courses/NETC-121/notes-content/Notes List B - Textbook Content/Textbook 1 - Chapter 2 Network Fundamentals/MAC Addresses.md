@@ -1,4 +1,4 @@
-# 🪪 MAC Addresses
+# MAC Addresses
 
 A MAC (Media Access Control) address is a **hardware identifier** burned into every network interface card at the factory. It operates at Layer 2 and is used for local frame delivery within a network segment.
 
@@ -77,15 +77,15 @@ When all 48 bits are set to 1 (`FF` in hex), the frame is addressed to everyone.
 | Layer | 2 (Data Link) | 3 (Network) |
 | Purpose | Local delivery (one hop) | End-to-end delivery |
 | Assigned by | Manufacturer (burned in) | Network admin / DHCP |
-| Changes at router? | ✅ Yes — new frame each hop | ❌ No — same end-to-end |
+| Changes at router? |  Yes — new frame each hop |  No — same end-to-end |
 | Scope | Local network segment only | Global |
 
 ---
 
 ## Key Points
 
-- 📌 48 bits total — 6 bytes written in hex
-- 📌 First 3 bytes = **OUI** (manufacturer ID)
-- 📌 Last 3 bytes = **device-specific** (unique per NIC)
-- 📌 Broadcast MAC = `FF-FF-FF-FF-FF-FF`
-- 📌 MAC addresses stay local — they are **replaced at every router hop**
+- 48 bits total — 6 bytes written in hex
+- First 3 bytes = **OUI** (manufacturer ID)
+- Last 3 bytes = **device-specific** (unique per NIC)
+- Broadcast MAC = `FF-FF-FF-FF-FF-FF`
+- MAC addresses stay local — they are **replaced at every router hop**

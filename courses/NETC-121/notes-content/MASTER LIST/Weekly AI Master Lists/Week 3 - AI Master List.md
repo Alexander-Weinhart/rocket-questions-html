@@ -29,11 +29,11 @@
 - `Notes List C - Personal Notes/Lecture Week 3/Week 3 Notes.md`
 - `Notes List B - Textbook Content/Textbook 2 - Chapter 1 Protocols and Standards/TCP-IP Protocol Suite.md`
 - `Notes List B - Textbook Content/Textbook 2 - Chapter 1 Protocols and Standards/Ethernet Development.md`
-- `Notes List A - Video Content/Video 1 - Unicast, Broadcast, Multicast/Unicast.md`
-- `Notes List A - Video Content/Video 1 - Unicast, Broadcast, Multicast/Multicast.md`
-- `Notes List A - Video Content/Video 1 - Unicast, Broadcast, Multicast/Broadcast.md`
-- `Notes List A - Video Content/Video 2 - Ethernet Frame Structure/Frame Fields.md`
-- `Notes List A - Video Content/Video 2 - Ethernet Frame Structure/Encapsulation.md`
-- `Notes List A - Video Content/Video 2 - Ethernet Frame Structure/CRC Error Detection.md`
-- `Notes List A - Video Content/Video 3 - CSMA-CD and CSMA-CA/CSMA-CD.md`
-- `Notes List A - Video Content/Video 3 - CSMA-CD and CSMA-CA/CSMA-CA.md`
+- `Notes List A - Video Content/Video 9 - Unicast, Multicast, and Broadcast - CompTIA Network+ N10-006 - 1.8/Unicast, Multicast, and Broadcast - CompTIA Network+ N10-006 - 1.8.md`
+- `Notes List A - Video Content/Video 9 - Unicast, Multicast, and Broadcast - CompTIA Network+ N10-006 - 1.8/Unicast, Multicast, and Broadcast - CompTIA Network+ N10-006 - 1.8.md`
+- `Notes List A - Video Content/Video 9 - Unicast, Multicast, and Broadcast - CompTIA Network+ N10-006 - 1.8/Unicast, Multicast, and Broadcast - CompTIA Network+ N10-006 - 1.8.md`
+- `Notes List A - Video Content/Video 10 - Ethernet Frame Format Explanation/Ethernet Frame Format Explanation.md`
+- `Notes List A - Video Content/Video 10 - Ethernet Frame Format Explanation/Ethernet Frame Format Explanation.md`
+- `Notes List A - Video Content/Video 10 - Ethernet Frame Format Explanation/Ethernet Frame Format Explanation.md`
+- `Notes List A - Video Content/Video 11 - CSMA-CD and CSMA-CA Explained/CSMA-CD and CSMA-CA Explained.md`
+- `Notes List A - Video Content/Video 11 - CSMA-CD and CSMA-CA Explained/CSMA-CD and CSMA-CA Explained.md`

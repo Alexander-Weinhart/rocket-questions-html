@@ -1,4 +1,4 @@
-# 🎯 DHCP Scope
+# DHCP Scope
 
 A DHCP scope is the **defined pool of IP addresses** that a DHCP server is authorised to hand out to clients. The admin configures the scope — the server only assigns addresses from within it.
 
@@ -57,7 +57,7 @@ If all addresses in the scope are currently leased out, new clients receive noth
 Scope: 192.168.1.100–192.168.1.110  (11 addresses)
 Active leases: 11/11
 
-New device connects → ❌ No IP available — scope exhausted
+New device connects →  No IP available — scope exhausted
 ```
 
 This is why lease timers matter — expired leases return addresses to the pool for reuse.
@@ -66,8 +66,8 @@ This is why lease timers matter — expired leases return addresses to the pool 
 
 ## Key Points
 
-- 📌 Scope = the range of IPs the server is allowed to assign
-- 📌 Admin sets start/end of the range and all client settings
-- 📌 Scope does not need to span the whole subnet
-- 📌 Exclusions keep specific IPs out of the pool (for static devices)
-- 📌 Pool exhaustion = new clients cannot get an IP
+- Scope = the range of IPs the server is allowed to assign
+- Admin sets start/end of the range and all client settings
+- Scope does not need to span the whole subnet
+- Exclusions keep specific IPs out of the pool (for static devices)
+- Pool exhaustion = new clients cannot get an IP

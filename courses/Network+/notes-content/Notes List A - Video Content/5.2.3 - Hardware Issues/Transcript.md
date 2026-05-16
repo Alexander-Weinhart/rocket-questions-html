@@ -1,0 +1,199 @@
+# [5.2.3 - Hardware Issues](https://www.youtube.com/watch?v=_IeIUxDe1fo)
+
+## 5.2.3 - Hardware Issues
+
+- Day: Day 10
+- Duration: 7:34
+
+## Transcript
+
+- `00:02` if you've recently installed a telephone
+- `00:03` on a desktop an access point or a camera
+- `00:07` on your network then you've probably
+- `00:09` connected it using power over Ethernet
+- `00:12` or Poe this provides power over the same
+- `00:15` wire that we're using to run data which
+- `00:18` greatly simplifies the installation of
+- `00:20` these devices because we don't have to
+- `00:22` run a separate cable for the power the
+- `00:24` power that's put on this power over
+- `00:26` ethernet connection can come from one of
+- `00:28` two different sources one is buil-in
+- `00:31` power at the switch itself you may have
+- `00:33` a Poe switch that switch may be
+- `00:36` providing power and we refer to that as
+- `00:38` an end span sometimes you'll have a
+- `00:41` switch that doesn't support power over
+- `00:43` ethernet and you'll need to have a
+- `00:45` separate device in the middle that
+- `00:47` injects power onto those wires that
+- `00:49` injector is referred to as a midspan
+- `00:52` because it sits in the middle between
+- `00:54` the switch and the poe device you'll
+- `00:57` often find one of three different power
+- `00:59` over ethernet stand standards that are
+- `01:00` being used the original Poe was a 15.4
+- `01:04` watt of DC power output and it has a 350
+- `01:08` milliamp maximum current this would
+- `01:10` obviously be for very small devices
+- `01:12` perhaps it's a simple telephone or a
+- `01:15` very small access point the next
+- `01:17` standard would be poe+ with Poe plus we
+- `01:20` can put additional power on this
+- `01:22` connection because it supports 25.5
+- `01:25` watts of DC power with a maximum current
+- `01:28` of 600 milliamps Poe plus is often used
+- `01:31` for larger telephones cameras and other
+- `01:34` devices and the largest of these three
+- `01:36` standards is the poe Plus+ as the name
+- `01:39` implies this provides more power than
+- `01:42` the previous standards you can have up
+- `01:44` to 51 Watts at 600 milliamps maximum
+- `01:47` current we refer to that as a Type 3
+- `01:49` Connection or a type four connection
+- `01:51` that can support 71.3 Watts with a 960
+- `01:55` milliamp Max current this larger
+- `01:58` standard supports much larger devices
+- `02:01` there are some laptops that support Poe
+- `02:03` Plus+ and if you have a large camera
+- `02:05` that supports pan tilt and zoom that
+- `02:08` additional power for that camera comes
+- `02:10` from Poe Plus+ this newer Poe standard
+- `02:13` provides support for additional ethernet
+- `02:15` standards such as 2 and 1/2 gbit 5 gbit
+- `02:19` and 10 gbit connections if you're
+- `02:21` installing a Poe switch and your goal is
+- `02:23` to power a Poe device you need to make
+- `02:26` sure that the device and the switch are
+- `02:28` compatible for example if if you have a
+- `02:30` poe+ switch that switch will not be able
+- `02:33` to power a poe+ plus device you can
+- `02:36` often look at the switch itself and it
+- `02:38` will tell you what interfaces support
+- `02:40` power over ethernet it may be a switch
+- `02:43` where all of the interfaces support
+- `02:45` power over ethernet this is a 10 Port
+- `02:47` gigabit power over ethernet plus manage
+- `02:49` switch and you can plug into any of
+- `02:52` these interfaces and use power over
+- `02:54` ethernet some switches may have some
+- `02:56` interfaces that have no Poe support some
+- `02:59` might support poe+ and other interfaces
+- `03:01` May support Poe Plus+ you also might
+- `03:05` want to look at the switch
+- `03:06` specifications to see what the maximum
+- `03:08` amount of Poe power that can be
+- `03:10` supported using that switch for example
+- `03:13` the switch May support 200 watts of Poe
+- `03:16` or it may support 720 watts of Poe you
+- `03:20` will need to add up all of the devices
+- `03:22` that you're connecting to that switch
+- `03:24` determine what their maximum amount of
+- `03:25` power draw might be and make sure that
+- `03:28` that is under the capacity of that
+- `03:30` particular ethernet
+- `03:31` switch you might also run into hardware
+- `03:34` issues when you're working with
+- `03:35` transceivers transceivers provide a
+- `03:37` modular connection for our ethernet
+- `03:39` devices but we have to be sure that
+- `03:41` we're using the right transceiver for
+- `03:43` the right connection for example if
+- `03:45` you're plugging in a fiber transceiver
+- `03:47` you have to make sure that the fiber
+- `03:48` transceiver matches the type of fiber
+- `03:50` that you're connecting there's usually a
+- `03:52` wavelength mark on the transceiver so it
+- `03:55` might show that it is a 850 nanometer
+- `03:58` transceiver or 13 10 nanometer
+- `04:00` transceiver all of these need to match
+- `04:02` throughout the entire link and it's
+- `04:04` usually based upon the fiber that you're
+- `04:06` plugging into these connections so
+- `04:08` you'll want to check your fiber
+- `04:10` specifications and the specifications of
+- `04:12` the transceivers and make sure all of
+- `04:14` those match if they don't match you will
+- `04:16` undoubtedly have signal loss which will
+- `04:18` result in error counters increasing a
+- `04:21` loss of signal or slowdown in overall
+- `04:23` Network efficiency if you were to just
+- `04:26` grab a transceiver out of your drawer
+- `04:27` and plug it into a switch you might be
+- `04:29` using the wrong one these are two
+- `04:31` transceivers but they are two very
+- `04:33` different transceivers at first glance
+- `04:36` they look almost identical but if you
+- `04:38` look very closely at these transceivers
+- `04:39` you'll see the wavelengths are marked in
+- `04:42` very small numbers and it's very easy to
+- `04:44` miss that when you're plugging into a
+- `04:46` switch that's also Complicated by the
+- `04:48` fact that once you plug it into the
+- `04:50` switch you can no longer read the
+- `04:51` markings that are on the side of the
+- `04:53` transceiver and you may either need to
+- `04:55` look at the specifications that are
+- `04:56` shown on the switch or you may need to
+- `04:59` physically remove the transceiver just
+- `05:01` to be able to look at the label that's
+- `05:02` on the side one of the challenges when
+- `05:05` connecting these transceivers and fiber
+- `05:07` connections together is we need to make
+- `05:09` sure that we get enough signal from one
+- `05:11` end of the connection to the other this
+- `05:13` is especially important if you have a
+- `05:15` very long run with many Connections in
+- `05:17` the middle and you may be concerned that
+- `05:19` not enough signal is getting to the
+- `05:21` other side each of these devices has
+- `05:24` what's called a sensitivity level which
+- `05:26` will tell you how much signal it's able
+- `05:28` to receive in still interpret everything
+- `05:31` properly usually this is part of the
+- `05:33` specifications of the device and it
+- `05:35` should be well documented this is why
+- `05:37` it's important to calculate the exact
+- `05:39` power budget you might be from one end
+- `05:41` of the connection to the other we'll
+- `05:43` first need to determine how much power
+- `05:44` is being transmitted by the transmitting
+- `05:47` device this is usually measured in decb
+- `05:49` per mowatt this gives you a total number
+- `05:52` of decb that are being transmitted for 1
+- `05:55` mowatt of signal we then might want to
+- `05:57` look at the media that we're using and
+- `05:59` determine how long that connection is
+- `06:01` and how much signal we would expect to
+- `06:03` lose over that distance we also want to
+- `06:06` take into account connectors or splices
+- `06:08` because each one of those takes away
+- `06:10` from a little bit of the signal once we
+- `06:12` determine the total signal loss based on
+- `06:15` that distance and the number of
+- `06:16` Connections in between we can subtract
+- `06:18` that from the total amount of
+- `06:20` transmitted power that final value is
+- `06:23` the amount of power we would expect to
+- `06:25` receive at the end of that connection we
+- `06:27` would then compare that total received
+- `06:30` power to the sensitivity value of that
+- `06:32` particular interface and hopefully the
+- `06:34` amount of power that we're receiving
+- `06:36` over that connection is stronger than
+- `06:38` the sensitivity value our decb per
+- `06:42` mowatt are decreasing as they move
+- `06:44` through this media so our sensitivity
+- `06:46` values will be a negative value in this
+- `06:49` particular example this is a transceiver
+- `06:51` that is an SFP transceiver at 850 nanm
+- `06:55` and you can see its receiver sensitivity
+- `06:57` is -17 DB per mowatt so if we perform
+- `07:02` that calculation of our power budget and
+- `07:04` we come up with a received power value
+- `07:07` of negative 17 DB per mowatt or higher
+- `07:10` then we have a good signal if we
+- `07:13` calculate that power budget and we end
+- `07:15` up receiving -20 dbm then we know that
+- `07:18` we don't have enough power to be able to
+- `07:20` receive it properly on this transceiver

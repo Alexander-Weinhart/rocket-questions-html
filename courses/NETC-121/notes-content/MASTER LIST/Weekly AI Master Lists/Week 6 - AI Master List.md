@@ -38,5 +38,5 @@
 - `Notes List C - Personal Notes/Lecture Week 6/Hexadecimal and BGP Basics.md`
 - `Notes List B - Textbook Content/Textbook 2 - Chapter 6 DNS and Name Resolution/DNS, Queries, Zones, and Resource Records.md`
 - `Notes List B - Textbook Content/Textbook 2 - Chapter 7 Windows Network Commands/Windows Network Commands - What They Do.md`
-- `Notes List A - Video Content/Video 10 - Telnet and SSH/Transcript.md`
-- `Notes List A - Video Content/Video 11 - Factory Reset Cisco Switch/Transcript.md`
+- `Notes List A - Video Content/Video 20 - Telnet vs SSH Explained/Telnet vs SSH Explained.md`
+- `Notes List A - Video Content/Video 21 - How to Factory Reset Cisco Switch/How to Factory Reset Cisco Switch.md`

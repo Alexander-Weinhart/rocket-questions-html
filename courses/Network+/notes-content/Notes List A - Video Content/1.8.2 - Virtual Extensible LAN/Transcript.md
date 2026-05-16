@@ -1,0 +1,115 @@
+# [1.8.2 - Virtual Extensible LAN](https://www.youtube.com/watch?v=eBhqN6d6lRU)
+
+## 1.8.2 - Virtual Extensible LAN
+
+- Day: Day 4
+- Duration: 5:17
+
+## Transcript
+
+- `00:01` Many organizations will distribute their applications,
+- `00:05` their servers, and other devices across many different data
+- `00:08` centers.
+- `00:09` Instead of treating each of these data centers
+- `00:12` as an individual entity, it would be useful
+- `00:15` if we could have Data Center Interconnection, or DCI, a way
+- `00:20` to connect these different data centers seamlessly
+- `00:22` with each other.
+- `00:23` If you are a service provider, you
+- `00:25` may have 100 or even thousands of customers using resources
+- `00:29` that span across multiple data centers located anywhere
+- `00:32` in the world.
+- `00:33` And of course, we use the cloud to distribute our applications
+- `00:36` to multiple data centers that may be located
+- `00:39` in many different locations.
+- `00:40` And those applications may move at any time
+- `00:43` to any of these cloud based data centers.
+- `00:46` When you have devices located in different data centers,
+- `00:49` however, you may run into situations
+- `00:51` where IP addressing is very different across those different
+- `00:55` data centers.
+- `00:56` There might be one IP addressing scheme
+- `00:57` for data center A and a completely different IP
+- `01:00` addressing scheme for data center B.
+- `01:03` The connectivity to these data centers
+- `01:05` may also be very different.
+- `01:06` Some data centers may be in a large metropolitan area
+- `01:10` with lots of fiber connectivity and large amounts of bandwidth.
+- `01:13` Other data centers might connect through metro ethernet
+- `01:16` or other types of copper based connectivity.
+- `01:19` The applications that are residing in these data centers
+- `01:21` shouldn't have to worry about connectivity types, IP address
+- `01:24` schemes, or anything else that's unique to that data center.
+- `01:28` We should be able to put an application in any location
+- `01:31` and that application should work without any type of issue.
+- `01:34` We need a way to seamlessly connect these data centers
+- `01:37` together without a concern about IP address schemes
+- `01:40` or the underlying network infrastructure.
+- `01:43` The solution to this problem is a virtual extensible LAN
+- `01:46` or VXLAN.
+- `01:48` This technology was designed to support thousands
+- `01:51` of different customers, all using the same data centers
+- `01:54` located across the world.
+- `01:56` You may already be familiar with VLANs, or Virtual Local Area
+- `02:00` Networks.
+- `02:00` VLANs are designed to span across multiple switches
+- `02:04` at layer 2 so that you can have different areas of the network
+- `02:07` supporting the same IP subnets.
+- `02:10` Unfortunately, VLANs have a limited scope because they can
+- `02:13` only support around 4,000 different virtual networks
+- `02:16` and they are limited to layer 2, which makes them non-routable.
+- `02:21` With VXLAN, we can support up to 16 million virtual networks.
+- `02:25` And those virtual networks can be connected to each other
+- `02:28` over a layer 3 network, which makes
+- `02:30` it very easy to route over the existing public internet.
+- `02:34` This is designed for the large virtual environments
+- `02:37` that we've created and allows us to support our applications
+- `02:40` wherever they might be.
+- `02:42` Let's take a scenario where we have two data centers.
+- `02:45` In one data center, we have a virtualization server.
+- `02:48` Inside of that virtualization server
+- `02:50` is a virtual switch and three separate virtual machines, A1,
+- `02:54` B1, and C1.
+- `02:56` In a different data center, we have a similar virtualization
+- `02:59` server with its own VSwitch and a virtual machine, A2, B2
+- `03:04` and C2.
+- `03:05` And in this example, virtual machine A1
+- `03:08` is associated with virtual machine A2.
+- `03:11` Virtual machine B1 is associated with B2 and virtual machine
+- `03:15` C1 is associated with virtual machine C2.
+- `03:18` This virtualization server is contained
+- `03:20` within a rack that has a top of rack switch
+- `03:23` that contains a VXLAN tunnel endpoint.
+- `03:26` In one data center that VTEP is numbered 1.1.1.1,
+- `03:31` and in a different data center, there's a completely different
+- `03:34` IP address for this VTEP of 2.2.2.2.
+- `03:38` Notice that both of these VXLAN tunnel endpoints
+- `03:41` will support a VXLAN Network Identifier, or VNI.
+- `03:45` You can see there is a VNI 2000, a VNI 3000 and VNI 4000 in both
+- `03:52` of these data centers.
+- `03:53` So the challenge is connecting VNI 2000 in data center with VNI
+- `03:57` 2000 in another data center, VNI 3000 in one data
+- `04:01` center to the other, and VNI 4000 in one data center
+- `04:05` to the other.
+- `04:06` The way that we would accomplish this
+- `04:07` is through the use of a VXLAN tunnel.
+- `04:10` This uses an existing IP network to be
+- `04:13` able to provide the transportation
+- `04:14` and we're able to encapsulate information in one data center,
+- `04:18` send it through this tunnel, and decapsulate it on the other end.
+- `04:22` Here's how this would work.
+- `04:24` We have our original frame in the first data center.
+- `04:27` This is a standard ethernet frame
+- `04:28` with an ethernet header, an IP header, and the payload
+- `04:31` that we would like to send to the other data center.
+- `04:34` We're going to encapsulate that original frame within a VXLAN
+- `04:37` header that sits inside a UDP header
+- `04:40` in an IP header in an ethernet frame.
+- `04:42` This information is routed across a VXLAN tunnel, where
+- `04:46` on the other side it is decapsulated from the tunnel
+- `04:49` and the original ethernet frame is then in the second data
+- `04:53` center and added to the existing virtualization server.
+- `04:57` This allows us to connect virtual machines into completely
+- `05:00` different data centers, but still
+- `05:02` have those virtual machines feel that they are both directly
+- `05:05` connected to each other.

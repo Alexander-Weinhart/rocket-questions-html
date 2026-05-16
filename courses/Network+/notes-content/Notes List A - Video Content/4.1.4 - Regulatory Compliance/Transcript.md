@@ -1,0 +1,109 @@
+# [4.1.4 - Regulatory Compliance](https://www.youtube.com/watch?v=5KjXu7SvU6E)
+
+## 4.1.4 - Regulatory Compliance
+
+- Day: Day 9
+- Duration: 4:00
+
+## Transcript
+
+- `00:02` an ongoing challenge for it
+- `00:03` professionals is to maintain compliance
+- `00:06` with the laws policies procedures or
+- `00:09` other rules that may be associated with
+- `00:11` their type of work some compliance
+- `00:14` requirements are brought on by the type
+- `00:15` of business that someone might be in but
+- `00:18` other compliance is brought by laws
+- `00:20` associated with State local or other
+- `00:22` agencies and in some cases not following
+- `00:25` these compliance requirements may result
+- `00:27` in fines incarceration or a loss of
+- `00:30` employment and these compliance
+- `00:32` requirements may be wide ranging it may
+- `00:34` be something that is a national
+- `00:36` territory or state law or there may be
+- `00:38` domestic or even International
+- `00:40` requirements that have to be
+- `00:42` followed in many Geographic areas one
+- `00:45` type of compliance is associated with
+- `00:48` data localization this means that any
+- `00:50` data that is collected by that country
+- `00:53` must stay inside of that country an
+- `00:56` example of this can be found in the gdpr
+- `00:59` this is the general data protection
+- `01:00` regulation that is associated with the
+- `01:03` European Union there are a number of
+- `01:05` rules associated with how data should be
+- `01:08` stored and where data should be stored
+- `01:10` and whether these data localization
+- `01:12` requirements are part of the gdpr or
+- `01:15` part of another type of compliance
+- `01:17` regulation you need to make sure that
+- `01:18` you understand where the data is
+- `01:20` supposed to be located and where that
+- `01:23` data can move once it's been
+- `01:25` stored but the general data protection
+- `01:28` regulation or the gdpr involves much
+- `01:30` more than just where the data can be
+- `01:32` stored this is a regulation that's
+- `01:34` associated with the protection and
+- `01:36` privacy of data associated with
+- `01:38` individuals that reside within the
+- `01:40` European Union this includes but is not
+- `01:42` limited to their name address photo
+- `01:45` email address Bank information websites
+- `01:48` they visit and any other type of data
+- `01:50` that that user may be gathering the gdpr
+- `01:53` states that any data that is collected
+- `01:55` on European Union citizens must be
+- `01:57` stored in the European Union the users
+- `02:00` can of course decide where their data
+- `02:02` goes and can choose to have their data
+- `02:04` removed from sites if they prefer the
+- `02:07` gdpr is designed to give individuals
+- `02:10` control over their own data and although
+- `02:12` it's often described as a right to be
+- `02:14` forgotten it may be better described as
+- `02:17` a way for individuals to protect data
+- `02:19` that they themselves
+- `02:21` own another type of Regulatory
+- `02:24` Compliance is not one associated with
+- `02:26` the law but is instead associated with
+- `02:28` an organization
+- `02:30` this is the PCI DSS this is the payment
+- `02:33` card industry data security standard and
+- `02:36` is a standard designed by the payment
+- `02:38` card industry to protect your credit
+- `02:40` card information there are six different
+- `02:43` areas of focus associated with the PCI
+- `02:46` DSS we need to build and maintain secure
+- `02:49` networks and systems this is something
+- `02:51` that will help protect data as it's
+- `02:53` moving across that Network we need to
+- `02:55` protect card holder data especially
+- `02:57` information associated with someone's
+- `02:59` private information we need to maintain
+- `03:01` a vulnerability Management program which
+- `03:03` is especially important if you're an
+- `03:05` organization that is storing credit card
+- `03:07` information we need to implement strong
+- `03:09` Access Control measures so that only the
+- `03:12` people required can gain access to this
+- `03:14` credit card data there needs to be
+- `03:16` regular monitoring and testing of these
+- `03:18` networks to ensure that all of these
+- `03:20` policies that we've put in place are
+- `03:22` indeed working as expected and we need
+- `03:25` to maintain an information security
+- `03:27` policy so that we have a broader scope
+- `03:30` on how to protect not only the credit
+- `03:31` card information but all of the data
+- `03:34` within our organization organizations
+- `03:36` are often audited to see if they're
+- `03:39` following the policies associated with
+- `03:41` the PCI DSS and an organization that is
+- `03:44` not following these policies could
+- `03:46` result in them not being able to process
+- `03:48` credit cards any
+- `03:58` longer and

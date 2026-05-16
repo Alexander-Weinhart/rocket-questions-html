@@ -1,0 +1,80 @@
+# [1.5.7 - Copper Connectors](https://www.youtube.com/watch?v=Ca6rzoQm15w)
+
+## 1.5.7 - Copper Connectors
+
+- Day: Day 3
+- Duration: 3:31
+
+## Transcript
+
+- `00:01` One common copper connector we use on our networks
+- `00:05` today is an RJ11.
+- `00:06` This stands for Registered Jack type 11.
+- `00:09` It is a six-position connector, but we only
+- `00:12` use two conductors inside of this connector.
+- `00:15` Sometimes, you'll see this referred to as a 6P2C,
+- `00:18` for 6 position 2 conductor.
+- `00:21` We commonly associate an RJ11 connector
+- `00:23` with an analog telephone, but you'll also
+- `00:26` see RJ11 used for DSL connections
+- `00:29` since those use exactly the same wires as a telephone connection.
+- `00:33` Here's a better view of the RJ11 connector.
+- `00:36` And you can see the six positions--
+- `00:38` 1, 2, 3, 4, 5, 6 are clearly marked--
+- `00:41` but you notice that there are the two conductors in the middle
+- `00:45` that are used for RJ11.
+- `00:48` If you're using an ethernet connection,
+- `00:50` then you're using an RJ45 connector.
+- `00:52` And this stands for Registered Jack type 45.
+- `00:55` It is an eight position connector with eight conductors
+- `00:59` inside, so we're using all of the conductors
+- `01:01` available on an RJ45 connection.
+- `01:04` This is slightly larger than an RJ11 connector,
+- `01:07` and it's what you would use if you're plugging
+- `01:09` in an ethernet connection.
+- `01:11` Here's a device that has both RJ11 and RJ45 connectors on it.
+- `01:16` You can see this is a DSL connection that uses the RJ11,
+- `01:20` and these LAN connections, or ethernet connections,
+- `01:23` are using the RJ45.
+- `01:25` You can see that they're very similar in shape,
+- `01:27` although the RJ11 is slightly smaller than the larger
+- `01:31` and wider RJ45.
+- `01:34` If you're using a cable modem connection,
+- `01:36` then you're probably bringing coax connections
+- `01:38` and plugging it into a cable modem.
+- `01:40` And the connector that you're probably using
+- `01:42` is the F-connector.
+- `01:44` The F-connector is a standard connection type.
+- `01:47` It usually has threads inside that allow you to fasten it
+- `01:49` very securely to the connector.
+- `01:51` And if you are using a cable modem,
+- `01:54` this is probably the connection type
+- `01:55` that you're using from the cable television infrastructure.
+- `01:59` This is also referred to as a DOCSIS connector.
+- `02:02` That stands for Data Over Cable Service Interface Specification.
+- `02:06` The connection that brings the signal
+- `02:08` is the single copper connection on the inside of the cable.
+- `02:12` This is what you would plug-in and screw into a cable modem
+- `02:15` using that F-connector connected to the coaxial cable.
+- `02:21` Another common connector used for coax is a BNC connector.
+- `02:25` This is a Bayonet connector, that's
+- `02:27` what the b stands for, where you push it into the connector
+- `02:30` and twist it slightly to lock it in place.
+- `02:33` The NC in the BNC connector stands for Neill-Concelman.
+- `02:37` This stands for Paul Neill from Bell Labs and Carl
+- `02:40` Concelman from Amphenol.
+- `02:42` They both were involved in creating this standard for a BNC
+- `02:46` connection.
+- `02:47` If you're bringing in a WAN connection or any other type
+- `02:50` of coax, it's very possible you might use a BNC connection
+- `02:53` to lock this in place.
+- `02:55` That is one of the benefits of using BNC,
+- `02:58` is that you're able to push the connector in and twist it,
+- `03:01` and it's not going to easily remove itself
+- `03:04` from that connection.
+- `03:05` You would need to untwist before removing that
+- `03:07` from the interface.
+- `03:09` Here's a close up view of the BNC interfaces on a device.
+- `03:12` You could see where you would plug-in the BNC connector.
+- `03:15` You twist that connector slightly
+- `03:17` and it's locked in place onto that device.

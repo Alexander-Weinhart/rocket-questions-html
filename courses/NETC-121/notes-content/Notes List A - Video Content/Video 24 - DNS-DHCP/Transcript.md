@@ -1,0 +1,81 @@
+# Video 24 - DNS-DHCP
+
+## Transcript
+
+### 0:00 - 1:33
+
+When we look at DHCP, Dynamic Host Configuration Protocol, this is going to be the server that provides the IP addresses for devices, typically desktops and laptops and such, wireless devices, that need an IP address. Before we start, the DHCP server must have a static address. So when they're configured, it can't also, if you think about the problem, it can't also be set up to obtain an address because it's handing out addresses.
+
+So we have to do that. Not a big deal, but sometimes that's missed. We can go into Windows and in Windows Server software, so not Windows 7 or Windows 8 or so forth, but more like Windows 2008, Windows 2012, you can go in and manage the DHCP server.
+
+You can turn that option on on those servers. And when you do, I've set up an example here where we see that we've got the scope, and that is what's the IP range. So it's going to give out addresses in the 192.168.0.1 range.
+
+And there's some things we need to talk about that are important to know about DHCP. There's the address pool, that is the addresses that can be given out. There's the leases, that those are devices that have reached out, asked for an IP address and subnet mask and default gateway and DNS and such, and be given one.
+
+### 1:34 - 5:27
+
+Reservations are based on a MAC address, so you can have the PC get the same address, it'll get that. And the scope options have to do with things like handing out DNS and some other things. In the address pool, right now, when you do an IP config or IP config renew slash renew, sometimes that process will fail.
+
+If the DHCP server was not on, that would fail. Or if other things, such as right now we see that this setup to hand out addresses 192.168.0.60, 61, and 62 is the last address. So there's three addresses, 60, 61, and 62.
+
+If three devices had already grabbed those addresses, it would be kind of like musical chairs where the last device doesn't get one. When a device fails to get a successful DHCP lease, typically we'll either see the 169.0, 169.something, don't know, X, Y, Z, whatever the numbers are. But the first number, that's an indication that you do not have a usable IP, or let's say in this case, a valid working IP for practical purposes.
+
+Sometimes you'll see 0.0.0.0 as well. But that's a telltale sign that it failed to get a lease. Why did it fail? Well, there can be several reasons.
+
+One is it couldn't reach the DHCP server, such as there's a link down or something. The DHCP server could be off. The DHCP server may have given out all of the available addresses.
+
+When we look at leases, we can look at leases and we see here's one lease that we've got a Windows machine, and here's a time date stamp, and it tells us that that has 0.61. So we often have to refresh the screen when we're in the DHCP server to see those updates, but we can see who has all the leases. One of the things that we often have a challenge is that sometimes their IP addresses are already statically assigned in the middle of the range. So for example, imagine that we could have a range of 192.168.0.1 through 0.250 or something like that, a big chunk of IP addresses that could be assigned.
+
+What if we already had a printer at .80 and a server at .90? We don't want to give out those addresses because they're in use. So we can put in exclusion ranges, basically, that says to the DHCP server, skip over these addresses. Go hand out addresses, but don't hand out these, even though they're in the middle of what we initially said was the valid pool of addresses. Create an exclusion range, right click on that.
+
+We can say, for example, exclude 61. And now when the lease is up, it'll renegotiate and get the .60 IP address. It won't get 61 because that's been excluded. Reservations could be made using MAC addresses where it's not done as much anymore, but that's what is involved. I think about it like going to a restaurant and having your table, that if you show up, you always get that table. It's kind of based on the MAC address and such. In scope options, when we hand out a DHCP lease, what do we get? We get an IP address, subnet mask, gateway. Typically, we get DNS so we can reach and resolve names, kind of our 411 lookup.
+
+### 5:27 - 6:50
+
+And we may also get some other things like TFTP, Trivial File Transfer Protocol. That's often used for loading configuration data, especially for like IP phones and such. So we can hand out other things.
+
+But typically, we're giving out IP, subnet, gateway, and DNS. Those are the key things. We can set the lease time up.
+
+If you look at this, in my example, we have a lease time of one minute, which is insane. Because what we do is when the device asks the server for an IP address and the server responds and says, okay, here's your lease. Here's your IP, subnet, gateway, and DNS.
+
+It'll also give it a time of how long it's allowed to use that IP address. When that lease time expires, the host will automatically, the device will automatically reach out and say, I need to renew. And that'll happen without any user intervention.
+
+When it does, it may get the same address back. It often does, but it could also get a different address. The challenge is if we got a different address, it can break things or stop things from functioning.
+
+### 6:51 - 9:21
+
+If you were in the middle of a long file transfer, and then all of a sudden your address changed, it's going to stop that TCP sequence. It would be similar to having the dumbest waiter on earth, where you go in and sit at table four and you order food, and then you see a friend or something, you get up and you move to table 26. Well, you've ordered the food, the food will be brought to table four, but you're not there anymore.
+
+And the waiter's not smart enough to go, hey, you moved. So what it would do is if you, in a renew, when the lease expires, if you get the same IP address back, you're golden, nothing, no interruptions, no hiccups. But if you were in the middle and you got a different IP address, it would stop that transfer.
+
+Imagine you're in an hour and a half download of a big Linux distribution, big five gigabyte, whatever it is, and you're 99% done. The lease renews and you get a different IP and it hiccups that process and you have to start over. That wouldn't be good.
+
+If on the other hand, you were surfing the web, maybe you have to click again or click, you know, refresh on the web browser. It would be pretty transparent. You probably wouldn't even see it.
+
+It would only be a problem in the big file transfer kind of scenario. Typically leases are not a minute. This would be done more for demonstration purposes.
+
+Typical leases would be at minimum, usually a few hours, like at maybe a Panera or something or leases, you know, at the college we use 10 to 14 day kind of leases. So when you hand out a lease, that IP is now taken. I think about it like leasing an apartment.
+
+If you lease an apartment for 30 days and after a week you moved, went to a different location, that apartment will not be rented until the end of that period. That lease is for 30 days or six months or whatever it is. And assume it's paid up, it would not be released. And that's the same thing that DHCP servers can have is that if you went into a company, Panera, McDonald's, something, and they gave you a DHCP lease and it was for, you know, a month or some long period of time, when you came back, you would have the same IP or it would still be locked up. It would expire and that would free up. So we often take care to set the lease time on the servers so that we don't run out of IP addresses.
+
+### 9:21 - 10:05
+
+Imagine how much traffic McDonald's or Panera or a restaurant like that gets in a day. It may be that use Wi-Fi. It may be hundreds or up to a thousand or so people.
+
+If they only had an address pool of 200 addresses and they gave them for, you know, a week, in the first few hours, those addresses would be given out and other people would not be able to get an IP address. What would they see? They would see exactly what we see when it fails to get the address, typically a 169 dot something. So we often want to tune that lease time.
+
+### 10:13 - 12:25
+
+Typically, we can deal with longer leases than a couple of hours. How could we fix the problem for this turnover? We can increase the size of the pool instead of handing out, let's say we had 200 addresses in the pool. We could put 2,000 addresses or 10,000 addresses.
+
+We can do things like that. Or we can decrease the time of the lease. Would it be a problem if the lease was reduced to five minutes? What consequence may that have? Is it always a problem or is there a specific situation that would cause that problem? In Windows or Linux or other things, DATP servers are not, we don't think of them as programs like Word or Excel or Internet Explorer or something.
+
+They're called services that in the control panel under administrative tools, you can go in and look at the services that are running. The things that we have services on our laptops running that run the wireless in the background. We typically don't have to start that wireless process.
+
+It's running there for us. So the service, we can start and stop services. If that DHCP service isn't running on the server, it's obviously not going to be handing out addresses.
+
+So we can go into administrative tools and we can find services and we can go in and we see that there is the DHCP server. And we see that it's actually started. We can often or also right click on this and restart the service.
+
+That fixes a lot of problems. On this screen, we can click stop. If we click stop, it'll take maybe five seconds and then we can restart it.
+
+It's a common thing that needs to be done. DHCP servers, I would suggest, tend to be a little finicky in that when we make significant changes to the setup and configuration of it, typically plan to reboot the server. Often just stopping and starting the service is not sufficient.

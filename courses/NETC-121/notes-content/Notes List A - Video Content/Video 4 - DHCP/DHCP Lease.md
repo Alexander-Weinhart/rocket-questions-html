@@ -1,4 +1,4 @@
-# ⏳ DHCP Lease
+#  DHCP Lease
 
 A DHCP lease is a **temporary assignment** of an IP address. The client doesn't own the IP — it borrows it for a set period of time. When the lease expires, the address returns to the pool for someone else to use.
 
@@ -12,11 +12,11 @@ Without leases, every IP handed out would be permanently consumed. Devices that 
 Without leases:
   100-address scope, 100 devices assigned IPs
   50 devices leave the network permanently
-  → 50 addresses locked forever, pool half-dead ❌
+  → 50 addresses locked forever, pool half-dead 
 
 With leases:
   Those 50 devices' IPs expire after the lease duration
-  → Addresses return to pool, available for new devices ✅
+  → Addresses return to pool, available for new devices 
 ```
 
 ---
@@ -25,21 +25,21 @@ With leases:
 
 ```
 Client                              DHCP Server
-  │                                      │
-  │──── DISCOVER ───────────────────────►│
-  │◄─── OFFER (IP + lease duration) ─────│
-  │──── REQUEST ────────────────────────►│
-  │◄─── ACK (lease starts) ──────────────│
-  │                                      │
-  │     [using 192.168.1.50 for 24h]     │
-  │                                      │
-  │  at 50% of lease: renew attempt      │
-  │──── REQUEST (renew same IP) ────────►│
-  │◄─── ACK (lease reset to full) ───────│
-  │                                      │
-  │  if renewal fails at 87.5%:          │
-  │  client broadcasts for any server    │
-  │  if still no response → IP released  │
+                                        
+   DISCOVER 
+   OFFER (IP + lease duration) 
+   REQUEST 
+   ACK (lease starts) 
+                                        
+       [using 192.168.1.50 for 24h]     
+                                        
+    at 50% of lease: renew attempt      
+   REQUEST (renew same IP) 
+   ACK (lease reset to full) 
+                                        
+    if renewal fails at 87.5%:          
+    client broadcasts for any server    
+    if still no response → IP released  
 ```
 
 ---
@@ -71,15 +71,15 @@ Scope: 192.168.1.1, 192.168.1.2, 192.168.1.3
 Admin removes 2 devices from network
 
 Without waiting: pool appears full (leases still active)
-After lease expires: 2 IPs return to pool → new device can connect ✅
+After lease expires: 2 IPs return to pool → new device can connect 
 ```
 
 ---
 
 ## Key Points
 
-- 📌 An IP lease is **temporary** — not a permanent assignment
-- 📌 Client attempts renewal at ~50% of the lease duration
-- 📌 Expired leases **return the IP to the pool** for reuse
-- 📌 Prevents pool exhaustion from disconnected/departed devices
-- 📌 Lease duration is set by the admin in the scope configuration
+- An IP lease is **temporary** — not a permanent assignment
+- Client attempts renewal at ~50% of the lease duration
+- Expired leases **return the IP to the pool** for reuse
+- Prevents pool exhaustion from disconnected/departed devices
+- Lease duration is set by the admin in the scope configuration

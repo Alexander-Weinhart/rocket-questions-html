@@ -1,4 +1,4 @@
-# Textbook 2, Chapter 7: Windows Network Commands 💻🌐
+# Textbook 2, Chapter 7: Windows Network Commands 
 
 ## Command Quick Reference
 
@@ -71,7 +71,7 @@
 - Example:
   - `tracert www.wiley.com`
 
-## When to Use Which Tool 🧭
+## When to Use Which Tool 
 - Name issue? Start with `nslookup`.
 - Can’t reach host? Start with `ping`, then `tracert` or `pathping`.
 - Wrong IP/gateway/DNS? Use `ipconfig /all`.
@@ -79,7 +79,7 @@
 - Suspected service/port issue? Use `netstat -ano`.
 - Suspected routing issue? Use `route print`.
 
-## Misconceptions and Common Confusions ⚠️
+## Misconceptions and Common Confusions 
 - **"`ping` failing always means the host is down."**
   - False. ICMP may be blocked by firewalls even when the host is up.
 
@@ -95,7 +95,7 @@
 - **"`netstat` shows application names by default."**
   - False. Use options like `-ano`, then map PID to process.
 
-## Quick Memory Hooks 🧠
+## Quick Memory Hooks 
 - `hostname` = who am I?
 - `ipconfig` = what is my IP config?
 - `arp` = who has this IP (MAC mapping)?

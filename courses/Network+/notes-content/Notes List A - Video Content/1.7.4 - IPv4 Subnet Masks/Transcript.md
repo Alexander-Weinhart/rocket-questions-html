@@ -1,0 +1,183 @@
+# [1.7.4 - IPv4 Subnet Masks](https://www.youtube.com/watch?v=p5NJ5Jt6oJo)
+
+## 1.7.4 - IPv4 Subnet Masks
+
+- Day: Day 3
+- Duration: 9:00
+
+## Transcript
+
+- `00:01` In a previous video, we talked about class-based subnetting
+- `00:05` and how IP addresses can be assigned a class
+- `00:07` A, class B, or class C address.
+- `00:10` But since 1993, we've not used class-based subnetting.
+- `00:15` Instead, we use classless subnetting.
+- `00:18` Sometimes you'll see this referred to as Classless
+- `00:21` Interdomain Routing, or CIDR.
+- `00:23` This classless addressing means that we
+- `00:25` can assign a subnet mask that doesn't
+- `00:27` fall into those same class A, class B, or class C
+- `00:31` arrangements.
+- `00:32` And instead of referring to the subnet mask in its decimal form,
+- `00:37` we can simply refer to it as the number of bits.
+- `00:40` That number of bits is referred to as a CIDR block notation.
+- `00:44` For example, a decimal subnet mask of 255.0.0.0 is the same
+- `00:50` as a /8 CIDR block notation because it has eight individual
+- `00:56` bits as part of the subnet mask.
+- `00:58` So it would be very common to see an IP address written
+- `01:01` as 192.168.1.44/24.
+- `01:06` Everything with the /24 is referring to the number of bits
+- `01:10` in a subnet mask.
+- `01:11` And a /24 mask would be the same as 255.255.255.0.
+- `01:18` When you're configuring a device,
+- `01:20` you're often giving it an IP address, a subnet mask,
+- `01:23` default gateway, and very often a series of DNS servers.
+- `01:27` Most of the time, an operating system
+- `01:30` is expecting you to put the subnet mask
+- `01:32` in as a decimal mask.
+- `01:34` So for example, in Windows, you may put the IP address.
+- `01:37` And then you might add in the decimal version
+- `01:40` of the subnet mask.
+- `01:42` But if you're using a router or a switch,
+- `01:44` it may be expecting the CIDR block notation for those masks.
+- `01:49` So instead of using 255.0.0.0, you would simply input /8.
+- `01:55` Make sure you check the documentation of the device
+- `01:57` you're using to see what notation
+- `01:59` it prefers for the subnet mask.
+- `02:02` As you've probably seen in our previous examples of subnet
+- `02:05` masks, the mask consists of a contiguous series
+- `02:09` of 1's followed by 0's.
+- `02:12` So the 1's would be on the left.
+- `02:14` The 0's would be on the right.
+- `02:16` For example, here is a subnet mask.
+- `02:18` You can see the contiguous set of 1's on the left
+- `02:21` and the 0's that are on the right.
+- `02:24` In this example, you can see three separate octets
+- `02:26` that are set to 1.
+- `02:27` So there are 24 1's in this particular mask.
+- `02:31` And there are eight 0's at the end.
+- `02:34` If we were to write this out in decimal,
+- `02:36` it would be 255.255.255.0.
+- `02:41` And if you were to write this out in CIDR block notation,
+- `02:44` you would count how many 1's are associated
+- `02:46` with this subnet mask.
+- `02:48` In this case, there are 24.
+- `02:50` So the CIDR block notation would be /24.
+- `02:53` The subnet mask is obviously used
+- `02:55` to separate the network part of the address
+- `02:57` from the host part of the address.
+- `02:59` So for this particular subnet mask,
+- `03:02` the network address is 24 bits in length.
+- `03:04` And the host address is 8 bits in length.
+- `03:08` Let's convert a binary subnet mask to one
+- `03:11` that is the CIDR block notation for a subnet mask.
+- `03:14` And we'll take this subnet mask that we
+- `03:16` have on the screen, which has all 1's in the first two octets
+- `03:19` and all 0's in the last two octets.
+- `03:22` If we were to count the number of 1's in this subnet mask,
+- `03:25` we have eight in the first octet,
+- `03:27` eight in the second octet, none in the third,
+- `03:30` and none in the fourth.
+- `03:32` That means the total number of 1's in the subnet mask
+- `03:35` would be 16.
+- `03:36` So the CIDR block notation would be /16.
+- `03:40` This means that the first 16 bits of the subnet mask
+- `03:44` are associated with the network.
+- `03:46` And the last 16 bits are associated with the host ID.
+- `03:50` Let's do another one.
+- `03:51` In this example, the first three octets are all 1's.
+- `03:55` But the last octet has two 1's and six 0's.
+- `03:59` So let's count the number of 1's in this subnet mask.
+- `04:03` There are eight in the first octet,
+- `04:04` eight in the second octet, eight in the third octet,
+- `04:07` and two that are in the fourth octet.
+- `04:10` If we count all of those together, we have 26.
+- `04:14` So the CIDR block notation of this subnet mask would be /26.
+- `04:20` The /26 means that the first 26 bits of this address are
+- `04:24` the network part of the address.
+- `04:26` And the last 6 bits are reserved for the host ID.
+- `04:30` And here's one more.
+- `04:32` In this subnet mask, we have the first octet of all 1's.
+- `04:35` The second octet has four 1's and four 0's.
+- `04:38` And then the third and fourth octets are all 0.
+- `04:41` Since we are counting number of 1's, we
+- `04:43` have eight in the first octet and four in the second octet.
+- `04:47` And if you count those together, the subnet mask in CIDR notation
+- `04:51` would be a /12.
+- `04:53` That means that the first 12 bits are for the network ID.
+- `04:56` And the last 20 bits would be for the host ID.
+- `05:01` We've looked at the subnet mask in binary.
+- `05:03` And we've calculated the CIDR block notation.
+- `05:05` But we often refer to the subnet mask as a decimal value.
+- `05:09` If we were to convert these binary subnet
+- `05:12` masks into a decimal value, there
+- `05:14` are only a certain number of these that you would run into.
+- `05:18` For example, all 0's would obviously be a decimal 0.
+- `05:22` But anything that starts with a binary of 1
+- `05:25` and the rest 0's would be a decimal of 128.
+- `05:28` If there are two 1's, it's 192.
+- `05:31` Three would be 224, and so on.
+- `05:34` This means that you could create a chart that shows all eight
+- `05:37` of the bits within a single octet
+- `05:39` and what the decimal equivalent would be.
+- `05:42` We can now use that chart to calculate the CIDR block
+- `05:45` notation and what the decimal representation
+- `05:48` of that subnet mask would be.
+- `05:50` So let's look at a subnet mask of all 1's in the first octet.
+- `05:55` There are four 1's in the second octet.
+- `05:57` And the rest of this would be all 0's.
+- `06:00` If you refer to our chart, you can see that all 1's is 255,
+- `06:04` four 1's and four 0's would be 240.
+- `06:07` And then of course, all 0's would be 0.
+- `06:10` And if we were to count the number of 1's, we know that
+- `06:12` correlates back to a /12.
+- `06:15` So a /12 CIDR notation is the same thing as 255.240.0.0
+- `06:22` in decimal notation.
+- `06:24` And of course, since there are 12 1's, the network section
+- `06:28` is 12 bits in length, which leaves the remaining 20
+- `06:31` bits available for the host ID.
+- `06:33` Let's look at a subnet mask we've not seen yet.
+- `06:36` This one is all 1's in the first octet,
+- `06:38` all 1's in the second octet.
+- `06:40` There are three 1's in the third octet.
+- `06:42` And of course, the rest of this is 0's.
+- `06:45` If we look at our chart, we can see that of course,
+- `06:48` all 1's is 255.
+- `06:50` And in the octet that has three of these 1's, we
+- `06:53` refer to the chart.
+- `06:54` That is the same as 224 in decimal.
+- `06:57` And obviously, all 0's in binary is the same as 0 decimal.
+- `07:02` If we then count the number of 1's in all of these octets,
+- `07:06` they all add up to 19.
+- `07:07` So your CIDR block notation would be /19,
+- `07:11` which corresponds back to the decimal representation
+- `07:13` of 255.255.224.0.
+- `07:18` This, of course, means that the network part of this address
+- `07:21` is 19 bits in length.
+- `07:23` And the host section is 13 bits in length.
+- `07:26` Of course, we can do this in reverse as well.
+- `07:29` Let's say that we have a subnet mask that's been given to us
+- `07:32` as a /26 in CIDR block notation.
+- `07:35` If we were to write this out in binary,
+- `07:37` that means that we would have all 1's in the first three
+- `07:40` octets and two 1's in the last octet.
+- `07:44` And if we were to refer back to our chart,
+- `07:46` all 1's would obviously be 255.
+- `07:48` And the last octet that has two 1's correlates back to a 192
+- `07:53` in decimal.
+- `07:54` So a /26, where your network ID is 26 bits in length
+- `07:58` and the host ID is 6 bits in length,
+- `08:01` is the same as a /26 in CIDR block notation,
+- `08:05` or 255.255.255.192 in decimal.
+- `08:10` Let's do another one, where we've been given a /20 in CIDR
+- `08:15` block notation.
+- `08:16` That means there are 20 1's in this particular subnet mask.
+- `08:20` So your first two octets are all 1.
+- `08:22` And third octet has four 1's and four 0's.
+- `08:25` And of course, the last octet will be all 0.
+- `08:28` If we refer to our chart, we know that the decimal version
+- `08:32` of that binary subnet mask will be 255.255.240.0,
+- `08:38` which is the same as a /20 CIDR block notation.
+- `08:42` That means the network part of this address
+- `08:44` is 20 bits in length, which leaves us 12 bits available
+- `08:48` for host IP addresses.

@@ -1,0 +1,343 @@
+# [1.7.7 - Seven Second Subnetting](https://www.youtube.com/watch?v=I3LBYMXBhus)
+
+## 1.7.7 - Seven Second Subnetting
+
+- Day: Day 4
+- Duration: 17:03
+
+## Transcript
+
+- `00:01` In previous videos, we've gone through the process
+- `00:04` of manually converting an IP address and subnet
+- `00:07` mask to binary, performing the proper calculations,
+- `00:10` and converting it back to decimal.
+- `00:12` We also looked at a shortcut called the magic number
+- `00:16` method that allows us to very quickly calculate
+- `00:18` the same information without performing that binary
+- `00:21` to decimal conversion.
+- `00:23` This shortcut is the seven second subnetting shortcut,
+- `00:27` and this is the process that I use when calculating
+- `00:30` subnetting on an exam.
+- `00:32` This is a process very similar in structure to the magic number
+- `00:36` method, and indeed, most of the shortcuts you find
+- `00:39` will have some variation of this within them.
+- `00:41` The part that's very different to the seven second subnetting
+- `00:45` is that there is no math involved.
+- `00:47` You don't have to perform any calculations to determine
+- `00:50` a magic number, and everything you need
+- `00:53` will be predefined in the chart that we
+- `00:55` create at the very beginning.
+- `00:57` You'll find that the only math you end up doing
+- `00:59` is adding and subtracting the value of 1
+- `01:02` to be able to calculate the first IP address and the last IP
+- `01:06` address.
+- `01:07` This is one of many available shortcuts
+- `01:09` to help you with the subnetting process,
+- `01:11` and I highly recommend you look at a number of different ones
+- `01:15` to find one that works for you.
+- `01:17` This seven second subnetting process works equally well,
+- `01:20` whether you are online taking this exam
+- `01:22` and using the online whiteboard, or if you
+- `01:25` have a physical whiteboard in front of you
+- `01:27` at a testing center.
+- `01:29` The process of calculating the subnet
+- `01:31` is really about splitting the network into smaller pieces.
+- `01:35` You may start with a network that has 256 total hosts
+- `01:39` available, or you might break it up
+- `01:41` into smaller subnets, such as a dot 128, where you might have
+- `01:45` two different subnets, a dot 192, which separates it
+- `01:48` into four different subnets, a dot
+- `01:51` 244 that separates it into eight individual subnets and so on.
+- `01:56` The core to the seven second subnetting process
+- `01:58` is creating this chart.
+- `02:00` We will start with a chart that defines the subnet masks.
+- `02:04` This allows us to very quickly determine
+- `02:06` what the decimal mask might be if we're given a CIDR block
+- `02:10` notation and vice versa.
+- `02:12` You can see this is very similar to the chart you would create
+- `02:15` with the magic number method.
+- `02:16` We're simply performing the same math
+- `02:18` on the seven second subnetting.
+- `02:20` We also have a Networks column.
+- `02:23` You would calculate that by starting with the number 2
+- `02:25` and doubling it all the way up until 256.
+- `02:28` And then you have an addresses column, which starts with 128,
+- `02:32` and you would divide by 2 all the way down
+- `02:35` until you get to the number 1.
+- `02:37` And to help with the conversion between the CIDR block
+- `02:39` notation and the decimal mask, we
+- `02:41` have a subnet mask in decimal column
+- `02:44` that we'll add in as well.
+- `02:46` Once you've created this chart, you
+- `02:47` have everything you need to be able to calculate everything
+- `02:51` necessary for a subnet without having to perform
+- `02:53` any type of additional math.
+- `02:55` If you're like me and you have problems determining
+- `02:58` what the start of a subnet might be on a subnet that
+- `03:01` has 16 hosts or 32 hosts, you may
+- `03:05` want to write out those subnet boundaries into a separate chart
+- `03:08` so you can very quickly find what
+- `03:10` those might be during the process of performing
+- `03:13` your calculations.
+- `03:14` For example, a network that has 128 hosts per network
+- `03:17` would have host boundaries at 0 and 128.
+- `03:21` A network that has 64 IP addresses per subnet
+- `03:24` has network boundaries at 0, 64, 128, and 192.
+- `03:29` And you can calculate similar boundaries
+- `03:31` for networks with 32 IP addresses, 16, 8, and 4.
+- `03:36` The seven second subnetting process is a four-step process.
+- `03:40` The first step is to convert the IP address and the subnet mask
+- `03:43` to decimal.
+- `03:44` This is necessary if you're provided
+- `03:46` the subnet mask in CIDR block notation,
+- `03:49` but fortunately, we have a chart that
+- `03:51` can very quickly translate between CIDR block
+- `03:53` notation and decimal.
+- `03:55` The second step is to determine the subnet address.
+- `03:58` This is something you may be able to do in your head,
+- `04:00` or if you're like me, you've written out
+- `04:02` that second chart that shows you where the delineations are
+- `04:05` for each individual subnet.
+- `04:07` That same chart shows us what the broadcast address
+- `04:11` might be because we can simply look
+- `04:12` at the last address in that particular range.
+- `04:15` And from there, it's very easy to determine
+- `04:17` what the first and last usable IP addresses might
+- `04:20` be by adding 1 to our subnet address
+- `04:23` and subtracting 1 from our broadcast address.
+- `04:27` Let's use this process to subnet 165.245.12.88/24.
+- `04:35` This slash 24 needs to be converted from the CIDR block
+- `04:38` notation into decimal notation.
+- `04:40` You may be able to do this one in your head very easily,
+- `04:43` but you can also reference your chart by finding the slash 24.
+- `04:47` You can see that our chart shows the slash
+- `04:49` 24 as part of that third octet, and it
+- `04:52` shows that that third octet will have a mask of 255.
+- `04:55` Everything after that will have a mask of 0.
+- `04:58` So performing that calculation means that our subnet mask is
+- `05:02` 255.255.255.0.
+- `05:06` Now, we need to calculate the network or subnet address.
+- `05:09` If the mask is 255, we need to bring that address down,
+- `05:12` and if the mask is 0, we're going to simply bring down a 0.
+- `05:16` So if the mask is 255, we bring down the address.
+- `05:19` And you can see in the first, second, and third octets,
+- `05:23` the mask is 255.
+- `05:25` So we'll bring down the 165, 245, and 12.
+- `05:28` And if the mask is 0, we bring down a 0.
+- `05:32` So in this example, our network address is 165.245.12.0.
+- `05:38` To calculate the broadcast address,
+- `05:40` we look at the subnet mask again.
+- `05:41` And if it's 255, we bring down the address number.
+- `05:45` If the mask is 0, we use 255.
+- `05:48` In this example, the first, second, and third octets
+- `05:51` all have 255.
+- `05:53` So we will bring down our address numbers as 165.245.12.
+- `05:58` And if the mask is 0, we bring down 255.
+- `06:01` So in this case, the last octet does have a mask of 0,
+- `06:04` and we'll put a 255 in that last octet for the broadcast address.
+- `06:10` Now that we have our network address and our broadcast
+- `06:12` address, it's relatively easy to calculate the first available IP
+- `06:16` address and the last available IP address.
+- `06:19` To calculate the first IP, we take the network address
+- `06:21` and we add 1.
+- `06:23` So that would be 165.245.12.1 And the last IP would be
+- `06:29` the broadcast address minus 1.
+- `06:31` So that would be 165.245.12.254.
+- `06:36` There is the seven second subnetting process
+- `06:39` using our chart and using those simple rules
+- `06:42` to be able to define the network address, the broadcast
+- `06:46` address, the first available IP, and the last available IP.
+- `06:51` Let's do another example that doesn't
+- `06:52` fall on those simple eight bit ranges of the subnet mask.
+- `06:57` We're going to use the same IP address
+- `06:59` but with a different subnet mask.
+- `07:01` In this case, it will be 165.245.12.88/26.
+- `07:07` The first step will be to take the slash 26 CIDR block notation
+- `07:11` and convert that mass to decimal.
+- `07:13` If we look at our chart, we can find the slash 26,
+- `07:16` and we can see that it is the one, two, three, fourth octet.
+- `07:19` And in that fourth octet, we want to put a 192 decimal.
+- `07:23` That means that our subnet mask is 255.255.255.192,
+- `07:29` which is the conversion from the slash 26.
+- `07:32` If we look at our chart where it has the slash 26 or the 192,
+- `07:36` you can see the number of addresses is 64.
+- `07:39` And since our IP address has an 88,
+- `07:42` we can look at the different blocks in those 64 ranges
+- `07:46` to determine where the 88 might be.
+- `07:48` And in this case, it's in the range that
+- `07:50` starts with the block of 64.
+- `07:53` We'll follow the same rules we had before.
+- `07:55` If the mask is 255, we're going to bring down that address.
+- `07:58` And if the mask is 0, we're going to bring down a 0.
+- `08:01` In this example, we have three masks
+- `08:03` that are 255, so we'll simply bring down the address values
+- `08:06` for each of those octets.
+- `08:08` In this last octet, the mask is 192.
+- `08:11` If we refer to our chart, we can see
+- `08:13` that we have that range of 64 addresses.
+- `08:16` We look at our IP address of 88 and determine
+- `08:19` in which one of those 64 address blocks 88 might be.
+- `08:23` And it's in the range that has 64 as its starting point.
+- `08:27` This is what we're going to bring down
+- `08:29` into the fourth octet, is that value of 64.
+- `08:32` To calculate the broadcast address,
+- `08:34` we look at the subnet mask again.
+- `08:36` And if it's 255, we bring down the address values.
+- `08:39` If it's a 0, we use 255.
+- `08:42` In this particular case, our subnet mask
+- `08:44` does not have any zeros.
+- `08:46` So we need to refer to our chart.
+- `08:48` Again, we know that this is the range
+- `08:50` with 64 addresses per subnet.
+- `08:52` And we know the dot 88 fits into that second block.
+- `08:56` We know looking at the chart that the next block starts
+- `08:59` with a 128, which means that the broadcast address must be
+- `09:03` the one prior to that number.
+- `09:05` So that would be 127.
+- `09:07` So the broadcast address is 165.245.12.127.
+- `09:12` And of course, to calculate the first usable IP address,
+- `09:15` we add 1 to our network address.
+- `09:17` So our first IP is 165.245.12.65.
+- `09:23` The last IP address is determined
+- `09:25` by taking the broadcast address and subtracting 1.
+- `09:28` So that would be 160.245.12.126.
+- `09:34` We can perform this same shortcut with any IP address
+- `09:38` and subnet range.
+- `09:39` Let's take the example of 160.245.12.88/20.
+- `09:45` If we look at this address, we take the slash 20
+- `09:47` and convert it to a decimal subnet mask.
+- `09:50` We can determine this by finding the slash 20 in our chart.
+- `09:53` It is in the third octet.
+- `09:55` And that third octet will be a 240.
+- `09:58` So everything to the left of that will be 255, and everything
+- `10:01` to the right will be zeros.
+- `10:03` So our subnet mask of a slash 20 is the same as a 255.255.240.0.
+- `10:10` You also notice in this chart that the number
+- `10:12` of addresses in each of these subnets will be 16 addresses.
+- `10:17` And if we look at our chart, we know that we have an address
+- `10:20` that has 165.245.12.88, so we need to determine where the dot
+- `10:27` 12 might be in our list.
+- `10:30` That dot 12 fits between the 0 and 16,
+- `10:34` so it's this very first subnet that we're
+- `10:36` going to look at in this particular range.
+- `10:39` Let's calculate our network address.
+- `10:41` If the mask is 255, we bring down the address,
+- `10:44` and if the mask is 0, we use 0.
+- `10:46` In this case, we have a 255 in the first two octets
+- `10:49` and a 0 in the last octet, so we simply
+- `10:52` bring down each one of those.
+- `10:54` Since we're looking at the range that has the dot 12,
+- `10:57` and we know that there are 16 hosts on each of these subnets,
+- `11:00` then that dot 12 is in that range between 0 and 16,
+- `11:04` and the first number being 0 means that that is our network
+- `11:08` address.
+- `11:09` And so we'll bring that down as our third octet.
+- `11:12` This means that our network address is 165.245.0.0.
+- `11:17` To calculate the broadcast address,
+- `11:19` we look at every place there's a 255,
+- `11:21` and we bring down that address.
+- `11:23` So that would be our first two octets.
+- `11:25` And if there is a 0 as part of the subnet mask, we use 255,
+- `11:29` and we'll bring down that 255 for the fourth octet.
+- `11:33` Since we have a 240 as the subnet mask in that third octet,
+- `11:37` we need to look at our chart again and determine what number
+- `11:41` we would bring down.
+- `11:42` Since we know there are 16 addresses in each
+- `11:45` of those blocks, we know that the next subnet
+- `11:47` will start with a 16.
+- `11:49` So one number prior to that 16 would be a 15.
+- `11:53` And the broadcast address for this subnet is 165.245.15.255.
+- `12:00` Now, we can calculate the first available IP address
+- `12:03` by looking at the network address and adding 1.
+- `12:05` That would make it.
+- `12:06` 165.245.0.1.
+- `12:09` And we can calculate the last available IP address
+- `12:12` by subtracting 1 from the broadcast.
+- `12:14` And that would be 165.245.15.254.
+- `12:19` Let's go through the process again with an IP address
+- `12:22` of 18.172.200.77/11.
+- `12:26` The first thing we're going to do
+- `12:27` is convert that slash 11 to a decimal mask.
+- `12:30` And if we look at our chart, we'll
+- `12:32` find the dot 11 is in the second octet,
+- `12:34` and it has a value of 224.
+- `12:37` So our subnet mask is going to be 255.224.0.0.
+- `12:44` On the same line as that subnet mask is the number of addresses.
+- `12:48` And you can see in this particular example,
+- `12:50` there are 32 addresses per subnet.
+- `12:52` Since that slash 11 is in the second octet,
+- `12:55` we're going to look at that IP address
+- `12:57` to determine where it fits in those blocks of 32 IP addresses.
+- `13:02` So if we were to look at our chart of these 32 address
+- `13:05` blocks, we know that 172 fits in this range between 160 and 191.
+- `13:12` So to calculate the network address, if the mask is 255,
+- `13:15` we're going to bring down the 18 that's in that block.
+- `13:18` And if it's 0, we're going to bring down zeros.
+- `13:21` And since this block starts with a 160,
+- `13:24` our network address is 18.160.0.0.
+- `13:28` To calculate the broadcast address, if the mask is 255,
+- `13:31` we bring down the address, and if the mask is 0, we use 255.
+- `13:36` This means in the first octet, we'll simply bring down the 18.
+- `13:39` And in the third and fourth octets where the mask is 0,
+- `13:42` we'll write 255.
+- `13:44` In this third octet, we'll go back to our chart.
+- `13:46` And we know that's the range between 160.
+- `13:49` And in this case, the next range starts at 192.
+- `13:52` Therefore, the broadcast address for the previous range
+- `13:54` would have to be 191.
+- `13:56` And to calculate the first and last available IP addresses,
+- `14:00` we will add 1 to the network address and subtract 1 from
+- `14:03` the broadcast address, meaning the first IP is 18.160.0.1,
+- `14:09` and the last available IP address is 18.191.255.254.
+- `14:16` Let's perform one more calculation
+- `14:18` to see how well we've captured the shortcut.
+- `14:21` We'll use the address of 18.172.200.77/17.
+- `14:27` If we go to our chart, we can find the slash 17
+- `14:29` as part of the third octet, and it matches that 128 value
+- `14:33` as the decimal part of the mask.
+- `14:36` So if we were to write out the mask, it would be 255.255.128.0.
+- `14:43` If we were to look at our chart, that
+- `14:44` slash 17 is on the same line as blocks of 128 hosts.
+- `14:50` So we know that there were 128 IP addresses
+- `14:53` in each one of these subnets.
+- `14:55` So let's calculate from there what
+- `14:57` the network address might be.
+- `14:59` If the mask is 255, we will bring down the address value.
+- `15:02` And if the mask is 0, we will use 0.
+- `15:05` To calculate the broadcast address,
+- `15:07` we look at the subnet mask, and if it's 255,
+- `15:10` we bring down the address.
+- `15:11` And if the mask is 0, we use 255.
+- `15:14` In this example, we have subnet mask
+- `15:16` of 255 in the first two octets, so we'll bring down
+- `15:19` those address values.
+- `15:20` And we have a 0 in the fourth octet, so we'll use 255.
+- `15:24` In this example, that value of 200
+- `15:27` is in that third octet, which puts us
+- `15:29` in the second block starting with 128 and ending with 255.
+- `15:34` So in this case, the broadcast address would be the last
+- `15:37` address in that block, which is 255,
+- `15:40` meaning your broadcast address is 18.172.255.255.
+- `15:46` And of course, to calculate the first IP address,
+- `15:48` we add 1 to the network address, making it 18.172.128.1.
+- `15:53` And we calculate the last IP by subtracting 1 from the broadcast
+- `15:57` address, making the last IP 18.172.255.254.
+- `16:04` As you can probably tell, the key
+- `16:05` to this seven second subnetting process
+- `16:08` is being able to reference that chart.
+- `16:10` So you might want to try writing this down in a chart
+- `16:12` if you're going to be in a testing center,
+- `16:14` or you may want to try typing it into a notepad
+- `16:17` or wordpad to see how quickly you can type it
+- `16:20` in if you're going to be taking the exam online.
+- `16:23` If you go to a testing center, you
+- `16:24` may find that the dry erase pens that they use
+- `16:27` may not allow you to make a very easily readable chart,
+- `16:30` so you may want to bring your own pen.
+- `16:32` Make sure you check with the testing center
+- `16:34` that it's OK to bring your own fine tip dry erase
+- `16:37` pen into the test itself.
+- `16:39` And whether your shortcut is the seven second subnetting
+- `16:42` process, the magic number process, or any other process,
+- `16:46` make sure you find the shortcut that works best for you
+- `16:49` and decide to use that for your exam.

@@ -1,0 +1,130 @@
+# [3.1.3 - Configuration Management](https://www.youtube.com/watch?v=cbHcjzlLjuc)
+
+## 3.1.3 - Configuration Management
+
+- Day: Day 7
+- Duration: 5:19
+
+## Transcript
+
+- `00:01` Change is inevitable.
+- `00:03` And we need to have some type of process on our network
+- `00:06` to be able to manage all of these changes.
+- `00:09` There might be updates to operating systems.
+- `00:11` We may have to patch a series of devices.
+- `00:14` There might be updates to applications
+- `00:16` that we need to roll out.
+- `00:18` And of course, we have network devices,
+- `00:20` firewall configurations, new applications
+- `00:23` that need to be installed, and many other changes
+- `00:25` that will occur on our network.
+- `00:28` Instead of simply making a change
+- `00:29` without any processes or thoughts to what
+- `00:32` may occur in the future, we need to have
+- `00:35` a formal process for managing all of these configurations.
+- `00:38` We need to know when these changes are going to occur.
+- `00:41` We need to be able to plan for those changes.
+- `00:44` And we need to inform everyone that the change is
+- `00:46` going to take place.
+- `00:48` This documentation becomes very important if this system needs
+- `00:52` to be rebuilt, especially if there's some type of disaster
+- `00:55` and you're required to get that system back up
+- `00:58` and running as quickly as possible.
+- `01:00` Having some type of documentation
+- `01:01` on that leads you from the installation of that software
+- `01:05` through all of the changes that you made
+- `01:07` will be extremely important in getting that system back up
+- `01:10` and running.
+- `01:11` When we first install a switch, a router, a firewall, and we
+- `01:15` make our initial configurations and get everything
+- `01:18` working perfectly, we now have a production configuration.
+- `01:22` This is the configuration that everyone will use
+- `01:25` when we roll out a new router.
+- `01:26` This is the configuration that will
+- `01:28` be the standard for that production system.
+- `01:31` When we install a new firewall, we
+- `01:33` have a standard production configuration for that firewall.
+- `01:36` This is not just individual configurations
+- `01:39` inside the device.
+- `01:41` But it covers all aspects of changes to that device,
+- `01:44` including all the hardware and firmware versions,
+- `01:47` any device driver updates that need to be made,
+- `01:50` and any updates to the software, especially since there
+- `01:53` are certain versions of the software that might work better
+- `01:56` or worse than other versions.
+- `01:58` This is not something that we would usually
+- `02:00` install into production to see how it runs.
+- `02:03` We would usually do extensive testing behind the scenes,
+- `02:06` make changes to all of these aspects of the system,
+- `02:09` and then deploy that final configuration
+- `02:12` into a production environment.
+- `02:14` Of course, not every possible scenario
+- `02:16` can be tested in our lab.
+- `02:18` So we need to have a plan if something
+- `02:20` was to happen in production, to be able to revert that back
+- `02:24` to a previous configuration.
+- `02:26` In these situations, where something does not
+- `02:29` go as designed, we need to have some type of backup
+- `02:32` that we can revert to.
+- `02:34` This applies to our firewalls, our switches, our routers,
+- `02:37` our operating systems, and anything else
+- `02:40` we might be making a change to.
+- `02:42` The standard operating procedure is
+- `02:44` commonly to make a backup of that system
+- `02:46` before making any type of change.
+- `02:49` Once you make the change, you can then
+- `02:50` decide whether that's something you want to keep in production.
+- `02:53` But if there's a problem, you may
+- `02:55` need to revert back to that previous backup.
+- `02:58` Sometimes this can be accomplished
+- `02:59` by simply copying the files that will be updated
+- `03:02` during that particular change.
+- `03:03` It might be a single configuration file.
+- `03:06` But now, we have a copy of that file prior to those changes
+- `03:09` taking place.
+- `03:10` And we can simply copy that file back if there's any problems.
+- `03:14` If this is a virtual machine, this process
+- `03:16` can be relatively easy.
+- `03:17` You can click a button to create a snapshot of that VM
+- `03:20` that saves everything, the files, the configuration,
+- `03:24` and everything else associated with that VM
+- `03:27` at that point in time.
+- `03:29` If you run into a problem when you're
+- `03:30` making a change to the VM, you can then easily
+- `03:33` revert back to that date and time of the snapshot.
+- `03:36` This is also useful if later on, you
+- `03:39` decide you would like to revert back
+- `03:41` to the previous configuration.
+- `03:42` You now have a backup that's stored, either as a snapshot
+- `03:46` or as separate files that you can then
+- `03:48` revert to if you run into future problems.
+- `03:52` When we're deploying a new application,
+- `03:54` it's usually often more than a single server
+- `03:56` and a single executable.
+- `03:58` There are usually many different components
+- `04:00` that allow that application instance to operate.
+- `04:02` This might include configurations
+- `04:04` on the user's workstations, changes to the firewall,
+- `04:07` and of course, the application server itself.
+- `04:10` To truly understand the scope of this application,
+- `04:14` we need to document every aspect of that application
+- `04:17` installation.
+- `04:18` This allows us to create a golden configuration that
+- `04:21` certifies that this application will work properly
+- `04:24` if all of these configurations are in place.
+- `04:27` We can also use that golden configuration
+- `04:30` as a way to verify that we are using the proper software
+- `04:33` and the correct configurations.
+- `04:35` We can create integrity checks that
+- `04:37` will compare the configuration running
+- `04:39` in production with the configuration on our baseline
+- `04:43` or golden config.
+- `04:45` If we find there are changes between those two environments,
+- `04:48` we can make changes either to the production environment
+- `04:51` to match the golden config.
+- `04:53` Or we can update our baseline configuration
+- `04:56` so that it matches the new configuration in our production
+- `04:59` environment.
+- `05:00` Once we make those changes, we now
+- `05:01` have a new version of our baseline configuration.
+- `05:04` And we can use that as our integrity check going forward.

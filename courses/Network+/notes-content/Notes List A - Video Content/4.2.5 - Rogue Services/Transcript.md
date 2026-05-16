@@ -1,0 +1,159 @@
+# [4.2.5 - Rogue Services](https://www.youtube.com/watch?v=6AcRzyPuOL8)
+
+## 4.2.5 - Rogue Services
+
+- Day: Day 9
+- Duration: 6:08
+
+## Transcript
+
+- `00:02` we become very accustomed to connecting
+- `00:03` to a network and receiving an IP address
+- `00:06` a subnet mask a default gateway and
+- `00:08` other IP address configuration details
+- `00:11` this is all handled by the DHCP server
+- `00:14` the dynamic host configuration protocol
+- `00:17` but as you're probably aware there's no
+- `00:19` security built into the DHCP protocol a
+- `00:23` DHCP request that is sent by a client
+- `00:25` can be responded to by any device on the
+- `00:28` network whether it's a legitimate DHCP
+- `00:31` server or an illegitimate DHCP server we
+- `00:35` could build our own DHCP server start
+- `00:38` handing out IP addresses and cause
+- `00:40` duplicate IP addresses invalid IP
+- `00:43` addresses people would not be able to
+- `00:45` communicate to the internet there might
+- `00:47` be duplications on the network and we
+- `00:49` could effectively shut down the network
+- `00:52` with this misconfiguration from our
+- `00:54` Rogue DHCP server fortunately there are
+- `00:57` ways to prevent someone from starting up
+- `01:00` their own DHCP server and causing these
+- `01:02` problems on the network in many
+- `01:04` Enterprise switches there's a feature
+- `01:06` called DHCP snooping that will examine
+- `01:10` all DHCP requests and will only allow
+- `01:13` responses if they're coming from a
+- `01:15` legitimate DHCP server there's also a
+- `01:18` feature in Microsoft's active directory
+- `01:20` that determines what an authorized DHCP
+- `01:23` server might be and it will only allow
+- `01:25` those servers to hand out IP addresses
+- `01:28` if you do find a rogue DHCP server on
+- `01:30` your network your goal is to remove it
+- `01:33` from the network eliminate that from
+- `01:35` responding to any DHCP requests and then
+- `01:38` you'll need to renew all IP addresses on
+- `01:41` your network to ensure that everyone has
+- `01:44` a legitimate
+- `01:45` IP another Rogue service that you should
+- `01:48` be aware of is a rogue access point
+- `01:51` access points are relatively inexpensive
+- `01:53` to purchase and you can plug them into
+- `01:55` any ethernet connection this could be an
+- `01:58` employee that is simply trying to
+- `02:00` improve or expand on the existing
+- `02:02` wireless network and may not be trying
+- `02:04` to do something inherently malicious but
+- `02:06` this does create security issues and
+- `02:08` without the right Security on the access
+- `02:10` point this would make it very easy for
+- `02:12` anyone to gain access to your network to
+- `02:15` install a rogue access point you simply
+- `02:17` plug in the access point to any
+- `02:19` available ethernet connection some
+- `02:21` operating systems also have a feature
+- `02:23` that allows for wireless sharing in the
+- `02:26` operating system this means you could
+- `02:28` effectively turn your entire computer
+- `02:30` into an access point it's always a good
+- `02:33` idea to perform periodic scans of the
+- `02:35` network or to physically walk around the
+- `02:37` facility with a wireless analyzer to see
+- `02:40` if you happen to find a wireless access
+- `02:43` point that should not be there many
+- `02:45` organizations will prevent Rogue access
+- `02:47` points by enabling
+- `02:49` 802.1x on their Network switches this is
+- `02:52` also known as network access control
+- `02:55` this requires everyone to authenticate
+- `02:57` before they are granted access to the
+- `02:59` netor Network so even if somebody does
+- `03:01` plug in a rogue access point they still
+- `03:03` would not be able to gain access to the
+- `03:05` network unless they had the proper
+- `03:08` authentication if someone is connecting
+- `03:10` an access point and they're doing this
+- `03:12` for malicious reasons we refer to that
+- `03:14` as a wireless evil twin this combines a
+- `03:17` few of the techniques associated with
+- `03:19` fishing with the Technologies associated
+- `03:22` with wireless networking a wireless evil
+- `03:25` twin is designed to look exactly like
+- `03:27` the wireless access points that are
+- `03:29` already installed at a location so there
+- `03:31` might be the same or something very
+- `03:33` similar to the SSID or wireless network
+- `03:37` name and there may be similar security
+- `03:39` settings on the wireless evil twin or
+- `03:41` the wireless evil twin may have an
+- `03:43` identical captive portal configuration
+- `03:46` many of these Wireless evil twins will
+- `03:47` increase the output power of their
+- `03:49` radios so that they overpower any access
+- `03:52` points that may be in the area this
+- `03:54` means that they are now the primary
+- `03:57` access point for anyone who wants to
+- `03:59` connect to that Network and if the
+- `04:01` attacker is trying to look like an
+- `04:02` existing open wi-fi network they may be
+- `04:05` able to duplicate that very closely by
+- `04:08` using a wireless evil twin one way to
+- `04:11` avoid any problems associated with a
+- `04:13` wireless evil twin even if you happen to
+- `04:15` connect to it is to always send
+- `04:17` encrypted traffic this means that you
+- `04:19` would always have a VPN enabled or at
+- `04:22` least always use https if you're ever
+- `04:25` communicating to a web
+- `04:27` server these Wireless evil twins are
+- `04:30` perfect for sitting in the middle of a
+- `04:31` conversation and watching all of the
+- `04:33` traffic that goes back and forth we
+- `04:35` refer to this type of attack as an
+- `04:37` onpath network attack this is a
+- `04:40` technique that is also referred to as
+- `04:42` man in the middle this device or
+- `04:45` attacker that's in the middle of the
+- `04:46` conversation will receive information
+- `04:48` from one device examine that information
+- `04:51` in some cases even change that
+- `04:53` information and then send that
+- `04:55` information on its way the source device
+- `04:57` and the destination device have no idea
+- `05:00` that this device is in the middle and
+- `05:02` they have no idea that that information
+- `05:04` was changed by the onpath attack we've
+- `05:07` already seen one type of onpath attack
+- `05:10` by using a wireless evil twin but there
+- `05:12` are many different kinds of onpath
+- `05:14` attacks another popular type of onpath
+- `05:16` attack is ARP poisoning using the
+- `05:18` address resolution protocol where the
+- `05:21` attacker can spoof the IP address of a
+- `05:23` device to effectively sit in the middle
+- `05:25` of a conversation but of course there
+- `05:27` are other types of onpath attacks as
+- `05:29` well well there's session hijacking
+- `05:31` https spoofing or Wi-Fi eavesdropping
+- `05:34` and this is just a sample of the type of
+- `05:36` onpath attacks that you can perform with
+- `05:39` different devices or different protocols
+- `05:41` as a general rule you can prevent a lot
+- `05:43` of the damage that might be caused by an
+- `05:46` onpath attack by simply encrypting all
+- `05:48` of this data even if somebody does sit
+- `05:50` in the middle of the conversation they
+- `05:52` would have no idea what information is
+- `05:54` being transferred between two devices

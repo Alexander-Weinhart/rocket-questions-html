@@ -1,7 +1,7 @@
 (() => {
 if (window.__NETC_QUIZ_APP_BOOTED__) {
   window.__NETC_QUIZ_APP_SCRIPT__ = true;
-    window.__NETC_QUIZ_APP_VERSION__ = "2026-04-28-10";
+    window.__NETC_QUIZ_APP_VERSION__ = "1.0.15";
   return;
 }
 window.__NETC_QUIZ_APP_BOOTED__ = true;
@@ -9,8 +9,9 @@ window.__NETC_QUIZ_APP_BOOTED__ = true;
 const WEEK_CHOICES = Array.from({ length: 15 }, (_, i) => i + 1);
 const DOMAIN_CHOICES = Array.from({ length: 5 }, (_, i) => i + 1);
 window.__NETC_QUIZ_APP_SCRIPT__ = true;
-window.__NETC_QUIZ_APP_VERSION__ = "2026-04-28-10";
+window.__NETC_QUIZ_APP_VERSION__ = "1.0.15";
 window.__NETC_QUIZ_APP_READY__ = false;
+const DEBUG_ROUTING = true; // Set to true to enable routing debug logs
 const API_PORT = "3003";
 const COURSE_STORAGE_KEY = "rocket_questions_selected_course";
 const CERTIFICATION_STORAGE_KEY = "rocket_questions_selected_certification";
@@ -20,15 +21,60 @@ const CHANGES_STORAGE_KEY = "rocket_questions_changes_local";
 const OVERRIDES_STORAGE_KEY = "rocket_questions_overrides";
 const REPORTS_STORAGE_KEY = "rocket_questions_reports";
 const CONFIG_STORAGE_KEY = "rocket_questions_quiz_config";
-const CHANGELOG_PATH = `./changelog.md?v=${window.__NETC_QUIZ_APP_VERSION__}`;
-const TOUR_QUESTION_BANK_PATH = `./tour_question_bank.csv?v=${window.__NETC_QUIZ_APP_VERSION__}`;
+const ACCESSIBILITY_STORAGE_KEY = "rocket_questions_accessibility";
+const SESSION_STORAGE_KEY = "rocket_questions_session";
+const KNOWN_TRACK_ROUTE_SLUGS = ["netc-121", "network-plus", "security-plus"];
+
+// PostHog analytics helpers
+const POSTHOG_DISTINCT_ID_KEY = "rocket_questions_ph_distinct_id";
+function phDistinctId() {
+  let id = localStorage.getItem(POSTHOG_DISTINCT_ID_KEY);
+  if (!id) {
+    id = "anon_" + Math.random().toString(36).slice(2) + Date.now().toString(36);
+    localStorage.setItem(POSTHOG_DISTINCT_ID_KEY, id);
+  }
+  return id;
+}
+function phCapture(event, properties) {
+  try {
+    if (typeof window.posthog === "undefined" || !window.posthog.capture) return;
+    window.posthog.capture(event, properties || {});
+  } catch (_) {
+    // Never let analytics errors affect the quiz.
+  }
+}
+
+function detectAppBasePath(pathname = window.location.pathname) {
+  const normalized = String(pathname || "/").split(/[?#]/, 1)[0];
+  let segments = normalized.split("/").filter(Boolean);
+  if (segments.length > 0 && segments[segments.length - 1].endsWith(".html")) {
+    segments = segments.slice(0, -1);
+  }
+  const courseContentRouteIndex = segments.findIndex((segment, index) => (
+    segment === "courses" && segments[index + 2] === "practice-quiz"
+  ));
+  if (courseContentRouteIndex !== -1) {
+    const baseSegments = segments.slice(0, courseContentRouteIndex);
+    return `/${baseSegments.length ? `${baseSegments.join("/")}/` : ""}`;
+  }
+  const trackIndex = segments.findIndex((segment) => KNOWN_TRACK_ROUTE_SLUGS.includes(segment));
+  const baseSegments = trackIndex === -1 ? segments : segments.slice(0, trackIndex);
+  return `/${baseSegments.length ? `${baseSegments.join("/")}/` : ""}`;
+}
+
+const APP_BASE_PATH = detectAppBasePath();
+const APP_VERSION_QUERY_KEY = "q";
+const CHANGELOG_PATH = `${APP_BASE_PATH}changelog.md?q=${window.__NETC_QUIZ_APP_VERSION__}`;
+const TOUR_QUESTION_BANK_PATH = `${APP_BASE_PATH}tour_question_bank.csv?q=${window.__NETC_QUIZ_APP_VERSION__}`;
+const NOTE_ROUTE_MAP_PATH = `${APP_BASE_PATH}route-map.json?q=${window.__NETC_QUIZ_APP_VERSION__}`;
 const NO_COURSE_ID = "";
 const NO_CERTIFICATION_ID = "";
 const COURSE_CATALOG = [
   {
     id: "netc121",
-    browserTitle: "Rocket Questions - Cincinnati State NETC-CS Program",
-    pageTitle: "Rocket Questions - Cincinnati State NETC-CS Program",
+    routeSlug: "netc-121",
+    browserTitle: "Rocket Questions",
+    pageTitle: "Rocket Questions",
     insignia: "NETC-121",
     name: "Network Communications 1",
     subtitle: "May we all succeed or fail as a team.",
@@ -37,13 +83,28 @@ const COURSE_CATALOG = [
     contentRoot: "courses/NETC-121",
     manuallyAvailableWeeks: [11, 13],
     questionBankChoices: Array.from({ length: 15 }, (_, i) => i + 1),
+    pbqs: [
+      {
+        id: "classful-ip-addressing",
+        title: "Classful IP Addressing",
+        description: "Work a random class A-C address on one screen: identify its class, network address, broadcast address, first host, and last host with built-in calculator and scratch paper.",
+        path: "classful-ip-addressing/index.html",
+      },
+      {
+        id: "classless-ip-subnetting",
+        title: "Classless IP Subnetting",
+        description: "Given an IP address and subnet mask, convert the mask to binary, identify the CIDR, and calculate the network, broadcast, first host, and last host using the built-in calculator and scratch paper.",
+        path: "classless-ip-subnetting/index.html",
+      },
+    ],
   },
 ];
 const CERTIFICATION_CATALOG = [
   {
     id: "comptia-network-plus-n10-009",
-    browserTitle: "Rocket Questions - CompTIA Network+ N10-009",
-    pageTitle: "Rocket Questions - CompTIA Network+ N10-009",
+    routeSlug: "network-plus",
+    browserTitle: "Rocket Questions",
+    pageTitle: "Rocket Questions",
     insignia: "N10-009",
     name: "The CompTIA N10-009 Network+ Certification",
     subtitle: "Study the objectives, then make the objectives regret meeting you.",
@@ -51,19 +112,40 @@ const CERTIFICATION_CATALOG = [
     copyrightOwners: ["Alexander Weinhart"],
     contentRoot: "courses/Network+",
     questionBankChoices: [1],
+    pbqs: [
+      {
+        id: "port-number-matching",
+        title: "Port Number Matching",
+        description: "Drag every port from Alex's 1.4.2 Common Ports notes beside the correct protocol, then submit for a practice-quiz-style review report.",
+        path: "port-number-matching/index.html",
+      },
+      {
+        id: "classful-ip-addressing",
+        title: "Classful IP Addressing",
+        description: "Work a random class A-C address on one screen: identify its class, network address, broadcast address, first host, and last host with built-in calculator and scratch paper.",
+        path: "../../NETC-121/pbqs/classful-ip-addressing/index.html",
+      },
+      {
+        id: "classless-ip-subnetting",
+        title: "Classless IP Subnetting",
+        description: "Given an IP address and subnet mask, convert the mask to binary, identify the CIDR, and calculate the network, broadcast, first host, and last host using the built-in calculator and scratch paper.",
+        path: "../../NETC-121/pbqs/classless-ip-subnetting/index.html",
+      },
+    ],
     practiceUnit: {
       singular: "Domain",
       plural: "Domains",
       choices: DOMAIN_CHOICES,
       filenamePrefix: "domain",
-      comingSoonChoices: new Set(DOMAIN_CHOICES),
+      comingSoonChoices: new Set(DOMAIN_CHOICES.filter((choice) => choice !== 1)),
       labelForChoice: (choice) => `Domain ${choice}`,
     },
   },
   {
     id: "comptia-security-plus-sy0-701",
-    browserTitle: "Rocket Questions - CompTIA Security+ SY0-701",
-    pageTitle: "Rocket Questions - CompTIA Security+ SY0-701",
+    routeSlug: "security-plus",
+    browserTitle: "Rocket Questions",
+    pageTitle: "Rocket Questions",
     insignia: "SY0-701",
     name: "The CompTIA Security+ SY0-701 Certification",
     subtitle: "Lock the doors, audit the logs, and make the threat actors file a complaint.",
@@ -76,7 +158,7 @@ const CERTIFICATION_CATALOG = [
       plural: "Domains",
       choices: DOMAIN_CHOICES,
       filenamePrefix: "domain",
-      comingSoonChoices: new Set(DOMAIN_CHOICES),
+      comingSoonChoices: new Set(DOMAIN_CHOICES.filter((choice) => choice !== 1)),
       labelForChoice: (choice) => `Domain ${choice}`,
     },
   },
@@ -88,48 +170,68 @@ const NETC121_CHOICE_LABELS = new Map([
 ]);
 
 const VIDEO_WEEK_MAP = {
-  1: 3, 2: 3, 3: 3,
-  4: 4, 5: 4, 6: 4,
-  7: 5, 8: 5, 9: 5,
-  10: 6, 11: 6,
-  12: 7, 13: 7, 14: 7, 15: 7,
-  16: 8, 17: 8,
-  18: 9, 19: 9,
-  20: 10, 21: 10,
-  22: 11, 23: 11,
-  24: 12, 25: 12,
-  26: 13, 27: 13,
-  28: 14,
+  1: 1, 2: 1, 3: 1,
+  4: 2, 5: 2, 6: 2, 7: 2, 8: 2, 9: 2, 10: 2, 11: 2,
+  12: 3, 13: 3, 14: 3,
+  15: 4, 16: 4, 17: 4, 18: 4, 19: 4,
+  20: 5, 21: 5, 22: 5, 23: 5, 24: 5,
+  25: 6, 26: 6, 27: 6,
+  28: 7, 29: 7, 30: 7, 31: 7,
+  32: 8, 33: 8, 34: 8, 35: 8,
+  36: 9, 37: 9,
+  38: 10, 39: 10,
+  40: 11, 41: 11,
+  42: 12, 43: 12,
+  44: 13, 45: 13,
+  46: 14,
 };
 const VIDEO_TITLE_MAP = {
-  1: "Unicast, Broadcast, Multicast",
-  2: "Ethernet Frame Structure",
-  3: "CSMA-CD and CSMA-CA",
-  4: "DHCP",
-  5: "TCP-IP Model",
-  6: "Wireshark",
-  7: "Subnetting",
-  8: "Binary Math and Subnetting",
-  9: "CIDR and IP Addressing",
-  10: "Telnet and SSH",
-  11: "Factory Reset Cisco Switch",
-  12: "What Is Binary",
-  13: "Representing Numbers and Letters with Binary",
-  14: "How to Convert Binary to Decimal",
-  15: "SolarWinds TFTP Server",
-  16: "VLANs Made Easy",
-  17: "Trunking and 802.1Q",
-  18: "Spanning Tree Protocol Explained Step by Step",
-  19: "Micronugget: Spanning Tree Protocol Explained CBT Nuggets",
-  20: "What Is a Routing Table?",
-  21: "Packet Traveling - How Packets Move Through a Network",
-  22: "Routing Fundamentals",
-  23: "Dynamic Routing Protocols",
-  24: "Route Summarization",
-  25: "Router Hierarchies and Default Routes",
-  26: "Layer 2 vs Layer 3 Switches",
-  27: "Micronugget What is Route Redistribution",
-  28: "Wireless Fundamentals Day 55",
+  1: "TWISTED: The dramatic history of twisted-pair Ethernet",
+  2: "Windows CLI",
+  3: "Mac CLI",
+  4: "What is OSI Model?",
+  5: "What is a MAC Address?",
+  6: "Traceroute (tracert) Explained - Network Troubleshooting",
+  7: "ARP Explained - Address Resolution Protocol",
+  8: "what is an IP Address? You SUCK at Subnetting EP 1",
+  9: "IP Address - IPv4 vs IPv6 Tutorial",
+  10: "Subnet Mask - Explained",
+  11: "MASTER the OSI Model in Just 5 Minutes! BEST EXPLANATION WITH ANIMATION",
+  12: "Unicast, Multicast, and Broadcast - CompTIA Network+ N10-006 - 1.8",
+  13: "Ethernet Frame Format Explanation",
+  14: "CSMA-CD and CSMA-CA Explained",
+  15: "DHCP Explained - Dynamic Host Configuration Protocol",
+  16: "What is TCP-IP?",
+  17: "Wireshark Tutorial - Installation and Password sniffing",
+  18: "Network Ports Explained",
+  19: "How to Take Notes - Study Tips - Cornell Notes",
+  20: "Subnetting and IP",
+  21: "Subnetting and Binary Math",
+  22: "CIDR & Subnet Mask",
+  23: "Certificate",
+  24: "DNS-DHCP",
+  25: "Telnet vs SSH Explained",
+  26: "How to Factory Reset Cisco Switch",
+  27: "Classless subnetting",
+  28: "Why Do Computers Use 1s and 0s? Binary and Transistors Explained.",
+  29: "Representing Numbers and Letters with Binary Crash Course Computer Science 4",
+  30: "How to Convert Binary to Decimal",
+  31: "SolarWinds TFTP Server",
+  32: "VLAN Explained",
+  33: "What is Trunking in Networking?",
+  34: "SSH setup Packet Tracer",
+  35: "Rack and Patch panel overview",
+  36: "Spanning Tree Protocol Explained | Step by Step",
+  37: "MicroNugget: Spanning Tree Protocol Explained | CBT Nuggets",
+  38: "Routing Tables | CCNA - Explained",
+  39: "Packet Traveling - How Packets Move Through a Network",
+  40: "CCNA Routing Fundamentals - Part 1",
+  41: "EGP / IGP :: Distance Vector / Link State :: Dynamic Routing Protocols :: OSPF EIGRP BGP RIP IS-IS",
+  42: "Quick route summarization",
+  43: "Router Hierarchies and Route Summarization - Networking Fundamentals - Lesson 5 - Part 3",
+  44: "Layer 2 vs Layer 3 Switches - Animated",
+  45: "What is Route Redistribution?",
+  46: "Free CCNA | Wireless Fundamentals | Day 55 | CCNA 200-301 Complete Course",
 };
 const SYLLABUS_TEXTBOOK_BY_WEEK = {
   1: "Textbook 1 - Chapter 1 Network Basics",
@@ -195,7 +297,113 @@ const HARD_CODED_SOURCE_REFERENCES = [
     label: "Week 10 - CompTIA: Current Network+ Topics",
   },
 ];
-const APP_BASE_URL = new URL(".", document.currentScript?.src || window.location.href);
+const PAGE_ROUTES = {
+  "course-screen": "/",
+};
+const NOTE_ROUTE_PATTERN = /^\/([^/]+)\/notes\/(.+)\.html$/;
+const TRACK_SCREEN_ROUTE_PATTERN = /^\/([^/]+)(?:\/(notes|pbqs|practice\/weeks|practice\/setup|practice\/quiz|practice\/review))?$/;
+
+function withAppBase(path) {
+  const normalized = String(path || "/").startsWith("/") ? String(path || "/") : `/${path || ""}`;
+  if (APP_BASE_PATH === "/") return normalized;
+  const base = APP_BASE_PATH.replace(/\/$/, "");
+  if (normalized === base || normalized.startsWith(`${base}/`)) return normalized;
+  return `${base}${normalized}`;
+}
+
+function withoutAppBase(path) {
+  const normalized = normalizeRoutePath(path);
+  if (APP_BASE_PATH === "/") return normalized;
+  const base = APP_BASE_PATH.replace(/\/$/, "");
+  if (normalized === base) return "/";
+  if (normalized.startsWith(`${base}/`)) return normalized.slice(base.length) || "/";
+  return normalized;
+}
+
+function trackRouteIdForState() {
+  return String(activeTrack()?.routeSlug || "").trim();
+}
+
+function findTrackSelectionByRouteId(trackId) {
+  const normalized = String(trackId || "").trim();
+  const course = COURSE_CATALOG.find((entry) => entry.routeSlug === normalized || entry.id === normalized);
+  if (course) {
+    return { activeTrackType: "course", courseId: course.id, certificationId: NO_CERTIFICATION_ID };
+  }
+  const certification = CERTIFICATION_CATALOG.find((entry) => entry.routeSlug === normalized || entry.id === normalized);
+  if (certification) {
+    return { activeTrackType: "certification", courseId: state.courseId || COURSE_CATALOG[0]?.id || NO_COURSE_ID, certificationId: certification.id };
+  }
+  return null;
+}
+
+function applyTrackSelection(selection) {
+  if (!selection) return;
+  state.activeTrackType = selection.activeTrackType;
+  state.courseId = selection.courseId;
+  state.certificationId = selection.certificationId;
+  setJSONStorage(TRACK_TYPE_STORAGE_KEY, state.activeTrackType);
+  setJSONStorage(COURSE_STORAGE_KEY, state.courseId || NO_COURSE_ID);
+  setJSONStorage(CERTIFICATION_STORAGE_KEY, state.certificationId || NO_CERTIFICATION_ID);
+}
+
+function buildNoteRoutePath(trackId, relativePath) {
+  const notePath = normalizeNotePath(relativePath);
+  const slugRoute = state.noteRouteTokensByPath.get(String(trackId || ""))?.get(notePath);
+  if (!trackId || !notePath || !slugRoute) return withAppBase(`/${trackId || ""}/notes`);
+  return withAppBase(`/${trackId}/notes/${slugRoute}.html`);
+}
+
+function parseAppRoute(path) {
+  const normalized = withoutAppBase(path);
+  const coursePracticeMatch = normalized.match(/^\/courses\/([^/]+)\/practice-quiz\/(live|results)$/);
+  if (coursePracticeMatch) {
+    const contentRoot = `courses/${decodeURIComponent(coursePracticeMatch[1])}`;
+    const track = [...COURSE_CATALOG, ...CERTIFICATION_CATALOG].find((entry) => entry.contentRoot === contentRoot);
+    if (track) {
+      return {
+        screenId: coursePracticeMatch[2] === "live" ? "quiz-screen" : "review-screen",
+        trackId: track.routeSlug,
+        noteToken: "",
+        notePath: "",
+      };
+    }
+  }
+  const noteMatch = normalized.match(NOTE_ROUTE_PATTERN);
+  if (noteMatch) {
+    return {
+      screenId: "notes-screen",
+      trackId: noteMatch[1],
+      noteToken: noteMatch[2],
+      notePath: state.noteRoutePathsByToken.get(noteMatch[1])?.get(noteMatch[2]) || "",
+    };
+  }
+  const trackMatch = normalized.match(TRACK_SCREEN_ROUTE_PATTERN);
+  if (trackMatch) {
+    const section = trackMatch[2] || "";
+    const screenId = {
+      "": "menu-screen",
+      notes: "notes-screen",
+      pbqs: "pbq-screen",
+      "practice/weeks": "week-screen",
+      "practice/setup": "config-screen",
+      "practice/quiz": "quiz-screen",
+      "practice/review": "review-screen",
+    }[section] || "course-screen";
+    return {
+      screenId,
+      trackId: trackMatch[1],
+      noteToken: "",
+      notePath: "",
+    };
+  }
+  return {
+    screenId: PAGE_ROUTES[normalized] || "course-screen",
+    trackId: "",
+    noteToken: "",
+    notePath: "",
+  };
+}
 function apiURL(path) {
   const cleanPath = String(path || "").startsWith("/") ? String(path || "") : `/${path || ""}`;
   return `${window.location.protocol}//${window.location.hostname}:${API_PORT}${cleanPath}`;
@@ -430,6 +638,7 @@ const state = {
   weekAvailabilityReady: false,
   selectedWeeks: new Set(WEEK_CHOICES),
   mode: "easy",
+  gradingMode: "regular",
   amount: 10,
   skipPreviouslyCorrect: false,
   includeMissedOnce: false,
@@ -442,16 +651,30 @@ const state = {
   lastReportText: "",
   lastAutoReportName: "",
   lastModeFinished: "easy",
+  lastGradingModeFinished: "regular",
   currentLocked: false,
   currentSelectedAnswer: "",
   currentOptionMap: {},
+  examNavOpen: false,
   localHistoryRows: [],
   localChangeRows: [],
   reports: [],
   overrides: { removedKeys: {}, difficultyOverrides: {} },
+  currentScreenId: "course-screen",
+  pendingRoutePath: "",
+  routeReady: false,
+  notesSidebarOpen: true,
   notesManifest: null,
   notesFileMap: new Map(),
+  noteRouteTokensByPath: new Map(),
+  noteRoutePathsByToken: new Map(),
   currentNotePath: "",
+  notesVideoPlayer: null,
+  notesVideoControlsTimer: null,
+  notesVideoTranscriptPath: "",
+  notesVideoCaptions: [],
+  notesVideoActiveCaption: null,
+  hardOfHearingEnabled: false,
   notesLoadError: "",
   changelogText: "",
   changelogLoadError: "",
@@ -471,6 +694,91 @@ const state = {
 const el = {};
 let questionBankReloadPromise = null;
 let notesManifestReloadPromise = null;
+let noteRouteMapReloadPromise = null;
+let resultsConfettiHideTimer = null;
+const RESULTS_CONFETTI_COLORS = ["#44cfaa", "#ff735c", "#f5d76e", "#7dcfff", "#f58fb0", "#9fefc2"];
+const RESULTS_CONFETTI_SHAPES = ["shape-square", "shape-ribbon", "shape-circle", "shape-diamond", "shape-triangle"];
+const RESULTS_CONFETTI_BURST_MS = 3000;
+const RESULTS_CONFETTI_MAX_FALL_MS = 5200;
+const RESULTS_CONFETTI_CLEAR_BUFFER_MS = 220;
+
+function buildReviewConfetti() {
+  if (!el.resultsConfetti) return 0;
+  el.resultsConfetti.replaceChildren();
+  let latestFinishMs = 0;
+  for (let index = 0; index < 96; index += 1) {
+    const piece = document.createElement("span");
+    piece.className = "results-confetti-piece";
+    piece.style.setProperty("--x", String(3 + ((index * 11) % 94)));
+    piece.style.setProperty("--drift-start", String(((index % 6) - 2.5) * 1.8));
+    piece.style.setProperty("--drift-end", String((((index * 5) % 11) - 5) * 1.9));
+    const fallDurationMs = 3800 + (index % 6) * 280;
+    const delayMs = Math.round((index / 95) * RESULTS_CONFETTI_BURST_MS);
+    piece.style.setProperty("--fall-duration", `${fallDurationMs}ms`);
+    piece.style.setProperty("--delay", `${delayMs}ms`);
+    latestFinishMs = Math.max(latestFinishMs, delayMs + fallDurationMs);
+
+    const shape = document.createElement("span");
+    shape.className = `results-confetti-shape ${RESULTS_CONFETTI_SHAPES[index % RESULTS_CONFETTI_SHAPES.length]}`;
+    shape.style.setProperty("--piece-color", RESULTS_CONFETTI_COLORS[index % RESULTS_CONFETTI_COLORS.length]);
+    shape.style.setProperty("--size", `${8 + (index % 5) * 2}px`);
+    shape.style.setProperty("--stretch", `${1 + ((index + 2) % 4) * 0.28}`);
+    shape.style.setProperty("--spin-duration", `${1700 + (index % 5) * 260}ms`);
+    shape.style.setProperty("--spin-delay", `${delayMs}ms`);
+    shape.style.setProperty("--turn-direction", index % 2 === 0 ? "1" : "-1");
+
+    piece.appendChild(shape);
+    el.resultsConfetti.appendChild(piece);
+  }
+  return Math.max(latestFinishMs, RESULTS_CONFETTI_BURST_MS + RESULTS_CONFETTI_MAX_FALL_MS);
+}
+
+function shouldShowReviewConfetti(details = currentScoreDetails()) {
+  if (!details || details.answered <= 0) return false;
+  const confettiPercent = Number(details.quizConfig?.confettiPercent);
+  if (Number.isFinite(confettiPercent)) {
+    return details.percent >= confettiPercent;
+  }
+  return Boolean(details.passed);
+}
+
+function hideReviewConfetti() {
+  if (resultsConfettiHideTimer) {
+    window.clearTimeout(resultsConfettiHideTimer);
+    resultsConfettiHideTimer = null;
+  }
+  if (!el.resultsConfetti) return;
+  el.resultsConfetti.classList.remove("active");
+  el.resultsConfetti.classList.add("hidden");
+  el.resultsConfetti.replaceChildren();
+}
+
+function syncReviewConfetti(details = currentScoreDetails()) {
+  if (!el.resultsConfetti) return;
+  if (!shouldShowReviewConfetti(details)) {
+    hideReviewConfetti();
+    return;
+  }
+  const totalRunMs = buildReviewConfetti();
+  el.resultsConfetti.classList.remove("active");
+  el.resultsConfetti.classList.remove("hidden");
+  void el.resultsConfetti.offsetWidth;
+  el.resultsConfetti.classList.add("active");
+  if (resultsConfettiHideTimer) {
+    window.clearTimeout(resultsConfettiHideTimer);
+  }
+  resultsConfettiHideTimer = window.setTimeout(() => {
+    hideReviewConfetti();
+  }, totalRunMs + RESULTS_CONFETTI_CLEAR_BUFFER_MS);
+}
+
+window.__ROCKET_TEST__ = Object.assign(window.__ROCKET_TEST__ || {}, {
+  getCurrentQuestionCorrectChoice() {
+    const row = state.questions[state.currentIndex];
+    const correct = String(row?.correct_choice || "").toUpperCase();
+    return ["A", "B", "C", "D"].find((slot) => row?._sessionOptionMap?.[slot]?.original === correct) || correct;
+  },
+});
 
 function activeCourse() {
   return COURSE_CATALOG.find((c) => c.id === state.courseId) || COURSE_CATALOG[0];
@@ -485,6 +793,54 @@ function activeTrack() {
     return activeCertification();
   }
   return activeCourse();
+}
+
+window.__ROCKET_DEBUG__ = Object.assign(window.__ROCKET_DEBUG__ || {}, {
+  getTrackSnapshot() {
+    const track = activeTrack();
+    return {
+      activeTrackType: state.activeTrackType,
+      courseId: state.courseId,
+      certificationId: state.certificationId,
+      trackId: track?.id || "",
+      trackName: track?.name || "",
+      pbqs: Array.isArray(track?.pbqs) ? track.pbqs.map((pbq) => ({ ...pbq })) : [],
+    };
+  },
+});
+
+function setNoteRouteMap(rawMap) {
+  state.noteRouteTokensByPath = new Map();
+  state.noteRoutePathsByToken = new Map();
+  Object.entries(rawMap || {}).forEach(([trackId, tokenMap]) => {
+    if (!tokenMap || typeof tokenMap !== "object") return;
+    const pathToToken = new Map();
+    const tokenToPath = new Map();
+    Object.entries(tokenMap).forEach(([token, notePath]) => {
+      const normalized = normalizeNotePath(notePath);
+      if (!token || !normalized) return;
+      pathToToken.set(normalized, token);
+      tokenToPath.set(token, normalized);
+    });
+    state.noteRouteTokensByPath.set(trackId, pathToToken);
+    state.noteRoutePathsByToken.set(trackId, tokenToPath);
+  });
+}
+
+async function reloadNoteRouteMap() {
+  if (noteRouteMapReloadPromise) return noteRouteMapReloadPromise;
+  noteRouteMapReloadPromise = (async () => {
+    try {
+      const res = await fetch(NOTE_ROUTE_MAP_PATH, { cache: "no-cache" });
+      if (!res.ok) throw new Error(`Could not load note route map (${res.status}).`);
+      setNoteRouteMap(await res.json());
+    } catch (_) {
+      setNoteRouteMap({});
+    } finally {
+      noteRouteMapReloadPromise = null;
+    }
+  })();
+  return noteRouteMapReloadPromise;
 }
 
 function activePracticeUnitConfig() {
@@ -502,6 +858,47 @@ function activePracticeUnitConfig() {
   };
 }
 
+function activeQuizConfig() {
+  const config = window.ROCKET_QUIZ_CONFIGS || {};
+  return config[activeTrack().id] || config.netc121 || {
+    gradingModes: [{ id: "regular", label: "Regular", showPassFail: false, useCompTIAWeightedScoring: false }],
+    defaultGradingMode: "regular",
+  };
+}
+
+function activeGradingModeConfig() {
+  const quizConfig = activeQuizConfig();
+  const modes = Array.isArray(quizConfig.gradingModes) && quizConfig.gradingModes.length
+    ? quizConfig.gradingModes
+    : [{ id: "regular", label: "Regular", showPassFail: false, useCompTIAWeightedScoring: false }];
+  return modes.find((mode) => mode.id === state.gradingMode) || modes[0];
+}
+
+function isExamMode() {
+  return Boolean(activeGradingModeConfig().isExamMode);
+}
+
+function questionCountLabelText() {
+  const examCount = Math.max(1, Number(activeQuizConfig().exam?.questionCount || 0));
+  return examCount
+    ? `Questions (there are ${examCount} on the exam)`
+    : "Questions";
+}
+
+function updateQuestionCountLabel() {
+  if (!el.questionCountLabel) return;
+  el.questionCountLabel.textContent = questionCountLabelText();
+}
+
+function setDefaultGradingModeForTrack() {
+  const quizConfig = activeQuizConfig();
+  const modes = Array.isArray(quizConfig.gradingModes) ? quizConfig.gradingModes : [];
+  const currentModeStillValid = modes.some((mode) => mode.id === state.gradingMode);
+  if (!currentModeStillValid) {
+    state.gradingMode = quizConfig.defaultGradingMode || modes[0]?.id || "regular";
+  }
+}
+
 function versionedContentURL(...parts) {
   const clean = parts
     .flat()
@@ -511,7 +908,7 @@ function versionedContentURL(...parts) {
     .filter(Boolean)
     .map(encodeURIComponent)
     .join("/");
-  return `./${clean}?v=${encodeURIComponent(window.__NETC_QUIZ_APP_VERSION__)}`;
+  return withAppBase(`/${clean}?q=${encodeURIComponent(window.__NETC_QUIZ_APP_VERSION__)}`);
 }
 
 function activeNotesManifestURL() {
@@ -532,7 +929,7 @@ function activeTrackManualWeeks() {
 }
 
 function rocketBrandHTML(text) {
-  return `<span class="brand-inline"><img class="brand-inline-icon" src="./rocket_icon.png?v=${window.__NETC_QUIZ_APP_VERSION__}" alt="" aria-hidden="true"><span>${escapeHTML(text)}</span></span>`;
+  return `<a href="https://rocketquestions.com" class="app-title-link"><span class="brand-inline"><img class="brand-inline-icon" src="${withAppBase(`/rocket_icon.png?q=${window.__NETC_QUIZ_APP_VERSION__}`)}" alt="" aria-hidden="true"><span>${escapeHTML(text)}</span></span></a>`;
 }
 
 function applyCourseBranding() {
@@ -547,6 +944,7 @@ function applyCourseBranding() {
   }
   renderAutoCopyright(course);
   syncPracticeUnitLabels();
+  syncNotesMenuToggle();
 }
 
 function syncPracticeUnitLabels() {
@@ -591,8 +989,157 @@ function setChangelogStatus(text) {
 }
 
 function currentScreenId() {
-  const visible = document.querySelector(".screen:not(.hidden)");
-  return visible?.id || "course-screen";
+  return state.currentScreenId || document.querySelector(".screen:not(.hidden)")?.id || "course-screen";
+}
+
+function normalizeRoutePath(path) {
+  const input = String(path || "/").trim() || "/";
+  const withoutOrigin = input.replace(/^[a-z]+:\/\/[^/]+/i, "");
+  const clean = withoutOrigin.split(/[?#]/, 1)[0] || "/";
+  const collapsed = clean.startsWith("/") ? clean.replace(/\/{2,}/g, "/") : `/${clean.replace(/\/{2,}/g, "/")}`;
+  if (collapsed.length > 1 && collapsed.endsWith("/")) return collapsed.slice(0, -1);
+  return collapsed || "/";
+}
+
+function versionedURLForBrowser(path) {
+  const normalizedPath = normalizeRoutePath(path);
+  const url = new URL(normalizedPath, window.location.origin);
+  url.searchParams.set(APP_VERSION_QUERY_KEY, window.__NETC_QUIZ_APP_VERSION__);
+  return `${url.pathname}${url.search}${url.hash}`;
+}
+
+function ensureVersionQueryInAddressBar() {
+  const targetURL = versionedURLForBrowser(window.location.pathname);
+  const currentURL = `${normalizeRoutePath(window.location.pathname)}${window.location.search}`;
+  if (currentURL === targetURL) return;
+  window.history.replaceState({}, "", targetURL);
+}
+
+function routePathForScreen(screenId) {
+  const trackSlug = trackRouteIdForState();
+  if (screenId === "notes-screen" && state.currentNotePath && trackRouteIdForState()) {
+    return buildNoteRoutePath(trackRouteIdForState(), state.currentNotePath);
+  }
+  if (trackSlug) {
+    const track = activeTrack();
+    if (track.contentRoot === "courses/Network+") {
+      const contentRoutes = {
+        "quiz-screen": withAppBase("/courses/Network+/practice-quiz/live"),
+        "review-screen": withAppBase("/courses/Network+/practice-quiz/results"),
+      };
+      if (contentRoutes[screenId]) return contentRoutes[screenId];
+    }
+    const trackRoutes = {
+      "menu-screen": withAppBase(`/${trackSlug}`),
+      "notes-screen": withAppBase(`/${trackSlug}/notes`),
+      "pbq-screen": withAppBase(`/${trackSlug}/pbqs`),
+      "week-screen": withAppBase(`/${trackSlug}/practice/weeks`),
+      "config-screen": withAppBase(`/${trackSlug}/practice/setup`),
+      "quiz-screen": withAppBase(`/${trackSlug}/practice/quiz`),
+      "review-screen": withAppBase(`/${trackSlug}/practice/review`),
+    };
+    if (trackRoutes[screenId]) return trackRoutes[screenId];
+  }
+  return withAppBase(PAGE_ROUTES[screenId] || PAGE_ROUTES["course-screen"]);
+}
+
+function screenIdForRoutePath(path) {
+  return parseAppRoute(path).screenId;
+}
+
+function screenNeedsWorkspace(screenId) {
+  return screenId !== "course-screen";
+}
+
+function screenNeedsQuizSession(screenId) {
+  return screenId === "quiz-screen" || screenId === "review-screen";
+}
+
+function hasSavedTrackSelection() {
+  if (state.activeTrackType === "certification") return Boolean(state.certificationId);
+  return Boolean(state.courseId);
+}
+
+function serializeSessionState() {
+  return {
+    currentScreenId: currentScreenId(),
+    currentNotePath: state.currentNotePath,
+    selectedWeeks: [...state.selectedWeeks],
+    setupVisited: state.setupVisited,
+    mode: state.mode,
+    gradingMode: state.gradingMode,
+    amount: state.amount,
+    skipPreviouslyCorrect: state.skipPreviouslyCorrect,
+    includeMissedOnce: state.includeMissedOnce,
+    lastModeFinished: state.lastModeFinished,
+    lastGradingModeFinished: state.lastGradingModeFinished,
+    lastReportText: state.lastReportText,
+    lastAutoReportName: state.lastAutoReportName,
+    incorrectRecords: state.incorrectRecords,
+    questions: state.questions,
+    currentIndex: state.currentIndex,
+    correctCount: state.correctCount,
+    answeredCount: state.answeredCount,
+    examNavOpen: state.examNavOpen,
+  };
+}
+
+function saveSessionState() {
+  try {
+    sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(serializeSessionState()));
+  } catch (_) {
+    // Ignore session-storage quota or privacy-mode failures.
+  }
+}
+
+function loadSessionState() {
+  try {
+    const raw = sessionStorage.getItem(SESSION_STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch (_) {
+    return {};
+  }
+}
+
+function restoreSessionState() {
+  const stored = loadSessionState();
+  const storedWeeks = Array.isArray(stored.selectedWeeks) ? stored.selectedWeeks.map(Number).filter(Number.isFinite) : [];
+  if (storedWeeks.length) state.selectedWeeks = new Set(storedWeeks);
+  if (typeof stored.currentNotePath === "string") state.currentNotePath = stored.currentNotePath;
+  if (typeof stored.mode === "string" && stored.mode) state.mode = stored.mode;
+  if (typeof stored.gradingMode === "string" && stored.gradingMode) state.gradingMode = stored.gradingMode;
+  if (Number.isFinite(Number(stored.amount)) && Number(stored.amount) >= 1) state.amount = Math.floor(Number(stored.amount));
+  state.setupVisited = Boolean(stored.setupVisited);
+  state.skipPreviouslyCorrect = Boolean(stored.skipPreviouslyCorrect);
+  state.includeMissedOnce = Boolean(stored.includeMissedOnce);
+  state.lastModeFinished = typeof stored.lastModeFinished === "string" && stored.lastModeFinished ? stored.lastModeFinished : state.lastModeFinished;
+  state.lastGradingModeFinished = typeof stored.lastGradingModeFinished === "string" && stored.lastGradingModeFinished ? stored.lastGradingModeFinished : state.lastGradingModeFinished;
+  state.lastReportText = typeof stored.lastReportText === "string" ? stored.lastReportText : "";
+  state.lastAutoReportName = typeof stored.lastAutoReportName === "string" ? stored.lastAutoReportName : "";
+  state.incorrectRecords = Array.isArray(stored.incorrectRecords) ? stored.incorrectRecords : [];
+  state.questions = Array.isArray(stored.questions) ? stored.questions : [];
+  state.currentIndex = Number.isFinite(Number(stored.currentIndex)) ? Math.max(0, Math.floor(Number(stored.currentIndex))) : 0;
+  state.correctCount = Number.isFinite(Number(stored.correctCount)) ? Math.max(0, Math.floor(Number(stored.correctCount))) : 0;
+  state.answeredCount = Number.isFinite(Number(stored.answeredCount)) ? Math.max(0, Math.floor(Number(stored.answeredCount))) : 0;
+  state.examNavOpen = Boolean(stored.examNavOpen);
+}
+
+function syncBrowserRoute(screenId, { replace = false } = {}) {
+  const path = routePathForScreen(screenId);
+  const targetURL = versionedURLForBrowser(path);
+  if (
+    `${normalizeRoutePath(window.location.pathname)}${window.location.search}` === targetURL &&
+    state.routeReady
+  ) {
+    return;
+  }
+  const method = replace ? "replaceState" : "pushState";
+  window.history[method]({}, "", targetURL);
+  if (DEBUG_ROUTING) {
+    console.log(`[ROUTE] Screen changed to: ${screenId}, URL: ${targetURL}`);
+  }
 }
 
 function isMobileWalkthroughBlocked() {
@@ -608,12 +1155,34 @@ function isMobileNotesLayout() {
 
 function syncMobileNotesLayoutClass() {
   document.body.classList.toggle("mobile-notes-layout", isMobileNotesLayout());
+  syncNotesSidebarUI();
+}
+
+function syncNotesMenuToggle() {
+  if (!el.toggleNotesSidebar) return;
+  const canOpenMenu = true;
+  const isOpen = currentScreenId() === "notes-screen" && state.notesSidebarOpen;
+  el.toggleNotesSidebar.classList.toggle("hidden", !canOpenMenu);
+  el.toggleNotesSidebar.setAttribute("aria-expanded", String(isOpen));
+  el.toggleNotesSidebar.setAttribute("aria-label", isOpen ? "Close notes explorer" : "Open notes explorer");
+}
+
+function syncNotesSidebarUI() {
+  const onNotesScreen = currentScreenId() === "notes-screen";
+  const isMobile = isMobileNotesLayout();
+  const shouldBeOpen = onNotesScreen && state.notesSidebarOpen;
+
+  el.notesLayout?.classList.toggle("is-collapsed", onNotesScreen && !isMobile && !shouldBeOpen);
+  el.notesSidebar?.classList.toggle("is-open", shouldBeOpen);
+  el.notesSidebarBackdrop?.classList.toggle("hidden", !(onNotesScreen && isMobile && shouldBeOpen));
+  syncNotesMenuToggle();
 }
 
 function screenLabel(screenId) {
   const labels = {
     "course-screen": "Course Selection",
     "menu-screen": "Workspace Menu",
+    "pbq-screen": "PBQs",
     "week-screen": "Week Selection",
     "notes-screen": "Notes Lists",
     "config-screen": "Quiz Configuration",
@@ -1000,6 +1569,50 @@ function setJSONStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
 
+function buildAccessibilityDefaults() {
+  return {
+    hardOfHearingEnabled: false,
+  };
+}
+
+function loadAccessibilityPreferences() {
+  const stored = getJSONStorage(ACCESSIBILITY_STORAGE_KEY, buildAccessibilityDefaults());
+  const merged = {
+    ...buildAccessibilityDefaults(),
+    ...(stored && typeof stored === "object" ? stored : {}),
+  };
+  state.hardOfHearingEnabled = Boolean(merged.hardOfHearingEnabled);
+}
+
+function saveAccessibilityPreferences() {
+  setJSONStorage(ACCESSIBILITY_STORAGE_KEY, {
+    hardOfHearingEnabled: state.hardOfHearingEnabled,
+  });
+}
+
+function syncAccessibilityUI() {
+  if (el.hardOfHearingToggle) {
+    el.hardOfHearingToggle.checked = state.hardOfHearingEnabled;
+  }
+  document.body.classList.toggle("hard-of-hearing-enabled", state.hardOfHearingEnabled);
+}
+
+function hardOfHearingToggleContainer() {
+  return el.hardOfHearingToggle?.closest(".header-toggle") || null;
+}
+
+function shouldShowHardOfHearingToggle() {
+  if (currentScreenId() !== "notes-screen") return false;
+  const node = state.notesFileMap.get(state.currentNotePath);
+  return isYouTubeVideoNoteNode(node);
+}
+
+function syncHardOfHearingToggleVisibility() {
+  const container = hardOfHearingToggleContainer();
+  if (!container) return;
+  container.classList.toggle("hidden", !shouldShowHardOfHearingToggle());
+}
+
 function setStartupStatus(text) {
   const msg = String(text || "").trim();
   if (msg && el.startupStatus) el.startupStatus.textContent = msg;
@@ -1059,6 +1672,7 @@ function validateFeedbackText(text) {
 }
 
 async function postChangeToServer(changeRow) {
+  if (window.__ROCKET_DISABLE_CHANGE_SERVER_SYNC__) return false;
   if (state.changeServerSaveDisabled) return false;
   const url = apiURL("/api/changes");
   try {
@@ -1145,27 +1759,17 @@ function parseCSV(text) {
 }
 
 function csvPathCandidates(path) {
-  const cleaned = String(path || "").replace(/^\.\/+/, "");
-  const baseName = cleaned.split("/").pop() || cleaned;
-  return [...new Set([
-    `./${cleaned}`,
-    cleaned,
-    `./rocket-questions-html/${baseName}`,
-    `/rocket-questions-html/${baseName}`,
-  ])];
+  return [String(path || "").trim()].filter(Boolean);
 }
 
 async function loadCSV(path, requiredHeaders = null) {
-  const candidates = [...new Set(
-    csvPathCandidates(path).map((candidate) => new URL(candidate, APP_BASE_URL).toString())
-  )];
+  const candidates = [...new Set(csvPathCandidates(path))];
   const failures = [];
   for (const candidate of candidates) {
-    const resolvedURL = new URL(candidate);
     try {
-      const res = await fetch(resolvedURL, { cache: "no-store" });
+      const res = await fetch(candidate, { cache: "no-store" });
       if (!res.ok) {
-        failures.push(`${resolvedURL.pathname} (${res.status})`);
+        failures.push(`${candidate} (${res.status})`);
         continue;
       }
       const rows = parseCSV(await res.text());
@@ -1173,13 +1777,13 @@ async function loadCSV(path, requiredHeaders = null) {
         const keys = Object.keys(rows[0]);
         const missing = requiredHeaders.filter((header) => !keys.includes(header));
         if (missing.length) {
-          failures.push(`${resolvedURL.pathname} (missing columns: ${missing.join(", ")})`);
+          failures.push(`${candidate} (missing columns: ${missing.join(", ")})`);
           continue;
         }
       }
       return rows;
     } catch (err) {
-      failures.push(`${resolvedURL.pathname} (${err?.message || "fetch error"})`);
+      failures.push(`${candidate} (${err?.message || "fetch error"})`);
     }
   }
   throw new Error(`CSV load failed for ${path}. Tried: ${failures.join(" | ")}`);
@@ -1296,6 +1900,145 @@ function letterGrade(percent) {
   if (percent >= 70) return "C";
   if (percent >= 60) return "D";
   return "F";
+}
+
+function statusLabelHTML(status) {
+  if (!status) return "";
+  const normalized = String(status).toLowerCase() === "pass" ? "pass" : "fail";
+  return `<span class="score-status score-status-${normalized}">${normalized.toUpperCase()}</span>`;
+}
+
+function scaledScoreFromPercent(percent, quizConfig = activeQuizConfig()) {
+  const scaled = quizConfig.scaledScore || {};
+  const min = Number.isFinite(Number(scaled.min)) ? Number(scaled.min) : 100;
+  const max = Number.isFinite(Number(scaled.max)) ? Number(scaled.max) : 900;
+  const bounded = Math.max(0, Math.min(100, Number(percent) || 0));
+  return Math.round(min + (bounded / 100) * (max - min));
+}
+
+function questionDomain(question) {
+  const direct = Number(question?.domain ?? question?.week);
+  if (Number.isFinite(direct) && direct > 0) return direct;
+  const source = String(question?.source_path || question?.source || "");
+  const match = source.match(/(?:domain|\/)([1-5])(?:[.\s_-]|$)/i);
+  return match ? Number(match[1]) : null;
+}
+
+function normalizedWeightsForDomains(domains, quizConfig = activeQuizConfig()) {
+  const rawWeights = quizConfig.domainWeights || {};
+  const uniqueDomains = [...new Set(domains.map(Number).filter((domain) => Number.isFinite(domain) && domain > 0))];
+  if (!uniqueDomains.length) return new Map();
+  const rawTotal = uniqueDomains.reduce((sum, domain) => {
+    const weight = Number(rawWeights[domain] ?? rawWeights[String(domain)] ?? 1);
+    return sum + (Number.isFinite(weight) && weight > 0 ? weight : 1);
+  }, 0);
+  const weights = new Map();
+  uniqueDomains.forEach((domain) => {
+    const raw = Number(rawWeights[domain] ?? rawWeights[String(domain)] ?? 1);
+    const safe = Number.isFinite(raw) && raw > 0 ? raw : 1;
+    weights.set(domain, rawTotal > 0 ? safe / rawTotal : 1 / uniqueDomains.length);
+  });
+  return weights;
+}
+
+function calculateRegularPercent(answeredRows) {
+  if (!answeredRows.length) return 0;
+  const correct = answeredRows.filter((row) => row._sessionAnswer?.wasCorrect).length;
+  return (correct / answeredRows.length) * 100;
+}
+
+function calculateWeightedPercent(answeredRows) {
+  if (!answeredRows.length) return 0;
+  const selectedDomains = [...state.selectedWeeks].map(Number).filter(Number.isFinite);
+  const answeredDomains = [...new Set(answeredRows.map(questionDomain).filter(Boolean))];
+  const domainsForLiveGrade = answeredDomains.length
+    ? selectedDomains.filter((domain) => answeredDomains.includes(domain))
+    : selectedDomains;
+  const weights = normalizedWeightsForDomains(domainsForLiveGrade.length ? domainsForLiveGrade : answeredDomains);
+  if (!weights.size) return calculateRegularPercent(answeredRows);
+  let weightedPercent = 0;
+  weights.forEach((weight, domain) => {
+    const domainRows = answeredRows.filter((row) => questionDomain(row) === domain);
+    const domainPercent = domainRows.length ? calculateRegularPercent(domainRows) : 0;
+    weightedPercent += domainPercent * weight;
+  });
+  return weightedPercent;
+}
+
+function calculateExamPercent(answeredRows) {
+  const quizConfig = activeQuizConfig();
+  const examConfig = quizConfig.exam || {};
+  const normalRows = state.questions.filter((row) => !row._isPBQ);
+  const pbqRows = state.questions.filter((row) => row._isPBQ);
+  const answeredNormalRows = answeredRows.filter((row) => !row._isPBQ);
+  const answeredPbqRows = answeredRows.filter((row) => row._isPBQ);
+  const normalWeight = Number(examConfig.normalQuestionWeightPercent ?? 80) / 100;
+  const pbqWeight = Number(examConfig.pbqWeightPercent ?? 20) / 100;
+  const normalPercent = normalRows.length ? calculateWeightedPercent(answeredNormalRows) : 0;
+  const pbqPercent = pbqRows.length ? calculateRegularPercent(answeredPbqRows) : 0;
+  if (!pbqRows.length) return normalPercent;
+  return (normalPercent * normalWeight) + (pbqPercent * pbqWeight);
+}
+
+function currentScoreDetails() {
+  const quizConfig = activeQuizConfig();
+  const gradingMode = activeGradingModeConfig();
+  const answeredRows = state.questions.filter((row) => row?._sessionAnswer);
+  const correct = answeredRows.filter((row) => row._sessionAnswer?.wasCorrect).length;
+  const percent = gradingMode.isExamMode
+    ? calculateExamPercent(answeredRows)
+    : gradingMode.useCompTIAWeightedScoring
+    ? calculateWeightedPercent(answeredRows)
+    : calculateRegularPercent(answeredRows);
+  const scaledScore = scaledScoreFromPercent(percent, quizConfig);
+  const passingScaled = Number(quizConfig.scaledScore?.passing);
+  const passPercent = Number(quizConfig.passPercent);
+  const passed = gradingMode.useCompTIAWeightedScoring && Number.isFinite(passingScaled)
+    ? scaledScore >= passingScaled
+    : Number.isFinite(passPercent) && percent >= passPercent;
+  return {
+    answered: answeredRows.length,
+    correct,
+    percent,
+    letter: letterGrade(percent),
+    scaledScore,
+    passed,
+    status: passed ? "PASS" : "FAIL",
+    showPassFail: Boolean(gradingMode.showPassFail),
+    showScaledScore: Boolean(gradingMode.useCompTIAWeightedScoring),
+    gradingMode,
+    quizConfig,
+  };
+}
+
+function scoreSummaryHTML(details, { includeLabel = true } = {}) {
+  const label = includeLabel ? "Live Score: " : "";
+  const pieces = [
+    `${label}${details.correct}/${details.answered} (${details.percent.toFixed(1)}%)`,
+  ];
+  if (details.showScaledScore) pieces.push(`CompTIA Score: ${details.scaledScore}`);
+  if (details.showPassFail && details.answered > 0) pieces.push(statusLabelHTML(details.status));
+  if (!details.showPassFail && !details.showScaledScore) pieces.push(`Letter: ${details.letter}`);
+  return pieces.join(" | ");
+}
+
+function examProgressSummaryHTML() {
+  const answered = state.questions.filter((row) => row?._sessionAnswer).length;
+  const deferred = state.questions.filter((row) => row?._deferred && !row?._sessionAnswer).length;
+  const unanswered = Math.max(0, state.questions.length - answered);
+  return `Exam in progress: ${answered} answered | ${unanswered} unanswered | ${deferred} deferred. Score appears after Finish Quiz.`;
+}
+
+function reviewSummaryHTML(details) {
+  const pieces = [
+    `Answered: ${details.answered}`,
+    `Correct: ${details.correct}`,
+    `Score: ${details.percent.toFixed(2)}%`,
+  ];
+  if (details.showScaledScore) pieces.push(`CompTIA Score: ${details.scaledScore}`);
+  if (details.showPassFail && details.answered > 0) pieces.push(statusLabelHTML(details.status));
+  if (!details.showPassFail && !details.showScaledScore) pieces.push(`Letter: ${details.letter}`);
+  return pieces.join(" | ");
 }
 
 function inferWeekFromSource(sourcePath, fallbackWeek = null) {
@@ -1530,10 +2273,70 @@ function freshSessionQuestion(question, id = question?.id) {
   const copy = {
     ...question,
     id,
+    _isPBQ: Boolean(question?._isPBQ),
   };
   delete copy._sessionAnswer;
   delete copy._sessionOptionMap;
+  delete copy._deferred;
   return copy;
+}
+
+function freshPBQSessionQuestion(pbq, index) {
+  const choices = Array.isArray(pbq.choices) ? pbq.choices : [];
+  return freshSessionQuestion({
+    id: pbq.id || `pbq-${index + 1}`,
+    question_key: pbq.id || `pbq-${index + 1}`,
+    question: pbq.question || pbq.title || `PBQ${index + 1}`,
+    choice_a: choices[0] || pbq.choice_a || "",
+    choice_b: choices[1] || pbq.choice_b || "",
+    choice_c: choices[2] || pbq.choice_c || "",
+    choice_d: choices[3] || pbq.choice_d || "",
+    correct_choice: String(pbq.correct_choice || "A").toUpperCase(),
+    explanation: pbq.explanation || "",
+    difficulty: "exam",
+    week: Number(pbq.domain || pbq.week || 1),
+    domain: Number(pbq.domain || pbq.week || 1),
+    source_path: pbq.source_path || "courses/Network+/pbqs",
+    preserve_choice_order: true,
+    _isPBQ: true,
+    _examLabel: pbq.title || `PBQ${index + 1}`,
+  }, pbq.id || `pbq-${index + 1}`);
+}
+
+function buildExamQuestions() {
+  const quizConfig = activeQuizConfig();
+  const examConfig = quizConfig.exam || {};
+  const defaultCount = Math.max(1, Number(examConfig.questionCount || 90));
+  const normalCount = Math.max(1, Number(state.amount || defaultCount));
+  const pbqCount = Math.max(0, Number(examConfig.pbqCount || 0));
+  const normalPool = filterPoolByHistoryRules(filteredPoolByDifficulty(state.mode));
+  const normalQuestions = sample(normalPool, Math.min(normalCount, normalPool.length))
+    .map((q, index) => ({
+      ...freshSessionQuestion(q),
+      _examLabel: `Question ${index + 1}`,
+    }));
+  const configuredPbqs = Array.isArray(examConfig.pbqs) ? examConfig.pbqs : [];
+  const pbqQuestions = configuredPbqs.slice(0, pbqCount).map(freshPBQSessionQuestion);
+  const mixed = [];
+  const firstPair = normalQuestions.splice(0, 2);
+  mixed.push(...firstPair);
+  pbqQuestions.forEach((pbq) => {
+    mixed.push(pbq);
+    mixed.push(...normalQuestions.splice(0, 2));
+  });
+  mixed.push(...normalQuestions);
+  let questionNumber = 1;
+  let pbqNumber = 1;
+  mixed.forEach((row) => {
+    if (row._isPBQ) {
+      row._examLabel = `PBQ${pbqNumber}`;
+      pbqNumber += 1;
+    } else {
+      row._examLabel = `Question ${questionNumber}`;
+      questionNumber += 1;
+    }
+  });
+  return mixed;
 }
 
 function formatTimestamp(d = new Date()) {
@@ -1611,6 +2414,7 @@ function saveReports() {
 function saveQuizConfig() {
   setJSONStorage(CONFIG_STORAGE_KEY, {
     amount: state.amount,
+    gradingMode: state.gradingMode,
     skipPreviouslyCorrect: state.skipPreviouslyCorrect,
     includeMissedOnce: state.includeMissedOnce,
   });
@@ -1684,16 +2488,24 @@ function setQuestionDifficultyOverride(questionKey, difficulty) {
   saveOverrides();
 }
 
-function screen(id) {
-  ["course-screen", "menu-screen", "week-screen", "notes-screen", "config-screen", "quiz-screen", "review-screen"].forEach((sid) => {
+function screen(id, options = {}) {
+  const { updateRoute = true, replaceRoute = false } = options;
+  state.currentScreenId = id;
+  ["course-screen", "menu-screen", "pbq-screen", "week-screen", "notes-screen", "config-screen", "quiz-screen", "review-screen"].forEach((sid) => {
     document.getElementById(sid).classList.toggle("hidden", sid !== id);
   });
   applyCourseBranding();
+  syncHardOfHearingToggleVisibility();
   if (state.walkthroughPromptOpen && id !== "course-screen") {
     dismissWalkthroughPrompt();
   }
   if (id !== "notes-screen") {
-    closeNotesSidebar();
+    syncNotesSidebarUI();
+  }
+  if (id === "review-screen") {
+    syncReviewConfetti();
+  } else {
+    hideReviewConfetti();
   }
   if (state.walkthroughActive) {
     window.requestAnimationFrame(() => {
@@ -1702,6 +2514,14 @@ function screen(id) {
       }
     });
   }
+  if (state.routeReady && updateRoute) {
+    syncBrowserRoute(id, { replace: replaceRoute });
+  }
+  if (DEBUG_ROUTING) {
+    console.log(`[ROUTE] Screen changed to: ${id}, Path: ${window.location.pathname}`);
+  }
+  saveSessionState();
+  syncNotesMenuToggle();
 }
 
 function normalizeNotePath(path) {
@@ -1717,6 +2537,455 @@ function noteLabelFromPath(path) {
   const normalized = normalizeNotePath(path);
   const parts = normalized.split("/");
   return parts[parts.length - 1] || normalized;
+}
+
+function noteTranscriptPath(relativePath) {
+  const normalized = normalizeNotePath(relativePath);
+  if (!normalized || /(^|\/)Transcript\.md$/i.test(normalized)) return "";
+  const lastSlash = normalized.lastIndexOf("/");
+  if (lastSlash < 0) return "Transcript.md";
+  return `${normalized.slice(0, lastSlash + 1)}Transcript.md`;
+}
+
+function parseTimestampToSeconds(rawValue) {
+  const text = String(rawValue || "").trim();
+  if (!text) return Number.NaN;
+  const parts = text.split(":").map((part) => Number(part));
+  if (parts.some((part) => !Number.isFinite(part))) return Number.NaN;
+  if (parts.length === 2) {
+    return (parts[0] * 60) + parts[1];
+  }
+  if (parts.length === 3) {
+    return (parts[0] * 3600) + (parts[1] * 60) + parts[2];
+  }
+  return Number.NaN;
+}
+
+function parseTranscriptMarkdown(markdown) {
+  const source = String(markdown || "");
+  if (!source.trim()) return [];
+  const normalized = source.replace(/\r\n/g, "\n");
+  
+  // Matches timestamps and captures optional same-line text.
+  const headingPattern = /^[ \t]*(?:###[ \t]+|[-*][ \t]+)?(?:\[|\(|\*\*|`)?\s*(\d{1,2}:\d{2}(?::\d{2})?)(?:\s*(?:-|to)\s*(\d{1,2}:\d{2}(?::\d{2})?))?\s*(?:\]|\)|\*\*|`)?:?[ \t]*(.*?)?\s*$/gm;
+  
+  const matches = [...normalized.matchAll(headingPattern)];
+  return matches.map((match, index) => {
+    const start = parseTimestampToSeconds(match[1]);
+    
+    let text = (match[3] || "").trim();
+    if (!text) {
+      const contentStart = match.index + match[0].length + 1;
+      const contentEnd = index + 1 < matches.length ? matches[index + 1].index : normalized.length;
+      text = normalized.slice(contentStart, contentEnd).trim().replace(/\n/g, " ");
+    }
+      
+    let end = index + 1 < matches.length 
+      ? parseTimestampToSeconds(matches[index + 1][1]) 
+      : parseTimestampToSeconds(match[2]);
+      
+    if (!Number.isFinite(end)) {
+      end = start + 600;
+    }
+    
+    const label = match[2] ? `${match[1]} - ${match[2]}` : match[1];
+    
+    return {
+      start,
+      end,
+      text,
+      label,
+    };
+  }).filter((cue) => Number.isFinite(cue.start) && Number.isFinite(cue.end) && cue.end > cue.start && cue.text);
+}
+
+function isShortFormTranscript(cues) {
+  if (!cues || cues.length < 10) return false;
+  let finiteDurationCues = 0;
+  const totalDuration = cues.reduce((sum, cue) => {
+    const duration = cue.end - cue.start;
+    if (Number.isFinite(duration) && duration > 0) {
+      finiteDurationCues++;
+      return sum + duration;
+    }
+    return sum;
+  }, 0);
+  if (finiteDurationCues < 10) return false;
+  const avgDuration = totalDuration / finiteDurationCues;
+  return avgDuration < 15;
+}
+
+function findTranscriptCueAtTime(cues, seconds) {
+  if (!Array.isArray(cues) || !Number.isFinite(seconds)) return null;
+  return cues.find((cue) => seconds >= cue.start && seconds < cue.end) || null;
+}
+
+window.__ROCKET_NOTES_TEST_HOOKS__ = {
+  noteTranscriptPath,
+  parseTimestampToSeconds,
+  parseTranscriptMarkdown,
+  findTranscriptCueAtTime,
+  formatPlayerClock,
+};
+
+function destroyNotesVideoPlayer() {
+  if (state.notesVideoControlsTimer) {
+    window.clearTimeout(state.notesVideoControlsTimer);
+    state.notesVideoControlsTimer = null;
+  }
+  if (state.notesVideoPlayer && typeof state.notesVideoPlayer.destroy === "function") {
+    try {
+      state.notesVideoPlayer.destroy();
+    } catch (_) {
+      // Ignore teardown errors from stale embeds.
+    }
+  }
+  state.notesVideoPlayer = null;
+  state.notesVideoActiveCaption = null;
+}
+
+function setNotesVideoControlsVisibility(visible) {
+  const playerRoot = el.notesViewer?.querySelector("[data-notes-video-player]");
+  if (!playerRoot) return;
+  playerRoot.setAttribute("data-notes-video-controls-visible", visible ? "true" : "false");
+}
+
+function hideNotesVideoControlsAfterDelay() {
+  if (!state.notesVideoPlayer) return;
+  const playerRoot = el.notesViewer?.querySelector("[data-notes-video-player]");
+  if (playerRoot?.hasAttribute("data-notes-video-pristine")) return;
+  window.clearTimeout(state.notesVideoControlsTimer);
+  state.notesVideoControlsTimer = window.setTimeout(() => {
+    if (state.notesVideoPlayer) setNotesVideoControlsVisibility(false);
+  }, 4000);
+}
+
+function showNotesVideoControls({ keepVisible = false } = {}) {
+  if (!state.notesVideoPlayer) return;
+  const playerRoot = el.notesViewer?.querySelector("[data-notes-video-player]");
+  if (playerRoot?.hasAttribute("data-notes-video-pristine")) return;
+  window.clearTimeout(state.notesVideoControlsTimer);
+  state.notesVideoControlsTimer = null;
+  setNotesVideoControlsVisibility(true);
+  if (!keepVisible) {
+    hideNotesVideoControlsAfterDelay();
+  }
+}
+
+function extractYouTubeURL(markdown) {
+  if (!markdown) return "";
+  const markdownLink = markdown.match(/\]\((https?:\/\/(?:www\.)?(?:youtube\.com\/watch\?[^)\s]+|youtu\.be\/[^)\s]+))\)/i);
+  if (markdownLink) return markdownLink[1];
+  const bareUrl = markdown.match(/https?:\/\/(?:www\.)?(?:youtube\.com\/watch\?[^\s)]+|youtu\.be\/[^\s)]+)/i);
+  return bareUrl ? bareUrl[0] : "";
+}
+
+function extractYouTubeId(url) {
+  if (!url) return "";
+  try {
+    const parsed = new URL(url);
+    const host = parsed.hostname.replace(/^www\./i, "");
+    if (host === "youtu.be") {
+      return parsed.pathname.replace(/^\/+/, "").split("/")[0] || "";
+    }
+    if (host === "youtube.com" || host === "m.youtube.com") {
+      if (parsed.pathname === "/watch") {
+        return parsed.searchParams.get("v") || "";
+      }
+      const parts = parsed.pathname.split("/").filter(Boolean);
+      if (parts[0] === "embed" || parts[0] === "shorts") {
+        return parts[1] || "";
+      }
+    }
+  } catch (_) {
+    return "";
+  }
+  return "";
+}
+
+function isVideoNoteNode(node) {
+  const rawValue = node?.video ?? node?.Video;
+  if (typeof rawValue === "string") return rawValue.trim().toLowerCase() === "true";
+  return Boolean(rawValue);
+}
+
+function isYouTubeVideoNoteNode(node) {
+  const rawValue = node?.youtubeVideo;
+  if (typeof rawValue === "string") return rawValue.trim().toLowerCase() === "true";
+  return Boolean(rawValue);
+}
+
+function noteVideoUrl(node, markdown) {
+  const manifestUrl = typeof node?.videoUrl === "string" ? node.videoUrl : "";
+  if (manifestUrl) return manifestUrl;
+  return extractYouTubeURL(markdown);
+}
+
+function noteVideoId(node, markdown) {
+  const manifestId = typeof node?.videoId === "string" ? node.videoId : "";
+  if (manifestId) return manifestId;
+  return extractYouTubeId(noteVideoUrl(node, markdown));
+}
+
+function buildNotesVideoPlayerMarkup(node, markdown) {
+  if (!isYouTubeVideoNoteNode(node)) return "";
+  const youtubeUrl = noteVideoUrl(node, markdown);
+  const youtubeId = noteVideoId(node, markdown);
+  if (!youtubeId) return "";
+  const title = escapeHTML(String(node?.name || noteLabelFromPath(node?.path || "")).replace(/\.md$/i, ""));
+  const embedUrl = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(youtubeId)}?iv_load_policy=3&modestbranding=1&rel=0&playsinline=1`;
+  return `
+    <section class="notes-video-shell" data-notes-video-shell>
+      <div class="notes-video-player" data-notes-video-player>
+        <div class="plyr__video-embed notes-video-player-frame">
+          <iframe
+            src="${embedUrl}"
+            data-notes-video-source="${escapeHTML(youtubeUrl)}"
+            allowfullscreen
+            allowtransparency
+            allow="autoplay; encrypted-media; picture-in-picture"
+            referrerpolicy="strict-origin-when-cross-origin"
+            title="${title}"
+          ></iframe>
+        </div>
+      </div>
+      <section class="notes-video-caption-panel hidden" data-notes-video-caption-panel aria-live="polite" aria-atomic="true">
+        <p class="notes-video-caption-kicker">Live Captions</p>
+        <p class="notes-video-caption-time" data-notes-video-caption-time>--:--</p>
+        <p class="notes-video-caption-text" data-notes-video-caption-text>Captions will appear here while the video plays.</p>
+      </section>
+    </section>
+  `;
+}
+
+function renderNoteContent(markdown, node) {
+  const player = buildNotesVideoPlayerMarkup(node, markdown);
+  return `${player}<div class="notes-markdown-body">${renderMarkdown(markdown)}</div>`;
+}
+
+function formatPlayerClock(seconds) {
+  if (!Number.isFinite(seconds) || seconds < 0) return "--:--";
+  const wholeSeconds = Math.floor(seconds);
+  const hours = Math.floor(wholeSeconds / 3600);
+  const minutes = Math.floor((wholeSeconds % 3600) / 60);
+  const secs = wholeSeconds % 60;
+  if (hours > 0) {
+    return `${hours}:${String(minutes).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+  }
+  return `${minutes}:${String(secs).padStart(2, "0")}`;
+}
+
+function renderVideoCaptionState() {
+  const panel = el.notesViewer?.querySelector("[data-notes-video-caption-panel]");
+  const timeEl = el.notesViewer?.querySelector("[data-notes-video-caption-time]");
+  const textEl = el.notesViewer?.querySelector("[data-notes-video-caption-text]");
+  if (!panel || !timeEl || !textEl) return;
+  const hasCaptions = state.hardOfHearingEnabled && state.notesVideoCaptions.length > 0;
+  panel.classList.toggle("hidden", !hasCaptions);
+  if (!hasCaptions) return;
+  if (state.notesVideoActiveCaption) {
+    timeEl.textContent = state.notesVideoActiveCaption.label;
+    textEl.textContent = state.notesVideoActiveCaption.text;
+    return;
+  }
+  timeEl.textContent = "--:--";
+  textEl.textContent = "Captions will appear here while the video plays.";
+}
+
+function updateVideoCaptionForTime(seconds) {
+  const cues = state.notesVideoCaptions;
+  if (!Array.isArray(cues) || !cues.length || !Number.isFinite(seconds)) {
+    state.notesVideoActiveCaption = null;
+    renderVideoCaptionState();
+    return;
+  }
+
+  const currentIndex = cues.findIndex((cue) => seconds >= cue.start && seconds < cue.end);
+  if (currentIndex === -1) {
+    state.notesVideoActiveCaption = null;
+    renderVideoCaptionState();
+    return;
+  }
+
+  if (isShortFormTranscript(cues)) {
+    const firstCueIndex = currentIndex % 2 === 0 ? currentIndex : currentIndex - 1;
+    const firstCue = cues[firstCueIndex];
+    const secondCue = cues[firstCueIndex + 1];
+
+    if (secondCue) {
+      state.notesVideoActiveCaption = {
+        start: firstCue.start,
+        end: secondCue.end,
+        text: `${firstCue.text} ${secondCue.text}`,
+        label: `${firstCue.label} & ${secondCue.label}`,
+      };
+    } else {
+      state.notesVideoActiveCaption = firstCue;
+    }
+  } else {
+    state.notesVideoActiveCaption = cues[currentIndex];
+  }
+  renderVideoCaptionState();
+}
+
+async function loadNoteTranscript(relativePath) {
+  const transcriptPath = noteTranscriptPath(relativePath);
+  state.notesVideoTranscriptPath = transcriptPath;
+  state.notesVideoCaptions = [];
+  state.notesVideoActiveCaption = null;
+  if (!transcriptPath) return;
+  try {
+    const res = await fetch(noteFetchURL(transcriptPath), { cache: "no-cache" });
+    if (!res.ok) return;
+    const markdown = await res.text();
+    state.notesVideoCaptions = parseTranscriptMarkdown(markdown);
+  } catch (_) {
+    state.notesVideoCaptions = [];
+  }
+}
+
+function initializeNotesVideoPlayer() {
+  const playerRoot = el.notesViewer?.querySelector("[data-notes-video-player]");
+  if (!playerRoot) return;
+  playerRoot.setAttribute("data-notes-video-pristine", "true");
+  setNotesVideoControlsVisibility(false);
+  const insertNotesVideoBlankSpace = () => {
+    const controls = playerRoot.querySelector(".plyr__controls");
+    if (!controls) return;
+    controls.querySelector(".plyr__blankspace")?.remove();
+    const menu = controls.querySelector(".plyr__menu");
+    if (!menu) return;
+    const blank = document.createElement("div");
+    blank.className = "plyr__blankspace";
+    blank.setAttribute("aria-hidden", "true");
+    menu.insertAdjacentElement("afterend", blank);
+  };
+  const placeFullscreenControl = () => {
+    const controls = playerRoot.querySelector(".plyr__controls");
+    const fullscreenButton = controls?.querySelector('[data-plyr="fullscreen"]');
+    if (!fullscreenButton) return;
+    let corner = playerRoot.querySelector(".plyr__corner-controls");
+    if (!corner) {
+      corner = document.createElement("div");
+      corner.className = "plyr__corner-controls";
+      playerRoot.appendChild(corner);
+    }
+    corner.replaceChildren(fullscreenButton);
+  };
+  const preserveNotesVideoProgressStyles = () => {
+    const progress = playerRoot.querySelector(".plyr__progress");
+    const range = progress?.querySelector('input[type="range"]');
+    const overlayPlayButtons = playerRoot.querySelectorAll(".plyr__control--overlaid");
+    if (progress) {
+      progress.style.setProperty("--plyr-video-progress-buffered-background", "#0ff5");
+      progress.style.setProperty("--plyr-video-range-track-background", "#0ff5");
+      progress.style.setProperty("--plyr-range-fill-background", "#0ff5");
+      progress.style.setProperty("background", "transparent", "important");
+      progress.style.setProperty("background-color", "transparent", "important");
+      progress.style.setProperty("color", "#0ff5", "important");
+    }
+    if (range) {
+      range.style.setProperty("--plyr-range-track-background", "#0ff5");
+      range.style.setProperty("--plyr-range-fill-background", "#0ff5");
+      range.style.setProperty("background", "transparent", "important");
+      range.style.setProperty("background-color", "transparent", "important");
+      range.style.setProperty("color", "#0ff5", "important");
+    }
+    overlayPlayButtons.forEach((button) => {
+      button.style.setProperty("align-items", "center", "important");
+      button.style.setProperty("background", "#0a2a50", "important");
+      button.style.setProperty("box-shadow", "0 16px 30px rgba(0, 0, 0, 0.38)", "important");
+      button.style.setProperty("color", "#0ff", "important");
+      button.style.setProperty("display", "inline-flex", "important");
+      button.style.setProperty("height", "4.75rem", "important");
+      button.style.setProperty("justify-content", "center", "important");
+      button.style.setProperty("min-height", "4.75rem", "important");
+      button.style.setProperty("min-width", "4.75rem", "important");
+      button.style.setProperty("opacity", "1", "important");
+      button.style.setProperty("padding", "0", "important");
+      button.style.setProperty("transition", "none", "important");
+      button.style.setProperty("transform", "translate(-50%, -50%)", "important");
+      button.style.setProperty("width", "4.75rem", "important");
+      button.querySelectorAll("svg, svg path, svg use").forEach((icon) => {
+        icon.style.setProperty("color", "#0ff", "important");
+        icon.style.setProperty("fill", "#0ff", "important");
+        icon.style.setProperty("height", "2rem", "important");
+        icon.style.setProperty("left", "0", "important");
+        icon.style.setProperty("position", "static", "important");
+        icon.style.setProperty("stroke", "#0ff", "important");
+        icon.style.setProperty("transition", "none", "important");
+        icon.style.setProperty("transform", "none", "important");
+        icon.style.setProperty("width", "2rem", "important");
+      });
+    });
+  };
+  const setup = () => {
+    if (!window.Plyr || !playerRoot.isConnected) return false;
+    destroyNotesVideoPlayer();
+    state.notesVideoPlayer = new window.Plyr(playerRoot, {
+      controls: [
+        "play-large",
+        "play",
+        "progress",
+        "current-time",
+        "mute",
+        "settings",
+        "fullscreen",
+      ],
+      youtube: {
+        noCookie: true,
+        rel: 0,
+        modestbranding: 1,
+      },
+      resetOnEnd: false,
+    });
+    const syncCaptionTime = () => {
+      updateVideoCaptionForTime(Number(state.notesVideoPlayer?.currentTime));
+    };
+    const markNotesVideoStarted = () => {
+      playerRoot.removeAttribute("data-notes-video-pristine");
+      showNotesVideoControls();
+    };
+    state.notesVideoPlayer.on("ready", () => {
+      insertNotesVideoBlankSpace();
+      placeFullscreenControl();
+      preserveNotesVideoProgressStyles();
+      syncCaptionTime();
+    });
+    state.notesVideoPlayer.on("timeupdate", () => {
+      preserveNotesVideoProgressStyles();
+      syncCaptionTime();
+    });
+    state.notesVideoPlayer.on("seeked", () => {
+      preserveNotesVideoProgressStyles();
+      syncCaptionTime();
+    });
+    state.notesVideoPlayer.on("ended", syncCaptionTime);
+    state.notesVideoPlayer.on("play", () => {
+      preserveNotesVideoProgressStyles();
+      markNotesVideoStarted();
+      hideNotesVideoControlsAfterDelay();
+    });
+    state.notesVideoPlayer.on("pause", () => showNotesVideoControls({ keepVisible: true }));
+    state.notesVideoPlayer.on("enterfullscreen", showNotesVideoControls);
+    state.notesVideoPlayer.on("exitfullscreen", showNotesVideoControls);
+    window.setTimeout(() => {
+      insertNotesVideoBlankSpace();
+      placeFullscreenControl();
+      preserveNotesVideoProgressStyles();
+    }, 0);
+    window.setTimeout(() => {
+      insertNotesVideoBlankSpace();
+      placeFullscreenControl();
+      preserveNotesVideoProgressStyles();
+    }, 180);
+    preserveNotesVideoProgressStyles();
+    syncCaptionTime();
+    hideNotesVideoControlsAfterDelay();
+    return true;
+  };
+  if (setup()) return;
+  window.setTimeout(setup, 120);
 }
 
 function registerNoteFile(node) {
@@ -2043,12 +3312,22 @@ function resolveNoteLink(targetHref) {
   return normalizeNotePath(resolved.pathname.replace(/^\//, ""));
 }
 
-async function openNote(relativePath) {
+async function openNote(relativePath, options = {}) {
+  const { updateRoute = true, replaceRoute = false } = options;
   const normalized = normalizeNotePath(relativePath);
   const node = state.notesFileMap.get(normalized);
   if (!node) return;
+  destroyNotesVideoPlayer();
+  state.notesVideoTranscriptPath = "";
+  state.notesVideoCaptions = [];
+  state.notesVideoActiveCaption = null;
   state.currentNotePath = normalized;
   updateNotesActiveFile();
+  syncHardOfHearingToggleVisibility();
+  if (updateRoute && currentScreenId() === "notes-screen") {
+    syncBrowserRoute("notes-screen", { replace: replaceRoute });
+  }
+  saveSessionState();
   if (el.notesCurrentPath) el.notesCurrentPath.textContent = normalized;
   setNotesStatus(`Opening ${noteLabelFromPath(normalized)}...`);
   try {
@@ -2057,15 +3336,32 @@ async function openNote(relativePath) {
       throw new Error(`Could not load note (${res.status}).`);
     }
     const markdown = await res.text();
-    el.notesViewer.innerHTML = renderMarkdown(markdown);
+    if (isYouTubeVideoNoteNode(node)) {
+      await loadNoteTranscript(normalized);
+      if (state.notesVideoCaptions.length === 0) {
+        state.notesVideoCaptions = parseTranscriptMarkdown(markdown);
+      }
+    }
+    el.notesViewer.innerHTML = renderNoteContent(markdown, node);
+    renderVideoCaptionState();
+    initializeNotesVideoPlayer();
     setNotesStatus(`${state.notesFileMap.size} markdown files ready.`);
+    phCapture("note opened", {
+      note_path: normalized,
+      note_label: noteLabelFromPath(normalized),
+      is_video_note: isYouTubeVideoNoteNode(node),
+      track_id: activeTrack()?.routeSlug || "",
+    });
     if (isMobileNotesLayout()) {
       closeNotesSidebar();
     }
   } catch (err) {
+    destroyNotesVideoPlayer();
     el.notesViewer.innerHTML = `<div class="notes-empty-state"><h3>Unable to load note</h3><p>${escapeHTML(err?.message || "Unknown error")}</p></div>`;
     setNotesStatus("A notes file failed to load.");
   }
+  syncHardOfHearingToggleVisibility();
+  saveSessionState();
 }
 
 function buildNotesTreeNodes(nodes, container, expandFirstBranch = false) {
@@ -2106,21 +3402,23 @@ function buildNotesTreeNodes(nodes, container, expandFirstBranch = false) {
 }
 
 function openNotesSidebar() {
-  if (!isMobileNotesLayout()) return;
-  el.notesSidebar?.classList.add("is-open");
-  el.notesSidebarBackdrop?.classList.remove("hidden");
-  el.toggleNotesSidebar?.setAttribute("aria-expanded", "true");
+  state.notesSidebarOpen = true;
+  syncNotesSidebarUI();
 }
 
 function closeNotesSidebar() {
-  el.notesSidebar?.classList.remove("is-open");
-  el.notesSidebarBackdrop?.classList.add("hidden");
-  el.toggleNotesSidebar?.setAttribute("aria-expanded", "false");
+  state.notesSidebarOpen = false;
+  syncNotesSidebarUI();
 }
 
-function toggleNotesSidebar() {
-  if (!isMobileNotesLayout()) return;
-  if (el.notesSidebar?.classList.contains("is-open")) {
+async function toggleNotesSidebar() {
+  if (!hasSavedTrackSelection()) return;
+  if (currentScreenId() !== "notes-screen") {
+    await showNotesScreen();
+    openNotesSidebar();
+    return;
+  }
+  if (state.notesSidebarOpen) {
     closeNotesSidebar();
     return;
   }
@@ -2167,9 +3465,9 @@ function renderCourseChangelog() {
   setChangelogStatus("Latest changelog loaded.");
 }
 
-async function showNotesScreen() {
-  screen("notes-screen");
-  closeNotesSidebar();
+async function showNotesScreen(options = {}) {
+  screen("notes-screen", options);
+  syncNotesSidebarUI();
   renderNotesTree();
   if (state.notesLoadError) {
     setNotesStatus("Run the notes sync script to populate the viewer.");
@@ -2179,14 +3477,21 @@ async function showNotesScreen() {
     state.currentNotePath = state.notesFileMap.keys().next().value || "";
   }
   if (state.currentNotePath) {
-    await openNote(state.currentNotePath);
+    await openNote(state.currentNotePath, {
+      updateRoute: options.updateRoute,
+      replaceRoute: options.replaceRoute,
+    });
   } else {
     setNotesStatus("No markdown notes were found.");
   }
+  saveSessionState();
 }
 
 function syncConfigStateFromControls() {
   if (el.modeSelect) state.mode = el.modeSelect.value || state.mode;
+  if (el.gradingModeSelect && !el.gradingModeField?.classList.contains("hidden")) {
+    state.gradingMode = el.gradingModeSelect.value || state.gradingMode;
+  }
   if (el.questionCount) {
     const n = Math.max(1, Number(el.questionCount.value || state.amount || 1));
     state.amount = n;
@@ -2195,6 +3500,7 @@ function syncConfigStateFromControls() {
   if (el.skipCorrect) state.skipPreviouslyCorrect = el.skipCorrect.checked;
   if (el.includeMissedOnce) state.includeMissedOnce = el.includeMissedOnce.checked;
   saveQuizConfig();
+  saveSessionState();
 }
 
 function applyConfigStateToControls() {
@@ -2202,9 +3508,37 @@ function applyConfigStateToControls() {
     el.modeSelect.value = state.mode;
     if (state.mode === "easy") el.modeSelect.selectedIndex = 0;
   }
+  renderGradingModeControls();
   if (el.questionCount) el.questionCount.value = String(state.amount);
   if (el.skipCorrect) el.skipCorrect.checked = state.skipPreviouslyCorrect;
   if (el.includeMissedOnce) el.includeMissedOnce.checked = state.includeMissedOnce;
+}
+
+function renderGradingModeControls() {
+  if (!el.gradingModeSelect || !el.gradingModeField) return;
+  setDefaultGradingModeForTrack();
+  updateQuestionCountLabel();
+  const quizConfig = activeQuizConfig();
+  const modes = Array.isArray(quizConfig.gradingModes) ? quizConfig.gradingModes : [];
+  el.gradingModeSelect.innerHTML = "";
+  modes.forEach((mode) => {
+    const option = document.createElement("option");
+    option.value = mode.id;
+    option.textContent = mode.label || mode.id;
+    el.gradingModeSelect.appendChild(option);
+  });
+  const shouldShow = modes.length > 1 || activeGradingModeConfig().showPassFail;
+  el.gradingModeField.classList.toggle("hidden", !shouldShow);
+  el.gradingModeSelect.value = state.gradingMode;
+  const examActive = isExamMode();
+  const examCount = Number(activeQuizConfig().exam?.questionCount || 90);
+  if (examActive && el.questionCount) {
+    state.amount = Math.max(1, Number(state.amount || examCount));
+    el.questionCount.value = String(state.amount);
+  }
+  if (el.questionCount) el.questionCount.disabled = false;
+  if (el.questionCountUp) el.questionCountUp.disabled = false;
+  if (el.questionCountDown) el.questionCountDown.disabled = false;
 }
 
 function syncConfigScreenAfterPaint() {
@@ -2227,6 +3561,9 @@ function nudgeQuestionCount(delta) {
 
 function refreshAvailableCount() {
   const config = activePracticeUnitConfig();
+  const quizConfig = activeQuizConfig();
+  const gradingModes = Array.isArray(quizConfig.gradingModes) ? quizConfig.gradingModes : [];
+  const showGradingGuide = gradingModes.length > 1 || gradingModes.some((mode) => mode.showPassFail);
   const mode = state.mode;
   const modePool = filteredPoolByDifficulty(mode);
   const available = countAvailable(mode);
@@ -2234,7 +3571,66 @@ function refreshAvailableCount() {
   const mediumTotal = filteredPoolByDifficulty("medium").length;
   const hardTotal = filteredPoolByDifficulty("hard").length;
   const stats = historyStatsForPool(modePool);
-  el.difficultyTotals.textContent = `Possible Questions by Difficulty -> Easy: ${easyTotal} | Medium (incl. Easy): ${mediumTotal} | Hard: ${hardTotal}`;
+  el.difficultyTotals.innerHTML = `
+    <div class="quiz-config-summary${showGradingGuide ? " quiz-config-summary-with-grading" : ""}">
+      <div class="difficulty-totals-card">
+        <p class="difficulty-totals-title">Possible Questions by Difficulty</p>
+        <table class="difficulty-totals-table">
+          <thead>
+            <tr>
+              <th scope="col">Mode</th>
+              <th scope="col">What It Includes</th>
+              <th scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Easy</th>
+              <td>Beginner-friendly class fundamentals</td>
+              <td>${easyTotal}</td>
+            </tr>
+            <tr>
+              <th scope="row">Medium</th>
+              <td>All in-scope class questions, including easy</td>
+              <td>${mediumTotal}</td>
+            </tr>
+            <tr>
+              <th scope="row">Hard</th>
+              <td>Advanced expansion topics</td>
+              <td>${hardTotal}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      ${showGradingGuide ? `
+        <div class="difficulty-totals-card grading-guide-card">
+          <p class="difficulty-totals-title">Grading Systems</p>
+          <table class="difficulty-totals-table grading-guide-table">
+            <thead>
+              <tr>
+                <th scope="col">Quiz Mode</th>
+                <th scope="col">Explanation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Regular Mode</th>
+                <td>Each question is worth one point. The quiz shows your percentage and whether that percentage is a pass or fail.</td>
+              </tr>
+              <tr>
+                <th scope="row">CompTIA Grading Mode</th>
+                <td>The quiz still gives immediate feedback, but your score also uses CompTIA-style domain weighting and a 100-900 scaled score.</td>
+              </tr>
+              <tr>
+                <th scope="row">Exam Mode</th>
+                <td>The quiz saves your answers without grading them live. You can defer items, jump around the exam, and see your final weighted CompTIA-style score only after you finish.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      ` : ""}
+    </div>
+  `;
   const weeks = [...state.selectedWeeks].sort((a, b) => a - b);
   el.weekSummary.textContent = weeks.length
     ? `Selected ${config.plural}: ${weeks.join(", ")}`
@@ -2244,18 +3640,66 @@ function refreshAvailableCount() {
     medium: "Medium: All questions that have to do with the scope of the class.",
     hard: "Hard: Advanced expansion topics that expand on topics taught in class.",
   };
-  let detail = descriptions[mode];
+  let detailMarkup = `
+    <div class="mode-desc-card">
+      <p class="mode-desc-lead">${escapeHTML(descriptions[mode])}</p>
+  `;
   if (state.skipPreviouslyCorrect) {
-    detail += ` Browser save: ${stats.answeredEver} answered already, ${stats.neverAnswered} never answered. Quiz draw pool after filters = ${available} (${stats.neverAnswered} never answered + ${stats.missedOnly} still-missed`;
+    detailMarkup += `
+      <table class="mode-desc-table">
+        <thead>
+          <tr>
+            <th scope="col">Metric</th>
+            <th scope="col">Count</th>
+            <th scope="col">Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Answered Already</th>
+            <td>${stats.answeredEver}</td>
+            <td>Questions already answered in browser save history</td>
+          </tr>
+          <tr>
+            <th scope="row">Never Answered</th>
+            <td>${stats.neverAnswered}</td>
+            <td>Questions with no saved answer history yet</td>
+          </tr>
+          <tr>
+            <th scope="row">Still Missed</th>
+            <td>${stats.missedOnly}</td>
+            <td>Questions that are still marked wrong in browser save history</td>
+          </tr>
+    `;
     if (state.includeMissedOnce) {
-      detail += ` + ${stats.missedThenCorrect} previously-corrected questions that were missed at least once`;
+      detailMarkup += `
+          <tr>
+            <th scope="row">Previously Corrected</th>
+            <td>${stats.missedThenCorrect}</td>
+            <td>Questions missed before but answered correctly later</td>
+          </tr>
+      `;
     }
-    detail += ").";
+    detailMarkup += `
+          <tr>
+            <th scope="row">Quiz Draw Pool</th>
+            <td>${available}</td>
+            <td>Questions left after the active filters are applied</td>
+          </tr>
+        </tbody>
+      </table>
+    `;
   }
-  el.modeDesc.textContent = detail;
+  detailMarkup += `</div>`;
+  el.modeDesc.innerHTML = detailMarkup;
 }
 
 function updateFlagButtonState() {
+  if (isExamMode()) {
+    el.flagQuestion.disabled = true;
+    el.ineffectiveQuestion.disabled = true;
+    return;
+  }
   if (!state.questions.length) {
     el.flagQuestion.disabled = true;
     el.ineffectiveQuestion.disabled = true;
@@ -2276,12 +3720,16 @@ function syncScoreFromSession() {
 
 function updateLiveScore() {
   syncScoreFromSession();
-  if (state.answeredCount === 0) {
-    el.liveScore.textContent = "Live Score: 0/0 (0.0%) | Letter: N/A";
+  if (isExamMode()) {
+    el.liveScore.textContent = examProgressSummaryHTML();
     return;
   }
-  const pct = (state.correctCount / state.answeredCount) * 100;
-  el.liveScore.textContent = `Live Score: ${state.correctCount}/${state.answeredCount} (${pct.toFixed(1)}%) | Letter: ${letterGrade(pct)}`;
+  if (state.answeredCount === 0) {
+    const emptyDetails = currentScoreDetails();
+    el.liveScore.innerHTML = scoreSummaryHTML(emptyDetails);
+    return;
+  }
+  el.liveScore.innerHTML = scoreSummaryHTML(currentScoreDetails());
 }
 
 function setAnswerControlsEnabled(enabled) {
@@ -2292,6 +3740,7 @@ function setAnswerControlsEnabled(enabled) {
   });
   el.submitAnswer.disabled = !enabled;
   el.dontKnowAnswer.disabled = !enabled;
+  if (el.deferQuestion) el.deferQuestion.disabled = !enabled;
   el.trustedAiExplanation.disabled = true;
   el.previousQuestion.disabled = true;
   el.nextQuestion.disabled = true;
@@ -2309,6 +3758,21 @@ function selectedAnswer() {
   return chosen ? chosen.value : "";
 }
 
+function handleAnswerSelectionChange(selected) {
+  state.currentSelectedAnswer = selected;
+  if (!isExamMode() || !state.questions.length) return;
+  const row = state.questions[state.currentIndex];
+  const saved = row?._sessionAnswer;
+  if (!saved || saved.selected === selected) return;
+  row._sessionAnswer = null;
+  el.feedback.textContent = "";
+  el.nextQuestion.disabled = true;
+  updateTrustedAiButton(row);
+  renderExamNavigation();
+  updateLiveScore();
+  saveSessionState();
+}
+
 function previousAnsweredQuestionIndex() {
   for (let idx = state.currentIndex - 1; idx >= 0; idx -= 1) {
     if (state.questions[idx]?._sessionAnswer) return idx;
@@ -2318,7 +3782,53 @@ function previousAnsweredQuestionIndex() {
 
 function updatePreviousQuestionButton() {
   if (!el.previousQuestion) return;
-  el.previousQuestion.disabled = previousAnsweredQuestionIndex() < 0;
+  el.previousQuestion.disabled = isExamMode() ? state.currentIndex <= 0 : previousAnsweredQuestionIndex() < 0;
+}
+
+function examItemStatus(row) {
+  if (row?._sessionAnswer) return "answered";
+  if (row?._deferred) return "deferred";
+  return "unanswered";
+}
+
+function examItemLabel(row, index) {
+  if (row?._examLabel) return row._examLabel;
+  return row?._isPBQ ? `PBQ${index + 1}` : `Question ${index + 1}`;
+}
+
+function renderExamNavigation() {
+  const examActive = isExamMode() && state.questions.length;
+  if (el.examLayout) el.examLayout.classList.toggle("is-exam", Boolean(examActive));
+  if (el.examNav) {
+    el.examNav.classList.toggle("hidden", !examActive);
+    el.examNav.classList.toggle("exam-nav-mobile-closed", examActive && !state.examNavOpen);
+  }
+  if (el.examNavToggle) {
+    el.examNavToggle.classList.toggle("hidden", !examActive);
+    el.examNavToggle.setAttribute("aria-expanded", state.examNavOpen ? "true" : "false");
+  }
+  if (!el.examNavList) return;
+  el.examNavList.innerHTML = "";
+  if (!examActive) return;
+  state.questions.forEach((row, index) => {
+    const status = examItemStatus(row);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = `exam-nav-item${index === state.currentIndex ? " is-current" : ""}`;
+    button.dataset.examIndex = String(index);
+    button.innerHTML = `
+      <span>${escapeHTML(examItemLabel(row, index))}</span>
+      <span class="exam-nav-status exam-nav-status-${status}">${status === "deferred" ? "Deferred" : status === "answered" ? "Answered" : "Unanswered"}</span>
+    `;
+    button.addEventListener("click", () => {
+      state.currentIndex = index;
+      state.currentLocked = false;
+      state.examNavOpen = false;
+      renderCurrentQuestion();
+      saveSessionState();
+    });
+    el.examNavList.appendChild(button);
+  });
 }
 
 function updateTrustedAiButton(row) {
@@ -2329,15 +3839,21 @@ function updateTrustedAiButton(row) {
 function syncRenderedAnswerState(row) {
   const saved = row?._sessionAnswer || null;
   state.currentSelectedAnswer = saved?.selected || "";
-  state.currentLocked = Boolean(saved);
+  state.currentLocked = isExamMode() ? false : Boolean(saved);
   el.feedback.textContent = saved?.feedback || "";
   [...document.querySelectorAll('input[name="answer"]')].forEach((rb) => {
     rb.checked = saved?.selected === rb.value;
-    rb.disabled = Boolean(saved);
+    rb.disabled = isExamMode() ? false : Boolean(saved);
   });
-  el.submitAnswer.disabled = Boolean(saved);
-  el.dontKnowAnswer.disabled = Boolean(saved);
-  el.nextQuestion.disabled = !saved;
+  el.submitAnswer.disabled = isExamMode() ? false : Boolean(saved);
+  el.submitAnswer.textContent = isExamMode() ? "Save Answer" : "Submit Answer";
+  el.dontKnowAnswer.disabled = isExamMode() ? false : Boolean(saved);
+  if (el.deferQuestion) {
+    el.deferQuestion.classList.toggle("hidden", !isExamMode());
+    el.deferQuestion.textContent = row?._deferred ? "Remove Defer" : "Defer";
+    el.deferQuestion.disabled = false;
+  }
+  el.nextQuestion.disabled = isExamMode() ? state.currentIndex >= state.questions.length - 1 : !saved;
   updateTrustedAiButton(row);
   updatePreviousQuestionButton();
 }
@@ -2400,8 +3916,10 @@ function renderCurrentQuestion() {
   }
   const row = state.questions[state.currentIndex];
   const qnum = state.currentIndex + 1;
-  el.quizMeta.textContent = `Mode: ${state.mode[0].toUpperCase()}${state.mode.slice(1)} | Question ${qnum} of ${state.questions.length}`;
-  el.questionText.textContent = `Q: ${row.question}`;
+  const gradingLabel = activeGradingModeConfig().label || "Regular";
+  const itemLabel = row._isPBQ ? (row._examLabel || `PBQ${qnum}`) : `Question ${qnum}`;
+  el.quizMeta.textContent = `Mode: ${state.mode[0].toUpperCase()}${state.mode.slice(1)} | Grading: ${gradingLabel} | ${itemLabel} of ${state.questions.length}`;
+  el.questionText.textContent = `${row._isPBQ ? "PBQ" : "Q"}: ${row.question}`;
   if (!row._sessionOptionMap) {
     const shuffledOptions = shuffledAnswerOptions(row);
     row._sessionOptionMap = {
@@ -2417,15 +3935,19 @@ function renderCurrentQuestion() {
   el.choiceC.textContent = `C. ${state.currentOptionMap.C.text}`;
   el.choiceD.textContent = `D. ${state.currentOptionMap.D.text}`;
   syncRenderedAnswerState(row);
+  renderExamNavigation();
   updateFlagButtonState();
 }
 
-function showSetup() {
-  screen("config-screen");
-  state.questions = [];
-  state.currentIndex = 0;
-  state.currentLocked = false;
-  state.lastAutoReportName = "";
+function showSetup(options = {}) {
+  const { preserveQuizSession = false } = options;
+  screen("config-screen", options);
+  if (!preserveQuizSession) {
+    state.questions = [];
+    state.currentIndex = 0;
+    state.currentLocked = false;
+    state.lastAutoReportName = "";
+  }
   if (!state.setupVisited) {
     state.mode = "easy";
     state.setupVisited = true;
@@ -2436,9 +3958,11 @@ function showSetup() {
   el.feedback.textContent = "";
   setAnswerControlsEnabled(false);
   updateLiveScore();
+  renderExamNavigation();
   refreshAvailableCount();
   syncConfigScreenAfterPaint();
   reloadQuestionBanksForSetup();
+  saveSessionState();
 }
 
 async function reloadQuestionBanksForSetup() {
@@ -2479,9 +4003,11 @@ function startQuiz() {
     alert(`No questions are available in ${state.mode} mode.`);
     return;
   }
-  const useCount = Math.min(reqCount, available);
-  if (useCount < reqCount) {
-    alert(`Requested ${reqCount}, but only ${available} are available in ${state.mode} mode.\nUsing ${useCount}.`);
+  const examActive = isExamMode();
+  const targetQuestionCount = reqCount;
+  const useCount = Math.min(targetQuestionCount, available);
+  if (useCount < targetQuestionCount) {
+    alert(`Requested ${targetQuestionCount}, but only ${available} are available in ${state.mode} mode.\nUsing ${useCount}.`);
   }
   const useTourDemo = state.walkthroughActive && tourCurrentStep()?.action === "start-quiz" && state.tourQuestionBank.length;
   if (useTourDemo) {
@@ -2490,10 +4016,14 @@ function startQuiz() {
     el.modeSelect.value = "easy";
     el.questionCount.value = String(state.tourQuestionBank.length);
     state.questions = state.tourQuestionBank.map((q, idx) => freshSessionQuestion(q, `tour-live-${idx + 1}`));
+  } else if (examActive) {
+    state.questions = buildExamQuestions();
+    state.amount = state.questions.length;
   } else {
     state.questions = shuffled(fetchRandomQuestions(state.mode, useCount).map((q) => freshSessionQuestion(q)));
   }
   state.lastModeFinished = state.mode;
+  state.lastGradingModeFinished = state.gradingMode;
   state.currentIndex = 0;
   state.correctCount = 0;
   state.answeredCount = 0;
@@ -2503,14 +4033,25 @@ function startQuiz() {
   state.currentSelectedAnswer = "";
   state.currentLocked = false;
   state.currentOptionMap = {};
+  state.examNavOpen = false;
+  phCapture("quiz started", {
+    mode: state.mode,
+    grading_mode: state.gradingMode,
+    question_count: state.questions.length,
+    selected_units: [...state.selectedWeeks].sort((a, b) => a - b),
+    track_id: activeTrack()?.routeSlug || "",
+    track_name: activeTrack()?.name || "",
+    is_exam_mode: isExamMode(),
+  });
   screen("quiz-screen");
   setAnswerControlsEnabled(true);
   updateLiveScore();
   renderCurrentQuestion();
+  saveSessionState();
 }
 
 function submitSelectedAnswer(selected) {
-  if (state.currentLocked || !state.questions.length) return;
+  if ((state.currentLocked && !isExamMode()) || !state.questions.length) return;
   const isDontKnow = selected === "E";
   const row = state.questions[state.currentIndex];
   const walkthroughError = validateWalkthroughAnswer(selected, row, isDontKnow);
@@ -2533,6 +4074,23 @@ function submitSelectedAnswer(selected) {
   const rightText = row[`choice_${correct.toLowerCase()}`];
   const explanation = row.explanation || "";
   state.currentSelectedAnswer = selected;
+  if (isExamMode()) {
+    row._sessionAnswer = {
+      selected,
+      selectedOriginal,
+      feedback: "Answer saved. Final grading appears after Finish Quiz.",
+      wasCorrect: !isDontKnow && selectedOriginal === correct,
+    };
+    row._deferred = false;
+    state.currentLocked = false;
+    el.feedback.textContent = "Answer saved. Final grading appears after Finish Quiz.";
+    updateLiveScore();
+    renderExamNavigation();
+    updatePreviousQuestionButton();
+    el.nextQuestion.disabled = state.currentIndex >= state.questions.length - 1;
+    saveSessionState();
+    return;
+  }
   state.answeredCount += 1;
   if (!isDontKnow && selectedOriginal === correct) {
     state.correctCount += 1;
@@ -2556,7 +4114,6 @@ function submitSelectedAnswer(selected) {
       el.feedback.textContent = `Incorrect. Correct answer: ${correctSlot}. ${rightText}\n${explanation}`;
     }
   }
-  updateLiveScore();
   state.currentLocked = true;
   row._sessionAnswer = {
     selected,
@@ -2564,6 +4121,16 @@ function submitSelectedAnswer(selected) {
     feedback: el.feedback.textContent,
     wasCorrect: !isDontKnow && selectedOriginal === correct,
   };
+  phCapture("quiz answer submitted", {
+    was_correct: !isDontKnow && selectedOriginal === correct,
+    is_dont_know: isDontKnow,
+    mode: state.mode,
+    grading_mode: state.gradingMode,
+    track_id: activeTrack()?.routeSlug || "",
+    question_index: state.currentIndex + 1,
+    question_count: state.questions.length,
+  });
+  updateLiveScore();
   [...document.querySelectorAll('input[name="answer"]')].forEach((rb) => {
     rb.disabled = true;
   });
@@ -2577,6 +4144,7 @@ function submitSelectedAnswer(selected) {
   } else {
     notifyWalkthroughAction(selectedOriginal === correct ? "submit-correct" : "submit-incorrect");
   }
+  saveSessionState();
 }
 
 function submitAnswer() {
@@ -2608,17 +4176,30 @@ function nextQuestion() {
   if (walkthroughGuardQuizAction("next-question", "Use Next Question when the walkthrough is specifically highlighting it.")) {
     return;
   }
-  state.currentIndex += 1;
+  if (!isExamMode() && state.currentIndex >= state.questions.length - 1) {
+    finishQuiz();
+    notifyWalkthroughAction("next-question");
+    return;
+  }
+  state.currentIndex = Math.min(state.questions.length - 1, state.currentIndex + 1);
   renderCurrentQuestion();
   notifyWalkthroughAction("next-question");
+  saveSessionState();
 }
 
 function previousQuestion() {
   if (!state.questions.length) return;
+  if (isExamMode()) {
+    state.currentIndex = Math.max(0, state.currentIndex - 1);
+    renderCurrentQuestion();
+    saveSessionState();
+    return;
+  }
   const previousIndex = previousAnsweredQuestionIndex();
   if (previousIndex < 0) return;
   state.currentIndex = previousIndex;
   renderCurrentQuestion();
+  saveSessionState();
 }
 
 async function flagCurrentQuestion() {
@@ -2638,6 +4219,13 @@ async function flagCurrentQuestion() {
   if (!isDemoQuestion) {
     setQuestionDifficultyOverride(row.question_key, requestedLevel);
   }
+  phCapture("question flagged", {
+    action: changeAction,
+    requested_level: requestedLevel,
+    is_demo: isDemoQuestion,
+    mode: state.mode,
+    track_id: activeTrack()?.routeSlug || "",
+  });
   if (state.currentLocked) {
     el.feedback.textContent = movingFromHard
       ? "Saved: this question will be moved to Medium mode for future sessions."
@@ -2710,6 +4298,12 @@ async function applyIneffectiveFeedback(feedback) {
   }
   state.questions.splice(state.currentIndex, 1);
   updateLiveScore();
+  phCapture("ineffective question reported", {
+    is_demo: isDemoQuestion,
+    mode: state.mode,
+    track_id: activeTrack()?.routeSlug || "",
+    week: row.week ?? null,
+  });
   el.feedback.textContent = isDemoQuestion
     ? "Walkthrough demo: question marked ineffective and removed from this demo run. No server change was sent."
     : "Question marked ineffective, saved to changes log, and removed from the main question bank.";
@@ -2725,25 +4319,27 @@ async function applyIneffectiveFeedback(feedback) {
   renderCurrentQuestion();
 }
 
-function buildReviewReport(pct, grade) {
+function buildReviewReport(scoreDetails) {
   const now = new Date();
   const generated = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")} ${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}:${String(now.getSeconds()).padStart(2, "0")}`;
   const mode = `${state.mode[0].toUpperCase()}${state.mode.slice(1)}`;
+  const gradingMode = scoreDetails.gradingMode?.label || scoreDetails.gradingMode?.id || "Regular";
   const sourcesToReview = [...new Set(state.incorrectRecords.map((rec) => inferStudyReference(rec.source_path, rec.week)).filter(Boolean))].sort();
   const course = activeTrack();
   const lines = [
-    `🚀 ${course.insignia} QUIZ REVIEW REPORT`,
+    `${course.insignia} QUIZ REVIEW REPORT`,
     "=".repeat(72),
     `Generated: ${generated}`,
     `Mode: ${mode}`,
+    `Grading: ${gradingMode}`,
     `Answered: ${state.answeredCount}`,
     `Correct: ${state.correctCount}`,
-    `Score: ${pct.toFixed(2)}%`,
-    `Letter Grade: ${grade}`,
-    "",
-    "Incorrect Questions",
-    "-".repeat(72),
+    `Score: ${scoreDetails.percent.toFixed(2)}%`,
   ];
+  if (scoreDetails.showScaledScore) lines.push(`CompTIA Score: ${scoreDetails.scaledScore}`);
+  if (scoreDetails.showPassFail) lines.push(`Result: ${scoreDetails.status}`);
+  if (!scoreDetails.showPassFail && !scoreDetails.showScaledScore) lines.push(`Letter Grade: ${scoreDetails.letter}`);
+  lines.push("", "Incorrect Questions", "-".repeat(72));
   if (!state.incorrectRecords.length) {
     lines.push("None. Great job, no incorrect responses.");
   } else {
@@ -2768,13 +4364,38 @@ function buildReviewReport(pct, grade) {
   return lines.join("\n");
 }
 
+function rebuildExamIncorrectRecords() {
+  state.incorrectRecords = [];
+  state.questions.forEach((row) => {
+    const answer = row._sessionAnswer;
+    if (!answer || answer.wasCorrect) return;
+    const correct = String(row.correct_choice || "").toUpperCase();
+    const optionMap = row._sessionOptionMap || {};
+    const correctSlot = ["A", "B", "C", "D"].find((slot) => optionMap[slot]?.original === correct) || correct;
+    const selected = answer.selected || "Unanswered";
+    const selectedOption = optionMap[answer.selected];
+    state.incorrectRecords.push({
+      question: row.question,
+      selected_letter: selected,
+      selected_text: selectedOption?.text || (answer.selected ? row[`choice_${String(answer.selectedOriginal || answer.selected).toLowerCase()}`] : "No answer selected."),
+      correct_letter: correctSlot,
+      correct_text: optionMap[correctSlot]?.text || row[`choice_${correct.toLowerCase()}`] || "",
+      explanation: row.explanation || "",
+      source_path: row.source_path || row.source || "",
+      week: row.week ?? null,
+    });
+  });
+}
+
 function autoSaveReviewReport(reportText) {
   const stamp = formatStamp();
   const courseTag = activeTrack().insignia.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
-  const filename = `${courseTag || "course"}_practice_review_${state.mode}_${stamp}.txt`;
+  const gradingTag = String(state.gradingMode || "regular").replace(/[^a-z0-9]+/gi, "_").replace(/^_+|_+$/g, "").toLowerCase();
+  const filename = `${courseTag || "course"}_practice_review_${state.mode}_${gradingTag}_${stamp}.txt`;
   state.reports.push({
     filename,
     mode: state.mode,
+    grading_mode: state.gradingMode,
     created_at: formatTimestamp(),
     text: reportText,
   });
@@ -2792,24 +4413,209 @@ function syncResetCorrectButtons() {
 }
 
 function finishQuiz() {
+  if (isExamMode()) {
+    state.questions.forEach((row) => {
+      if (!row._sessionAnswer) {
+        row._sessionAnswer = {
+          selected: "",
+          selectedOriginal: "",
+          feedback: "Unanswered. Marked incorrect at final grading.",
+          wasCorrect: false,
+        };
+      }
+    });
+  }
   syncScoreFromSession();
   if (state.answeredCount === 0) {
     alert("No answers submitted yet.");
     screen("config-screen");
+    saveSessionState();
     return;
   }
-  const pct = (state.correctCount / state.answeredCount) * 100;
-  const grade = letterGrade(pct);
+  const scoreDetails = currentScoreDetails();
   state.lastModeFinished = state.mode;
-  const report = buildReviewReport(pct, grade);
+  if (isExamMode()) rebuildExamIncorrectRecords();
+  const report = buildReviewReport(scoreDetails);
   state.lastReportText = report;
   state.lastAutoReportName = autoSaveReviewReport(report);
+  phCapture("quiz finished", {
+    mode: state.mode,
+    grading_mode: state.gradingMode,
+    answered_count: state.answeredCount,
+    correct_count: state.correctCount,
+    score_percent: scoreDetails.percent,
+    pass_fail: scoreDetails.showPassFail ? scoreDetails.status : null,
+    is_exam_mode: isExamMode(),
+    track_id: activeTrack()?.routeSlug || "",
+    track_name: activeTrack()?.name || "",
+    selected_units: [...state.selectedWeeks].sort((a, b) => a - b),
+  });
   el.retakeIncorrect.disabled = !state.incorrectRecords.length;
   syncResetCorrectButtons();
-  el.reviewSummary.textContent = `Answered: ${state.answeredCount} | Correct: ${state.correctCount} | Score: ${pct.toFixed(2)}% | Letter: ${grade}`;
+  el.reviewSummary.innerHTML = reviewSummaryHTML(scoreDetails);
   el.reviewText.value = report;
   el.reviewTextPrint.textContent = report;
   screen("review-screen");
+  saveSessionState();
+}
+
+function restoreReviewScreen() {
+  syncResetCorrectButtons();
+  el.retakeIncorrect.disabled = !state.incorrectRecords.length;
+  el.reviewSummary.innerHTML = reviewSummaryHTML(currentScoreDetails());
+  el.reviewText.value = state.lastReportText || "";
+  el.reviewTextPrint.textContent = state.lastReportText || "";
+}
+
+function restoreQuizScreen() {
+  if (!state.questions.length) return false;
+  setAnswerControlsEnabled(true);
+  updateLiveScore();
+  renderCurrentQuestion();
+  return true;
+}
+
+function renderPBQScreen() {
+  const track = activeTrack();
+  const pbqs = Array.isArray(track.pbqs) ? track.pbqs : [];
+  if (el.pbqScreenTitle) {
+    el.pbqScreenTitle.textContent = `PBQs - Performance-Based Questions for ${track.name}`;
+  }
+  if (el.pbqScreenDescription) {
+    el.pbqScreenDescription.textContent = "HTML5 interactive experiences for this track will appear here.";
+  }
+  if (!el.pbqList) return;
+  el.pbqList.innerHTML = "";
+  if (!pbqs.length) {
+    const empty = document.createElement("article");
+    empty.className = "pbq-empty-state";
+    const title = document.createElement("h3");
+    title.textContent = "No PBQs published yet";
+    const body = document.createElement("p");
+    body.textContent = "This category is ready for interactive performance-based scenarios as they are added.";
+    empty.append(title, body);
+    el.pbqList.appendChild(empty);
+    return;
+  }
+  pbqs.forEach((pbq) => {
+    const card = document.createElement("article");
+    card.className = "pbq-card";
+    const title = document.createElement("h3");
+    title.textContent = pbq.title || "Untitled PBQ";
+    const body = document.createElement("p");
+    body.textContent = pbq.description || "Interactive performance-based scenario.";
+    card.append(title, body);
+    if (pbq.path) {
+      const link = document.createElement("a");
+      link.className = "btn accent";
+      link.href = versionedContentURL(activeTrack().contentRoot, "pbqs", pbq.path);
+      link.textContent = "Launch PBQ";
+      link.addEventListener("click", () => {
+        phCapture("pbq launched", {
+          pbq_id: pbq.id || "",
+          pbq_title: pbq.title || "",
+          track_id: activeTrack()?.routeSlug || "",
+          track_name: activeTrack()?.name || "",
+        });
+      });
+      card.appendChild(link);
+    }
+    el.pbqList.appendChild(card);
+  });
+}
+
+async function restoreWorkspaceForRoute() {
+  state.questionBank = [];
+  state.availableWeeks = new Set();
+  state.weekAvailabilityReady = false;
+  await Promise.all([reloadQuestionBanksForSetup(), reloadNotesManifestForTrack(), reloadNoteRouteMap()]);
+  setNotesStatus(
+    state.notesLoadError
+      ? "Notes manifest missing. Run the notes manifest builder."
+      : `${state.notesFileMap.size} markdown files ready.`
+  );
+}
+
+async function applyRouteFromLocation({ replace = false } = {}) {
+  await reloadNoteRouteMap();
+  const routeInfo = parseAppRoute(window.location.pathname);
+  const targetScreen = routeInfo.screenId;
+  const routeSelection = findTrackSelectionByRouteId(routeInfo.trackId);
+  if (routeSelection) {
+    applyTrackSelection(routeSelection);
+  }
+  if (routeInfo.notePath) {
+    state.currentNotePath = routeInfo.notePath;
+  }
+  if (!screenNeedsWorkspace(targetScreen)) {
+    if (window.location.pathname !== routePathForScreen("course-screen")) {
+      syncBrowserRoute("course-screen", { replace: true });
+    }
+    screen("course-screen", { updateRoute: false, replaceRoute: replace });
+    return;
+  }
+  if (!hasSavedTrackSelection()) {
+    screen("course-screen", { updateRoute: false, replaceRoute: true });
+    syncBrowserRoute("course-screen", { replace: true });
+    return;
+  }
+  await restoreWorkspaceForRoute();
+  if (!routeInfo.notePath && routeInfo.noteToken && routeInfo.trackId) {
+    routeInfo.notePath = state.noteRoutePathsByToken.get(routeInfo.trackId)?.get(routeInfo.noteToken) || "";
+  }
+  if (routeInfo.notePath) {
+    state.currentNotePath = routeInfo.notePath;
+  }
+  if (routeInfo.notePath && !state.notesFileMap.has(routeInfo.notePath)) {
+    state.currentNotePath = state.notesFileMap.keys().next().value || "";
+  }
+  if (window.location.pathname !== routePathForScreen(targetScreen)) {
+    if (DEBUG_ROUTING) {
+      console.log(`[ROUTE] Correcting URL from "${window.location.pathname}" to canonical path for "${targetScreen}": "${routePathForScreen(targetScreen)}"`);
+    }
+    syncBrowserRoute(targetScreen, { replace: true });
+  }
+  if (targetScreen === "menu-screen") {
+    screen("menu-screen", { updateRoute: false, replaceRoute: replace });
+    return;
+  }
+  if (targetScreen === "notes-screen") {
+    await showNotesScreen({ updateRoute: false, replaceRoute: replace });
+    return;
+  }
+  if (targetScreen === "pbq-screen") {
+    renderPBQScreen();
+    screen("pbq-screen", { updateRoute: false, replaceRoute: replace });
+    return;
+  }
+  if (targetScreen === "week-screen") {
+    buildWeekControls();
+    refreshAvailableCount();
+    screen("week-screen", { updateRoute: false, replaceRoute: replace });
+    return;
+  }
+  if (targetScreen === "config-screen") {
+    showSetup({ updateRoute: false, replaceRoute: replace, preserveQuizSession: true });
+    return;
+  }
+  if (screenNeedsQuizSession(targetScreen) && !state.questions.length) {
+    showSetup({ updateRoute: false, replaceRoute: true });
+    syncBrowserRoute("config-screen", { replace: true });
+    return;
+  }
+  if (targetScreen === "quiz-screen") {
+    if (!restoreQuizScreen()) {
+      showSetup({ updateRoute: false, replaceRoute: true });
+      syncBrowserRoute("config-screen", { replace: true });
+      return;
+    }
+    screen("quiz-screen", { updateRoute: false, replaceRoute: replace });
+    return;
+  }
+  if (targetScreen === "review-screen") {
+    restoreReviewScreen();
+    screen("review-screen", { updateRoute: false, replaceRoute: replace });
+  }
 }
 
 function retakeIncorrectOnly() {
@@ -2819,6 +4625,7 @@ function retakeIncorrectOnly() {
   }
   const wrongQuestions = new Set(state.incorrectRecords.map((rec) => rec.question));
   const mode = state.lastModeFinished;
+  const gradingMode = state.lastGradingModeFinished || state.gradingMode;
   const allowed = mode === "medium" ? new Set(["easy", "medium"]) : new Set([mode]);
   const rows = state.questionBank.filter((q) => {
     if (isRemoved(q)) return false;
@@ -2839,11 +4646,21 @@ function retakeIncorrectOnly() {
   state.currentSelectedAnswer = "";
   state.currentLocked = false;
   state.mode = mode;
+  state.gradingMode = gradingMode;
   el.modeSelect.value = mode;
+  if (el.gradingModeSelect) el.gradingModeSelect.value = gradingMode;
+  phCapture("incorrect quiz retaken", {
+    retake_count: state.questions.length,
+    mode: mode,
+    grading_mode: gradingMode,
+    track_id: activeTrack()?.routeSlug || "",
+    track_name: activeTrack()?.name || "",
+  });
   setAnswerControlsEnabled(true);
   updateLiveScore();
   screen("quiz-screen");
   renderCurrentQuestion();
+  saveSessionState();
 }
 
 function openResetWrongCountDialog() {
@@ -2867,6 +4684,11 @@ function resetWrongQuestionCount() {
   refreshAvailableCount();
   syncResetCorrectButtons();
   const after = allHistoryRows().length;
+  phCapture("quiz history reset", {
+    rows_cleared: before - after,
+    track_id: activeTrack()?.routeSlug || "",
+    track_name: activeTrack()?.name || "",
+  });
   alert(`Answered-question history reset. Total answered rows: ${before} -> ${after}.`);
 }
 
@@ -2953,6 +4775,7 @@ function printReviewText() {
 function bindElements() {
   el.appTitle = document.getElementById("app-title");
   el.appSubtitle = document.getElementById("app-subtitle");
+  el.hardOfHearingToggle = document.getElementById("hard-of-hearing-toggle");
   el.copy = document.getElementById("copy");
   el.loadStatus = document.getElementById("load-status");
   el.startupSplash = document.getElementById("startup-splash");
@@ -2966,6 +4789,11 @@ function bindElements() {
   el.continueCertification = document.getElementById("continue-certification");
   el.goPracticeQuiz = document.getElementById("go-practice-quiz");
   el.goNotes = document.getElementById("go-notes");
+  el.goPBQs = document.getElementById("go-pbqs");
+  el.pbqScreenTitle = document.getElementById("pbq-screen-title");
+  el.pbqScreenDescription = document.getElementById("pbq-screen-description");
+  el.pbqList = document.getElementById("pbq-list");
+  el.backPBQsToMenu = document.getElementById("back-pbqs-to-menu");
   el.backCourseFromMenu = document.getElementById("back-course-from-menu");
   el.weekGrid = document.getElementById("week-grid");
   el.backCourseFromWeek = document.getElementById("back-course-from-week");
@@ -2977,6 +4805,7 @@ function bindElements() {
   el.notesScreenTitle = document.getElementById("notes-screen-title");
   el.backNotesToMenu = document.getElementById("back-notes-to-menu");
   el.toggleNotesSidebar = document.getElementById("toggle-notes-sidebar");
+  el.notesLayout = document.getElementById("notes-layout");
   el.notesSidebarBackdrop = document.getElementById("notes-sidebar-backdrop");
   el.notesSidebar = document.getElementById("notes-sidebar");
   el.closeNotesSidebar = document.getElementById("close-notes-sidebar");
@@ -2985,6 +4814,9 @@ function bindElements() {
   el.notesCurrentPath = document.getElementById("notes-current-path");
   el.notesViewer = document.getElementById("notes-viewer");
   el.modeSelect = document.getElementById("mode-select");
+  el.gradingModeField = document.getElementById("grading-mode-field");
+  el.gradingModeSelect = document.getElementById("grading-mode-select");
+  el.questionCountLabel = document.getElementById("question-count-label");
   el.questionCount = document.getElementById("question-count");
   el.questionCountUp = document.getElementById("question-count-up");
   el.questionCountDown = document.getElementById("question-count-down");
@@ -2998,6 +4830,10 @@ function bindElements() {
   el.resetWrongCountConfig = document.getElementById("reset-wrong-count-config");
   el.quizMeta = document.getElementById("quiz-meta");
   el.liveScore = document.getElementById("live-score");
+  el.examLayout = document.getElementById("exam-layout");
+  el.examNavToggle = document.getElementById("exam-nav-toggle");
+  el.examNav = document.getElementById("exam-nav");
+  el.examNavList = document.getElementById("exam-nav-list");
   el.questionText = document.getElementById("question-text");
   el.choiceA = document.getElementById("choice-a");
   el.choiceB = document.getElementById("choice-b");
@@ -3005,6 +4841,7 @@ function bindElements() {
   el.choiceD = document.getElementById("choice-d");
   el.feedback = document.getElementById("feedback");
   el.submitAnswer = document.getElementById("submit-answer");
+  el.deferQuestion = document.getElementById("defer-question");
   el.dontKnowAnswer = document.getElementById("dont-know-answer");
   el.trustedAiExplanation = document.getElementById("trusted-ai-explanation");
   el.previousQuestion = document.getElementById("previous-question");
@@ -3016,6 +4853,7 @@ function bindElements() {
   el.reviewSummary = document.getElementById("review-summary");
   el.reviewText = document.getElementById("review-text");
   el.reviewTextPrint = document.getElementById("review-text-print");
+  el.resultsConfetti = document.getElementById("results-confetti");
   el.copyReport = document.getElementById("copy-report");
   el.downloadReport = document.getElementById("download-report");
   el.printReport = document.getElementById("print-report");
@@ -3052,6 +4890,7 @@ function bindElements() {
     btn.type = "button";
   });
   syncMobileNotesLayoutClass();
+  syncAccessibilityUI();
 
   if (el.notesViewer) {
     el.notesViewer.addEventListener("click", (event) => {
@@ -3093,6 +4932,7 @@ function buildWeekControls() {
       if (cb.checked) state.selectedWeeks.add(week);
       else state.selectedWeeks.delete(week);
       refreshAvailableCount();
+      saveSessionState();
     };
     const lbl = document.createElement("label");
     lbl.classList.toggle("is-disabled", !isAvailable);
@@ -3156,12 +4996,17 @@ async function continueFromCourseScreen(target = "course", triggerButton = null)
   showStartupSplash("Loading your course workspace...");
   setStartupStatus(`Loading ${activeTrack().name} content...`);
   try {
-    await Promise.all([reloadQuestionBanksForSetup(), reloadNotesManifestForTrack()]);
+    await Promise.all([reloadQuestionBanksForSetup(), reloadNotesManifestForTrack(), reloadNoteRouteMap()]);
     setNotesStatus(
       state.notesLoadError
         ? "Notes manifest missing. Run the notes manifest builder."
         : `${state.notesFileMap.size} markdown files ready.`
     );
+    phCapture("course selected", {
+      track_id: activeTrack()?.routeSlug || "",
+      track_name: activeTrack()?.name || "",
+      track_type: state.activeTrackType,
+    });
     screen("menu-screen");
     notifyWalkthroughAction("continue-course");
   } catch (err) {
@@ -3178,12 +5023,15 @@ function wireEvents() {
     event.preventDefault();
     event.stopPropagation();
   }, true);
+  window.addEventListener("popstate", () => {
+    applyRouteFromLocation({ replace: true }).catch((err) => {
+      console.error("Route restore failed:", err);
+    });
+  });
   window.addEventListener("resize", syncWalkthroughPosition);
   window.addEventListener("resize", () => {
     syncMobileNotesLayoutClass();
-    if (!isMobileNotesLayout()) {
-      closeNotesSidebar();
-    }
+    syncNotesSidebarUI();
   });
   window.addEventListener("scroll", syncWalkthroughPosition, true);
   document.addEventListener("keydown", (event) => {
@@ -3226,6 +5074,14 @@ function wireEvents() {
       setJSONStorage(CERTIFICATION_STORAGE_KEY, state.certificationId);
     });
   }
+  if (el.hardOfHearingToggle) {
+    el.hardOfHearingToggle.addEventListener("change", () => {
+      state.hardOfHearingEnabled = Boolean(el.hardOfHearingToggle.checked);
+      saveAccessibilityPreferences();
+      syncAccessibilityUI();
+      renderVideoCaptionState();
+    });
+  }
   el.continueCourse.addEventListener("click", (event) => {
     event.preventDefault();
     continueFromCourseScreen("course", el.continueCourse);
@@ -3238,13 +5094,33 @@ function wireEvents() {
   }
   el.goPracticeQuiz.addEventListener("click", (event) => {
     event.preventDefault();
+    phCapture("workspace selected", {
+      workspace: "practice_quiz",
+      track_id: activeTrack()?.routeSlug || "",
+      track_name: activeTrack()?.name || "",
+    });
     screen("week-screen");
     notifyWalkthroughAction("go-practice-quiz");
   });
   el.goNotes.addEventListener("click", async (event) => {
     event.preventDefault();
+    phCapture("workspace selected", {
+      workspace: "notes",
+      track_id: activeTrack()?.routeSlug || "",
+      track_name: activeTrack()?.name || "",
+    });
     await showNotesScreen();
     notifyWalkthroughAction("go-notes");
+  });
+  el.goPBQs.addEventListener("click", (event) => {
+    event.preventDefault();
+    phCapture("workspace selected", {
+      workspace: "pbqs",
+      track_id: activeTrack()?.routeSlug || "",
+      track_name: activeTrack()?.name || "",
+    });
+    renderPBQScreen();
+    screen("pbq-screen");
   });
   el.backCourseFromMenu.addEventListener("click", (event) => {
     event.preventDefault();
@@ -3259,10 +5135,16 @@ function wireEvents() {
     screen("menu-screen");
     notifyWalkthroughAction("back-notes-to-menu");
   });
-  el.toggleNotesSidebar.addEventListener("click", (event) => {
+  el.backPBQsToMenu.addEventListener("click", (event) => {
     event.preventDefault();
-    toggleNotesSidebar();
+    screen("menu-screen");
   });
+  if (el.toggleNotesSidebar) {
+    el.toggleNotesSidebar.addEventListener("click", async (event) => {
+      event.preventDefault();
+      await toggleNotesSidebar();
+    });
+  }
   el.closeNotesSidebar.addEventListener("click", (event) => {
     event.preventDefault();
     closeNotesSidebar();
@@ -3279,12 +5161,14 @@ function wireEvents() {
     state.selectedWeeks = new Set(targetWeeks);
     buildWeekControls();
     refreshAvailableCount();
+    saveSessionState();
   });
   el.clearAllWeeks.addEventListener("click", (event) => {
     event.preventDefault();
     state.selectedWeeks = new Set();
     buildWeekControls();
     refreshAvailableCount();
+    saveSessionState();
   });
   el.continueSetup.addEventListener("click", (event) => {
     event.preventDefault();
@@ -3305,19 +5189,32 @@ function wireEvents() {
   el.modeSelect.addEventListener("change", () => {
     state.mode = el.modeSelect.value;
     refreshAvailableCount();
+    saveSessionState();
     notifyWalkthroughAction(`mode-${state.mode}`);
   });
   el.questionCount.addEventListener("input", () => {
     const n = Math.max(1, Number(el.questionCount.value || 1));
     state.amount = n;
+    saveSessionState();
     if (Number.isFinite(n) && n === 6) {
       notifyWalkthroughAction("question-count-6");
     }
   });
+  if (el.gradingModeSelect) {
+    el.gradingModeSelect.addEventListener("change", () => {
+      state.gradingMode = el.gradingModeSelect.value || state.gradingMode;
+      renderGradingModeControls();
+      updateLiveScore();
+      refreshAvailableCount();
+      saveQuizConfig();
+      saveSessionState();
+    });
+  }
   el.questionCount.addEventListener("change", () => {
     const n = Math.max(1, Number(el.questionCount.value || 1));
     state.amount = n;
     el.questionCount.value = String(n);
+    saveSessionState();
     if (Number.isFinite(n) && n === 6) {
       notifyWalkthroughAction("question-count-6");
     }
@@ -3333,6 +5230,7 @@ function wireEvents() {
   el.skipCorrect.addEventListener("change", () => {
     state.skipPreviouslyCorrect = el.skipCorrect.checked;
     refreshAvailableCount();
+    saveSessionState();
     if (el.skipCorrect.checked) {
       notifyWalkthroughAction("skip-correct-on");
     }
@@ -3341,6 +5239,7 @@ function wireEvents() {
     el.includeMissedOnce.addEventListener("change", () => {
       state.includeMissedOnce = el.includeMissedOnce.checked;
       refreshAvailableCount();
+      saveSessionState();
       if (el.includeMissedOnce.checked) {
         notifyWalkthroughAction("include-missed-on");
       }
@@ -3359,9 +5258,35 @@ function wireEvents() {
     event.preventDefault();
     submitAnswer();
   });
+  if (el.deferQuestion) {
+    el.deferQuestion.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (!isExamMode() || !state.questions.length) return;
+      const row = state.questions[state.currentIndex];
+      row._deferred = !row._deferred;
+      el.feedback.textContent = row._deferred ? "Deferred. You can return to this item from the exam navigation." : "Defer removed.";
+      renderExamNavigation();
+      updateLiveScore();
+      saveSessionState();
+    });
+  }
+  if (el.examNavToggle) {
+    el.examNavToggle.addEventListener("click", (event) => {
+      event.preventDefault();
+      state.examNavOpen = !state.examNavOpen;
+      renderExamNavigation();
+      saveSessionState();
+    });
+  }
   el.dontKnowAnswer.addEventListener("click", (event) => {
     event.preventDefault();
     submitDontKnowAnswer();
+  });
+  [...document.querySelectorAll('input[name="answer"]')].forEach((rb) => {
+    rb.addEventListener("change", () => {
+      if (!rb.checked) return;
+      handleAnswerSelectionChange(rb.value);
+    });
   });
   el.trustedAiExplanation.addEventListener("click", (event) => {
     event.preventDefault();
@@ -3547,6 +5472,7 @@ async function loadQuestionBanks() {
 }
 
 function loadLocalState() {
+  loadAccessibilityPreferences();
   const storedCourse = String(getJSONStorage(COURSE_STORAGE_KEY, NO_COURSE_ID) || NO_COURSE_ID);
   state.courseId = storedCourse === NO_COURSE_ID || COURSE_CATALOG.some((c) => c.id === storedCourse)
     ? storedCourse
@@ -3564,18 +5490,26 @@ function loadLocalState() {
   const storedConfig = getJSONStorage(CONFIG_STORAGE_KEY, {});
   const storedAmount = Number(storedConfig.amount);
   if (Number.isFinite(storedAmount) && storedAmount >= 1) state.amount = Math.max(1, Math.floor(storedAmount));
+  if (typeof storedConfig.gradingMode === "string" && storedConfig.gradingMode) state.gradingMode = storedConfig.gradingMode;
   state.skipPreviouslyCorrect = Boolean(storedConfig.skipPreviouslyCorrect);
   state.includeMissedOnce = Boolean(storedConfig.includeMissedOnce);
   state.localHistoryRows = getJSONStorage(HISTORY_STORAGE_KEY, []);
   state.localChangeRows = getJSONStorage(CHANGES_STORAGE_KEY, []);
   state.reports = getJSONStorage(REPORTS_STORAGE_KEY, []);
   state.overrides = getJSONStorage(OVERRIDES_STORAGE_KEY, { removedKeys: {}, difficultyOverrides: {} });
+  restoreSessionState();
 }
 
 async function boot() {
+  ensureVersionQueryInAddressBar();
   bindElements();
   syncMobileNotesLayoutClass();
   loadLocalState();
+  // Ensure a stable anonymous distinct ID is set for PostHog
+  if (typeof window.posthog !== "undefined" && window.posthog.identify) {
+    window.posthog.identify(phDistinctId());
+  }
+  syncAccessibilityUI();
   installBrowserProgressDiagnostics();
   buildCourseOptions();
   buildCertificationOptions();
@@ -3609,9 +5543,12 @@ async function boot() {
     renderCourseChangelog();
     setStartupStatus("Choose a course or certification to load the workspace.");
     refreshAvailableCount();
-    screen("course-screen");
+    state.routeReady = true;
+    await applyRouteFromLocation({ replace: true });
     window.__NETC_QUIZ_APP_READY__ = true;
-    showWalkthroughPrompt();
+    if (currentScreenId() === "course-screen") {
+      showWalkthroughPrompt();
+    }
   } catch (err) {
     setStartupStatus(`Load failed: ${err?.message || "Unknown error"}`);
     if (el.startupStatus) {

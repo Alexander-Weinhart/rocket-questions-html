@@ -27,7 +27,19 @@
 
         | Schedule | Videos         |
         | -------- | -------------- |
-      
+        | Day 1:   | 0.1.1 to 1.2.7 |
+        | Day 2:   | 1.3.1 to 1.4.7 |
+        | Day 3:   | 1.4.8 to 2.3.3 |
+        | Day 4:   | 2.3.4 to 2.4.2 |
+        | Day 5:   | 2.4.3 to 2.4.13 |
+        | Day 6:   | 2.4.14 to 3.1.3 |
+        | Day 7:   | 3.1.4 to 3.3.2 |
+        | Day 8:   | 3.3.3 to 4.1.3 |
+        | Day 9:   | 4.1.4 to 4.4.1 |
+        | Day 10:  | 4.4.2 to 4.5.7 |
+        | Day 11:  | 4.6.1 to 4.8.3 |
+        | Day 12:  | 4.9.1 to 5.3.1 |
+        | Day 13:  | 5.3.2 to 5.6.2 |
 
     3. then after the videos are watched, buy the voucher. call Scarlet Oaks Testing Center to schedule the exam for the fourth week from now, when scheduling, allow 3 more weeks to study and the fourth week is exam day. Make arrangements with the testing center for whatever accommodations you'll need if you have a disability. The reccommended testing center for Cincinnati is the Scarlet Oaks building, the address for it is:
         - 303 Scarlet Oaks Dr, Cincinnati, OH 45241

@@ -1,4 +1,4 @@
-# 🔒 Static IP Addressing
+# Static IP Addressing
 
 A static IP is an IP address that is **manually configured** on a device and never changes unless someone goes in and changes it by hand. It was the original method of assigning addresses before DHCP existed.
 
@@ -41,7 +41,7 @@ If two devices are accidentally assigned the same IP address, both lose network 
 
 ```
 Device A: 192.168.1.50  ┐
-                         ├── ❌ IP conflict — both devices go offline
+                         ├──  IP conflict — both devices go offline
 Device B: 192.168.1.50  ┘
 ```
 
@@ -64,8 +64,8 @@ Static addressing is not obsolete. Some devices **should** have a fixed IP:
 
 ## Key Points
 
-- 📌 Manually assigned — does not change automatically
-- 📌 Requires: IP, subnet mask, default gateway, DNS
-- 📌 Risk: human error leads to IP conflicts → loss of network access
-- 📌 Does not scale for large networks
-- 📌 Still appropriate for servers, printers, and network infrastructure
+- Manually assigned — does not change automatically
+- Requires: IP, subnet mask, default gateway, DNS
+- Risk: human error leads to IP conflicts → loss of network access
+- Does not scale for large networks
+- Still appropriate for servers, printers, and network infrastructure

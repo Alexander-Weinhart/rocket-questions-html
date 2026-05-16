@@ -1,4 +1,4 @@
-# 📬 Packets vs Frames
+# Packets vs Frames
 
 Packets and frames are both units of data, but they exist at **different layers** and serve different purposes. Understanding the distinction is fundamental to understanding how networks work.
 
@@ -16,7 +16,7 @@ Packets and frames are both units of data, but they exist at **different layers*
 
 ---
 
-## Frame (Layer 2 Unit) 🚚
+## Frame (Layer 2 Unit) 
 
 A frame is the **vehicle for local delivery**. It carries data from one device to the next device on the same network segment — one hop at a time.
 
@@ -35,7 +35,7 @@ Frame:
 
 ---
 
-## Packet (Layer 3 Unit) 📦
+## Packet (Layer 3 Unit) 
 
 A packet is the **cargo inside the frame**. It carries the actual data from the original source all the way to the final destination across multiple networks.
 
@@ -82,8 +82,8 @@ Hop 3: ISP Router → Server
 
 ## Key Points
 
-- 📌 **Frame** = Layer 2, MAC addresses, local hop only, replaced at each router
-- 📌 **Packet** = Layer 3, IP addresses, end-to-end, unchanged entire trip
-- 📌 Packet lives **inside** the frame's data field
-- 📌 Broadcast frame = `FF-FF-FF-FF-FF-FF` destination MAC
-- 📌 This two-layer system is what allows the internet to scale globally
+- **Frame** = Layer 2, MAC addresses, local hop only, replaced at each router
+- **Packet** = Layer 3, IP addresses, end-to-end, unchanged entire trip
+- Packet lives **inside** the frame's data field
+- Broadcast frame = `FF-FF-FF-FF-FF-FF` destination MAC
+- This two-layer system is what allows the internet to scale globally

@@ -1,0 +1,251 @@
+# [3.1.1 - Network Documentation](https://www.youtube.com/watch?v=CEZyq-fBn3w)
+
+## 3.1.1 - Network Documentation
+
+- Day: Day 6
+- Duration: 10:42
+
+## Transcript
+
+- `00:01` One common type of network documentation
+- `00:04` is the network map.
+- `00:05` And there are different types of network maps
+- `00:07` that you might want to create.
+- `00:09` One type is a physical network map,
+- `00:12` which shows the physical layout of the equipment, the cabling,
+- `00:15` and everything in between.
+- `00:17` This is an example of a physical network map.
+- `00:20` It shows a connection in from the internet with the physical
+- `00:23` cable plugging in to the internet router,
+- `00:25` which can be found at 10.1.1.1.
+- `00:28` There is a physical wire connecting to the internet
+- `00:31` firewall, and then another wire connecting to the core router,
+- `00:35` which is located at 10.1.10.1.
+- `00:38` This physical connectivity continues on
+- `00:40` through the rest of the diagram, and if you
+- `00:42` were to go into this room, you could track back that cable
+- `00:46` to this equipment using this physical network map.
+- `00:49` We can often create these network maps
+- `00:52` using third party software such as Visio, OmniGraffle,
+- `00:56` Gliffy.com, and many others.
+- `00:58` The software can be used to create physical network maps.
+- `01:01` It can also be used to create logical network maps.
+- `01:04` Logical network maps show a higher level view
+- `01:07` of connectivity, where you're not
+- `01:09` focused on individual interfaces and cables,
+- `01:12` but more on how the entire network is connected.
+- `01:16` This is a logical network map that shows a cloud connection
+- `01:19` in the middle and different headquarters buildings connected
+- `01:22` from different locations into that single cloud.
+- `01:25` Obviously, in the middle of all of this
+- `01:27` are a number of routers, switches, and other servers,
+- `01:30` but all of that is broadly shown as a single location
+- `01:34` in a logical network map.
+- `01:36` These might be good maps to use.
+- `01:38` If you're planning additional locations,
+- `01:40` you can view the layout of the existing wide area network cloud
+- `01:44` and then decide where the best location might
+- `01:46` be for another installation.
+- `01:49` And if you wanted to get into a detailed view of exactly
+- `01:53` where equipment is located and what that equipment looks like,
+- `01:56` you might want to use a rack diagram.
+- `01:59` Rack diagrams are designed to give you a physical view
+- `02:02` as if you were standing in front of that rack in the data center.
+- `02:06` It's very common to have restricted access
+- `02:08` to the data center.
+- `02:10` So a documentation like this can be
+- `02:11` used for individuals who may not have that level of access
+- `02:15` into the building.
+- `02:16` You can then use this documentation to tell someone
+- `02:18` to stand in front of the rack, look about 3/4 of the way up
+- `02:21` on unit 14, and you'll see the power strip.
+- `02:25` You can even use this documentation
+- `02:27` to locate the exact rack in the data center.
+- `02:30` You might have on the documentation that this
+- `02:32` is in row three of the data center,
+- `02:34` and this is rack W. This gives us
+- `02:37` a way to provide detailed documentation for someone who
+- `02:40` may be standing in front of the rack
+- `02:41` when we may not be in the same building.
+- `02:44` So instead of telling someone to reboot a server that's
+- `02:47` in this rack, we could specifically
+- `02:49` say, go to unit 15 in this rack and reboot
+- `02:53` that individual server.
+- `02:55` Another useful physical piece of documentation
+- `02:58` is the cable map for your office.
+- `03:01` This will allow you to see a view of the office and exactly
+- `03:04` where the wires are installed in that facility.
+- `03:07` You'll often see one of these diagrams in the IDF or MDF.
+- `03:11` It's usually on the wall so that you
+- `03:13` can understand where these wires are going
+- `03:15` when they leave that closet.
+- `03:17` This would show you where the physical wires
+- `03:19` are running, either under the floor or above the ceiling.
+- `03:22` And you can see that each drop for each one of these
+- `03:25` is numbered.
+- `03:26` This allows you to correlate the network drops out
+- `03:28` at each individual desk with the network drops that
+- `03:31` are connected to the patch panels inside of the wiring
+- `03:34` closet.
+- `03:35` These are not just useful during the installation process,
+- `03:38` but they're also useful when troubleshooting.
+- `03:40` You can track back exactly where a wire was run inside
+- `03:43` of the building and be able to correlate that back
+- `03:45` with problems that you might be having
+- `03:47` with that particular network drop.
+- `03:50` You can also create network diagrams
+- `03:52` that combine layer one, layer two, and layer
+- `03:55` three views of the network.
+- `03:57` Layer one would be the physical layer,
+- `04:00` layer two would be the data link layer,
+- `04:01` and layer three would be your network layer.
+- `04:04` Here's an example of a network diagram
+- `04:06` that includes a number of switches, routers, and end
+- `04:09` stations.
+- `04:10` And we have labels here for layer one, layer two,
+- `04:13` and layer three.
+- `04:14` We can start with the layer one connection, which
+- `04:17` shows the physical interfaces for the switches and the routers
+- `04:20` where all of these wires are connecting and providing
+- `04:23` this connectivity.
+- `04:24` We can overlay, on top of that, a layer two perspective, which
+- `04:29` now includes MAC addresses for all
+- `04:31` of these different components.
+- `04:33` And if you wanted to include IP addresses,
+- `04:35` we can overlay the layer three addresses so
+- `04:38` that you know exactly what IP address is associated
+- `04:41` with which MAC address, which is also associated
+- `04:44` with each physical address.
+- `04:47` Another important part of documentation
+- `04:49` is a need to track your assets.
+- `04:51` This means that we need to put tags or labels on every asset
+- `04:56` that we're bringing into the organization.
+- `04:58` This would be laptops, desktops, routers, firewalls, switches,
+- `05:02` and anything else that we're buying and installing
+- `05:04` into our network.
+- `05:06` Once we have all of these devices tagged,
+- `05:08` we can use that tag when we're referring back to a trouble
+- `05:12` ticket or some type of problem.
+- `05:14` For example, we could say that a router in the data center that's
+- `05:17` labeled with number 42 is the one that's causing
+- `05:20` this particular problem.
+- `05:22` We can also use these tags for financial purposes.
+- `05:25` We may need to track these devices over time
+- `05:27` to be able to track their depreciation.
+- `05:29` Or you may need to reference the asset tag
+- `05:31` to know when the device is purchased, which would also
+- `05:34` tell you if that device was currently still under warranty.
+- `05:38` These asset tags are usually very visible so that you
+- `05:40` can find them when you're on the phone with someone
+- `05:43` in the support team.
+- `05:44` There might be a barcode or RFID associated with this
+- `05:48` and there might be additional information.
+- `05:50` If a third party runs across this device,
+- `05:52` they'll know exactly who owns that particular piece
+- `05:55` of equipment.
+- `05:56` The asset tag that's connected to the device, the components
+- `06:00` within that device, and then the user
+- `06:01` who is using that particular device
+- `06:04` may all be combined within one single asset database.
+- `06:08` This becomes a centralized database
+- `06:09` that can be used by the asset support team,
+- `06:12` by accounting, by folks that are in the finance department,
+- `06:15` and anyone else who may need access to this data.
+- `06:18` If we need to know the physical location of a device,
+- `06:21` we can look at our asset database
+- `06:22` and see what user has been assigned
+- `06:25` to this particular component.
+- `06:26` If we then know the user's location,
+- `06:28` then we also know the location of this particular device.
+- `06:31` As we've also mentioned, we may want to use this also
+- `06:34` for warranty tracking, to be able to understand
+- `06:36` when a device was purchased and what the status is
+- `06:39` of that particular warranty.
+- `06:41` And if we're tracking the number of devices,
+- `06:43` we can also track the software that's running on those devices.
+- `06:47` This can be very useful if we need
+- `06:48` to determine how many licenses we need to purchase
+- `06:51` for our organization.
+- `06:53` We can determine very quickly, how many of those units
+- `06:55` we own by referencing back our asset database.
+- `07:00` Another important piece of documentation
+- `07:02` relates to the ongoing use of IP addresses in our organization.
+- `07:06` We would commonly track these by using an IP address
+- `07:09` management or IPAM solution.
+- `07:11` This is something that can provide us
+- `07:13` with a way to plan, track, and configure the DHCP and IP
+- `07:18` address schemes that we are using throughout our company.
+- `07:21` Using IP address management, we can
+- `07:23` document what users may be using what IP addresses.
+- `07:27` Since we often use dynamic IP addressing,
+- `07:30` it's useful to be able to map a user with a specific IP address
+- `07:34` during a particular date and time.
+- `07:36` This might also give us the ability
+- `07:38` to identify any problems or shortages that we might have
+- `07:41` with our IP addressing configurations,
+- `07:44` and based on this information, we
+- `07:46` might need to modify IP address ranges
+- `07:48` or add additional IP addresses to our DHCP infrastructure.
+- `07:53` This gives us a way to manage all of our ipv4 and ipv6
+- `07:57` addressing throughout our organization,
+- `07:59` all from one central console.
+- `08:02` Here's a console from an IP address manager,
+- `08:04` showing different subnet details, statistics about the IP
+- `08:08` addresses that we're currently using,
+- `08:10` change log entries, warning, and error logs
+- `08:13` and other details that can help us
+- `08:15` manage our IP address configuration.
+- `08:18` If you're working with a service provider,
+- `08:20` and most organizations are, you will
+- `08:22` need some way to verify that you're getting
+- `08:25` the proper level of service.
+- `08:26` This is often done contractually with a service level
+- `08:30` agreement or SLA.
+- `08:32` This defines the minimum level of service required
+- `08:35` for this contract that you have with this third party
+- `08:38` organization.
+- `08:39` For example, if you're contracting with a wide area
+- `08:42` network provider or an internet provider,
+- `08:44` you may have an expectation that you'll
+- `08:46` be up and running 99.99% of the time.
+- `08:49` And you might want to have that level of service
+- `08:51` documented as part of this SLA.
+- `08:55` You can use this for any type of service level.
+- `08:57` For example, you might have an SLA
+- `08:59` that your organization will have no more than four hours
+- `09:03` of an unscheduled downtime.
+- `09:05` This means that your service provider
+- `09:07` will need to have something in place to be able to bring you up
+- `09:10` and running if you happen to have an outage.
+- `09:12` They might have a process for quickly
+- `09:14` dispatching a technician.
+- `09:16` Or they might have equipment that they keep on your location
+- `09:19` that you can pull out of a box, put it in the rack,
+- `09:22` and get up and running as quickly as possible.
+- `09:25` As we're increasing the amount of access points
+- `09:28` and other wireless infrastructure
+- `09:29` in our organizations, we need some type of documentation
+- `09:33` to understand the impact of all of these different wireless
+- `09:36` components.
+- `09:37` For that, we will create a site survey.
+- `09:40` This will allow us to identify all of the access points
+- `09:43` that we might be using, even if they
+- `09:44` are access points that we may not be in direct control of.
+- `09:48` We can at least see the frequencies that are in use
+- `09:50` and be able to document those as part of the site survey.
+- `09:54` Once we understand all the frequencies in use,
+- `09:56` we can then document those and configure our systems
+- `09:59` to have the minimum level of interference
+- `10:01` for all of our access points.
+- `10:03` If you're in a building with a lot of different companies
+- `10:06` or you happen to be in a large campus
+- `10:08` where there are many different buildings owned
+- `10:10` by different organizations, you may
+- `10:12` want to perform these site surveys very often
+- `10:14` to understand exactly what the wireless infrastructure may
+- `10:17` look like.
+- `10:18` One common way to document this is with a heat map.
+- `10:21` You can walk around and use a mobile device
+- `10:24` to be able to document how the wireless signal may
+- `10:27` be propagating, depending on where you may be standing inside
+- `10:30` of your building.

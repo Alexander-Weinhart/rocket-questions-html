@@ -1,0 +1,2 @@
+Compound workflow:
+If the bug being worked on is on a website or electron app, use the results of the playwright workflow to add properly-placed logs in the code, then run the log workflow. Run a log workflow for each bug or display issue found in a playwright test. This is because the playwright test uses image recognition, and that weighs heavily on my AI usage allowance, so only run playwright after all bugs detected from the previous playwright test are squashed. After the final playwright test comes out clean, you are finished with the workflow.

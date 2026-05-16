@@ -1,0 +1,2 @@
+Log workflow:
+add a bunch of logs when something breaks, then run the program inside the sandbox with the command, and observe the output without me running the command myself. After you have enough of the logs, find and kill the process. Use the logs to fix whatever is broken, or if you need more logs, add more logs and start the testing over. Once testing is done, quiet the logs. Then you are finished with the workflow.

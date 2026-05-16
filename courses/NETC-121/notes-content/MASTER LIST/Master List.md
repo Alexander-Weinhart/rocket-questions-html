@@ -1,11 +1,11 @@
-# NETC-121 Master Guide 📚🌐
+# NETC-121 Master Guide 
 
 This is your full teaching version of the master list.
 It explains concepts, shows how they connect, and keeps exam-ready details in one place.
 
 ---
 
-## 1. Networking Models: The Big Picture 🧠
+## 1. Networking Models: The Big Picture 
 
 Think of networking as teamwork across layers.
 Each layer does one job well and passes data to the next layer.
@@ -24,7 +24,7 @@ Each layer does one job well and passes data to the next layer.
 - Common network components include NICs, switches, wireless APs, routers, firewalls, and cabling.
 - Small office wireless routers often combine router, switch, firewall, and wireless AP functions.
 
-### OSI Model (Merged with TCP/IP Mapping) 🧱
+### OSI Model (Merged with TCP/IP Mapping) 
 
 | OSI Layer | OSI Name | TCP/IP Layer | Main Job | PDU | Addressing | Common Devices | Example Protocols/Standards |
 |---|---|---|---|---|---|---|---|
@@ -36,7 +36,7 @@ Each layer does one job well and passes data to the next layer.
 | 2 | Data Link | Network Access | Local delivery in a LAN, framing, MAC forwarding, error detection | Frame | MAC address | Switches, NICs, bridges | Ethernet (802.3), Wi-Fi MAC (802.11), ARP |
 | 1 | Physical | Network Access | Sends raw bits as electrical/optical/radio signals | Bits | N/A | Cables, hubs, repeaters, transceivers | UTP/Fiber specs, signaling standards |
 
-### PDUs and Encapsulation 📦
+### PDUs and Encapsulation 
 
 - App creates data.
 - Transport adds TCP/UDP header -> segment/datagram.
@@ -48,7 +48,7 @@ On receive, this happens in reverse (decapsulation).
 
 ---
 
-## 2. Physical Layer: How Bits Move 🔌
+## 2. Physical Layer: How Bits Move 
 
 ### Media and Connectors
 
@@ -77,7 +77,7 @@ On receive, this happens in reverse (decapsulation).
 
 ---
 
-## 3. Data Link Layer: Local Delivery 🚚
+## 3. Data Link Layer: Local Delivery 
 
 ### MAC Addressing
 
@@ -133,7 +133,7 @@ On receive, this happens in reverse (decapsulation).
 - Uplinks are inter-switch links and often need higher bandwidth because they aggregate downstream traffic.
 - SFP ports allow modular copper or fiber uplink options.
 
-### SPAN/RSPAN for Wireshark 👀
+### SPAN/RSPAN for Wireshark 
 
 - SPAN mirrors local switch traffic to a capture port.
 - RSPAN extends that visibility from remote switches.
@@ -243,7 +243,7 @@ On receive, this happens in reverse (decapsulation).
 
 ---
 
-## 4. Network Layer: IP, Routing, and Reachability 🌍
+## 4. Network Layer: IP, Routing, and Reachability 
 
 ### IPv4 and IPv6
 
@@ -489,7 +489,7 @@ On receive, this happens in reverse (decapsulation).
 
 ---
 
-## 5. ARP, RARP, and ICMP 🔍
+## 5. ARP, RARP, and ICMP 
 
 ### ARP
 
@@ -513,7 +513,7 @@ On receive, this happens in reverse (decapsulation).
 
 ---
 
-## 6. Transport Layer: Reliable vs Fast 🚦
+## 6. Transport Layer: Reliable vs Fast 
 
 ### TCP (Reliable)
 
@@ -553,7 +553,7 @@ On receive, this happens in reverse (decapsulation).
 
 ---
 
-## 7. Ports and Application Protocols 🧭
+## 7. Ports and Application Protocols 
 
 ### Port Ranges
 
@@ -588,7 +588,7 @@ IP gets data to the right host. Port gets it to the right process.
 
 ---
 
-## 8. DHCP and DNS: Core Infrastructure Services 🏗️
+## 8. DHCP and DNS: Core Infrastructure Services 
 
 ### DHCP (DORA Flow)
 
@@ -700,7 +700,7 @@ IP gets data to the right host. Port gets it to the right process.
 
 ---
 
-## 9. Transmission Types, Topologies, and Duplex 📡
+## 9. Transmission Types, Topologies, and Duplex 
 
 ### Unicast/Broadcast/Multicast
 
@@ -725,7 +725,7 @@ IP gets data to the right host. Port gets it to the right process.
 
 ---
 
-## 10. Performance and Troubleshooting ⚙️
+## 10. Performance and Troubleshooting 
 
 ### Latency vs Jitter
 
@@ -761,7 +761,7 @@ On switched networks, you often need SPAN/RSPAN to see transit traffic not addre
 
 ---
 
-## 11. Security Essentials 🔐
+## 11. Security Essentials 
 
 - Telnet/FTP/HTTP expose cleartext data.
 - SSH/HTTPS protect confidentiality in transit.
@@ -812,7 +812,7 @@ On switched networks, you often need SPAN/RSPAN to see transit traffic not addre
 
 ---
 
-## 12. History and Standards 🏛️
+## 12. History and Standards 
 
 - Internet is a global network of networks; the web is one service on top of it.
 - ARPANET started in 1969, transitioned to TCP/IP on January 1, 1983, and was retired in 1990.
@@ -827,7 +827,7 @@ On switched networks, you often need SPAN/RSPAN to see transit traffic not addre
 
 ---
 
-## 13. Quiz Mistake Corrections (Must-Know) ✅
+## 13. Quiz Mistake Corrections (Must-Know) 
 
 - Scope is the pool range, not a reservation.
 - Reservation is one MAC pinned to one IP.
@@ -837,7 +837,7 @@ On switched networks, you often need SPAN/RSPAN to see transit traffic not addre
 
 ---
 
-## 14. Fast Review Prompts 📝
+## 14. Fast Review Prompts 
 
 - Explain OSI Layer 2 vs Layer 3 in 30 seconds.
 - Walk DORA from memory with broadcast/unicast behavior.

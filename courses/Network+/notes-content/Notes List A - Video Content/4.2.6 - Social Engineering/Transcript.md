@@ -1,0 +1,305 @@
+# [4.2.6 - Social Engineering](https://www.youtube.com/watch?v=sF0uBtavItI)
+
+## 4.2.6 - Social Engineering
+
+- Day: Day 9
+- Duration: 10:56
+
+## Transcript
+
+- `00:02` we've probably all seen an email come
+- `00:03` through our inbox that seems to be from
+- `00:06` one sender but in reality it's being
+- `00:08` sent by someone completely different
+- `00:11` these types of emails are often
+- `00:12` categorized as fishing fishing is social
+- `00:16` engineering with just a bit of spoofing
+- `00:18` someone is pretending to be someone else
+- `00:21` in the hopes that they can convince you
+- `00:22` to give up your personal information
+- `00:25` sometimes you can check the URL that's
+- `00:27` associated with a link inside of an
+- `00:29` email message to see if it's really
+- `00:31` coming from the domain that you think it
+- `00:33` should be coming from there's usually
+- `00:35` also something a little bit off with the
+- `00:38` graphics or the spelling and in some
+- `00:40` cases the grammar that's being used in
+- `00:42` these messages that are trying to
+- `00:44` convince us that they're really coming
+- `00:46` from someone we can trust this is an
+- `00:49` image of a website that I clicked on
+- `00:51` when I received a fishing email you can
+- `00:54` see it looks very much like the
+- `00:56` Rackspace technology webmail login page
+- `00:59` although you'll notice the graphics are
+- `01:00` off just a little bit but everything
+- `01:02` else on that page looks as if it could
+- `01:04` be the legitimate site for Rackspace
+- `01:07` webmail login however if we look at the
+- `01:10` email where that was sent from you can
+- `01:12` see that it does say that it was from
+- `01:14` Rackspace service but it came from an
+- `01:16` email address from
+- `01:19` icloud.com that is certainly not the
+- `01:21` Rackspace domain name and that's not the
+- `01:23` person we would expect to be sending us
+- `01:25` information about Rackspace email you
+- `01:28` also notice the text in this email has
+- `01:31` different fonts associated with it and
+- `01:33` the first line of this message says Dear
+- `01:35` user we notice your email has not been
+- `01:38` confirmed for the new upgraded service
+- `01:40` there's no period at the end or no other
+- `01:42` type of punctuation this should
+- `01:44` certainly cause us to look more deeply
+- `01:46` into the details of this message and at
+- `01:49` the very least we should never click a
+- `01:51` link inside of an email
+- `01:54` message I was able to click this link
+- `01:56` and provide you with these screenshots
+- `01:58` by using a virtual machine that was
+- `02:00` completely isolated from all of my other
+- `02:02` systems in this particular case that was
+- `02:05` the image that came up when you clicked
+- `02:06` that link so on the top is the image
+- `02:09` from the fishing email and on the bottom
+- `02:11` is the legitimate Rackspace email
+- `02:13` landing page you can see that they are
+- `02:16` very similar to each other but there are
+- `02:18` some significant differences that you
+- `02:20` can make out now that we have them side
+- `02:22` by side but if you weren't familiar with
+- `02:24` the Rackspace login page the fishing
+- `02:26` email is close enough that it probably
+- `02:29` could fool quite a few people this is
+- `02:31` the goal of the attacker they want to
+- `02:33` make this page look so similar that you
+- `02:35` will be enticed to put in your email
+- `02:37` address and your password and at that
+- `02:39` point when you click the login button
+- `02:41` you're actually sending those
+- `02:42` credentials directly to the
+- `02:45` attacker another useful social
+- `02:47` engineering technique used by the
+- `02:48` attackers is shoulder surfing we use our
+- `02:51` mobile devices and our laptops and
+- `02:53` public all the time we could be in an
+- `02:55` airport a restaurant a coffee shop and
+- `02:58` anyone who can look over over our
+- `03:00` shoulder could potentially see the
+- `03:02` information that's on our screen part of
+- `03:04` the problem with this of course is that
+- `03:06` occasionally we will be reading through
+- `03:07` information on our screen that could be
+- `03:09` considered sensitive and in some cases
+- `03:12` it might be information that our
+- `03:13` competition would love to have someone
+- `03:16` standing behind you or sitting at a
+- `03:18` table that's behind you has full access
+- `03:20` to view the information that's on your
+- `03:22` screen and there have been situations
+- `03:24` where people have been able to read the
+- `03:26` screen of a computer that's in another
+- `03:29` building they would use binoculars or a
+- `03:31` telescope to be able to view the
+- `03:33` information that's on your screen even
+- `03:35` though they're in a completely different
+- `03:37` location one of the more advanced
+- `03:39` versions of this are attackers that will
+- `03:41` put malware on your computer to enable
+- `03:44` your camera and be able to see exactly
+- `03:46` what you're doing when you're sitting at
+- `03:48` your
+- `03:49` computer we can use a number of
+- `03:51` different techniques to try to prevent
+- `03:53` shoulder surfing one is to make sure
+- `03:55` that we understand where we happen to be
+- `03:58` if you're in a coffee shop maybe your
+- `04:00` back should be towards a wall if you're
+- `04:02` in a public area it might not be the
+- `04:04` best time to start scrolling through
+- `04:05` information about payroll or social
+- `04:07` security numbers you can also get
+- `04:09` privacy filters for your LCD screen that
+- `04:12` can only display the information on the
+- `04:14` screen if you are sitting directly in
+- `04:16` front of that device anyone who's to the
+- `04:19` side of the device simply sees a black
+- `04:21` screen these work exceptionally well you
+- `04:24` could be on a plane right next to
+- `04:26` somebody in coach and if they have a
+- `04:28` privacy filter all you see is a black
+- `04:30` screen and if your computer is near a
+- `04:32` window you might want to turn your
+- `04:34` computer so that the monitor faces away
+- `04:36` from that window not only will this help
+- `04:39` with the glare that's coming in through
+- `04:40` that window it would prevent anyone from
+- `04:43` being able to see what's on your screen
+- `04:45` by looking through that window you
+- `04:47` should always keep in mind the
+- `04:48` information that you happen to be
+- `04:50` viewing on the screen and where you
+- `04:52` might be at any particular time so that
+- `04:54` you're not disclosing any sensitive
+- `04:56` information to any third party
+- `04:59` a lot of the security for a physical
+- `05:01` location happens at the front door if
+- `05:03` you can get through that initial door a
+- `05:06` lot more information will be available
+- `05:08` to you and the attackers know this they
+- `05:10` found ways to get into buildings without
+- `05:13` having any type of authorization one
+- `05:16` technique that attackers use to get into
+- `05:17` a building is tailgating tailgating is
+- `05:20` using someone who's authorized to give
+- `05:22` you away into the building maybe when
+- `05:25` somebody is walking in they'll hit the
+- `05:27` badge unlock the door walk through the
+- `05:29` door and leave the door to close on its
+- `05:32` own while they're walking away you can
+- `05:35` walk up and stop the door from locking
+- `05:37` again and simply walk into the building
+- `05:39` that's a perfect example of tailgating
+- `05:42` another technique that's very similar is
+- `05:44` piggybacking with piggy backing you have
+- `05:47` someone who is authorized to get into
+- `05:49` the building and they're letting you in
+- `05:51` the building as well with their
+- `05:52` knowledge this can be easily
+- `05:54` accomplished by bringing in lunch or
+- `05:57` carrying in boxes of donuts and asking
+- `05:59` the the person who's opening the door to
+- `06:01` hold the door so you can make it up to
+- `06:02` the conference room they can see that
+- `06:05` you're walking in they're even helping
+- `06:06` you get into the door and in that
+- `06:09` particular case we call that
+- `06:11` piggybacking and as many attackers will
+- `06:13` tell you once you're in that front door
+- `06:15` it's very easy to walk around the inside
+- `06:17` of that building where many of those
+- `06:19` doors are already open to prevent
+- `06:23` tailgating and piggy backing we should
+- `06:25` always be looking to see if someone is
+- `06:27` in this building who should not be there
+- `06:29` most organizations will provide visitors
+- `06:32` with a visitor badge that clearly shows
+- `06:34` that they are in the building as a
+- `06:36` visitor and they are authorized to be
+- `06:38` there but if someone's walking around
+- `06:40` without a badge it should be your
+- `06:42` responsibility to ask them where their
+- `06:44` badge happens to be and if they don't
+- `06:46` have a good answer it's time to call
+- `06:48` security some organizations also have
+- `06:50` very strict rules on badging in and
+- `06:53` having one person walk in at a time
+- `06:56` there might even be people lined up at
+- `06:58` the door but one person will badge in
+- `07:00` walk through the door and physically
+- `07:02` close the door so that the second person
+- `07:05` can then badge in following that process
+- `07:07` would probably prevent any type of
+- `07:09` unauthorized access you could also use
+- `07:12` an access control vestibule or an
+- `07:14` airlock that would only allow one person
+- `07:16` in the building at a time this
+- `07:18` effectively takes the policy of one
+- `07:20` person scanning at a time and turns it
+- `07:23` into a mechanical requirement where only
+- `07:25` one person can walk in at a time and
+- `07:28` although it may be uncomfortable to walk
+- `07:30` up to a stranger and ask them where
+- `07:32` their badge happens to be this is
+- `07:34` something that has happened to me many
+- `07:36` times inside of a building or I've had a
+- `07:38` badge on a jacket I've taken the jacket
+- `07:40` off and then I've gone to get coffee at
+- `07:42` the coffee maker and very often people
+- `07:44` from that company will walk up to me and
+- `07:46` say hi I don't recognize you do you have
+- `07:48` a visitor badge or can you tell me who
+- `07:50` you're with these are organizations that
+- `07:52` have worked hard to train their
+- `07:53` employees to look for things that may be
+- `07:55` out of the ordinary and to address those
+- `07:58` so they don't become a larg security
+- `08:01` issue if you look in the back of your
+- `08:03` building I'll bet in the parking lot
+- `08:05` there is a garbage bin sometimes we
+- `08:07` refer to this as a dumpster although
+- `08:09` that is a brand name of a particular
+- `08:11` unit in other parts of the world these
+- `08:13` have different names such as a rubbish
+- `08:15` skip going through your trash is a very
+- `08:19` useful social engineering techniques
+- `08:21` that attackers use all the time it's
+- `08:23` remarkable how much sensitive
+- `08:25` information is simply being thrown into
+- `08:27` the garbage without any type of security
+- `08:29` associated with it these garbage bins
+- `08:32` and dumpsters are often open and
+- `08:34` unlocked very often you can find names
+- `08:36` that can then be used for impersonation
+- `08:39` or fishing over the phone and there may
+- `08:41` even be contact information that can
+- `08:43` help with additional fishing attempts
+- `08:46` attackers often try to find the right
+- `08:48` time to go through the garbage it may be
+- `08:50` at the end of a quarter or the end of a
+- `08:52` big project where a lot of information
+- `08:54` may be thrown out and a lot of those
+- `08:56` details in the garbage may be perfect to
+- `08:58` use for a future attack there is a
+- `09:00` question about legality of going through
+- `09:03` someone else's garbage in the United
+- `09:05` States the garbage is effectively free
+- `09:07` to go through as long as it's something
+- `09:09` that has already been thrown out by the
+- `09:11` original owner this is not always the
+- `09:14` case and there may be local or state
+- `09:16` regulations that would prevent someone
+- `09:18` from going through someone else's
+- `09:19` garbage but if there are no local laws
+- `09:22` everything in that garbage bin may be
+- `09:24` available for anyone to stop by and take
+- `09:27` but if the bin is on private property
+- `09:29` and there are signs that say no
+- `09:31` trespassing or no visitors allowed then
+- `09:34` you certainly would not be able to
+- `09:36` access that trash at that location if
+- `09:39` you're trying to understand more about
+- `09:40` whether going through this garbage may
+- `09:42` be legal in your area then I would
+- `09:44` recommend you contct a legal
+- `09:46` professional and see what the options
+- `09:48` might be in your particular
+- `09:50` geography to prevent someone from going
+- `09:52` through the garbage one of the best
+- `09:54` things you can do is to lock it up you
+- `09:56` can put a fence around that area you can
+- `09:58` put monitoring cameras and you can
+- `10:00` prevent anyone from Gaining physical
+- `10:02` access to your trash you can also Shred
+- `10:05` the information that you feel might be
+- `10:07` sensitive some organizations will have a
+- `10:09` third-party shredding service come
+- `10:11` through every month and they'll sit in
+- `10:13` the parking lot and Shred all of your
+- `10:15` sensitive information some organizations
+- `10:17` go one step further It's Not Unusual for
+- `10:20` governments to light all of their
+- `10:22` sensitive information on fire because
+- `10:24` once you burn it there's no way anyone
+- `10:26` can gain access to that information if
+- `10:29` you're wondering if this is something
+- `10:30` you should be worried about then maybe
+- `10:32` you should look through your own garbage
+- `10:34` there might be information in there that
+- `10:36` is relatively sensitive and you may need
+- `10:38` to Institute new policies to prevent
+- `10:40` someone from walking by and simply
+- `10:42` grabbing your sensitive data right out
+- `10:44` of the trash

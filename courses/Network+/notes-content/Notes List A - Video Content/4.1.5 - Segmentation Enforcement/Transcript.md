@@ -1,0 +1,170 @@
+# [4.1.5 - Segmentation Enforcement](https://www.youtube.com/watch?v=DsOzQLX5cg4)
+
+## 4.1.5 - Segmentation Enforcement
+
+- Day: Day 9
+- Duration: 6:09
+
+## Transcript
+
+- `00:02` in it security segmentation can be a
+- `00:04` very valuable tool we may want to
+- `00:06` physically separate devices from each
+- `00:08` other or it may be a logical or virtual
+- `00:11` segmentation this may be a separation of
+- `00:14` physical devices or it might be
+- `00:16` segmenting networks with vlans sometimes
+- `00:18` this segmentation is created so that you
+- `00:20` can increase performance some
+- `00:22` applications might transfer large
+- `00:24` amounts of data and by putting them on
+- `00:26` their own network they would be able to
+- `00:28` transfer that in the most efficient way
+- `00:30` from a security perspective segmentation
+- `00:33` allows us to limit what devices can talk
+- `00:35` to other devices this can be useful in
+- `00:38` certain environments where you want to
+- `00:39` be absolutely sure that one device and
+- `00:42` another device cannot communicate to
+- `00:44` each other and sometimes this
+- `00:46` segmentation has already been determined
+- `00:48` before the network design is even
+- `00:50` complete some compliance like the one
+- `00:52` from the payment card industry require
+- `00:54` segmentation if you'll be storing credit
+- `00:56` card
+- `00:57` information our industry is dealing with
+- `01:00` a large number of new devices connecting
+- `01:03` to the network that are iot devices or
+- `01:06` Internet of Things these can be sensors
+- `01:09` such as cooling and heating sensors
+- `01:11` perhaps even lighting that you might
+- `01:13` connect to the network or it might be a
+- `01:15` smart device such as home automation
+- `01:17` devices video doorbells cameras and
+- `01:19` other homebased devices this could also
+- `01:22` be a device you wear such as a
+- `01:24` smartwatch or a health monitor the
+- `01:27` problem with these iot devices is that
+- `01:29` they may be very ingenious in their
+- `01:31` operation but they may not be very well
+- `01:34` thought out from a security perspective
+- `01:36` so segmenting the iot devices onto their
+- `01:39` own network and away from your data
+- `01:42` might be a good choice for it security
+- `01:45` industrial devices also have a challenge
+- `01:48` when it comes to communication these are
+- `01:50` iiot devices or industrial internet of
+- `01:53` things this would be for one machine
+- `01:56` communicating with another machine in
+- `01:58` order to keep all of those systems
+- `02:00` running with iot devices we're most
+- `02:02` concerned about controlling lights or
+- `02:03` controlling temperature with industrial
+- `02:06` Internet of Things the stakes are higher
+- `02:08` there could be an entire manufacturing
+- `02:09` line that is based on all of these
+- `02:11` devices being able to communicate
+- `02:13` properly from one to the other in that
+- `02:15` scenario it would make perfect sense to
+- `02:17` segment all of these devices onto their
+- `02:20` own network by segmenting these you're
+- `02:22` preventing any external devices from
+- `02:24` disrupting that very important
+- `02:26` communication but you can also have
+- `02:29` automation within the industrial
+- `02:31` Internet of Things configurations and
+- `02:33` making sure these networks are operating
+- `02:35` will ensure that we have things like oil
+- `02:37` and gas systems that will continue to
+- `02:38` work or to make sure that the medical
+- `02:40` devices in a hospital are able to
+- `02:42` communicate properly to the other
+- `02:44` medical devices when it comes to our
+- `02:46` critical infrastructure or when lives
+- `02:48` are on the line we need to make sure
+- `02:50` that these iiot devices are able to
+- `02:53` communicate properly and segmenting the
+- `02:55` network might be the perfect choice for
+- `02:57` a network
+- `02:58` configuration when when you're talking
+- `03:00` about larger Industrial Equipment you
+- `03:02` may be referring to scada or IC this is
+- `03:06` supervisory control and data acquisition
+- `03:09` systems or industrial Control Systems
+- `03:12` these are very large systems that might
+- `03:14` be in a manufacturing environment or
+- `03:16` they might be used for power generation
+- `03:18` these types of very large Industrial
+- `03:20` Systems require real-time monitoring and
+- `03:22` we need to be sure that we're able to
+- `03:24` control this system across the network
+- `03:26` at a moment's notice if you look at a
+- `03:28` network with skated device you'll notice
+- `03:30` that it is completely segmented from the
+- `03:32` rest of the network and only people with
+- `03:35` the right access in the right location
+- `03:37` are able to access these
+- `03:40` systems uptime and availability becomes
+- `03:42` even more important when you talk about
+- `03:44` operational technology or OT this could
+- `03:47` be systems that are designed to keep the
+- `03:49` electric grid up and running it might be
+- `03:51` for traffic control or it may be an
+- `03:53` entire manufacturing plant that's
+- `03:55` running on this OT equipment when a
+- `03:58` failure occurs in this type of
+- `04:00` environment the results can be very wide
+- `04:02` ranging for example if you lose traffic
+- `04:05` control the traffic lights may not work
+- `04:07` properly or they may not work at all you
+- `04:09` may have situations where manufacturing
+- `04:11` plants have to shut down completely or
+- `04:13` perhaps there are issues with the power
+- `04:15` generation systems and being able to
+- `04:17` distribute that power across the grid
+- `04:19` this is a very good example of where
+- `04:21` Network segmentation can create a
+- `04:23` stronger security posture and keep these
+- `04:25` systems up and running all the time and
+- `04:29` if you're access points support it you
+- `04:30` may want to consider configuring a guest
+- `04:33` Network for your building or your home
+- `04:36` this would allow people access to the
+- `04:37` internet but prevent any type of access
+- `04:40` to your internal services so in your
+- `04:42` pull down list of wireless devices you
+- `04:45` would see that there was a separate
+- `04:46` wireless network just for guests to be
+- `04:48` able to use and you may be able to
+- `04:50` control this using a passphrase or they
+- `04:52` may have to log in to gain access to
+- `04:54` that wireless network the useful part of
+- `04:57` segmentation here is everyone on this
+- `04:59` guest Network can still access the
+- `05:01` internet as they normally do but they
+- `05:03` would have no access to the internal
+- `05:05` services that are on the inside of your
+- `05:08` network and we often see segmentation
+- `05:10` being used with BYOD this stands for
+- `05:13` bring your own device you may see this
+- `05:16` also referenced as bring your own
+- `05:17` technology this is when you own a mobile
+- `05:20` device and you bring it into the office
+- `05:22` to be able to also use it for work
+- `05:24` purposes of course this device still
+- `05:26` needs to meet the requirements of the
+- `05:28` organization so that you have the proper
+- `05:30` security but most of the time the
+- `05:32` organization is going to segment that
+- `05:34` device so that your private information
+- `05:37` remains private on your phone but you
+- `05:39` have a separate segmented area that is
+- `05:41` specifically for office use this means
+- `05:44` the system administrator can still
+- `05:46` maintain and manage all of the company
+- `05:48` data and all of that information remains
+- `05:51` secure if you leave the organization the
+- `05:54` company's data can be removed but all of
+- `05:56` your data can remain on that mobile
+- `05:58` device e

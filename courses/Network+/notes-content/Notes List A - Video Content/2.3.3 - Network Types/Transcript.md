@@ -1,0 +1,112 @@
+# [2.3.3 - Network Types](https://www.youtube.com/watch?v=8ExS_LYAe-M)
+
+## 2.3.3 - Network Types
+
+- Day: Day 6
+- Duration: 4:41
+
+## Transcript
+
+- `00:01` There are a number of different ways
+- `00:03` to connect and configure wireless networks.
+- `00:06` And in this video, we'll look at some
+- `00:08` of these different wireless network types.
+- `00:10` One popular wireless network type,
+- `00:12` especially in home-based environments,
+- `00:15` is a wireless mesh.
+- `00:16` This is where you would have multiple access points that
+- `00:19` can all communicate to each other
+- `00:21` within a relatively close area.
+- `00:24` And then you would have other devices
+- `00:26` that are located on the outside of those access points that
+- `00:29` are able to communicate to that single access point
+- `00:32` and ultimately to the rest of the network.
+- `00:35` This meshing of access points in the middle
+- `00:37` is something that you would configure on the access point.
+- `00:40` And if you were to add additional access points
+- `00:43` onto this network, they would also
+- `00:45` be included in that same mesh of access points.
+- `00:48` Of course, this doesn't have to be access points.
+- `00:51` There are some devices that can mesh amongst each other in an ad
+- `00:55` hoc form.
+- `00:56` This allows for different options
+- `00:57` for sending data over these networks
+- `01:00` because all of these devices are now communicating to each other.
+- `01:03` And if one device leaves the network,
+- `01:05` it can automatically identify that that device is no longer
+- `01:08` there and self-heal itself to maintain connectivity
+- `01:12` to everyone who's left on the wireless network.
+- `01:15` If you only have two devices, you
+- `01:17` might want to connect them together
+- `01:19` without an access point.
+- `01:21` We refer to this type of connectivity
+- `01:23` as an ad hoc connection.
+- `01:25` This is where you would use the 802.11 wireless functionality
+- `01:28` of your device, but you would not be directly connecting
+- `01:31` to an access point.
+- `01:33` This uses the 802.11 wireless network functionality
+- `01:36` of this device, but instead of connecting to an access point,
+- `01:40` you simply connect to the other wireless device.
+- `01:43` You might also see this referred to as an Independent Basic
+- `01:46` Service Set, or an IBSS.
+- `01:49` This might be something that is a very long-term connection.
+- `01:52` If all you have are two devices, you can simply connect those two
+- `01:55` together and they will communicate
+- `01:56` as long as that connection is available.
+- `01:59` But you might be using this on more of a temporary basis.
+- `02:02` This might be used in conjunction
+- `02:04` with an Internet of Things, or IoT device,
+- `02:07` where you would initially connect to the IoT device
+- `02:09` over an ad hoc connection.
+- `02:11` This may allow you to transfer configuration details
+- `02:14` such as the name of your larger wireless network
+- `02:17` and any security configurations that
+- `02:20` have to be included to connect to that wireless network.
+- `02:23` At that point, the ad hoc connection is then disabled
+- `02:25` and the internet of things device
+- `02:27` can connect to the larger access point network
+- `02:30` using those configuration parameters.
+- `02:33` Some wireless access points allow
+- `02:35` you to connect two devices directly
+- `02:37` to each other over a point to point mode.
+- `02:40` The point to point mode is commonly
+- `02:42` used to connect larger distances to each other,
+- `02:45` for example, one building connecting to another building.
+- `02:49` I've run this exact configuration between two homes.
+- `02:52` So you could have an access point in one house connected
+- `02:55` to a switch and all of the internal devices of that network
+- `02:58` connected to the same switch.
+- `03:00` And then you would have the same configuration in another home
+- `03:03` and have all of those networks now connected
+- `03:05` to each other over that point to point mode.
+- `03:08` Not all access points support this point to point mode.
+- `03:12` So you'll want to be sure that the software of the access point
+- `03:15` supports point to point, and you'll
+- `03:17` want to be sure that the hardware on this device
+- `03:19` is also able to transmit over that extended distance.
+- `03:23` You may, for example, require additional types of antennas
+- `03:26` to be able to bridge that gap between the access points.
+- `03:30` There might also be a requirement
+- `03:31` to change the power output between these two devices
+- `03:34` and to make sure you're using frequencies
+- `03:36` that are able to communicate over that longer distance.
+- `03:41` And perhaps the most common way to connect to a wireless network
+- `03:44` is in something called infrastructure mode.
+- `03:46` This is where you would have a centralized access point.
+- `03:49` And this is probably the type of wireless networking
+- `03:52` that you're using at home and in your office.
+- `03:55` All of the wireless devices in your home or office
+- `03:57` connect to that central access point,
+- `03:59` and you're able to communicate out to the wired network
+- `04:02` or between other wireless devices over that same access
+- `04:05` point.
+- `04:06` Some wireless access points give you the option
+- `04:09` to allow devices to communicate with
+- `04:11` each other over that wireless network
+- `04:13` or to isolate each of these wireless devices
+- `04:16` to only be able to communicate directly to the access
+- `04:19` point and any networks beyond that access point.
+- `04:22` You'll want to check your access point
+- `04:24` to see how it's configured for these devices
+- `04:26` and make sure the proper security is configured
+- `04:29` on that device.

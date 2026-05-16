@@ -1,4 +1,4 @@
-# 🎓 Wireshark — Key Lessons
+# Wireshark — Key Lessons
 
 After the Telnet and HTTP/HTTPS demos, the core takeaways on network security and Wireshark's capabilities.
 
@@ -10,12 +10,12 @@ Both protocols were designed in an era when networks were small, trusted, and pr
 
 ```
 Wireshark on any shared network:
-  Telnet session   → username and password in plain text ❌
-  HTTP login form  → credentials in plain text ❌
-  HTTP page data   → full page content readable ❌
+  Telnet session   → username and password in plain text 
+  HTTP login form  → credentials in plain text 
+  HTTP page data   → full page content readable 
 
-  SSH session      → encrypted blob — unreadable ✅
-  HTTPS session    → encrypted blob — unreadable ✅
+  SSH session      → encrypted blob — unreadable 
+  HTTPS session    → encrypted blob — unreadable 
 ```
 
 Any device on the same network segment — or an attacker who gained access — can capture and read this traffic instantly with zero special tools beyond Wireshark.
@@ -58,7 +58,7 @@ The fix for everything demonstrated in this video is encryption:
 
 ## Key Points
 
-- 📌 **Telnet/HTTP = cleartext** — never use for anything sensitive
-- 📌 **SPAN/RSPAN** needed to capture traffic from other switch ports
-- 📌 **SSH/HTTPS** = Wireshark captures but cannot read content
-- 📌 Wireshark is a legitimate admin tool — but demonstrates exactly why encryption is non-negotiable
+- **Telnet/HTTP = cleartext** — never use for anything sensitive
+- **SPAN/RSPAN** needed to capture traffic from other switch ports
+- **SSH/HTTPS** = Wireshark captures but cannot read content
+- Wireshark is a legitimate admin tool — but demonstrates exactly why encryption is non-negotiable

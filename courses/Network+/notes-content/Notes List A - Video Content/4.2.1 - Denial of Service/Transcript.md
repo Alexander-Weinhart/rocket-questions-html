@@ -1,0 +1,188 @@
+# [4.2.1 - Denial of Service](https://www.youtube.com/watch?v=x8dIr6JYkjA)
+
+## 4.2.1 - Denial of Service
+
+- Day: Day 9
+- Duration: 6:58
+
+## Transcript
+
+- `00:01` a deny of service is an action or series
+- `00:04` of actions that causes a service to fail
+- `00:07` often this is an overloading of a system
+- `00:09` where others are not able to access
+- `00:11` because no resources are available on
+- `00:13` that particular system for example if
+- `00:16` someone was to overwhelm the
+- `00:17` capabilities of a server that would
+- `00:19` certainly cause the server to become
+- `00:21` unavailable and therefore cause a denial
+- `00:23` of service sometimes an attacker will
+- `00:26` find some type of vulnerability in an
+- `00:28` operating system or an application
+- `00:30` that causes that service to become
+- `00:32` unavailable in those cases they can
+- `00:34` pinpoint that particular weakness and
+- `00:37` cause the entire system to fail
+- `00:39` relatively easily this is one of the
+- `00:41` reasons that we often say you should
+- `00:43` keep your system up to date with the
+- `00:45` latest security patches so you don't
+- `00:47` find yourself being taken advantage of
+- `00:49` by one of these vulnerabilities when the
+- `00:52` denial of service is underway that
+- `00:54` system is no longer available which
+- `00:56` would be perfect for your competitors
+- `00:58` and there have been times when the
+- `01:00` competition has been identified as the
+- `01:02` organization causing the deny service to
+- `01:04` begin with sometimes this deny of
+- `01:07` service is a distraction in reality the
+- `01:09` attackers are going after a different
+- `01:11` part of the network but by bringing down
+- `01:13` this one particular server all of your
+- `01:15` trouble shooting resources are now
+- `01:17` spending their time on this server
+- `01:19` rather than the other parts of the
+- `01:21` network that could be under attack and
+- `01:23` of course a denal of service does not
+- `01:25` have to be complicated someone could
+- `01:27` walk into the side of your building pull
+- `01:29` the main power for your entire facility
+- `01:31` and then you would have an enormous
+- `01:33` denal of
+- `01:34` service many times a deny of service is
+- `01:37` caused by a third party but it's very
+- `01:39` easy to accidentally create a deny of
+- `01:42` service situation yourself for example
+- `01:44` if you were to connect multiple switches
+- `01:46` together with multiple connections and
+- `01:48` you were not using spanning tree
+- `01:50` protocol you would be creating a loop on
+- `01:52` the network this Loop would cause more
+- `01:55` and more traffic to Traverse the network
+- `01:57` and very quickly you would find that the
+- `01:59` capacity of those switches would be
+- `02:01` completely overwhelmed if your internet
+- `02:03` connection has limited bandwidth then
+- `02:05` simply downloading a single Linux
+- `02:08` distribution could effectively cause a
+- `02:10` deny of service for anyone that needed
+- `02:12` to use that internet connection you also
+- `02:14` have to think about the physical
+- `02:15` environment where your data center
+- `02:17` resides something as simple as a water
+- `02:19` leak or a leak from the roof could cause
+- `02:22` an entire section of the data center to
+- `02:24` become
+- `02:25` unavailable unfortunately a large
+- `02:27` percentage of deny of service situations
+- `02:29` are caused by multiple devices all
+- `02:32` acting in unison to cause this denial of
+- `02:35` service situation we refer to this as a
+- `02:37` distributed denial of service or a Dos
+- `02:41` for example a single botnet may be able
+- `02:43` to take over millions of personal
+- `02:45` computers and have all of those devices
+- `02:48` direct all of their traffic towards one
+- `02:50` single server on the internet this type
+- `02:53` of coordinated attack from multiple
+- `02:55` devices that may be located anywhere in
+- `02:58` the world is a very common form of a
+- `03:00` distributed denial of service attack and
+- `03:03` in that particular case devices with
+- `03:05` very limited access to the internet
+- `03:07` could still manage to bring down systems
+- `03:10` with many more resources available we
+- `03:12` refer to this as an asymmetric threat
+- `03:15` because the attacker has so few
+- `03:17` resources and yet they're able to
+- `03:19` disrupt and bring down systems with many
+- `03:22` many more
+- `03:23` resources the attackers have also found
+- `03:26` ways to make their process so much
+- `03:28` easier when they attacking someone with
+- `03:31` a denial of service they refer to this
+- `03:33` as a dods reflection and amplification
+- `03:37` with this attack the attacker sends a
+- `03:39` little bit of information into the
+- `03:41` internet and the internet is able to
+- `03:43` multiply that particular attack and send
+- `03:46` a much larger amount of traffic to the
+- `03:48` victim's device since this doesn't
+- `03:51` require many resources for the attacker
+- `03:53` it's become a very popular way to
+- `03:55` overwhelm the capabilities of a
+- `03:57` particular remote host the attack ERS
+- `04:00` have effectively taken the systems and
+- `04:01` protocols that we use every day and
+- `04:04` turned all of those against us protocols
+- `04:06` such as the network time protocol domain
+- `04:09` name system or the internet control
+- `04:10` message protocol can all be used to
+- `04:13` amplify the messages that are sent to
+- `04:16` the victim's computer let's take a look
+- `04:18` at what this amplification looks like
+- `04:21` before the attack actually occurs a DNS
+- `04:23` query is one where a device is commonly
+- `04:26` requesting an IP address from a server
+- `04:29` it's a Rel relatively low bandwidth
+- `04:31` communication and very little
+- `04:32` information is normally transferred but
+- `04:34` there is information stored on a DNS
+- `04:37` server that can return much more
+- `04:39` information than simply an IP address
+- `04:42` here's an example of what this looks
+- `04:43` like we're running the Dig command with
+- `04:45` the any parameter to the name is c.org
+- `04:49` and instead of Simply receiving an IP
+- `04:51` address in return we're getting
+- `04:53` information such as DNS key information
+- `04:56` that is embedded within that DNS server
+- `04:59` these Keys returned as part of this DNS
+- `05:01` query are normally used to verify a
+- `05:04` digital signature that's being sent out
+- `05:06` in an email but in this case the
+- `05:08` attackers are using this large amount of
+- `05:10` information to amplify the message
+- `05:13` that's being sent to the victim's
+- `05:15` machine here's how a distributed denal
+- `05:17` of service would look when you're using
+- `05:19` DNS amplification this starts with a
+- `05:22` botnet command and control this is the
+- `05:24` device that is managing the process of
+- `05:27` the distributed denal of service but
+- `05:29` that's sing device needs to include
+- `05:31` other machines that can add to this
+- `05:33` total amount of traffic and the command
+- `05:35` and control machine is using a botn net
+- `05:37` to provide those additional hosts this
+- `05:40` botn net is connected to the internet
+- `05:42` where there are also DNS resolvers that
+- `05:44` are open and available for anyone to
+- `05:46` query also on the internet connection is
+- `05:49` the web server that will be the victim
+- `05:51` of this distributed denal of service the
+- `05:54` command and control device sends a
+- `05:55` message to the botnet telling them to
+- `05:57` send that DNS query to one of these Open
+- `06:00` DNS resolvers the botnet sends this
+- `06:03` relatively small query to the DNS
+- `06:05` resolvers and as we've already seen the
+- `06:08` response to that query is a much larger
+- `06:10` amount of information the botnet devices
+- `06:13` are spoofing the source of these
+- `06:15` requests so the responses are going to
+- `06:18` go to the web server and since so much
+- `06:20` information has now been Amplified it
+- `06:23` overwhelms all of the resources
+- `06:25` available on that web server and the
+- `06:27` system has now become a victim of a
+- `06:29` distributed denal of service this
+- `06:31` amplification process has effectively
+- `06:33` taken a query that was 28 bytes in
+- `06:36` length and extended it out to, 1300
+- `06:39` bytes as a response this makes it very
+- `06:42` easy for these attackers to quickly
+- `06:44` overwhelm these remote devices on the
+- `06:46` internet

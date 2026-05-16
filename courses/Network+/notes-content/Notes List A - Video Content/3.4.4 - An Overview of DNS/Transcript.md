@@ -1,0 +1,419 @@
+# [3.4.4 - An Overview of DNS](https://www.youtube.com/watch?v=S4s3vgm4h84)
+
+## 3.4.4 - An Overview of DNS
+
+- Day: Day 8
+- Duration: 16:54
+
+## Transcript
+
+- `00:02` one of the most common uses of DNS or
+- `00:05` the domain name system is to translate
+- `00:08` the names that we put into our browsers
+- `00:10` into IP addresses that can be used to
+- `00:12` connect with that particular server for
+- `00:15` example if you put into a browser
+- `00:18` www.professormesser.com
+- `00:19` there's no IP address associated with
+- `00:22` that name there needs to be some process
+- `00:25` to resolve the IP address based on that
+- `00:27` name and we rely on DNS to provide us
+- `00:30` with that name resolution this database
+- `00:32` of names is a hierarchy and in this
+- `00:34` video we will look at the structure of a
+- `00:37` DNS database we often describe this
+- `00:39` resolution process as one device that is
+- `00:42` receiving information from one DNS
+- `00:44` server but in reality there are many DNS
+- `00:47` servers in fact the root DNS servers
+- `00:50` consist of 13 separate server clusters
+- `00:53` that make up over 1,000 actual DNS
+- `00:56` servers these DNS servers manage the top
+- `00:59` level domains or tlds of a number of
+- `01:03` different generic top levels such as.org
+- `01:06` Donnet and others there are also country
+- `01:09` level tlds those are country codes such
+- `01:12` as us for the United States ca for
+- `01:16` canada. for the United Kingdom and so on
+- `01:20` here's an example of a DNS hierarchy
+- `01:22` this starts at the very top of the tree
+- `01:24` which is a single period or dot
+- `01:27` underneath that is the top level domain
+- `01:29` such as com.net and others and then you
+- `01:32` can have other names underneath those
+- `01:34` such as Professor Messer for example you
+- `01:37` could have
+- `01:38` www.professormesser.com
+- `01:40` all found by following this hierarchy we
+- `01:44` refer to this as a fully qualified
+- `01:46` domain name or an
+- `01:48` fqdn you can structure the names used in
+- `01:51` your organization into this fqdn model
+- `01:54` for example you can start with
+- `01:56` professormesser.com which incorporates
+- `01:58` everything within our domain underneath
+- `02:01` that name you might have
+- `02:03` www.professormesser.com which is the
+- `02:06` fully qualified domain name of our web
+- `02:08` server you can continue to add onto this
+- `02:11` domain name for example in our
+- `02:12` organization there is an East and a West
+- `02:15` for the domain names and within the East
+- `02:18` there might be servers and services with
+- `02:20` names associated with them and in the
+- `02:22` west there might be a separate group of
+- `02:24` services in that particular area of the
+- `02:27` domain we use DNS to resolve the IP
+- `02:30` address of many different services for
+- `02:32` example a web server would be a very
+- `02:34` common resolution but we also use this
+- `02:36` for things such as active directory and
+- `02:39` for application access to be able to
+- `02:41` maintain uptime and availability of such
+- `02:44` an important service we will often use
+- `02:46` redundant DNS servers this means we
+- `02:48` might have two or more DNS servers and
+- `02:51` we can configure our systems to use
+- `02:54` those redundant servers so that if the
+- `02:56` first server is not available you still
+- `02:58` have another server to choose you'll
+- `03:00` notice if you look at the configuration
+- `03:01` of your computer there are usually two
+- `03:04` DNS configuration settings this first
+- `03:06` one is for the primary DNS server this
+- `03:09` is a DNS server that has all of the Zone
+- `03:11` information for your particular DNS
+- `03:14` domain any changes you make to the
+- `03:16` configuration or updates to the config
+- `03:18` all happen in this primary DNS server
+- `03:22` the secondary DNS server is not used for
+- `03:24` primary configuration changes instead it
+- `03:27` receives an update from the primary DNS
+- `03:30` server all of this Zone information is
+- `03:32` pushed down to the secondary server in a
+- `03:34` readonly mode and anything that we get
+- `03:37` from a secondary DNS server was first
+- `03:40` configured on the primary DNS server
+- `03:42` from the in user's perspective of course
+- `03:44` it doesn't matter which DNS server is
+- `03:46` reference the same information exists in
+- `03:49` both of those and regardless of which
+- `03:51` server was accessed the end user has no
+- `03:53` idea if it came from a primary DNS
+- `03:55` server or a secondary DNS server in some
+- `03:59` situ situations you might not want to
+- `04:01` query a name server to provide that name
+- `04:03` resolution instead you might want all of
+- `04:06` that resolution to occur on your local
+- `04:08` machine we refer to that as a local name
+- `04:10` resolution for example if you have a
+- `04:13` test server you might want to configure
+- `04:15` your system to access this test IP
+- `04:18` address for that server rather than
+- `04:20` accessing the production server itself
+- `04:22` you might also use local name resolution
+- `04:25` if you feel that the DNS server has
+- `04:27` incorrect information and you want to
+- `04:28` have your own resolution that corrects
+- `04:31` that information on your local machine
+- `04:33` to accomplish this we need a file with
+- `04:36` all of this name resolution inside of it
+- `04:38` and the file name is commonly called the
+- `04:39` hosts file because the name of the file
+- `04:42` itself is called hosts this is an
+- `04:45` example of the host database it's simply
+- `04:47` a text file that contains information
+- `04:50` about the IP addresses and the names of
+- `04:52` the devices that you would like to
+- `04:53` resolve for example I have a test server
+- `04:56` for www.professormesser.com
+- `04:59` its IP address is
+- `05:02` 101117 and I can configure my host file
+- `05:04` to access that IP address every time I
+- `05:07` reference
+- `05:09` www.professormesser.com this works for
+- `05:12` many applications but there are certain
+- `05:14` apps that will not reference the host
+- `05:16` file instead they will rely on the DNS
+- `05:18` server as the primary source of
+- `05:20` information so you'll want to check the
+- `05:22` documentation for your application or
+- `05:24` your browser to see how it resolves this
+- `05:27` information and that way you'll know
+- `05:29` whether the host file is something that
+- `05:30` can be used on your system or whether
+- `05:32` you'll need to configure all of those
+- `05:34` settings on the DNS server itself here's
+- `05:36` a bigger view of this host file inside
+- `05:39` of Windows this file itself is located
+- `05:41` at Windows system32 drivers Etsy hosts
+- `05:47` this is a file that is often stored as a
+- `05:49` readonly document so if you want to make
+- `05:52` changes to this file you have to first
+- `05:54` change the file so that you have read
+- `05:56` write access and once you do that you
+- `05:58` can modify the text within the this file
+- `06:00` to have the IP addresses and names that
+- `06:02` you would prefer rather than the ones
+- `06:04` that are located on a DNS
+- `06:06` server one of the most common uses of a
+- `06:09` DNS server is to provide a forward
+- `06:12` lookup this means that we provide the
+- `06:14` DNS server with a name and it returns
+- `06:17` with an IP address for example we can
+- `06:19` send the name
+- `06:21` www.professormesser.com to the DNS
+- `06:23` server and the DNS server will respond
+- `06:25` back to us with the IP address
+- `06:27` associated with that fully qualif domain
+- `06:30` name but we can also provide this entire
+- `06:33` process in Reverse we refer to this as a
+- `06:35` reverse DNS where we provide the DNS
+- `06:38` server with an IP address and the DNS
+- `06:41` server gives us information on what it
+- `06:43` believes the name is for that IP this is
+- `06:46` something that will need to be
+- `06:48` configured in the DNS server to provide
+- `06:50` both a forward lookup and a reverse
+- `06:52` lookup and you'll often find the name
+- `06:54` that you use for the forward lookup
+- `06:57` might be different than the name you
+- `06:58` receive for the reverse lookup here are
+- `07:01` the results of a forward lookup I
+- `07:03` provided this lookup through a utility
+- `07:05` named dig this dig utility allows me to
+- `07:08` query DNS servers I use the Dig utility
+- `07:11` with the parameters
+- `07:20` www.professormesser.com
+- `07:22` and you can see that the results in the
+- `07:25` answer section show me three separate IP
+- `07:28` addresses associated with
+- `07:30` www.professormesser.com these three IP
+- `07:33` addresses are listed here in this order
+- `07:36` and at the bottom of this output we can
+- `07:37` see how long it took to perform the
+- `07:39` query and the DNS server that was
+- `07:41` referenced to provide these details with
+- `07:44` this particular example you can see that
+- `07:46` there are three separate IP addresses
+- `07:48` that could be used to access
+- `07:51` www.professormesser.com but let's
+- `07:53` perform a reverse lookup to one of these
+- `07:56` IP addresses and see what the name is
+- `07:58` that we get back back to perform the
+- `08:00` reverse DNS lookup I'm going to use the
+- `08:03` same dig utility but I'm going to use
+- `08:04` the option of DX and include the IP
+- `08:07` address of
+- `08:09` 10422
+- `08:11` 72108 and if we look down further into
+- `08:13` the results that we get we can see that
+- `08:16` that particular device is cruise. ns.
+- `08:19` cloudflare.com this is because the front
+- `08:22` end to the www.professormesser.com web
+- `08:26` server is actually a front end located
+- `08:28` at cloudfare .c and by performing the
+- `08:31` reverse DNS we can see the actual name
+- `08:34` of that server
+- `08:35` appear when you receive the results of a
+- `08:38` DNS query those are often provided to
+- `08:41` you through a server that is caching
+- `08:42` that information but occasionally you
+- `08:45` would like to get information from the
+- `08:47` primary DNS server for that domain we
+- `08:50` refer to that primary device as the
+- `08:52` authoritative server that means that
+- `08:54` that DNS server is the one that is the
+- `08:57` Authority for that entire DNS Zone Zone
+- `09:00` if you're accessing a DNS server or
+- `09:02` receiving a result from a DNS server
+- `09:04` that is not the authority then it would
+- `09:06` be a non-authoritative server so it may
+- `09:09` be a secondary server that's receiving a
+- `09:11` copy of the Zone files from the
+- `09:13` authoritative server but in many cases
+- `09:16` it's usually a server that is caching
+- `09:17` this information to make that DNS query
+- `09:20` much faster for example I use the NS
+- `09:22` lookup utility to perform a DNS query of
+- `09:26` www.professormesser.com and you can see
+- `09:28` that the SE that was used for that
+- `09:30` lookup was
+- `09:32` 999.9 which happens to be a DNS server
+- `09:35` that is hosted by Google you'll notice
+- `09:37` that the results that I get back specify
+- `09:39` that these are non-authoritative answers
+- `09:42` that means all of this information
+- `09:44` showing the IP addresses associated with
+- `09:47` www.professormesser.com
+- `09:59` cashed is that information could be
+- `10:01` outdated if I make a change to the IP
+- `10:03` addresses in my authoritative server
+- `10:06` there may be cached IP addresses on a
+- `10:08` non-authoritative server that are still
+- `10:11` providing incorrect information to in
+- `10:13` users fortunately we can specify how
+- `10:16` long a non-authoritative server will
+- `10:18` keep that information cached at the end
+- `10:21` of that time frame the non-authoritative
+- `10:23` server will delete those details and any
+- `10:25` subsequent queries for that domain name
+- `10:28` would need to go all the way way to the
+- `10:29` authoritative server so that information
+- `10:32` could be cached again we refer to the
+- `10:34` amount of time that a non-authoritative
+- `10:36` server will maintain that cach as a time
+- `10:39` to live or a TTL that time to live is
+- `10:43` added to the configuration file of the
+- `10:45` authoritative DNS and it's listed as the
+- `10:47` number of seconds that that information
+- `10:49` is allowed to be cached we can see this
+- `10:52` time to live when we perform a DNS query
+- `10:55` for example if you use dig to perform a
+- `10:58` query of WW ww. professormesser.com you
+- `11:01` can see that the results are showing
+- `11:03` three different IP addresses but you'll
+- `11:05` also see that there are some numbers
+- `11:07` included on each line of those IP
+- `11:09` addresses the number 300 this specifies
+- `11:13` that this information will only stay in
+- `11:15` a cach for 300 seconds so you know that
+- `11:18` the IP addresses that you're resolving
+- `11:20` are going to be 5 minutes old or
+- `11:23` less DNS commonly uses recursive DNS
+- `11:26` queries to populate those local DNS
+- `11:29` servers and cash that information so
+- `11:31` that we're able to obtain those
+- `11:33` resolutions as quickly as possible this
+- `11:35` is part of the overall efficiencies
+- `11:37` associated with DNS and allows us to
+- `11:40` have many different DNS queries taking
+- `11:42` place but minimize the amount of overall
+- `11:44` Network traffic the DNS server itself is
+- `11:47` the one doing all of the hard work
+- `11:49` behind the scenes the enduser never sees
+- `11:52` any of these recursive queries and then
+- `11:54` once the original recursive query is
+- `11:56` done we have information that's now
+- `11:58` cached on our local DNS server and any
+- `12:00` subsequent requests for that domain name
+- `12:03` will come from our local server in the
+- `12:05` cache let's look at how this recursive
+- `12:08` DNS query occurs let's first assume that
+- `12:11` no previous queries have been made for
+- `12:13` this domain name so nothing is hidden or
+- `12:15` stored within any caches we start with
+- `12:18` the device making the request we refer
+- `12:21` to this device as the resolver this
+- `12:23` resolver is going to make a request to
+- `12:26` your local DNS server so in this case
+- `12:29` we're looking for the name
+- `12:31` www.professormesser.com if your local
+- `12:34` DNS server is one that is managed by
+- `12:36` your company or it's one that may be at
+- `12:38` a third party such as Google that name
+- `12:41` of
+- `12:42` www.professormesser.com is not going to
+- `12:44` exist in that particular DNS database
+- `12:47` because the DNS server used by our
+- `12:50` domain is located at a different
+- `12:52` provider so how does our local name
+- `12:54` server know where to find that
+- `12:56` particular information fortunately the
+- `12:59` local DNS server is configured with a
+- `13:02` root server IP address so the local name
+- `13:05` server is going to make a request to the
+- `13:06` root server asking for
+- `13:09` www.professormesser.com the root Server
+- `13:12` doesn't contain that information but it
+- `13:13` does know where the Doom name server is
+- `13:16` and it provides that information to your
+- `13:18` local name server the local name server
+- `13:20` is then going to make a request to theom
+- `13:23` name server theame server does have a
+- `13:26` record that shows where the primary DNS
+- `13:29` is for the domain professormesser.com
+- `13:31` and it provides the answer of that IP
+- `13:34` address back to the local name server
+- `13:37` now the local name server knows exactly
+- `13:39` where the primary DNS server is and it
+- `13:41` makes a direct request to the
+- `13:43` professormesser.com name server and of
+- `13:46` course that server will know exactly the
+- `13:48` IP address for
+- `13:50` www.professormesser.com and it will
+- `13:52` provide that information back to your
+- `13:54` local name server now that that
+- `13:56` information is back at the local name
+- `13:58` server it can provide the answer back to
+- `14:00` your workstation and it will cach that
+- `14:02` information so that any subsequent
+- `14:05` requests will simply query the local
+- `14:07` name server and the local name server
+- `14:09` will be able to respond back
+- `14:11` immediately DNS is a protocol that has
+- `14:14` been around for a very long time and
+- `14:16` when it was first created there was not
+- `14:18` a lot of work put into security of the
+- `14:21` protocol information for DNS is usually
+- `14:24` sent in the clear and if someone was
+- `14:26` monitoring your DNS queries they could
+- `14:28` at least have an idea of the services or
+- `14:31` the names of devices that you're trying
+- `14:33` to access another challenge is that the
+- `14:35` results that we're getting from DNS are
+- `14:37` not authenticated so we're never quite
+- `14:39` sure if we're receiving legitimate
+- `14:42` responses from a DNS server or if the
+- `14:44` responses that we're receiving may be
+- `14:46` from a third-party or spoofed DNS server
+- `14:49` one way to resolve this is to use DNS
+- `14:52` SEC this is domain name security
+- `14:54` extensions where the responses that we
+- `14:57` get from these DNS servers are are
+- `14:59` digitally signed this means that we can
+- `15:01` verify that the information that we're
+- `15:03` receiving really did come from a trusted
+- `15:06` source and the information contained
+- `15:08` within that DNS response has not been
+- `15:10` modified by a third party somewhere
+- `15:13` along the transmission DNS SEC does
+- `15:15` require additional changes in
+- `15:17` configurations on your DNS server but it
+- `15:20` does provide a much more secure method
+- `15:22` of name
+- `15:23` resolution even though this information
+- `15:25` has now been digitally signed and we can
+- `15:27` confirm that we're receiving receiv
+- `15:29` receiving information from a trusted
+- `15:30` Source the information that's being sent
+- `15:32` is still in the clear which means
+- `15:34` anybody capturing that traffic can see
+- `15:36` the host names that you're trying to
+- `15:38` access one way to resolve this is to
+- `15:41` encrypt all of the traffic to and from
+- `15:43` the DNS server one method of encrypting
+- `15:45` this data is through DNS over TLS or do
+- `15:49` this allows you to send the DNS traffic
+- `15:51` over a different TCP Port than usual by
+- `15:54` default it's TCP 853 and it encrypts all
+- `15:57` of that information using very similar
+- `16:00` protocols to what we use when we are
+- `16:02` encrypting web server communication
+- `16:04` another form of encrypting this DNS
+- `16:06` information is to send DNS over https or
+- `16:10` do this is going to send all of that DNS
+- `16:13` information over a very standard https
+- `16:16` packet this is the same process of
+- `16:19` communication that we use to send and
+- `16:21` receive encrypted data to a web server
+- `16:24` and if you were to look at a packet
+- `16:25` capture you would see traffic that
+- `16:27` looked exactly like encrypted web server
+- `16:29` traffic that's being communicated over
+- `16:31` TCP Port
+- `16:33` 443 some of the more modern browsers use
+- `16:36` do by default and you may be already
+- `16:38` encrypting that DNS traffic whenever
+- `16:41` you're accessing web servers from your
+- `16:43` browser

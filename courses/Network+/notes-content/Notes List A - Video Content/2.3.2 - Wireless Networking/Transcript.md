@@ -1,0 +1,261 @@
+# [2.3.2 - Wireless Networking](https://www.youtube.com/watch?v=YEDutqG4C4U)
+
+## 2.3.2 - Wireless Networking
+
+- Day: Day 6
+- Duration: 11:54
+
+## Transcript
+
+- `00:01` When we think about wireless networking,
+- `00:04` we often think about connecting to an access point.
+- `00:07` But of course you can communicate directly
+- `00:09` to another device without an access point.
+- `00:12` We refer to this as Independent Basic Service Set or IBSS.
+- `00:17` You might also see this referred to as an ad hoc connection.
+- `00:21` This allows us to configure one device as an ad hoc connection,
+- `00:25` configure the other device as an ad hoc connection,
+- `00:28` and simply connect those two devices
+- `00:29` to each other over those wireless frequencies.
+- `00:33` You might have used this functionality
+- `00:34` when you've configured an internet of things device,
+- `00:37` such as a door lock or lights in your home.
+- `00:40` This is a way to connect to a device over an ad
+- `00:42` hoc connection, provide that device with information
+- `00:45` about your existing wireless network,
+- `00:48` and then have that device connect directly
+- `00:50` to the access point.
+- `00:52` And in most environments we have an access point
+- `00:55` that many different devices are connecting to,
+- `00:57` to be able to network everyone together.
+- `00:59` Behind the scenes, we're using different parameters
+- `01:02` to configure this device.
+- `01:04` Two of those parameters are the SSID and the BSSID.
+- `01:09` SSID stands for the Service Set Identifier,
+- `01:12` and it's the name of the wireless network
+- `01:14` that we're connecting to.
+- `01:15` So you might have an access point with an SSID of SGC1
+- `01:20` And when you bring up the list of all of the available access
+- `01:22` points in your area, you will see
+- `01:24` that SSID name appear in your list of available networks.
+- `01:29` Of course, this same SSID might be configured on multiple access
+- `01:34` points, especially if you have a very large home
+- `01:36` or you're in an environment where
+- `01:38` there are multiple areas of the building
+- `01:40` and you want to have wireless connectivity wherever
+- `01:43` you might be in that building.
+- `01:45` To be able to differentiate between one access
+- `01:48` point and the other, we need some type of hardware address
+- `01:51` on that access point.
+- `01:53` And that hardware address is known as the BSSID.
+- `01:57` This is the Basic Service Set Identifier.
+- `02:00` So although there is a wireless network name that we see,
+- `02:03` such as SGC1, there is also a hardware address
+- `02:07` that we normally do not see behind the scenes.
+- `02:10` In this case, this wireless access point has a BSSID
+- `02:14` of 60:3D26:11:22:33.
+- `02:19` As we've already mentioned, in your home or a very large
+- `02:22` business, you may have tens, hundreds, or even thousands
+- `02:25` of access points to manage.
+- `02:27` All of these access points need to be
+- `02:29` able to work together so that as you are passing
+- `02:32` from one building to another or from one area of the building
+- `02:35` to the other, you're able to seamlessly move
+- `02:38` from one wireless access point to the other.
+- `02:41` This is often done by using the same SSID or wireless network
+- `02:45` name on each of the wireless access points.
+- `02:48` We refer to the shared network name
+- `02:51` that's used across access points as an ESSID.
+- `02:55` The e stands for the extended service set identifier.
+- `02:59` With the ESSID configured across all of these different access
+- `03:02` points, you can start on one end of the building,
+- `03:05` walk to the other end of the building,
+- `03:07` and you will be moving automatically and seamlessly
+- `03:10` from one access point to the other.
+- `03:12` Here's a configuration that uses ESSID
+- `03:15` to provide that seamless roaming from one access
+- `03:18` point to the other.
+- `03:19` In the middle at the top, we have a network switch.
+- `03:23` This switch has an ethernet connection
+- `03:25` to an access point on the left and an access
+- `03:27` point on the right.
+- `03:28` And you can see that the BSSID, or the basic service set
+- `03:32` identifier, which is the hardware address of the access
+- `03:35` point, is different on this access point
+- `03:38` than it is for the other.
+- `03:40` Although these are obviously two different pieces of hardware,
+- `03:43` they are sharing the same SSID.
+- `03:46` You can see it's configured as SGC1 on this access point.
+- `03:49` It is also configured as SGC1 on the other access point.
+- `03:53` As we move outside the range of one access point
+- `03:57` and move into the range of another access point,
+- `04:00` that access point will automatically
+- `04:02` pick up that we are nearby and seamlessly connect this device
+- `04:06` to that same SSID without any notification
+- `04:10` on your mobile device.
+- `04:11` This means you can continue to surf the internet,
+- `04:14` transfer files, and use the network normally,
+- `04:17` even if you happen to be moving at the same time.
+- `04:20` When you first connect to a wireless access point,
+- `04:23` you may be prompted with a screen that
+- `04:25` gives you information about the network
+- `04:27` or requires you to authenticate to gain access to that network.
+- `04:31` We refer to this screen that appears
+- `04:33` and the prompt with the authentication
+- `04:35` credentials as a captive portal screen.
+- `04:38` For this captive portal to work, there is a centralized access
+- `04:41` table that identifies individuals that are already
+- `04:45` authenticated to the wireless network,
+- `04:47` and if it notices there's a new device that has not previously
+- `04:50` authenticated, it will present this captive portal screen
+- `04:53` to the end user.
+- `04:54` On the captive portal screen, there
+- `04:56` may be a series of terms that have to be agreed to
+- `04:59` or it may prompt for a username, a password, or some other type
+- `05:03` of authentication factor.
+- `05:05` If those credentials are entered properly,
+- `05:07` then that information is added to the access table
+- `05:09` and you gain access to that wireless network
+- `05:11` for a predefined amount of time.
+- `05:13` For example, your captive portal may be good for 24 hours
+- `05:17` and at the end of that 24 hour period,
+- `05:19` you have to reauthenticate to gain another 24 hours of access.
+- `05:25` There are many different ways to configure security
+- `05:28` on a wireless network.
+- `05:29` And if you look at the configuration of your access
+- `05:31` point, you may find that there are
+- `05:33` a number of different options that you could choose from.
+- `05:36` For example, on this access point,
+- `05:37` the security level is currently defined as WPA2 personal.
+- `05:42` This access point can also disable security.
+- `05:45` It can configure a security mode on this access point known
+- `05:47` as OWE, which stands for Opportunistic Wireless
+- `05:51` Encryption, which effectively allows someone
+- `05:54` to connect to the wireless network
+- `05:56` but prevents them from communicating directly
+- `05:58` to any other wireless device.
+- `06:00` This access point also supports WEP, different flavors
+- `06:04` of WPA, WPA2, and WPA3
+- `06:09` An open system, of course, means there is no security.
+- `06:12` There is no authentication process,
+- `06:14` and anyone on this wireless network
+- `06:16` can communicate to anyone else on this wireless network.
+- `06:19` This access point supports WPA, WPA2 and WPA3 using
+- `06:25` a personal type of security.
+- `06:27` Sometimes you'll see this referred to as PSK
+- `06:31` which stands for Pre-Shared Key.
+- `06:33` This means to gain access to this wireless network,
+- `06:35` we need to provide someone with a pre-shared key
+- `06:38` that everyone will use.
+- `06:40` For example, you may be at a coffee shop
+- `06:42` and there may be a notice at the coffee shop
+- `06:44` that the pre-shared key that everyone can use to access
+- `06:47` the network is hot coffee.
+- `06:50` Of course, if you're in a business environment,
+- `06:52` having everyone share the same password
+- `06:54` for the wireless network is inherently insecure.
+- `06:57` So most enterprises will use a different type of wireless
+- `07:01` security known as enterprise or 802.1x security.
+- `07:07` This allows the network administrator
+- `07:08` to require a username, password, or some other type
+- `07:11` of authentication to gain access to the wireless network.
+- `07:15` And most people will use their own personal credentials
+- `07:18` to be able to provide that access.
+- `07:20` This means you would use the same username and password you
+- `07:22` would normally use to log into other devices
+- `07:25` in that same enterprise network.
+- `07:28` This means if someone leaves the organization and their account
+- `07:30` is disabled, they no longer have access to that wireless network.
+- `07:35` If you look at the different antennas that
+- `07:37` are used on many of today's wireless networks,
+- `07:39` you may notice a number of different styles.
+- `07:42` The style of antenna that you see
+- `07:44` connected to this access point is an omnidirectional antenna.
+- `07:48` And it's a very common antenna type
+- `07:49` to find on our consumer or home based access points.
+- `07:53` An omnidirectional antenna will evenly
+- `07:56` distribute that wireless signal on all sides of the antenna.
+- `08:00` So you can put your access point in the middle of the room
+- `08:02` and everyone in the room will have the same signal
+- `08:06` strength as everyone else.
+- `08:08` This means you can put your access
+- `08:09` point in a centralized area and anyone who's nearby
+- `08:13` will be able to gain access to the wireless network.
+- `08:15` But this may not be the optimal antenna type to use.
+- `08:19` For example, your access point may
+- `08:20` be in the corner of an outside room
+- `08:23` and you're effectively only seeing a portion of that signal
+- `08:27` while the rest of it on this omnidirectional antenna
+- `08:30` is sent to places where no one will ever connect.
+- `08:33` In that scenario, you might want to use a directional antenna
+- `08:37` where you can take that wireless signal and send it
+- `08:40` into a single direction.
+- `08:43` This allows you to focus the transmission and receiving
+- `08:45` of wireless signals to a device that
+- `08:47` may be in the corner of a room or it
+- `08:50` may be connecting different buildings to each other.
+- `08:52` You'll often see these antennas measured
+- `08:55` as a total number of decibels.
+- `08:57` For example, a directional antenna
+- `08:59` may increase the performance of that signal
+- `09:02` by a certain decibels of gain.
+- `09:05` For example, you may see in the specifications of a directional
+- `09:08` antenna that it effectively increases the overall power
+- `09:12` by 3dB.
+- `09:14` And for every 3dB, we are effectively doubling the amount
+- `09:18` of power available.
+- `09:19` One type of directional antenna is a Yagi antenna.
+- `09:23` This is an example of a Yagi antenna.
+- `09:25` It is very directional and has a very high amount of gain.
+- `09:29` We also have other directional types,
+- `09:31` such as a parabolic antenna, where multiple signals can
+- `09:35` come in and bounce into a single feed horn in the front.
+- `09:39` So it's focusing all of those signals
+- `09:41` into a single point on the antenna.
+- `09:44` This is especially useful over longer distances
+- `09:47` where you need to collect that signal
+- `09:49` and focus it into a single spot.
+- `09:52` Most of the access points that we use at home
+- `09:55` are autonomous access points.
+- `09:57` This means that the access point doesn't
+- `09:59` require any type of additional hardware or software
+- `10:02` to be able to operate.
+- `10:03` It's effectively a standalone device
+- `10:05` that doesn't rely on anything else
+- `10:07` to be able to maintain that wireless connectivity.
+- `10:11` But in an enterprise, you may not
+- `10:13` be using autonomous access points.
+- `10:15` Instead, you may be using lightweight access points.
+- `10:18` This separates the wireless functionality into the hardware
+- `10:21` that you would mount into the ceiling,
+- `10:23` and the configurations and intelligence of that device
+- `10:27` are often maintained on the switch the access
+- `10:29` point is connected to.
+- `10:31` This not only allows us to have less expensive access points
+- `10:35` that we can deploy, it also gives us
+- `10:37` functionality for being able to manage those devices.
+- `10:40` One standard for managing wireless access point
+- `10:43` is known as CAPWAP.
+- `10:44` This is control and provisioning of wireless access points,
+- `10:48` and it allows you as the network administrator
+- `10:51` to manage and configure all of these wireless access points
+- `10:54` from one central management station.
+- `10:56` We refer to this central station as a wireless lan controller
+- `11:00` and allows us to connect and view
+- `11:02` the entire wireless infrastructure from one
+- `11:05` single screen.
+- `11:06` We often refer to this as a single pane of glass.
+- `11:09` From this single management station,
+- `11:11` we can deploy new access points.
+- `11:13` We can monitor the performance of our existing access point
+- `11:17` infrastructure.
+- `11:18` We can make changes to the configuration
+- `11:20` of our wireless network and deploy those changes to some
+- `11:23` or all of our access points.
+- `11:25` And this might also create reports showing us
+- `11:28` how much of the wireless network is being used and by whom.
+- `11:32` This wireless LAN controller is often
+- `11:34` paired with the wireless access points themselves,
+- `11:37` so you're often getting the access points
+- `11:39` and the wireless management station
+- `11:41` all from the same manufacturer.

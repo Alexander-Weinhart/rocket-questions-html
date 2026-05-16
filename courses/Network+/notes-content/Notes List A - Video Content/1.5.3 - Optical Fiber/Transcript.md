@@ -1,0 +1,95 @@
+# [1.5.3 - Optical Fiber](https://www.youtube.com/watch?v=qLsNZSaj35E)
+
+## 1.5.3 - Optical Fiber
+
+- Day: Day 2
+- Duration: 3:55
+
+## Transcript
+
+- `00:01` Many of us are accustomed to using twisted pair copper,
+- `00:05` especially if we have networks that we use at home or even
+- `00:07` at our office.
+- `00:08` But you may occasionally have a need
+- `00:10` for fiber optic connectivity, and that fiber optic
+- `00:13` connectivity allows you to send traffic
+- `00:15` across the network using light.
+- `00:17` These are often used on very secure networks
+- `00:20` because it is very difficult to tap into a fiber
+- `00:23` optic connection without having some type of notification.
+- `00:26` This is very different than a copper based network which
+- `00:29` uses RF and is relatively easy to tap and gain information
+- `00:34` from.
+- `00:34` Fiber optics are also used over very long distances
+- `00:38` because the signal doesn't degrade as fast as a radio
+- `00:41` frequency might.
+- `00:42` So the same signal that we can send over 100 meters of a copper
+- `00:46` network might be able to be sent over kilometers
+- `00:49` if you were using fiber optics.
+- `00:51` And, of course, light is not susceptible to any type of radio
+- `00:55` frequency interference.
+- `00:57` And if you're working in an environment
+- `00:58` where there is interference, you might
+- `01:00` want to use fiber optics to avoid any type of problem
+- `01:03` with your network.
+- `01:05` Just as there are many different standards
+- `01:07` and many different connectors for copper based networks,
+- `01:10` there are also many different standards and connectors
+- `01:13` for fiber optic networks as well.
+- `01:15` So you'll want to check the configuration and documentation
+- `01:18` of your devices and make sure that the fiber optics
+- `01:21` that you're connecting are using the right type of fiber
+- `01:24` and the right type of connector.
+- `01:26` If we were to deconstruct a fiber optic cable,
+- `01:29` you would have something very similar to this.
+- `01:32` On one side of the cable is the light source.
+- `01:34` This might be an LED or a laser.
+- `01:36` And on the other side is the receiver.
+- `01:38` This LED is sending a light through this fiber optic
+- `01:43` and that consists of a core that is very reflective,
+- `01:46` and you can see the light bouncing through this core
+- `01:49` as it receives on the other side.
+- `01:51` Around the core is a low reflective cladding,
+- `01:53` and the entire fiber optic run is protected with a buffer
+- `01:57` coating around the outside.
+- `01:59` Here's the connector that's at the end of a fiber optic cable.
+- `02:02` It has a protective ferrule around the outside of the fiber.
+- `02:07` And if you look very closely at the very middle
+- `02:09` of this connection, you can just barely make out
+- `02:12` the core of the fiber that's in the middle.
+- `02:15` I'll highlight it here so that you can really
+- `02:17` see where that happens to be.
+- `02:18` Let's remove that highlight.
+- `02:20` Now you can start to see that discoloration
+- `02:23` where the fiber is connected on the end of that cable.
+- `02:26` We will generally install one of two different types
+- `02:29` of fiber optic cables.
+- `02:31` One is a multi-mode fiber and the other
+- `02:33` is a single-mode fiber.
+- `02:35` Multi-mode fiber is commonly used for relatively short range
+- `02:38` communication.
+- `02:39` This would be up to around 2 kilometers in distance.
+- `02:42` And often this uses an inexpensive light source,
+- `02:45` such as a light emitting diode or an LED.
+- `02:48` The core of the fiber optic is relatively large, certainly
+- `02:52` larger than the wavelength of the light.
+- `02:55` And because of that, the light itself
+- `02:57` can use different modes to be able to transmit
+- `03:00` through that fiber.
+- `03:01` And you can see the different modes bouncing off
+- `03:03` the edges of the fiber optic cable itself.
+- `03:06` Because there are different modes that
+- `03:08` are being communicated through this fiber,
+- `03:10` we refer to that as multi-mode fiber.
+- `03:13` If we're communicating over a much longer distance,
+- `03:16` we may want to use single-mode fiber.
+- `03:18` Some standards of fiber based ethernet
+- `03:20` can communicate up to 100 kilometers without a need
+- `03:23` to regenerate the signal.
+- `03:24` Because we're going a longer distance,
+- `03:27` we may be using a very bright and intense LED
+- `03:30` or we may be using laser to be able to extend this signal much
+- `03:34` further.
+- `03:35` A single-mode fiber also has a smaller core,
+- `03:38` which can only allow a single mode of light
+- `03:41` to propagate through the fiber.

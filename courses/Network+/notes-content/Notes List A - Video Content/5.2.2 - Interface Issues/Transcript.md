@@ -1,0 +1,261 @@
+# [5.2.2 - Interface Issues](https://www.youtube.com/watch?v=7b4RkdITO4Q)
+
+## 5.2.2 - Interface Issues
+
+- Day: Day 10
+- Duration: 9:29
+
+## Transcript
+
+- `00:02` Network administrators use a great deal
+- `00:04` of their time to monitor different
+- `00:06` interfaces on important devices this
+- `00:09` allows us to see any problems that might
+- `00:11` be developing either with a bad cable or
+- `00:13` a bad interface and we may be able to
+- `00:15` resolve that problem before it becomes
+- `00:17` an outage sometimes these interface
+- `00:20` statistics can warn us of congestion or
+- `00:22` overutilization on a network and we may
+- `00:25` be able to make some decisions about how
+- `00:27` to change the design of the network to
+- `00:29` better deal with that oversaturation
+- `00:31` many operating systems can also give you
+- `00:33` a great deal of feedback on how your
+- `00:36` interface may be performing in your
+- `00:38` device you can look at this under the
+- `00:40` network configurations depending on what
+- `00:42` operating system you're using network
+- `00:44` administrators obviously don't have time
+- `00:46` to log into every single system to watch
+- `00:48` these interfaces so they automate the
+- `00:50` process using the simple Network
+- `00:52` management protocol or SNMP many devices
+- `00:55` will support a standard set of SNMP
+- `00:58` statistics known as a MIB 2 this is a
+- `01:01` management information base MIB 2
+- `01:04` provides us with a set of standard
+- `01:06` statistics that are common across many
+- `01:07` different devices but you may find that
+- `01:10` your firewall or your switch might have
+- `01:12` some statistics that are unique to that
+- `01:14` particular device and there may be a
+- `01:16` proprietary MIB that you can integrate
+- `01:18` into that process to get even more
+- `01:21` visibility into that
+- `01:23` interface one piece of information that
+- `01:25` we can gather using these techniques is
+- `01:28` to determine whether the link is up up
+- `01:30` or the link is down this is our link
+- `01:32` status this may be a problem with the
+- `01:34` cable an interface or it may be an issue
+- `01:37` with the device rebooting utilization is
+- `01:40` also a great metric to monitor
+- `01:42` especially if you're concerned about
+- `01:43` total throughput through the network you
+- `01:45` want to be sure that you have enough
+- `01:46` bandwidth for all of the services
+- `01:48` running over that network connection and
+- `01:50` if you're not quite sure the total
+- `01:52` amount of throughputs you can get over a
+- `01:54` link you may want to run some bandwidth
+- `01:56` tests and see what the throughput might
+- `01:58` be and if you want some typ of
+- `02:00` notification that problems might be
+- `02:02` brewing with that particular connection
+- `02:04` then you'll want to look at all of the
+- `02:05` errors that are on that particular
+- `02:07` interface this includes CRC errors runts
+- `02:10` Giants drops and other interface errors
+- `02:13` as well this often points to a problem
+- `02:16` with the cable or a problem with the
+- `02:18` interface so we may need to do
+- `02:20` additional troubleshooting to determine
+- `02:22` what's causing these specific
+- `02:24` errors before we dive into those errors
+- `02:27` let's look at the structure of an
+- `02:29` Ethernet frame the first part of an
+- `02:31` Ethernet frame is a part we normally
+- `02:33` don't see it's the Preamble and the sfd
+- `02:36` or the start frame delimiter these two
+- `02:38` Fields identify the beginning of an
+- `02:40` Ethernet frame and lets a system know
+- `02:42` that everything after the start frame
+- `02:44` delimeter is a normal ethernet frame if
+- `02:46` you are capturing these frames on a
+- `02:48` packet analyzer you probably would not
+- `02:50` see the Preamble and the start frame
+- `02:52` delimeter instead you would see the
+- `02:54` beginning of the frame with the
+- `02:55` destination Mac address and the source
+- `02:57` Mac address this identifies the device
+- `03:00` that is sending this particular frame
+- `03:02` and the destination of where this Frame
+- `03:04` should be going this destination Mac is
+- `03:06` one that is used by switches for example
+- `03:09` so that it knows where to forward a
+- `03:11` particular frame the next field of the
+- `03:13` frame is The Ether type this describes
+- `03:15` what type of data we would expect to see
+- `03:17` in the rest of this particular frame
+- `03:20` then you would have the payload of the
+- `03:21` frame itself and at the very end we have
+- `03:24` the frame check sequence this is a check
+- `03:26` sum that can be calculated very quickly
+- `03:29` that tells us if all of the information
+- `03:31` that we've received for this particular
+- `03:32` frame came through without any type of
+- `03:34` corruption and when this Frame check
+- `03:36` sequence does not match the rest of the
+- `03:38` data in the frame we have a cyclic
+- `03:40` redundancy check check sum error or CRC
+- `03:44` error the CRC error is often our first
+- `03:47` warning that there's some type of
+- `03:49` problem with the signal on this
+- `03:50` particular connection and we might want
+- `03:52` to look at our cable or our interfaces
+- `03:54` to remove those CRC errors that CRC is
+- `03:57` calculated when you receive the frame
+- `03:59` that CRC is recalculated internally on
+- `04:02` your ethernet adapter and it's compared
+- `04:04` to the check sum that is included in the
+- `04:06` frame check sequence if those two match
+- `04:09` then we've received the frame without
+- `04:10` any type of corruption but if there is a
+- `04:13` mismatch between that data in the frame
+- `04:15` and the information that's in the frame
+- `04:17` check sequence we know that there is an
+- `04:20` error and the CRC counter is incremented
+- `04:22` by one if your error counter for runs is
+- `04:25` increasing it means that we've received
+- `04:28` a frame that is less than 64 bytes 64
+- `04:31` bytes is the minimum size of a frame
+- `04:34` that you should see so if you happen to
+- `04:35` see a frame that is less than 64 bytes
+- `04:38` that would be qualified as an error we
+- `04:40` don't often see runts any longer because
+- `04:42` most of our switch networks are full
+- `04:44` duplex but if you happen to be working
+- `04:46` with a network that is running at half
+- `04:48` duplex you may very well find runts
+- `04:51` occurring whenever there's a collision
+- `04:53` the default maximum frame size on
+- `04:55` ethernet is 1, 1518 bytes and if you
+- `04:59` have to have a frame come across the
+- `05:01` network that is larger than that value
+- `05:03` we describe that as a giant of course
+- `05:06` you can also have jumbo frames that are
+- `05:08` much larger than 1 1518 bytes but those
+- `05:11` jumbo frames are defined within the
+- `05:13` switches and the devices that you're
+- `05:15` using so those also have a maximum size
+- `05:18` and if those frames are larger than the
+- `05:20` maximum size that's configured those are
+- `05:22` also defined as a giant and of course if
+- `05:25` there's some type of contention or
+- `05:27` buffering problem with the devices on
+- `05:29` your network
+- `05:30` these frames may be lost because there's
+- `05:32` no room to hold them in any type of
+- `05:34` buffer in that case you may see the drop
+- `05:36` counter is incremented on your system
+- `05:39` and that may indicate that you have some
+- `05:40` type of communication problem on your
+- `05:43` network most devices and operating
+- `05:46` systems give you a way to view these
+- `05:48` error counters this is a set of counters
+- `05:50` from a Cisco device you can see I'm
+- `05:52` showing the interface statistics for one
+- `05:54` of the fast ethernet interfaces and you
+- `05:57` can see that I've highlighted the
+- `05:58` section for run mons Giants crc's and
+- `06:02` you can see there are some other errors
+- `06:03` associated with this list as well this
+- `06:06` is where we could start to get a warning
+- `06:08` that something might be going wrong if
+- `06:10` we happen to see the CRC error is slowly
+- `06:12` incrementing that may indicate that
+- `06:14` we're having a problem with a cable or
+- `06:16` an interface we may need to have some
+- `06:18` downtime to replace either one of those
+- `06:21` you may find that some interface issues
+- `06:24` create a much larger problem if they're
+- `06:26` left to their own devices it might be a
+- `06:28` better idea to turn off certain
+- `06:30` interfaces if we happen to run into a
+- `06:32` particular kind of problem if you can
+- `06:35` see the problem happening you can log
+- `06:37` into a device and administratively
+- `06:39` disable a particular interface that
+- `06:41` obviously isn't fixing the problem we're
+- `06:43` more addressing the symptom but at least
+- `06:46` we've now gotten the interface into a
+- `06:48` mode where it won't cause additional
+- `06:49` problems on the network instead of you
+- `06:52` as the network administrator having to
+- `06:54` interactively log into a device and
+- `06:56` administratively disabling an interface
+- `06:58` it would be much easier easier if the
+- `07:00` device would automatically recognize
+- `07:02` this problem and automatically disable
+- `07:04` that interface we refer to this state as
+- `07:07` error disabled where the device has
+- `07:09` disabled this interface without any type
+- `07:11` of human intervention you might see this
+- `07:13` happen if an interface on a switch is
+- `07:15` flapping which means that the interface
+- `07:17` is up then the interface goes down then
+- `07:19` the interface comes up again then the
+- `07:21` interface goes down so a switch might
+- `07:23` error disable that interface so that
+- `07:25` it's no longer flapping up and down and
+- `07:28` causing problems with space Banning tree
+- `07:30` and other switch functions or we may be
+- `07:32` limiting how many devices can connect to
+- `07:35` any particular switch interface so if we
+- `07:37` have configured this port security and
+- `07:39` someone unplugs a device and plugs their
+- `07:42` own laptop into it your switch will go
+- `07:44` into an error disabled state for that
+- `07:47` interface or there might be a
+- `07:48` configuration problem or an increase in
+- `07:51` number of errors and all of those can
+- `07:53` cause the interface to move into an
+- `07:55` error disabled State when a switch
+- `07:58` disables one of its interfac
+- `07:59` because of these errors it's not going
+- `08:01` to turn that interface back on you have
+- `08:04` to log into the switch and
+- `08:05` administratively reenable that
+- `08:07` particular interface only then will that
+- `08:10` interface be able to operate again but
+- `08:12` if that interface has the same problems
+- `08:14` occur again it could possibly move back
+- `08:16` into an error disabled
+- `08:19` State instead of error disabled you
+- `08:21` might see an interface is
+- `08:23` administratively down that means that an
+- `08:25` administrator logged into that system
+- `08:27` and specifically turned off that inter
+- `08:29` interface this was an intentional act by
+- `08:32` the administrator and it wasn't
+- `08:33` something that was done automatically to
+- `08:35` be able to use that interface again you
+- `08:37` would have to log into that device and
+- `08:39` administratively enable that interface
+- `08:42` and on some switches we have a mode
+- `08:43` that's very similar to error disabled
+- `08:46` except it's an error that occurs the
+- `08:48` moment you turn that interface on this
+- `08:50` is a suspended Port status and this
+- `08:52` means that we've connected this
+- `08:54` interface to a configuration that is
+- `08:56` incompatible with the settings of that
+- `08:58` interface for example you may be
+- `09:00` configuring link aggregation between two
+- `09:02` switches and you've enabled the link
+- `09:05` aggregation control protocol or lacp if
+- `09:08` you configure lacp on one side but you
+- `09:11` don't configure lacp on the other you
+- `09:13` may find that the interface immediately
+- `09:15` moves into a suspended state

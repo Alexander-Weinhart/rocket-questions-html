@@ -2,185 +2,2275 @@
   "roots": [
     {
       "type": "directory",
-      "name": "MASTER LIST",
-      "path": "MASTER LIST",
-      "children": [
-        {
-          "type": "directory",
-          "name": "1.0 Networking Concepts",
-          "path": "MASTER LIST/1.0 Networking Concepts",
-          "children": [
-            {
-              "type": "file",
-              "name": "1.1 - Explain concepts related to the Open Systems Interconnection (OSI) reference model.md",
-              "path": "MASTER LIST/1.0 Networking Concepts/1.1 - Explain concepts related to the Open Systems Interconnection (OSI) reference model.md"
-            },
-            {
-              "type": "file",
-              "name": "1.2 - Compare and contrast networking appliances, applications, and functions.md",
-              "path": "MASTER LIST/1.0 Networking Concepts/1.2 - Compare and contrast networking appliances, applications, and functions.md"
-            },
-            {
-              "type": "file",
-              "name": "1.3 - Summarize cloud concepts and connectivity options.md",
-              "path": "MASTER LIST/1.0 Networking Concepts/1.3 - Summarize cloud concepts and connectivity options.md"
-            },
-            {
-              "type": "file",
-              "name": "1.4 - Explain common networking ports, protocols, services, and traffic types.md",
-              "path": "MASTER LIST/1.0 Networking Concepts/1.4 - Explain common networking ports, protocols, services, and traffic types.md"
-            },
-            {
-              "type": "file",
-              "name": "1.5 - Compare and contrast transmission media and transceivers.md",
-              "path": "MASTER LIST/1.0 Networking Concepts/1.5 - Compare and contrast transmission media and transceivers.md"
-            },
-            {
-              "type": "file",
-              "name": "1.6 - Compare and contrast network topologies, architectures, and types.md",
-              "path": "MASTER LIST/1.0 Networking Concepts/1.6 - Compare and contrast network topologies, architectures, and types.md"
-            },
-            {
-              "type": "file",
-              "name": "1.7 - Given a scenario, use appropriate IPv4 network addressing.md",
-              "path": "MASTER LIST/1.0 Networking Concepts/1.7 - Given a scenario, use appropriate IPv4 network addressing.md"
-            },
-            {
-              "type": "file",
-              "name": "1.8 - Summarize evolving use cases for modern network environments.md",
-              "path": "MASTER LIST/1.0 Networking Concepts/1.8 - Summarize evolving use cases for modern network environments.md"
-            }
-          ]
-        },
-        {
-          "type": "directory",
-          "name": "2.0 Network Implementation",
-          "path": "MASTER LIST/2.0 Network Implementation",
-          "children": [
-            {
-              "type": "file",
-              "name": "2.1 - Explain characteristics of routing technologies.md",
-              "path": "MASTER LIST/2.0 Network Implementation/2.1 - Explain characteristics of routing technologies.md"
-            },
-            {
-              "type": "file",
-              "name": "2.2 - Given a scenario, configure switching technologies and features.md",
-              "path": "MASTER LIST/2.0 Network Implementation/2.2 - Given a scenario, configure switching technologies and features.md"
-            },
-            {
-              "type": "file",
-              "name": "2.3 - Given a scenario, select and configure wireless devices and technologies.md",
-              "path": "MASTER LIST/2.0 Network Implementation/2.3 - Given a scenario, select and configure wireless devices and technologies.md"
-            },
-            {
-              "type": "file",
-              "name": "2.4 - Explain important factors of physical installations.md",
-              "path": "MASTER LIST/2.0 Network Implementation/2.4 - Explain important factors of physical installations.md"
-            }
-          ]
-        },
-        {
-          "type": "directory",
-          "name": "3.0 Network Operations",
-          "path": "MASTER LIST/3.0 Network Operations",
-          "children": [
-            {
-              "type": "file",
-              "name": "3.1 - Explain the purpose of organizational processes and procedures.md",
-              "path": "MASTER LIST/3.0 Network Operations/3.1 - Explain the purpose of organizational processes and procedures.md"
-            },
-            {
-              "type": "file",
-              "name": "3.2 - Given a scenario, use network monitoring technologies.md",
-              "path": "MASTER LIST/3.0 Network Operations/3.2 - Given a scenario, use network monitoring technologies.md"
-            },
-            {
-              "type": "file",
-              "name": "3.3 - Explain disaster recovery (DR) concepts.md",
-              "path": "MASTER LIST/3.0 Network Operations/3.3 - Explain disaster recovery (DR) concepts.md"
-            },
-            {
-              "type": "file",
-              "name": "3.4 - Given a scenario, implement IPv4 and IPv6 network services.md",
-              "path": "MASTER LIST/3.0 Network Operations/3.4 - Given a scenario, implement IPv4 and IPv6 network services.md"
-            },
-            {
-              "type": "file",
-              "name": "3.5 - Compare and contrast network access and management methods.md",
-              "path": "MASTER LIST/3.0 Network Operations/3.5 - Compare and contrast network access and management methods.md"
-            }
-          ]
-        },
-        {
-          "type": "directory",
-          "name": "4.0 Network Security",
-          "path": "MASTER LIST/4.0 Network Security",
-          "children": [
-            {
-              "type": "file",
-              "name": "4.1 - Explain the importance of basic network security concepts.md",
-              "path": "MASTER LIST/4.0 Network Security/4.1 - Explain the importance of basic network security concepts.md"
-            },
-            {
-              "type": "file",
-              "name": "4.2 - Summarize various types of attacks and their impact to the network.md",
-              "path": "MASTER LIST/4.0 Network Security/4.2 - Summarize various types of attacks and their impact to the network.md"
-            },
-            {
-              "type": "file",
-              "name": "4.3 - Given a scenario, apply network security features, defense techniques, and solutions.md",
-              "path": "MASTER LIST/4.0 Network Security/4.3 - Given a scenario, apply network security features, defense techniques, and solutions.md"
-            }
-          ]
-        },
-        {
-          "type": "directory",
-          "name": "5.0 Network Troubleshooting",
-          "path": "MASTER LIST/5.0 Network Troubleshooting",
-          "children": [
-            {
-              "type": "file",
-              "name": "5.1 - Explain the troubleshooting methodology.md",
-              "path": "MASTER LIST/5.0 Network Troubleshooting/5.1 - Explain the troubleshooting methodology.md"
-            },
-            {
-              "type": "file",
-              "name": "5.2 - Given a scenario, troubleshoot common cabling and physical interface issues.md",
-              "path": "MASTER LIST/5.0 Network Troubleshooting/5.2 - Given a scenario, troubleshoot common cabling and physical interface issues.md"
-            },
-            {
-              "type": "file",
-              "name": "5.3 - Given a scenario, troubleshoot common issues with network services.md",
-              "path": "MASTER LIST/5.0 Network Troubleshooting/5.3 - Given a scenario, troubleshoot common issues with network services.md"
-            },
-            {
-              "type": "file",
-              "name": "5.4 - Given a scenario, troubleshoot common performance issues.md",
-              "path": "MASTER LIST/5.0 Network Troubleshooting/5.4 - Given a scenario, troubleshoot common performance issues.md"
-            },
-            {
-              "type": "file",
-              "name": "5.5 - Given a scenario, use the appropriate tool or protocol to solve networking issues.md",
-              "path": "MASTER LIST/5.0 Network Troubleshooting/5.5 - Given a scenario, use the appropriate tool or protocol to solve networking issues.md"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "directory",
       "name": "Notes List A - Video Content",
       "path": "Notes List A - Video Content",
       "children": [
         {
           "type": "directory",
-          "name": "Video 1 - PLACEHOLDER",
-          "path": "Notes List A - Video Content/Video 1 - PLACEHOLDER",
+          "name": "0.1.1 - How to Pass Your N10-009 Network+ Exam",
+          "path": "Notes List A - Video Content/0.1.1 - How to Pass Your N10-009 Network+ Exam",
           "children": [
             {
               "type": "file",
               "name": "Transcript.md",
-              "path": "Notes List A - Video Content/Video 1 - PLACEHOLDER/Transcript.md"
+              "path": "Notes List A - Video Content/0.1.1 - How to Pass Your N10-009 Network+ Exam/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/0.1.1 - How to Pass Your N10-009 Network+ Exam/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=k7IOn3TiUc8",
+              "videoId": "k7IOn3TiUc8"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.1.1 - Understanding the OSI Model",
+          "path": "Notes List A - Video Content/1.1.1 - Understanding the OSI Model",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.1.1 - Understanding the OSI Model/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.1.1 - Understanding the OSI Model/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=AYgXr1dynKU",
+              "videoId": "AYgXr1dynKU"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.2.1 - Networking Devices",
+          "path": "Notes List A - Video Content/1.2.1 - Networking Devices",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.2.1 - Networking Devices/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.2.1 - Networking Devices/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=iqjj4ZSPV08",
+              "videoId": "iqjj4ZSPV08"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.2.2 - Networking Functions",
+          "path": "Notes List A - Video Content/1.2.2 - Networking Functions",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.2.2 - Networking Functions/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.2.2 - Networking Functions/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=9uDpWfMbAdQ",
+              "videoId": "9uDpWfMbAdQ"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.3.1 - Designing the Cloud",
+          "path": "Notes List A - Video Content/1.3.1 - Designing the Cloud",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.3.1 - Designing the Cloud/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.3.1 - Designing the Cloud/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=HzF7sg6Nx0c",
+              "videoId": "HzF7sg6Nx0c"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.3.2 - Cloud Models",
+          "path": "Notes List A - Video Content/1.3.2 - Cloud Models",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.3.2 - Cloud Models/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.3.2 - Cloud Models/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=wI2x6eGF1Yg",
+              "videoId": "wI2x6eGF1Yg"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.4.1 - Introduction to IP",
+          "path": "Notes List A - Video Content/1.4.1 - Introduction to IP",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.4.1 - Introduction to IP/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.4.1 - Introduction to IP/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=ueth6WvFVMU",
+              "videoId": "ueth6WvFVMU"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.4.2 - Common Ports",
+          "path": "Notes List A - Video Content/1.4.2 - Common Ports",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.4.2 - Common Ports/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.4.2 - Common Ports/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=jX1pobYmZdE",
+              "videoId": "jX1pobYmZdE"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.4.3 - Other Useful Protocols",
+          "path": "Notes List A - Video Content/1.4.3 - Other Useful Protocols",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.4.3 - Other Useful Protocols/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.4.3 - Other Useful Protocols/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=5BahWbszVAY",
+              "videoId": "5BahWbszVAY"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.4.4 - Network Communication",
+          "path": "Notes List A - Video Content/1.4.4 - Network Communication",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.4.4 - Network Communication/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.4.4 - Network Communication/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=9Vx-awO6qfc",
+              "videoId": "9Vx-awO6qfc"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.5.1 - Wireless Networking",
+          "path": "Notes List A - Video Content/1.5.1 - Wireless Networking",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.5.1 - Wireless Networking/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.5.1 - Wireless Networking/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=NeTwL-040ds",
+              "videoId": "NeTwL-040ds"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.5.2 - Ethernet Standards",
+          "path": "Notes List A - Video Content/1.5.2 - Ethernet Standards",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.5.2 - Ethernet Standards/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.5.2 - Ethernet Standards/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=BxpRuARS56g",
+              "videoId": "BxpRuARS56g"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.5.3 - Optical Fiber",
+          "path": "Notes List A - Video Content/1.5.3 - Optical Fiber",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.5.3 - Optical Fiber/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.5.3 - Optical Fiber/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=qLsNZSaj35E",
+              "videoId": "qLsNZSaj35E"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.5.4 - Copper Cabling",
+          "path": "Notes List A - Video Content/1.5.4 - Copper Cabling",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.5.4 - Copper Cabling/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.5.4 - Copper Cabling/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=zoefzxHIfPc",
+              "videoId": "zoefzxHIfPc"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.5.5 - Network Transceivers",
+          "path": "Notes List A - Video Content/1.5.5 - Network Transceivers",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.5.5 - Network Transceivers/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.5.5 - Network Transceivers/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=0aMmwkiuT0o",
+              "videoId": "0aMmwkiuT0o"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.5.6 - Fiber Connectors",
+          "path": "Notes List A - Video Content/1.5.6 - Fiber Connectors",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.5.6 - Fiber Connectors/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.5.6 - Fiber Connectors/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=PNoqhs5QvFw",
+              "videoId": "PNoqhs5QvFw"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.5.7 - Copper Connectors",
+          "path": "Notes List A - Video Content/1.5.7 - Copper Connectors",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.5.7 - Copper Connectors/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.5.7 - Copper Connectors/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=Ca6rzoQm15w",
+              "videoId": "Ca6rzoQm15w"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.6.1 - Network Topologies",
+          "path": "Notes List A - Video Content/1.6.1 - Network Topologies",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.6.1 - Network Topologies/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.6.1 - Network Topologies/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=3ARTjvpZCoQ",
+              "videoId": "3ARTjvpZCoQ"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.6.2 - Network Architectures",
+          "path": "Notes List A - Video Content/1.6.2 - Network Architectures",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.6.2 - Network Architectures/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.6.2 - Network Architectures/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=vVEL1LokboE",
+              "videoId": "vVEL1LokboE"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.7.1 - Binary Math",
+          "path": "Notes List A - Video Content/1.7.1 - Binary Math",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.7.1 - Binary Math/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.7.1 - Binary Math/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=94dcHJfEAIo",
+              "videoId": "94dcHJfEAIo"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.7.2 - IPv4 Addressing",
+          "path": "Notes List A - Video Content/1.7.2 - IPv4 Addressing",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.7.2 - IPv4 Addressing/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.7.2 - IPv4 Addressing/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=JNNcyZ_VE2A",
+              "videoId": "JNNcyZ_VE2A"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.7.3 - Classful Subnetting",
+          "path": "Notes List A - Video Content/1.7.3 - Classful Subnetting",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.7.3 - Classful Subnetting/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.7.3 - Classful Subnetting/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=XVIOtj-Z9m0",
+              "videoId": "XVIOtj-Z9m0"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.7.4 - IPv4 Subnet Masks",
+          "path": "Notes List A - Video Content/1.7.4 - IPv4 Subnet Masks",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.7.4 - IPv4 Subnet Masks/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.7.4 - IPv4 Subnet Masks/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=p5NJ5Jt6oJo",
+              "videoId": "p5NJ5Jt6oJo"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.7.5 - Calculating IPv4 Subnets and Hosts",
+          "path": "Notes List A - Video Content/1.7.5 - Calculating IPv4 Subnets and Hosts",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.7.5 - Calculating IPv4 Subnets and Hosts/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.7.5 - Calculating IPv4 Subnets and Hosts/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=cYQOMifDlKI",
+              "videoId": "cYQOMifDlKI"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.7.6 - Magic Number Subnetting",
+          "path": "Notes List A - Video Content/1.7.6 - Magic Number Subnetting",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.7.6 - Magic Number Subnetting/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.7.6 - Magic Number Subnetting/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=P1ROXMLjL04",
+              "videoId": "P1ROXMLjL04"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.7.7 - Seven Second Subnetting",
+          "path": "Notes List A - Video Content/1.7.7 - Seven Second Subnetting",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.7.7 - Seven Second Subnetting/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.7.7 - Seven Second Subnetting/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=I3LBYMXBhus",
+              "videoId": "I3LBYMXBhus"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.8.1 - Software Defined Networking",
+          "path": "Notes List A - Video Content/1.8.1 - Software Defined Networking",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.8.1 - Software Defined Networking/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.8.1 - Software Defined Networking/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=A6tPNGEfOzc",
+              "videoId": "A6tPNGEfOzc"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.8.2 - Virtual Extensible LAN",
+          "path": "Notes List A - Video Content/1.8.2 - Virtual Extensible LAN",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.8.2 - Virtual Extensible LAN/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.8.2 - Virtual Extensible LAN/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=eBhqN6d6lRU",
+              "videoId": "eBhqN6d6lRU"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.8.3 - Zero Trust",
+          "path": "Notes List A - Video Content/1.8.3 - Zero Trust",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.8.3 - Zero Trust/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.8.3 - Zero Trust/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=jlMwWL4yalM",
+              "videoId": "jlMwWL4yalM"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.8.4 - Infrastructure as Code",
+          "path": "Notes List A - Video Content/1.8.4 - Infrastructure as Code",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.8.4 - Infrastructure as Code/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.8.4 - Infrastructure as Code/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=n6jIaKWixF4",
+              "videoId": "n6jIaKWixF4"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "1.8.5 - IPv6 Addressing",
+          "path": "Notes List A - Video Content/1.8.5 - IPv6 Addressing",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/1.8.5 - IPv6 Addressing/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/1.8.5 - IPv6 Addressing/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=CpLznUxkzg8",
+              "videoId": "CpLznUxkzg8"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "2.1.1 - Static Routing",
+          "path": "Notes List A - Video Content/2.1.1 - Static Routing",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/2.1.1 - Static Routing/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/2.1.1 - Static Routing/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=23a6_qexTvs",
+              "videoId": "23a6_qexTvs"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "2.1.2 - Dynamic Routing",
+          "path": "Notes List A - Video Content/2.1.2 - Dynamic Routing",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/2.1.2 - Dynamic Routing/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/2.1.2 - Dynamic Routing/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=YRZxshxI1xs",
+              "videoId": "YRZxshxI1xs"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "2.1.3 - Routing Technologies",
+          "path": "Notes List A - Video Content/2.1.3 - Routing Technologies",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/2.1.3 - Routing Technologies/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/2.1.3 - Routing Technologies/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=hU9bbmFhKxk",
+              "videoId": "hU9bbmFhKxk"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "2.1.4 - Network Address Translation",
+          "path": "Notes List A - Video Content/2.1.4 - Network Address Translation",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/2.1.4 - Network Address Translation/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/2.1.4 - Network Address Translation/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=UILwCNOC5EI",
+              "videoId": "UILwCNOC5EI"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "2.2.1 - VLANs and Trunking",
+          "path": "Notes List A - Video Content/2.2.1 - VLANs and Trunking",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/2.2.1 - VLANs and Trunking/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/2.2.1 - VLANs and Trunking/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=ATbzbST_OIw",
+              "videoId": "ATbzbST_OIw"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "2.2.2 - Interface Configurations",
+          "path": "Notes List A - Video Content/2.2.2 - Interface Configurations",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/2.2.2 - Interface Configurations/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/2.2.2 - Interface Configurations/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=dno_MRp57UQ",
+              "videoId": "dno_MRp57UQ"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "2.2.3 - Spanning Tree Protocol",
+          "path": "Notes List A - Video Content/2.2.3 - Spanning Tree Protocol",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/2.2.3 - Spanning Tree Protocol/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/2.2.3 - Spanning Tree Protocol/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=Jm0BOz1Ur28",
+              "videoId": "Jm0BOz1Ur28"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "2.3.1 - Wireless Technologies",
+          "path": "Notes List A - Video Content/2.3.1 - Wireless Technologies",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/2.3.1 - Wireless Technologies/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/2.3.1 - Wireless Technologies/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=_VwpcLiBkAQ",
+              "videoId": "_VwpcLiBkAQ"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "2.3.2 - Wireless Networking",
+          "path": "Notes List A - Video Content/2.3.2 - Wireless Networking",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/2.3.2 - Wireless Networking/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/2.3.2 - Wireless Networking/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=YEDutqG4C4U",
+              "videoId": "YEDutqG4C4U"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "2.3.3 - Network Types",
+          "path": "Notes List A - Video Content/2.3.3 - Network Types",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/2.3.3 - Network Types/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/2.3.3 - Network Types/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=8ExS_LYAe-M",
+              "videoId": "8ExS_LYAe-M"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "2.3.4 - Wireless Encryption",
+          "path": "Notes List A - Video Content/2.3.4 - Wireless Encryption",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/2.3.4 - Wireless Encryption/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/2.3.4 - Wireless Encryption/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=YNcobcHXnnY",
+              "videoId": "YNcobcHXnnY"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "2.4.1 - Installing Networks",
+          "path": "Notes List A - Video Content/2.4.1 - Installing Networks",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/2.4.1 - Installing Networks/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/2.4.1 - Installing Networks/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=7NLsuBIvVVA",
+              "videoId": "7NLsuBIvVVA"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "2.4.2 - Power",
+          "path": "Notes List A - Video Content/2.4.2 - Power",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/2.4.2 - Power/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/2.4.2 - Power/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=Ok0XpAzwCVQ",
+              "videoId": "Ok0XpAzwCVQ"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "2.4.3 - Environmental Factors",
+          "path": "Notes List A - Video Content/2.4.3 - Environmental Factors",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/2.4.3 - Environmental Factors/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/2.4.3 - Environmental Factors/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=v7AIXZi7pyA",
+              "videoId": "v7AIXZi7pyA"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "3.1.1 - Network Documentation",
+          "path": "Notes List A - Video Content/3.1.1 - Network Documentation",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/3.1.1 - Network Documentation/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/3.1.1 - Network Documentation/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=CEZyq-fBn3w",
+              "videoId": "CEZyq-fBn3w"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "3.1.2 - Life Cycle Management",
+          "path": "Notes List A - Video Content/3.1.2 - Life Cycle Management",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/3.1.2 - Life Cycle Management/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/3.1.2 - Life Cycle Management/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=E8423-hdsHg",
+              "videoId": "E8423-hdsHg"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "3.1.3 - Configuration Management",
+          "path": "Notes List A - Video Content/3.1.3 - Configuration Management",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/3.1.3 - Configuration Management/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/3.1.3 - Configuration Management/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=cbHcjzlLjuc",
+              "videoId": "cbHcjzlLjuc"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "3.2.1 - SNMP",
+          "path": "Notes List A - Video Content/3.2.1 - SNMP",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/3.2.1 - SNMP/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/3.2.1 - SNMP/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=We5MkaEJOs0",
+              "videoId": "We5MkaEJOs0"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "3.2.2 - Logs and Monitoring",
+          "path": "Notes List A - Video Content/3.2.2 - Logs and Monitoring",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/3.2.2 - Logs and Monitoring/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/3.2.2 - Logs and Monitoring/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=ieqSi5Aicxc",
+              "videoId": "ieqSi5Aicxc"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "3.2.3 - Network Solutions",
+          "path": "Notes List A - Video Content/3.2.3 - Network Solutions",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/3.2.3 - Network Solutions/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/3.2.3 - Network Solutions/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=zIX_SzezCi0",
+              "videoId": "zIX_SzezCi0"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "3.3.1 - Disaster Recovery",
+          "path": "Notes List A - Video Content/3.3.1 - Disaster Recovery",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/3.3.1 - Disaster Recovery/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/3.3.1 - Disaster Recovery/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=NaXMohP4-vU",
+              "videoId": "NaXMohP4-vU"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "3.3.2 - Network Redundancy",
+          "path": "Notes List A - Video Content/3.3.2 - Network Redundancy",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/3.3.2 - Network Redundancy/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/3.3.2 - Network Redundancy/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=dsvNPjK0ihM",
+              "videoId": "dsvNPjK0ihM"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "3.4.1 - DHCP",
+          "path": "Notes List A - Video Content/3.4.1 - DHCP",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/3.4.1 - DHCP/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/3.4.1 - DHCP/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=b7fiXM3vO18",
+              "videoId": "b7fiXM3vO18"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "3.4.2 - Configuring DHCP",
+          "path": "Notes List A - Video Content/3.4.2 - Configuring DHCP",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/3.4.2 - Configuring DHCP/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/3.4.2 - Configuring DHCP/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=Zu70w3YTtpg",
+              "videoId": "Zu70w3YTtpg"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "3.4.3 - IPv6 and SLAAC",
+          "path": "Notes List A - Video Content/3.4.3 - IPv6 and SLAAC",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/3.4.3 - IPv6 and SLAAC/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/3.4.3 - IPv6 and SLAAC/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=A6WVj82by3Y",
+              "videoId": "A6WVj82by3Y"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "3.4.4 - An Overview of DNS",
+          "path": "Notes List A - Video Content/3.4.4 - An Overview of DNS",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/3.4.4 - An Overview of DNS/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/3.4.4 - An Overview of DNS/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=S4s3vgm4h84",
+              "videoId": "S4s3vgm4h84"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "3.4.5 - DNS Records",
+          "path": "Notes List A - Video Content/3.4.5 - DNS Records",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/3.4.5 - DNS Records/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/3.4.5 - DNS Records/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=qAyVND44jaE",
+              "videoId": "qAyVND44jaE"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "3.4.6 - Time Protocols",
+          "path": "Notes List A - Video Content/3.4.6 - Time Protocols",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/3.4.6 - Time Protocols/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/3.4.6 - Time Protocols/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=9MwHexC3Fkc",
+              "videoId": "9MwHexC3Fkc"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "3.5.1 - VPNs",
+          "path": "Notes List A - Video Content/3.5.1 - VPNs",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/3.5.1 - VPNs/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/3.5.1 - VPNs/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=tm7i0zEitPQ",
+              "videoId": "tm7i0zEitPQ"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "3.5.2 - Remote Access",
+          "path": "Notes List A - Video Content/3.5.2 - Remote Access",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/3.5.2 - Remote Access/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/3.5.2 - Remote Access/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=QbEDRTjcom4",
+              "videoId": "QbEDRTjcom4"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "4.1.1 - Security Concepts",
+          "path": "Notes List A - Video Content/4.1.1 - Security Concepts",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/4.1.1 - Security Concepts/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/4.1.1 - Security Concepts/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=51W4Fhds7DQ",
+              "videoId": "51W4Fhds7DQ"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "4.1.2 - Authentication",
+          "path": "Notes List A - Video Content/4.1.2 - Authentication",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/4.1.2 - Authentication/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/4.1.2 - Authentication/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=enyRd-8m8SI",
+              "videoId": "enyRd-8m8SI"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "4.1.3 - Security Technologies",
+          "path": "Notes List A - Video Content/4.1.3 - Security Technologies",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/4.1.3 - Security Technologies/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/4.1.3 - Security Technologies/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=qIQQKCv6P_s",
+              "videoId": "qIQQKCv6P_s"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "4.1.4 - Regulatory Compliance",
+          "path": "Notes List A - Video Content/4.1.4 - Regulatory Compliance",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/4.1.4 - Regulatory Compliance/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/4.1.4 - Regulatory Compliance/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=5KjXu7SvU6E",
+              "videoId": "5KjXu7SvU6E"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "4.1.5 - Segmentation Enforcement",
+          "path": "Notes List A - Video Content/4.1.5 - Segmentation Enforcement",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/4.1.5 - Segmentation Enforcement/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/4.1.5 - Segmentation Enforcement/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=DsOzQLX5cg4",
+              "videoId": "DsOzQLX5cg4"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "4.2.1 - Denial of Service",
+          "path": "Notes List A - Video Content/4.2.1 - Denial of Service",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/4.2.1 - Denial of Service/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/4.2.1 - Denial of Service/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=x8dIr6JYkjA",
+              "videoId": "x8dIr6JYkjA"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "4.2.2 - VLAN Hopping",
+          "path": "Notes List A - Video Content/4.2.2 - VLAN Hopping",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/4.2.2 - VLAN Hopping/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/4.2.2 - VLAN Hopping/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=hcaGiWteVTM",
+              "videoId": "hcaGiWteVTM"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "4.2.3 - MAC Flooding",
+          "path": "Notes List A - Video Content/4.2.3 - MAC Flooding",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/4.2.3 - MAC Flooding/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/4.2.3 - MAC Flooding/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=ttLNYwt-aq0",
+              "videoId": "ttLNYwt-aq0"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "4.2.4 - ARP and DNS Poisoning",
+          "path": "Notes List A - Video Content/4.2.4 - ARP and DNS Poisoning",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/4.2.4 - ARP and DNS Poisoning/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/4.2.4 - ARP and DNS Poisoning/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=2QijB5GtNE4",
+              "videoId": "2QijB5GtNE4"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "4.2.5 - Rogue Services",
+          "path": "Notes List A - Video Content/4.2.5 - Rogue Services",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/4.2.5 - Rogue Services/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/4.2.5 - Rogue Services/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=6AcRzyPuOL8",
+              "videoId": "6AcRzyPuOL8"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "4.2.6 - Social Engineering",
+          "path": "Notes List A - Video Content/4.2.6 - Social Engineering",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/4.2.6 - Social Engineering/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/4.2.6 - Social Engineering/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=sF0uBtavItI",
+              "videoId": "sF0uBtavItI"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "4.2.7 - Malware",
+          "path": "Notes List A - Video Content/4.2.7 - Malware",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/4.2.7 - Malware/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/4.2.7 - Malware/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=rnfViZdGfmA",
+              "videoId": "rnfViZdGfmA"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "4.3.1 - Device Security",
+          "path": "Notes List A - Video Content/4.3.1 - Device Security",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/4.3.1 - Device Security/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/4.3.1 - Device Security/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=TZUh1qF6ypI",
+              "videoId": "TZUh1qF6ypI"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "4.3.2 - Security Rules",
+          "path": "Notes List A - Video Content/4.3.2 - Security Rules",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/4.3.2 - Security Rules/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/4.3.2 - Security Rules/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=ORRcLSS9_Ps",
+              "videoId": "ORRcLSS9_Ps"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "5.1.1 - Network Troubleshooting Methodology",
+          "path": "Notes List A - Video Content/5.1.1 - Network Troubleshooting Methodology",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/5.1.1 - Network Troubleshooting Methodology/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/5.1.1 - Network Troubleshooting Methodology/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=dovuPm3dGhc",
+              "videoId": "dovuPm3dGhc"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "5.2.1 - Cable Issues",
+          "path": "Notes List A - Video Content/5.2.1 - Cable Issues",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/5.2.1 - Cable Issues/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/5.2.1 - Cable Issues/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=L6P6ovTEPvU",
+              "videoId": "L6P6ovTEPvU"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "5.2.2 - Interface Issues",
+          "path": "Notes List A - Video Content/5.2.2 - Interface Issues",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/5.2.2 - Interface Issues/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/5.2.2 - Interface Issues/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=7b4RkdITO4Q",
+              "videoId": "7b4RkdITO4Q"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "5.2.3 - Hardware Issues",
+          "path": "Notes List A - Video Content/5.2.3 - Hardware Issues",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/5.2.3 - Hardware Issues/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/5.2.3 - Hardware Issues/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=_IeIUxDe1fo",
+              "videoId": "_IeIUxDe1fo"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "5.3.1 - Switching Issues",
+          "path": "Notes List A - Video Content/5.3.1 - Switching Issues",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/5.3.1 - Switching Issues/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/5.3.1 - Switching Issues/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=rUONzfO11m8",
+              "videoId": "rUONzfO11m8"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "5.3.2 - Routing and IP Issues",
+          "path": "Notes List A - Video Content/5.3.2 - Routing and IP Issues",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/5.3.2 - Routing and IP Issues/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/5.3.2 - Routing and IP Issues/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=pbOi48USeVw",
+              "videoId": "pbOi48USeVw"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "5.4.1 - Performance Issues",
+          "path": "Notes List A - Video Content/5.4.1 - Performance Issues",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/5.4.1 - Performance Issues/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/5.4.1 - Performance Issues/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=FVxENIjdAJk",
+              "videoId": "FVxENIjdAJk"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "5.4.2 - Wireless Issues",
+          "path": "Notes List A - Video Content/5.4.2 - Wireless Issues",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/5.4.2 - Wireless Issues/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/5.4.2 - Wireless Issues/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=UO3G_OJhBS4",
+              "videoId": "UO3G_OJhBS4"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "5.5.1 - Software Tools",
+          "path": "Notes List A - Video Content/5.5.1 - Software Tools",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/5.5.1 - Software Tools/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/5.5.1 - Software Tools/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=b81_GeoN12I",
+              "videoId": "b81_GeoN12I"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "5.5.2 - Command Line Tools",
+          "path": "Notes List A - Video Content/5.5.2 - Command Line Tools",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/5.5.2 - Command Line Tools/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/5.5.2 - Command Line Tools/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=iYojIK1173k",
+              "videoId": "iYojIK1173k"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "5.5.3 - Hardware Tools",
+          "path": "Notes List A - Video Content/5.5.3 - Hardware Tools",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/5.5.3 - Hardware Tools/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/5.5.3 - Hardware Tools/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=ytcAqNxkI9I",
+              "videoId": "ytcAqNxkI9I"
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "5.5.4 - Basic Network Device Commands",
+          "path": "Notes List A - Video Content/5.5.4 - Basic Network Device Commands",
+          "children": [
+            {
+              "type": "file",
+              "name": "Transcript.md",
+              "path": "Notes List A - Video Content/5.5.4 - Basic Network Device Commands/Transcript.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "Video Notes.md",
+              "path": "Notes List A - Video Content/5.5.4 - Basic Network Device Commands/Video Notes.md",
+              "video": true,
+              "Video": "true",
+              "youtubeVideo": true,
+              "videoUrl": "https://www.youtube.com/watch?v=3-KakmVmEpo",
+              "videoId": "3-KakmVmEpo"
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "name": "video-list.md",
+          "path": "Notes List A - Video Content/video-list.md",
+          "video": false,
+          "Video": "false",
+          "youtubeVideo": false
+        }
+      ]
+    },
+    {
+      "type": "directory",
+      "name": "Notes List B - Textbook Notes",
+      "path": "Notes List B - Textbook Notes",
+      "children": [
+        {
+          "type": "directory",
+          "name": "1.0",
+          "path": "Notes List B - Textbook Notes/1.0",
+          "children": [
+            {
+              "type": "file",
+              "name": "1.1 - OSI Reference Model.md",
+              "path": "Notes List B - Textbook Notes/1.0/1.1 - OSI Reference Model.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.2 - Networking Appliances Applications and Functions.md",
+              "path": "Notes List B - Textbook Notes/1.0/1.2 - Networking Appliances Applications and Functions.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.3 - Cloud Concepts and Connectivity Options.md",
+              "path": "Notes List B - Textbook Notes/1.0/1.3 - Cloud Concepts and Connectivity Options.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.4 - Ports Protocols Services and Traffic Types.md",
+              "path": "Notes List B - Textbook Notes/1.0/1.4 - Ports Protocols Services and Traffic Types.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.5 - Transmission Media and Transceivers.md",
+              "path": "Notes List B - Textbook Notes/1.0/1.5 - Transmission Media and Transceivers.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.6 - Network Topologies Architectures and Types.md",
+              "path": "Notes List B - Textbook Notes/1.0/1.6 - Network Topologies Architectures and Types.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.7 - IPv4 Network Addressing.md",
+              "path": "Notes List B - Textbook Notes/1.0/1.7 - IPv4 Network Addressing.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.8 - Modern Network Environments.md",
+              "path": "Notes List B - Textbook Notes/1.0/1.8 - Modern Network Environments.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "README.md",
+              "path": "Notes List B - Textbook Notes/1.0/README.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         }
@@ -193,27 +2283,594 @@
       "children": [
         {
           "type": "directory",
-          "name": "Lecture Week 1",
-          "path": "Notes List C - Alex's Personal Notes/Lecture Week 1",
+          "name": "Day 1",
+          "path": "Notes List C - Alex's Personal Notes/Day 1",
           "children": [
             {
               "type": "file",
-              "name": "Week 1 Notes.md",
-              "path": "Notes List C - Alex's Personal Notes/Lecture Week 1/Week 1 Notes.md"
+              "name": "0.1.1 - How to pass your N10-009 Network+ Exam.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 1/0.1.1 - How to pass your N10-009 Network+ Exam.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.1.1 - Understanding the OSI Model.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 1/1.1.1 - Understanding the OSI Model.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.2.1 - Networking Devices.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 1/1.2.1 - Networking Devices.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.2.2 - Networking Functions.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 1/1.2.2 - Networking Functions.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.3.1 - Designing The Cloud.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 1/1.3.1 - Designing The Cloud.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.3.2 - Cloud Models.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 1/1.3.2 - Cloud Models.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Day 2",
+          "path": "Notes List C - Alex's Personal Notes/Day 2",
+          "children": [
+            {
+              "type": "file",
+              "name": "1.4.1 - Introduction to IP.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 2/1.4.1 - Introduction to IP.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.4.2 - Common Ports.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 2/1.4.2 - Common Ports.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.4.3 - other useful protocols.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 2/1.4.3 - other useful protocols.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.4.4 - Network Communication.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 2/1.4.4 - Network Communication.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.5.1 - Wireless Networking.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 2/1.5.1 - Wireless Networking.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.5.2 - Ethernet Standards.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 2/1.5.2 - Ethernet Standards.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.5.3 - Optical Fiber.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 2/1.5.3 - Optical Fiber.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.5.4 - Copper Cabling.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 2/1.5.4 - Copper Cabling.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.5.5 - Network Transceivers.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 2/1.5.5 - Network Transceivers.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.5.6 Fiber Connectors.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 2/1.5.6 Fiber Connectors.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Day 3",
+          "path": "Notes List C - Alex's Personal Notes/Day 3",
+          "children": [
+            {
+              "type": "file",
+              "name": "1.5.7 - Copper Connectors.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 3/1.5.7 - Copper Connectors.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.6.1 Network Topologies.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 3/1.6.1 Network Topologies.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.6.2 - Network Architectures.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 3/1.6.2 - Network Architectures.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.7.1 - Binary Math.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 3/1.7.1 - Binary Math.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.7.2 - IPv4 addressing.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 3/1.7.2 - IPv4 addressing.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.7.3 - Classful Subnetting.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 3/1.7.3 - Classful Subnetting.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.7.4 - IPv4 Subnet Masks.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 3/1.7.4 - IPv4 Subnet Masks.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.7.5 - Calculating IPv4 Subnets and Hosts.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 3/1.7.5 - Calculating IPv4 Subnets and Hosts.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Day 4",
+          "path": "Notes List C - Alex's Personal Notes/Day 4",
+          "children": [
+            {
+              "type": "file",
+              "name": "1.7.6 - Magic Number Subnetting.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 4/1.7.6 - Magic Number Subnetting.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.7.7 - Seven Second Subnetting.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 4/1.7.7 - Seven Second Subnetting.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.8.1 - Software Defined Networking.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 4/1.8.1 - Software Defined Networking.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.8.2 - Virtual Extensible LAN.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 4/1.8.2 - Virtual Extensible LAN.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.8.3 - Zero Trust.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 4/1.8.3 - Zero Trust.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.8.4 - Infrastructure as Code.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 4/1.8.4 - Infrastructure as Code.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "Day 5",
+          "path": "Notes List C - Alex's Personal Notes/Day 5",
+          "children": [
+            {
+              "type": "file",
+              "name": "1.8.5 - IPv6 Addressing.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 5/1.8.5 - IPv6 Addressing.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "2.1.1 - Static routing.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 5/2.1.1 - Static routing.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "2.1.2 - Dynamic Routing.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 5/2.1.2 - Dynamic Routing.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "2.1.3 - Routing Technologies.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 5/2.1.3 - Routing Technologies.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "2.1.4 - Network Address Translation.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 5/2.1.4 - Network Address Translation.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "2.2.1 - VLANs and Trunking.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 5/2.2.1 - VLANs and Trunking.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "2.2.2 - Interface Configurations.md",
+              "path": "Notes List C - Alex's Personal Notes/Day 5/2.2.2 - Interface Configurations.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
             }
           ]
         }
       ]
     },
     {
-      "type": "file",
-      "name": "Notes List B - Why it's not here.md",
-      "path": "Notes List B - Why it's not here.md"
+      "type": "directory",
+      "name": "Notes List D - AI Generated Notes from Exam Objectives",
+      "path": "Notes List D - AI Generated Notes from Exam Objectives",
+      "children": [
+        {
+          "type": "directory",
+          "name": "1.0 Networking Concepts",
+          "path": "Notes List D - AI Generated Notes from Exam Objectives/1.0 Networking Concepts",
+          "children": [
+            {
+              "type": "file",
+              "name": "1.1 - Explain concepts related to the Open Systems Interconnection (OSI) reference model.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/1.0 Networking Concepts/1.1 - Explain concepts related to the Open Systems Interconnection (OSI) reference model.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.2 - Compare and contrast networking appliances, applications, and functions.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/1.0 Networking Concepts/1.2 - Compare and contrast networking appliances, applications, and functions.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.3 - Summarize cloud concepts and connectivity options.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/1.0 Networking Concepts/1.3 - Summarize cloud concepts and connectivity options.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.4 - Explain common networking ports, protocols, services, and traffic types.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/1.0 Networking Concepts/1.4 - Explain common networking ports, protocols, services, and traffic types.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.5 - Compare and contrast transmission media and transceivers.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/1.0 Networking Concepts/1.5 - Compare and contrast transmission media and transceivers.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.6 - Compare and contrast network topologies, architectures, and types.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/1.0 Networking Concepts/1.6 - Compare and contrast network topologies, architectures, and types.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.7 - Given a scenario, use appropriate IPv4 network addressing.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/1.0 Networking Concepts/1.7 - Given a scenario, use appropriate IPv4 network addressing.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "1.8 - Summarize evolving use cases for modern network environments.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/1.0 Networking Concepts/1.8 - Summarize evolving use cases for modern network environments.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "2.0 Network Implementation",
+          "path": "Notes List D - AI Generated Notes from Exam Objectives/2.0 Network Implementation",
+          "children": [
+            {
+              "type": "file",
+              "name": "2.1 - Explain characteristics of routing technologies.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/2.0 Network Implementation/2.1 - Explain characteristics of routing technologies.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "2.2 - Given a scenario, configure switching technologies and features.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/2.0 Network Implementation/2.2 - Given a scenario, configure switching technologies and features.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "2.3 - Given a scenario, select and configure wireless devices and technologies.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/2.0 Network Implementation/2.3 - Given a scenario, select and configure wireless devices and technologies.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "2.4 - Explain important factors of physical installations.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/2.0 Network Implementation/2.4 - Explain important factors of physical installations.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "3.0 Network Operations",
+          "path": "Notes List D - AI Generated Notes from Exam Objectives/3.0 Network Operations",
+          "children": [
+            {
+              "type": "file",
+              "name": "3.1 - Explain the purpose of organizational processes and procedures.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/3.0 Network Operations/3.1 - Explain the purpose of organizational processes and procedures.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "3.2 - Given a scenario, use network monitoring technologies.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/3.0 Network Operations/3.2 - Given a scenario, use network monitoring technologies.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "3.3 - Explain disaster recovery (DR) concepts.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/3.0 Network Operations/3.3 - Explain disaster recovery (DR) concepts.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "3.4 - Given a scenario, implement IPv4 and IPv6 network services.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/3.0 Network Operations/3.4 - Given a scenario, implement IPv4 and IPv6 network services.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "3.5 - Compare and contrast network access and management methods.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/3.0 Network Operations/3.5 - Compare and contrast network access and management methods.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "4.0 Network Security",
+          "path": "Notes List D - AI Generated Notes from Exam Objectives/4.0 Network Security",
+          "children": [
+            {
+              "type": "file",
+              "name": "4.1 - Explain the importance of basic network security concepts.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/4.0 Network Security/4.1 - Explain the importance of basic network security concepts.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "4.2 - Summarize various types of attacks and their impact to the network.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/4.0 Network Security/4.2 - Summarize various types of attacks and their impact to the network.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "4.3 - Given a scenario, apply network security features, defense techniques, and solutions.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/4.0 Network Security/4.3 - Given a scenario, apply network security features, defense techniques, and solutions.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "directory",
+          "name": "5.0 Network Troubleshooting",
+          "path": "Notes List D - AI Generated Notes from Exam Objectives/5.0 Network Troubleshooting",
+          "children": [
+            {
+              "type": "file",
+              "name": "5.1 - Explain the troubleshooting methodology.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/5.0 Network Troubleshooting/5.1 - Explain the troubleshooting methodology.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "5.2 - Given a scenario, troubleshoot common cabling and physical interface issues.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/5.0 Network Troubleshooting/5.2 - Given a scenario, troubleshoot common cabling and physical interface issues.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "5.3 - Given a scenario, troubleshoot common issues with network services.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/5.0 Network Troubleshooting/5.3 - Given a scenario, troubleshoot common issues with network services.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "5.4 - Given a scenario, troubleshoot common performance issues.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/5.0 Network Troubleshooting/5.4 - Given a scenario, troubleshoot common performance issues.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            },
+            {
+              "type": "file",
+              "name": "5.5 - Given a scenario, use the appropriate tool or protocol to solve networking issues.md",
+              "path": "Notes List D - AI Generated Notes from Exam Objectives/5.0 Network Troubleshooting/5.5 - Given a scenario, use the appropriate tool or protocol to solve networking issues.md",
+              "video": false,
+              "Video": "false",
+              "youtubeVideo": false
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "name": "README.md",
+          "path": "Notes List D - AI Generated Notes from Exam Objectives/README.md",
+          "video": false,
+          "Video": "false",
+          "youtubeVideo": false
+        }
+      ]
     },
     {
       "type": "file",
       "name": "SURVIVAL GUIDE.md",
-      "path": "SURVIVAL GUIDE.md"
+      "path": "SURVIVAL GUIDE.md",
+      "video": false,
+      "Video": "false",
+      "youtubeVideo": false
     }
   ],
   "defaultNote": "SURVIVAL GUIDE.md"

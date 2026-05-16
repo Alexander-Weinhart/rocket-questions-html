@@ -1,0 +1,43 @@
+# Video 35 - Rack and Patch panel overview
+
+## Transcript
+
+### 0:00 - 1:18
+
+In our networking lab, ATLC339, we have a 19-inch wide rack that's one for every two workstations, and in that rack at the top we have the ASA5516 firewall, below that the 4221 router, and then the 3650 switch. So one of the things, the switch connections are all available in the front. The other connections that come from the back of the switch, the back of the router, and the back of the firewall, have all been brought to this top 24-port patch panel.
+
+And then we have the bottom patch panel, which is divided between the two workstations, 1 through 6 for the left, and 7 through 12 for the right. Let's look at the legend for this. So at the bottom for the left PC, port 1 is the NIC, the network interface card, or network port, port 2 is the internet connection, port 3 is not used, and port 4 is an RS-232 serial port, which we need to use to configure the router, switch, and firewall.
+
+### 1:20 - 3:17
+
+Ports 7 through 12 are an exact mirror of 1 through 6. 7 is the network connection, 8 is the internet. When we go back and look at this initial picture, we see that the setup is set so that people can access the internet. The network card is connected to the internet for the left, the network card is connected to the internet on the right.
+
+Several, all the connections on the back of the equipment are brought forward to that 24-port patch panel. Ports 1 through 10 are only used for the firewall, and those are only used in the course NET-C 230. For NET-C 121 and 122, network communications 1 and 2, we need to use several of them.
+
+We have the, port 24 is the console or RS-232 serial connection, which allows us to connect and configure the switch. The router has a console connection at port 19. So, serial port 4 can go to 19, and let's see that.
+
+So, to connect this up, if we connect 1 to 2 and 7 to 8, we're connected for the internet, just connecting the NIC to the internet connection. The internet connection, port 2 and 8 in all pods, all get switched together in the room. So, that's one way to connect everybody in the room together as well, in addition to getting to the internet.
+
+Sometimes, in certain labs, we're going to need to go ahead and connect our NIC up to the switch. So, I can move it up here. It doesn't matter which one of the 24 ports, I'm going to pick port 4, and if we connect the other one up to, let's say 12.
+
+### 3:19 - 3:45
+
+So, since we make those direct connections to the switch because those 24 ports are facing us. So, this would now allow us to connect to each other, the left and the right stations. If we needed to configure the switch when that comes time, we saw that port 24 on the upper patch was the switch or 3650 console connection.
+
+### 3:47 - 6:28
+
+Either port 4 for the left or port 10 for the right. Only one can be connected at a time. We can go back and make that connection.
+
+We can go show 10 going to 24. That would allow the right PC to actually configure the switch. Or if we need it, the right PC could go to port 19, which is the router interface.
+
+Next, let's look at the station left and right. Our stations are set up in a little bit of a horseshoe, where we have six stations per pod. Each pair of stations has a rack of equipment.
+
+So, if we want to connect to the people to our left, it's 15, and that's already been pre-wired. And right would be the 16. So, if we wanted to show this of how we could connect everybody in the pod together, we could go ahead and say, let's take 15 and connect that up to the switch, and then 16 up to the switch.
+
+This would now connect in, at least on our side or on your side, the left and right racks of equipment. Your partners or your neighbors, I should say, on the left or right, would also need to make those connections to get the entire pod connected together. So, this is a prerequisite.
+
+Why we do what we do depends on our goals. If we just need to get to the internet, we don't need to connect to the switch. So, we would just connect the nick to the internet, the right nick to the internet.
+
+And we do this for early labs. In later labs, we need to connect up to the switch. When in doubt of what connections need to be made, we can use this rack legend that shows us all of the connections.
+
+For the left, again, we have just the nick on port one, the internet connection on port two, and then port four is the RS-232 serial port. Our PCs have USB ports, universal serial bus, but they also have RS-232 serial ports, which is an industry standard and used to configure almost all networking equipment. And we have that mirrored from the left and the right.

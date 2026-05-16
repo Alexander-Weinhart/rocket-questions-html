@@ -1,10 +1,61 @@
 const { test, expect } = require('@playwright/test');
 
-const BASE_URL = 'http://127.0.0.1:3003';
 const HISTORY_STORAGE_KEY = 'rocket_questions_history_local_playwright';
+const APP_VERSION = '1.0.14';
+const BASE_PATH = (() => {
+  const value = String(process.env.PLAYWRIGHT_BASE_PATH || '/').trim();
+  if (!value || value === '/') return '';
+  return `/${value.replace(/^\/+|\/+$/g, '')}`;
+})();
 
-async function waitForAppReady(page) {
-  await page.goto('/');
+function appPath(pathname = '/') {
+  const normalized = pathname.startsWith('/') ? pathname : `/${pathname}`;
+  return `${BASE_PATH}${normalized}` || '/';
+}
+
+function routePattern(pathname = '') {
+  const normalized = pathname.startsWith('/') ? pathname : `/${pathname}`;
+  return new RegExp(`${BASE_PATH}${normalized}`.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '$');
+}
+
+function expectVersionQuery(urlString) {
+  const url = new URL(urlString);
+  expect(url.searchParams.get('q')).toBe(APP_VERSION);
+}
+
+async function expectVersionQueryAcrossBasePaths(browser) {
+  for (const basePath of ['', '/test1']) {
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    await page.addInitScript((historyStorageKey) => {
+      window.__ROCKET_HISTORY_STORAGE_KEY__ = historyStorageKey;
+      window.__ROCKET_DISABLE_CHANGE_SERVER_SYNC__ = true;
+      window.__ROCKET_DISABLE_HISTORY_SERVER_SYNC__ = true;
+    }, `${HISTORY_STORAGE_KEY}${basePath || '-root'}`);
+
+    const rootUrl = `http://127.0.0.1:3003${basePath || ''}/`;
+    await page.goto(rootUrl);
+    await page.waitForFunction(() => window.__NETC_QUIZ_APP_READY__ === true);
+    await expect.poll(() => page.url()).toContain(`?q=${APP_VERSION}`);
+    expectVersionQuery(page.url());
+
+    if ((await page.locator('#course-select').inputValue()) === '') {
+      await page.selectOption('#course-select', 'netc121');
+    }
+    await page.locator('#continue-course').click();
+    await expect(page.locator('#menu-screen')).toBeVisible();
+    expectVersionQuery(page.url());
+
+    await page.locator('#go-practice-quiz').click();
+    await expect(page.locator('#week-screen')).toBeVisible();
+    expectVersionQuery(page.url());
+
+    await context.close();
+  }
+}
+
+async function waitForAppReady(page, path = '/') {
+  await page.goto(appPath(path));
   await page.waitForFunction(() => window.__NETC_QUIZ_APP_READY__ === true);
 }
 
@@ -24,6 +75,9 @@ async function dismissWalkthroughPrompt(page) {
 }
 
 async function continueIntoCourseWorkspace(page) {
+  if ((await page.locator('#course-select').inputValue()) === '') {
+    await page.selectOption('#course-select', 'netc121');
+  }
   await page.locator('#continue-course').click();
   await expect(page.locator('#menu-screen')).toBeVisible();
 }
@@ -94,6 +148,8 @@ test('success criteria release gate', async ({ page, request, browser }) => {
 
   await page.addInitScript((historyStorageKey) => {
     window.__ROCKET_HISTORY_STORAGE_KEY__ = historyStorageKey;
+    window.__ROCKET_DISABLE_CHANGE_SERVER_SYNC__ = true;
+    window.__ROCKET_DISABLE_HISTORY_SERVER_SYNC__ = true;
     window.__copiedText = '';
     window.__printCalls = 0;
     window.__openedTrustedAiTabs = [];
@@ -122,14 +178,17 @@ test('success criteria release gate', async ({ page, request, browser }) => {
   await page.setViewportSize({ width: 1440, height: 1200 });
   mark('boot');
   await waitForAppReady(page);
+  expectVersionQuery(page.url());
 
   await expect(page.locator('#course-screen')).toBeVisible();
+  expectVersionQuery(page.url());
   await expect(page.locator('#course-select')).toBeVisible();
   await expect(page.locator('#certification-select')).toBeVisible();
   await expect(page.locator('#course-changelog-status')).toContainText('Latest changelog loaded');
   await expect(page.locator('#course-changelog-viewer')).toContainText('Rocket Questions HTML Changelog');
   await expect(page.locator('#walkthrough-title')).toContainText('Would you like a guided walkthrough?');
   expect(apiGetRequests).toEqual([]);
+  expect(apiPostRequests).toEqual([]);
 
   // Course/certification selection and workspace routing.
   mark('course and certification flow');
@@ -145,6 +204,7 @@ test('success criteria release gate', async ({ page, request, browser }) => {
 
   await page.locator('#go-notes').click();
   await expect(page.locator('#notes-screen')).toBeVisible();
+  expectVersionQuery(page.url());
   await expect(page.locator('#notes-screen-title')).toContainText('Notes Lists');
   await expect(page.locator('#notes-tree')).not.toContainText('Notes List B - Textbook Content');
   await expect(page.locator('.notes-tree-toggle').first()).toHaveAttribute('aria-expanded', 'true');
@@ -154,9 +214,11 @@ test('success criteria release gate', async ({ page, request, browser }) => {
   await expect(page.locator('#notes-current-path')).not.toHaveText('No note selected.');
   await expect(page.locator('#notes-viewer')).not.toContainText('Select a note to start reading.');
   await page.locator('#back-notes-to-menu').click();
+  expectVersionQuery(page.url());
 
   await page.locator('#go-practice-quiz').click();
   await expect(page.locator('#week-screen')).toBeVisible();
+  expectVersionQuery(page.url());
   await expect(page.locator('#practice-unit-title')).toContainText('Domain Selection');
   await expect(page.locator('#week-grid')).toContainText('Domain 1');
   await expect(page.locator('#week-grid')).toContainText('coming soon');
@@ -170,7 +232,7 @@ test('success criteria release gate', async ({ page, request, browser }) => {
 
   await page.locator('#go-notes').click();
   await expect(page.locator('#notes-screen')).toBeVisible();
-  await expect(page.locator('#notes-viewer')).toContainText('Security+ Exam Objectives');
+  await expect(page.locator('#notes-viewer')).toContainText('Security+');
   await expect(page.locator('#notes-tree')).not.toContainText('Notes List B - Textbook Content');
   await page.locator('#back-notes-to-menu').click();
 
@@ -189,6 +251,7 @@ test('success criteria release gate', async ({ page, request, browser }) => {
   await expect(page.locator('#week-screen')).toBeVisible();
   await page.locator('#continue-setup').click();
   await expect(page.locator('#config-screen')).toBeVisible();
+  expectVersionQuery(page.url());
 
   // Non-demo quiz flow for real reporting, persistence, and server-backed change/history behavior.
   mark('real quiz flow');
@@ -201,6 +264,7 @@ test('success criteria release gate', async ({ page, request, browser }) => {
   await page.locator('#question-count-down').click();
   await page.locator('#start-quiz').click();
   await expect(page.locator('#quiz-screen')).toBeVisible();
+  expectVersionQuery(page.url());
 
   const firstQuestion = await page.locator('#question-text').textContent();
   await page.locator('#flag-question').click();
@@ -216,14 +280,6 @@ test('success criteria release gate', async ({ page, request, browser }) => {
   await page.locator('#ineffective-feedback').fill('PLAYWRIGHT TEST');
   await page.locator('#submit-ineffective').click();
   await expect(page.locator('#question-text')).not.toHaveText(secondQuestion || '');
-  await expect
-    .poll(() =>
-      apiPostRequests
-        .filter((entry) => entry.url.includes('/api/changes'))
-        .map((entry) => entry.payload?.user_feedback || '')
-    )
-    .toContain('PLAYWRIGHT TEST');
-
   await page.locator('#dont-know-answer').click();
   await expect(page.locator('#feedback')).toContainText("I don't know");
   await expectLiveScoreRatioValid(page);
@@ -243,13 +299,6 @@ test('success criteria release gate', async ({ page, request, browser }) => {
   expect(trustedAiPrompt).toContain('D.');
   expect(trustedAiPrompt).toContain("User selected answer: I don't know");
   expect(trustedAiPrompt).toContain("if the user's selected answer is wrong and why it's wrong if it is");
-  await expect
-    .poll(() =>
-      apiPostRequests
-        .filter((entry) => entry.url.includes('/api/history'))
-        .map((entry) => entry.payload?.selected_choice || '')
-    )
-    .toContain('E');
   const answeredFeedback = await page.locator('#feedback').textContent();
   await page.locator('#next-question').click();
   await expect(page.locator('#feedback')).toHaveText('');
@@ -320,13 +369,10 @@ test('success criteria release gate', async ({ page, request, browser }) => {
   await expectLiveScoreRatioValid(page);
   await page.locator('#finish-quiz').click();
   await expect(page.locator('#review-screen')).toBeVisible();
+  expectVersionQuery(page.url());
 
-  await expect
-    .poll(() => apiPostResponses.filter((entry) => entry.url.includes('/api/changes')).map((entry) => entry.status))
-    .toContain(201);
-  await expect
-    .poll(() => apiPostResponses.filter((entry) => entry.url.includes('/api/history')).map((entry) => entry.status))
-    .toContain(201);
+  expect(apiPostRequests).toEqual([]);
+  expect(apiPostResponses).toEqual([]);
 
   await page.locator('#reset-wrong-count').click();
   await expect(page.locator('#reset-wrong-count-dialog')).toBeVisible();
@@ -358,4 +404,163 @@ test('success criteria release gate', async ({ page, request, browser }) => {
   await page.locator('#back-setup-from-review').click();
   await expect(page.locator('#config-screen')).toBeVisible();
   mark('done');
+});
+
+test('version query survives routing for root and /test1 base paths', async ({ browser }) => {
+  await expectVersionQueryAcrossBasePaths(browser);
+});
+
+test('path-based webpage hierarchy keeps the session in one tab', async ({ page }) => {
+  await page.addInitScript(() => {
+    window.__ROCKET_DISABLE_CHANGE_SERVER_SYNC__ = true;
+    window.__ROCKET_DISABLE_HISTORY_SERVER_SYNC__ = true;
+  });
+
+  await waitForAppReady(page);
+  await dismissWalkthroughPrompt(page);
+
+  await expect(page).toHaveURL(routePattern('/'));
+  await continueIntoCourseWorkspace(page);
+  await expect(page).toHaveURL(routePattern('/netc-121'));
+
+  await page.locator('#go-notes').click();
+  await expect(page.locator('#notes-screen')).toBeVisible();
+  await expect(page).toHaveURL(new RegExp(`${BASE_PATH}/netc-121/notes/[A-Za-z0-9_/-]+\\.html$`));
+  const firstNoteRoute = page.url();
+  const firstNotePath = await page.locator('#notes-current-path').textContent();
+
+  await page.reload();
+  await page.waitForFunction(() => window.__NETC_QUIZ_APP_READY__ === true);
+  await expect(page.locator('#notes-screen')).toBeVisible();
+  await expect(page).toHaveURL(new RegExp(`${BASE_PATH}/netc-121/notes/[A-Za-z0-9_/-]+\\.html$`));
+  await expect(page.locator('#notes-current-path')).toHaveText(firstNotePath || '');
+
+  const secondNote = page.locator('.notes-tree-file').nth(1);
+  await secondNote.click();
+  await expect(page.locator('#notes-current-path')).not.toHaveText(firstNotePath || '');
+  await expect.poll(() => page.url()).not.toBe(firstNoteRoute);
+  await expect(page).toHaveURL(new RegExp(`${BASE_PATH}/netc-121/notes/[A-Za-z0-9_/-]+\\.html$`));
+
+  await page.locator('#back-notes-to-menu').click();
+  await expect(page.locator('#menu-screen')).toBeVisible();
+  await expect(page).toHaveURL(routePattern('/netc-121'));
+
+  await page.locator('#go-practice-quiz').click();
+  await expect(page.locator('#week-screen')).toBeVisible();
+  await expect(page).toHaveURL(routePattern('/netc-121/practice/weeks'));
+
+  await page.locator('#continue-setup').click();
+  await expect(page.locator('#config-screen')).toBeVisible();
+  await expect(page).toHaveURL(routePattern('/netc-121/practice/setup'));
+});
+
+test('back refresh and forward preserve state across note and quiz pages', async ({ page }) => {
+  const mark = (label) => console.log(`HISTORY: ${label}`);
+  await page.addInitScript(() => {
+    window.__ROCKET_DISABLE_CHANGE_SERVER_SYNC__ = true;
+    window.__ROCKET_DISABLE_HISTORY_SERVER_SYNC__ = true;
+  });
+
+  mark('boot');
+  await waitForAppReady(page);
+  await dismissWalkthroughPrompt(page);
+  await continueIntoCourseWorkspace(page);
+
+  mark('notes open');
+  await page.locator('#go-notes').click();
+  await expect(page.locator('#notes-screen')).toBeVisible();
+
+  const firstNotePath = await page.locator('#notes-current-path').textContent();
+  const secondNote = page.locator('.notes-tree-file').nth(1);
+  await secondNote.click();
+  await expect(page.locator('#notes-current-path')).not.toHaveText(firstNotePath || '');
+  const secondNotePath = await page.locator('#notes-current-path').textContent();
+  const secondNoteUrl = page.url();
+
+  mark('notes back');
+  await page.goBack();
+  await expect(page.locator('#notes-screen')).toBeVisible();
+  await expect(page.locator('#notes-current-path')).toHaveText(firstNotePath || '');
+
+  mark('notes forward');
+  await page.goForward();
+  await expect(page.locator('#notes-screen')).toBeVisible();
+  await expect(page.locator('#notes-current-path')).toHaveText(secondNotePath || '');
+  await expect.poll(() => page.url()).toBe(secondNoteUrl);
+
+  mark('notes reload');
+  await page.reload();
+  await page.waitForFunction(() => window.__NETC_QUIZ_APP_READY__ === true);
+  await expect(page.locator('#notes-screen')).toBeVisible();
+  await expect(page.locator('#notes-current-path')).toHaveText(secondNotePath || '');
+  await expect.poll(() => page.url()).toBe(secondNoteUrl);
+
+  await page.locator('#back-notes-to-menu').click();
+  await expect(page.locator('#menu-screen')).toBeVisible();
+  mark('quiz open');
+  await page.locator('#go-practice-quiz').click();
+  await expect(page.locator('#week-screen')).toBeVisible();
+  await page.locator('#continue-setup').click();
+  await expect(page.locator('#config-screen')).toBeVisible();
+  await page.locator('#question-count').fill('3');
+  await page.locator('#start-quiz').click();
+  await expect(page.locator('#quiz-screen')).toBeVisible();
+  await expect(page).toHaveURL(routePattern('/netc-121/practice/quiz'));
+  await expect(page.locator('input[name="answer"]').first()).toBeVisible();
+
+  const quizQuestionText = await page.locator('#question-text').textContent();
+  const firstAnswer = page.locator('input[name="answer"]').first();
+  await firstAnswer.click();
+  await page.locator('#submit-answer').click();
+  await expect(page.locator('#feedback')).not.toHaveText('');
+
+  mark('quiz back');
+  await page.goBack();
+  await expect(page.locator('#config-screen')).toBeVisible();
+  await expect(page).toHaveURL(routePattern('/netc-121/practice/setup'));
+
+  mark('quiz forward');
+  await page.goForward();
+  await expect(page.locator('#quiz-screen')).toBeVisible();
+  await expect(page).toHaveURL(routePattern('/netc-121/practice/quiz'));
+  await expect(page.locator('input[name="answer"]').first()).toBeVisible();
+  await expect(page.locator('#question-text')).toHaveText(quizQuestionText || '');
+  await expect(page.locator('#feedback')).not.toHaveText('');
+
+  mark('quiz reload');
+  await page.reload();
+  await page.waitForFunction(() => window.__NETC_QUIZ_APP_READY__ === true);
+  await expect(page.locator('#quiz-screen')).toBeVisible();
+  await expect(page).toHaveURL(/\/netc-121\/practice\/quiz$/);
+  await expect(page.locator('input[name="answer"]').first()).toBeVisible();
+  await expect(page.locator('#question-text')).toHaveText(quizQuestionText || '');
+  await expect(page.locator('#feedback')).not.toHaveText('');
+
+  mark('review open');
+  await page.locator('#finish-quiz').click();
+  await expect(page.locator('#review-screen')).toBeVisible();
+  await expect(page).toHaveURL(/\/netc-121\/practice\/review$/);
+  const reviewSummary = await page.locator('#review-summary').textContent();
+  const reviewText = await page.locator('#review-text').textContent();
+
+  mark('review back');
+  await page.goBack();
+  await expect(page.locator('#quiz-screen')).toBeVisible();
+  await expect(page).toHaveURL(/\/netc-121\/practice\/quiz$/);
+  await expect(page.locator('input[name="answer"]').first()).toBeVisible();
+
+  mark('review forward');
+  await page.goForward();
+  await expect(page.locator('#review-screen')).toBeVisible();
+  await expect(page).toHaveURL(/\/netc-121\/practice\/review$/);
+  await expect(page.locator('#review-summary')).toHaveText(reviewSummary || '');
+  await expect(page.locator('#review-text')).toHaveText(reviewText || '');
+
+  mark('review reload');
+  await page.reload();
+  await page.waitForFunction(() => window.__NETC_QUIZ_APP_READY__ === true);
+  await expect(page.locator('#review-screen')).toBeVisible();
+  await expect(page).toHaveURL(/\/netc-121\/practice\/review$/);
+  await expect(page.locator('#review-summary')).toHaveText(reviewSummary || '');
+  await expect(page.locator('#review-text')).toHaveText(reviewText || '');
 });

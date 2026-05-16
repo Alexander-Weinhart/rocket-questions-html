@@ -9,8 +9,8 @@
 
 Sources included for this master list:
 
-- `Notes List A - Video Content/Video 24 - Route Summarization/Transcript.md`
-- `Notes List A - Video Content/Video 25 - Router Hierarchies and Default Routes/Transcript.md`
+- `Notes List A - Video Content/Video 34 - Quick route summarization/Quick route summarization.md`
+- `Notes List A - Video Content/Video 35 - Router Hierarchies and Route Summarization - Networking Fundamentals - Lesson 5 - Part 3/Router Hierarchies and Route Summarization - Networking Fundamentals - Lesson 5 - Part 3.md`
 - `Notes List C - Alex's Personal Notes/Lecture Week 12/Lecture Week 12.md`
 
 Note: The Week 12 syllabus does not list a textbook reading assignment, so this master list is limited to the Week 12 videos and lecture notes.

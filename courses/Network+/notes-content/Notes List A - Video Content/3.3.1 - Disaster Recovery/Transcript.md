@@ -1,0 +1,282 @@
+# [3.3.1 - Disaster Recovery](https://www.youtube.com/watch?v=NaXMohP4-vU)
+
+## 3.3.1 - Disaster Recovery
+
+- Day: Day 7
+- Duration: 12:09
+
+## Transcript
+
+- `00:01` Most organizations will create a plan
+- `00:04` that they will follow if they happen
+- `00:06` to have an outage or significant problem that
+- `00:08` could affect the overall goals of the organization.
+- `00:12` This is often referred to as the Disaster Recovery Plan,
+- `00:15` or the DRP, and it will cover every aspect and detail
+- `00:19` of how to handle these situations when they occur.
+- `00:23` And if you think of all of the different types of technologies
+- `00:26` involved in recovering from a disaster, it is many and varied.
+- `00:30` You have backups that you need to consider.
+- `00:32` There may be offsite data replication
+- `00:35` that might be involved in this disaster recovery.
+- `00:37` Perhaps you set up alternatives that are located in the cloud.
+- `00:40` So instead of having a server on site,
+- `00:43` we can create that same server in a cloud-based environment.
+- `00:46` Or maybe you've got a completely separate remote site,
+- `00:49` and you move all of your operations
+- `00:51` to that fully operating remote location.
+- `00:54` There are also many third parties
+- `00:55` that can provide additional services for disaster recovery.
+- `00:59` For example, you can contract with a third party that
+- `01:01` will provide you with a location so
+- `01:03` that you can move your operations
+- `01:05` to this temporary facility.
+- `01:07` Or you may want to contract with recovery services that
+- `01:10` can come into your organization and manage the process
+- `01:13` of recovering from a disaster.
+- `01:15` There are many different metrics that
+- `01:17` can help us understand the scope and the breadth of an outage.
+- `01:21` One of these metrics is a Recovery Time Objective,
+- `01:24` or an RTO.
+- `01:26` This is an amount of time, and we
+- `01:28` want this RTO to be as close to zero as possible.
+- `01:32` RTO is a measurement of how quickly
+- `01:35` we can get back up and running if an outage is to occur.
+- `01:38` So we need to define what a normal service level would be,
+- `01:42` and then we can calculate how long it
+- `01:44` will take to get to that particular service level.
+- `01:47` We refer to that gap in time as a recovery time objective.
+- `01:51` For example, we know that if our web server
+- `01:54` was to fail that the normal recovery time
+- `01:57` objective for that web server becoming available
+- `01:59` again is approximately one hour.
+- `02:02` So one hour would be the RTO for that outage.
+- `02:06` Another useful measurement is an RPO.
+- `02:09` This is a Recovery Point Objective.
+- `02:11` This is also measured as an amount of time.
+- `02:14` And again, we would like that RPO to be
+- `02:16` as close to zero as possible.
+- `02:18` RPO represents how much time we lost when that outage occurred.
+- `02:23` We have a certain amount of data that
+- `02:25` goes back in time that was not stored, it was not backed up.
+- `02:29` And when that outage occurs, we would lose all of that data.
+- `02:33` Generally, this is a value that you've already determined.
+- `02:37` You would make this determination
+- `02:38` based on what resources you have to recover
+- `02:40` this data and the types of backups
+- `02:43` that you may be doing throughout the day.
+- `02:45` And this RPO may be different depending
+- `02:47` on the type of business you're in.
+- `02:49` For example, if your organization handles banking
+- `02:51` transactions or you manage patient information,
+- `02:54` you want to be sure that you don't lose a lot of that data.
+- `02:57` So you may put methods in place to be sure
+- `03:00` that you are only losing a small amount of time
+- `03:04` when an outage occurs.
+- `03:05` This might be, for example, a very short time frame
+- `03:08` that would be less than an hour.
+- `03:10` But maybe your organization works
+- `03:11` with other types of data that don't require such a short RPO.
+- `03:16` For example, any updates to your website or updates
+- `03:19` to internal documents may only be backed up
+- `03:21` every hour or two hours.
+- `03:23` So there would be a longer RPO associated
+- `03:26` with that type of data.
+- `03:28` If we were to look at both of these values on a timeline,
+- `03:31` you can see that as time is going by,
+- `03:34` we have a certain data recovery point.
+- `03:36` Maybe this is where data is backed up.
+- `03:38` Maybe we are replicating data to a different site,
+- `03:41` but we are making a copy of that data
+- `03:43` or storing that data in a way that we could recover later.
+- `03:46` Sometime after that point, we would have an outage,
+- `03:50` and the time that we have between that outage
+- `03:52` and the back-in-time period to that data recovery point
+- `03:56` would be the Recovery Point Objective, or the RPO.
+- `03:59` So now we're focused on resolving this outage.
+- `04:02` We need to resolve the issue with the servers,
+- `04:05` deploy new servers in a different location,
+- `04:07` move the data center to a backup site,
+- `04:09` or do whatever we need to do to recover from this disaster.
+- `04:13` And then finally when our services are back online,
+- `04:16` we can measure that time frame between the outage
+- `04:18` and the online time frame as a Recovery Time Objective,
+- `04:22` or an RTO.
+- `04:24` When these issues occur, it's useful to know how long it's
+- `04:28` going to be to resolve this problem,
+- `04:30` and it might also be good to be able to predict
+- `04:32` when problems might occur.
+- `04:34` We can provide estimates for both of those values
+- `04:37` by using MTTR and MTBF.
+- `04:40` MTTR is the Mean Time to Repair.
+- `04:42` That is, on average, how long it will
+- `04:44` take to resolve the issue associated
+- `04:47` with that particular problem.
+- `04:49` Maybe it's a router that's failed,
+- `04:51` and we need to replace that router
+- `04:52` to get back up and running.
+- `04:54` The average time frame for replacing that router
+- `04:57` would be our mean time to repair.
+- `04:59` A better plan might be to use systems
+- `05:01` that are designed to stay up and running as long as possible.
+- `05:05` So we would need to put in equipment
+- `05:06` that would have a very long Mean Time Between Failures, or MTBF.
+- `05:12` The MTBF is generally based on a number of criteria,
+- `05:15` but it's presented as a single time frame.
+- `05:17` For example, if you purchase a firewall,
+- `05:20` that firewall's MTBF may be 20 years before you would
+- `05:24` expect that device to fail.
+- `05:26` So you can then make disaster-recovery plans
+- `05:28` around that time frame.
+- `05:30` If you see that your firewall has an MTBF of 20 years,
+- `05:33` you might only need one additional backup unit
+- `05:36` instead of purchasing multiples because you
+- `05:39` know that device is going to last,
+- `05:40` on average, a relatively long period of time.
+- `05:44` If we're dealing with a significant disaster,
+- `05:47` we may need to move out of our existing data center
+- `05:50` and into a temporary facility, but making that change is often
+- `05:54` not a simple process.
+- `05:55` There are a lot of different moving parts and things
+- `05:57` that have to happen to move your entire data center from one
+- `06:01` location to another.
+- `06:02` And then once you've moved to that other location,
+- `06:04` you then have to move everything back
+- `06:06` once you're up and running again.
+- `06:08` We refer to this moving of one location
+- `06:11` to another as site resiliency.
+- `06:14` One example of this site resiliency
+- `06:16` may be the process you go through
+- `06:17` to prepare that disaster-recovery site.
+- `06:20` You need to make sure you have power.
+- `06:21` You may need to bring in additional hardware
+- `06:24` and have it staged prior to a disaster,
+- `06:26` and you may want to have data that's transferred over.
+- `06:29` Once that disaster occurs, you will
+- `06:31` have a process where you move from your primary location
+- `06:34` to this backup facility.
+- `06:35` You would then work from this backup facility
+- `06:38` until the problem is resolved at the main location.
+- `06:41` This might take an hour, it might take a day,
+- `06:43` or it could take months, depending
+- `06:45` on the problem that's occurred.
+- `06:47` Every disaster will be different,
+- `06:48` and we have to think about that time frame
+- `06:50` when we're preparing the alternate site.
+- `06:52` And, of course, when we are ready to move back
+- `06:55` to the original data center, there
+- `06:56` is another process where we would
+- `06:58` take all of our assets and our data
+- `07:00` and move it back to the original location.
+- `07:03` If you're going to be using a separate disaster-recovery site,
+- `07:06` there are a number of different ways
+- `07:08` to set up this particular facility.
+- `07:10` One is with a cold site.
+- `07:12` This is effectively an empty building.
+- `07:15` None of our equipment is in this building, and none of our data
+- `07:18` currently resides at this location.
+- `07:20` We need to grab backup tapes or equipment that has our data
+- `07:24` and move it to this location to be able to perform disaster
+- `07:28` recovery.
+- `07:29` We also don't have any people at this location,
+- `07:31` so we may need to transport people
+- `07:33` from one location to another so that they
+- `07:36` can work at this physical site.
+- `07:38` This obviously means we have a lot of work
+- `07:40` to do if we call a disaster, but it also
+- `07:42` means that this is a relatively inexpensive place
+- `07:45` to use as a backup location.
+- `07:48` If you needed to have a disaster site where
+- `07:50` you could very easily move in and be up and running,
+- `07:53` you may want to consider a hot site.
+- `07:56` A hot site is an exact replica of your data
+- `07:59` center, or as exact as you can make it for something that's
+- `08:02` a disaster-recovery location.
+- `08:03` This means it has the same hardware that you are currently
+- `08:07` using in your existing data center,
+- `08:08` and it's very common that when you're
+- `08:10` purchasing new equipment for a data center
+- `08:12` that you also purchase additional units
+- `08:15` for your hot site.
+- `08:16` And, of course, not only do we need equipment at this hot site,
+- `08:19` we also need our applications and our data.
+- `08:22` It's very common to have replication systems
+- `08:25` or ongoing backups so that the data at your hot site
+- `08:28` is as close to the data that you're running
+- `08:31` at your primary location.
+- `08:32` And by putting all of this in place at the hot site,
+- `08:35` we can then move relatively quickly
+- `08:37` from our primary data center to this disaster-recovery location.
+- `08:41` And since we don't have to install any hardware,
+- `08:44` install any applications, or recover data from backups,
+- `08:47` we can be up and running relatively quickly.
+- `08:51` A warm site would be somewhere in the middle
+- `08:53` between a cold site and a hot site.
+- `08:55` This is a site that might have some level of infrastructure,
+- `08:59` that might have power and racks and, in some cases,
+- `09:01` might even have additional hardware that you could use,
+- `09:04` and so all you would need to do is show up with your data,
+- `09:07` recover from your backup tapes, and you would be up and running.
+- `09:10` There's different levels of service
+- `09:11` that you can use for a warm site,
+- `09:13` so you can decide just how much hardware
+- `09:15` or how much data you would like to have staged at that location.
+- `09:20` It's always a good idea to practice and run through tests
+- `09:23` so you know exactly what to do should a disaster occur,
+- `09:26` but that process of going through a full-blown
+- `09:29` disaster-recovery test can be relatively costly.
+- `09:33` This will take people out of their normal jobs
+- `09:35` and, perhaps in some cases, send them to a separate location
+- `09:38` to be able to perform the actual disaster-recovery test.
+- `09:42` Instead of going through a full-scale test,
+- `09:45` it might be useful to have everyone sit around a conference
+- `09:48` table and go through the process that they would follow
+- `09:51` if a disaster was called.
+- `09:53` This would allow all of the different departments in IT
+- `09:56` and all of the management of the company
+- `09:58` to step through simulated problems
+- `10:01` and describe what they would do in those particular situations.
+- `10:05` This means we don't have to go through the physical process
+- `10:07` of going to get our backups and taking them
+- `10:10` to this remote location, but it does require that everyone step
+- `10:14` through the process and see if all the logistics are
+- `10:16` in place to get that data from one location to another.
+- `10:20` Since we're all sitting around a conference room table
+- `10:23` to be able to describe the process that we would follow,
+- `10:26` we refer to this as a tabletop exercise.
+- `10:29` This is a meeting that you can go through
+- `10:31` in about a day or two, and all the key players
+- `10:34` will be participating and stepping through the process
+- `10:36` that they will follow if a disaster is called.
+- `10:40` There are some organizations, though,
+- `10:42` that go through a full-blown disaster-recovery site
+- `10:45` either once a year or multiple times a year,
+- `10:47` so it's always good to go through these validation tests.
+- `10:50` That way if a disaster occurs, everyone in the organization
+- `10:54` will know exactly what to do.
+- `10:56` When you're running through these validation tests,
+- `10:59` you're obviously not actually moving
+- `11:01` from a production environment into your disaster environment,
+- `11:04` but you are going through exactly the same process.
+- `11:07` Usually these validation tests will
+- `11:09` follow a particular scenario.
+- `11:11` For example, let's say a fire was
+- `11:13` to destroy the building where your primary data
+- `11:16` center existed.
+- `11:17` There would be a series of processes and steps
+- `11:19` to be able to move everything to the disaster-recovery site.
+- `11:23` But what if the scenario was different
+- `11:25` where everyone in your geographic area around that data
+- `11:28` center had to be evacuated?
+- `11:31` In that situation, there might be a different set
+- `11:33` of steps to be able to get all of your applications
+- `11:36` and all of your data from your primary location
+- `11:39` to that backup site.
+- `11:40` Once everyone steps through this scenario
+- `11:43` and goes through the entire disaster-recovery test,
+- `11:46` we can document what worked and the things that
+- `11:49` need to be fixed for later.
+- `11:50` This allows us to make ongoing improvements
+- `11:53` so that we know exactly how to be
+- `11:55` more efficient when moving everyone
+- `11:57` to a disaster-recovery site.

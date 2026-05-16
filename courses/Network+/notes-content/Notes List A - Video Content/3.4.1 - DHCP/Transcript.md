@@ -1,0 +1,208 @@
+# [3.4.1 - DHCP](https://www.youtube.com/watch?v=b7fiXM3vO18)
+
+## 3.4.1 - DHCP
+
+- Day: Day 7
+- Duration: 8:51
+
+## Transcript
+
+- `00:01` on our modern networks we become so
+- `00:03` accustomed to Simply turning on our
+- `00:05` systems and we're able to communicate
+- `00:07` with other devices on our local network
+- `00:10` or browse the internet but it wasn't
+- `00:12` always this easy we used to manually
+- `00:15` configure all of our ipv4 configuration
+- `00:18` settings the IP address the subnet mask
+- `00:20` the DNS settings and everything else
+- `00:23` associated with tcpip was all configured
+- `00:26` manually on every device in order to
+- `00:29` scale this process we created a new
+- `00:31` protocol that would do all of this for
+- `00:33` us automatically this was called the
+- `00:36` bootstrap protocol or boot P but bootp
+- `00:40` didn't configure everything
+- `00:42` automatically and there were a number of
+- `00:44` enhancements that we would like to make
+- `00:46` to the protocol for example if someone
+- `00:48` left the network it would be nice if
+- `00:51` this protocol recognized that that IP
+- `00:53` address was now available so we created
+- `00:56` a newer version of bootp called DHCP or
+- `01:00` the dynamic host configuration protocol
+- `01:03` DHCP is the protocol we use today to
+- `01:05` provide these automatic address
+- `01:07` configurations for all of the devices on
+- `01:10` our
+- `01:11` Network the process for defining these
+- `01:13` IP addresses automatically follows four
+- `01:16` different steps that we're going to call
+- `01:18` Dora d o r a the d stands for discover
+- `01:23` where there is a discovery process where
+- `01:25` you find the DHCP servers that are on
+- `01:27` your network the next step is the offer
+- `01:30` phase where we get an offer from a DHCP
+- `01:33` server the third step is the request
+- `01:36` process where we request one of the
+- `01:38` offered IP addresses and then lastly we
+- `01:41` have the acknowledgement phase where we
+- `01:43` tell the DHCP server that we have
+- `01:45` receive that configuration and are using
+- `01:48` that particular IP address let's step
+- `01:51` through all four of those phases from
+- `01:53` the perspective of this network diagram
+- `01:55` on this diagram we have Sam that has
+- `01:57` just connected her laptop to the network
+- `01:59` and she needs to receive an IP address
+- `02:02` on her local subnet you can see there is
+- `02:04` a single DHCP server and there are other
+- `02:07` devices on this network that we're
+- `02:09` simply not showing in this particular
+- `02:10` diagram there's also a router and this
+- `02:13` router is connected across a wide earing
+- `02:15` Network to another router where there's
+- `02:17` a separate switch and another
+- `02:18` workstation that is owned by Jack let's
+- `02:21` focus on the process that Sam is going
+- `02:23` to use to obtain an IP address this
+- `02:25` first step is the Discover step and in
+- `02:28` this step Sam's workstation is going to
+- `02:30` send a DHCP discover packet it's going
+- `02:32` to be sent from an IP address of
+- `02:35` 0.0.0.0 because Sam's workstation
+- `02:38` currently does not have an IP address
+- `02:40` and this packet is going to be sent in
+- `02:42` an IP broadcast which means it's going
+- `02:44` to be sent to
+- `02:48` 255.255.255.0 this is sent as a
+- `02:50` broadcast so that every device on the
+- `02:52` subnet will see this DHCP request and if
+- `02:55` the device happens to be one or more
+- `02:57` DHCP servers those devices will be able
+- `03:00` to respond back you'll also notice that
+- `03:03` this request is sent using UDP Port 68
+- `03:05` on Sam's workstation and the broadcast
+- `03:08` is sent to UDP Port 67 this packet is
+- `03:12` sent from Sam's laptop and because it's
+- `03:13` a broadcast it's sent to all devices on
+- `03:16` this local subnet the DHCP server will
+- `03:19` see that broadcast and it will send a
+- `03:22` DHCP offer which is step two of the DHCP
+- `03:26` process this DHCP server has an IP
+- `03:28` address of 1010
+- `03:30` 0.99 and it will send this with a source
+- `03:33` port number of UDP Port 67 notice that
+- `03:36` the DHCP server is going to send this as
+- `03:38` a broadcast send it to
+- `03:42` 255.255.255.0 and it's going to send
+- `03:44` this to a destination port number of UDP
+- `03:46` 68 this is obviously being sent as a
+- `03:49` broadcast because Sam's workstation
+- `03:51` currently does not have an IP address
+- `03:53` the only way that Sam's device would see
+- `03:56` this packet is if it's sent to all
+- `03:58` devices on the subnet this DHCP offer
+- `04:01` will be sent from the DHCP server and
+- `04:03` broadcast to all devices on the subnet
+- `04:06` if there were multiple DHCP servers on
+- `04:09` this network Sam could potentially
+- `04:10` receive more than one offer from a DHCP
+- `04:13` server so in step three Sam's device is
+- `04:16` going to choose one of those offers and
+- `04:19` send a DHCP request to that particular
+- `04:22` DHCP server this request is obviously
+- `04:25` coming from 0.0.0.0 because Sam's
+- `04:27` workstation still does not have an IP
+- `04:30` address it is sourced from UDP Port 68
+- `04:33` and the destination is going to be
+- `04:38` 255.255.255.0 one's broadcast and it's
+- `04:41` being sent to a destination port number
+- `04:43` of UDP Port 67 this traffic flow is very
+- `04:46` similar to that first discover traffic
+- `04:48` flow where all of the packets are
+- `04:50` broadcast to all devices on this local
+- `04:53` subnet and the last step is step four or
+- `04:56` the acknowledgement this is sent from
+- `04:58` the DHCP server back to this device
+- `05:01` acknowledging that it has received that
+- `05:03` request the acknowledgement is sent from
+- `05:05` the DHCP server in this case 10.10.10
+- `05:08` 199 with a source port number of UDP
+- `05:10` Port 67 and again it is sent to a
+- `05:13` broadcast address 255
+- `05:29` now that Sam's laptop has received the
+- `05:31` acknowledgement from the DHCP server it
+- `05:34` can now configure all of the IP settings
+- `05:36` automatically for Sam's
+- `05:39` laptop as you may have noticed from that
+- `05:41` Network map and the different phases
+- `05:44` that we went through with DHCP there is
+- `05:47` a significant limitation associated with
+- `05:49` the DHCP process and that is the
+- `05:52` broadcast that is being sent by the
+- `05:54` different devices broadcasts of course
+- `05:56` are only transmitted to your local
+- `05:58` subnet and none of those broadcast
+- `06:00` frames will Traverse a router this
+- `06:02` becomes a challenge for an Enterprise
+- `06:04` Network where you'd like to have
+- `06:05` redundant DHCP servers and ideally have
+- `06:08` those DHCP servers distributed across
+- `06:11` different parts of the network
+- `06:13` fortunately there is a way to implement
+- `06:15` DHCP in this environment by using some
+- `06:18` additional features of your router we
+- `06:20` also might want to centralize these DHCP
+- `06:23` servers instead of having separate
+- `06:24` individual DHCP servers that are
+- `06:27` scattered across every remote site that
+- `06:29` we might have fortunately many routers
+- `06:31` support a way to enable DHCP across
+- `06:35` these different subnets even though DHCP
+- `06:37` uses broadcast to communicate we refer
+- `06:40` to this router functionality as a DHCP
+- `06:43` helper or a DHCP relay this will allow
+- `06:47` you to send DHCP traffic to another
+- `06:49` subnet even though it's being sent
+- `06:52` originally as a broadcast we would first
+- `06:55` configure a router with a DHCP relay
+- `06:58` configuration and in that configuration
+- `07:00` of the router we would specify that
+- `07:02` there is a DHCP server located at
+- `07:05` 10.10.10 199 and that is our original
+- `07:07` DHCP server that we were working with
+- `07:10` earlier in this scenario Jack would like
+- `07:12` to receive a DHCP address but as you can
+- `07:14` see there is no DHCP server on Jack's
+- `07:17` local subnet Jack's laptop doesn't know
+- `07:20` this however and it will simply send the
+- `07:22` normal DHCP discover message out to
+- `07:25` everyone on this local subnet when that
+- `07:28` broadcast is received by the router
+- `07:30` configured with DHCP relay it will look
+- `07:32` at its configuration and realize there
+- `07:34` is a DHCP server at 10.10.10 99 and it
+- `07:38` will relay that information to the DHCP
+- `07:41` server it changes the source IP address
+- `07:44` to the IP address of the router in this
+- `07:47` case 101030 do1 and it changes the
+- `07:50` destination address to the IP address of
+- `07:52` the DHCP server it effectively takes
+- `07:55` what was a broadcast and turns it into a
+- `07:58` unicast communication
+- `08:00` this packet can now be sent across the
+- `08:02` network to a DHCP server that's located
+- `08:04` on a different subnet the offer process
+- `08:07` works exactly the same but in reverse
+- `08:10` the offer leaves the DHCP server and is
+- `08:13` directed with unicast to the router's IP
+- `08:15` address at 101030 do1 at this point the
+- `08:19` relay modifies this back to a broadcast
+- `08:22` and is sent to the local subnet with an
+- `08:25` all ones broadcast this process repeats
+- `08:28` for the last two phases
+- `08:29` of the DHCP process and that allows
+- `08:32` Jack's workstation to receive an IP
+- `08:34` address even though the DHCP server may
+- `08:37` be on a completely different IP subnet

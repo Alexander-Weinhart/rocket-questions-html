@@ -1,4 +1,4 @@
-# 🔄 Dynamic IP Addressing (DHCP)
+# Dynamic IP Addressing (DHCP)
 
 Dynamic IP addressing uses a **DHCP server** to automatically assign IP settings to devices when they connect to the network. No manual configuration required on the client side.
 
@@ -58,8 +58,8 @@ Look for:
 
 ## Key Points
 
-- 📌 Device must be set to **"Obtain IP automatically"**
-- 📌 DHCP server assigns: IP, subnet mask, gateway, DNS
-- 📌 Verify with `ipconfig /all` — check "DHCP Enabled: Yes"
-- 📌 IPs are assigned as **leases** — temporary, renewable
-- 📌 Eliminates IP conflicts by centralising address management
+- Device must be set to **"Obtain IP automatically"**
+- DHCP server assigns: IP, subnet mask, gateway, DNS
+- Verify with `ipconfig /all` — check "DHCP Enabled: Yes"
+- IPs are assigned as **leases** — temporary, renewable
+- Eliminates IP conflicts by centralising address management

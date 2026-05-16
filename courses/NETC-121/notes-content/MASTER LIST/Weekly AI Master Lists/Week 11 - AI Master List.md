@@ -9,8 +9,8 @@
 
 Sources included for this master list:
 
-- `Notes List A - Video Content/Video 22 - Routing Fundamentals/Transcript.md`
-- `Notes List A - Video Content/Video 23 - Dynamic Routing Protocols/Transcript.md`
+- `Notes List A - Video Content/Video 32 - CCNA Routing Fundamentals - Part 1/CCNA Routing Fundamentals - Part 1.md`
+- `Notes List A - Video Content/Video 33 - EGP IGP Distance Vector Link State Dynamic Routing Protocols OSPF EIGRP BGP RIP IS-IS/EGP IGP Distance Vector Link State Dynamic Routing Protocols OSPF EIGRP BGP RIP IS-IS.md`
 - `Notes List B - Textbook Content/Essential - Chapter 9 Routing Protocols/Essential Chapter 9 - Routing Protocols.md`
 - `Notes List C - Alex's Personal Notes/Lecture Week 11/Lecture Week 11.md`
 

@@ -1,0 +1,221 @@
+# [1.7.2 - IPv4 Addressing](https://www.youtube.com/watch?v=JNNcyZ_VE2A)
+
+## 1.7.2 - IPv4 Addressing
+
+- Day: Day 3
+- Duration: 11:06
+
+## Transcript
+
+- `00:01` If you've done anything with networking,
+- `00:03` then you've probably run into an IP version 4 address.
+- `00:07` In this video, let's look at the different configuration options
+- `00:10` for IP version 4.
+- `00:12` The IP address is the unique identifier
+- `00:15` that every device on the network must
+- `00:17` have if it wants to communicate using that IP protocol.
+- `00:21` An IP address is a series of four numbers separated
+- `00:25` by a period.
+- `00:26` This would be something like 192.168.1.165.
+- `00:32` To be able to properly communicate on the network,
+- `00:34` every device needs to have its own unique IP address.
+- `00:37` The IP address is combined with another value, referred
+- `00:41` to as the subnet mask.
+- `00:43` The subnet mask is also a 4-octet value--
+- `00:46` for example, 255.255.255.0.
+- `00:50` The subnet mask is used in conjunction with the IP address
+- `00:54` to determine what IP subnet this particular device is on.
+- `00:58` This isn't something that's usually
+- `01:00` transmitted across the network.
+- `01:02` It's instead used by your local device
+- `01:04` to make the determination of what devices
+- `01:06` are local on this IP subnet and what IP addresses may be outside
+- `01:11` of this local IP subnet.
+- `01:12` This becomes especially important
+- `01:14` when you need to send traffic outside of your local subnet.
+- `01:17` And you do that through the use of a default gateway.
+- `01:20` The default gateway is the IP address
+- `01:23` of a device that's on your local subnet that
+- `01:25` allows you to communicate outside of this subnet.
+- `01:28` For example, if we have an IP address of 192.168.1.165
+- `01:33` and a subnet mask of 255.255.255.0,
+- `01:38` a common default gateway could be 192.168.1.1.
+- `01:44` This is an IP address that is configured and assigned
+- `01:47` to the router on your local subnet
+- `01:49` by your network administrator.
+- `01:51` And it must be an IP address that is on your local network.
+- `01:55` There are also other IP addresses
+- `01:57` you should be familiar with.
+- `01:58` One of these is a loopback address.
+- `02:00` This is a way to define your local device without having
+- `02:03` to know a specific IP address.
+- `02:06` Every device on the network has a loopback address.
+- `02:09` And it's a number that is between 127.0.0.1 through
+- `02:14` 127.255.255.254.
+- `02:18` So if you wanted to ping your local device,
+- `02:21` you could ping 127.0.0.1.
+- `02:24` And hopefully, your local device would be able to respond to you.
+- `02:28` This is often used to confirm that your local IP
+- `02:31` stack is working properly.
+- `02:33` And it would then be able to communicate to other devices.
+- `02:36` We also have a range of IP addresses
+- `02:39` that we've set aside as reserved addresses.
+- `02:42` This is a range of IP addresses that should never
+- `02:45` be assigned to other devices.
+- `02:47` They're used for future use or for testing in the future.
+- `02:50` This range of reserved addresses is 240.0.0.1 through
+- `02:55` 254.255.255.254.
+- `03:00` Anything that is a class E address
+- `03:02` is also a reserved address.
+- `03:04` We'll talk about classes of addresses in just a moment.
+- `03:08` And another address type you might run into
+- `03:10` is one that is not real.
+- `03:12` It's a virtual IP address, or a VIP.
+- `03:15` Virtual IP addresses are not associated
+- `03:18` with a physical Ethernet adapter.
+- `03:20` Instead, VIPs are addresses that you
+- `03:23` would assign to the internals of a device
+- `03:25` so that you could always reference that device using
+- `03:29` that virtual IP address.
+- `03:31` For example, you might assign a VIP to a virtual machine.
+- `03:34` Or the VIP may be part of an internal address
+- `03:37` that you're associating with a particular router.
+- `03:40` The IP protocol and IP version 4 operate at OSI layer three.
+- `03:46` So any time you're working with an IP address,
+- `03:48` you're working at that network layer of the OSI model.
+- `03:52` Let's break apart an IP version 4 address
+- `03:55` and really see what it's made of.
+- `03:57` Let's take the address 192.168.1.131.
+- `04:02` We refer to these four values as octets.
+- `04:05` That's because they consist of eight individual bits.
+- `04:08` And you can see the representation
+- `04:10` of that same IP address broken out into those four
+- `04:13` groups of 8 bits.
+- `04:15` Sometimes you'll see these 8 bits broken out and described
+- `04:18` as 1 byte or sometimes 1 octet.
+- `04:22` So if you were to count up all of these bits,
+- `04:24` there are 32 total bits in an IP version 4 address.
+- `04:28` And that is the same as 4 bytes or 4 octets.
+- `04:31` Since each one of these individual groups
+- `04:34` inside of IP version 4 consist of 8 bits,
+- `04:37` the maximum value that you would ever
+- `04:40` have in decimal for any of these groups
+- `04:42` would be a maximum of 255.
+- `04:46` In the early days of networking, we
+- `04:48` had to manually configure the IP address, subnet mask,
+- `04:51` and default gateway, all in a manual way.
+- `04:55` We had to visit that device, change a configuration file,
+- `04:58` and then that device would be able to communicate
+- `05:01` on the network.
+- `05:02` If anything changed with our network configuration
+- `05:04` or we needed to change the IP address of that device,
+- `05:07` we had to revisit the device and manually make those changes.
+- `05:11` Today, of course, we can plug in any of our devices.
+- `05:14` And it automatically receives an IP address.
+- `05:17` The way that we are able to receive this automated
+- `05:19` IP addressing is through a protocol
+- `05:21` known as DHCP, or Dynamic Host Configuration Protocol.
+- `05:26` When we plug into a wired Ethernet
+- `05:28` network or a wireless network and we are automatically
+- `05:31` able to communicate out to the internet,
+- `05:34` it's because we've received all of our IP configuration
+- `05:37` settings via DHCP.
+- `05:39` But if you've ever connected to a network that does not
+- `05:42` have a DHCP server, you may notice that you're still
+- `05:45` assigned an automatic address.
+- `05:48` But this address is not quite as capable as a DHCP address.
+- `05:52` Instead, it's what we call a link-local address
+- `05:55` because it can only communicate to other devices that
+- `05:58` are on your local subnet.
+- `05:59` And we cannot route that traffic outside of your local subnet.
+- `06:04` For example, if you're assigned a link-local address,
+- `06:06` you can't communicate to the internet,
+- `06:08` because that's outside of your local subnet.
+- `06:10` In IP version 4, this link-local address
+- `06:14` is assigned through a process known as Automatic Private IP
+- `06:17` Addressing, or APIPA.
+- `06:20` This range of IP addresses automatically assigned through
+- `06:22` APIPA is 169.254.0.1 through 169.254.255.254.
+- `06:31` There are also reserved sections of that range.
+- `06:34` The first and last 256 addresses are reserved,
+- `06:38` and they're not assigned to end stations.
+- `06:40` So if you receive an APIPA address on your device,
+- `06:43` it's between 169.254.1.0 through 169.254.254.255.
+- `06:52` Just as DHCP works automatically to assign your address,
+- `06:56` APIPA also has an automated process to assign this address.
+- `07:00` It uses ARP to confirm that no one else on your local network
+- `07:04` has that link-local address.
+- `07:05` And if nothing responds to that Address Resolution Protocol
+- `07:09` query, then it will assign a random number
+- `07:11` between that functional block.
+- `07:14` One of the challenges with IPv4 is
+- `07:17` that there are far more devices in the world
+- `07:20` than there are IP version 4 addresses.
+- `07:23` And in recent years, we've used up
+- `07:24` all of the available blocks of IP version 4 addresses.
+- `07:28` There are no other IP version 4 addresses
+- `07:30` that can be assigned in these blocks.
+- `07:32` So we need to find other ways to be able to communicate
+- `07:35` via IP version 4.
+- `07:37` One way that we've been able to extend the functionality of IP
+- `07:40` version 4 is to create an assignment of IP address ranges
+- `07:44` that can only be used on the inside of a network.
+- `07:48` We refer to these as a private IP address range.
+- `07:51` And anything that is a private IP address cannot be routed
+- `07:55` on the public internet.
+- `07:56` Fortunately, these are very large ranges.
+- `07:59` And we're able to use those ranges on the inside
+- `08:02` of our corporate networks.
+- `08:03` If you were to look at the IP address that's
+- `08:05` assigned to your device right now,
+- `08:07` it's likely that it's a private IP address.
+- `08:10` So if your device is currently using a private IP address
+- `08:13` and you're watching this video on the internet,
+- `08:16` how are you able to communicate on the internet
+- `08:19` with an address that is not able to be
+- `08:21` routed across the internet?
+- `08:23` We're able to do that through a functionality called network
+- `08:26` address translation.
+- `08:27` This allows us to convert a private IP address
+- `08:29` into a public IP address and use that public IP
+- `08:33` address to communicate on the public network.
+- `08:36` We'll learn more about network address translation
+- `08:38` as we go through this training course.
+- `08:40` If you want to learn more about private IP addresses,
+- `08:43` you may want to reference a Request For Comment, or RFC.
+- `08:47` RFC 1918 is the standard that defines
+- `08:50` these ranges of private IP addresses
+- `08:53` and how they can be used on our networks.
+- `08:55` If we were to look into the details of RFC 1918,
+- `08:59` you would see three different ranges
+- `09:01` have been set aside for private IP addressing.
+- `09:04` These three ranges are 10.0.0.0 through 10.255.255.255.
+- `09:10` And if you were to count up all of the possible addresses
+- `09:13` in that range, it would be over 16 million addresses.
+- `09:16` We often refer to this as a single class
+- `09:19` A block of addresses.
+- `09:21` And we often write it as 10.0.0.0/8.
+- `09:25` If you were to write out the subnet mask of that /8 address,
+- `09:29` it's 255.0.0.0.
+- `09:31` This means the host size of this particular IP address range
+- `09:35` is 24 bits in length.
+- `09:37` Another range is 172.16.0.0 through 172.31.255.255.
+- `09:45` This gives us a total of just over 1 million addresses
+- `09:48` that we can assign in 16 contiguous class B address
+- `09:52` ranges.
+- `09:53` If we were to write this out in CIDR block notation,
+- `09:56` it would be 172.16.0.0/12.
+- `09:59` The decimal subnet mask for a /12 network is 255.240.0.0,
+- `10:06` which means our host ID size is 20 bits in length.
+- `10:10` And the last range is 192.168.0.0 through
+- `10:14` 192.168.255.255.
+- `10:18` This allows us to assign over 65,000 addresses as part of 256
+- `10:23` contiguous class C address ranges.
+- `10:25` The CIDR block notation for this would be 192.168.0.0/16.
+- `10:31` And that /16 subnet mask is the same as 255.255.0.0.
+- `10:37` Half of this address is assigned for hosts.
+- `10:40` So your host ID size is 16 bits in length.
+- `10:43` As we step through the next series of videos,
+- `10:46` you'll learn more about CIDR block notation,
+- `10:48` the different classes of IP addresses, and other details
+- `10:52` that you see associated with these private address ranges.

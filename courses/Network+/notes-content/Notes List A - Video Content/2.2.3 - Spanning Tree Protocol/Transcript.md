@@ -1,0 +1,150 @@
+# [2.2.3 - Spanning Tree Protocol](https://www.youtube.com/watch?v=Jm0BOz1Ur28)
+
+## 2.2.3 - Spanning Tree Protocol
+
+- Day: Day 6
+- Duration: 6:06
+
+## Transcript
+
+- `00:01` If you had two switches and you connected them together
+- `00:05` with an ethernet cable and then you connected
+- `00:07` another ethernet cable to those switches,
+- `00:10` you would create a loop on the network.
+- `00:13` This means an ethernet frame would
+- `00:15` loop around that particular connection
+- `00:17` until you disconnected one of those cables.
+- `00:20` There's no mechanism at the Mac address level
+- `00:22` to count how many times you've seen a frame.
+- `00:25` So as these frames are going around this loop,
+- `00:28` you're adding more and more frames to the network
+- `00:30` all the time.
+- `00:31` Those are continuing to go around this loop.
+- `00:33` And eventually, you'll overwhelm the capacities of your switches.
+- `00:37` This can happen relatively quickly.
+- `00:39` Once you create a loop in a network,
+- `00:41` it might be a number of seconds until people
+- `00:43` start calling the help desk stating
+- `00:45` that the network is down.
+- `00:47` Fortunately, this is relatively easy to resolve.
+- `00:49` You simply go back to the switch where you plugged in that cable.
+- `00:52` You disconnect the cable, which removes
+- `00:55` the loop from the network, and now everything
+- `00:57` is back up and running.
+- `00:58` But, of course, we're not always standing
+- `01:00` in the data center ready to plug or unplug a cable from a switch.
+- `01:04` We need some type of automated method
+- `01:07` to recognize a loop on the network
+- `01:09` and to prevent those loops from occurring.
+- `01:11` Fortunately, we have a standard that's
+- `01:13` able to recognize and prevent loops on a network.
+- `01:16` This is the IEEE 802.1D standard,
+- `01:20` one that we call the Spanning Tree Protocol.
+- `01:24` Spanning Tree can configure interfaces
+- `01:26` on our switch in a number of different ways.
+- `01:28` It may configure the switch port to be
+- `01:30` blocking, which means it's not going to forward any traffic.
+- `01:33` This is commonly used to prevent loops on a network.
+- `01:37` If we were to plug in that second cable to our switch,
+- `01:40` Spanning Tree would recognize that a loop was being created,
+- `01:43` and it would cause one of those interfaces
+- `01:45` to be in a blocking state.
+- `01:47` The listening phase is used by Spanning Tree
+- `01:49` to clear out existing tables and restart the process.
+- `01:53` It's going to go through a learning process
+- `01:56` where it listens to understand where all of the other switches
+- `01:58` might be and if there might be any loops on the network already
+- `02:02` running.
+- `02:02` And then it will configure an interface
+- `02:04` to be forwarding, which means traffic can be transmitted
+- `02:07` through that interface, or it will configure an interface
+- `02:10` to be blocking.
+- `02:12` We might also have interfaces that
+- `02:13` are administratively disabled.
+- `02:16` Those obviously would not participate
+- `02:18` in this Spanning Tree process.
+- `02:21` Here's a network that is already running Spanning Tree,
+- `02:24` and there are a number of switches
+- `02:25` that are identified as Bridge 1, Bridge 6, Bridge 5, and so on.
+- `02:29` You can see there are five of them in this particular design.
+- `02:33` And you can see that many of these switches
+- `02:35` are connected to each other.
+- `02:36` And if we didn't have Spanning Tree running,
+- `02:38` there would be a loop on this network already.
+- `02:41` But on this network, we already have Spanning Tree
+- `02:43` that's operational, and it has configured a number
+- `02:46` of different interfaces.
+- `02:48` There are three different types that you can see on this screen.
+- `02:51` One is the root port, or RP.
+- `02:53` This is the interface on a switch that
+- `02:55` is connected ultimately to the single root
+- `02:58` bridge on the network.
+- `03:00` There's also a designated port, which
+- `03:02` would be any other port that can forward traffic
+- `03:04` but is not the port that is connected directly
+- `03:07` to the root bridge.
+- `03:08` And there are blocked ports.
+- `03:10` These are ports where Spanning Tree
+- `03:11` has disabled that port from sending or receiving
+- `03:14` any traffic.
+- `03:15` You can see on this network that Bridge 21 has a blocked
+- `03:18` port and Bridge 11 has a blocked port,
+- `03:21` and those have been blocked so that there is not
+- `03:24` a loop on the network.
+- `03:25` If we were communicating from Bridge 11,
+- `03:27` you can see there is a single root port,
+- `03:29` and you can follow that all the way back with those
+- `03:32` root ports to the final root bridge.
+- `03:35` The designated ports are also available to be
+- `03:37` able to send and receive traffic.
+- `03:39` In this scenario, let's say that we're on Network A,
+- `03:42` and we've been communicating with the device on Network
+- `03:44` M. You can see that we can communicate through Bridge 6,
+- `03:48` which has a designated port and a root port that allows
+- `03:51` us access to Network M. But what if there
+- `03:54` is a problem on this network and we lose connectivity
+- `03:57` between Network A and Bridge 6?
+- `03:59` Now we need some other way to communicate to Network M.
+- `04:03` But as you can see, there is a blocked port on Bridge 11,
+- `04:06` so we would not be able to communicate
+- `04:08` through that connection.
+- `04:09` Fortunately, Spanning Tree recognizes
+- `04:12` that we have this disconnection, and it
+- `04:14` begins clearing out the existing configuration
+- `04:16` and relearning the topology of the existing network.
+- `04:20` Spanning Tree has changed Bridge 5 so that the root port is now
+- `04:24` on the other side, and it has removed the block port on Bridge
+- `04:27` 11, allowing us, on Network A, to be able to now communicate
+- `04:31` all the way through the network back to Network M
+- `04:34` without having another loop on the network.
+- `04:38` On many networks, we do talk about enabling Spanning Tree
+- `04:41` and making sure that our Spanning Tree configuration is
+- `04:44` turned on inside of our switches.
+- `04:46` But in reality, these days, we're
+- `04:48` probably running a newer version of Spanning Tree called
+- `04:51` the Rapid Spanning Tree Protocol.
+- `04:53` This standard is the 802.1W standard.
+- `04:57` In the original Spanning Tree Protocol,
+- `04:59` it might take 30 to 50 seconds for the convergence process
+- `05:03` to occur.
+- `05:03` And on today's networks, that is a very long time
+- `05:06` to wait without any type of connectivity.
+- `05:08` With Rapid Spanning Tree Protocol,
+- `05:10` this convergence process goes down
+- `05:12` to about 6 seconds, which means any time there's
+- `05:15` a disruption on the network, we can be back up
+- `05:17` and running relatively quickly.
+- `05:20` Fortunately, this Rapid Spanning Tree Protocol
+- `05:22` is backwards compatible with the original Spanning Tree.
+- `05:25` So if you have a mixed set of devices on your network
+- `05:28` that support one or the other standard,
+- `05:31` you can run them all at the same time.
+- `05:33` Fortunately, Rapid Spanning Tree Protocol
+- `05:35` works very similar to the original Spanning Tree
+- `05:38` configuration.
+- `05:39` It simply operates much faster.
+- `05:41` There are some shortcuts and other configuration settings
+- `05:43` within the Rapid Spanning Tree Protocol,
+- `05:46` but it has such familiarity that if you understand Spanning Tree
+- `05:49` Protocol, it will be very easy for you
+- `05:52` to understand the details of Rapid Spanning Tree Protocol.

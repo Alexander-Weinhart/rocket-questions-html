@@ -1,4 +1,4 @@
-# 🌐 TCP/IP Protocol Suite
+# TCP/IP Protocol Suite
 
 The TCP/IP suite is the **collection of protocols** that power the internet and most modern networks. It's not a single protocol — it's a family of related protocols that each handle a specific job within the stack.
 
@@ -22,9 +22,9 @@ TCP is a **connection-oriented, reliable** transport protocol.
 Reliable delivery in action:
 Sender:    [1] [2] [3] [4] [5]
            ─── ─── ─── ─── ───►
-Receiver:  ACK ACK  ✗  ACK ACK  ← segment 3 lost
+Receiver:  ACK ACK    ACK ACK  ← segment 3 lost
                    ↓
-Sender retransmits: [3] ──────► ✅
+Sender retransmits: [3] ──────► 
 ```
 
 **Use cases:** web browsing (HTTP/HTTPS), email (SMTP), file transfer (FTP), any scenario where data must arrive complete and correct.
@@ -82,8 +82,8 @@ Each protocol in the suite handles one specific aspect of the communication:
 
 ## Key Points
 
-- 📌 **TCP** — connection-oriented, reliable, uses ACKs, sequencing, retransmission
-- 📌 **UDP** — connectionless, fast, no guarantees, low overhead
-- 📌 **IP** — logical addressing and routing, best-effort, unchanged end-to-end
-- 📌 TCP rides on top of IP; together they are the backbone of the internet
-- 📌 The suite also includes ICMP (ping), ARP, DNS, HTTP, SMTP, and many more
+- **TCP** — connection-oriented, reliable, uses ACKs, sequencing, retransmission
+- **UDP** — connectionless, fast, no guarantees, low overhead
+- **IP** — logical addressing and routing, best-effort, unchanged end-to-end
+- TCP rides on top of IP; together they are the backbone of the internet
+- The suite also includes ICMP (ping), ARP, DNS, HTTP, SMTP, and many more

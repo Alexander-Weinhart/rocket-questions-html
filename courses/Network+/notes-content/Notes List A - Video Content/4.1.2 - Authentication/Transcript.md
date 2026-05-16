@@ -1,0 +1,342 @@
+# [4.1.2 - Authentication](https://www.youtube.com/watch?v=enyRd-8m8SI)
+
+## 4.1.2 - Authentication
+
+- Day: Day 8
+- Duration: 12:46
+
+## Transcript
+
+- `00:02` many of us are very familiar with the
+- `00:03` process of authenticating we put in a
+- `00:05` username a password sometimes there's an
+- `00:08` additional authentication factor and
+- `00:10` that provides us access to a system but
+- `00:13` behind the scenes there is a lot more
+- `00:14` happening so let's dive into the process
+- `00:16` of
+- `00:18` authentication the process of
+- `00:19` authentication uses something called the
+- `00:22` AAA framework we'll look at all three of
+- `00:24` the A's associated with the AAA
+- `00:26` framework in a moment but first we start
+- `00:29` with a piece of information
+- `00:30` that everyone has access to and that
+- `00:32` would be the identification that we use
+- `00:34` when we're logging in this is often our
+- `00:37` username it might be an email address
+- `00:39` but it's information that is usually
+- `00:41` available to pretty much everyone this
+- `00:44` is public information and just because
+- `00:46` someone happens to know our email
+- `00:48` address or happens to know our login
+- `00:50` name does not give them access to our
+- `00:53` systems the first a in the AAA framework
+- `00:55` is authentication this is the process
+- `00:58` where you prove that you are really who
+- `01:00` you say you are this is often done with
+- `01:03` some type of private information such as
+- `01:05` a password or some other type of
+- `01:07` authentication Factor once you go
+- `01:09` through the authentication process and
+- `01:11` you prove that you are who you say you
+- `01:13` are we now need to be sure that you're
+- `01:15` provided the access associated with that
+- `01:18` particular user this is provided through
+- `01:20` the second a in the AAA framework
+- `01:23` authorization we need to be sure that
+- `01:25` you're provided the proper access to
+- `01:27` files directories or areas of the
+- `01:29` network work based on who you say you
+- `01:31` are and of course we need to be sure
+- `01:34` that we track the people that are
+- `01:35` logging in and the people that are
+- `01:37` logging out we do that through the third
+- `01:39` a in the AAA framework or accounting we
+- `01:42` want to be sure that we document when
+- `01:44` someone logs in logs out we also want to
+- `01:47` be sure that we document when someone
+- `01:49` does not complete the authentication
+- `01:51` process properly there might also be
+- `01:53` other pieces of information associated
+- `01:55` with identification authentication or
+- `01:57` authorization that we might also store
+- `02:00` as part of this accounting process there
+- `02:03` may be many different processes that
+- `02:05` occur behind the scenes when you provide
+- `02:07` your username and password but let's
+- `02:09` look at a very common scenario where
+- `02:11` we're logging into a VPN concentrator
+- `02:14` from somewhere out on the internet from
+- `02:16` our laptop we will need to send this VPN
+- `02:19` concentrator information about who we
+- `02:21` are we need to provide a username a
+- `02:23` password or some other type of
+- `02:25` authentication Factor this is usually
+- `02:27` sent to a AAA server which contains all
+- `02:30` of this username information stored
+- `02:32` passwords in a protected form and
+- `02:34` anything else that can help prove that
+- `02:37` we really are the person we say we are
+- `02:39` if the information that we've provided
+- `02:41` matches what's contained on the AAA
+- `02:43` server that server will send a message
+- `02:45` back saying that those credentials have
+- `02:47` been approved at that point we're able
+- `02:49` to Traverse the network because we've
+- `02:51` gone through the entire authentication
+- `02:53` process and we were confirmed by this
+- `02:55` AAA server on many networks we only have
+- `02:59` to provide that authentication
+- `03:00` information one time during the day and
+- `03:03` from that point forward we can access
+- `03:05` all of the resources that would normally
+- `03:07` be accessible to us we refer to that
+- `03:09` one-time process as a single sign on
+- `03:12` when we sit down at our desk in the
+- `03:14` morning we provide our username our
+- `03:16` password any other authentication
+- `03:18` details required and from that point
+- `03:20` forward for the rest of the day we don't
+- `03:22` have to provide that information again
+- `03:24` we obviously don't want to provide that
+- `03:26` access indefinitely so there's usually a
+- `03:28` time frame associated with this often 24
+- `03:31` hours so when we step back into the
+- `03:33` office the next morning we will probably
+- `03:35` have to go through this process again
+- `03:38` single sign on is a function that is
+- `03:40` directly associated with the
+- `03:41` authentication process and not all
+- `03:44` authentication methods support single
+- `03:46` sign on so you want to check with the
+- `03:48` authentication method that you're using
+- `03:50` to see what options might be available
+- `03:51` for SSO or single sign on one very
+- `03:56` common protocol used during the
+- `03:57` authentication process is the remote
+- `04:00` authentication dial-in user service or
+- `04:03` radius radius has been around for a very
+- `04:06` long time and is supported on many
+- `04:07` different operating systems and many
+- `04:09` different devices and although it has
+- `04:11` the word dial in in the name of the
+- `04:13` protocol it is a protocol that can be
+- `04:15` used on our modern networks as well so
+- `04:18` when someone is logging into their VPN
+- `04:20` concentrator their concentrator may be
+- `04:22` communicating to the triaa server using
+- `04:25` the radius protocol this could also be
+- `04:27` used for other authentications such as
+- `04:29` authenticated with a server or logging
+- `04:31` into your wireless network using
+- `04:33` 802.1x and because radius is so well
+- `04:36` supported across so many different
+- `04:38` operating systems it's common to have
+- `04:40` this as an option on most authentication
+- `04:43` systems so if you're installing a newvpn
+- `04:45` concentrator or new firewall you may see
+- `04:48` radius as one of the options available
+- `04:50` for
+- `04:51` authentication some authentication
+- `04:53` databases are effectively a list of
+- `04:56` usernames and passwords and although
+- `04:58` that can be a useful way to store
+- `05:00` authentication details it doesn't tell
+- `05:02` us anything about who that user might be
+- `05:04` or where they might be located to
+- `05:06` provide additional context we might want
+- `05:09` to use a more capable way to reference
+- `05:11` these details for instance we might want
+- `05:13` to use the lightweight directory access
+- `05:16` protocol or ldap ldap is a way to read
+- `05:19` and write information from a centralized
+- `05:21` directory on the network this is very
+- `05:24` similar to a phone directory or a phone
+- `05:26` listing where you could search for users
+- `05:29` you could look different departments and
+- `05:31` you can find information based on a
+- `05:32` phone number ldap is also a
+- `05:34` well-established standard it was created
+- `05:36` by the international telecommunications
+- `05:38` Union or itu and it uses a standard
+- `05:41` known as X500 the original version of
+- `05:44` this protocol was known as the directory
+- `05:47` access protocol and a lightweight
+- `05:49` version of this protocol was created and
+- `05:51` we put the L in the front to designate
+- `05:53` this as the lightweight version so if
+- `05:56` you're using Windows Active Directory
+- `05:58` you're logging into an app Apple open
+- `06:00` directory system or a Noel e directory
+- `06:03` then you're probably using the
+- `06:04` lightweight directory access protocol or
+- `06:07` ldap I mentioned that ldap allows us to
+- `06:10` add additional context to a particular
+- `06:12` user or particular device we do this by
+- `06:15` using this standard known as
+- `06:18` x.500 X500 allows us to associate
+- `06:21` attributes to a user or to a device for
+- `06:24` example let's say that we have a web
+- `06:26` server obviously this web server has a
+- `06:29` name it may be called widget web and by
+- `06:31` itself we know that we can use that name
+- `06:34` to reference that web server but it
+- `06:36` would be nice to have more context about
+- `06:38` where that server was located who owns
+- `06:41` that server and where that server might
+- `06:42` be maintained so we might add additional
+- `06:45` attributes to that particular server's
+- `06:47` name for example we could add an
+- `06:49` organizational unit name this particular
+- `06:52` organizational unit is marketing which
+- `06:54` means this web server is managed by the
+- `06:56` marketing department it may be part of a
+- `06:58` larger organization ation known as
+- `07:00` widget that organization may be located
+- `07:03` in London and it may also be part of the
+- `07:06` widget.com network having this
+- `07:08` additional context allows us to
+- `07:10` understand where the server might be
+- `07:12` located who manages the server and where
+- `07:14` we can go to find out more information
+- `07:16` about that particular
+- `07:18` device with these attributes we can now
+- `07:20` start to build a hierarchy of
+- `07:22` information associated with that device
+- `07:25` and all of the other devices and users
+- `07:27` in our Network we can then build build a
+- `07:29` tree containing these objects that we've
+- `07:32` built in our ldap database we might be
+- `07:35` dividing this particular database up by
+- `07:37` different countries these different
+- `07:39` countries might have different
+- `07:40` departments within them and ultimately
+- `07:42` you might have individual users or
+- `07:44` individual devices that will be part of
+- `07:46` that tree we refer to these higher level
+- `07:49` objects as containers and the individual
+- `07:52` users and devices would be Leaf objects
+- `07:55` this means during the authentication
+- `07:57` process we can provide a lot of content
+- `07:59` text about exactly who may be logging in
+- `08:02` and where they may be associated in the
+- `08:04` overall scheme of our
+- `08:06` organization One open standard for
+- `08:09` authentication and authorization is
+- `08:11` known as saml this stands for the
+- `08:13` security assertion markup language one
+- `08:16` of the goals of samle was to make the
+- `08:18` authentication and authorization process
+- `08:20` open so that we can then apply it to
+- `08:22` many different types of applications one
+- `08:24` of the challenges though with saml was
+- `08:26` that it was not built for mobile devices
+- `08:29` so if we need to authenticate to a
+- `08:31` device we may need to do that across
+- `08:33` multiple devices if we need to use them
+- `08:35` all simultaneously the authentication
+- `08:37` flow with saml is a little bit different
+- `08:39` than the flows we've seen earlier
+- `08:41` there's usually three different
+- `08:42` components associated with the
+- `08:44` authentication flow there is a resource
+- `08:46` server there's the client which is
+- `08:48` usually you using a browser and there is
+- `08:50` an authorization server when a user
+- `08:53` tries to access a resource on a server
+- `08:55` and they don't already have
+- `08:57` authentication that resource server will
+- `08:59` redirect that client to communicate to
+- `09:01` an authorization server to be able to
+- `09:04` gain access username and password
+- `09:06` information is then passed to the
+- `09:07` authorization server it's confirmed
+- `09:09` through those processes we spoke of
+- `09:11` earlier through an ldap database or
+- `09:13` radius and then if that information is
+- `09:16` successful a token is generated and
+- `09:19` provided to the client the client then
+- `09:21` proves that they've authenticated by
+- `09:23` presenting that token to the resource
+- `09:25` server and the server will confirm that
+- `09:27` based on the cryptographic signature
+- `09:29` and then provide an access granted
+- `09:32` information back to the
+- `09:34` client and one of the last
+- `09:36` authentication protocols that we'll look
+- `09:38` at is known as tacx this is the terminal
+- `09:41` Access Controller access control system
+- `09:44` this is another Authentication Protocol
+- `09:45` that's been around for quite some time
+- `09:47` it was originally used to control access
+- `09:49` to dialup lines over modems at arpanet
+- `09:52` the latest version of TAC ax is known as
+- `09:55` Tac ax plus and it's one that was very
+- `09:58` commonly associated with with Cisco
+- `10:00` devices and even today people consider
+- `10:02` tacx plus to be a very Cisco Centric
+- `10:05` authentication method however many
+- `10:08` aspects of TAC ax and Tac ax plus were
+- `10:10` made public and an open standard in 1993
+- `10:14` and today anyone should be able to
+- `10:15` integrate Tac ax plus within their
+- `10:17` authentication
+- `10:19` system it's very common during the
+- `10:21` authentication process to provide login
+- `10:23` details such as your username and your
+- `10:26` password but of course someone else
+- `10:28` could have access to that information so
+- `10:30` very often we have other authentication
+- `10:33` factors that we need to provide when
+- `10:35` we're adding additional factors to the
+- `10:37` authentication process we refer to that
+- `10:40` as multiactor authentication this means
+- `10:42` we may need to provide a password there
+- `10:45` might be a mobile app with a particular
+- `10:47` number that we need to provide or we
+- `10:49` might be including GPS details that show
+- `10:52` that we're located within the corporate
+- `10:54` facility itself some popular multiactor
+- `10:57` authentication factors might be
+- `10:58` something you know that might be a
+- `11:00` password something you have that might
+- `11:03` be your mobile phone with the app that
+- `11:04` you're using it might be something you
+- `11:06` are such as a biometric reading for
+- `11:09` example your fingerprint or it might be
+- `11:11` somewhere you are which would certainly
+- `11:13` be a GPS location one or more of those
+- `11:17` could be used during the authentication
+- `11:19` process to help prove that you are
+- `11:21` really who you say you
+- `11:23` are the factor of something you have is
+- `11:26` often associated with a top this would
+- `11:29` be a time-based onetime password
+- `11:32` algorithm that is integrated into an app
+- `11:35` that you might have on your mobile
+- `11:36` device this usually has a secret key
+- `11:39` associated with it and it uses the time
+- `11:41` of day to be able to provide what is
+- `11:43` considered to be a sudo random type of
+- `11:46` numbering system this number tends to
+- `11:49` change occasionally so every 30 seconds
+- `11:51` you may get another randomized number
+- `11:53` that appears on the screen in reality
+- `11:56` this is not a randomized number it's a
+- `11:58` number that only seems to be random and
+- `12:00` it's a number that is expected by both
+- `12:03` sides of the authentication process this
+- `12:05` is accomplished by creating a secret key
+- `12:07` ahead of time and then synchronizing
+- `12:09` both the client and the server using a
+- `12:12` protocol such as the network time
+- `12:14` protocol so during the authentication
+- `12:16` process you may be asked for your
+- `12:18` username your password and then the code
+- `12:20` that appears in the app on your mobile
+- `12:23` phone this is becoming a very common way
+- `12:26` to authenticate and it's one that's used
+- `12:28` by Google Facebook Microsoft and many
+- `12:30` other organizations to add additional
+- `12:33` factors to the authentication process

@@ -1,0 +1,429 @@
+# [1.4.2 - Common Ports](https://www.youtube.com/watch?v=jX1pobYmZdE)
+
+## 1.4.2 - Common Ports
+
+- Day: Day 2
+- Duration: 20:22
+
+## Transcript
+
+- `00:01` As a networking professional, you
+- `00:03` may be asked to configure port numbers associated
+- `00:06` with a particular application.
+- `00:08` So in this video, we'll look at the well-known port numbers
+- `00:11` associated with those apps.
+- `00:13` We'll start with a generic form of file transfer
+- `00:16` that's used across many different operating systems.
+- `00:19` This is FTP or the file transfer protocol.
+- `00:23` This is a very common and generic form
+- `00:25` of file transfer that can be used on Linux, Windows, Mac
+- `00:28` OS, and practically any other operating system.
+- `00:32` Unlike many applications that use a single port
+- `00:35` number to communicate, FTP is configured
+- `00:37` to use one or two different port numbers, specifically
+- `00:41` TCP port 20 and TCP port 21.
+- `00:44` TCP port 20 is commonly associated
+- `00:47` with the file transfer process itself,
+- `00:49` and port 21 is commonly sent to send control information
+- `00:53` between one device and another.
+- `00:55` FTP has an authentication method so you
+- `00:57` can use usernames and passwords, and when
+- `00:59` you're transferring information, you
+- `01:01` can choose to not only transfer the file,
+- `01:03` you can list information in a particular directory,
+- `01:06` add different files, delete, rename,
+- `01:09` and perform other types of file maintenance.
+- `01:12` TCP port 22 is commonly associated
+- `01:15` with SSH or secure shell.
+- `01:18` This is a way to communicate to a remote device from a console.
+- `01:21` So you have this text-based front end
+- `01:23` and you're able to configure and manage
+- `01:25` this device over this text-based command line interface.
+- `01:29` An important characteristic of SSH is the secure part of SSH
+- `01:34` because all of the communication between your device
+- `01:37` and that remote device is all sent across the network
+- `01:41` in encrypted form.
+- `01:43` Well, if there's encryption being used with secure shell,
+- `01:46` it would be great if we could use encryption with our file
+- `01:49` transfer protocol.
+- `01:50` So of course there is a version of the FTP
+- `01:53` called secure FTP or SFTP.
+- `01:57` This allows us to transfer files from one device to another,
+- `02:00` and that entire communication across the network
+- `02:03` is all encrypted by default.
+- `02:05` Interestingly enough, secure FTP is really
+- `02:08` using the SSH protocol to be able to perform this encryption.
+- `02:12` So SSH and SFTP use the same port number of TCP port 22.
+- `02:19` And just like our FTP protocol that
+- `02:21` allows us to perform file management of that device,
+- `02:24` we can also perform the same file management using
+- `02:27` the secure version of FTP.
+- `02:29` So you can view the directories, you can make changes
+- `02:32` to the directory names, you can modify files, delete
+- `02:35` information, and perform all of the normal file management
+- `02:38` from the secure FTP application.
+- `02:41` Both secure shell and secure FTP have that foundation of SSH
+- `02:46` as the underlying protocol.
+- `02:48` So not only does secure shell allow you that remote terminal
+- `02:51` communication, you can also have remote file transfer
+- `02:55` communication, and all of that communication
+- `02:58` will be encrypted using the SSH protocol over TCP port 22.
+- `03:04` Before we had encryption over SSH or secure shell,
+- `03:08` we used a non-encrypted form of terminal communication
+- `03:11` referred to as telnet.
+- `03:13` This stands for telecommunication network
+- `03:16` and it commonly uses TCP port 23.
+- `03:19` Visually, this looks almost identical to what
+- `03:22` we use with secure shell.
+- `03:24` The difference, however, is the communication
+- `03:26` that we're sending between our device
+- `03:28` and the remote station is all being sent in the clear.
+- `03:31` There's no encryption that's taking place across the network.
+- `03:35` This means that someone could potentially
+- `03:37` capture those packets and view everything that's
+- `03:39` being sent back and forth over the network,
+- `03:42` including your login credentials.
+- `03:44` It's for this reason that you don't commonly
+- `03:46` see telnet being used on our network,
+- `03:48` and instead we'll use SSH to ensure
+- `03:51` that all of this communication will always be encrypted.
+- `03:55` Another important application on our network is the use of email.
+- `03:59` And of course we need protocols to be
+- `04:00` able to transfer these emails from one email
+- `04:03` server to another.
+- `04:04` To be able to do that, we use SMTP or the simple mail transfer
+- `04:09` protocol.
+- `04:10` SMTP is commonly associated with server-to-server email transfers
+- `04:14` using TCP port 25.
+- `04:17` All of this traffic sent over TCP port 25 is sent
+- `04:20` in the clear or in plain text.
+- `04:23` There's no encryption that's automatically configured
+- `04:26` when using TCP port 25.
+- `04:28` That's why many SMTP servers will use TCP port 587, which
+- `04:33` is SMTP using TLS encryption or the transport layer security.
+- `04:39` SMTP is also used from client devices that
+- `04:43` are sending email messages, and it's often
+- `04:46` sending those to a mail server using this SMTP protocol.
+- `04:50` For receiving email messages and being
+- `04:53` able to manage your email inbox, we often
+- `04:55` use other protocols such as IMAP or POP3.
+- `04:59` So any time that you are sending email
+- `05:01` or you're transferring email between email servers,
+- `05:05` you're probably using SMTP or the simple mail transfer
+- `05:08` protocol.
+- `05:10` We don't often memorize the IP address of devices
+- `05:13` that we communicate with.
+- `05:15` Instead, we use the fully qualified domain name or FQDN.
+- `05:19` And the way that we translate between the fully qualified
+- `05:23` domain name and the IP address is we use a DNS server,
+- `05:27` and that stands for domain name system.
+- `05:29` DNS commonly uses UDP port 53 to be
+- `05:33` able to perform this name query.
+- `05:35` So we'll ask a DNS server what the IP
+- `05:38` address of www.professormesser.com
+- `05:41` might be, and it will respond back with the IP address
+- `05:44` that your device can use to communicate to that server.
+- `05:48` For those small queries, we commonly use UDP port 53,
+- `05:51` but if there's a large transfer of data
+- `05:54` from one DNS server to another, we commonly
+- `05:56` would use TCP port 53.
+- `05:59` These DNS servers are obviously very critical resources
+- `06:03` because, without them, we wouldn't
+- `06:04` be able to communicate to servers
+- `06:06` such as professormesser.com.
+- `06:08` This is also a very common protocol to find on the network.
+- `06:11` And if you take a packet capture,
+- `06:12` you're almost guaranteed to capture
+- `06:14` some type of DNS traffic.
+- `06:17` We've become very accustomed to simply plugging into a network
+- `06:21` or connecting to a wireless network
+- `06:23` and automatically being able to communicate across that network.
+- `06:27` But behind the scenes there is an automatic IP configuration
+- `06:31` process using DHCP or the dynamic host configuration
+- `06:35` protocol.
+- `06:36` This is the protocol that allows us to automatically configure
+- `06:39` IP address settings for anyone that connects to the network.
+- `06:43` By default, DHCP uses UDP port 67 and UDP port 68.
+- `06:48` To be able to use DHCP, we need a DHCP server.
+- `06:52` At home, we commonly use a DHCP server
+- `06:55` that's integrated into an existing wireless router,
+- `06:58` but in an enterprise network, there are often
+- `07:01` standalone DHCP servers.
+- `07:03` We usually configure a pool of IP addresses on DHCP,
+- `07:07` and anyone who connects to the network
+- `07:09` will be automatically assigned an IP address
+- `07:12` from this available pool of addresses.
+- `07:14` There's also a lease time associated with this IP address,
+- `07:18` so you're only able to use that IP address
+- `07:21` for a certain amount of time.
+- `07:22` And if you are still using that address
+- `07:24` at the end of the leasing period,
+- `07:26` you can choose to renew that lease with the DHCP server.
+- `07:30` We can also configure certain devices
+- `07:32` to always receive the same IP address every time
+- `07:35` they connect to the network.
+- `07:37` And we associate that IP address with the Mac
+- `07:39` address of that device.
+- `07:41` We configure that in the DHCP server.
+- `07:43` That's often referred to as a DHCP reservation.
+- `07:47` All of this communication that occurs
+- `07:48` across the network for DHCP will almost always
+- `07:51` use UDP port 67 and UDP port 68.
+- `07:56` We talked earlier about the FTP or file transfer protocol
+- `08:00` that we use to send files from one device to another.
+- `08:03` And we described the process of authentication
+- `08:06` and the many different management
+- `08:08` functions associated with FTP.
+- `08:11` But what if you just needed to transfer
+- `08:13` a small bit of configuration information from one device
+- `08:16` to another?
+- `08:17` You don't need to view the name of a directory
+- `08:19` or change any of the file names.
+- `08:21` You simply need to transfer a small amount of information
+- `08:25` very, very quickly.
+- `08:26` To be able to do that, you might use TFTP or the trivial file
+- `08:30` transfer protocol.
+- `08:32` And by default it uses UDP port 69.
+- `08:35` You'll often see TFTP used for very simple file transfers.
+- `08:39` Usually this is something that doesn't
+- `08:41` require any type of authentication or login process.
+- `08:44` So it may be something like a voice over IP device
+- `08:47` that has no IP address and no configuration.
+- `08:50` And when you plug it into the network,
+- `08:52` it is powered on using power over ethernet.
+- `08:55` It uses DHCP to get an IP address,
+- `08:58` and then it uses TFTP to be able to download
+- `09:01` the latest configuration file from the server.
+- `09:03` This is a quick and easy process.
+- `09:06` It transfers data without any extra overhead,
+- `09:09` and it's able to do that very efficiently and very quickly
+- `09:12` using UDP port 69.
+- `09:15` If you're communicating to a web server,
+- `09:17` you're probably using one of two different port numbers.
+- `09:20` This is using HTTP or HTTPS.
+- `09:24` This stands for hypertext transfer protocol,
+- `09:27` and it's a communication that is commonly
+- `09:29` associated with browser-based communication.
+- `09:32` If the information between your browser and the web server
+- `09:35` is being sent in the clear without any type of encryption,
+- `09:38` it's commonly using TCP port 80.
+- `09:41` If you need to perform encryption of that data,
+- `09:44` and that is probably the default for most websites
+- `09:46` that you'll visit these days, it is
+- `09:48` using SSL, that stands for secure sockets layer,
+- `09:52` or a newer version of SSL referred to as TLS or transport
+- `09:56` layer security.
+- `09:57` If this is encrypted data, then it's
+- `09:59` probably using TCP port 443, which
+- `10:02` is sending HTTPS for secure.
+- `10:06` Another thing you may notice with the devices that
+- `10:09` are connected to the network is they
+- `10:11` all tend to have the correct time and date down
+- `10:14` to the second level.
+- `10:15` We're able to do that through an automated process called NTP
+- `10:19` or the network time protocol.
+- `10:21` Every device on the network, operating systems, routers,
+- `10:25` switches, and any other device, can
+- `10:27` use NTP to stay synchronized with their clock
+- `10:31` across all of those different devices.
+- `10:33` By default, NTP uses UDP port 123.
+- `10:37` Being able to synchronize these clocks
+- `10:39` is more than simply a convenience.
+- `10:42` In fact, it can be a very critical part
+- `10:44` of synchronizing log files between very diverse devices.
+- `10:48` This allows us to go back in time
+- `10:50` and piece together communications,
+- `10:52` even though that communication occurred
+- `10:54` on many different devices.
+- `10:56` This is a process that usually occurs automatically
+- `10:58` behind the scenes, and many devices
+- `11:01` will synchronize their clock multiple times
+- `11:03` during the day using the NTP protocol.
+- `11:06` You might also be able to configure this process.
+- `11:09` Maybe you'd like a device to update its clock every hour,
+- `11:12` or maybe simply updating once a day is sufficient.
+- `11:15` This is also a very accurate way to keep these clocks
+- `11:19` in synchronization, and usually we
+- `11:21` get about a one-millisecond difference between devices that
+- `11:24` are all on the same network.
+- `11:26` This provides a level of granularity
+- `11:28` that's sufficient for most applications,
+- `11:31` and it's something that occurs automatically using UDP port 123
+- `11:35` and the network time protocol.
+- `11:38` As a network professional, you'll
+- `11:40` be responsible for the uptime and availability of routers,
+- `11:43` switches, firewalls, and many other devices on the network.
+- `11:47` One way to manage those devices is
+- `11:49` through a protocol named SNMP, or the simple network management
+- `11:54` protocol.
+- `11:55` By default, SNMP uses UDP port 161
+- `11:59` to query devices and receive information about how
+- `12:02` that device may be performing.
+- `12:04` For example, we might have a management station
+- `12:07` and we might be querying a device
+- `12:09` to determine how much traffic has
+- `12:11` traversed that particular device over a certain amount of time.
+- `12:15` And then it can provide us with a summary
+- `12:17` of how much data has been transferred over that time
+- `12:20` frame.
+- `12:21` We can then store that data, create graphs, reports,
+- `12:24` and other information that allows us to manage that device.
+- `12:27` You might also find that different versions of SNMP
+- `12:31` may be used on your network.
+- `12:33` Version one of SNMP is the original version.
+- `12:36` This allows your management station
+- `12:37` to perform a single query to this device
+- `12:40` and receive a single response.
+- `12:42` And all of this is sent over the network in the clear
+- `12:45` with no encryption.
+- `12:46` Version two of SNMP allowed for bulk transfers.
+- `12:50` So we can ask for many different variables from this device
+- `12:53` and receive a large group of data
+- `12:55` from that device which simplified the network
+- `12:58` communication and made it much more efficient.
+- `13:01` But it didn't provide any type of encryption.
+- `13:03` All of this information is still being
+- `13:05` sent across the network in the clear.
+- `13:07` A more modern version of SNMP is what
+- `13:10` you may commonly find on your network
+- `13:12` today, which is version three.
+- `13:14` This is a more secure standard for SNMP,
+- `13:16` which allows message integrity, authentication, and encryption
+- `13:20` of the SNMP data.
+- `13:22` One of the things you'll find with this default use of SNMP
+- `13:26` is the management station is interactively making a query
+- `13:30` and then receiving a response for that query.
+- `13:33` So it's up to the management station
+- `13:35` to initiate that communication.
+- `13:38` But it would be nice if these devices could identify problems
+- `13:41` and proactively send that information down
+- `13:44` to the management station.
+- `13:46` We can do that by using a feature of SNMP called an SNMP
+- `13:50` trap.
+- `13:51` This allows these notifications to be sent directly
+- `13:54` from these devices using UDP port 162.
+- `13:58` Many organizations may have hundreds or thousands of devices
+- `14:02` on their network, and it may be a challenge
+- `14:04` to be able to keep track of what devices are on the network,
+- `14:07` what users are connecting to those devices,
+- `14:10` and how the relationship might be
+- `14:12` between the user and the device.
+- `14:14` We're able to maintain a database of all of these devices
+- `14:18` and all of these users through a protocol named LDAP.
+- `14:22` LDAP stands for lightweight directory access protocol,
+- `14:25` and it commonly uses TCP port 389.
+- `14:29` LDAP allows us to very easily query these databases
+- `14:32` and retrieve information that we may have stored.
+- `14:35` There's also a secure version of LDAP called LDAP Secure.
+- `14:39` It uses TCP port 636.
+- `14:43` LDAP uses a hierarchical structure
+- `14:45` to be able to lay out the network and the devices.
+- `14:48` This is a graphical view of an LDAP database.
+- `14:52` It starts with the root of the database, which
+- `14:54` is an organization.
+- `14:55` In this case, the organization is Messer Studios.
+- `14:59` We've also grouped together like devices
+- `15:01` into organizational units.
+- `15:03` There is a production OU, a support OU, and an engineering
+- `15:08` OU.
+- `15:09` Within those organizational units,
+- `15:11` there may be common name devices.
+- `15:13` For example, there may be users such as Jack and Daniel,
+- `15:16` or there may be a database or storage device named Tech Docs.
+- `15:21` We're able to organize and access these devices
+- `15:24` through this structure, making it a very common
+- `15:27` and simplified way of gaining access to this data.
+- `15:31` Microsoft Windows has some very unique features
+- `15:34` when it comes to data transfer.
+- `15:36` Microsoft stores information on the network in a file share.
+- `15:40` You can also share printers through Microsoft's operating
+- `15:43` systems.
+- `15:43` And there's also authentication built into this entire process.
+- `15:48` To be able to provide all of this functionality,
+- `15:50` there is a specialized protocol named SMB, or server message
+- `15:54` block, to be able to share files, share printers,
+- `15:58` or authenticate to the network.
+- `16:00` You might also see this referred to as CIFS
+- `16:03` or the common internet file system.
+- `16:05` SMB is integrated into Windows itself.
+- `16:08` You don't need to add additional software.
+- `16:11` There's no additional FTP or SFTP process.
+- `16:14` Instead, built into the Windows Explorer or the File Explorer
+- `16:18` within Microsoft Windows is the SMB functionality
+- `16:22` that allows us to access file shares,
+- `16:24` print to remote printers, lock different files on the network,
+- `16:28` and provide processes for authentication and permissions
+- `16:32` for all of that data.
+- `16:33` Early versions of Microsoft Windows
+- `16:36` used the NetBIOS protocol to be able to facilitate
+- `16:39` this communication.
+- `16:40` But most modern versions of Microsoft Windows
+- `16:43` communicate directly across the network using IP and TCP port
+- `16:48` 445 as the one that is usually associated with server message
+- `16:52` block or SMB.
+- `16:55` As a network professional, you'll
+- `16:57` find that you are constantly referring
+- `16:59` to logs that are being kept on your routers, your switches,
+- `17:02` your firewalls, your servers, and almost any other device
+- `17:05` that's connected to the network.
+- `17:07` One challenge is being able to consolidate
+- `17:10` all of these different log files to one single location,
+- `17:13` and there is a standardized protocol for transferring
+- `17:16` these log files called syslog.
+- `17:19` Syslog commonly uses UDP port 514
+- `17:23` to be able to transfer this log data across the network.
+- `17:26` You'll often use syslog in conjunction
+- `17:28` with a security information and event manager or a SIEM.
+- `17:33` This is a consolidation point where
+- `17:35` you can have all of your log files transferred into one
+- `17:38` single consolidated database.
+- `17:40` So if you're using syslog and transferring
+- `17:43` that over UDP port 514, then you're
+- `17:46` probably transferring it to a very large drive
+- `17:49` array or some other device where you
+- `17:51` can collect that log information over an extended period of time.
+- `17:56` We store a lot of very diverse information on our databases,
+- `18:00` but fortunately, there is a very common form
+- `18:03` of storage and retrieval for those databases referred
+- `18:07` to as a structured query language or SQL.
+- `18:11` Some people refer to this as SQL.
+- `18:13` This SQL database uses a standard language
+- `18:16` that you can use to be able to query and retrieve information
+- `18:20` from that database.
+- `18:21` Microsoft has its own form of SQL database called
+- `18:25` the Microsoft SQL server, or MS-SQL.
+- `18:28` It stands for Microsoft structured query language,
+- `18:31` and it very commonly uses TCP port 1433.
+- `18:35` There are other types of SQL databases
+- `18:38` you might find on your network, and they usually
+- `18:40` use different port numbers.
+- `18:41` So if you see TCP port 1433, then you're
+- `18:45` probably using a Microsoft SQL server.
+- `18:49` Many of us start on the help desk
+- `18:51` to be able to provide support for our end users.
+- `18:54` And one way that we're able to view
+- `18:55` the remote desktop of those devices
+- `18:58` is through the use of RDP or the remote desktop protocol.
+- `19:02` RDP uses by default TCP port 3389
+- `19:06` to be able to view that remote desktop.
+- `19:09` The remote desktop protocol is commonly
+- `19:11` associated with a service that's running on a Windows device,
+- `19:15` but fortunately there are many clients
+- `19:17` that can use RDP to connect to those Windows devices.
+- `19:20` So it's not unusual to find clients
+- `19:23` for Windows, Mac OS, Linux, iPhone,
+- `19:27` Android, and many other operating systems.
+- `19:30` There are many different protocols
+- `19:32` used for voice over IP.
+- `19:34` One of the most popular is SIP.
+- `19:36` This is the session initiation protocol,
+- `19:39` and it commonly uses TCP port 5060 and TCP port 5061.
+- `19:44` SIP is commonly used as the control protocol
+- `19:47` that we use when we pick up the phone, we dial the number,
+- `19:50` it initiates the phone call, and then
+- `19:53` when the phone call is over, it disconnects the session.
+- `19:56` You might also see SIP being used for extensions
+- `19:59` of voice over IP that provide video conferencing,
+- `20:02` instant messaging, and even file transfers.
+- `20:04` All of this takes place using SIP over TCP port 5060 and TCP
+- `20:09` port 5061.

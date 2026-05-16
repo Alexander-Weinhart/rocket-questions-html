@@ -1,0 +1,169 @@
+# [4.2.2 - VLAN Hopping](https://www.youtube.com/watch?v=hcaGiWteVTM)
+
+## 4.2.2 - VLAN Hopping
+
+- Day: Day 9
+- Duration: 6:35
+
+## Transcript
+
+- `00:02` on the switches that we use at home and
+- `00:03` in our offices we will often configure
+- `00:06` separate virtual local area networks or
+- `00:09` vlans these vlans are designed to keep
+- `00:12` different parts of the network separated
+- `00:14` from other parts for example you might
+- `00:16` have a VLAN that separates everyone at
+- `00:18` an organizational level so there might
+- `00:20` be a marketing VLAN an accounting VLAN
+- `00:23` and a shipping and receiving VLAN at
+- `00:25` home you might have different vlans for
+- `00:27` your normal Network traffic your
+- `00:30` Internet of Things devices and the
+- `00:32` cameras that you use for security one of
+- `00:34` the advantages of these vlans is that it
+- `00:36` separates these different devices into
+- `00:39` their own separate Network and each
+- `00:41` network is not able to communicate with
+- `00:43` the other unless there happens to be a
+- `00:45` router between them but in some
+- `00:47` configurations it may be possible to
+- `00:49` communicate to a different VLAN even
+- `00:52` though there's no router between those
+- `00:54` two vlans we commonly see this done in
+- `00:57` two different methods one of them is
+- `00:59` switch spoofing and the other one is
+- `01:02` double
+- `01:03` tagging switch spoofing takes advantage
+- `01:05` of a configuration on your switch that
+- `01:08` autoc configures an interface to be
+- `01:10` either an interface for a device or an
+- `01:12` interface for another switch when you
+- `01:15` connect a device to a switch the switch
+- `01:17` will automatically determine what's on
+- `01:19` the other side and if the switch
+- `01:21` determines that it's connected to
+- `01:22` another switch it could configure a
+- `01:25` trunk connection between those two
+- `01:27` interfaces this is the real key to
+- `01:29` hopping from one VLAN to another is
+- `01:32` pretending that you are a switch and
+- `01:34` being able to move to whatever VLAN you
+- `01:37` would like through that trunk since
+- `01:39` switches can send information from one
+- `01:42` switch to the other over the same VLAN
+- `01:45` we can perform that exact same
+- `01:47` configuration by pretending or spoofing
+- `01:50` ourselves to be a switch once we connect
+- `01:52` to a switch and convince that switch
+- `01:55` that we also are a switch we now have
+- `01:58` the ability to send information to any
+- `02:00` VLAN that may be configured on that
+- `02:03` particular Port this is why it's
+- `02:05` probably a good idea to disable this
+- `02:07` trunk negotiation process between
+- `02:09` different switches although this does
+- `02:11` make the configuration and management
+- `02:13` process of the switch a little bit
+- `02:15` easier for the network administrator it
+- `02:18` opens up problems like this that can
+- `02:20` create security issues on your network
+- `02:22` ideally the network administrator should
+- `02:24` manually configure trunk interfaces and
+- `02:27` not allow autonegotiation
+- `02:29` they should also configure individual
+- `02:32` VLS that should be allowed to pass from
+- `02:34` one switch to the other by disabling
+- `02:37` this Auto negotiation process you've now
+- `02:39` removed switch spoofing from this
+- `02:41` ability to hop between
+- `02:44` vlans another form of VLAN hopping is
+- `02:47` called double tagging obviously VLAN
+- `02:50` tags are used in trunking between
+- `02:52` switches and if we add additional tags
+- `02:55` to an interface it's possible that we
+- `02:57` could communicate to a different VLAN
+- `02:59` this type of configuration takes
+- `03:01` advantage of what we call the native
+- `03:03` VLAN configuration for a switch all
+- `03:06` switches have a native VLAN and by
+- `03:09` taking advantage of that configuration
+- `03:11` we should be able to communicate to a
+- `03:13` different VLAN on that switch we rely on
+- `03:16` these VLAN tags during the trunking
+- `03:18` process and the VLAN tag is what tells
+- `03:20` the destination switch which VLAN this
+- `03:23` traffic is destined for with double
+- `03:25` tagging we've crafted a special frame
+- `03:28` that normally would not be seen on the
+- `03:30` network this Frame doesn't have a single
+- `03:32` tag on it it has two separate VLAN tags
+- `03:36` this means in certain configurations we
+- `03:38` can have one switch remove the first tag
+- `03:40` and place that data onto the appropriate
+- `03:43` VLAN and then have a separate switch
+- `03:45` remove the second tag and place that
+- `03:48` frame into a completely different VLAN
+- `03:51` at that point the contents of that
+- `03:53` packet are forwarded to the Target and
+- `03:55` we've now been able to hop from one VLAN
+- `03:57` to another because we're adding this
+- `04:00` extra tag into the frame that normally
+- `04:01` wouldn't be there there's no way to
+- `04:03` receive a response from the information
+- `04:06` that we're sending so everything that
+- `04:07` we're sending out is a one-way
+- `04:09` communication from one device to another
+- `04:12` although This is Not Practical for
+- `04:13` normal network communication it does
+- `04:16` allow us to put data onto a VLAN that
+- `04:18` normally we would not have access to if
+- `04:21` an attacker is trying to perform a denal
+- `04:23` of service this could be a good method
+- `04:25` to use to accomplish that to avoid this
+- `04:28` problem we need to to make sure that we
+- `04:30` don't have users put onto the native
+- `04:32` VLAN on that switch ideally we would
+- `04:35` change the native VLAN ID normally on
+- `04:38` switches that native VLAN ID is one we
+- `04:41` would make it some other value and then
+- `04:43` we would force tagging of the Native
+- `04:46` VLAN for all traffic across that switch
+- `04:49` here's how this would work we have a
+- `04:51` network setup with two switches we have
+- `04:54` an attacker that's on VLAN 10 that's the
+- `04:56` green VLAN we have a trunk between
+- `04:58` switches that's support sending
+- `05:00` information over VLAN 10 and VLAN 20
+- `05:03` VLAN 20 is the red VLAN and then we have
+- `05:06` our second switch which has connections
+- `05:07` to the victim device which is on VLAN 20
+- `05:11` you'll notice on this link between the
+- `05:12` switches that the native VLAN is VLAN 10
+- `05:16` the attacker is going to create a frame
+- `05:18` that has two tags inside of it one of
+- `05:21` the 802.1q tags is for VLAN 10 and the
+- `05:24` other tag is for VLAN 20 for the first
+- `05:27` step the attacker sends the entire frame
+- `05:29` to the next switch down the line that
+- `05:31` switch will interpret the first tag it
+- `05:34` sees in this Frame which in this case is
+- `05:36` the VLAN 10 tag so this switch knows
+- `05:39` that it should put this data onto VLAN
+- `05:41` 10 after removing that VLAN 10 tag from
+- `05:44` this Frame and that's exactly what
+- `05:46` happens next we now have a frame that
+- `05:49` has removed that VLAN 10 tag but of
+- `05:52` course because we are double tagging
+- `05:54` there is an additional tag still
+- `05:56` included in this Frame this Frame is
+- `05:58` sent along to the next switch which will
+- `06:01` interpret this as a trunk frame that
+- `06:03` needs to be dropped onto VLAN 20 this
+- `06:06` switch is going to remove that tag take
+- `06:09` the rest of the data and send it on to
+- `06:11` VLAN 20 where it will be received by the
+- `06:14` victim device so you can see how you can
+- `06:17` start on VLAN 10 but by using the double
+- `06:20` tagging you're able to send data to a
+- `06:22` device that is on VLAN 20

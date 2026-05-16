@@ -1,0 +1,192 @@
+# [1.8.4 - Infrastructure as Code](https://www.youtube.com/watch?v=n6jIaKWixF4)
+
+## 1.8.4 - Infrastructure as Code
+
+- Day: Day 4
+- Duration: 8:20
+
+## Transcript
+
+- `00:01` Infrastructure as Code, or IaC, is a concept
+- `00:05` where we can take a piece of networking technology
+- `00:08` and describe it in terms that are best described as code.
+- `00:12` This means that we could build a configuration file that
+- `00:15` could accurately describe everything
+- `00:18` in our infrastructure.
+- `00:19` Every server, all of the network devices,
+- `00:22` firewalls, switches, routers, and all of our applications
+- `00:26` can be configured as this code.
+- `00:29` This means instead of manually building, installing,
+- `00:32` and then configuring all of these devices,
+- `00:35` we can do all of that work inside of this code
+- `00:38` and then simply tell the cloud to build out
+- `00:40` all of these systems to our specification.
+- `00:43` We can even use this to create versions of this infrastructure.
+- `00:47` So we can build out infrastructure
+- `00:49` as code configurations, deploy that configuration,
+- `00:52` and then make minor changes and redeploy the configuration.
+- `00:56` And all of those changes will take effect.
+- `00:58` This also means that if we need to build another exact duplicate
+- `01:02` of this configuration in a separate data center,
+- `01:05` we simply take our code.
+- `01:06` We move it to the other data center.
+- `01:08` And we apply that infrastructure as code
+- `01:10` to build out a completely new application instance that
+- `01:13` is identical to the original.
+- `01:15` This is obviously one of the most powerful features
+- `01:18` of cloud-based technologies.
+- `01:19` And it allows us to have flexibility in where and how we
+- `01:23` deploy these systems.
+- `01:25` This is a very simplified version of an infrastructure
+- `01:28` as code configuration file.
+- `01:30` You can see all of the definitions
+- `01:31` are in here to create a host that's called mail.example.com.
+- `01:35` This infrastructure as code also includes children devices,
+- `01:38` such as web servers and database servers.
+- `01:41` And you can see the host names are included in there as well.
+- `01:44` Inside of this same configuration file,
+- `01:47` we might want to include other details, such as the type
+- `01:50` of CPU, how much network configurations,
+- `01:53` IP addressing, the applications that need to be installed,
+- `01:56` and everything else we need to get these systems up
+- `01:59` and running.
+- `02:00` If we can automate the process of building out
+- `02:04` a series of devices, then we can also
+- `02:06` automate the process of responding to issues.
+- `02:09` This is done through a process known as a playbook.
+- `02:13` A playbook is a series of steps you would follow in order
+- `02:16` to be able to resolve or address a particular issue.
+- `02:19` For example, if you needed to investigate a data breach,
+- `02:22` you could create a playbook that would step through that process.
+- `02:25` Or if you needed to recover from ransomware,
+- `02:28` there may be a set of very well-defined steps.
+- `02:30` And those steps would be contained within a playbook.
+- `02:33` This is obviously things that we do manually
+- `02:36` when we're addressing issues one by one.
+- `02:39` But putting it into a playbook allows
+- `02:41` us to automate this process.
+- `02:43` Perhaps you have a system that identifies the malware.
+- `02:46` It then references the playbook to know
+- `02:48` to remove that device from the network,
+- `02:50` delete everything on the storage drive, reimage the system,
+- `02:54` and then redeploy that system into your infrastructure.
+- `02:57` This can obviously be reused over and over again.
+- `03:00` So any time you run into that particular issue,
+- `03:03` you simply apply the appropriate playbook.
+- `03:05` Playbooks are commonly implemented into SOAR platforms.
+- `03:09` That's S-O-A-R. That stands for Security, Orchestration,
+- `03:13` Automation, and Response.
+- `03:15` This is a management console that
+- `03:17` allows you to centralize the operations of everything
+- `03:20` you're doing with security in your environment.
+- `03:23` And if you want to implement playbooks,
+- `03:24` this would be a perfect console for a centralized deployment
+- `03:28` and monitoring of those playbooks.
+- `03:31` This automation with playbooks and with infrastructure as code
+- `03:35` become very handy when you run into particular situations.
+- `03:39` For example, you may want to avoid instances of configuration
+- `03:42` drift, where there are minor changes to configurations
+- `03:45` between different application instances.
+- `03:48` Or perhaps you want to be sure that all of your systems
+- `03:51` remain in compliance with a set of standards.
+- `03:54` We can do that using infrastructure as code.
+- `03:57` We can make sure that every single one of those systems
+- `03:59` is created using the same infrastructure as code
+- `04:02` definitions.
+- `04:03` And therefore you would have identical systems
+- `04:05` wherever you deploy them.
+- `04:07` Or perhaps you're configuring a testing environment,
+- `04:09` and you want to be sure that that testing environment is
+- `04:12` identical when you deploy it into production.
+- `04:15` Infrastructure as code would be a perfect choice
+- `04:18` to be able to completely document
+- `04:20` what you have in the test environment
+- `04:22` and deploy that identically into your production environment.
+- `04:26` And if you want to be able to duplicate
+- `04:28` this same configuration across all of your data centers,
+- `04:32` wherever they might be in the world,
+- `04:34` you would obviously use infrastructure as code.
+- `04:38` This would also be valuable if you
+- `04:39` needed to make a configuration change or an upgrade
+- `04:42` to an existing piece of software or system
+- `04:45` you may have already deployed.
+- `04:46` You simply make that definition change
+- `04:49` within your infrastructure as code definition file.
+- `04:51` And then you deploy that to those systems.
+- `04:54` It will note the difference and make those changes
+- `04:57` that you need to be able to upgrade those systems.
+- `05:00` We can also use infrastructure as code
+- `05:02` to be able to document the configuration that's been
+- `05:05` made to an existing system.
+- `05:07` So we may want to scan through a system
+- `05:09` that we would like to duplicate, have
+- `05:11` all of those configurations implemented
+- `05:13` within an infrastructure as code definition file.
+- `05:16` And then we'll not only have documentation of that system.
+- `05:20` But we'll be able to duplicate that system at will.
+- `05:24` As you can imagine, in large environments,
+- `05:26` these definition files become extremely important.
+- `05:29` And you want to be sure that you're running the latest
+- `05:32` version of that configuration file
+- `05:34` when you deploy these systems.
+- `05:35` To be able to ensure that level of control
+- `05:38` of the configurations, you need source control.
+- `05:41` This allows you to manage any type of change
+- `05:44` you may want to implement into those definition files.
+- `05:47` And then you'll be able to test those configurations
+- `05:50` and then ultimately deploy those into a production state.
+- `05:54` This prevents many different people
+- `05:56` from making their own minor changes to a configuration file.
+- `05:59` And instead you have one central repository where
+- `06:03` all of these changes are kept.
+- `06:05` And if somebody wants to make a change,
+- `06:06` they would need to make that change into your source control
+- `06:09` system.
+- `06:10` Sometimes we refer to this as a version control
+- `06:12` system for that very reason.
+- `06:14` A very popular type of a version control system is Git.
+- `06:18` We use that often on the internet
+- `06:20` to be able to maintain these source
+- `06:22` codes across multiple users wherever
+- `06:25` they might be in the world.
+- `06:27` So you might have this central repository
+- `06:29` of a production system.
+- `06:31` You might want to make some changes.
+- `06:33` And those changes would be tracked and merged together
+- `06:36` into the final version.
+- `06:38` There could be many people making their own changes
+- `06:40` and merging all of those changes into the final config.
+- `06:44` This means that we can have many people working
+- `06:47` on these infrastructure as code definition files.
+- `06:49` They could be making changes to the area that's
+- `06:52` specific to their part of the build.
+- `06:54` And then we can merge all of those changes
+- `06:56` together into one centralized configuration.
+- `07:00` There might be occasions where one person makes a change
+- `07:03` to a line within the code, and another person
+- `07:06` makes a different change to the same line within the code.
+- `07:09` If you try to merge all of those together,
+- `07:11` there will obviously be a conflict.
+- `07:14` So your version control software not only
+- `07:16` needs to recognize these conflicts
+- `07:18` but also give you a way to manage
+- `07:19` what change you would really like
+- `07:21` to make into the final code.
+- `07:23` This might be something that the version control
+- `07:25` software can do automatically.
+- `07:27` Or it may require manual intervention
+- `07:30` by one administrator who can decide which configuration
+- `07:33` is really the best one.
+- `07:35` This change control software also
+- `07:37` allows us to create branches of different types of code.
+- `07:40` So we can create a version of an infrastructure
+- `07:43` as code definition file.
+- `07:45` We can branch that code off to do our own testing with,
+- `07:48` make some changes, and then later, we
+- `07:50` can merge that into the original code to create a new version.
+- `07:55` This allows us to have a production definition
+- `07:57` and then take that and configure it
+- `08:00` in a testing environment for upgrades, changes,
+- `08:02` and optimization.
+- `08:04` And then once we've tested that, we
+- `08:06` can then merge it back into the production environment.

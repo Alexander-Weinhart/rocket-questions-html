@@ -1,0 +1,248 @@
+# [4.3.1 - Device Security](https://www.youtube.com/watch?v=TZUh1qF6ypI)
+
+## 4.3.1 - Device Security
+
+- Day: Day 10
+- Duration: 9:03
+
+## Transcript
+
+- `00:01` there are a number of different ways to
+- `00:03` help protect our Computing devices and
+- `00:05` in this video we'll look at device
+- `00:07` security as we've already seen in this
+- `00:09` course port numbers are used extensively
+- `00:12` to be able to transfer information
+- `00:14` across the network but these port
+- `00:16` numbers can also be a way into your
+- `00:18` system each network-based service
+- `00:20` running on your system has an open port
+- `00:22` number that can be seen by others on the
+- `00:24` network that port number is effectively
+- `00:27` an entry point into that service that
+- `00:30` running on your system if that service
+- `00:32` is actively in use then we need to keep
+- `00:34` that Port open but if that service is
+- `00:36` one that you're no longer using then you
+- `00:38` should close the service and make sure
+- `00:39` that port number is not accessible from
+- `00:41` the outside one way to control access to
+- `00:44` this open port would be to use a
+- `00:46` firewall a firewall can give you control
+- `00:48` over what devices are able to connect to
+- `00:51` your computer so you could decide
+- `00:53` whether you would like individuals on
+- `00:54` the inside of your network to have
+- `00:56` access to this port number or if you'd
+- `00:58` like to open it up to a wider audience
+- `01:01` sometimes port numbers are open on our
+- `01:02` computer and we have no idea why that
+- `01:05` port number is open often this is
+- `01:07` because there's a service that's running
+- `01:09` on your system that you were simply not
+- `01:11` aware of and that service opens a port
+- `01:13` number to the outside there is a large
+- `01:16` range of port numbers that could be
+- `01:17` opened on your computer specifically
+- `01:19` port numbers 0 through
+- `01:23` 65,535 any service running on your
+- `01:25` system can use any of those numbers to
+- `01:28` enable access from other others across
+- `01:30` the network if you're wondering just
+- `01:32` what services or port numbers may be
+- `01:35` open on your computer you can use a
+- `01:37` third party tool such as inmap to scan
+- `01:40` your system and see what port numbers
+- `01:42` are advertised to the world from there
+- `01:44` you can decide whether that's a port
+- `01:46` number that needs to stay open so that
+- `01:48` service is available to others or you
+- `01:50` can choose to shut down that service and
+- `01:52` remove that port number from your
+- `01:55` system if you've ever installed a switch
+- `01:57` a router a firewall or any other
+- `02:00` networking device then you know there is
+- `02:02` commonly a set of standard credentials
+- `02:04` to be able to log into that device many
+- `02:07` devices will require you to change those
+- `02:09` credentials the first time you log in
+- `02:12` but a large number of devices simply
+- `02:14` have those default credentials available
+- `02:16` for anyone to use at any time obviously
+- `02:19` keeping those default credentials on a
+- `02:21` system mean that anyone who happens to
+- `02:24` know that default username and password
+- `02:26` could potentially gain access to that
+- `02:28` system and in many cases these default
+- `02:30` credentials provide administrative
+- `02:33` access to the entire system leaving
+- `02:35` these available would effectively allow
+- `02:37` anyone to have complete control over
+- `02:40` that system if you're wondering what the
+- `02:42` default credentials might be for a
+- `02:44` particular device there's a database of
+- `02:46` those that you can find on router
+- `02:48` passwords.com this website provides a
+- `02:51` database of all of the default usernames
+- `02:53` and passwords for these devices that you
+- `02:55` may already have installed on your
+- `02:58` network one of the challenges Alles with
+- `03:00` securing a switch network is that you
+- `03:02` can't physically be watching every
+- `03:04` single interface on every single switch
+- `03:06` all the time but there are features
+- `03:09` within the switch that can provide you
+- `03:11` with additional security specifically
+- `03:13` Port Security Port security is a feature
+- `03:16` built into a number of switches that
+- `03:18` prevent someone from unplugging an
+- `03:20` existing system and plugging in their
+- `03:22` own system into that same interface the
+- `03:25` switch will recognize that a new system
+- `03:27` has now plugged in and it will prevent
+- `03:29` that system system from communicating on
+- `03:31` the network this is based on the Mac
+- `03:33` address or media Access Control address
+- `03:36` of this device that Mac address
+- `03:38` describes the physical interface on that
+- `03:40` network interface card and by
+- `03:42` configuring your switch to look for
+- `03:44` those Mac addresses you can prevent
+- `03:46` someone from effectively changing the
+- `03:48` MAC address in the middle of the day the
+- `03:51` configuration for Port security usually
+- `03:53` starts by telling the switch how many
+- `03:55` Mac addresses should be associated with
+- `03:57` a particular interface you can decide if
+- `04:00` one particular Mac address should be
+- `04:02` associated with one single interface or
+- `04:04` if there should be multiples associated
+- `04:06` with that interface you can also specify
+- `04:09` the exact Mac address that is allowed to
+- `04:11` communicate over that physical switch
+- `04:13` interface the switch will then monitor
+- `04:15` every device that connects to that
+- `04:17` particular interface and it will record
+- `04:19` the MAC address of all of those devices
+- `04:22` if you then connect a device that the
+- `04:24` switch is not expecting to see you will
+- `04:26` see that Port Security will activate on
+- `04:28` that switch the default on many switches
+- `04:31` is to immediately disable the interface
+- `04:33` and send a message to the network
+- `04:36` administrator another good security best
+- `04:38` practice for protecting your devices is
+- `04:40` to disable any unused interfaces on
+- `04:43` those switches if you've ever walked
+- `04:45` into a conference room or break room you
+- `04:47` may have seen ethernet interfaces on the
+- `04:49` wall and those interfaces may or may not
+- `04:52` be enabled the best practice of course
+- `04:55` is to disable those interfaces until
+- `04:57` someone needs to use that particular
+- `04:59` port
+- `05:00` this requires a bit more administration
+- `05:02` because you have to keep track of what
+- `05:03` interfaces are enabled and what
+- `05:05` interfaces have been disabled and
+- `05:07` occasionally you'll be asked to enable
+- `05:09` an interface that is currently not
+- `05:11` operational although this takes
+- `05:13` additional time and effort to be able to
+- `05:15` maintain it also makes your network much
+- `05:17` more secure some organizations take this
+- `05:20` to the next level by having each
+- `05:22` interface require authentication before
+- `05:25` you can communicate on the network this
+- `05:27` is referred to as network access control
+- `05:30` or Knack you'll often see it implemented
+- `05:32` as
+- `05:34` 802.1x when you connect any device to
+- `05:36` the network or you connect to a wireless
+- `05:38` network it will first prompt you for
+- `05:40` authentication you have to provide your
+- `05:42` username and password and only then are
+- `05:45` you allowed to communicate on the
+- `05:47` network some administrators will even
+- `05:50` use MAC address filtering to keep out
+- `05:52` devices that they would not like to have
+- `05:54` on their Network as you recall the media
+- `05:57` Access Control address is the hardware
+- `05:59` address of a device so you can
+- `06:01` effectively limit access to the network
+- `06:03` based on the physical device that may be
+- `06:06` communicating across that Network this
+- `06:08` is very useful for keeping out devices
+- `06:10` that are not authorized to be on the
+- `06:12` network but when new devices appear or
+- `06:14` you have someone visit you may need to
+- `06:16` enable their Mac address in the filter
+- `06:18` so that they can communicate on the
+- `06:20` network one of the challenges with a
+- `06:22` media Access Control filter is that the
+- `06:25` MAC address on a device can be
+- `06:27` administratively changed you can change
+- `06:29` change the software configuration of the
+- `06:31` network adapter card to be any Mac
+- `06:33` address you'd like this might allow
+- `06:35` someone to perform a packet capture to
+- `06:38` see what Mac addresses are on the
+- `06:39` network wait for one of those Mac
+- `06:41` addresses to leave and then use that Mac
+- `06:44` address to gain access through that Mac
+- `06:46` address filter for that reason we would
+- `06:49` categorize Mac filtering as security
+- `06:51` through obscurity this means that if you
+- `06:54` know the method that's being used for
+- `06:56` security it becomes very easy to
+- `06:58` circumvent that
+- `07:00` security if you've worked in it for any
+- `07:03` amount of time you know there are
+- `07:05` authentication details certificates
+- `07:07` encryption keys and many other security
+- `07:10` keys that have to be managed in your it
+- `07:12` environment often there's thirdparty
+- `07:14` software you can install to keep all of
+- `07:17` these Keys managed from this single
+- `07:19` console you can create keys for a
+- `07:21` specific service or perhaps for a
+- `07:23` specific cloud provider you might even
+- `07:25` associate these keys with a specific
+- `07:28` user or a specific service from there
+- `07:31` you can manage those keys you'll know
+- `07:33` exactly when the keys will expire you
+- `07:35` can renew the keys or revoke those keys
+- `07:37` and you can even see when the keys are
+- `07:39` being used or when someone may be using
+- `07:41` a key to gain access to another system
+- `07:45` here's the dashboard of a key management
+- `07:47` system you can see there are
+- `07:49` certificates and keys that are
+- `07:50` configured as part of this key
+- `07:52` management system you can see the
+- `07:54` certificate Authority associated with
+- `07:56` those keys vulnerabilities SSH keys
+- `07:59` license details and much more if you
+- `08:02` have many different web servers and you
+- `08:04` need to find a way to manage those SSL
+- `08:06` Keys you can use the SSL feature of the
+- `08:09` key management software to be able to
+- `08:11` list all of the keys know when they
+- `08:13` expire and be able to renew them all
+- `08:15` from this console you might also want to
+- `08:18` manage SSH Keys which can be used to log
+- `08:20` into a Linux server or some other SSH
+- `08:23` compatible service all of these keys are
+- `08:25` also listed in the key management device
+- `08:28` and you can see what users are gaining
+- `08:30` access to these keys and what devices
+- `08:32` they're authenticating to since all of
+- `08:34` these keys are in one central place you
+- `08:36` can then start creating reports on how
+- `08:38` these Keys have been used there are SSH
+- `08:41` reports Landing server reports private
+- `08:43` key reports and so much more all of this
+- `08:46` is contained within this single Key
+- `08:47` Management server which makes the
+- `08:49` process of managing all of your keys
+- `08:51` much easier

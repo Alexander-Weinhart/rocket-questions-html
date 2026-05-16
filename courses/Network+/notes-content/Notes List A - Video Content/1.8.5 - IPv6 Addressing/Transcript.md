@@ -1,0 +1,274 @@
+# [1.8.5 - IPv6 Addressing](https://www.youtube.com/watch?v=CpLznUxkzg8)
+
+## 1.8.5 - IPv6 Addressing
+
+- Day: Day 5
+- Duration: 13:50
+
+## Transcript
+
+- `00:02` Our current estimates put the total number
+- `00:04` of devices connected to the internet somewhere around 20
+- `00:08` billion with a b.
+- `00:10` One of our ongoing challenges associated
+- `00:13` with this huge rise in number of devices
+- `00:16` is that IP version 4 can only support 4.29 billion
+- `00:21` of those addresses.
+- `00:23` The rest of this, we very commonly
+- `00:25` use network address translation or other methods
+- `00:28` to be able to communicate with all of these devices
+- `00:31` with such a limited number of addresses.
+- `00:34` And as you may already be aware, there are no more
+- `00:37` IPv4 addresses to be assigned.
+- `00:39` We have hit the limit to the number of IP version
+- `00:42` 4 addresses that we're able to use.
+- `00:44` We've been able to provide ongoing support for IP version
+- `00:48` 4 using network address translation,
+- `00:50` and the internet configuration that you
+- `00:52` use at home and at your office uses network address translation
+- `00:57` to be able to connect hundreds or even thousands of devices
+- `01:00` to the internet using a minimal number of IP version 4
+- `01:05` addresses.
+- `01:06` Although this works with most of the applications that we use,
+- `01:09` there are certain apps that would prefer
+- `01:11` not to use network address translation,
+- `01:13` and this simply creates more complexities and difficulties
+- `01:16` for those of us that need to communicate
+- `01:19` over these IPv4 networks.
+- `01:21` Fortunately, we have a solution to this limited number
+- `01:25` of addresses, and that solution is a new version of IP,
+- `01:28` referred to as IP version 6.
+- `01:32` IP version 4 addresses are 32 bits in length.
+- `01:35` IP version 6 addresses have a 128-bit address,
+- `01:40` which gives us a much larger address space to use when
+- `01:44` we're assigning these addresses to all of those many devices
+- `01:48` on the internet.
+- `01:49` Another way to visualize this would
+- `01:51` be to say that every grain of sand on earth
+- `01:53` could have 45 quintillion unique IP version 6 addresses.
+- `01:58` You can see that this larger address space with IP version 6
+- `02:02` resolves that IP address constraint
+- `02:04` that we have with IP version 4.
+- `02:07` There are a number of differences
+- `02:09` between an IP version 4 address and an IP version 6 address.
+- `02:13` This is an IP version 6 address, fe80::5d18:652:6ffd:8f52.
+- `02:26` You can see that is a very different style of addressing
+- `02:29` than IP version 4, where we were only
+- `02:31` dealing with decimal numbers and periods.
+- `02:34` In IP version 6, we are using hexadecimal values,
+- `02:37` and we're separating those with a colon.
+- `02:40` If we were to write out that entire address into its entire
+- `02:44` 128-bit form, you can see that it is completely listed here.
+- `02:49` And that is a much larger address
+- `02:51` than we deal with with IP version 4.
+- `02:54` If you wanted to view this in a binary form,
+- `02:56` you can see that we have the representation
+- `02:58` of that same address listed in binary.
+- `03:01` You can see here that each section of an IP version 6
+- `03:04` address that we separate with colons is 16 bits in length.
+- `03:09` You can see the 16 ones and zeros listed
+- `03:11` in each one of those sections.
+- `03:13` This also means that each section is two bytes in length,
+- `03:16` and you may also see it represented
+- `03:18` as two octets in length.
+- `03:20` So in total, the IP version 6 address is a total of 128 bits
+- `03:25` or 16 bytes in total.
+- `03:28` You might see an IP version 6 address written out with all 128
+- `03:33` bits being shown on the screen.
+- `03:35` But you might also see these addresses
+- `03:37` listed in a compressed form, which makes it
+- `03:40` much easier to be able to read.
+- `03:42` When we're using this compressed form of an IPv6 address,
+- `03:46` there are a number of rules to keep in mind.
+- `03:48` One of those rules, if there are groups
+- `03:50` of zeros that are together, we can abbreviate that entire group
+- `03:54` by simply replacing those zeros with a double colon.
+- `03:58` We can only do this one time in an address,
+- `04:01` but usually that's all we need to make this address much easier
+- `04:04` to read.
+- `04:05` We also can remove leading zeros from each group within the IP
+- `04:10` version 6 address.
+- `04:11` Let's take an IPv6 address and perform this compression
+- `04:15` to see what that would look like.
+- `04:16` The IPV 6 address will work with is 2600:DDDD:1111:0001:000.
+- `04:28` And you can see the zeros go all the way
+- `04:30` through to the end to the number one.
+- `04:32` Our first rule here is that we can
+- `04:34` remove any of these leading zeros that might
+- `04:37` be in all of these groups.
+- `04:39` This means that our IPv6 address with those zeros removed would
+- `04:43` be 2600:DDDD:1111.
+- `04:48` And then each of those leading zeros in all of the remaining
+- `04:51` groups would be removed.
+- `04:53` You'll also notice that there are three individual groups here
+- `04:57` that are simply zeros.
+- `04:58` And one way that we could simplify the writing of this IP
+- `05:01` address is to abbreviate two or more of those groups
+- `05:05` together with double colons.
+- `05:07` So all three of those zeros would be removed,
+- `05:10` and we would replace them with one series of double colons.
+- `05:14` This means that we would have a very simplified
+- `05:17` form of this address.
+- `05:18` Instead of having all 128 bits of that address shown
+- `05:22` on the screen, the address is now simply written
+- `05:24` as 2600:DDDD:1111:1::1.
+- `05:32` Let's look at another IPv6 address
+- `05:34` and perform the same compression.
+- `05:36` This IPv6 address is 2601:04C3:4002:B
+- `05:40` E00:0000:0000:0000:0066.
+- `05:48` Our first step would be to remove the leading
+- `05:50` zeros in all of this.
+- `05:52` We have our second group has one zero in front of it,
+- `05:55` and there are a number of groups at the end that
+- `05:57` have leading zeros that we can simply get rid of.
+- `06:00` You'll notice in this example that there
+- `06:02` are three different groups of zeros
+- `06:04` that are combined together, so we can remove all three
+- `06:07` of those zeros and replace it with a double colon.
+- `06:10` This greatly simplifies this much longer address
+- `06:13` into 2601:4C3:4002:BE00::66.
+- `06:23` As you can see, the IP version 6 addresses
+- `06:26` are very different than the IPv4 addresses
+- `06:29` that we're used to seeing.
+- `06:31` And because of this, IP version 6 and IP version 4 cannot
+- `06:35` directly communicate with each other.
+- `06:37` Therefore, we need some method to be
+- `06:39` able to have these older legacy systems that only understand
+- `06:43` IP version 4 be able to communicate on our more
+- `06:47` modern IP version 6 networks.
+- `06:49` This creates some communication challenges
+- `06:51` when trying to combine IP version 4 and IP version 6.
+- `06:55` But fortunately, there are a number of different ways
+- `06:57` to bridge this gap.
+- `06:59` One of these methods would be to tunnel the traffic.
+- `07:02` We would either tunnel IP version 4 with an IP version 6
+- `07:05` or tunnel IP version 6 with an IP version 4.
+- `07:09` This would give us a way to communicate even
+- `07:12` across networks that were very different than the protocol
+- `07:15` that we were using.
+- `07:16` Another way to bridge this gap would
+- `07:18` be to use a dual stack configuration where
+- `07:21` the system that you're using can communicate with both IP version
+- `07:24` 4 and IP version 6.
+- `07:27` And another way would be through the process of translation,
+- `07:31` where we are converting one IP version 4 address
+- `07:34` into a completely different IP version 6 address.
+- `07:38` Obviously, these are stopgap measures,
+- `07:40` and they're not designed to be a long-term solution
+- `07:43` for connecting these different types of networks together.
+- `07:46` Ideally, the best long-term solution would be for all of us
+- `07:49` to move to IP version 6.
+- `07:51` And hopefully, one day, we'll be able to take all of our systems
+- `07:55` and be able to run them as a pure IPv6 environment.
+- `08:00` In the early days of IPv6, where we did not
+- `08:03` have a lot of infrastructure devices that understood IPv6,
+- `08:07` we did a lot of tunneling of that IPv6 traffic.
+- `08:11` This was obviously designed to be a short-term use.
+- `08:13` And these days, it's not very common to still see
+- `08:16` this tunneling being used.
+- `08:18` One of these tunneling types is 6 to 4 addressing.
+- `08:22` This allows us to send IP version
+- `08:24` 6 traffic over an existing IP version 4 network.
+- `08:28` It creates an IPv6 address based on the IP version 4
+- `08:32` address that you're currently using,
+- `08:33` but it requires you to have a specialized relay router to be
+- `08:37` able to transfer that data.
+- `08:39` And one big disadvantage of 6 to 4 addressing
+- `08:42` is it does not support any type of network address translation.
+- `08:46` Because of both those limitations
+- `08:48` and because we have more devices these days that natively support
+- `08:53` IP version 6, we no longer commonly see 6 to 4 being used,
+- `08:57` and this functionality has now been removed from all Windows
+- `09:01` versions.
+- `09:02` If you can tunnel IP version 6 traffic across an IPv4 network,
+- `09:06` you can also do the reverse with 4 in 6
+- `09:09` tunneling where we can tunnel IP version
+- `09:12` 4 traffic across an existing IP version 6 network.
+- `09:16` Both of these were used as relatively short-term solutions,
+- `09:20` and it's very unusual to find 6 to 4 addressing or 4
+- `09:23` in 6 tunneling still being used on our enterprise networks.
+- `09:27` A much more common method of migration and one
+- `09:30` you're probably using on your existing system
+- `09:33` is dual-stack routing.
+- `09:35` This allows us to use both IP version 4 and IP
+- `09:38` version 6 at the same time on the same system.
+- `09:42` You might have an Ethernet adapter on your computer,
+- `09:45` and that Ethernet adapter has both an IP version 4
+- `09:48` address assigned to it and an IP version 6
+- `09:51` address assigned to it.
+- `09:53` The IP version 4 side works exactly the same as it always
+- `09:56` has, and all of your applications
+- `09:58` that use IP version 4 can use that address
+- `10:01` to be able to communicate onto the network.
+- `10:03` If you have applications that would prefer using IPv6,
+- `10:07` they can use the IPv6 addressing associated with that Ethernet
+- `10:11` adapter.
+- `10:12` These applications will use the IPv6 address
+- `10:14` that is assigned to your Ethernet adapter.
+- `10:17` It will use the routing table within your system for IPv6,
+- `10:21` which is a different routing table than you're
+- `10:23` using for IP version 4.
+- `10:25` And all of the IPv6 settings that are associated
+- `10:29` are all independent from anything that's
+- `10:31` happening with IP version 4.
+- `10:33` This tends to be a very good middle ground
+- `10:35` because our application can choose IP version 4 or IP
+- `10:39` version 6, and either one of those
+- `10:41` will work properly on the network.
+- `10:43` One of the things that we used with IPv4 to minimize
+- `10:47` the restriction that we had with IP addresses
+- `10:50` is to perform a network address translation.
+- `10:53` We would take our existing internal IPv4 address
+- `10:56` and translate that into an IPv4 address that can
+- `11:00` be routed across the internet.
+- `11:02` We can perform a similar translation
+- `11:04` to move between IPv4 and IPv6.
+- `11:08` This translation is called NAT 64,
+- `11:10` and it allows us to seamlessly translate IPv4 and IPv6.
+- `11:15` Just as we need a specialized network address
+- `11:18` translation router when we're using IPV 4,
+- `11:21` we also need a specialized router when we're using NAT 64.
+- `11:26` This allows us to take a device that communicates via IPv6,
+- `11:30` but still allow it to communicate
+- `11:31` with devices that only communicate using IP version 4.
+- `11:36` The key is in the middle, we're able to use a NAT 64 capable
+- `11:40` router to make that translation change between those two
+- `11:43` protocols.
+- `11:44` This also uses a specialized DNS server
+- `11:47` to be able to translate the DNS requests from IP version
+- `11:50` 4 to IP version 6.
+- `11:53` This is called DNS 64, and it's an important part
+- `11:56` of the overall NAT 64 process.
+- `11:59` For example, let's say that you wanted
+- `12:00` to communicate from your device, which is an IPv6 client,
+- `12:04` and you wanted to communicate to professormesser.com.
+- `12:07` Let's assume for this example that professormesser.com can
+- `12:11` only communicate using IPv4.
+- `12:13` The first thing that happens, of course,
+- `12:15` is we need the IP address of professormesser.com.
+- `12:18` So we send a DNS request to our DNS 64 server.
+- `12:23` This server is going to make a DNS request on our behalf
+- `12:26` to that IPv4 network containing the DNS server that
+- `12:30` is used by professormesser.com.
+- `12:32` And of course, that DNS server is
+- `12:34` going to respond back with the IP version 4 address associated
+- `12:38` with that server.
+- `12:39` Once that IPv4 address is received by the DNS 64 server,
+- `12:44` it creates an IP version 6 version
+- `12:46` of that address that redirects it to the NAT 64 router.
+- `12:51` To the IPv6 client, it thinks it's
+- `12:53` received the IPv6 address of professormesser.com,
+- `12:57` but it's really received the IPv6 address of the NAT 64
+- `13:01` router.
+- `13:02` So now when our browser needs to communicate
+- `13:04` to professormesser.com, it sends its initial SYN
+- `13:08` to that IPv6 address, which is the NAT 64 router.
+- `13:12` That router is responsible for performing the network address
+- `13:15` translation, where it is able to take the IPv6 address that we
+- `13:19` use and translate that into an IPv4 address
+- `13:23` that the web server understands.
+- `13:25` This process is obviously reversed
+- `13:27` when the response is sent back, allowing these two
+- `13:30` devices to communicate to each other,
+- `13:32` even though one device only understands IPv6,
+- `13:35` and the other device only understands IP version 4.

@@ -1,0 +1,271 @@
+# [5.3.1 - Switching Issues](https://www.youtube.com/watch?v=rUONzfO11m8)
+
+## 5.3.1 - Switching Issues
+
+- Day: Day 10
+- Duration: 9:58
+
+## Transcript
+
+- `00:02` as you're probably aware at the MAC
+- `00:03` address level there's no mechanism for
+- `00:06` counting how many times a frame might be
+- `00:08` seen on a network for that reason we
+- `00:11` have to be very careful that we don't
+- `00:13` create a loop on our switch Network
+- `00:15` because those frames will continue to
+- `00:17` Circle and circle and circle around that
+- `00:19` Network until you unplug one of those
+- `00:22` connections that's one of the reasons
+- `00:24` that it's so important to have spanning
+- `00:26` tree enabled on your network so that any
+- `00:29` potential Loop could be stopped before
+- `00:31` that traffic starts looping obviously
+- `00:33` switches forward traffic based on the
+- `00:36` destination Mac address that's inside of
+- `00:38` a frame so every unicast packet has a
+- `00:41` single destination on where that packet
+- `00:43` should be heading there are some packets
+- `00:45` that are sent to multiple devices on the
+- `00:47` network simultaneously broadcasts and
+- `00:49` multicasts are a very good example of a
+- `00:52` single frame that can go into a switch
+- `00:54` and that single frame can be transmitted
+- `00:56` out every other interface on that switch
+- `00:59` with I P we have a time to live field
+- `01:02` this time to live field prevents any
+- `01:04` particular packet from circling
+- `01:06` indefinitely around the network but
+- `01:08` there's nothing in the frame on a switch
+- `01:10` Network that can prevent that type of
+- `01:12` loop a normal switch Network might have
+- `01:15` a switch on one end of the network and a
+- `01:17` switch on the other end of the network
+- `01:19` and they're connected with one cable
+- `01:21` when we send traffic across that Network
+- `01:23` it traverses that cable to make its way
+- `01:25` to the destination device but inside of
+- `01:27` a wiring closet it's very easy to add a
+- `01:30` separate connection accidentally thereby
+- `01:33` creating a loop on the network now
+- `01:35` whenever traffic traverses this network
+- `01:38` it's trying to find its way to the other
+- `01:40` side of the network but instead it loops
+- `01:43` around and around and around the network
+- `01:45` and as more traffic is added to the
+- `01:48` network that traffic also loops around
+- `01:50` the network until very quickly both
+- `01:53` switches are overwhelmed and the network
+- `01:55` comes to a grinding halt this is why
+- `01:58` many Network administrators ERS turn on
+- `02:00` spanning tree to prevent loops on the
+- `02:02` network but how does spanning tree know
+- `02:04` where these different switches are and
+- `02:06` how is it able to prevent Loops one of
+- `02:09` the mechanisms used by spanning tree
+- `02:10` protocol is the bridge protocol data
+- `02:13` unit or bpdu all of these switches are
+- `02:16` sending Mac layer multicast to each
+- `02:18` other that contain these Bridge protocol
+- `02:20` data unit frames any other switch that
+- `02:23` is on this local broadcast domain will
+- `02:25` see these multicasts and see that they
+- `02:27` contain configuration details and they
+- `02:29` form whenever there's any topology
+- `02:31` change the default for spanning tree is
+- `02:34` to send these bpdus out every 2 seconds
+- `02:37` so we know that every switch that is on
+- `02:39` our broadcast domain is getting an
+- `02:41` update from our switch every two seconds
+- `02:43` and our switch is receiving updates from
+- `02:46` other switches every 2 seconds but if we
+- `02:48` don't see these hello frames arriving
+- `02:50` every 2 seconds we wait and see if
+- `02:53` another 2 seconds goes by without an
+- `02:55` update and if finally we see three of
+- `02:57` those that are missed the link is
+- `02:59` considered to be down at this point
+- `03:01` spaning tree realizes there's been a
+- `03:03` change to the topology of the network
+- `03:06` and it redesigns itself to prevent any
+- `03:08` Loops spaning tree relies on the concept
+- `03:11` of a root bridge this root bridge is
+- `03:13` elected when the network is first
+- `03:15` started all of the bridges participate
+- `03:18` in this root Bridge election and they
+- `03:20` choose the best connection to be able to
+- `03:22` communicate to that root Bridge you can
+- `03:25` manually configure which Bridge you'd
+- `03:27` like to use as the root bridge by
+- `03:29` setting Bridge ID to be a low value you
+- `03:32` can set these Bridge IDs to be between 0
+- `03:34` and
+- `03:35` 61,2 40 and the one that has the lowest
+- `03:38` Bridge ID is the root bridge if you have
+- `03:41` multiple switches with the same Bridge
+- `03:43` ID the switch that has the lowest Mac
+- `03:46` address number is the one that becomes
+- `03:48` the root Bridge once the root bridge is
+- `03:50` elected all of the other switches
+- `03:52` configure their settings so that they
+- `03:54` know exactly how to communicate back to
+- `03:57` this root Bridge as an example we have
+- `04:00` this network with a number of switches
+- `04:01` on it we have Bridge 1 Bridge 6 Bridge 5
+- `04:04` Bridge 21 and Bridge 11 and all of these
+- `04:07` switches are connecting multiple
+- `04:09` networks to each other when this network
+- `04:11` was created a root Bridge was determined
+- `04:14` this is the bridge at the top that is
+- `04:16` Bridge one and you can see that this
+- `04:17` bridge has two designated ports that are
+- `04:20` connecting the route to the rest of the
+- `04:21` network all the other switches are
+- `04:23` configured with a root port and that
+- `04:25` root Port is the port that you would
+- `04:27` take to get back to the root Bridge and
+- `04:29` they may also have designated ports that
+- `04:32` are active and passing traffic some
+- `04:34` switches might also have blocked ports
+- `04:37` these ports have been blocked by
+- `04:38` spanning tree to prevent any loops on
+- `04:41` this network for example if we wanted to
+- `04:43` connect from Network a and connect to a
+- `04:46` device in network M we can simply pass
+- `04:48` through Bridge 6 we could also go all
+- `04:51` the way through the network to a
+- `04:53` different bridge but you'll see there is
+- `04:55` a blocked Port that would prevent us
+- `04:57` from looping around this network thanks
+- `04:59` to spanning tree protocol this
+- `05:02` configuration works great and we can
+- `05:03` communicate between Network a and
+- `05:05` network m without a problem but what if
+- `05:07` we run into an issue where we lose
+- `05:09` connectivity between Network a and
+- `05:11` Bridge 6 we now have no way to
+- `05:13` communicate from Network a to network M
+- `05:16` because we have these blocked ports that
+- `05:18` originally were blocking a loop spaning
+- `05:20` tree recognizes that this connection has
+- `05:23` failed because the hello was not seen
+- `05:25` within three updates and spaning tree
+- `05:27` will now go into a mode to reconfigure
+- `05:29` the network it first removes those
+- `05:31` blocked ports from those bridges so now
+- `05:34` Network a can communicate through
+- `05:35` Network y network c network J through
+- `05:39` the route and finally to network M this
+- `05:42` is how spaning tree is able to change
+- `05:44` the configuration of the network in real
+- `05:46` time to allow us to communicate to these
+- `05:48` different networks without causing a
+- `05:50` loop on the network spaning tree can put
+- `05:53` these interfaces into different states
+- `05:56` we've already seen the blocking State or
+- `05:58` the discarding state so that it's not
+- `06:00` going to pass traffic through that
+- `06:02` particular interface there's also a
+- `06:04` listening mode that spanning tree will
+- `06:05` use before making any changes to the
+- `06:07` network it's listening for other
+- `06:10` switches that might be on that local
+- `06:11` broadcast domain and it's able to set
+- `06:13` its configuration based on the other
+- `06:15` switches that it sees it then begins
+- `06:18` learning and adding information to the
+- `06:19` MAC address table inside of the switch
+- `06:22` and once it knows whether that
+- `06:24` particular interface should be enabled
+- `06:26` or disabled it puts it into either a
+- `06:28` forwarding mode or or a blocking mode
+- `06:30` and if you want to be sure that spanning
+- `06:32` tree will never use a particular
+- `06:34` interface to forward traffic you can put
+- `06:36` it into a disabled mode where the
+- `06:38` administrator of the network has
+- `06:39` administratively turned off that
+- `06:43` Port if you've connected a device to the
+- `06:45` network and it's received an IP address
+- `06:47` but yet it still can't communicate to
+- `06:49` other devices that are on the same
+- `06:51` network you may have a problem with a
+- `06:53` VLAN configuration every interface on a
+- `06:56` switch is associated with a particular
+- `06:59` VLAN
+- `07:00` this may be a single VLAN for a single
+- `07:02` device we refer to those as access ports
+- `07:05` and each access port is assigned a
+- `07:07` particular VLAN ID you can see on this
+- `07:09` switch some of these interfaces are on
+- `07:11` VLAN 254 and other interfaces are on
+- `07:15` VLAN 100 if you're connecting a device
+- `07:17` to switch interface number four and
+- `07:19` you're not sure which VLAN is associated
+- `07:22` with switch interface number for you'll
+- `07:24` need to check the configuration of your
+- `07:25` switch and determine what specific VLAN
+- `07:28` is assigned to that physical interface
+- `07:31` it may be that we were expecting switch
+- `07:33` interface 4 to be on VLAN 254 so we
+- `07:37` would need to make a change to our
+- `07:38` switch configuration to be able to
+- `07:40` change that ID or we would need to move
+- `07:42` to an available interface that's already
+- `07:44` configured for VLAN 254 you'll find that
+- `07:47` this is a very common issue especially
+- `07:50` when your network has a large number of
+- `07:51` vlans but fortunately it's something
+- `07:53` that can be resolved relatively
+- `07:56` quickly even after configuring the
+- `07:58` correct VL and plugging into the network
+- `08:01` and receiving the correct IP addresses
+- `08:03` and configuration settings you still
+- `08:05` might find that you're not able to
+- `08:07` communicate across the network you've
+- `08:09` looked at your switch configuration and
+- `08:10` your routing tables and everything
+- `08:12` appears to be configured properly but
+- `08:14` you may find that packets are still
+- `08:16` being dropped and not making it to its
+- `08:18` final destination you could be
+- `08:20` configuring everything correctly inside
+- `08:22` of your switch in your router but if
+- `08:24` you've got Access Control lists
+- `08:27` somewhere along the way it could be
+- `08:29` blocking some of the traffic that you're
+- `08:31` sending you'll need to check the
+- `08:32` switches and routers on your network to
+- `08:35` see if any access control lists have
+- `08:36` been configured on any of those
+- `08:38` interfaces this is usually a very quick
+- `08:41` check and it should be part of your
+- `08:42` normal troubleshooting process
+- `08:44` especially if you find that no traffic
+- `08:46` is able to communicate from one network
+- `08:48` to another Access Control lists work
+- `08:51` very similar to a firewall rule base we
+- `08:53` would like to have the more granular
+- `08:55` rules at the top of the list the access
+- `08:58` control list stops evalua ating these
+- `09:00` after finding a match so having the more
+- `09:02` common matches at the top of the list
+- `09:04` would make the network that much more
+- `09:06` efficient this also means that we can
+- `09:08` fire on more granular controls at the
+- `09:10` top of this list than the broader
+- `09:12` controls that might be lower down in the
+- `09:15` ACL as a best practice if you're making
+- `09:17` any changes to an access control list
+- `09:20` you might want to disable the ACL
+- `09:22` functionality first it's very possible
+- `09:24` to make a change to an ACL that would
+- `09:27` effectively remove your access to the
+- `09:29` same switch also remember if you add an
+- `09:32` access list to an interface the default
+- `09:34` for many devices is to automatically
+- `09:36` deny all traffic that's not specifically
+- `09:39` listed in an access control list so
+- `09:42` building an empty ACL would effectively
+- `09:44` filter all communication through that
+- `09:47` device

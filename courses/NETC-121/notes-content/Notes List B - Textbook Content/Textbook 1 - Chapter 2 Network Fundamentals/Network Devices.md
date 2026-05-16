@@ -1,10 +1,10 @@
-# 🖧 Network Devices
+# Network Devices
 
 Each network device operates at a specific OSI layer and performs a specific function. Understanding which layer a device works at tells you what it can and cannot do.
 
 ---
 
-## Repeater — Layer 1 🔌
+## Repeater — Layer 1 
 
 A repeater's only job is to **regenerate a signal** that has weakened over distance.
 
@@ -21,7 +21,7 @@ Device A ──────────────── [signal degrades] ─�
 
 ---
 
-## Hub — Layer 1 🔌
+## Hub — Layer 1 
 
 A hub is a **multiport repeater**. Whatever signal arrives on one port is immediately copied out to every other port.
 
@@ -39,7 +39,7 @@ Device A ──► Hub ┼──► Device C (gets everything)
 
 ---
 
-## Switch — Layer 2 🔗
+## Switch — Layer 2 
 
 A switch **learns MAC addresses** and forwards frames only to the correct destination port. This is the workhorse of modern wired LANs.
 
@@ -67,7 +67,7 @@ Port 2 (Device B) sees nothing
 
 ---
 
-## Router — Layer 3 🌐
+## Router — Layer 3 
 
 A router connects **different networks** and forwards packets between them based on IP addresses.
 
@@ -98,7 +98,7 @@ Network A: 192.168.1.0/24 ──► Router ──► Network B: 10.0.0.0/8
 
 ## Key Points
 
-- 📌 **Repeater** — extends signal distance, Layer 1, no filtering
-- 📌 **Hub** — multiport repeater, Layer 1, sends to everyone, obsolete
-- 📌 **Switch** — learns MACs, Layer 2, forwards selectively, full-duplex
-- 📌 **Router** — routes by IP, Layer 3, separates networks, blocks broadcasts
+- **Repeater** — extends signal distance, Layer 1, no filtering
+- **Hub** — multiport repeater, Layer 1, sends to everyone, obsolete
+- **Switch** — learns MACs, Layer 2, forwards selectively, full-duplex
+- **Router** — routes by IP, Layer 3, separates networks, blocks broadcasts

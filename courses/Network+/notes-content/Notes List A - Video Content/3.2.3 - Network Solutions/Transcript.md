@@ -1,0 +1,164 @@
+# [3.2.3 - Network Solutions](https://www.youtube.com/watch?v=zIX_SzezCi0)
+
+## 3.2.3 - Network Solutions
+
+- Day: Day 7
+- Duration: 6:57
+
+## Transcript
+
+- `00:01` When you sit down to troubleshoot a network issue,
+- `00:04` you're starting with no information.
+- `00:06` So we need to start gathering more details,
+- `00:08` using a number of different techniques.
+- `00:11` These would commonly be things like LLDP, which is a link layer
+- `00:15` discovery protocol on switches.
+- `00:17` There's also CDP, which is Cisco's version of this, called
+- `00:21` the Cisco discovery protocol.
+- `00:23` You might also use scanners that are
+- `00:24` able to perform ping scans or port scans of the network
+- `00:28` to identify devices that may be up and running.
+- `00:30` There may also be commercial network scanners in place,
+- `00:33` or you might use simple network management protocol.
+- `00:36` Some organizations will run these types of scans
+- `00:39` every night on their network to gain an understanding of exactly
+- `00:43` what devices may be installed.
+- `00:45` Or this may be a scan that we simply
+- `00:47` do any time we're trying to do some troubleshooting.
+- `00:50` And it's not something that commonly runs every day.
+- `00:53` But if you do have a daily cycle of scans and information
+- `00:56` gathering and you can perform reports on that information,
+- `00:59` you may be able to build an interesting view of exactly
+- `01:02` what type of traffic is on your network
+- `01:05` and what devices may be sending that traffic.
+- `01:08` We often refer to traffic analysis
+- `01:10` as a detailed frame-by-frame or packet-by-packet description
+- `01:14` of exactly the traffic that's flowing across the network.
+- `01:18` Often, this is summarized into simplified views
+- `01:21` so that you don't have to sift through hundreds
+- `01:23` or even thousands of lines of frames just
+- `01:26` to understand what type of traffic went across the network.
+- `01:29` For example, if you were looking at a detailed firewall log,
+- `01:33` you would be able to see exactly how
+- `01:35` much traffic was sent across the network, at which time frames.
+- `01:38` You would know which IP was the source of that traffic flow
+- `01:41` and what IP address was the destination.
+- `01:44` And you might also be able to gather
+- `01:45` additional details such as the port number that was used,
+- `01:48` the application in use, or exactly how
+- `01:51` many bytes were transferred between those two devices.
+- `01:54` And if you're collecting this information
+- `01:55` and storing it over a long period of time,
+- `01:58` you can use this for creating long term reports
+- `02:00` or being able to go back in time and perform detailed forensics.
+- `02:04` Here's a view of this firewall log.
+- `02:06` You can see, there are a number of different columns
+- `02:08` of information that are collected.
+- `02:10` One is the timestamp of the traffic flow.
+- `02:13` You can see in this view, it starts at 7:49 and 38 seconds
+- `02:17` and goes down to 7:44 and 57 seconds.
+- `02:21` There's quite a number of traffic flows
+- `02:23` that have occurred on that network during that time frame.
+- `02:26` You can see the protocol in use, whether it was TCP or UDP.
+- `02:29` And you can see port numbers are also listed in this log.
+- `02:33` We have a client IP address and a server IP address,
+- `02:36` so we know exactly what two devices were
+- `02:38` communicating with each other.
+- `02:39` And if we have a DNS server, we may
+- `02:41` be able to take those IP addresses
+- `02:43` and convert them into host names.
+- `02:44` In this example, the host name is the same as the client
+- `02:47` IP address.
+- `02:48` This provides us with a wealth of information
+- `02:51` for every single flow of traffic going across the network.
+- `02:54` So if you were ever wondering if someone
+- `02:56` was able to see exactly what you were sending across the network,
+- `03:00` there may be ways to gather a great deal of that information
+- `03:03` using these firewall logs.
+- `03:06` If we're troubleshooting a problem,
+- `03:07` we may be interested in overall performance from that device.
+- `03:11` This might include network utilization statistics
+- `03:13` or an overview of any errors that may
+- `03:15` have occurred on that device.
+- `03:17` You can usually gather this type of information
+- `03:20` using SNMP, the simple network management protocol.
+- `03:23` Maybe you're gathering netflow statistics,
+- `03:26` you're doing protocol analysis and looking down
+- `03:28` at the frame level.
+- `03:29` Or maybe there's a software agent running on that device,
+- `03:32` and it's providing you with a summary of this performance
+- `03:34` information.
+- `03:35` Based on these statistics, we can
+- `03:37` begin to understand if our network is highly utilized,
+- `03:40` if we're seeing a large number of errors,
+- `03:42` and try to get an idea of where the problems may
+- `03:44` be occurring with that device.
+- `03:47` Sometimes, the statistic that is most important
+- `03:50` is, is a device up, or is a device down?
+- `03:53` We can find this information by looking at our availability
+- `03:56` monitoring.
+- `03:57` This provides us with green for up and red for down.
+- `04:00` And we can instantly see where a device may be active
+- `04:04` or where it may no longer be on the network.
+- `04:06` This could also be rolled into a set of alarms and alerts.
+- `04:09` So we can constantly monitor these devices.
+- `04:13` And if any one of them happens to turn red,
+- `04:15` we can instantly start sending email messages,
+- `04:18` opening up helpdesk tickets, and sending alarms and alerts
+- `04:21` to the people that can solve this problem.
+- `04:23` The view that we have here is a real time view of the devices
+- `04:26` and whether they are up or whether they're down.
+- `04:29` But we could also collect this information over time,
+- `04:31` allowing us to build a report that shows overall performance
+- `04:35` and availability over an extended period.
+- `04:38` This is obviously a very simple metric.
+- `04:40` The device is either active, or the device is not active.
+- `04:43` If you need additional details about the performance
+- `04:45` of the device, you may have to drill down deeper
+- `04:48` and gather netflow statistics or information via SNMP.
+- `04:52` All of the devices on our network
+- `04:54` have configuration files.
+- `04:55` These may be files that we can easily see and list
+- `04:58` on the screen.
+- `04:59` Or they may be stored in different places
+- `05:01` on the switch, the router, or the firewall.
+- `05:04` Many of these devices also allow us to back up the configuration
+- `05:07` files and restore those configurations
+- `05:09` if we need to update or make any changes to the device.
+- `05:12` These configuration files might also
+- `05:14` be specific to a particular version that's
+- `05:17` running on that device.
+- `05:18` So if we have an older configuration file and a newer
+- `05:21` version of software running on that switch or router,
+- `05:23` we may not be able to load that older configuration file back
+- `05:27` onto that device.
+- `05:29` In those situations, we may need to downgrade
+- `05:32` that device back to that previous version,
+- `05:34` just so we can now install that older configuration file back
+- `05:37` on that switch or that router.
+- `05:39` This means we not only need to collect our configuration files
+- `05:43` and store those for future reference,
+- `05:45` but we also need to keep our firmware or previous software
+- `05:48` versions just in case we need to go back to that previous config.
+- `05:53` If we have multiples of these devices,
+- `05:55` we can also compare and contrast the changes
+- `05:58` between those configuration files
+- `06:00` on all of those different devices.
+- `06:02` For example, you might have 10 identical web servers,
+- `06:05` and each of those web servers should have
+- `06:07` a very similar configuration.
+- `06:09` There may be a way to use the configuration
+- `06:12` files to be able to verify the configuration across all
+- `06:15` of those.
+- `06:16` Many organizations will also perform ongoing monitoring
+- `06:20` of those configuration files, and there
+- `06:22` will be an alert or an alarm if anyone
+- `06:24` makes any change to that configuration
+- `06:26` without prior approval.
+- `06:28` This is usually part of an overall management system that
+- `06:31` is integrated with the change control
+- `06:33` within your organization.
+- `06:35` So you may have software that's monitoring the configuration
+- `06:38` files and a larger process that is involved
+- `06:41` with changing and modifying those configuration files
+- `06:44` in a very standardized way.

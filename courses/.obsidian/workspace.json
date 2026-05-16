@@ -1,0 +1,225 @@
+{
+  "main": {
+    "id": "986ef9f65703e0db",
+    "type": "split",
+    "children": [
+      {
+        "id": "2386bc10db7ce0f5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "dc90b276b3dceb0e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "NETC-121/notes-content/syllabus.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "syllabus"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "5ff88a79f3d42e7b",
+    "type": "split",
+    "children": [
+      {
+        "id": "f4f8e0d1d0e3c6bf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fc831ea1c7e4999e",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "087c57bddaf6f832",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "aae80708251e8052",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "63d881b0382ee268",
+    "type": "split",
+    "children": [
+      {
+        "id": "3796d7efb962dbbc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d7178e21ac65774f",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "NETC-121/notes-content/syllabus.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for syllabus"
+            }
+          },
+          {
+            "id": "2b17e96de6300c18",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "NETC-121/notes-content/syllabus.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from syllabus"
+            }
+          },
+          {
+            "id": "c37bfb5f18a2f61f",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "6e2a154107bdfa89",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "165c72b0ad6b0566",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "NETC-121/notes-content/syllabus.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of syllabus"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "dc90b276b3dceb0e",
+  "lastOpenFiles": [
+    "NETC-121/question-banks/XXzoQfyu",
+    "NETC-121/question-banks/XXMIg9A2",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 35 - Rack and Patch panel overview/Transcript.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 35 - Rack and Patch panel overview/Rack and Patch panel overview.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 35 - Rack and Patch panel overview",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 34 - SSH setup Packet Tracer/Transcript.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 34 - SSH setup Packet Tracer/SSH setup Packet Tracer.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 34 - SSH setup Packet Tracer",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 33 - What is Trunking in Networking?/What is Trunking in Networking?.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 33 - What is Trunking in Networking?",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 32 - VLAN Explained/VLAN Explained.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 32 - VLAN Explained",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 33 - Rack and Patch panel overview",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 32 - SSH setup Packet Tracer",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 34 - VLAN Explained/VLAN Explained.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 34 - VLAN Explained",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 35 - What is Trunking in Networking?/What is Trunking in Networking?.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 35 - What is Trunking in Networking?",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 36 - Spanning Tree Protocol Explained | Step by Step/Spanning Tree Protocol Explained | Step by Step.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 36 - Spanning Tree Protocol Explained | Step by Step",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 37 - MicroNugget Spanning Tree Protocol Explained CBT Nuggets/MicroNugget Spanning Tree Protocol Explained CBT Nuggets.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 38 - Routing Tables CCNA - Explained/Routing Tables CCNA - Explained.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 39 - Packet Traveling - How Packets Move Through a Network/Packet Traveling - How Packets Move Through a Network.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 40 - CCNA Routing Fundamentals - Part 1/CCNA Routing Fundamentals - Part 1.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 41 - EGP IGP Distance Vector Link State Dynamic Routing Protocols OSPF EIGRP BGP RIP IS-IS/EGP IGP Distance Vector Link State Dynamic Routing Protocols OSPF EIGRP BGP RIP IS-IS.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 42 - Quick route summarization/Quick route summarization.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 43 - Router Hierarchies and Route Summarization - Networking Fundamentals - Lesson 5 - Part 3/Router Hierarchies and Route Summarization - Networking Fundamentals - Lesson 5 - Part 3.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 44 - Layer 2 vs Layer 3 Switches - Animated/Layer 2 vs Layer 3 Switches - Animated.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 45 - What is Route Redistribution?/What is Route Redistribution?.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 46 - Free CCNA Wireless Fundamentals Day 55 CCNA 200-301 Complete Course/Free CCNA Wireless Fundamentals Day 55 CCNA 200-301 Complete Course.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 27 - Classless subnetting/Transcript.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 27 - Classless subnetting/Classless subnetting.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 28 - Why Do Computers Use 1s and 0s? Binary and Transistors Explained./Why Do Computers Use 1s and 0s? Binary and Transistors Explained..md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 29 - Representing Numbers and Letters with Binary Crash Course Computer Science 4/Representing Numbers and Letters with Binary Crash Course Computer Science 4.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 30 - How to Convert Binary to Decimal/How to Convert Binary to Decimal.md",
+    "NETC-121/notes-content/Notes List A - Video Content/Video 31 - SolarWinds TFTP Server/Transcript.md"
+  ]
+}

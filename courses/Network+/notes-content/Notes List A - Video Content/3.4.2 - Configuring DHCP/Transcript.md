@@ -1,0 +1,261 @@
+# [3.4.2 - Configuring DHCP](https://www.youtube.com/watch?v=Zu70w3YTtpg)
+
+## 3.4.2 - Configuring DHCP
+
+- Day: Day 7
+- Duration: 10:18
+
+## Transcript
+
+- `00:02` in our previous video we looked at the
+- `00:03` process of DHCP from the client's
+- `00:06` perspective but obviously there are a
+- `00:08` number of configurations that have to be
+- `00:10` made to the DHCP server itself so in
+- `00:13` this video we'll look at some of those
+- `00:15` DHCP configuration settings when a
+- `00:18` device requests a DHCP address the DHCP
+- `00:21` server refers to a list or a pool of
+- `00:24` addresses that are defined within a DHCP
+- `00:27` scope this scope commonly includes the
+- `00:30` IP address range that will be handed out
+- `00:32` to the different devices on the network
+- `00:34` as well as any addresses that should be
+- `00:36` excluded from the DHCP pool you also
+- `00:39` have your subnet mask as part of this
+- `00:41` scope there are also lease durations so
+- `00:44` you know exactly how long these IP
+- `00:45` addresses will be available on that
+- `00:47` device and there's other options that
+- `00:49` you might include such as the DNS
+- `00:51` servers that need to be configured
+- `00:53` default gateways and other additional
+- `00:56` optional settings such as Voiceover IP
+- `00:58` server IP addresses
+- `01:00` there are usually a pool of IP addresses
+- `01:03` created on a per subnet basis and each
+- `01:06` scope usually is responsible for
+- `01:08` providing that particular subnets IP
+- `01:11` addresses usually this is a contiguous
+- `01:13` pool so you could tell the DHCP server
+- `01:16` to assign addresses 1 through 100 on
+- `01:19` this particular subnet and then if you
+- `01:21` want to create exceptions to that you
+- `01:23` can add them to the scope as well here's
+- `01:25` what this looks like on the server
+- `01:27` manager on Windows Server this is part
+- `01:29` of of the DHCP server settings and this
+- `01:32` particular DHCP server handles the
+- `01:34` network sg1 SGC dolo you can see there
+- `01:38` is a single scope available on this
+- `01:41` network its scope is
+- `01:43` 16524 44.0 and within that scope you
+- `01:46` have a pool of IP addresses that would
+- `01:49` be handed out the address leases any
+- `01:51` reservations in this IP address range
+- `01:54` reservations are for devices that will
+- `01:56` always receive the same IP address each
+- `01:59` time it is requested and then a scope
+- `02:01` options that you might include along
+- `02:03` with others on this scope so if you need
+- `02:06` to make changes to the IP address pool
+- `02:08` or modify any of the DNS configurations
+- `02:11` or anything else associated with DHCP
+- `02:14` you would do that all from this DHCP
+- `02:17` settings inside of this scope on the
+- `02:20` server this process happens
+- `02:22` automatically for the inst stations they
+- `02:24` make a request to the DHCP server and
+- `02:27` the server goes through the pool of
+- `02:28` addresses picks one one of those
+- `02:30` addresses and hands it out to that
+- `02:32` device on the network there's a lease
+- `02:34` period associated with this address so
+- `02:36` that device is able to use that IP
+- `02:38` address for only a limited amount of
+- `02:40` time and if that lease is not renewed
+- `02:43` that address is then returned to the
+- `02:44` pool and someone else visiting that
+- `02:47` Network can potentially be assigned that
+- `02:49` IP address an interesting feature of
+- `02:51` DHCP is that it will keep track of these
+- `02:54` Mac addresses and IP addresses that it's
+- `02:57` pairing together so if you visit this
+- `02:59` network again the DHCP server will
+- `03:02` recognize that you've been here before
+- `03:04` and if the IP address you used
+- `03:05` previously is still available in this
+- `03:07` pool you will be assigned the same IP
+- `03:10` address you had on your original visit
+- `03:13` if you wanted to configure an IP address
+- `03:14` on a printer or a server and you wanted
+- `03:17` to confirm that that IP address would
+- `03:19` never change you could manually
+- `03:21` configure those settings on that device
+- `03:24` but this does not scale very well
+- `03:26` especially in large networks and if you
+- `03:28` need to make a change to those settings
+- `03:29` you need to manually visit all of those
+- `03:31` devices to make that configuration
+- `03:33` update instead you might want to lock in
+- `03:36` the IP addresses for those devices in
+- `03:38` the DHCP server using a feature known as
+- `03:41` address reservation inside the DHCP
+- `03:44` server you would create a table that has
+- `03:46` the Mac addresses of these devices such
+- `03:48` as your printers and your servers and
+- `03:50` you would manually configure an IP
+- `03:52` address within the DHCP server that will
+- `03:55` always be assigned to that particular
+- `03:57` Mac address if you look at your DHC P
+- `04:00` server you might see this listed as
+- `04:01` static DHCP assignment static DHCP or an
+- `04:05` IP
+- `04:06` reservation here's the address
+- `04:08` registration process in one of my DHCP
+- `04:11` servers this one has a couple of
+- `04:13` reservations that I've added this one is
+- `04:16` 192.168.1 6 the device name is
+- `04:19` Prometheus and you can see the MAC
+- `04:21` address of that device is listed in the
+- `04:23` reservation I also have another IP
+- `04:25` address
+- `04:26` 192.168.1 n this is the device known as
+- `04:29` Odyssey and it has of course a different
+- `04:31` Mac address by adding these addresses
+- `04:34` into the DHCP server as a reservation I
+- `04:37` can go to one central place to manage
+- `04:39` all of this information yet still be
+- `04:41` assured that those devices will always
+- `04:43` receive the same IP address every time
+- `04:46` they're
+- `04:47` started as we mentioned earlier these
+- `04:49` DHCP addresses are not permanent they
+- `04:52` are leased to these devices and they're
+- `04:54` only available for a temporary amount of
+- `04:56` time this lease time is one that is
+- `04:59` configured in the DHCP server itself in
+- `05:02` some organizations they might have a
+- `05:03` very long lease time in other locations
+- `05:06` it might be very short you as the DHCP
+- `05:09` administrator get to determine what the
+- `05:11` least time will be for your network if
+- `05:13` you were to look at the IP address
+- `05:15` configuration of your device you would
+- `05:16` see the lease timer associated with the
+- `05:19` IP configurations if you were to restart
+- `05:22` that device or unplug from the network
+- `05:24` and plug back in again you would be
+- `05:26` reinitializing that DHCP process and
+- `05:29` potentially restarting that lease
+- `05:31` another nice feature of DHCP is if you
+- `05:34` are turning off your system it can
+- `05:36` release that IP address back into the
+- `05:38` pool so that other people would be able
+- `05:41` to use that IP address in the
+- `05:43` future this DHCP leasing process doesn't
+- `05:46` wait until the entire lease is complete
+- `05:48` before trying to renew the lease instead
+- `05:51` there are different timers that DHCP
+- `05:53` will use to be able to provide that
+- `05:55` renewal the first timer is a T1 timer
+- `05:58` this is set by def fault as 50% of the
+- `06:01` lease time so no communication is going
+- `06:04` to occur between your device and the
+- `06:05` DHCP server until half of that lease is
+- `06:09` complete at which time your device will
+- `06:11` attempt to communicate to the DHCP
+- `06:13` server and renew the lease but it could
+- `06:16` be that the original DHCP server is no
+- `06:18` longer operating properly or has been
+- `06:20` removed from the network in that case we
+- `06:23` go to a T2 timer by default the t2 timer
+- `06:26` is
+- `06:27` 87.5% of the lease time or 7/8 of that
+- `06:30` lease time with the t2 timer your device
+- `06:34` will attempt to renew the lease with any
+- `06:36` available DHCP server that's on the
+- `06:39` network let's say on your network that
+- `06:41` your DHCP server is set with a least
+- `06:44` time of 8 days if we do the math that
+- `06:46` means the T1 timer since it's 50% of the
+- `06:50` lease time would be 4 days and the t2
+- `06:53` timer or rebinding timer would be 78 of
+- `06:56` that time frame or in this case 7 days
+- `06:59` so under normal operation we'll go along
+- `07:01` for 4 days without needing to check in
+- `07:03` with the DHCP server but as soon as we
+- `07:06` hit that T1 timer we're going to begin a
+- `07:08` period where we will begin renewing with
+- `07:11` the original DHCP server so that renewal
+- `07:14` is sent to the server and if that DHCP
+- `07:16` server is available it will very quickly
+- `07:19` renew that lease and we'll have another
+- `07:21` 4 days where we can continue to operate
+- `07:23` without checking in again with the DHCP
+- `07:26` server but let's say at this point that
+- `07:28` DHCP server is taken out of the network
+- `07:31` and is no longer available that means we
+- `07:33` will go all the way through the renewal
+- `07:34` period without ever renewing the lease
+- `07:37` once we hit the t2 timer or the
+- `07:39` rebinding period your device will reach
+- `07:42` out to any DHCP server to try to renew
+- `07:45` that lease and on your corporate Network
+- `07:47` there's most certainly another DHCP
+- `07:49` server and it will renew that lease and
+- `07:51` the entire timing process starts over
+- `07:54` again we often think of DHCP as that
+- `07:57` automated IP address subnet mask and
+- `08:00` default gateway configuration but there
+- `08:02` are other options that DHCP can
+- `08:05` configure as well and we refer to those
+- `08:07` literally as DHCP options this is a
+- `08:10` separate field in the DHCP process that
+- `08:13` allows us to configure other settings
+- `08:15` that are related to
+- `08:16` tcpip these options are listed in the
+- `08:19` request for comments or the RFC
+- `08:21` associated with DHCP back in the bootp
+- `08:24` days we refer to these as vendor
+- `08:26` extensions these DHCP options are
+- `08:28` associated with a number and there are
+- `08:30` 254 usable options that could
+- `08:33` potentially be configured using
+- `08:36` DHCP the common configurations for DHCP
+- `08:39` would be the things that we would
+- `08:40` normally think about the IP address the
+- `08:42` subnet MK the default gateway and the
+- `08:44` DNS servers and there may be times when
+- `08:47` you would like to add additional DHCP
+- `08:49` options to be configured on that device
+- `08:52` but you have to make sure that the DHCP
+- `08:54` server supports that specific option not
+- `08:57` all DHCP servers support the ability to
+- `09:00` configure DHCP options so you'll want to
+- `09:03` check with your DHCP server to make sure
+- `09:06` that the options you need are supported
+- `09:08` by that server for example you might
+- `09:11` have a Voiceover IP call server on your
+- `09:13` network and you might want to add that
+- `09:15` as part of the DHCP configuration
+- `09:17` process so option 129 is the DHCP option
+- `09:21` for the call server IP address if you
+- `09:24` wanted to configure an HTTP proxy you
+- `09:26` would use option 135 and are many other
+- `09:30` DHCP options to choose from we're
+- `09:33` looking again at the scope that's
+- `09:34` configured within Windows Server under
+- `09:36` the dhtp server options and there is an
+- `09:39` option there for Server options and that
+- `09:41` refers back to those dhtp options you
+- `09:44` can see a list of all of the numbered
+- `09:47` options within those server options you
+- `09:49` can select any of those and Define them
+- `09:52` within the DHCP server itself then when
+- `09:54` anybody connects to the network not only
+- `09:56` will they receive the IP address subnet
+- `09:59` m default gateway and DNS settings
+- `10:02` they'll also receive any of the
+- `10:03` configurations that you've defined under
+- `10:06` DHCP options

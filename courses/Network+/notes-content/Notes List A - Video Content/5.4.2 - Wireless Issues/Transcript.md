@@ -1,0 +1,267 @@
+# [5.4.2 - Wireless Issues](https://www.youtube.com/watch?v=UO3G_OJhBS4)
+
+## 5.4.2 - Wireless Issues
+
+- Day: Day 11
+- Duration: 9:21
+
+## Transcript
+
+- `00:01` on a wireless network there are only so
+- `00:03` many frequencies available to be used by
+- `00:06` your access point and your clients and
+- `00:08` you have to make sure on that wireless
+- `00:10` network that only one device is
+- `00:11` communicating at a time not only do we
+- `00:14` have a lot of devices on the same
+- `00:16` wireless network we may have multiple
+- `00:18` wireless networks within the same
+- `00:20` general area and because of that we have
+- `00:22` to be very careful about creating
+- `00:24` interference between these access points
+- `00:26` many of the more recent Wireless
+- `00:28` standards provide a way to automatically
+- `00:31` find the best possible frequencies and
+- `00:33` avoid frequencies that are already in
+- `00:35` use by other devices this can also be
+- `00:38` configured manually where you can decide
+- `00:40` what frequencies to use but most access
+- `00:42` points are very good at determining what
+- `00:44` the best frequency might be for the
+- `00:46` environment and they're able to change
+- `00:48` their configuration and move to a better
+- `00:50` frequency if they happen to detect
+- `00:53` interference we've shown this diagram in
+- `00:55` a previous video but it's worth
+- `00:57` mentioning especially when we're talking
+- `00:59` about finding a frequency that may be
+- `01:01` available and moving an access point to
+- `01:03` that frequency if you're using 2.4 GHz
+- `01:06` you have a limited number of non-
+- `01:07` overlapping frequencies that could be
+- `01:09` used in North America there are three
+- `01:11` separate channels that could be selected
+- `01:14` and if you're in a very busy area with
+- `01:16` many different access points that may
+- `01:18` not be enough to prevent any type of
+- `01:20` interference instead you might want to
+- `01:22` use 5 GHz with 5 GHz there are many
+- `01:24` other frequencies available so you might
+- `01:26` have a better chance of finding one that
+- `01:28` doesn't have quite as much interf
+- `01:30` ference and now of course the 6 GHz band
+- `01:32` is available and you can see there are
+- `01:34` many more frequencies available in the
+- `01:36` hopes that we can avoid these types of
+- `01:38` conflicts and interference with our
+- `01:40` frequencies in the future there are some
+- `01:43` best practices for managing a wireless
+- `01:45` network and getting the best throughput
+- `01:47` possible from your wireless devices one
+- `01:49` of these would be to disable any Legacy
+- `01:52` or low-speed support if you look at the
+- `01:54` configuration of your access point it
+- `01:56` may have an option to allow older
+- `01:58` versions of Wireless Technologies to
+- `02:00` work on the existing Network in many
+- `02:03` cases enabling those configurations will
+- `02:05` slow down or make the overall wireless
+- `02:08` network less efficient the best possible
+- `02:10` throughput is often available from the
+- `02:12` most recent standards so if all of your
+- `02:15` devices support the most recent standard
+- `02:17` you should disable that option in your
+- `02:19` access point if you have manually
+- `02:22` configured a Channel of frequencies in
+- `02:24` your access point you may need to go
+- `02:26` back and make sure that this isn't
+- `02:28` conflicting with anything else that may
+- `02:30` have appeared in the meantime it's very
+- `02:32` easy for someone to turn on an access
+- `02:33` point next door that could potentially
+- `02:35` conflict with the frequencies that
+- `02:37` you're using you might also want to
+- `02:38` consider turning on the automatic
+- `02:40` function so that your access point can
+- `02:42` move to a more appropriate Channel when
+- `02:44` available interference is one of the
+- `02:46` biggest problems you'll find on a
+- `02:48` wireless network and interference can
+- `02:49` come from many different sources but
+- `02:51` often the interference is from other
+- `02:53` access points themselves some access
+- `02:56` points may be covering a very small area
+- `02:58` but their output power May may be set to
+- `03:00` maximum in those cases you may be able
+- `03:02` to turn down the output power and still
+- `03:05` provide wireless access to those devices
+- `03:07` in the area and by doing that you're
+- `03:10` limiting the interference that may be
+- `03:12` created for other access points in the
+- `03:14` area and it's not unusual to split the
+- `03:16` wireless network into smaller devices
+- `03:18` that are separated into access points
+- `03:21` that are away from each other this way
+- `03:23` you can still provide wireless access
+- `03:24` for these devices but you've now limited
+- `03:27` that load across two different access
+- `03:29` points using different frequencies
+- `03:31` here's an example of the problem you
+- `03:33` might find on a network when these
+- `03:35` frequencies begin to overlap we've taken
+- `03:37` for example this 2.4 gigahertz Network
+- `03:40` you can see that it has a channel
+- `03:42` centered on Channel 6 and another one on
+- `03:44` Channel 11 that is exactly what we would
+- `03:47` expect to see here in the United States
+- `03:49` there's one other channel available that
+- `03:51` would allow you to connect without
+- `03:53` conflicting with either of these
+- `03:54` existing networks and that would be
+- `03:56` channel one but if somebody configured
+- `03:58` their access point in the wrong way they
+- `04:00` could configure Channel 8 and that
+- `04:02` channel 8 would overlap with devices
+- `04:04` that are communicating on Channel 6 and
+- `04:07` devices that are communicating on
+- `04:08` Channel 11 in this scenario none of
+- `04:11` these devices would have the best
+- `04:12` throughput it would have probably been a
+- `04:14` better idea to put the new access point
+- `04:16` over on channel one and distribute those
+- `04:19` frequencies so that they don't interfere
+- `04:21` with each
+- `04:22` other as you've probably seen with
+- `04:25` wireless networks the farther away you
+- `04:27` move away from the access point the
+- `04:28` weaker the signal sign tends to be we
+- `04:31` refer to this as attenuation and this is
+- `04:33` a normal part of sending signals out
+- `04:35` over the air many administrators will
+- `04:38` measure this attenuation with their
+- `04:39` Wi-Fi analyzer so they will walk around
+- `04:42` the facility to find out where the
+- `04:43` signal is the best and where the signal
+- `04:45` is the worst and they may be able to
+- `04:47` make changes to the access point to
+- `04:49` improve those signals in places where it
+- `04:51` may be difficult to access the network
+- `04:54` one of those options might be to
+- `04:55` increase the power output on the access
+- `04:58` point itself not all access points
+- `05:00` support this feature but if it is
+- `05:02` available you may be able to find
+- `05:04` exactly the right amount of power to
+- `05:06` cover the area that you need you might
+- `05:08` also consider adding an external antenna
+- `05:11` to the access point or adding an antenna
+- `05:13` that provides additional gain this would
+- `05:15` allow you to send the same amount of
+- `05:17` power out of the access point but
+- `05:19` increase its ability to transmit over a
+- `05:21` larger distance and if you're using
+- `05:23` antennas that are connected to the
+- `05:25` access point with coax you do lose a bit
+- `05:27` of signal in the coax itself especially
+- `05:30` when you're using higher frequencies so
+- `05:32` you may want to limit the amount of
+- `05:34` cable that is run between the access
+- `05:36` point and the antenna itself and you
+- `05:38` should always check the cable and make
+- `05:40` sure that it's not damaged where it
+- `05:41` could potentially be leaking signal
+- `05:43` instead of sending that out your
+- `05:46` antenna finding the right coverage for a
+- `05:49` wireless network can sometimes be a
+- `05:51` challenge it's important to identify
+- `05:53` where users may be accessing the
+- `05:55` wireless network and then you can
+- `05:56` measure just how much Wireless signal
+- `05:58` may be available at that location if
+- `06:01` you're in an area with many different
+- `06:02` organizations and companies you might
+- `06:05` want to see where their access points
+- `06:07` may be located and that way you know
+- `06:09` where to put your access point so that
+- `06:11` you're not creating interference with
+- `06:12` others that may be in the area this
+- `06:15` might also be a good time to see what
+- `06:16` frequencies they are using perhaps
+- `06:18` they're only using 2.4 GHz and 5 GHz
+- `06:21` which would open up the entire 6 GHz
+- `06:23` range for you but of course what we
+- `06:26` examine today will probably be different
+- `06:28` in the future there's always changes and
+- `06:31` additions being made to people's
+- `06:32` networks so it's sometimes useful to
+- `06:34` perform multiple site surveys throughout
+- `06:37` the year just to see if anything may
+- `06:39` have changed with the wireless
+- `06:40` infrastructure one of the ways that you
+- `06:42` can visually see how the wireless
+- `06:44` network may be working is to create a
+- `06:46` heat map you would walk around with your
+- `06:49` Wi-Fi analyzer and it would examine just
+- `06:51` how good the signal is at your
+- `06:53` particular location the better the
+- `06:55` signal the brighter the colors and the
+- `06:57` worse the signal the cooler the colors
+- `07:00` this way you can immediately see where
+- `07:02` you may want to add or change the way
+- `07:04` your access points may be
+- `07:07` distributed on older networks you may
+- `07:09` run into a denal of service that could
+- `07:11` be created through a client
+- `07:13` disassociation this takes advantage of
+- `07:15` older management frames in the 802.11
+- `07:18` standard that have no protection
+- `07:20` associated with them and an attacker can
+- `07:22` take advantage of that to remove devices
+- `07:25` from the network you may find that a
+- `07:27` device is constantly removing itself
+- `07:29` from the network and then reconnecting
+- `07:31` again or you may find that it's never
+- `07:33` able to connect to a network because
+- `07:35` this attacker is constantly performing
+- `07:37` this client disassociation if you're
+- `07:39` wondering if this is happening on your
+- `07:41` wireless network you can capture frames
+- `07:43` using an 802.11 packet capture device
+- `07:46` and be able to see the client
+- `07:47` disassociation frames within the traffic
+- `07:50` itself this will allow you to find the
+- `07:52` attacking device and hopefully be able
+- `07:54` to remove it from the network or disable
+- `07:56` it and if you'd like to prevent these
+- `07:58` kinds of attacks in the future you
+- `08:00` should consider upgrading to one of the
+- `08:02` latest 802.11 standards which prevent
+- `08:05` this type of attack from
+- `08:07` occurring if you have a number of
+- `08:09` different access points at work or at
+- `08:11` home you may have configured those
+- `08:13` access points exactly the same with the
+- `08:15` same wireless network name or the same
+- `08:18` SSID that service set identifier allows
+- `08:21` us to create a large wireless network
+- `08:24` using multiple access points and as you
+- `08:26` move inside of a building or throughout
+- `08:28` a campus your device will seamlessly
+- `08:30` move from access point to access point
+- `08:33` this allows the network administrator to
+- `08:35` extend this wireless network to whatever
+- `08:37` size they might need but it also
+- `08:40` requires that all of these access points
+- `08:42` are configured exactly the same if users
+- `08:44` are moving from one access point to
+- `08:46` another and the new access point does
+- `08:48` not have exactly the same configuration
+- `08:50` as the previous access point they could
+- `08:53` be dropped completely from the network
+- `08:55` and they would be required to connect to
+- `08:56` the network again if you want that
+- `08:58` seamless experience for your users you
+- `09:00` need to make sure that all of your
+- `09:02` access points are configured exactly the
+- `09:04` same with their security features and
+- `09:06` other configuration details

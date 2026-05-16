@@ -1,4 +1,4 @@
-# ⚡ UDP vs TCP
+# UDP vs TCP
 
 ---
 
@@ -23,8 +23,8 @@ Receiver gets: 1, 2, 4  ← just moves on
 
 | Protocol | Connection setup | Handshake? |
 |---|---|---|
-| TCP | 3-way handshake (SYN → SYN+ACK → ACK) | ✅ Yes — required before any data |
-| UDP | None | ❌ No — data sent immediately |
+| TCP | 3-way handshake (SYN → SYN+ACK → ACK) |  Yes — required before any data |
+| UDP | None |  No — data sent immediately |
 
 UDP is **connectionless** — there is no prior agreement between sender and receiver. The sender simply starts sending.
 
@@ -58,7 +58,7 @@ This overhead is why TCP is slower than UDP — every segment waits for confirma
 
 ## Benefits: TCP vs UDP
 
-### Use TCP When ✅
+### Use TCP When 
 - Data **must** arrive complete and in order
 - Lost data would corrupt the result (file download, database query, email)
 - The application cannot handle missing pieces
@@ -71,7 +71,7 @@ This overhead is why TCP is slower than UDP — every segment waits for confirma
 | Email (SMTP) | Missing characters = garbled message |
 | Remote access (SSH) | Commands must arrive complete and in sequence |
 
-### Use UDP When ⚡
+### Use UDP When 
 - Speed matters more than perfection
 - A lost packet just causes a brief glitch, not catastrophic failure
 - Low latency is critical (real-time interaction)
@@ -102,7 +102,7 @@ This overhead is why TCP is slower than UDP — every segment waits for confirma
 
 ## Key Points
 
-- 📌 UDP = **fire and forget** — no handshake, no ACK, no retransmit
-- 📌 TCP = **3-way handshake required** before data — SYN → SYN+ACK → ACK
-- 📌 TCP timers (retransmit, TIME_WAIT) add reliability but cost latency
-- 📌 Use TCP when **data integrity** matters; UDP when **speed** matters
+- UDP = **fire and forget** — no handshake, no ACK, no retransmit
+- TCP = **3-way handshake required** before data — SYN → SYN+ACK → ACK
+- TCP timers (retransmit, TIME_WAIT) add reliability but cost latency
+- Use TCP when **data integrity** matters; UDP when **speed** matters

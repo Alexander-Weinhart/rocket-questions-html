@@ -1,4 +1,4 @@
-# 🔬 Wireshark — Live Capture Examples
+# Wireshark — Live Capture Examples
 
 Once Wireshark is capturing, the packet list fills in real time. The real power comes from **display filters** — they let you narrow thousands of packets down to exactly what you're looking for.
 
@@ -69,8 +69,8 @@ These hello packets are sent every few seconds to maintain neighbour relationshi
 
 ## Key Points
 
-- 📌 Double-click the active interface (with graph movement) to start capture
-- 📌 Display filters narrow results without stopping the capture
-- 📌 `eigrp`, `ospf` — routing protocol traffic between routers
-- 📌 `telnet` — shows cleartext credentials in plain view
-- 📌 **Follow → TCP Stream** reconstructs an entire conversation
+- Double-click the active interface (with graph movement) to start capture
+- Display filters narrow results without stopping the capture
+- `eigrp`, `ospf` — routing protocol traffic between routers
+- `telnet` — shows cleartext credentials in plain view
+- **Follow → TCP Stream** reconstructs an entire conversation

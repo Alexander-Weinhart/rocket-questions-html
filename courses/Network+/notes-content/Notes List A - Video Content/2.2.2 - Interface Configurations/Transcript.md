@@ -1,0 +1,152 @@
+# [2.2.2 - Interface Configurations](https://www.youtube.com/watch?v=dno_MRp57UQ)
+
+## 2.2.2 - Interface Configurations
+
+- Day: Day 5
+- Duration: 6:40
+
+## Transcript
+
+- `00:01` When you're configuring a router interface, a switch interface,
+- `00:05` or an interface that's in your local computer,
+- `00:07` there are a number of options available.
+- `00:09` In this video, we'll look at some
+- `00:11` of those interface configurations.
+- `00:14` We can start with the basic connectivity
+- `00:16` that we have to the network.
+- `00:18` When we plug-in an ethernet cable,
+- `00:20` there are a number of ethernet settings we need to consider,
+- `00:23` and two of the most important are the ethernet speed
+- `00:25` and the duplex.
+- `00:27` The speed is obviously going to be how fast this connection is
+- `00:30` going to run.
+- `00:31` This might be a 10 megabit connection, 100 megabits,
+- `00:35` 1000 megabits, which would also be 1 gig connection, 10
+- `00:39` gig or even faster.
+- `00:41` We have to be sure that this configuration is
+- `00:43` the same on both sides.
+- `00:45` So if we have a computer that's connecting to a switch,
+- `00:47` the speed on both of them has to be configured the same.
+- `00:51` In many cases, we would set this to automatically configure
+- `00:54` itself so you can simply plug in any device
+- `00:57` and the switch will automatically
+- `00:59` adjust to the configured speed.
+- `01:01` The other option we might have available
+- `01:03` is either half duplex or full duplex.
+- `01:06` In most cases, this is also set to automatic.
+- `01:10` But if you do set these manually on both of these devices,
+- `01:13` you have to make sure that both of them are set to be the same.
+- `01:17` If you have the speeds mismatched on both sides,
+- `01:20` the connection will not work at all.
+- `01:22` You'll never get a link light.
+- `01:23` But if you mix the duplex configuration
+- `01:26` where one side is set to half duplex
+- `01:28` and the other side is set to full duplex,
+- `01:31` you'll find the connection does operate,
+- `01:33` but you'll notice that it is not quite as
+- `01:35` efficient as it should be.
+- `01:37` And, in fact, you'll have very poor performance
+- `01:39` if you start putting a lot of traffic over that link.
+- `01:42` This is why one of the initial configurations
+- `01:45` will look for when we're troubleshooting ethernet
+- `01:47` is the speed and the duplex and make sure
+- `01:50` that they're the same on both sides of the connection.
+- `01:53` If those match, then we'll shift our focus
+- `01:55` to the internet protocol or the IP configuration
+- `01:59` for that interface.
+- `02:00` This might be an ethernet connection,
+- `02:02` it might be a VLAN config, we might be setting up
+- `02:06` management interfaces, and all of these
+- `02:08` will need an IP address, a subnet mask, a default gateway,
+- `02:11` and perhaps other IP configurations as well.
+- `02:15` These will usually be values that
+- `02:17` have been assigned by a network administrator.
+- `02:19` So we'll want to configure and make sure
+- `02:22` that the IP address, subnet mask, default gateway, DNS
+- `02:25` settings, and everything else matches
+- `02:27` the configuration that we've received from our admin.
+- `02:30` If this configuration doesn't match what we've been given,
+- `02:34` let's say we've used a different default gateway IP address
+- `02:37` or we put in the incorrect subnet mask,
+- `02:40` then we may find that we're not able to connect to other IP
+- `02:42` devices on this network.
+- `02:44` Fortunately, this is a relatively easy configuration
+- `02:47` to validate.
+- `02:48` We can simply look at what we've been given
+- `02:50` and look at what we've configured in the system
+- `02:53` and make sure that both of those match.
+- `02:55` Another useful configuration, especially between switches,
+- `02:59` would be one for link aggregation.
+- `03:02` This is sometimes referred to as port bonding,
+- `03:04` or you might see it abbreviated as LAG for link aggregation.
+- `03:09` This means that we are connecting multiple interfaces
+- `03:12` together on these two devices, which normally we
+- `03:15` would not want to do because we would be creating a loop.
+- `03:18` But if you've configured all of those interfaces
+- `03:21` as link aggregation, the switch will interpret them
+- `03:24` as one very large connection rather than
+- `03:27` four individual connections.
+- `03:29` So if all four of these were gigabit ethernet connections
+- `03:32` between this switch, we would configure those as LAG
+- `03:36` and you now have four gigabits of throughput
+- `03:38` to be able to communicate between those two devices.
+- `03:42` Some switches will support an automatic configuration
+- `03:45` of this link aggregation using a protocol called LACP.
+- `03:50` This is the Link Aggregation Control Protocol.
+- `03:53` This allows you to simply configure the interface
+- `03:56` as LACP, plug-in the interfaces and all of the underlying link
+- `04:00` aggregation configs will automatically
+- `04:03` configure themselves between those two devices.
+- `04:05` If you were to capture traffic between these two devices,
+- `04:08` you would see LACP traffic being transferred from one switch
+- `04:12` to the other.
+- `04:13` To be able to have the most efficient communication from one
+- `04:16` device to another, we need to be able to send packets
+- `04:19` across that will not be fragmented along the way.
+- `04:22` Since we don't always know what networks
+- `04:25` are located between the two devices,
+- `04:27` there may be times when our data is fragmented and therefore
+- `04:31` is less efficient to transfer across the network.
+- `04:34` Fragmenting a packet tends to slow down
+- `04:36` the overall communication, and if we
+- `04:38` lose one of those fragments, then we
+- `04:40` have to resend the entire frame again.
+- `04:42` Normally the determination of the most optimal MTU or Maximum
+- `04:47` Transmission Unit is done automatically when you first
+- `04:49` connect to a device.
+- `04:51` But sometimes filtering and firewalls
+- `04:53` won't allow the automated process to work properly.
+- `04:56` And you may need to manually configure an MTU on your system.
+- `05:01` On some networks, we're not trying
+- `05:03` to minimize the size of our communication.
+- `05:05` Instead, we're trying to maximize the size of our frames.
+- `05:09` And one of the ways we can do that is through a method
+- `05:12` called jumbo frames.
+- `05:13` Ethernet frames by default are 1500 bytes in length.
+- `05:17` If we're transferring large amounts of data,
+- `05:20` we may want to increase the size of those frames
+- `05:22` to make the communication that much more efficient.
+- `05:25` And with jumbo frames, you can increase the size of an ethernet
+- `05:28` frame up to 9,216 bytes of an MTU.
+- `05:33` On many devices.
+- `05:34` You'll find that they'll use 9,000 as the accepted high end
+- `05:38` of a jumbo frame.
+- `05:40` In fact, here is the configuration from my computer
+- `05:42` that says that I can configure frame sizes on my network to be
+- `05:46` between 1,280 and 9,000 bytes.
+- `05:49` This means I can transfer a single frame that
+- `05:52` contains the same amount of information
+- `05:54` as six normal frames on the same network.
+- `05:58` This means there are fewer packets to have to switch
+- `06:00` or route through my network and I can transfer much more
+- `06:03` in a shorter amount of time.
+- `06:05` The challenge, though, is all of the devices
+- `06:07` that are in that communications path must understand
+- `06:11` jumbo frames.
+- `06:12` So all of your switches, all of your routers,
+- `06:14` and the other devices you're communicating
+- `06:16` to have to also be configured to use these jumbo frames.
+- `06:20` If there is any device in the middle of this communication
+- `06:23` that doesn't understand jumbo frames,
+- `06:25` then they will drop these frames and you
+- `06:27` won't be able to communicate to that device at all.

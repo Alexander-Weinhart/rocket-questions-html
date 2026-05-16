@@ -322,6 +322,6 @@ Note: there is currently no `Lecture Week 9` file in `Notes List C - Personal No
 
 ## Sources Used (Week 9)
 - `Notes List B - Textbook Content/Textbook 1 - Chapter 4 Cybersecurity/Book 1 Chapter 4 - Cybersecurity.md`
-- `Notes List A - Video Content/Video 18 - Spanning Tree Protocol Explained Step by Step/Transcript.md`
-- `Notes List A - Video Content/Video 19 - Micronugget Spanning Tree Protocol Explained CBT Nuggets/Transcript.md`
+- `Notes List A - Video Content/Video 28 - Spanning Tree Protocol Explained | Step by Step/Spanning Tree Protocol Explained | Step by Step.md`
+- `Notes List A - Video Content/Video 29 - MicroNugget Spanning Tree Protocol Explained CBT Nuggets/MicroNugget Spanning Tree Protocol Explained CBT Nuggets.md`
 - `Notes List C - Personal Notes/Lecture Week 8/STP - Spanning Tree Protocol.md` (used because no `Lecture Week 9` note currently exists, and this file clearly matches the Week 9 STP topic)

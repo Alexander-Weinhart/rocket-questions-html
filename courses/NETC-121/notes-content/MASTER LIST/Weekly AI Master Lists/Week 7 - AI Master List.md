@@ -129,9 +129,9 @@
 ---
 
 ## Sources Used (Week 7 only)
-- `Notes List A - Video Content/Video 12 - What Is Binary/Transcript.md`
-- `Notes List A - Video Content/Video 13 - representing numbers and letters with binary/Transcript.md`
-- `Notes List A - Video Content/Video 14 - How to convert binary to decimal/Transcript.md`
-- `Notes List A - Video Content/Video 15 - SolarWinds TFTP Server/Transcript.md`
+- `Notes List A - Video Content/Video 22 - Why Do Computers Use 1s and 0s? Binary and Transistors Explained./Why Do Computers Use 1s and 0s? Binary and Transistors Explained..md`
+- `Notes List A - Video Content/Video 23 - Representing Numbers and Letters with Binary Crash Course Computer Science 4/Representing Numbers and Letters with Binary Crash Course Computer Science 4.md`
+- `Notes List A - Video Content/Video 24 - How to Convert Binary to Decimal/How to Convert Binary to Decimal.md`
+- `Notes List A - Video Content/Video 25 - SolarWinds TFTP Server/Transcript.md`
 - `Notes List C - Personal Notes/Lecture Week 7/VLAN - Virtual Local Area Network.md`
 - `Notes List B - Textbook Content/Essential - Chapter 8 Introduction to Switch Configuration/Essential Chapter 8 - Switch Configuration, VLANs, STP, PoE, and Troubleshooting.md`

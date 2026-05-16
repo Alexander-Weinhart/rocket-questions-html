@@ -1,4 +1,4 @@
-# 📡 ALOHA — The Origin of Random Access Protocols
+# ALOHA — The Origin of Random Access Protocols
 
 ALOHA is the earliest random-access protocol for shared network media. Developed at the University of Hawaii in the early 1970s, it directly influenced all later protocols including CSMA/CD. Understanding ALOHA explains *why* CSMA/CD works the way it does.
 
@@ -15,8 +15,8 @@ Multiple devices share a single radio channel (originally used for inter-island 
 The simplest possible approach: **transmit whenever you want**.
 
 ```
-Device A ──► [frame transmitted anytime]
-Device B ──► [frame transmitted anytime]
+Device A  [frame transmitted anytime]
+Device B  [frame transmitted anytime]
                     ↓
          If they overlap in time → COLLISION → both retransmit
 ```
@@ -24,8 +24,8 @@ Device B ──► [frame transmitted anytime]
 ### Messages and Acknowledgements
 
 ```
-Sender ──────────────── [Frame] ──────────────────► Receiver
-Sender ◄──────────────── [ACK]  ───────────────────  Receiver  ✅ success
+Sender  [Frame]  Receiver
+Sender  [ACK]    Receiver   success
 
 If no ACK within timeout:
 Sender assumes collision → waits random backoff → retransmits
@@ -41,12 +41,12 @@ Pure ALOHA is only about **18% efficient** — the channel is wasted most of the
 
 ---
 
-## Slotted ALOHA — Time-Based Improvement ⏱️
+## Slotted ALOHA — Time-Based Improvement 
 
 Slotted ALOHA divides time into **fixed slots** equal to one frame transmission time. Devices may only **begin transmitting at the start of a slot** — never mid-slot.
 
 ```
-Time:    |──Slot 1──|──Slot 2──|──Slot 3──|──Slot 4──|
+Time:    |Slot 1|Slot 2|Slot 3|Slot 4|
 Device A:           [  frame  ]
 Device B:                      [  frame  ]
 Device C:           [  frame  ]              ← same slot as A → COLLISION
@@ -92,13 +92,13 @@ CSMA/CA             → avoid collisions with pre-transmission backoff (Wi-Fi)
 
 ALOHA's core contribution — **random backoff after collision** — survives unchanged all the way to CSMA/CD and CSMA/CA.
 
-> 📌 For CSMA/CD — see updated 4-step process in Video 3 notes.
+> For CSMA/CD — see updated 4-step process in Video 3 notes.
 
 ---
 
 ## Key Points
 
-- 📌 **Pure ALOHA** — transmit anytime; ACK confirms receipt; random backoff on no-ACK; ~18% efficient
-- 📌 **Slotted ALOHA** — transmit only at slot boundaries; halves collision window; ~37% efficient
-- 📌 Slotted ALOHA is time-based like Token Ring, but doesn't eliminate collisions
-- 📌 ALOHA's random backoff principle is the ancestor of all CSMA protocols
+- **Pure ALOHA** — transmit anytime; ACK confirms receipt; random backoff on no-ACK; ~18% efficient
+- **Slotted ALOHA** — transmit only at slot boundaries; halves collision window; ~37% efficient
+- Slotted ALOHA is time-based like Token Ring, but doesn't eliminate collisions
+- ALOHA's random backoff principle is the ancestor of all CSMA protocols

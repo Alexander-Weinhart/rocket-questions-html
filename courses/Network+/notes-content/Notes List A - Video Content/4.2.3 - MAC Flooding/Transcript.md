@@ -1,0 +1,209 @@
+# [4.2.3 - MAC Flooding](https://www.youtube.com/watch?v=ttLNYwt-aq0)
+
+## 4.2.3 - MAC Flooding
+
+- Day: Day 9
+- Duration: 8:10
+
+## Transcript
+
+- `00:02` in a computer the MAC address is the
+- `00:04` media Access Control address this is the
+- `00:07` hardware address of the ethernet adapter
+- `00:10` that's inside of your device this is a
+- `00:12` unique address which means you should be
+- `00:14` the only one who has this particular Mac
+- `00:17` address so this allows us to send
+- `00:19` information specifically to your device
+- `00:22` and no one else's the format of a MAC
+- `00:25` address is 48 bits long or 6 bytes long
+- `00:28` and it's normally displayed as heximal
+- `00:31` for example this is a normal Mac address
+- `00:34` 8 Charlie 2 Delta alpha alpha four Bravo
+- `00:38` 98 alpha7 and you can see that we're
+- `00:41` separating each one of these bites with
+- `00:43` colons periods or some other delimeter
+- `00:46` the first three bytes of the MAC address
+- `00:48` are called the organizationally unique
+- `00:50` identifier or oui this is effectively
+- `00:53` the manufacturer of this particular
+- `00:56` network adapter the last three bytes of
+- `00:58` the MAC address are the network
+- `01:00` interface controller specific value or
+- `01:02` what is effectively the serial number of
+- `01:05` this particular network interface card
+- `01:07` so a manufacturer that creates network
+- `01:10` interface cards will always use those
+- `01:12` first three bytes that are specific to
+- `01:14` the manufacturer and they'll change the
+- `01:16` last three bytes of the MAC address for
+- `01:18` every adapter card that they manufacture
+- `01:21` this value is stored in the ROM or
+- `01:23` readonly memory of this network adapter
+- `01:25` and we often refer to this as the burned
+- `01:28` in address as we've mentioned before in
+- `01:31` this course the ethernet switching
+- `01:33` process uses this Mac address to
+- `01:35` determine where information should be
+- `01:37` forwarded the switch is constantly
+- `01:39` building a big table of Mac addresses
+- `01:42` that it sees on the network and it keeps
+- `01:44` track of not only what Mac addresses are
+- `01:46` on the network but what interface on the
+- `01:49` switch should be used to communicate to
+- `01:51` that Mac address this list is created
+- `01:53` based on the source Mac addresses that
+- `01:55` are inbound to the switch and this is
+- `01:58` only a temporary table switches often
+- `02:01` cach this information for a limited
+- `02:02` amount of time so it may learn of a MAC
+- `02:05` address and store that information in
+- `02:07` the table but about 5 minutes later it
+- `02:09` is discarding that Mac address and would
+- `02:11` have to relearn that address to know
+- `02:13` where that device happens to be these
+- `02:15` Mac addresses might also be used by
+- `02:18` other tasks on our Network for example
+- `02:20` spanning tree protocol or STP uses these
+- `02:23` Mac addresses to maintain the uptime of
+- `02:26` our Network and avoid any loops on the
+- `02:28` switch Network
+- `02:30` let's look at more detail about this
+- `02:32` learning process and how this Mac
+- `02:34` address table is created as we mentioned
+- `02:36` earlier the switch is going to examine
+- `02:38` all inbound traffic and look at the
+- `02:41` source Mac address associated with the
+- `02:43` frame if that source Mac address is
+- `02:46` unknown to the switch it will add that
+- `02:48` source Mac address to a table and keep
+- `02:50` track of all of the inbound source Mac
+- `02:53` addresses that it happens to see let's
+- `02:55` take a scenario where Sam is going to
+- `02:57` send information on this network Sam Mac
+- `03:00` address is 1,
+- `03:03` 111111111 so that will be the source Mac
+- `03:05` address that's sent over this network in
+- `03:08` this particular case the destination Mac
+- `03:09` address is 1
+- `03:13` 55555555 which also happens to be the
+- `03:15` MAC address of the SGC server Sam starts
+- `03:19` by sending this information to the
+- `03:21` switch this switch's Mac address table
+- `03:23` is currently empty so this Frame coming
+- `03:25` through with this source Mac from Sam's
+- `03:27` machine will be something the switch has
+- `03:29` not seen before and so it needs to add
+- `03:32` that to the table so it will take note
+- `03:34` of the source Mac address and it will
+- `03:36` add that source Mac address to the table
+- `03:38` it will also make a note of the
+- `03:40` interface that this Frame was received
+- `03:42` on in this case the interface is
+- `03:44` f0/1 and that is also added to the MAC
+- `03:47` address table now that this information
+- `03:49` is in the MAC address table any inbound
+- `03:52` frames to this switch that have a
+- `03:53` destination of 1,
+- `03:56` 111111111 will be sent out switch
+- `03:59` interface
+- `04:01` f0/1 so if the SGC server is now going
+- `04:04` to send a frame to Sam's workstation it
+- `04:07` will have a source Mac address of 1
+- `04:10` 55555555 because that is the MAC address
+- `04:13` of the SGC server and it's sending it to
+- `04:15` the destination Mac address of Sam's
+- `04:18` workstation since this source Mac
+- `04:20` address is also not known by the switch
+- `04:23` it will make a note of that Mac address
+- `04:25` and then send that frame over to Sam's
+- `04:27` workstation so now we have a complete
+- `04:30` Mac address table and any inbound
+- `04:32` traffic that has a destination to either
+- `04:35` of these Mac addresses will be forwarded
+- `04:37` out the appropriate output
+- `04:39` interface most switches have a number of
+- `04:42` different devices connected to them and
+- `04:44` once you have these devices plugged in
+- `04:46` and information starts to flow the MAC
+- `04:48` address table will become populated you
+- `04:50` can see this one has five different
+- `04:52` devices connected to this switch all
+- `04:54` five Mac addresses have been learned by
+- `04:56` the switch and we have all the output
+- `04:58` interfaces defined for each of those Mac
+- `05:01` addresses let's see what happens when
+- `05:03` information is sent from Sam's
+- `05:05` workstation we have a frame that has a
+- `05:07` destination Mac address of 1
+- `05:10` 55555555 that's forwarded to our switch
+- `05:13` the switch is then going to refer to the
+- `05:15` MAC address table to see if that
+- `05:17` destination Mac address is in the table
+- `05:19` and in this case it certainly is and you
+- `05:21` can see that the output interface for
+- `05:24` that Mac address is
+- `05:26` f05 the switch now knows to send that
+- `05:29` frame out that particular interface
+- `05:31` where it will be received by the device
+- `05:33` with that destination Mac address notice
+- `05:36` that the conversation was direct between
+- `05:38` Sam and the SGC server although there
+- `05:41` are three other devices that are
+- `05:43` connected to the switch that frame was
+- `05:45` not sent to any of those devices because
+- `05:48` the switch is able to direct that
+- `05:50` traffic based on the destination Mac
+- `05:53` address one challenge with these Mac
+- `05:56` address tables is that they are only so
+- `05:58` big there's only a a certain amount of
+- `06:00` space allocated to store Mac addresses
+- `06:02` on any particular switch and you should
+- `06:04` be able to look at the specifications
+- `06:06` for your switch to see how many Mac
+- `06:09` addresses could be stored in that table
+- `06:11` at any particular time so if an attacker
+- `06:14` would like to take advantage of Mac
+- `06:16` flooding they will send many many frames
+- `06:19` to this switch all with different source
+- `06:21` Mac addresses this is going to quickly
+- `06:24` fill up that very limited space that's
+- `06:26` available for our Mac address table this
+- `06:29` is going to take advantage of a process
+- `06:31` that is normal to the switch where if a
+- `06:34` destination Mac address is not found in
+- `06:36` the MAC address table that particular
+- `06:39` frame is forwarded to every interface on
+- `06:42` that particular switch this means if we
+- `06:45` fill up the MAC address table with
+- `06:46` random Mac addresses and we send any
+- `06:49` traffic into that switch all of that
+- `06:52` traffic is going to be automatically
+- `06:53` forwarded to every other interface on
+- `06:56` that switch we now no longer have this
+- `06:59` Direct directed conversation from one
+- `07:01` interface to another interface on the
+- `07:03` switch we've now effectively turned this
+- `07:06` switch into a hub where every inbound
+- `07:08` frame into the switch is automatically
+- `07:11` forwarded to every other interface that
+- `07:14` happens to be on that switch this is the
+- `07:16` normal process for any switch so that
+- `07:19` you can always guarantee that traffic
+- `07:21` will always make its way to its
+- `07:23` destination the attacker's taking
+- `07:25` advantage of that normal process so that
+- `07:28` they can now capture Ure all traffic
+- `07:30` that is being sent to this switch even
+- `07:32` if that traffic was not originally
+- `07:35` destined for the attacker's workstation
+- `07:37` fortunately many modern switches have
+- `07:40` Port security configurations where they
+- `07:42` can limit how much flooding can occur
+- `07:44` from any particular interface on that
+- `07:46` switch so although you could still
+- `07:49` possibly flood the network by filling up
+- `07:51` the MAC address table with the port
+- `07:53` security settings enabled it now becomes
+- `07:56` much more difficult to fill up that
+- `07:58` table to begin with for

@@ -1,10 +1,294 @@
-# 🚀 Rocket Questions HTML Changelog
+# Rocket Questions HTML Changelog
 
 > A dated history of the features, improvements, and fixes added to Rocket Questions HTML.
 
-## 📅 2026-04-28
+## 2026-05-15
 
-### 🔐 CompTIA Security+ Certification Track Added
+### Network+ Survival Guide Replaced the Placeholder Draft
+
+The Network+ survival-guide note is no longer a stub. It now opens with a full student-facing guidance letter instead of the earlier under-construction placeholder.
+
+**Content updates**
+
+- Replaced the placeholder opening with a long-form introduction that sets expectations for how much hands-on experience and lab practice the course assumes
+- Added a first-person guidance section explaining the recommended preparation path before attempting Network+ study
+- Added a stronger motivational framing around certification prep, study habits, and using the site as part of a longer learning journey
+
+**Validation**
+
+- Confirmed the `SURVIVAL GUIDE.md` placeholder header was removed
+- Confirmed the file now starts with the new survival-guide letter content instead of an under-construction notice
+
+### Domain 1 Notes Cleanup and Question-Bank Precision Pass
+
+The Network+ Domain 1 notes and question bank both received a cleanup pass focused on consistency, readability, and misconception-resistant wording.
+
+**Question-bank updates**
+
+- Reworded Domain 1 NAT questions so they explicitly test NAT session/state tracking for returning internet traffic
+- Removed distractor wording that could become plausible under same-subnet, local-server, or changed-subnet-mask assumptions
+- Continued the broader Domain 1 wording cleanup so questions read more like standalone quiz prompts and less like transformed notes
+
+**Notes cleanup**
+
+- Removed the leading teaching asterisks from the Domain 1 `Notes List C - Alex's Personal Notes` files
+- Converted literal tab-escape text to real tabs, then normalized the resulting indentation so Markdown no longer renders large note sections as code blocks
+- Capitalized markdown headings, non-heading note lines, and table header rows across the Domain 1 `Notes List C` notes
+
+**Validation**
+
+- Verified there are no remaining leading asterisk markers in the Domain 1 `Notes List C` files
+- Verified there are no remaining literal `\\t` sequences or leading tab-indented Markdown code-block artifacts in the cleaned notes set
+- Verified the targeted NAT misconception questions now use unambiguous return-traffic and translation-state wording
+
+### Classful and Classless IP PBQs Expanded Across Tracks
+
+The IP-addressing PBQ set now reflects the split between classful and classless subnetting practice, and the classless subnetting PBQ is now available from the Network+ launcher in addition to NETC-121.
+
+**PBQs and track coverage**
+
+- Kept the classful IP PBQ focused on random class A-C addresses only, with answers for class, network address, broadcast address, first host, and last host
+- Added the classless IP subnetting PBQ to the Network+ PBQ launcher so it matches the already published NETC-121 availability
+- Preserved the built-in calculator, scratch paper, and single-screen review flow across both IP-addressing PBQs
+
+**Versioning and cache refresh**
+
+- Bumped the shared app version query from `1.0.14` to `1.0.15`
+- Bumped the package version from `1.0.14` to `1.0.15`
+
+**Validation**
+
+- Previously verified the NETC-121 classful PBQ, NETC-121 classless PBQ, and Network+ classful PBQ with the focused Playwright PBQ suite
+- Added the remaining Network+ classless PBQ wiring in both the shared app catalog and the Network+ config so the launcher and config metadata stay aligned
+
+## 2026-05-14
+
+### PBQ Design Cleanup and URL Cache-Busting Refresh
+
+The first published Network+ PBQ now avoids red/green grading language before the results screen, and the live site links that point to Rocket Questions routes/domains were refreshed with cache-busting query strings where needed.
+
+**PBQ and UI polish**
+
+- Removed the red/green graded-slot border treatment from the active `Port Number Matching` PBQ workspace
+- Replaced the workspace-only correct/incorrect grading icons with a neutral post-submit slot treatment
+- Kept the results/review screen pass-fail color language intact so the final report still shows clear outcome badges
+
+**Cache-busting and routing**
+
+- Added a cache-busting query string to the root legacy-domain CTA that sends users to `rocketquestions.com`
+- Added a cache-busting query string to the Network+ port-number-matching PBQ back-to-menu route
+- Switched Rocket Questions app-owned URLs from mixed hardcoded cache keys to a unified `?q=1.0.14` version query so browser cache refreshes line up with the current site release
+- Verified the live user-facing `.html` and `.js` files do not contain remaining direct `rocketquestions.com` or `alex-online.win` URLs without query strings
+
+**Validation**
+
+- Searched the repo for Rocket Questions and Alex-Online URLs to isolate live site links from documentation and server/config references
+- Re-checked the user-facing site HTML/JS files after the updates to confirm the targeted direct-domain links are now cache-busted
+
+## 2026-05-08
+
+### Route-Based App Screens, PBQs, and Notes Video Upgrades
+
+The shared app moved further into route-backed screen flows, added a real PBQ launcher surface, and upgraded the notes viewer with embedded video playback and transcript-driven caption support.
+
+**App and navigation**
+
+- Added route-slug-aware track handling for `netc-121`, `network-plus`, and `security-plus`
+- Added route-backed entrypoints for menu, notes, PBQs, practice setup, quiz, and review screens
+- Added `route-map.json` support so generated notes routes can resolve back to source markdown paths
+- Rebuilt the generated route entrypoints so the route-backed pages stay aligned across the app
+
+**PBQs and certification flows**
+
+- Added a dedicated PBQ screen to the shared app menu flow
+- Published the first selectable Network+ PBQ launcher card for `Port Number Matching`
+- Preserved the direct `courses/Network+/practice-quiz/live` and `results` routes inside the newer route-aware navigation flow
+
+**Notes viewer and video support**
+
+- Added top-of-note video playback for supported video notes using Plyr
+- Added transcript-path lookup and transcript parsing support for video notes
+- Added a hard-of-hearing toggle with a custom live caption panel driven by transcript timestamps
+- Kept non-video notes on the normal notes-only rendering path
+
+**Quiz and exam polish**
+
+- Added a grading-mode selector to the shared quiz setup flow for tracks that support multiple grading systems
+- Made the setup label show `Questions (there are ## on the exam)` from the active quiz configuration
+- Added exam question navigation UI, deferred-question handling, and stronger exam progress feedback
+- Added review-screen confetti polish for finished results
+
+**Validation**
+
+- Expanded the Playwright coverage around app smoke behavior and notes video playback
+- Bumped the frontend cache key through `2026-05-08-04` and the package version to `1.0.13`
+- Bumped the frontend cache key through `2026-05-08-03` and the package version to `1.0.12`
+
+## 2026-05-07
+
+### CompTIA Grading Mode Added
+
+Network+ and Security+ practice quizzes now have course-specific quiz configuration files that can add grading behavior without changing NETC-121's existing quiz behavior.
+
+**Exam mode**
+
+- Added Exam mode to the shared grading configuration system
+- Added no-live-grading exam behavior with saved answers, deferred items, and final-only grading
+- Added desktop exam navigation and mobile question-menu behavior
+- Added Network+ PBQ-style exam scenario items while the dedicated PBQ section is still being built out
+- Bumped the frontend cache key through `2026-05-07-03` and the package version to `1.0.7`
+- Bumped the frontend cache key through `2026-05-07-04` and the package version to `1.0.8`
+- Busted cache for `course-configs/*.js` so new grading modes appear reliably, and bumped the frontend cache key through `2026-05-07-05` and the package version to `1.0.9`
+- Tightened the config-script loader so grading-mode configs must load successfully before the app boots, and bumped the frontend cache key through `2026-05-07-06` and the package version to `1.0.10`
+- Removed placeholder PBQs from Exam mode so only real published PBQs can appear later, and bumped the frontend cache key through `2026-05-07-07` and the package version to `1.0.11`
+
+**Pause 2 polish**
+
+- Added a plain-language grading systems table to the quiz configuration screen for configured certification quizzes
+- Bumped the frontend cache key through `2026-05-07-02` and the package version to `1.0.6`
+
+**Content updates**
+
+- Added shared quiz configuration files under `course-configs/`
+- Added Network+ and Security+ Regular and CompTIA grading modes
+- Added Network+ Domain 1 question-bank coverage with 150 questions across objectives `1.1` through `1.8`
+- Added Network+ direct quiz URLs at `courses/Network+/practice-quiz/live` and `courses/Network+/practice-quiz/results`
+
+**Bugs fixed / behavior changes**
+
+- Enabled Network+ Domain 1 in the Domain Selection screen now that the question bank exists
+- Added pass/fail display for configured certification grading modes
+- Added CompTIA scaled-score display using the 100-900 scale
+- Added weighted CompTIA scoring using configured domain weights
+- Preserved NETC-121's existing practice quiz behavior through its own configuration file
+- Bumped the frontend cache key through `2026-05-07-01` and the package version to `1.0.5`
+
+## 2026-05-06
+
+### Network+ Domain 1 Textbook Notes Expanded
+
+The Network+ textbook-note track now includes full teaching notes for Domain `1.0 Networking Concepts`, split by objective subdomain instead of using short concept lists.
+
+**Content updates**
+
+- Added `courses/Network+/notes-content/Notes List B - Textbook Notes/1.0/` with separate markdown notes for objectives `1.1` through `1.8`
+- Expanded the notes from the Network+ textbook PDF chapter mappings into lesson-style explanations, comparison tables, scenario cues, and exam-focused differentiators
+- Covered Domain 1 textbook material across OSI layers, networking appliances and functions, cloud concepts, ports and protocols, transmission media, topologies, IPv4 addressing, and modern network environments
+- Updated the Domain 1 README so it describes the files as teaching notes rather than concept indexes
+
+**Validation**
+
+- Re-checked the textbook PDF chapter ranges for Domain 1 coverage before the final expansion pass
+- Verified the Domain 1 notes include the expected textbook concepts such as `SNMPv3`, `GRE`, `IPsec`, cloud service models, plenum cabling, transceivers, APIPA, CIDR, VXLAN, SASE/SSE, and infrastructure drift
+- Scanned the new notes for local/private PDF footer text and sensitive local details
+
+### Network+ Notes Manifest Refreshed
+
+The Network+ notes browser manifest was regenerated so the app can see the current Network+ notes tree and video-note metadata.
+
+**Content updates**
+
+- Rebuilt `courses/Network+/notes-manifest.json` from `courses/Network+/notes-content`
+- Added the current Network+ personal notes, video notes, transcript entries, master-list content, and survival guide entries to the generated manifest
+- Preserved the manifest metadata fields used by the shared notes viewer, including `video`, `Video`, `youtubeVideo`, `videoUrl`, and `videoId`
+
+**Validation**
+
+- Ran `python3 scripts/build_course_notes_manifests.py`
+- Kept the committed change scoped to the Network+ manifest after the shared builder regenerated all course manifests
+
+## 2026-05-01
+
+### Notes Video Player and Hard-of-Hearing Mode Added
+
+YouTube-backed notes can now open with an embedded player at the top of the note, and an optional hard-of-hearing mode can surface live transcript captions in a larger high-contrast panel while the video plays.
+
+**Content updates**
+
+- Added a `Hard of hearing` toggle inside the notes header that saves its state in browser storage
+- Added a notes-viewer video shell that embeds YouTube-backed note videos above the markdown body
+- Added transcript cue parsing for `Transcript.md` files that use timestamp-range headings
+- Added a live caption panel that follows the active transcript segment while the video plays
+
+**Bugs fixed / behavior changes**
+
+- Updated the shared notes renderer so video-note behavior works from manifest metadata instead of course-specific hardcoding
+- Rebuilt `scripts/build_course_notes_manifests.py` so note entries expose `video`, `Video`, `youtubeVideo`, `videoUrl`, and `videoId` metadata when the markdown contains a YouTube link
+- Restricted the hard-of-hearing toggle, YouTube player, and live caption panel to notes with `youtubeVideo: true` in the manifest
+- Prevented `Transcript.md` files inside video folders from being treated like YouTube player notes
+- Regenerated `courses/NETC-121/notes-manifest.json`, `courses/Network+/notes-manifest.json`, and `courses/Security+/notes-manifest.json` with the new video metadata
+- Prevented Playwright smoke tests from writing feedback or history records back to the local API server during automated runs
+- Bumped the frontend cache key through `2026-05-02-02` and the package version to `1.0.4`
+
+**Validation**
+
+- Ran `python3 scripts/build_course_notes_manifests.py`
+- Verified the regenerated NETC-121 manifest reflects the current notes tree and retains `MASTER LIST/Master List.md` as the default note
+- Ran `npx playwright test tests/notes-video-player.spec.js`; the focused notes-player suite passed after the manifest and notes-header updates
+
+### Professor Messer Transcript Puller Added
+
+The repo now includes a practical local transcript tool for pulling Professor Messer captions directly into the course notes tree instead of relying on one-off manual steps.
+
+**Content updates**
+
+- Added `scripts/pull_youtube_transcripts.py` for pulling transcripts into the repo from course notes and Professor Messer pages
+- Documented the new transcript-puller workflow in `README.md`
+- Ignored the local `tools/` workspace and the whole `.vscode/` folder in `.gitignore` so local helper tooling and editor config stay out of tracked changes
+
+### Record Storage Paths Made Portable
+
+The local API server now uses portable state-directory defaults instead of a machine-specific records folder path.
+
+**Bugs fixed / behavior changes**
+
+- Changed `server.py` to prefer `$XDG_STATE_HOME/rocket-questions-html/` for server-side records when available
+- Changed the fallback records directory to `~/.local/state/rocket-questions-html/`
+- Bound the local dev server to `127.0.0.1` instead of `0.0.0.0`
+
+## 2026-04-30
+
+### NETC-121 Early-Week Syllabus Video Titles Expanded
+
+The NETC-121 syllabus no longer uses shorthand placeholders like `Video 1` or `Videos 2-8` for the opening weeks. Those rows now list the actual video titles so the syllabus matches the renamed notes library all the way from Week 1 onward.
+
+**Content updates**
+
+- Updated the Week 1 syllabus row to list `Video 1 - TWISTED: The dramatic history of twisted-pair Ethernet`
+- Expanded the Week 2 syllabus row to list the full titles for videos `2-8`
+- Kept the existing week assignments unchanged while making the video column consistent with the later title-based rows
+
+### NETC-121 Video Library Renumbered and Title-Synced
+
+The NETC-121 video-note library was reorganized so the numbering, titles, linked video headers, master lists, syllabus rows, and note-browser manifest all reflect the current course sequence and the verified screenshot-based video titles.
+
+**Content updates**
+
+- Inserted two new Week 4 video slots after `Video 14`, creating `Video 15 - Network Ports Explained` and `Video 16 - How to Take Notes - Study Tips - Cornell Notes`
+- Shifted the existing NETC-121 video sequence from old `Video 15-36` to new `Video 17-38`
+- Renamed NETC-121 `Notes List A - Video Content` folders and note files for videos `9-38` to match the current screenshot-confirmed titles
+- Added or corrected line-1 linked video headers for the YouTube-backed NETC-121 notes through `Video 38`
+- Renamed the non-YouTube notes for videos `17-19` to `Subnetting and IP`, `Subnetting and Binary Math`, and `CIDR & Subnet Mask`
+- Converted older `Transcript.md` note files in the retitled video folders to title-based markdown filenames so the note tree shows the actual video names
+
+**Bugs fixed / behavior changes**
+
+- Synced `courses/NETC-121/notes-content/syllabus.md` with the current video names while preserving each video in its assigned course week
+- Synced the weekly AI master lists to the renamed NETC-121 video folders and note files
+- Updated lingering NETC-121 question-bank source references from stale transcript paths and pre-rename folder names to the current title-based note paths
+- Corrected rename artifacts such as duplicated fragments like `Subnetting and IP and IP` and `Animated - Animated`
+- Corrected the video 36 title to use `Animated` instead of the screenshot typo `Adimated`
+- Rebuilt `courses/NETC-121/notes-manifest.json` multiple times during the rename sweep so the in-app notes browser reflects the final folder/file structure
+
+**Validation**
+
+- Verified the final NETC-121 notes tree contains videos `1-38` with the expected current folder names
+- Verified the syllabus rows for Weeks `3-14` now reference the updated video titles
+- Verified the weekly master lists and question-bank note references no longer contain the targeted stale video-title/path strings
+
+## 2026-04-28
+
+### CompTIA Security+ Certification Track Added
 
 The certification picker can now open a dedicated CompTIA Security+ workspace that behaves like the existing Network+ flow, with its own notes tree, practice-quiz domain logic, and starter domain content.
 
@@ -24,7 +308,7 @@ The certification picker can now open a dedicated CompTIA Security+ workspace th
 - Bumped the frontend app cache key through `2026-04-28-10` so browsers fetch the Security+ release, dropdown-persistence fix, and Week 14 availability update
 - Bumped the package version through `1.0.3`
 
-### 🔁 Course Selection Persistence Fix
+### Course Selection Persistence Fix
 
 The course and certification selectors now keep their saved values across refresh without breaking the new placeholder defaults or the guided tour.
 
@@ -44,7 +328,7 @@ The course and certification selectors now keep their saved values across refres
 - Ran a focused Playwright refresh test and confirmed both dropdown selections persisted before and after reload
 - Removed the temporary diagnostic test after verification
 
-### 🧠 Question Bank Cleanup and Week 14 Refresh
+### Question Bank Cleanup and Week 14 Refresh
 
 The NETC-121 question banks were cleaned up so the generated review material is less repetitive, less source-dependent, and more technically precise. Week 14 also received a fresh 150-question bank tied to the current routing and wireless coverage.
 
@@ -69,7 +353,7 @@ The NETC-121 question banks were cleaned up so the generated review material is 
 - Confirmed the targeted memorization, clarity, and misconception rewrites were applied to the approved question IDs and week banks
 - Confirmed the Week 14 lecture and wireless transcript files no longer contain line-leading asterisk markers
 
-### 📚 NETC-121 Week 14 Notes and Syllabus Refresh
+### NETC-121 Week 14 Notes and Syllabus Refresh
 
 Week 14 study content was extended with the wireless fundamentals video note, and the syllabus was cleaned up so the listed readings and videos match the current course materials more explicitly.
 
@@ -80,7 +364,7 @@ Week 14 study content was extended with the wireless fundamentals video note, an
 - Updated `courses/NETC-121/notes-content/syllabus.md` so Week 14 now lists `Video 28 - Wireless Fundamentals Day 55`
 - Replaced blank reading cells in Weeks `12` through `15` with `no reading assignment` so the table no longer leaves missing textbook rows ambiguous
 
-### 🧹 Expired Maintenance Notice Removed
+### Expired Maintenance Notice Removed
 
 The old maintenance window announcement was removed from the course selection screen after the scheduled outage had already passed.
 
@@ -97,9 +381,9 @@ The old maintenance window announcement was removed from the course selection sc
 
 ---
 
-## 📅 2026-04-23
+## 2026-04-23
 
-### 🗂️ Notes Explorer Default Expansion
+### Notes Explorer Default Expansion
 
 The notes explorer now opens the first branch in the hierarchy by default so users land on visible note folders instead of a fully collapsed tree.
 
@@ -110,7 +394,7 @@ The notes explorer now opens the first branch in the hierarchy by default so use
 - Regenerated `courses/NETC-121/notes-manifest.json` and `courses/Network+/notes-manifest.json` after the notes-explorer update
 - Added both course manifest files to git tracking in this repo
 
-### 🧰 Local Sync and Ignore Rule Cleanup
+### Local Sync and Ignore Rule Cleanup
 
 Deployment and local-workflow ignore rules were tightened so development artifacts and feedback logs stop creating noisy sync and git status churn.
 
@@ -126,9 +410,9 @@ Deployment and local-workflow ignore rules were tightened so development artifac
 
 ---
 
-## 📅 2026-04-17
+## 2026-04-17
 
-### 📚 Week 12 and Week 13 Lecture Notes Expanded
+### Week 12 and Week 13 Lecture Notes Expanded
 
 The personal lecture notes for Weeks 12 and 13 were rewritten from rough classroom bullets into detailed study-ready explanations.
 
@@ -147,9 +431,9 @@ The personal lecture notes for Weeks 12 and 13 were rewritten from rough classro
 
 ---
 
-## 📅 2026-04-16
+## 2026-04-16
 
-### 📚 Week 12 AI Master List Added
+### Week 12 AI Master List Added
 
 Week 12 now has a dedicated AI master list generated from the Week 12 syllabus scope and the local Week 12 routing notes.
 
@@ -162,7 +446,7 @@ Week 12 now has a dedicated AI master list generated from the Week 12 syllabus s
 - Added Week 12 to `courses/NETC-121/notes-manifest.json` so it appears in the in-app notes browser
 - Updated the weekly AI master list `README.md` index through Week 12
 
-### 🗂️ NETC-121 Master List Coverage Expanded
+### NETC-121 Master List Coverage Expanded
 
 The course-level master guide was checked against the previous weekly AI master lists and expanded with missing high-value concepts from earlier weeks.
 
@@ -177,7 +461,7 @@ The course-level master guide was checked against the previous weekly AI master 
 - Added Week 10-11 routing coverage for administrative distance, floating static routes, packet forwarding, router verification commands, IPv6 routing, and dynamic-routing protocol context
 - Added Week 7-8 supplemental concepts for ASCII/Unicode, bits/bytes, and VPN basics
 
-### 🧰 Linux Clipboard and Report Action Fixes
+### Linux Clipboard and Report Action Fixes
 
 The quiz review report actions were made more reliable, especially for Linux browser environments where direct Clipboard API access can fail.
 
@@ -222,9 +506,9 @@ The quiz review report actions were made more reliable, especially for Linux bro
 
 ---
 
-## 📅 2026-04-12
+## 2026-04-12
 
-### 📚 Week 12 Notes, Syllabus, and Routing Scope Updates
+### Week 12 Notes, Syllabus, and Routing Scope Updates
 
 Week 12 content was expanded around route summarization and hierarchical routing, and the course planning files were updated to reflect that scope.
 
@@ -235,7 +519,7 @@ Week 12 content was expanded around route summarization and hierarchical routing
 - Updated `courses/NETC-121/notes-content/MASTER LIST/syllabus.md` so Week 12 includes Videos `24-25`
 - Used the Week 12 lecture scope to identify advanced routing topics that should not be emphasized yet
 
-### 🧠 Week 11 and Week 12 Question Bank Cleanup
+### Week 11 and Week 12 Question Bank Cleanup
 
 The routing banks were adjusted to better match current class coverage and reduce overlap, especially around advanced protocol topics.
 
@@ -247,7 +531,7 @@ The routing banks were adjusted to better match current class coverage and reduc
 - Removed Week 12 questions that explicitly quizzed `OSPF` or `EIGRP` after the scope was narrowed away from those protocols
 - Left Week 12 content focused on dynamic routing basics, RIP behavior, route summarization, longest-prefix match, default routes, and hierarchical router design
 
-### ✍️ Week 12 Clarity Rewording Pass
+### Week 12 Clarity Rewording Pass
 
 The Week 12 bank received a wording pass to make stems more self-contained and easier to parse without hidden context.
 
@@ -258,7 +542,7 @@ The Week 12 bank received a wording pass to make stems more self-contained and e
 - Clarified hierarchy and default-route questions so the networking decision context appears directly in the stem
 - Preserved concept coverage while making the questions less ambiguous for first-read comprehension
 
-### 🛠️ Targeted Misconception Fixes in Existing Banks
+### Targeted Misconception Fixes in Existing Banks
 
 Several previously-identified question patterns were rewritten so the intended answer remains technically correct even under realistic alternate scenarios.
 
@@ -271,9 +555,9 @@ Several previously-identified question patterns were rewritten so the intended a
 
 ---
 
-## 📅 2026-04-09
+## 2026-04-09
 
-### 🧭 Course Loading, Network+ Domains, and Ignore Rules
+### Course Loading, Network+ Domains, and Ignore Rules
 
 The course-selection flow, Network+ track behavior, and local deployment rules were refined to match the new split content layout.
 
@@ -292,7 +576,7 @@ The course-selection flow, Network+ track behavior, and local deployment rules w
 - Added and used `scripts/build_course_notes_manifests.py` to rebuild course-specific notes manifests
 - Synced frontend cache/version keys through `2026-04-09-51`
 
-### 📝 Notes Explorer and Markdown Rendering Fixes
+### Notes Explorer and Markdown Rendering Fixes
 
 The in-app notes experience was tightened up so the explorer respects the active track and markdown layout is rendered much closer to the source files.
 
@@ -310,7 +594,7 @@ The in-app notes experience was tightened up so the explorer respects the active
 - Updated notes-viewer wrapping rules so long URLs and unbroken text wrap cleanly instead of stretching or clipping lines
 - Replaced visible rocket emoji branding in the splash/header/notes title with `rocket_icon.png`
 
-### 🛠️ Week 11 Availability UI Fix
+### Week 11 Availability UI Fix
 
 Week 11 is now treated as a live quiz week in the frontend instead of lingering in placeholder mode after the new content rollout.
 
@@ -323,9 +607,9 @@ Week 11 is now treated as a live quiz week in the frontend instead of lingering 
 
 ---
 
-## 📅 2026-04-08
+## 2026-04-08
 
-### 🧪 Week 11 Question Bank Added
+### Week 11 Question Bank Added
 
 Week 11 now has a dedicated 150-question bank built from the current Week 11 master list scope.
 
@@ -340,7 +624,7 @@ Week 11 now has a dedicated 150-question bank built from the current Week 11 mas
 
 ---
 
-### 🗂️ Week 11 Syllabus and Master List Updated
+### Week 11 Syllabus and Master List Updated
 
 Week 11 planning content now reflects the new routing videos and includes a dedicated Week 11 AI master list.
 
@@ -352,7 +636,7 @@ Week 11 planning content now reflects the new routing videos and includes a dedi
 
 ---
 
-### 📚 Week 10 Video 23 Notes Added
+### Week 10 Video 23 Notes Added
 
 Week 10 notes now also include a new video transcript summary for dynamic routing protocol categories.
 
@@ -364,7 +648,7 @@ Week 10 notes now also include a new video transcript summary for dynamic routin
 
 ---
 
-### 📚 Week 10 Video 22 Notes Added
+### Week 10 Video 22 Notes Added
 
 Week 10 notes now include a new video transcript summary for routing fundamentals.
 
@@ -376,9 +660,9 @@ Week 10 notes now include a new video transcript summary for routing fundamental
 
 ---
 
-## 📅 2026-04-03
+## 2026-04-03
 
-### 🧭 Guided Tour, Mobile Notes Menu, and Walkthrough Polish
+### Guided Tour, Mobile Notes Menu, and Walkthrough Polish
 
 Rocket Questions grows into a fully guided teaching experience, with a foreground tour that can walk students through the app from course selection to the review report.
 
@@ -432,9 +716,9 @@ Rocket Questions grows into a fully guided teaching experience, with a foregroun
 
 ---
 
-## 📅 2026-04-02
+## 2026-04-02
 
-### 🧠 Notes Workspace, Local-Only Progress, and Week 9-10 Expansion
+### Notes Workspace, Local-Only Progress, and Week 9-10 Expansion
 
 Rocket Questions expands into a fuller study platform with both quiz and notes workflows.
 
@@ -486,9 +770,9 @@ Rocket Questions expands into a fuller study platform with both quiz and notes w
 
 ---
 
-## 📅 2026-03-31
+## 2026-03-31
 
-### 📝 Notes Mirror and Local Codex Placeholders
+### Notes Mirror and Local Codex Placeholders
 
 The local notes library takes shape to support the new study workspace.
 
@@ -502,9 +786,9 @@ The local notes library takes shape to support the new study workspace.
 
 ---
 
-## 📅 2026-03-28
+## 2026-03-28
 
-### 🧪 Alternate Workspace Server Iteration
+### Alternate Workspace Server Iteration
 
 Parallel app and server work supports the next feature wave.
 
@@ -514,9 +798,9 @@ Parallel app and server work supports the next feature wave.
 
 ---
 
-## 📅 2026-03-26
+## 2026-03-26
 
-### 🧱 Early Scratch Work For the Next Wave
+### Early Scratch Work For the Next Wave
 
 The next round of features begins taking shape.
 
@@ -527,9 +811,9 @@ The next round of features begins taking shape.
 
 ---
 
-## 📅 2026-03-14
+## 2026-03-14
 
-### 📚 Major Content and Quiz Logic Expansion
+### Major Content and Quiz Logic Expansion
 
 This release brings a major expansion of content and quiz logic.
 
@@ -563,9 +847,9 @@ This release brings a major expansion of content and quiz logic.
 
 ---
 
-## 📅 2026-03-06
+## 2026-03-06
 
-### 🛡️ Records Safety Guard + Week 7 Content
+### Records Safety Guard + Week 7 Content
 
 This update strengthens deployment safety while expanding course content.
 
@@ -580,9 +864,9 @@ This update strengthens deployment safety while expanding course content.
 
 ---
 
-## 📅 2026-02-28
+## 2026-02-28
 
-### ✨ UX Expansion: Splash Screen, Branding, Course Setup
+### UX Expansion: Splash Screen, Branding, Course Setup
 
 This release significantly refines the browser version.
 
@@ -613,7 +897,7 @@ This release significantly refines the browser version.
 - Replaced topic-only review output with stronger source-based review guidance
 - Removed old Python desktop app and Windows installer files after the web-first transition
 
-### 🔌 API Port and Deployment Docs Update
+### API Port and Deployment Docs Update
 
 **Features added**
 
@@ -624,7 +908,7 @@ This release significantly refines the browser version.
 - Corrected outdated run instructions that still referenced port `8000`
 - Clarified that the app was intended for web-server deployment
 
-### 🧠 Quiz UX, Answer History Sync, Records Tooling
+### Quiz UX, Answer History Sync, Records Tooling
 
 Later that same day, the app gains another major layer of polish and durability.
 
@@ -649,9 +933,9 @@ Later that same day, the app gains another major layer of polish and durability.
 
 ---
 
-## 📅 2026-02-26
+## 2026-02-26
 
-### 🌐 Browser App Rewrite Begins
+### Browser App Rewrite Begins
 
 Rocket Questions pivots from a desktop Python GUI into a browser-based app.
 
@@ -684,9 +968,9 @@ Rocket Questions pivots from a desktop Python GUI into a browser-based app.
 
 ---
 
-## 📅 2026-02-25
+## 2026-02-25
 
-### 🌱 Project Foundation
+### Project Foundation
 
 Initial import of the original Rocket Questions project.
 
@@ -705,7 +989,7 @@ Initial import of the original Rocket Questions project.
 
 - Established the first usable project structure, packaging flow, and content layout
 
-### ⚖️ License Added
+### License Added
 
 **Features added**
 
@@ -713,7 +997,7 @@ Initial import of the original Rocket Questions project.
 
 ---
 
-## 🧩 Feature Timeline At A Glance
+## Feature Timeline At A Glance
 
 ### Core App Milestones
 
@@ -736,7 +1020,7 @@ Initial import of the original Rocket Questions project.
 
 ---
 
-## 📝 Historical Confidence
+## Historical Confidence
 
 **High confidence**
 

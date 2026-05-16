@@ -1,0 +1,117 @@
+# [3.3.2 - Network Redundancy](https://www.youtube.com/watch?v=dsvNPjK0ihM)
+
+## 3.3.2 - Network Redundancy
+
+- Day: Day 7
+- Duration: 4:06
+
+## Transcript
+
+- `00:02` maintaining uptime and availability on
+- `00:03` the network can be a challenge and in
+- `00:05` this video we'll look at different
+- `00:07` methods for providing that Network
+- `00:09` redundancy one of the most common forms
+- `00:12` of network redundancy is active passive
+- `00:15` this is where you would have two
+- `00:16` separate pieces of equipment but only
+- `00:19` one of them is active or running at any
+- `00:21` particular time these two devices are
+- `00:24` constantly communicating between each
+- `00:25` other giving updates on their status and
+- `00:28` if the primary device fails the
+- `00:30` secondary device takes over as the
+- `00:32` primary device on the network this means
+- `00:34` the configuration between these two
+- `00:36` devices needs to be identical and if you
+- `00:38` make a change to the configuration on
+- `00:40` the primary device it needs to copy that
+- `00:42` configuration to the secondary device
+- `00:45` you also need to make sure that any
+- `00:46` real-time information is updated between
+- `00:48` both devices so if there is a session
+- `00:51` table or a routing table all of that
+- `00:53` information also needs to be copied and
+- `00:55` maintained on the secondary device that
+- `00:58` way if the secondary device does become
+- `01:00` active it has exactly the same
+- `01:02` configuration as the primary device did
+- `01:05` visually this is how it would look on a
+- `01:07` network map you have an internet
+- `01:09` provider let's say our network
+- `01:10` connection out to the rest of the world
+- `01:12` there are two firewalls in this
+- `01:14` configuration and behind the firewall is
+- `01:16` a router a switch and a web server in
+- `01:19` this case these two firewalls are
+- `01:21` running as an active passive
+- `01:23` configuration one of the firewalls is
+- `01:25` active and the other firewall is in a
+- `01:27` standby or passive mode when when
+- `01:30` traffic is sent through the network that
+- `01:31` traffic passes through the active
+- `01:33` firewall to the web server that's on the
+- `01:36` other side but let's say that primary
+- `01:38` firewall had a problem perhaps the power
+- `01:40` supply failed maybe the software crashed
+- `01:43` but something within that device has
+- `01:45` caused it to go offline this means that
+- `01:48` we now have no available firewalls on
+- `01:50` our network but of course our passive
+- `01:52` firewall has been in constant
+- `01:54` communication with that active firewall
+- `01:56` and recognizes that it's no longer on
+- `01:58` the network so so the passive firewall
+- `02:01` now makes itself into an active firewall
+- `02:03` and it becomes the primary device on the
+- `02:06` network so now any future communication
+- `02:09` on the network uses this new firewall to
+- `02:11` be able to complete that Communications
+- `02:14` path you might be looking at that
+- `02:16` Network design and think you've
+- `02:18` purchased two firewalls both of them are
+- `02:20` plugged in and they're powered on at the
+- `02:22` same time why don't we use both of those
+- `02:24` firewalls simultaneously and take
+- `02:26` advantage of all of that extra computing
+- `02:28` power having both of those devices
+- `02:31` operating simultaneously is referred to
+- `02:33` as an active active configuration
+- `02:36` however simply turning on both devices
+- `02:38` and running traffic through both of them
+- `02:40` is not always a simple task there's
+- `02:42` usually a bit more engineering required
+- `02:45` to make sure that you could turn on both
+- `02:47` of the devices and use both of them
+- `02:50` simultaneously for example you might
+- `02:52` have data flowing through the network in
+- `02:54` different directions maybe one part of
+- `02:56` the conversation goes through one device
+- `02:58` and The Return part of the conversation
+- `03:00` goes through a different device you need
+- `03:02` to have some type of mechanism that
+- `03:04` keeps track of all of these different
+- `03:05` data flows and what device they're
+- `03:07` flowing through this often requires a
+- `03:10` good bit of design work and
+- `03:12` understanding of exactly where the
+- `03:13` traffic flows are in the network how the
+- `03:15` routing is configured where the switches
+- `03:18` are located and how you would expect
+- `03:20` traffic to flow on a normal basis and as
+- `03:23` you would expect with an active active
+- `03:25` configuration where both firewalls are
+- `03:27` operating simultaneously you can send
+- `03:30` traffic through the network and one
+- `03:31` traffic flow may go through one of the
+- `03:33` existing active firewalls and a
+- `03:35` secondary traffic flow may go through
+- `03:37` the alternate or secondary active
+- `03:40` firewall if one of the firewalls was to
+- `03:43` fail you don't have to worry about
+- `03:44` failing over to a secondary because both
+- `03:47` firewalls are already active the other
+- `03:49` firewall that's remaining will continue
+- `03:51` to handle the load and traffic will
+- `03:53` continue to flow normally through that
+- `03:55` Network

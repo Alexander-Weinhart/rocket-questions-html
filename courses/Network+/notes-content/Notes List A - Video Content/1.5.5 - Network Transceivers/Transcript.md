@@ -1,0 +1,111 @@
+# [1.5.5 - Network Transceivers](https://www.youtube.com/watch?v=0aMmwkiuT0o)
+
+## 1.5.5 - Network Transceivers
+
+- Day: Day 2
+- Duration: 4:51
+
+## Transcript
+
+- `00:01` Transceiver is a combination of two words-- "transmitter"
+- `00:05` and "receiver."
+- `00:06` And these are usually combined within the same piece
+- `00:09` of equipment or the same component.
+- `00:11` A transceiver allows for modularity.
+- `00:13` You may have a switch like this one.
+- `00:15` You can see there are a number of open interfaces
+- `00:17` in this switch.
+- `00:19` You slide in the transceiver that's
+- `00:21` appropriate for the media or the network type
+- `00:23` that you would like to use.
+- `00:24` And now that particular interface
+- `00:26` will operate with that particular configuration.
+- `00:29` So if you need a copper configuration for Gigabit
+- `00:32` Ethernet, you slide in a copper Gigabit Ethernet transceiver.
+- `00:36` Or if you need a fiber-based 10-gig connection,
+- `00:40` you slide in a 10-gig fiber transceiver.
+- `00:43` This means that you can have every interface on this switch
+- `00:46` have a different type of media, depending on what transceiver
+- `00:49` you are planning to use.
+- `00:51` There are different types of transceivers,
+- `00:53` different form factors, and different transceivers
+- `00:56` depending on the media.
+- `00:57` For example, if you are using an Ethernet switch,
+- `01:00` you need an Ethernet transceiver.
+- `01:02` If you're using a Fibre Channel switch,
+- `01:05` then you will need a Fibre Channel transceiver.
+- `01:07` You can't use Fibre Channel transceivers in an Ethernet
+- `01:10` switch or vice versa.
+- `01:12` This means you get to decide what media type works
+- `01:15` best for your configuration.
+- `01:17` If you need copper connections, you
+- `01:18` can use a copper transceiver.
+- `01:20` And if you need fiber connections,
+- `01:22` you can use a fiber transceiver.
+- `01:24` And if you need to change those connections midway
+- `01:26` through your installation, you can
+- `01:28` remove the copper transceiver and replace it
+- `01:31` with a fiber transceiver.
+- `01:32` This type of modularity often comes at an additional cost.
+- `01:36` But it does provide you with a way
+- `01:37` to plug into whatever network type you might need.
+- `01:41` One common transceiver type is the SFP type.
+- `01:45` This stands for Small Form-factor Pluggable.
+- `01:47` For example, you can plug in a fiber SFP
+- `01:50` and connect your fiber connections
+- `01:52` to that particular transceiver.
+- `01:54` But if you needed copper, you could easily
+- `01:56` slide in a copper SFP and plug in your RJ45 connector.
+- `02:01` SFP's are commonly associated with Gigabit Ethernet.
+- `02:04` So that's 1 gigabit per second.
+- `02:07` There is an enhanced version of SFP called Enhanced Small
+- `02:11` Form-factor Pluggable, or SFP+.
+- `02:14` They look identical in size to an SFP,
+- `02:17` but they support much higher speeds,
+- `02:19` up to 16 gigabits per second.
+- `02:21` So if you have a 10-gig connection,
+- `02:23` then you're probably using SFP+.
+- `02:26` When you're installing equipment into a rack that's
+- `02:29` in a data center, you have a limited amount of space
+- `02:32` available.
+- `02:32` First, the equipment is only 19 inches wide.
+- `02:35` And the total amount of space available in the rack
+- `02:37` is limited by the amount of space
+- `02:39` you have in the data center.
+- `02:41` So we want to be sure that we can put as much connectivity
+- `02:44` into a single space as possible.
+- `02:47` To that end, we've created the QSFP, or the Quad Small
+- `02:51` Form-factor Pluggable.
+- `02:53` This effectively allows you to have four times the amount
+- `02:55` of throughput into a space that's
+- `02:57` very similar to that of an SFP.
+- `03:00` For example, an SFP in this form would
+- `03:03` be a Quad Small Form-factor Pluggable, or QSFP,
+- `03:07` which consists of four channels of SFP.
+- `03:10` So if one SFP is a 1 gigabit per second connection,
+- `03:15` a Quad SFP would be compatible with a 4-gigabit throughput.
+- `03:20` The same thing applies for the SFP+.
+- `03:22` There is a Quad SFP+ that is a four-channel SFP+.
+- `03:27` Since it's common to see a 10-gigabit connection
+- `03:30` on a single SFP+, a Quad SFP+ can support four of those,
+- `03:36` for a total throughput of 40 gigabits per second.
+- `03:39` This is where we start to see a benefit not only
+- `03:41` in the amount of space that we're using inside
+- `03:44` of these devices, but we can take a single fiber connection
+- `03:47` and effectively extend four separate links
+- `03:50` over that single fiber.
+- `03:52` There's cost benefit there for equipment and for the media
+- `03:56` itself.
+- `03:57` Although the names are very similar,
+- `03:59` the form factors are slightly different between an SFP
+- `04:02` and SFP+ and a Quad SFP or Quad SFP+.
+- `04:07` On the left is an SFP or SFP+.
+- `04:10` Both the SFP and SFP+ use the same form factor,
+- `04:14` although the transceivers are obviously very different.
+- `04:17` The Quad SFP or Quad SFP+ also share the same form factor.
+- `04:22` But you can see it's slightly larger than the traditional SFP
+- `04:26` or SFP+.
+- `04:28` Although it is slightly larger than an SFP,
+- `04:31` it's not four times the size of an SFP.
+- `04:34` So we are getting an efficiency in space by using a Quad SFP
+- `04:38` or Quad SFP+.

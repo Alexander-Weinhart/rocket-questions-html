@@ -1,4 +1,4 @@
-# 🌐 Application Layer
+# Application Layer
 
 The Application layer is the **top layer** of the TCP/IP model (combining OSI layers 5, 6, and 7). This is where end users and programs interact with the network — browsers, email clients, file transfer tools, and everything visible to humans lives here.
 
@@ -66,8 +66,8 @@ The Application layer only knows about **what** to send. Everything below handle
 
 ## Key Points
 
-- 📌 Top layer — the only one users directly interact with
-- 📌 Covers OSI layers 5 (Session), 6 (Presentation), and 7 (Application)
-- 📌 Examples: HTTP (port 80), SMTP (email), DNS (name resolution)
-- 📌 Browsers and applications operate at this layer
-- 📌 Passes data down to the Transport layer for delivery
+- Top layer — the only one users directly interact with
+- Covers OSI layers 5 (Session), 6 (Presentation), and 7 (Application)
+- Examples: HTTP (port 80), SMTP (email), DNS (name resolution)
+- Browsers and applications operate at this layer
+- Passes data down to the Transport layer for delivery

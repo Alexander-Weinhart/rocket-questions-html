@@ -1,0 +1,206 @@
+# [3.4.5 - DNS Records](https://www.youtube.com/watch?v=qAyVND44jaE)
+
+## 3.4.5 - DNS Records
+
+- Day: Day 8
+- Duration: 9:04
+
+## Transcript
+
+- `00:02` if you were to look at the configuration
+- `00:03` file of a DNS server you would see a
+- `00:06` number of different lines and those
+- `00:08` lines contain one or more different
+- `00:10` types of DNS records we refer to these
+- `00:13` as resource records and these resource
+- `00:16` records might provide information that
+- `00:17` allows us to resolve a name from an IP
+- `00:20` address it might contain information
+- `00:22` about a certificate that we could use to
+- `00:24` validate DNS information it may contain
+- `00:27` aliases of host names that are stored
+- `00:29` with in the DNS database or one of many
+- `00:32` other record Types on the screen is a
+- `00:35` DNS configuration file you'll notice
+- `00:38` there are a lot of different types of
+- `00:39` information contained within the DNS
+- `00:41` file and in this video we'll step
+- `00:43` through a number of these more popular
+- `00:45` DNS records at the very top of the DNS
+- `00:48` configuration file is a start of
+- `00:50` authority record or an S SOA this gives
+- `00:53` us an overview of what we will find
+- `00:56` inside of this DNS configuration
+- `00:58` information such as the DNS Zone details
+- `01:01` so we can see what domain this
+- `01:03` particular DNS configuration is a part
+- `01:05` of you can see serial number information
+- `01:08` and you can find details about retries
+- `01:10` expirations and how long information
+- `01:13` should be stored one of the most common
+- `01:15` record types you will find in a DNS
+- `01:17` server is the a record or the quad a
+- `01:20` This Record defines the IP address of a
+- `01:23` host this is the record containing the
+- `01:25` information we need when we send a query
+- `01:27` to a DNS server records marked with with
+- `01:30` an a are for IP version 4 addresses so
+- `01:33` you often see the ipv4 address and the
+- `01:35` name of the device associated with that
+- `01:38` IP address records marked with 4 A's or
+- `01:41` quad a records are for IP version 6 this
+- `01:45` provides the same functionality with
+- `01:47` both IP version 4 and IP version 6 but
+- `01:50` the type of record is different where
+- `01:52` ipv4 has one A and IPv6 has four A's
+- `01:56` this is an a record from my DNS server
+- `01:59` you can the name on this record is
+- `02:02` www.professormesser.com this is an
+- `02:04` internet record it has an a which is
+- `02:07` referring to this address record and
+- `02:09` then the IP address of this device
+- `02:13` 16259 2461 164 that is the information
+- `02:17` contained within my DNS server and if
+- `02:20` somebody queries that server for
+- `02:23` www.professormesser.com that DNS server
+- `02:26` will return the IP address associated
+- `02:28` with that a record
+- `02:30` sometimes you have a single IP address
+- `02:33` that is referenced by multiple names and
+- `02:35` we can configure this Alias of names
+- `02:39` inside of our DNS server we refer to
+- `02:41` this record type as a cname record this
+- `02:44` stands for a canonical name record so
+- `02:47` for example you might have one server
+- `02:49` such as mail. example.com but that same
+- `02:52` server may be providing other services
+- `02:55` and may be referenced through other
+- `02:56` names we would include those names
+- `02:59` inside of these cname records for
+- `03:02` example you can have a chat Alias and
+- `03:04` that chat Alias is pointing to mail.
+- `03:07` example.com you can also have an FTP
+- `03:10` Alias that FTP Alias is also pointing to
+- `03:13` mail. example.com and there's a third
+- `03:16` Alias of www which is also pointing to
+- `03:19` that same server that's located at mail.
+- `03:22` example.com this actually means that
+- `03:25` there will be multiple requests made if
+- `03:28` someone was to query ww w. example.com
+- `03:31` the DNS server recognizes that you're
+- `03:33` looking for www and it provides your
+- `03:36` client with the name mail. example.com
+- `03:38` if you already know the IP address of
+- `03:41` mail. example.com then the transaction
+- `03:43` is over but if that information is not
+- `03:46` cached on your machine a separate
+- `03:48` request will be made to the DNS server
+- `03:50` to resolve the IP address for mail.
+- `03:53` example.com
+- `03:54` another important record on our DNS
+- `03:56` servers is the MX record this stands for
+- `03:59` mail exchanger record and obviously this
+- `04:02` is an important record for organizations
+- `04:05` that need to make sure that emails are
+- `04:07` being able to send and receive from that
+- `04:10` domain name in this DNS server you can
+- `04:12` see there is an MX record and it
+- `04:14` specifies that the name of the mail
+- `04:16` server is mail. example.com at this
+- `04:20` point if you needed to send mail
+- `04:21` directly to that mail server you would
+- `04:23` have to perform another name resolution
+- `04:26` to mail. example.com so as long as there
+- `04:29` is an a record you'll be able to resolve
+- `04:31` the IP address associated with that male
+- `04:34` server on some DS servers you don't have
+- `04:36` access to the text based configuration
+- `04:38` file and all of those configuration
+- `04:41` settings need to be made in a web-based
+- `04:42` front end here's an example of one of
+- `04:45` those webbase front ends where we are
+- `04:46` modifying the mail record you can see
+- `04:49` that the name is mail it specifies the
+- `04:52` specifics of where that Target name is
+- `04:54` for the mail record and you can see the
+- `04:56` time to live in this case is 15 minutes
+- `04:59` on on this DNS
+- `05:01` server another useful record type on a
+- `05:03` DNS server is a text record or txt
+- `05:06` record this provides human readable text
+- `05:09` information and it's used for many
+- `05:11` different purposes one of the more
+- `05:13` common uses of a text record is to
+- `05:15` configure the SPF information this
+- `05:17` stands for cinder policy framework and
+- `05:19` this is a way that we can tell our DNS
+- `05:21` server what email servers are authorized
+- `05:24` to send mail on our behalf this is to
+- `05:27` prevent someone else from building their
+- `05:29` own mail server and sending mail with
+- `05:31` your name associated with it the mail
+- `05:33` servers that receive these email
+- `05:35` messages will refer back to the SPF
+- `05:37` record that's contained within your DNS
+- `05:40` server in a text record and they will
+- `05:42` verify if that mail really came from an
+- `05:44` authorized host these text records can
+- `05:47` also be used for dkim this is the domain
+- `05:50` Keys identified mail where we are
+- `05:52` digitally signing the emails that we are
+- `05:55` sending to another location and when
+- `05:57` those emails are received that digital
+- `05:59` signature can be verified but to be able
+- `06:02` to verify that digital signature we need
+- `06:04` the public key that is associated with
+- `06:07` that signature itself and the text
+- `06:09` record in our DNS server is where we're
+- `06:11` going to store that public key here is
+- `06:14` the SPF text record and the dkm text
+- `06:17` record from my DNS server the SPF record
+- `06:20` shows professormesser.com and it shows a
+- `06:23` specific mail server that is allowed to
+- `06:25` send mail on my behalf in this case it's
+- `06:27` the mail server at mail gun .org and of
+- `06:30` course to verify the digital signatures
+- `06:33` I also need a deim text record you can
+- `06:35` see that this public key is quite long
+- `06:37` but it is all text information which
+- `06:40` makes it perfect to put inside of a DNS
+- `06:42` text record Another important record is
+- `06:46` a record that specifies where the name
+- `06:48` servers are for your particular domain
+- `06:51` these are obviously extremely important
+- `06:53` servers especially if you need to
+- `06:55` perform name resolution these are name
+- `06:57` server records or in records and you can
+- `07:00` find these NS records listed as
+- `07:03` individual lines that specify where
+- `07:05` those name servers happen to be located
+- `07:08` for example in this domain you can see
+- `07:10` there are two name servers listed one is
+- `07:16` n1.2 example.com
+- `07:19` and the last record we'll look at is a
+- `07:21` pointer record or PTR whenever we're
+- `07:25` performing a query to a domain server
+- `07:27` we're usually asking it for the IP
+- `07:30` address associated with a fully
+- `07:32` qualified domain name for example we'll
+- `07:34` tell the name server that we'd like the
+- `07:36` IP address for www.professorpuzzle.com
+- `07:59` a number of pointer records three
+- `08:01` different ones listed for joe.
+- `08:03` example.com
+- `08:06` www.example.com and build. example.com
+- `08:09` you'll notice there is a number
+- `08:11` associated with each of those and that
+- `08:12` refers back to the IP address associated
+- `08:15` with that particular Subnet in the DNS
+- `08:17` configuration those IP addresses are
+- `08:19` shown in Reverse so this is for the IP
+- `08:22` address 192.168.20.10
+- `08:31` 82315 is
+- `08:33` www.example.com and
+- `08:37` 192.168.20.10
+- `08:48` 23.15 we will receive back the response
+- `08:50` of www.example.com

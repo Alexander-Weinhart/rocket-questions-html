@@ -1,0 +1,91 @@
+# [1.4.4 - Network Communication](https://www.youtube.com/watch?v=9Vx-awO6qfc)
+
+## 1.4.4 - Network Communication
+
+- Day: Day 2
+- Duration: 3:55
+
+## Transcript
+
+- `00:02` A unicast is one of the more popular ways of sending
+- `00:05` information across the network.
+- `00:06` It is when one station sends information directly
+- `00:10` to another station.
+- `00:11` This is a one-to-one relationship and nothing
+- `00:14` within that conversation is ever sent
+- `00:17` to anyone else on the network.
+- `00:19` If you need two devices to be able to send information
+- `00:21` to each other and no other device on the network
+- `00:24` will be involved with that conversation,
+- `00:26` then you're probably using a unicast.
+- `00:28` So any time you're connecting to a website,
+- `00:31` you're transferring files, or you're checking your email,
+- `00:34` it's probably all taking place with a unicast communication.
+- `00:38` This one-to-one relationship is also
+- `00:41` one of the disadvantages of unicast,
+- `00:43` especially if you need to send information to many people
+- `00:46` simultaneously.
+- `00:48` With unicast, you would have to build
+- `00:49` separate one-to-one communications with all
+- `00:52` of those individuals and you would
+- `00:54` have to send separate data for each individual device.
+- `00:57` But for single communication between you and another device,
+- `01:01` whether using IPv4 or IPv6, you're
+- `01:05` probably going to use unicast.
+- `01:08` To be able to efficiently send data to multiple devices
+- `01:11` at the same time, then you'll probably want to use multicast.
+- `01:15` Unicast is a one-to-many-of-many communication.
+- `01:19` So when you send information out,
+- `01:21` it is sent to multiple recipients all simultaneously.
+- `01:25` These recipients are usually subscribing
+- `01:28` to your multicast feed.
+- `01:29` So if someone is trying to receive multimedia,
+- `01:32` they're receiving stock exchange information,
+- `01:35` or maybe a device is sending out routing updates,
+- `01:38` it can send those out via multicast addresses.
+- `01:41` Multicast is relatively specialized
+- `01:43` and it requires that equipment understand and recognize
+- `01:46` how to deal with multicast communication.
+- `01:49` This is why we don't use multicast
+- `01:51` when we're sending information across to a different network
+- `01:54` or even within a very large network.
+- `01:57` But we do use multicast quite a bit with IPv4 four and IPv6.
+- `02:01` And in the right environment, it can be a very efficient way
+- `02:04` to send and receive traffic.
+- `02:07` Multicast is used where one device
+- `02:09` needs to send to many devices.
+- `02:12` Anycast is used when one device needs
+- `02:15` to send to one of many devices.
+- `02:18` This is where a single destination IP address
+- `02:21` may be sent to one of many different devices that
+- `02:24` are on the network.
+- `02:25` And it's something that you'll commonly
+- `02:27` find with both IPv4 and IPv6.
+- `02:30` In this scenario, the devices that
+- `02:33` are receiving the anycast communication
+- `02:35` are all configured in very similar ways.
+- `02:38` This allows the originating device
+- `02:40` to simply send data to the unicast address
+- `02:43` and whatever device is closest is
+- `02:46` going to receive that traffic.
+- `02:48` A good use case for anycast would
+- `02:50` be something like anycast DNS, where
+- `02:52` a DNS query can be sent out on the network
+- `02:55` and the closest data center will be able to respond
+- `02:58` to that anycast DNS request.
+- `03:01` And if you want to send a frame to everyone
+- `03:04` who's on your network, then you'll want to send a broadcast.
+- `03:07` This is a one-to-all relationship
+- `03:09` where a single packet is sent out and everyone on the network
+- `03:13` receives that single packet.
+- `03:15` Fortunately, the scope of this is limited
+- `03:17` to your local broadcast domain.
+- `03:19` So there's no way to send a broadcast
+- `03:21` frame from your local network and somehow
+- `03:23` have that frame appear everywhere else on the internet.
+- `03:26` This is a type of communication that's
+- `03:28` best fit for something like routing updates or ARP requests.
+- `03:32` And although this is something that you will commonly
+- `03:35` find with IPv4, we decided with IPv6
+- `03:38` to remove broadcast completely and go to a multicast form
+- `03:42` of communication instead.

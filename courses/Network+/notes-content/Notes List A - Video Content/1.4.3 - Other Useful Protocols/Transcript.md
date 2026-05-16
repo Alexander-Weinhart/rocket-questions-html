@@ -1,0 +1,189 @@
+# [1.4.3 - Other Useful Protocols](https://www.youtube.com/watch?v=5BahWbszVAY)
+
+## 1.4.3 - Other Useful Protocols
+
+- Day: Day 2
+- Duration: 8:26
+
+## Transcript
+
+- `00:01` There will be many times as a network professional
+- `00:04` when you'd like to know if a device is on the network
+- `00:07` and operating.
+- `00:08` And one protocol that can provide you with that is ICMP.
+- `00:12` This is the Internet Control Message Protocol.
+- `00:15` You can think of this as a way to check in with that device,
+- `00:18` very similar to sending a text message to see
+- `00:21` if you get a response back from someone.
+- `00:23` ICMP is another protocol carried by IP,
+- `00:27` but it doesn't use TCP or UDP.
+- `00:30` Instead, ICMP is its own protocol.
+- `00:33` Although ICMP can be used for a number of administrative tasks,
+- `00:37` it's most commonly associated with a way
+- `00:39` to send a message to a device to see if it's alive and operating
+- `00:43` on the network and see if you can get a response back
+- `00:46` from that device.
+- `00:47` Whenever you use the ping command
+- `00:49` to ping an IP address on the network,
+- `00:52` it's using ICMP to provide that ping functionality.
+- `00:56` But ICMP can also provide you with information
+- `00:59` about other things that may be happening on the network.
+- `01:02` For example, if you're trying to access a network that is not
+- `01:04` accessible from your location, ICMP
+- `01:07` will give you a message that that network is not reachable,
+- `01:10` or ICMP can tell you that the time
+- `01:13` to live that's inside of data that you've sent has expired
+- `01:16` and it's received an ICMP time exceeded message
+- `01:20` from that device.
+- `01:22` Another common protocol on our network
+- `01:24` is GRE, or the Generic Routing Encapsulation protocol.
+- `01:28` If you're creating a tunnel between two endpoints,
+- `01:31` this is commonly done with VPNs for example,
+- `01:34` you're creating this tunnel using GRE.
+- `01:38` This allows us to encapsulate information within an IP packet,
+- `01:41` send it across this GRE tunnel, and decapsulate it
+- `01:45` on the other side.
+- `01:47` This does not, however, provide encryption of this data.
+- `01:50` We'll need to provide additional VPN protocols
+- `01:53` to encrypt the data that we are encapsulating in a GRE tunnel.
+- `01:58` These VPN protocols are referred to as Virtual Private Network
+- `02:02` protocols, and it's very common to use these VPN protocols
+- `02:06` to encrypt or protect any data being sent
+- `02:09` across one of those tunnels.
+- `02:11` It's often common to use a purpose-built appliance
+- `02:14` to provide this encryption and decryption
+- `02:17` process at the central point.
+- `02:19` We refer to this as a VPN concentrator.
+- `02:22` Sometimes this is a standalone unit,
+- `02:24` but it's very often integrated into an existing firewall that's
+- `02:27` connected to the network.
+- `02:29` These concentrators are often hardware devices
+- `02:31` with specialized encryption hardware built into the device
+- `02:35` to add efficiency and throughput.
+- `02:37` But if you have a limited number of users,
+- `02:39` it's also possible to use your VPN concentrator as software
+- `02:43` in an operating system.
+- `02:44` This is a common site-to-site VPN configuration
+- `02:48` where a corporate network may be connected
+- `02:50` to a remote site over a public network such as the internet.
+- `02:54` We'll have VPN concentrators, which are usually
+- `02:57` firewalls or routers.
+- `02:59` Those are connecting these two sites together
+- `03:01` over the internet.
+- `03:02` But all of this traffic that's being
+- `03:04` sent across that public internet is being encrypted
+- `03:07` using this VPN technology.
+- `03:10` One of the popular protocols used
+- `03:12` to provide that level of encryption over those tunnels
+- `03:15` is IPSec.
+- `03:17` This stands for Internet Protocol Security,
+- `03:19` and it's one of the most popular ways to encrypt data being
+- `03:23` sent across these VPNs.
+- `03:25` Not only does IPSec provide encryption for confidentiality,
+- `03:29` it can also provide digital signatures
+- `03:31` of every packet, which includes integrity and anti-replay
+- `03:34` functionality.
+- `03:36` This is also a very common protocol,
+- `03:38` and it can be used across many different manufacturers'
+- `03:40` devices.
+- `03:41` For example, you might have a firewall from one manufacturer
+- `03:44` on one side of a VPN tunnel and a firewall from a completely
+- `03:48` different manufacturer on the other side of the VPN tunnel.
+- `03:52` Because IPSec is such a standard protocol,
+- `03:54` those two firewalls can easily connect
+- `03:57` to each other and transfer information
+- `03:59` over that IPSec tunnel.
+- `04:01` When you're using IPSec there are commonly
+- `04:03` two primary protocols that are in use.
+- `04:05` One is the Authentication Header, or AH,
+- `04:08` and the other is the Encapsulation Security Payload,
+- `04:11` or ESP.
+- `04:13` In order for IPSec to be able to send this encrypted data
+- `04:17` across the network, we first need to create this tunnel.
+- `04:20` And we do this by performing a series of steps
+- `04:23` prior to sending any data.
+- `04:25` Those steps are referred to as the Internet Key
+- `04:27` Exchange, or IKE.
+- `04:29` Internet key exchange allows both sides of the conversation
+- `04:32` to agree on the encryption and decryption
+- `04:35` keys that will be used for the duration of that VPN tunnel.
+- `04:39` We refer to this agreement as a Security Association, or an SA.
+- `04:44` There are two phases to this key exchange process.
+- `04:48` The first phase commonly uses Diffie-Hellman to create
+- `04:51` a shared secret key for both sides of the conversation.
+- `04:54` This usually operates using UDP port 500,
+- `04:58` and we refer to this as ISAKMP.
+- `05:01` This is the Internet Security Association and Key Management
+- `05:04` Protocol.
+- `05:05` In phase two, we coordinate which
+- `05:07` ciphers should be used for the encryption and the key sizes
+- `05:10` that would be appropriate, and it
+- `05:12` negotiates both the inbound and outbound security association
+- `05:16` to be used for this IPSec tunnel.
+- `05:19` So visually with phase one, we're building the ISAKMP tunnel
+- `05:23` over UDP port 500.
+- `05:25` In phase two, we're including the encrypted data
+- `05:28` over the Encapsulation Security Payload, or ESP tunnel.
+- `05:32` This gives us the foundation we need
+- `05:34` to be able to send this encrypted data
+- `05:36` over the IPSec tunnel.
+- `05:39` If you're building your own IPSec tunnel,
+- `05:41` you may be asked whether you'd like to use
+- `05:43` transport mode or tunnel mode.
+- `05:46` Both of these work differently and will protect data
+- `05:49` in different ways.
+- `05:50` Let's take the original packet, which includes an IP header,
+- `05:53` and some data within that IP packet.
+- `05:56` We would like to send that over an IPSec tunnel.
+- `05:58` If we use transport mode to send this IPSec data,
+- `06:02` we're going to insert an IPSec header between the IP
+- `06:05` header and the data.
+- `06:07` All of that is going to be in the clear.
+- `06:09` Anything within the data portion of that IP packet
+- `06:12` will be encrypted and then the IPSec trailers
+- `06:15` put at the end of the packet.
+- `06:17` Notice that the original IP header is not encrypted
+- `06:20` when using transport mode.
+- `06:22` And if someone does capture this data,
+- `06:24` they'll be able to see the original IP header
+- `06:27` and be able to understand where this traffic is intended
+- `06:30` to go even if they can't see the encrypted data
+- `06:33` within the packet.
+- `06:34` A much more secure method of using an IPSec tunnel
+- `06:38` is tunnel mode.
+- `06:39` In tunnel mode, the original IP header and data
+- `06:42` is all encrypted.
+- `06:44` And even if you capture this data,
+- `06:45` you'll never know what the original destination
+- `06:48` is for this data.
+- `06:50` Tunnel mode adds a new IP header,
+- `06:52` which includes the destination of the IPSec concentrator,
+- `06:56` and includes the same IPSec headers and IPSec trailers
+- `06:59` that we saw in transport mode.
+- `07:01` It's probably not too surprising that most implementations
+- `07:05` of IPSec are going to use the tunnel
+- `07:07` mode to ensure the highest level of encryption
+- `07:10` of your original data.
+- `07:12` Earlier, we mentioned the two protocols
+- `07:14` that you commonly see associated with IPSec
+- `07:17` One of those protocols is the Authentication Header, or AH.
+- `07:21` AH is used to validate the information that you're
+- `07:24` receiving over an IPSec tunnel.
+- `07:27` And if you're only using authentication header mode,
+- `07:30` you're sending all of this information over the network
+- `07:33` in the clear, but you're including
+- `07:34` some additional hashing to ensure
+- `07:37` the integrity of this data.
+- `07:39` However, in most cases, we want to be
+- `07:41` able to encrypt the data that we're
+- `07:43` sending over the IPSec tunnel.
+- `07:45` And for that reason, we'll use Encapsulation Security Payload,
+- `07:48` or ESP.
+- `07:50` This protocol is going to encrypt that original data
+- `07:53` and encrypt the trailer that we're associating with the ESP
+- `07:57` and then put around this packet a new IP header and ESP header
+- `08:02` and an integrity check value at the end of the packet.
+- `08:05` This is going to encrypt all of your original data
+- `08:08` but also provide the authentication that you
+- `08:11` need to ensure that the data is received properly
+- `08:14` on the other side.

@@ -1,0 +1,464 @@
+# [5.5.2 - Command Line Tools](https://www.youtube.com/watch?v=iYojIK1173k)
+
+## 5.5.2 - Command Line Tools
+
+- Day: Day 11
+- Duration: 17:59
+
+## Transcript
+
+- `00:02` one of the most common utilities you'll
+- `00:04` use at the command line is the Ping
+- `00:06` command the Ping command tells you if a
+- `00:09` device on the network is reachable and
+- `00:11` if it's not reachable it will give you
+- `00:12` information that might help you
+- `00:14` understand why that device is not
+- `00:16` reachable this uses the icmp protocol
+- `00:19` this is the internet control message
+- `00:21` protocol to be able to query that device
+- `00:24` and get a response from that device this
+- `00:26` will be one of the first things you do
+- `00:27` when you're troubleshooting a device you
+- `00:29` would like to know if the device is on
+- `00:31` the network and if it's responding to
+- `00:33` these pings so your first question will
+- `00:35` probably be can you ping that host here
+- `00:38` at the command line of my Mac we will
+- `00:40` run the Ping command but it works
+- `00:41` exactly the same whether you're in Mac
+- `00:43` OS Linux or Windows we will use the Ping
+- `00:47` command and we'll specify a host name in
+- `00:49` this case I will specify
+- `00:51` 1.11.1 which is a DNS at cloudflare and
+- `00:55` then we'll run the Ping command if
+- `00:57` everything works properly we'll get a
+- `00:59` response like this where the Ping is
+- `01:01` working exactly the way you would expect
+- `01:03` we are sending 64 bytes and we are
+- `01:06` receiving 64 bytes back from that
+- `01:09` 1.11.1 you will see sequence numbers for
+- `01:12` the icmp protocol a time to live and
+- `01:15` then you have the round trip time if you
+- `01:17` ever run into a situation where you are
+- `01:19` not able to Ping that device you will
+- `01:22` see messages saying that it is timed out
+- `01:24` and you are no longer able to access
+- `01:27` that particular device if the network
+- `01:29` then is stored you will start pinging
+- `01:31` that device again and you'll be back to
+- `01:33` seeing the response times for all of
+- `01:35` those individual pings in Linux and Mac
+- `01:38` OS and in Windows if you set this to
+- `01:40` continuously ping you can use the
+- `01:42` control C command and it will stop the
+- `01:44` Ping and provide you with a series of
+- `01:46` statistics about this particular ping
+- `01:49` session a utility that you might find
+- `01:52` yourself using almost as much as the
+- `01:54` Ping command is the trace route command
+- `01:57` this as the name implies will Trace a
+- `02:00` route and tell you what routers are
+- `02:02` between your device and the device that
+- `02:04` is the destination it will map the
+- `02:06` entire path between you and that
+- `02:09` secondary device in Linux and Mac OS you
+- `02:12` would run the full trace route name as
+- `02:14` the command in Windows it's an
+- `02:16` abbreviation of that command and it's
+- `02:18` called Trace RT this also uses icmp but
+- `02:22` it uses a different aspect of icmp than
+- `02:25` what we were using for the Ping command
+- `02:28` in this particular case it's using the
+- `02:30` icmp time to live exceeded error message
+- `02:34` this is a message sent back to the
+- `02:35` originating station saying that it was
+- `02:37` not able to complete this because the
+- `02:39` time to live has exceeded and of course
+- `02:42` in IP time to live is referring to the
+- `02:45` number of hops or the number of routers
+- `02:47` that we're going through not the number
+- `02:49` of seconds or the number of minutes
+- `02:51` trace route modifies the TTL and starts
+- `02:54` performing this test over the network so
+- `02:57` it might start with a TTL of one to give
+- `02:59` you information about the first router
+- `03:01` then it will change the TTL to two so
+- `03:03` that you can get information about the
+- `03:05` second router and so on one of the
+- `03:07` challenges with icmp is that many
+- `03:09` firewalls and other devices will disable
+- `03:12` or filter icmp messages so although our
+- `03:16` time to live may have been exceeded
+- `03:18` there's no icmp message that's being
+- `03:20` sent back because it's being filtered by
+- `03:22` another device in your trace route
+- `03:24` output you'll know when the icmp is
+- `03:26` being filtered because you'll see an
+- `03:27` asterisk instead of Trace rout
+- `03:30` statistics depending on the operating
+- `03:32` system you're using trace route might
+- `03:34` work a little bit differently for
+- `03:36` example in Windows the icmp echo
+- `03:39` requests are used to send information
+- `03:42` and we're expecting to receive icmp time
+- `03:44` exceeded messages there will also be an
+- `03:47` icmp echo reply that is finally received
+- `03:50` once we make it to the destination
+- `03:52` device as we mentioned earlier icmp is
+- `03:54` often filtered so you may find that
+- `03:57` sometimes the information you're looking
+- `03:58` for does not make it back to your
+- `04:01` console other operating systems or
+- `04:03` different versions of trace route might
+- `04:05` allow you to change what type of payload
+- `04:07` is being sent out so if you're running
+- `04:09` Linux or Mac OS you might have some
+- `04:11` options available at the command line to
+- `04:13` customize your trace route
+- `04:16` messages we're going to run a trace
+- `04:18` route but before we do that I want to
+- `04:20` show you what's happening behind the
+- `04:21` scenes when we run that trace route
+- `04:23` command in this particular example we're
+- `04:26` going to run a trace route from Sam's
+- `04:28` machine all the way through through
+- `04:29` these multiple routers all the way to
+- `04:31` Jack's workstation and we're going to
+- `04:34` run this by using the trace route
+- `04:36` command and when we run this the very
+- `04:38` first message sent from Sam's computer
+- `04:40` has a trace route set to TTL of one that
+- `04:44` means the time to live is one that means
+- `04:46` when this first frame reaches the very
+- `04:49` first router that router will decrease
+- `04:51` the TTL by one so that means the TTL
+- `04:54` will turn into zero meaning our time to
+- `04:57` live has been exceeded a message will
+- `04:59` then be sent back to Sam's computer
+- `05:01` saying the TTL was exceeded and here's
+- `05:04` the IP address that reported that the
+- `05:06` TTL was exceeded in this particular case
+- `05:09` that was the
+- `05:10` 1010101 router and it says that we were
+- `05:13` able to reach that router in 2
+- `05:15` milliseconds next Sam will send a trace
+- `05:17` route to Jack's machine but the TTL will
+- `05:20` be set to two that means the packet will
+- `05:22` first get to router 1 that router will
+- `05:24` decrease the TTL by one and it will send
+- `05:27` that down to the next router that will
+- `05:29` all Al decrease the TTL to one and in
+- `05:32` this particular case we've now exceeded
+- `05:34` the TTL and that message will go back to
+- `05:36` Sam's workstation and it will be noted
+- `05:38` in the output of the trace route command
+- `05:41` this process continues and the trace
+- `05:43` route command now changes the TTL to
+- `05:45` three that means it will go through the
+- `05:46` first router be decreased to two it will
+- `05:49` get to the second router the TTL will be
+- `05:51` decreased to one it will make it to the
+- `05:53` next hop along the way the TTL will be
+- `05:56` moved to zero TTL will be exceeded and a
+- `05:59` message will be sent back to Sam's
+- `06:00` workstation and that information will
+- `06:03` also be added to the trace route output
+- `06:05` the TTL will now be set to four the same
+- `06:08` process will occur where it will
+- `06:10` decrease the TTL through each router
+- `06:12` that it goes through until now it
+- `06:14` finally reaches the destination
+- `06:16` workstation where Jack's workstation
+- `06:18` will decrease the TTL by one and send
+- `06:20` back a TTL exceeded message all the way
+- `06:23` to Sam's workstation and that
+- `06:25` information is added to the trace route
+- `06:28` results here are the results of a trace
+- `06:30` route that I ran let's go through each
+- `06:32` line so you can see exactly what we're
+- `06:34` looking at in the output I ran a trace
+- `06:37` route to 8.8.8.8 which is a Google DNS
+- `06:40` server IP address it started with the
+- `06:43` first hop you can see the number one
+- `06:45` next to the first hop is
+- `06:47` 10.1.1.1 and it has three values next to
+- `06:50` it by default trace route runs each test
+- `06:53` three times and it gives you the three
+- `06:55` response times for each one of those
+- `06:57` tests the next hop is hop number two it
+- `06:59` is 96120 5813 you can see response times
+- `07:03` for those we have a hop three a hop four
+- `07:06` a hop five all the way through to hop
+- `07:08` number 10 which has finally made its way
+- `07:11` to 8.8.8.8 and of course you can see the
+- `07:14` response time measurements for that
+- `07:16` device this displays every router that
+- `07:18` we had to hop through to get between our
+- `07:20` device down to the DNS Google server
+- `07:24` this information can be very important
+- `07:26` especially if later on you run into a
+- `07:28` problem communicating to that server if
+- `07:30` you then ran a second trace route you
+- `07:33` could compare your first trace route
+- `07:35` with the second to see where you might
+- `07:37` be missing a route or which router may
+- `07:39` be stopping this route from
+- `07:42` continuing when you're troubleshooting
+- `07:44` problems on the network you often need
+- `07:45` to perform a name resolution between an
+- `07:48` IP address and a fully qualified domain
+- `07:50` name that is of course something done
+- `07:52` behind the scenes when you're using a
+- `07:54` browser or referencing a fully qualified
+- `07:56` domain name but you might want to query
+- `07:58` the DNS server yourself to see what type
+- `08:00` of results you would get there are two
+- `08:02` useful and very similar commands that
+- `08:04` you could use to perform this query one
+- `08:06` of them is NS lookup and the other one
+- `08:09` is dig this will allow you to make
+- `08:11` queries to a DNS server and receive a
+- `08:13` response to any of those queries you can
+- `08:15` look at canonical names IP addresses
+- `08:18` cach timers text records and anything
+- `08:21` else that might be inside of that DNS
+- `08:23` server NS lookup is included with
+- `08:26` Windows Linux and Mac OS and it allows
+- `08:28` you to perform this to a DNS server this
+- `08:31` utility is deprecated which means the
+- `08:33` goal is not to use this particular
+- `08:35` utility in the future instead we should
+- `08:38` be using the Dig command dig is a
+- `08:40` utility that is also included with Linux
+- `08:43` and Mac OS and there are some versions
+- `08:45` of dig that you can download and use in
+- `08:47` a Windows environment there's an older
+- `08:49` version of the bind package that comes
+- `08:51` with an executable for dig this is
+- `08:53` available from
+- `08:58` isc.grp include this executable in the
+- `09:01` package let's run an NS lookup and we'll
+- `09:04` use this command to look up
+- `09:06` www.professormesser.com
+- `09:08` we can see that we get a response back
+- `09:11` from our DNS server in this case our DNS
+- `09:13` server is
+- `09:15` 1.1.11 and we can see that there are
+- `09:17` three answers that we received from that
+- `09:19` DNS server one was that
+- `09:22` www.professormesser.com can be found at
+- `09:24` 10422 73108 we can find it at 10422
+- `09:30` 72108 and
+- `09:31` 17267
+- `09:34` 41114 you would think there would be one
+- `09:36` single IP address for that server but we
+- `09:38` have redundancy built into these servers
+- `09:41` so that if this first IP address is not
+- `09:43` available there are other IP addresses
+- `09:45` you can use to access the web server
+- `09:47` let's run the same query with the Dig
+- `09:49` command and again we'll choose
+- `09:52` www.professormesser.com
+- `09:54` on this output it shows us that we are
+- `09:56` performing a query and we can see that
+- `09:59` for this question about
+- `10:01` www.professormesser.com we're looking
+- `10:03` for the internet address or the a record
+- `10:06` associated with that name and again we
+- `10:09` get three responses they are 17267 41114
+- `10:13` that matches what we got earlier we have
+- `10:15` 10422 73108 again we have a match and we
+- `10:20` have 10422
+- `10:22` 72108 so the information that we're
+- `10:24` querying with both of these utilities is
+- `10:26` the same it's just that the format
+- `10:28` that's provided in the the output is
+- `10:30` slightly different if you're trying to
+- `10:31` query a DNS server or you'd like to look
+- `10:33` at the configuration of a DNS server you
+- `10:36` can find that you can access those
+- `10:38` records using either the NS lookup
+- `10:40` utility or
+- `10:42` dig in earlier videos we talked about
+- `10:44` the idea of capturing packets on the
+- `10:46` network in order to view the information
+- `10:48` that's being sent and to troubleshoot
+- `10:50` network issues one of the ways you could
+- `10:52` do that is by using a thirdparty utility
+- `10:55` such as wire shark but many operating
+- `10:57` systems include this capability as part
+- `10:59` of the OS itself a utility that allows
+- `11:02` you to capture these packets is the TCP
+- `11:05` dump utility this allows you to capture
+- `11:07` packets right from the command line and
+- `11:09` either view them on the screen or save
+- `11:11` them into a file TCP dump is usually
+- `11:14` included with Linux and Mac OS and you
+- `11:16` can install Utilities in Windows that
+- `11:18` would give you a similar functionality a
+- `11:20` good example of one is the wind dump
+- `11:22` utility you can either capture every
+- `11:25` packet traversing the network or you can
+- `11:26` apply filters and view that information
+- `11:28` on your screen in real time sometimes
+- `11:31` there is a lot of information that
+- `11:32` appears on the screen however and you
+- `11:34` may choose to put this information into
+- `11:36` a file that you can then download and
+- `11:38` load into Wireshark TCP dump saves these
+- `11:41` files into a standard format known as
+- `11:43` the pcap or packet capture format and
+- `11:46` that is a format that can be easily read
+- `11:48` by wire shark and many other third-party
+- `11:50` utilities when you start looking at this
+- `11:52` information it could be almost
+- `11:54` overwhelming to see hundreds or even
+- `11:56` thousands of packets all listed out on
+- `11:58` the screen so it may take some time to
+- `12:01` understand how to parse this data and
+- `12:02` how to read it properly but once you
+- `12:04` spend the time learning about these
+- `12:06` packet captures you can gather a lot of
+- `12:09` information about the way the network
+- `12:10` and applications are running in your
+- `12:13` environment here's a view of a pamp
+- `12:15` session from a Linux command line each
+- `12:17` one of these lines is a separate packet
+- `12:19` on the network there's a mix here of
+- `12:21` IPv6 packets and ipv4 packets you can
+- `12:25` see a number of these lines are
+- `12:26` communicating with the jabber client so
+- `12:28` it may be an instant messaging
+- `12:29` application you can also see DNS
+- `12:31` information where someone is performing
+- `12:33` a DNS query to the Google DNS
+- `12:37` server another useful utility is the
+- `12:39` netstat utility netstat is Network
+- `12:42` statistics and it allows us to see who
+- `12:44` we're communicating with over the
+- `12:45` network and who might be communicating
+- `12:47` with us netstat-a will show you all
+- `12:51` active connections that are coming to
+- `12:53` your machine and the ones that you are
+- `12:55` making to a separate device netstat DB
+- `12:58` is used in window Windows to show you
+- `13:00` the Windows executable that is being
+- `13:02` used to make that network connection and
+- `13:04` then netstat dasn will show you the same
+- `13:07` information but it will only show you IP
+- `13:10` addresses it will not resolve any names
+- `13:12` from a DNS server I'm in Windows so
+- `13:15` let's run the netstat command there we
+- `13:17` go and we can see an output that shows
+- `13:20` us the protocol that's in use the local
+- `13:22` IP address and on my computer the local
+- `13:24` IP address is
+- `13:26` 10.11.12 this also includes the TCP port
+- `13:29` number associated with this session and
+- `13:31` you can see all of the IP addresses that
+- `13:33` I'm communicating to in each one of
+- `13:36` these lines some of these are
+- `13:38` established States some of them are
+- `13:39` closing out and some are waiting we
+- `13:42` might want to see what executables are
+- `13:44` being used for all of these so we can
+- `13:46` use the netstat command with the dashb
+- `13:49` associated with it and you can see the
+- `13:51` output is slightly different you can see
+- `13:53` some of these are being used by service
+- `13:55` host.exe some of them are the Microsoft
+- `13:59` Edge webview 2.exe we have the HX
+- `14:03` outlook.exe and there's even an Apple
+- `14:06` mobile devic service.exe let's start up
+- `14:09` a application such as Google Chrome
+- `14:12` we'll have this start up on our screen
+- `14:14` and let's run the n-b command again and
+- `14:17` you'll start to see more information
+- `14:19` will appear in fact here is the
+- `14:20` chrome.exe showing us exactly what IP
+- `14:24` addresses we're communicating to and we
+- `14:26` can see the status of every single one
+- `14:28` of those sessions
+- `14:30` when you first sit down at a computer to
+- `14:32` start troubleshooting one of the things
+- `14:34` that might be useful to know is the
+- `14:36` local IP address configuration of that
+- `14:38` device and depending on the operating
+- `14:40` system you're using there might be a
+- `14:42` different command that you might want to
+- `14:43` use for example if we wanted to Ping our
+- `14:46` local Gateway it would be useful to know
+- `14:49` what the IP address of our local Gateway
+- `14:51` happened to be if you're in a Windows
+- `14:53` environment you would use the IP config
+- `14:56` command if you're in Linux or Mac OS you
+- `14:58` can use if config and a newer version of
+- `15:01` that command is the IP address command
+- `15:04` two words and shows you similar
+- `15:06` information about your IP address so
+- `15:09` I've now sat down at a Windows computer
+- `15:11` and I'd like to know more information
+- `15:13` about the IP address configuration the
+- `15:15` command we will use is IP config this
+- `15:17` will show me IPv6 information I also
+- `15:20` have ipv4 addresses a subnet mask and a
+- `15:23` default gateway and now I can perform my
+- `15:25` troubleshooting based on these IP values
+- `15:28` but we might want more details about how
+- `15:30` this system has been configured so we
+- `15:33` will use ip config /all to get more
+- `15:36` information you can see it starts with
+- `15:38` the name of the device how the node type
+- `15:40` is configured this is a Windows option
+- `15:43` and then we do have information about
+- `15:45` the MAC address the adapter card that's
+- `15:47` in use IP address information even the
+- `15:49` DHCP details associated with this config
+- `15:53` along with the DNS servers that have
+- `15:55` been configured for this system in Mac
+- `15:58` OS Linux you can run the if config
+- `16:01` command and I can specify an adapter
+- `16:03` name in this case en0 is my ethernet
+- `16:06` adapter this provides information
+- `16:08` showing the MAC address IPv6 address the
+- `16:11` ipv4 address on this device it's 10.
+- `16:14` 1.10.2 249 and other details about the
+- `16:17` configuration of this specific ethernet
+- `16:20` adapter knowing the IP address of a
+- `16:23` device is useful but sometimes it's also
+- `16:25` useful to know the MAC address of a
+- `16:27` device this can be especially useful if
+- `16:29` you're trying to look up this device in
+- `16:31` the MAC address table of a switch one
+- `16:34` way to view this information is
+- `16:35` contained within your local ARP table
+- `16:38` this is the address resolution protocol
+- `16:40` cache and it's one that is kept on every
+- `16:42` local machine to view this we would use
+- `16:45` the ar- a command this will list out the
+- `16:48` IP address and the MAC address
+- `16:50` associated with those IP addresses on
+- `16:52` your local subnet this command Works in
+- `16:55` Linux Mac OS and windows so you can try
+- `16:57` it on your own system I'm going to
+- `16:59` perform in rp-a and we can see the IP
+- `17:02` addresses and Mac addresses that have
+- `17:04` been resolved previously and are stored
+- `17:07` in my ARP cache there are some IP
+- `17:09` addresses on my network that are not in
+- `17:11` the cache that's because I've not
+- `17:13` communicated to those devices lately so
+- `17:15` let's communicate to one of those
+- `17:17` devices I'm going to communicate to
+- `17:19` 10110 234 you'll notice that is not in
+- `17:23` my ARP cach currently so we'll simply
+- `17:25` ping
+- `17:26` 10110 234 four and we get a response
+- `17:30` back from that device I'm going to
+- `17:32` finish that ping and then let's perform
+- `17:34` the ar- a again you'll notice that
+- `17:37` 10.1.1 10.23 4 is now in the ARP cache
+- `17:41` and I can see the MAC address associated
+- `17:43` with that specific IP because it has now
+- `17:46` been stored locally in my ARP cache

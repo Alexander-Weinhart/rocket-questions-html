@@ -1,0 +1,314 @@
+# [1.4.1 - Introduction to IP](https://www.youtube.com/watch?v=ueth6WvFVMU)
+
+## 1.4.1 - Introduction to IP
+
+- Day: Day 2
+- Duration: 14:10
+
+## Transcript
+
+- `00:01` In this course, there will be a lot
+- `00:03` of conversations about TCP/IP moving packets
+- `00:07` across the network.
+- `00:08` And very often, we lose track of exactly what that means.
+- `00:12` So I thought it would be good if we
+- `00:14` started with an overview of Internet Protocol
+- `00:17` and how it operates.
+- `00:18` The goal, of course, is to get data
+- `00:20` from one side of the network to another.
+- `00:23` And there are a number of different processes involved
+- `00:25` in being able to transfer large amounts of data
+- `00:28` from one computer to another.
+- `00:30` In the analogy that we use today,
+- `00:32` we're going to describe this transfer of data from one device
+- `00:35` to another as using a moving truck to get data
+- `00:38` from one house to another.
+- `00:40` We can also think of the roads that we're using as the network
+- `00:44` that we've created.
+- `00:46` This might be a wired Ethernet network, a wireless network,
+- `00:49` a wide-area network technology, or many different types
+- `00:52` of network connections.
+- `00:53` But in this explanation, those network connections
+- `00:57` are referred to as the road that our moving truck will drive on.
+- `01:00` In this example, this truck is the Internet Protocol.
+- `01:04` It's the one that is doing the heavy lifting
+- `01:06` and moving that data across the network.
+- `01:09` Just as we might pack up items or objects in a room into a box
+- `01:14` and put that box onto the moving truck,
+- `01:17` we do effectively the same thing with our application data.
+- `01:20` We package that information into a virtual moving box.
+- `01:25` And we put that moving box onto the truck, which, in this case,
+- `01:28` would be IP.
+- `01:29` So now we have a highway, which would be our network.
+- `01:32` We have a moving truck, which would be the Internet Protocol.
+- `01:35` We have boxes within that moving truck.
+- `01:38` We commonly refer to those boxes as the TCP or UDP protocol.
+- `01:43` And then inside of those boxes is application data
+- `01:46` that we need to transfer from one device to another.
+- `01:50` This process of encapsulating data
+- `01:52` within other protocols which are then encapsulated
+- `01:55` within even larger protocols is a fundamental process
+- `01:59` when we describe the transfer of data across the network.
+- `02:02` If we were to visualize the Ethernet frame that we
+- `02:05` use on our networks, it would look a lot like the one
+- `02:07` that we have on our screen now.
+- `02:09` We have a client that is communicating to a server.
+- `02:11` And information is being sent between those two devices.
+- `02:15` You'll notice there is an Ethernet payload
+- `02:17` in the middle of this frame.
+- `02:18` At the beginning of the frame is an Ethernet header.
+- `02:21` And at the end of the frame is an Ethernet trailer.
+- `02:24` If we were to provide a little more detail about what's inside
+- `02:27` of that Ethernet payload, you would
+- `02:29` see there would be some IP information.
+- `02:31` And within the IP header, the rest of the packet
+- `02:34` has the IP payload.
+- `02:36` Deconstructing this further, you can
+- `02:37` see that the IP payload consists of a TCP or UDP header.
+- `02:42` And inside of that part of the packet
+- `02:45` is the TCP or UDP payload.
+- `02:48` So if we were to look at a protocol
+- `02:49` decode of a single frame on our Ethernet network,
+- `02:52` we would see an Ethernet header.
+- `02:53` Inside that Ethernet header would be an IP header.
+- `02:56` Inside the IP header might be a TCP header,
+- `02:59` which would hold HTTP or website data.
+- `03:02` And then finally, at the end of the frame,
+- `03:05` we would have the Ethernet trailer.
+- `03:07` You'll notice that inside of that IP header,
+- `03:10` we had either TCP IP data or UDP data.
+- `03:14` So it might be useful to break out those two protocols
+- `03:17` and describe what the differences might be.
+- `03:19` Both of these protocols are very similar in their function.
+- `03:22` They're obviously moving data from one device to another.
+- `03:25` But the internals of how those protocols work
+- `03:27` are a bit different between the two.
+- `03:29` And an application will use the one
+- `03:31` that makes sense for its particular function.
+- `03:34` If you recall our video on the OSI model,
+- `03:37` you'll remember that TCP and UDP operate at OSI layer
+- `03:41` 4, or the transport layer.
+- `03:43` It's in this layer that we're able to send
+- `03:45` many different applications across the network
+- `03:47` simultaneously between exactly the same devices.
+- `03:51` We refer to this as multiplexing.
+- `03:53` And it describes the efficient process
+- `03:55` of transferring multiple applications simultaneously
+- `03:59` between multiple devices.
+- `04:01` Let's first look at TCP, or the Transmission Control Protocol.
+- `04:06` We refer to TCP as a connection-oriented protocol.
+- `04:09` That's because there is a formal process
+- `04:11` to set up the communication between two devices.
+- `04:14` And when that communication is done,
+- `04:16` there is a formal process to tear down
+- `04:18` that particular session.
+- `04:19` One feature that makes TCP different than UDP
+- `04:22` is the ability for a station to acknowledge
+- `04:25` that it has received data.
+- `04:27` We refer to this as a reliable delivery method.
+- `04:30` That's because sending data to another device
+- `04:33` will always result in an acknowledgment
+- `04:35` that that device has successfully received that data.
+- `04:38` This means the sending station will always
+- `04:40` know if information was properly delivered to the destination.
+- `04:44` This also means that the sending device can recover
+- `04:47` from any type of errors.
+- `04:48` If it doesn't receive an acknowledgment,
+- `04:50` it can assume that that information was not received
+- `04:53` by the destination device.
+- `04:54` And it will resend that information
+- `04:56` to ensure that it is able to receive all of the data.
+- `05:00` These packets are also numbered.
+- `05:02` So the receiving device will also
+- `05:04` be able to request anything that may have been lost along the way
+- `05:08` without having to resend multiple packets
+- `05:10` and re-create that data.
+- `05:12` Having this conversation between these two devices
+- `05:15` about how well traffic is able to be transferred
+- `05:18` allows the receiving station to configure flow control.
+- `05:22` This describes the process of the receiving station telling
+- `05:25` the sending device to either send data slower
+- `05:28` or speed up the transmission.
+- `05:30` UDP, or the User Datagram Protocol,
+- `05:33` is a much more barebones protocol.
+- `05:35` There is no formal process to set up
+- `05:38` a session between two devices and no formal process
+- `05:41` then to tear down that session.
+- `05:43` We refer to this as a connectionless communication
+- `05:46` because there's no setup or warning that information may be
+- `05:49` inbound to a particular device.
+- `05:52` This means that we can send packet after packet of UDP data
+- `05:55` from one device to another.
+- `05:57` And no UDP acknowledgment is ever sent back
+- `06:00` to the originating device.
+- `06:02` We refer to this type of communication as unreliable,
+- `06:06` not because there is a higher chance of having
+- `06:09` problems communicating.
+- `06:10` In fact, UDP and TCP are able to communicate
+- `06:13` in exactly the same way with exactly the same probability
+- `06:17` of getting that information sent across the network.
+- `06:20` The difference is that we don't receive any acknowledgments
+- `06:23` when using UDP.
+- `06:24` So we can't guarantee that that information has truly
+- `06:28` been delivered.
+- `06:29` And since there's no acknowledgment
+- `06:31` and no notification that anything has been delivered,
+- `06:34` there's no way to perform any type of error recovery
+- `06:37` or be able to retransmit portions of the data which
+- `06:40` may have not been received.
+- `06:42` And because there's no ongoing communication back and forth
+- `06:45` between these two devices using UDP,
+- `06:47` there's no way to configure any type of flow control.
+- `06:50` The receiving station can't reach out and tell the sending
+- `06:53` station to speed up or slow down,
+- `06:55` because nothing is ever sent back to the originating station.
+- `07:00` Now that we've loaded our boxes of data into our IP truck,
+- `07:04` we need to tell the truck driver where to take this information.
+- `07:07` And in a moving truck, we do this
+- `07:09` by giving the truck driver the destination
+- `07:11` address for the truck.
+- `07:13` In the world of IP, we give it a destination IP address.
+- `07:18` But, of course, in a house we have many different rooms
+- `07:20` that we might deliver these boxes to.
+- `07:23` Some boxes might be for the bedroom.
+- `07:25` Others might be for the kitchen or bathroom.
+- `07:28` And when we bring the box into the house,
+- `07:30` we can take that box directly to the appropriate room.
+- `07:33` IP works in a similar way, where each box of data
+- `07:37` is provided a room name.
+- `07:39` And in the world of IP, it's provided via a TCP or UDP port
+- `07:43` number.
+- `07:44` Instead of having bedroom, living room, kitchen, or bath,
+- `07:48` there will be a number associated with that data,
+- `07:50` such as port 80, port 443, port 123, or port 25.
+- `07:56` When those TCP or UDP boxes arrive at the house,
+- `08:00` we simply look at the TCP or UDP port number
+- `08:03` and deliver that box to the appropriate application running
+- `08:06` on that server.
+- `08:08` If you were to look at a protocol
+- `08:09` decode of IPv4 traffic being sent over the network,
+- `08:13` you would see a set of IPv4 sockets for the server
+- `08:17` and for the client.
+- `08:18` This socket is a combination of data
+- `08:21` that consists of an IP address, a protocol, which
+- `08:24` would be TCP or UDP, and then there
+- `08:27` would be an application port number.
+- `08:29` For the server side, there would be a server application port
+- `08:33` number.
+- `08:33` And on the client side, there is a client port number.
+- `08:36` Once both sides of the conversation
+- `08:38` know what the IP address is, they know the protocol,
+- `08:41` and they know the port numbers of both the server
+- `08:43` and the client, we're able to send information properly
+- `08:46` between both devices to the appropriate application.
+- `08:50` If you were to look at well-known applications that are
+- `08:53` using TCP or UDP, you'll notice that many of those port numbers
+- `08:58` are from 0 through 1,023.
+- `09:02` We refer to these as nonephemeral ports,
+- `09:05` which means they are permanent port numbers.
+- `09:07` If we need to communicate to a web server,
+- `09:09` we're almost always going to use port 80 and port 443.
+- `09:14` Those are very common and permanent port numbers
+- `09:17` that you would find on almost any web server.
+- `09:20` On the client side, we tend to use port numbers
+- `09:22` on a temporary basis.
+- `09:24` And we refer to those as ephemeral ports.
+- `09:27` Those are ports that are commonly associated with 1,024
+- `09:31` through 65,535.
+- `09:34` Although it's very common to find applications
+- `09:36` using nonephemeral ports and the clients using ephemeral ports,
+- `09:40` the reality is any device can use any port number
+- `09:44` that it would like to.
+- `09:45` And although we commonly associate
+- `09:47` servers with nonephemeral ports and clients
+- `09:49` with ephemeral ports, the reality
+- `09:52` is you could find application servers
+- `09:54` using port numbers within the ephemeral port range.
+- `09:57` So you can see this is not a hard and fast rule
+- `10:00` but instead broadly describes the way
+- `10:02` that we use these port numbers on our network.
+- `10:06` Anytime you see a TCP or UDP port,
+- `10:09` it can be a number between 0 and 65,535.
+- `10:13` That is a lot of room to be able to use different port numbers
+- `10:17` for different applications.
+- `10:19` Most servers, as we mentioned, will
+- `10:21` use nonephemeral or nontemporary port numbers.
+- `10:24` But that's not always the case.
+- `10:26` And you could see applications using port numbers that are
+- `10:29` in the ephemeral port range.
+- `10:31` Remember that changing port numbers is simply
+- `10:33` a way to designate what room inside of the house
+- `10:36` will be receiving that particular data.
+- `10:39` It's used for communication.
+- `10:41` And this is not a security mechanism.
+- `10:43` You'll still need a firewall to decide
+- `10:45` whether traffic is truly allowed or disallowed
+- `10:48` through the network.
+- `10:49` And simply changing a port number
+- `10:51` doesn't increase or decrease any type of network security.
+- `10:55` If you're connecting to a web server,
+- `10:57` your browser automatically knows that it should be looking
+- `11:00` for port 80 or port 443.
+- `11:03` And it will use those ports by default.
+- `11:05` If you change the port numbers of the server,
+- `11:08` your browser will no longer know how
+- `11:10` to connect to that web server.
+- `11:12` That's because we expect web servers to always use port 80
+- `11:15` or always use port 443.
+- `11:17` These are well-known port numbers.
+- `11:20` And if you change those port numbers,
+- `11:22` you'll have to make sure that all of the clients
+- `11:24` use the new port number instead of what
+- `11:26` normally would be well known.
+- `11:28` Also, keep in mind that TCP port numbers
+- `11:31` are different than UDP port numbers.
+- `11:34` Although both of them can be between 0 and 65,535,
+- `11:39` TCP port 80 is a different port number than UDP port 80.
+- `11:44` And you could theoretically use two different applications
+- `11:47` with both of those protocols at the same time.
+- `11:51` Here's how this might be practically configured
+- `11:53` on our network.
+- `11:54` In this example, we have a server.
+- `11:56` Its IP address is 10.0.0.2.
+- `11:58` And we have a client at 10.0.0.1.
+- `12:02` These two devices are communicating
+- `12:04` across the network using three different applications.
+- `12:07` The server has a web server at TCP port
+- `12:09` 80, a voice-over-IP server at UDP port 5004.
+- `12:14` And it's also providing email services over TCP port 143.
+- `12:18` This means the client can communicate
+- `12:20` to the server with all three of those applications
+- `12:23` simultaneously because they all have different TCP and UDP port
+- `12:27` numbers.
+- `12:28` If we were to then look at the IP data that was being sent
+- `12:32` on a single communication, you can see that this IP address
+- `12:35` of 10.0.0.1, our client, is sending information to this
+- `12:40` 10.0.0.2 address.
+- `12:43` You'll also notice that the client is using a temporary port
+- `12:46` number for this session.
+- `12:47` In this case, the randomized temporary port number
+- `12:50` is port 3000.
+- `12:52` And this device is communicating to the web server.
+- `12:54` So it's using the well-known port number of port 80.
+- `12:57` And you can also see there is HTTP data contained
+- `13:00` within this packet as well.
+- `13:02` This data is received by the server.
+- `13:04` And when the server needs to send information back
+- `13:06` to the client, it simply reverses the TCP source port
+- `13:10` and destination port and the IP source and destination
+- `13:14` to be able to send that information back to where
+- `13:17` the original request was sent.
+- `13:19` This same process occurs if you're using voice-over-IP data.
+- `13:23` In this case, the client is using a source port of 7100.
+- `13:27` And the UDP destination port would
+- `13:28` be 5004, which would be the voice-over-IP service
+- `13:32` on that server.
+- `13:33` And for email data, the source port that's being used
+- `13:36` is a random number of 4407.
+- `13:39` And the destination port is the well-known port
+- `13:41` for email, port 143.
+- `13:44` So every device on the network that is communicating via IP
+- `13:48` is using this fundamental process to transfer data.
+- `13:51` This allows us to scale up into a worldwide internet
+- `13:55` and be able to send data between two devices anywhere
+- `13:58` in the world.
